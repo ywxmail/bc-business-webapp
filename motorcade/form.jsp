@@ -23,14 +23,14 @@
 						value='<s:date format="yyyy-MM-dd" name="e.payment_date" />'/></td>
 					</tr>
 					<tr>
-						<td class="label">* <s:text name="motorcade.addrevation"/>:</td>
-						<td class="value"><s:textfield name="e.addrevation" data-validate="required"/></td>
+						<td class="label">* <s:text name="motorcade.name"/>:</td>
+						<td class="value"><s:textfield name="e.name" data-validate="required"/></td>
 						<td class="label" ><s:text name="motorcade.principal"/>:</td>
 						<td class="value" ><s:textfield name="e.principal"  id="addUsers" data-validate="required"/></td>
 					</tr>
 					<tr>
-						<td class="label">* <s:text name="motorcade.benelux"/>:</td>
-						<td class="value"><s:textfield name="e.benelux" data-validate='required'/></td>
+						<td class="label">* <s:text name="motorcade.fullName"/>:</td>
+						<td class="value"><s:textfield name="e.fullName" data-validate='required'/></td>
 						<td class="label"><s:text name="label.phone"/>:</td>
 						<td class="value"><s:textfield name="e.phone" data-validate="required"/></td>
 					</tr>
