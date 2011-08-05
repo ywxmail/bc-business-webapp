@@ -7,7 +7,7 @@
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="motorcadeForm" theme="simple">
 	    <div class="formTopInfo">
-			<s:property value="e.authorName" />(<s:property value="e.departName" />) 创建于  <s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>
+			<s:property value="e.authorName" />(<s:property value="e.authorDepartName" />) 创建于  <s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>
 		</div>
 		<div class="formFields ui-widget-content">
 			<table class="formFields" cellspacing="2" cellpadding="0">
@@ -36,13 +36,13 @@
 					<tr>
 						<td class="label">*<s:text name="motorcade.company"/>:</td>
 						<td class="value"><s:textfield name="e.company" data-validate="required"
-						readonly="true" title='%{getText("motorcade.title.click2selectBelong")}'/></td>
+						readonly="true" title='%{getText("motorcade.title.click2selectCompany")}'/></td>
 						<td class="label"><s:text name="motorcade.fax"/>:</td>
 						<td class="value"><s:textfield name="e.fax"  data-validate='{required:false,type:"phone"}'/></td>
 					</tr>
 					<tr>
 						<td class="label"> <s:text name="motorcade.colour"/>:</td>
-						<td class="value"><s:textfield name="e.colour" /></td>
+						<td class="value"><s:textfield name="e.color" /></td>
 						<td class="label"><s:text name="motorcade.address"/>:</td>
 						<td class="value"><s:textfield name="e.address" /></td>
 					</tr>
@@ -66,10 +66,10 @@
 		<s:hidden name="e.modifierName" />
 		<s:hidden name="e.modifierId" />
 		<s:hidden name="e.author.name" />
-		<s:hidden name="e.departId" />
-		<s:hidden name="e.departName" />
-		<s:hidden name="e.unitId" />
-		<s:hidden name="e.unitName" />
+		<s:hidden name="e.authorDepartId" />
+		<s:hidden name="e.authorDepartName" />
+		<s:hidden name="e.authorUnitId" />
+		<s:hidden name="e.authorUnitName" />
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 		<input type="hidden" name="e.modifiedDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.modifiedDate" />'/>
 	</s:form>

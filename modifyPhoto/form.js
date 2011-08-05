@@ -37,13 +37,17 @@ bc.business.modifyPhoto = {
 			var y1=$('#y1').val();
 			var w=$('#w').val();
 			var h=$('#h').val();
+			var photoUrl=$form.find("img").attr("src");
 			
 			
-
-			$.ajax({ url: "/bc-business/modifyPhoto/data",  success: function(url){
-				$this.data("data-status", url);
-				$this.dialog("close");
-			}});
+            var url="/bc-business/modifyPhoto/modify?x1="+x1+"&y1="+y1+"&w="+w+"&h="+h+"&photoUrl="+photoUrl;
+			$.ajax({ url: url,dataType:"json", success: update_page});
+			function update_page(json){
+				$("img").attr("src",json.photoUrl);
+				$form.dialog("close");
+				
+			}
+			
 		}
 		
 		

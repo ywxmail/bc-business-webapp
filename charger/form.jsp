@@ -9,7 +9,7 @@
 		"width":680,"minWidth":250,"minHeight":250,"modal":false}' style="overflow-y:auto;">
 	<s:form name="chargerForm" theme="simple">
 	    <div class="formTopInfo">
-			<s:property value="e.authorName" />(<s:property value="e.departName" />) 创建于  <s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>
+			<s:property value="e.authorName" />(<s:property value="e.authorDepartName" />) 创建于  <s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>
 		</div>
 		<div class="formFields ui-widget-content">
 			<table class="formFields" cellspacing="2" cellpadding="0">
@@ -29,7 +29,7 @@
 						<td class="value"><input type="text" name="e.brithdate"  
 						class="bc-date" title='<s:text name="title.click2selectDate"/>'
 						value='<s:date format="yyyy-MM-dd" name="e.brithdate" />'/></td>
-						<td class="value" rowspan="6"> <s:textfield name="charger.photo" /></td>
+						<td class="value" rowspan="4"colspan="2"><div style="width: 160px;height: 125px;margin: 0 auto;"><img alt="" src="" name="charger.photo" ></div>
 					</tr>
 					<tr>
 						<td class="label"> <s:text name="label.phone"/>:</td>
@@ -53,10 +53,12 @@
 					<tr>
 						<td class="label"> <s:text name="charger.idAddress"/>:</td>
 						<td class="value" colspan="3"><s:textfield name="e.idAddress" /></td>
+						<td align="center">上传头像</td>
 					</tr>
 					<tr>
 						<td class="label"><s:text name="charger.temporaryAddress"/>:</td>
 						<td class="value" colspan="3"><s:textfield name="e.temporaryAddress" /></td>
+						<td align="center">修改头像</td>
 					</tr>
 					<tr>
 					<td class="label w80"  ><s:text name="charger.modifiedDate"/>:</td>
@@ -75,10 +77,10 @@
 		<s:hidden name="e.uid" />
 		<s:hidden name="e.author.id" />
 		<s:hidden name="e.author.name" />
-		<s:hidden name="e.departId" />
-		<s:hidden name="e.departName" />
-		<s:hidden name="e.unitId" />
-		<s:hidden name="e.unitName" />
+		<s:hidden name="e.authorDepartId" />
+		<s:hidden name="e.authorDepartName" />
+		<s:hidden name="e.authorUnitId" />
+		<s:hidden name="e.authorUnitName" />
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 		<input type="hidden" name="e.modifiedDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.modifiedDate" />'/>
 	</s:form>

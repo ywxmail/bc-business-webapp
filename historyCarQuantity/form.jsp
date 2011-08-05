@@ -7,7 +7,7 @@
 		"width":300,"minWidth":320,"minHeight":200,"modal":false}' style="overflow-y:auto;">
 	<s:form name="historyCarQuantityForm" theme="simple">
 	 <div class="formTopInfo">
-			<s:property value="e.authorName" />(<s:property value="e.departName" />) 创建于  <s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>
+			<s:property value="e.authorName" />(<s:property value="e.authorDepartName" />) 创建于  <s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>
 		</div>
 	<div class="formFields ui-widget-content">
 		<table class="formFields" cellspacing="2" cellpadding="0">
@@ -22,7 +22,7 @@
 				</tr>
 				<tr>
 					<td class="label">* <s:text name="historyCarQuantity.carquantity"/>:</td>
-					<td class="value"><s:textfield name="e.carquantity" data-validate='{"required":true,"type":"digits","max":2147483647}'/></td>
+					<td class="value"><s:textfield name="e.quantity" data-validate='{"required":true,"type":"digits","max":2147483647,"min":1}'/></td>
 				</tr>
 		   </tbody>
 		</table>
@@ -32,10 +32,10 @@
 		<s:hidden name="e.motorcade.name" />
 		<s:hidden name="e.author.id" />
 		<s:hidden name="e.author.name" />
-		<s:hidden name="e.departId" />
-		<s:hidden name="e.departName" />
-		<s:hidden name="e.unitId" />
-		<s:hidden name="e.unitName" />
+		<s:hidden name="e.authorDepartId" />
+		<s:hidden name="e.authorDepartName" />
+		<s:hidden name="e.authorUnitId" />
+		<s:hidden name="e.authorUnitName" />
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 	</s:form>
 </div>

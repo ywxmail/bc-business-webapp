@@ -6,7 +6,7 @@
 	<s:url value="/ui-libs/jcrop/0.9.9/themes/default/jquery.Jcrop.css" />'
 	data-initMethod='bc.business.modifyPhoto.init'
 	data-option='{
-		"buttons":[{"text":"<s:text name="确定"/>","click":"bc.business.modifyPhoto.check"}],
+		"buttons":[{"text":"<s:text name="label.save"/>","click":"bc.business.modifyPhoto.check"}],
 		"width":680,"minWidth":250,"minHeight":250,"modal":false}'
 	style="overflow-y: auto;">
 	<s:form name="modifyPhoto" theme="simple">

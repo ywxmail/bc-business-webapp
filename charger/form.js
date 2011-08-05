@@ -19,7 +19,7 @@ bc.business.chargerForm = {
 		});
 		
 		
-		$form.find(":input[name='charger.photo']").click(function(){
+		$form.find("img").click(function(){
 			
 			var option = jQuery.extend({
 				url : bc.root + "/bc-business/modifyPhoto/create",
