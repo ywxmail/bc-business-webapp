@@ -14,20 +14,19 @@
 			<tbody>
 				<tr>
 					<td class="label w80">* <s:text name="historyCarQuantity.year"/>:</td>
-					<td class="value"><s:textfield name="e.year" data-validate="required"/></td>
+					<td class="value"><s:textfield name="e.year" data-validate='{"required":true,"type":"digits","max":9999,"min":1970}'/></td>
 				</tr>
 				<tr>
 					<td class="label">* <s:text name="historyCarQuantity.month"/>:</td>
-					<td class="value"><s:textfield name="e.month" data-validate="required"/></td>
+					<td class="value"><s:textfield name="e.month" data-validate='{"required":true,"type":"digits","max":12,"min":1}'/></td>
 				</tr>
 				<tr>
 					<td class="label">* <s:text name="historyCarQuantity.carquantity"/>:</td>
-					<td class="value"><s:textfield name="e.carquantity" data-validate='number'/></td>
+					<td class="value"><s:textfield name="e.carquantity" data-validate='{"required":true,"type":"digits","max":2147483647}'/></td>
 				</tr>
 		   </tbody>
 		</table>
 		</div>
-		
 		<s:hidden name="e.id" />
 		<s:hidden name="e.motorcade.id" />
 		<s:hidden name="e.motorcade.name" />
