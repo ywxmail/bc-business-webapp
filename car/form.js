@@ -1,4 +1,4 @@
-bc.carManForm = {
+bc.carForm = {
 	init : function() {
 		var $form = $(this);
 		
