@@ -43,7 +43,8 @@ bc.business.modifyPhoto = {
             var url="/bc-business/modifyPhoto/modify?x1="+x1+"&y1="+y1+"&w="+w+"&h="+h+"&photoUrl="+photoUrl;
 			$.ajax({ url: url,dataType:"json", success: update_page});
 			function update_page(json){
-				$("img").attr("src",json.photoUrl);
+				$("img[id=carMan_photo]").attr("src",json.photoUrl);
+				$form.data("portrait",json.photoUrl)
 				$form.dialog("close");
 				
 			}
