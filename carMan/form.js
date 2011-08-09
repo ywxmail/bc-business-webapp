@@ -3,7 +3,7 @@ bc.carManForm = {
 		var $form = $(this);
 		
 		// 初始化多页签
-		$form.find('#formTabs').tabs(2);
+		$form.find('#formTabs').tabs();
 		
 		
 		//绑定选择上级的按钮事件处理
