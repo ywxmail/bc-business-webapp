@@ -28,6 +28,12 @@
 						<td class="value"><s:textfield name="e.businessType"/></td>
 					</tr>
 					<tr>
+						<td class="label"><s:text name="car.registerDate"/>:</td>
+						<td class="value"><s:textfield name="e.registerDate" /></td>
+						<td class="label"><s:text name="car.businessType"/>:</td>
+						<td class="value"><s:textfield name="e.factoryDate"/></td>
+					</tr>
+					<tr>
 						<td class="label" colspan="4">
 							<div class="formTopInfo">
 								登记：<s:property value="e.author.name" />(<s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>)
