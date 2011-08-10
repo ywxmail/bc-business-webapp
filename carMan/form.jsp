@@ -59,7 +59,7 @@
 					<tr>
 						<td class="label" colspan="4">
 							<div class="formTopInfo">
-								状态：<s:label value="正常"/>&nbsp;&nbsp;&nbsp;&nbsp;登记：<s:property value="e.author.name" />(<s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>)
+								状态：<s:property value="%{statusesValue[e.status]}" />&nbsp;&nbsp;&nbsp;&nbsp;登记：<s:property value="e.author.name" />(<s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>)
 								<s:if test="%{e.modifier != null}">
 								，最后修改：<s:property value="e.modifier.name" />(<s:date name="e.modifiedDate" format="yyyy-MM-dd HH:mm:ss"/>)
 								</s:if>
@@ -72,6 +72,7 @@
 		<div class="formTabs" id="formTabs">
 			<ul>
 			<s:if test="!e.isNew()">
+			    <li><a href="#otherFormFields">其他信息</a></li>
 				<li><a href='<s:url value="/bc/unit/list" />'>营运车辆</a></li>
 				<li><a href='<s:url value="/bc-businsess/contract/list" />'>合同</a></li>
 				<li><a href='<s:url value="/bc-businsess/contract/list" />'>保险</a></li>
@@ -81,7 +82,6 @@
 				<li><a href='<s:url value="/bc-businsess/contract/list" />'>迁移历史</a></li>
 				<li><a href='<s:url value="/bc-businsess/contract/list" />'>安全学习</a></li>
 				<li><a href='<s:url value="/bc-businsess/contract/list" />'>黑名单历史</a></li>
-				<li><a href="#otherFormFields">其他信息</a></li>
 				</s:if><s:else>
 				<li><a href="#otherFormFields">其他信息</a></li>
 				</s:else>
@@ -98,7 +98,7 @@
 						</tr>
 						<tr>
 							<td class="label"><s:text name="carMan.orderNo"/>:</td>
-							<td class="value"><s:textfield name="e.orderNo" data-validate='{required:false,type:"number"}'/></td>
+							<td class="value"><s:textfield name="e.orderNo" /></td>
 							<td class="label"><s:text name="carMan.cert4Driving"/>:</td>
 							<td class="value"><s:textfield name="e.cert4Driving"/></td>
 						</tr>
@@ -154,6 +154,7 @@
 			</div>
 		</div>
 		<s:hidden name="e.uid" />
+		<s:hidden name="e.status"/>
 		<s:hidden name="e.id" />
 		<s:hidden name="e.author.id" />
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
