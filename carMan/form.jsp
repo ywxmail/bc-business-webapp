@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div title='<s:text name="carMan.title"/>:<s:property value="e.name"/>' data-type='form' class="bc-page"
-	data-namespace="/bc-business/carMan"
+	data-namespace="<s:url value="/bc-business/carMan" />"
 	data-js='<s:url value="/bc-business/carMan/form.js" />,<s:url value="/bc/identity/identity.js" />'
 	data-initMethod='bc.carManForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
@@ -14,8 +14,7 @@
 						<td class="value"><s:textfield name="e.name" cssStyle="width:8em;" data-validate="required"/><s:radio name="e.sex" list="#{'1':'男','2':'女'}" 
 							value="e.sex" cssStyle="width:auto;"/></td>
 						<td class="label"><s:text name="carMan.type"/>:</td>
-						<td class="value" colspan="3"><s:radio name="e.type" list="#{'0':'司机','1':'责任人','2':'司机和责任人'}" 
-							value="e.sex" cssStyle="width:auto;"/></td>
+						<td class="value" colspan="3"><s:radio name="e.type" list="#{'0':'司机','1':'责任人','2':'司机和责任人'}" cssStyle="width:auto;"/></td>
 						<td rowspan="7" style="text-align:right;width:110px;" title='点击更改照片'>
 							<img id="carMan_photo" style='overfloat:hidden;width:110px;height:160px;background: url("<s:url value="%{portrait}" />") no-repeat;' />
 						</td>
