@@ -9,7 +9,7 @@
 		<div class="formFields ui-widget-content" style="width:710px;">
 			<table class="formFields" cellspacing="2" cellpadding="0">
 				<tbody>
-					<tr>   
+					<tr>
 						<td class="label">*<s:text name="car.code"/>:</td>
 						<td class="value"><s:textfield name="e.code" data-validate="required"/></td>
 						<td class="label">*<s:text name="car.unit"/>:</td>
@@ -61,6 +61,22 @@
 						</td>
 					</tr>
 					<tr>
+					</tr>
+					<tr>
+						<td class="label"><s:text name="car.operateDate"/>:</td>
+						<td class="value">
+							<input type="text" name="e.operateDate" data-validate="date"
+							value='<s:date format="yyyy-MM-dd" name="e.operateDate" />'
+							class="bc-date"/>
+						</td>
+						<td class="label"><s:text name="car.scrapDate"/>:</td>
+						<td class="value">
+							<input type="text" name="e.scrapDate" data-validate="date"
+							value='<s:date format="yyyy-MM-dd" name="e.scrapDate" />'
+							class="bc-date"/>
+						</td>
+					</tr>
+					<tr>
 						<td class="label"><s:text name="car.originNo"/>:</td>
 						<td class="value"><s:textfield name="e.originNo" /></td>
 						<td class="label"><s:text name="car.level"/>:</td>
@@ -87,7 +103,7 @@
 		</div>
 		<div class="formTabs" id="formTabs">
 			<ul>
-				<li><a href='<s:url value="/bc/carMan/list" />'>营运司机</a></li>asdasdasdasdasdsda
+				<li><a href='<s:url value="/bc/carMan/list" />'>营运司机</a></li>
 				<li><a href='<s:url value="/bc/error/todo" />'>合同</a></li>
 				<li><a href='<s:url value="/bc/error/todo" />'>保险</a></li>
 				<li><a href='<s:url value="/bc/error/todo" />'>证件</a></li>
