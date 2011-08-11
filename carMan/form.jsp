@@ -73,7 +73,7 @@
 			<ul>
 			<s:if test="!e.isNew()">
 			    <li><a href="#otherFormFields">其他信息</a></li>
-				<li><a href='<s:url value="/bc/unit/list" />'>营运车辆</a></li>
+				<li><a href='<s:url value="/bc-business/carByDriver/list" />'>营运车辆</a></li>
 				<li><a href='<s:url value="/bc-businsess/contract/list" />'>合同</a></li>
 				<li><a href='<s:url value="/bc-businsess/contract/list" />'>保险</a></li>
 				<li><a href='<s:url value="/bc-businsess/contract/list" />'>证件</a></li>
