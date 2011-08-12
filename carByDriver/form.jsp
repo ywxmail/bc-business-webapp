@@ -1,30 +1,33 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div title='<s:text name="createcarByDriver.title"/>-<s:property value="e.name" />' data-type='form' class="bc-page"
-	data-saveUrl='<s:url value="/bc-business/charger/save" />'
+	data-saveUrl='<s:url value="/bc-business/carByDriver/save" />'
 	data-js='<s:url value=" /bc-business/charger/form.js" />,<s:url value="/bc/identity/identity.js" />'
 	data-initMethod='bc.business.chargerForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
-	<s:form name="chargerForm" theme="simple">
+	<s:form name="carByDriverForm" theme="simple">
 		<div class="formFields ui-widget-content">
 			<table class="formFields" cellspacing="2" cellpadding="0">
 				<tbody>
 					<tr>
 						<td class="label"><s:text name="carByDriver.car.plateNo"/>:</td>
-						<td class="value "><s:textfield name="e.name" /></td>
+						<td class="value "><s:textfield name="e.car.plateNo" /></td>
 					</tr>
 					<tr>
 						<td class="label"> <s:text name="carByDriver.driver"/>:</td>
-						<td class="value"><s:textfield name="e.TWIC" /></td>
+						<td class="value"><s:textfield name="e.driver.name" /></td>
 						
 					</tr>
 					<tr>
 						<td class="label"> <s:text name="carByDriver.classes"/>:</td>
-						<td class="value"><s:textfield name="e.phone"  /></td>
+						<td class="value"><s:select  name="e.classes" list="driverClasses" listKey="value"  listValue="value"/></td>
 					</tr>
 					<tr>
 						<td class="label"><s:text name="carByDriver.timeInterva"/>:</td>
-						<td class="value"><s:textfield name="e.nativePlace" /></td>
+						<td class="value">从<input type="text" name="e.startDate" style="width: 170px" 
+						class="bc-date" title='<s:text name="title.click2selectDate"/>'value='<s:date format="yyyy-MM-dd" name="e.startDate" />'/>
+						到<input type="text" name="e.endDate" style="width: 170px" 
+						class="bc-date" title='<s:text name="title.click2selectDate"/>'value='<s:date format="yyyy-MM-dd" name="e.endDate" />'/></td>
 					</tr>
 					<tr>
 						<td class="label" colspan="4">
@@ -39,16 +42,9 @@
 				</tbody>
 			</table>
 		</div>
-		<s:hidden name="e.id" />
-		<s:hidden name="e.modifierName" />
 		<s:hidden name="e.uid" />
+		<s:hidden name="e.status"/>
+		<s:hidden name="e.id" />
 		<s:hidden name="e.author.id" />
-		<s:hidden name="e.author.name" />
-		<s:hidden name="e.authorDepartId" />
-		<s:hidden name="e.authorDepartName" />
-		<s:hidden name="e.authorUnitId" />
-		<s:hidden name="e.authorUnitName" />
-		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
-		<input type="hidden" name="e.modifiedDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.modifiedDate" />'/>
 	</s:form>
 </div>
