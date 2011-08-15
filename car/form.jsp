@@ -21,7 +21,7 @@
 						<td class="value"><s:textfield name="e.plateType" cssStyle="width:4em;" data-validate="required"/><s:textfield name="e.plateNo" cssStyle="width:8em;" data-validate="required"/></td>
 						<td class="label">*<s:text name="car.motorcade"/>:</td>
 						<td class="value">
-							<s:select name="e.motorcade.id" list="motorcadeList" listKey="id" listValue="name" value="e.motorcade.id" data-validate="required"></s:select>
+							<s:select name="e.motorcade.id" list="motorcadeList" listKey="id" listValue="name" value="e.motorcade.id" data-validate="required" headerKey="" headerValue="%{getText('car.please.choose')}"></s:select>
 						</td>
 					</tr>
 					<tr>
@@ -29,8 +29,16 @@
 						<td class="value"><s:textfield name="e.vin" data-validate="required"/></td>
 						<td class="label">*<s:text name="car.businessType"/>:</td>
 						<td class="value">
-							<s:select name="e.businessType" list="businessTypeList" listKey="value" listValue="value"  data-validate="required"></s:select>
+							<s:select name="e.businessType" list="businessTypeList" listKey="value" listValue="value"  data-validate="required" headerKey="" headerValue="%{getText('car.please.choose')}"></s:select>
 						</td>
+					</tr>
+					<tr>
+						<td class="label"><s:text name="car.factoryType"/>:</td>
+						<td class="value">
+							<s:select name="e.factoryType" list="factoryTypeList" listKey="value" listValue="value" headerKey="" headerValue="%{getText('car.please.choose')}"></s:select>
+						</td>
+						<td class="label"><s:text name="car.factoryModel"/>:</td>
+						<td class="value"><s:textfield name="e.factoryModel" /></td>
 					</tr>
 					<tr>
 						<td class="label"><s:text name="car.registerDate"/>:</td>
@@ -81,9 +89,10 @@
 						<td class="value"><s:textfield name="e.originNo" /></td>
 						<td class="label"><s:text name="car.level"/>:</td>
 						<td class="value">
-							<s:select name="e.level" list="levelList" listKey="value" listValue="value" ></s:select>
+							<s:select name="e.level" list="levelTypeList" listKey="value" listValue="value" headerKey="" headerValue="%{getText('car.please.choose')}"></s:select>
 						</td>
-					</tr>					<tr>
+					</tr>					
+					<tr>
 						<td class="label" colspan="4">
 							<div class="formTopInfo">
 								<s:if test="%{e.status != null && e.status > 0}">
@@ -129,6 +138,90 @@
 							<td class="value"><s:textfield name="e.invoiceNo1"/></td>
 							<td class="label"><s:text name="car.invoiceNo2"/>:</td>
 							<td class="value"><s:textfield name="e.invoiceNo2"/></td>
+						</tr>
+						<tr>
+							<td class="label"><s:text name="car.certNo3"/>:</td>
+							<td class="value"><s:textfield name="e.certNo3"/></td>
+							<td class="label"><s:text name="car.originalValue"/>:</td>
+							<td class="value"><s:textfield name="e.originalValue" data-validate="number"/></td>
+						</tr>
+						<tr>
+							<td class="label"><s:text name="car.color"/>:</td>
+							<td class="value">
+								<s:select name="e.color" list="colorTypeList" listKey="value" listValue="value" headerKey="" headerValue="%{getText('car.please.choose')}" ></s:select>
+							</td>
+							<td class="label"><s:text name="car.fuelType"/>:</td>
+							<td class="value">
+								<s:select name="e.fuelType" list="fuelTypeList" listKey="value" listValue="value" headerKey="" headerValue="%{getText('car.please.choose')}"></s:select>
+							</td>
+						</tr>
+						<tr>
+							<td class="label"><s:text name="car.engineNo"/>:</td>
+							<td class="value"><s:textfield name="e.engineNo"/></td>
+							<td class="label"><s:text name="car.engineType"/>:</td>
+							<td class="value"><s:textfield name="e.engineType" /></td>
+						</tr>
+						<tr>
+							<td class="label"><s:text name="car.displacement"/>:</td>
+							<td class="value"><s:textfield name="e.displacement" data-validate="digits"/></td>
+							<td class="label"><s:text name="car.power"/>:</td>
+							<td class="value"><s:textfield name="e.power" data-validate="number"/></td>
+						</tr>
+						<tr>
+							<td class="label"><s:text name="car.turnType"/>:</td>
+							<td class="value"><s:textfield name="e.turnType"/></td>
+							<td class="label"><s:text name="car.tireCount"/>:</td>
+							<td class="value"><s:textfield name="e.tireCount" data-validate="digits"/></td>
+						</tr>
+						<tr>
+							<td class="label"><s:text name="car.tireStandard" />:</td>
+							<td class="value"><s:textfield name="e.tireStandard"/></td>
+							<td class="label"><s:text name="car.axisDistance"/>:</td>
+							<td class="value"><s:textfield name="e.axisDistance" data-validate="digits"/></td>
+						</tr>
+						<tr>
+							<td class="label"><s:text name="car.axisCount" />:</td>
+							<td class="value"><s:textfield name="e.axisCount" data-validate="digits"/></td>
+							<td class="label"><s:text name="car.pieceCount"/>:</td>
+							<td class="value"><s:textfield name="e.pieceCount" data-validate="digits"/></td>
+						</tr>
+						<tr>
+							<td class="label"><s:text name="car.dimLen" />:</td>
+							<td class="value"><s:textfield name="e.dimLen" data-validate="digits"/></td>
+							<td class="label"><s:text name="car.dimWidth"/>:</td>
+							<td class="value"><s:textfield name="e.dimWidth" data-validate="digits"/></td>
+						</tr>
+						<tr>
+							<td class="label"><s:text name="car.dimHeight" />:</td>
+							<td class="value"><s:textfield name="e.dimHeight" data-validate="digits"/></td>
+							<td class="label"><s:text name="car.totalWeight"/>:</td>
+							<td class="value"><s:textfield name="e.totalWeight" data-validate="digits"/></td>
+						</tr>
+						<tr>
+							<td class="label"><s:text name="car.accessWeight" />:</td>
+							<td class="value"><s:textfield name="e.accessWeight" data-validate="digits"/></td>
+							<td class="label"><s:text name="car.accessCount"/>:</td>
+							<td class="value"><s:textfield name="e.accessCount" data-validate="digits"/></td>
+						</tr>
+						<tr>
+							<td class="label"><s:text name="car.taximeterFactory" />:</td>
+							<td class="value">
+								<s:select name="e.taximeterFactory" list="taximeterFactoryTypeList" listKey="value" listValue="value" headerKey="" headerValue="%{getText('car.please.choose')}"></s:select>
+							</td>
+							<td class="label"><s:text name="car.taximeterType"/>:</td>
+							<td class="value"><s:textfield name="e.taximeterType" /></td>
+						</tr>
+						<tr>
+							<td class="label"><s:text name="car.taximeterNo" />:</td>
+							<td class="value"><s:textfield name="e.taximeterNo"/></td>
+							<td class="label"><s:text name="car.desc1"/>:</td>
+							<td class="value"><s:textfield name="e.desc1" /></td>
+						</tr>
+						<tr>
+							<td class="label"><s:text name="car.desc2" />:</td>
+							<td class="value"><s:textfield name="e.desc2"/></td>
+							<td class="label"><s:text name="car.desc3"/>:</td>
+							<td class="value"><s:textfield name="e.desc3" /></td>
 						</tr>
 					</tbody>
 				</table>
