@@ -72,7 +72,7 @@
 			<ul>
 			<s:if test="!e.isNew()">
 			    <li><a href="#otherFormFields">其他信息</a></li>
-				<li><a href='<s:url value="/bc-business/carByDriver/list?carManId=%{e.id}"/>'>营运车辆</a></li>
+				<li><a href='<s:url value="/bc-business/carByDriver/paging?carManId=%{e.id}"/>'>营运车辆</a></li>
 				<li><a href='<s:url value="/bc-businsess/contract/list" />'>合同</a></li>
 				<li><a href='<s:url value="/bc-businsess/contract/list" />'>保险</a></li>
 				<li><a href='<s:url value="/bc-businsess/contract/list" />'>证件</a></li>
@@ -156,6 +156,7 @@
 		<s:hidden name="e.status"/>
 		<s:hidden name="e.id" />
 		<s:hidden name="e.author.id" />
+		<s:hidden name="e.modifier.id"/>
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 	</s:form>
 </div>
