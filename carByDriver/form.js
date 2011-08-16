@@ -22,9 +22,26 @@ bc.business.carByDriverForm = {
 						}
 					});
 				});
+		
+		// 选择司机
+		
+		$form.find("#driverName").click(
+				function() {
+					var data = {};
+					var selected = $form.find(":input[name='e.driver.name']")
+							.val();
+					if (selected && selected.length > 0)
+						data.selected = selected;
+					bc.business.slectCarManName.selectCarMan({
+						data : data,
+						onOk : function(carMan) {
+							$form.find(":input[name='e.driver.id']").val(carMan.id);
+							$form.find(":input[name='e.driver.name']").val(carMan.name);
+						}
+					});
+				});
 
 	}
 
-	
 
 };
