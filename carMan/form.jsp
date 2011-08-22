@@ -80,7 +80,7 @@
 				<li><a href='<s:url value="/bc-businsess/contract/list" />'>表扬与投诉</a></li>
 				<li><a href='<s:url value="/bc-businsess/contract/list" />'>迁移历史</a></li>
 				<li><a href='<s:url value="/bc-businsess/contract/list" />'>安全学习</a></li>
-				<li><a href='<s:url value="/bc-businsess/contract/list" />'>黑名单历史</a></li>
+				<li><a href='<s:url value="/bc-business/blacklist/list?carManId=%{e.id}" />'>黑名单历史</a></li>
 				</s:if><s:else>
 				<li><a href="#otherFormFields">其他信息</a></li>
 				</s:else>

@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div title='<s:text name="createMotorcade.title"/>-<s:property value="e.name" />' data-type='form' class="bc-page"
-    data-js='<s:url value=" /bc-business/motorcade/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/charger/select.js" />'
+    data-js='<s:url value="/bc-business/motorcade/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/charger/select.js" />'
     data-initMethod='bc.business.motorcadeForm.init'
 	data-saveUrl='<s:url value="/bc-business/motorcade/save" />'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
