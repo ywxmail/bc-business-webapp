@@ -71,20 +71,6 @@
 					<tr>
 					</tr>
 					<tr>
-						<td class="label"><s:text name="car.operateDate"/>:</td>
-						<td class="value">
-							<input type="text" name="e.operateDate" data-validate="date"
-							value='<s:date format="yyyy-MM-dd" name="e.operateDate" />'
-							class="bc-date"/>
-						</td>
-						<td class="label"><s:text name="car.scrapDate"/>:</td>
-						<td class="value">
-							<input type="text" name="e.scrapDate" data-validate="date"
-							value='<s:date format="yyyy-MM-dd" name="e.scrapDate" />'
-							class="bc-date"/>
-						</td>
-					</tr>
-					<tr>
 						<td class="label"><s:text name="car.originNo"/>:</td>
 						<td class="value"><s:textfield name="e.originNo" /></td>
 						<td class="label"><s:text name="car.level"/>:</td>
