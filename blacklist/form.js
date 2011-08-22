@@ -7,16 +7,11 @@ bc.business.blacklistForm = {
 		
 		//选择锁定人
 		$form.find(":input[name='e.locker.name']").click(function(){
-			var data = {};
-			var selected = $form.find(":input[name='e.locker.name']")
-					.val();
-			if (selected && selected.length > 0)
-				data.selected = selected;
 			bc.identity.selectUser({
-				data: data,
-				onOk : function(item) {
-					$form.find(":input[name='e.locker.id']").val(item.id);
-					$form.find(":input[name='e.locker.name']").val(item.name);
+				selectdes:$form.find(":input[name='e.locker.id']").val(),
+				onOk : function(user) {
+					$form.find(":input[name='e.locker.id']").val(user.id);
+					$form.find(":input[name='e.locker.name']").val(user.name);
 				}
 			});
 		});
@@ -24,16 +19,11 @@ bc.business.blacklistForm = {
 		
 		//选择解锁人
 		$form.find(":input[name='e.unlocker.name']").click(function(){
-			var data = {};
-			var selected = $form.find(":input[name='e.unlocker.name']")
-					.val();
-			if (selected && selected.length > 0)
-				data.selected = selected;
 			bc.identity.selectUser({
-				data: data,
-				onOk : function(item) {
-					$form.find(":input[name='e.unlocker.id']").val(item.id);
-					$form.find(":input[name='e.unlocker.name']").val(item.name);
+				selecteds: $form.find(":input[name='e.unlocker.id']").val(),
+				onOk : function(user) {
+					$form.find(":input[name='e.unlocker.id']").val(user.id);
+					$form.find(":input[name='e.unlocker.name']").val(user.name);
 				}
 			});
 		});
