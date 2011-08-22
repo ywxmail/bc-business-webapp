@@ -81,7 +81,7 @@
 					<tr>
 						<td class="label" colspan="4">
 							<div class="formTopInfo">
-								<s:if test="%{e.status != null && e.status > 0}">
+								<s:if test="%{e.status != null && statusesValue[e.status] != null}">
 								状态：<s:property value="%{statusesValue[e.status]}" />，
 								</s:if>
 								<s:if test="%{e.author.name != null}">
