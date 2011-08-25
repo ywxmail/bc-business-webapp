@@ -21,7 +21,7 @@
 						<td class="value" ><s:textfield name="e.plateType" cssStyle="width:4em;" data-validate="required"/><s:textfield name="e.plateNo" cssStyle="width:8em;" data-validate="required" /></td>
 						<td class="label" >*<s:text name="car.motorcade"/>:</td>
 						<td class="value" >
-							<s:select name="e.motorcade.id" list="motorcadeList" listKey="id" listValue="name" value="e.motorcade.id" data-validate="required" headerKey="" headerValue="%{getText('car.please.choose')}"  ></s:select>
+							<s:select name="e.motorcade.id" list="motorcadeList" listKey="id" listValue="name" value="e.motorcade.id" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}"  ></s:select>
 						</td>
 					</tr>
 					<tr>
@@ -29,13 +29,13 @@
 						<td class="value" ><s:textfield name="e.vin" data-validate="required" /></td>
 						<td class="label" >*<s:text name="car.businessType"/>:</td>
 						<td class="value" >
-							<s:select name="e.businessType" list="businessTypeList" listKey="value" listValue="value"  data-validate="required" headerKey="" headerValue="%{getText('car.please.choose')}" ></s:select>
+							<s:select name="e.businessType" list="businessTypeList" listKey="value" listValue="value"  data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" ></s:select>
 						</td>
 					</tr>
 					<tr>
 						<td class="label" ><s:text name="car.factoryType"/>:</td>
 						<td class="value" >
-							<s:select name="e.factoryType" list="factoryTypeList" listKey="value" listValue="value" headerKey="" headerValue="%{getText('car.please.choose')}" ></s:select>
+							<s:select name="e.factoryType" list="factoryTypeList" listKey="value" listValue="value" headerKey="" headerValue="" ></s:select>
 						</td>
 						<td class="label" ><s:text name="car.factoryModel"/>:</td>
 						<td class="value" ><s:textfield name="e.factoryModel" /></td>
@@ -75,7 +75,7 @@
 						<td class="value" ><s:textfield name="e.originNo" /></td>
 						<td class="label" ><s:text name="car.level"/>:</td>
 						<td class="value" >
-							<s:select name="e.level" list="levelTypeList" listKey="value" listValue="value" headerKey="" headerValue="%{getText('car.please.choose')}" ></s:select>
+							<s:select name="e.level" list="levelTypeList" listKey="value" listValue="value" headerKey="" headerValue="" ></s:select>
 						</td>
 					</tr>					
 					<tr>
@@ -140,11 +140,11 @@
 						<tr>
 							<td class="label" ><s:text name="car.color"/>:</td>
 							<td class="value" >
-								<s:select name="e.color" list="colorTypeList" listKey="value" listValue="value" headerKey="" headerValue="%{getText('car.please.choose')}" ></s:select>
+								<s:select name="e.color" list="colorTypeList" listKey="value" listValue="value" headerKey="" headerValue="" ></s:select>
 							</td>
 							<td class="label" ><s:text name="car.fuelType"/>:</td>
 							<td class="value" >
-								<s:select name="e.fuelType" list="fuelTypeList" listKey="value" listValue="value" headerKey="" headerValue="%{getText('car.please.choose')}" ></s:select>
+								<s:select name="e.fuelType" list="fuelTypeList" listKey="value" listValue="value" headerKey="" headerValue="" ></s:select>
 							</td>
 						</tr>
 						<tr>
@@ -200,7 +200,7 @@
 							<td class="value" ><s:textfield name="e.accessCount" data-validate="digits"/></td>
 							<td class="label" ><s:text name="car.taximeterFactory" />:</td>
 							<td class="value" >
-								<s:select name="e.taximeterFactory" list="taximeterFactoryTypeList" listKey="value" listValue="value" headerKey="" headerValue="%{getText('car.please.choose')}" ></s:select>
+								<s:select name="e.taximeterFactory" list="taximeterFactoryTypeList" listKey="value" listValue="value" headerKey="" headerValue="" ></s:select>
 							</td>
 						</tr>
 						<tr>
