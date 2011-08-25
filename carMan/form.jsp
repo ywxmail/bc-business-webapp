@@ -6,12 +6,12 @@
 	data-initMethod='bc.carManForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="carManForm" theme="simple">
-		<div class="formFields ui-widget-content" style="width:710px;">
-			<table class="formFields" cellspacing="2" cellpadding="0">
+		<div class="formFields ui-widget-content" style="width:794px;">
+			<table class="formFields" cellspacing="2" cellpadding="0" >
 				<tbody>
 					<tr>
 						<td class="label">*<s:text name="carMan.name"/>:</td>
-						<td class="value"><s:textfield name="e.name" cssStyle="width:8em;" data-validate="required"/><s:radio name="e.sex" list="#{'1':'男','2':'女'}" 
+						<td class="value"><s:textfield name="e.name" cssStyle="width:8em;" data-validate="required"/><s:radio name="e.sex" list="#{'0':'男','1':'女'}" 
 							value="e.sex" cssStyle="width:auto;"/></td>
 						<td class="label"><s:text name="carMan.type"/>:</td>
 						<td class="value" colspan="3"><s:radio name="e.type" list="#{'0':'司机','1':'责任人','2':'司机和责任人'}" cssStyle="width:auto;"/></td>
@@ -23,11 +23,11 @@
 						<td class="label"><s:text name="carMan.origin"/>:</td>
 						<td class="value"><s:textfield name="e.origin"/></td>
 						<td class="label"><s:text name="carMan.houseType"/>:</td>
-						<td class="value"><s:select list="carManHouseTypeList" listKey="value" listValue="value"   headerKey="" headerValue="%{getText('carMan.please.choose')}" name="e.houseType" style="width:231px"></s:select></td>
+						<td class="value"><s:select list="carManHouseTypeList" listKey="value" listValue="value"   headerKey="" headerValue="" name="e.houseType" style="width:231px"></s:select></td>
 					</tr>
 					<tr>
 						<td class="label"><s:text name="carMan.region"/>:</td>
-						<td class="value"><s:select list="carManRegionList" listKey="value" listValue="value"   headerKey="" headerValue="%{getText('carMan.please.choose')}" name="e.region" style="width:196px"></s:select></td>
+						<td class="value"><s:select list="#{0:'未定义',1:'本市',2:'本省',3:'外省'}" listKey="key" listValue="value"   headerKey="" headerValue="" name="e.region" style="width:196px"></s:select></td>
 						<td class="label"><s:text name="carMan.birthdate"/>:</td>
 						<td class="value"><input type="text" name="e.birthdate"  
 						class="bc-date" title='<s:text name="title.click2selectDate"/>'
@@ -49,11 +49,11 @@
 					</tr>
 					<tr>
 						<td class="label"><s:text name="carMan.address"/>:</td>
-						<td class="value" colspan="3"><s:textfield name="e.address" cssStyle="width:506px"/></td>
+						<td class="value" colspan="3"><s:textfield name="e.address" cssStyle="width:590px"/></td>
 					</tr>
 					<tr>
 						<td class="label"><s:text name="carMan.address1"/>:</td>
-						<td class="value" colspan="3"><s:textfield name="e.address1" cssStyle="width:506px"/></td>
+						<td class="value" colspan="3"><s:textfield name="e.address1" cssStyle="width:590px" /></td>
 					</tr>
 					<tr>
 						<td class="label" colspan="4">
@@ -90,7 +90,7 @@
 					<tbody>
 						<tr>
 							<td class="label w80"><s:text name="carMan.model"/>:</td>
-							<td class="value"><s:select list="carManModelList" listKey="value" listValue="value"  headerKey="" headerValue="%{getText('carMan.please.choose')}" name="e.model" style="width:208px"></s:select></td>
+							<td class="value"><s:select list="carManModelList" listKey="value" listValue="value"  headerKey="" headerValue="" name="e.model" style="width:208px"></s:select></td>
 							<td class="label"><s:text name="carMan.extFZJG"/>:</td>
 							<td class="value"><s:textfield name="e.extFZJG"
 						readonly="true" title='%{getText("carMan.title.click2selectBelong")}'/></td>
@@ -129,7 +129,7 @@
 							<td class="label "><s:text name="carMan.cert4Indentity"/>:</td>
 							<td class="value" ><s:textfield name="e.cert4Indentity"/></td>
 							<td class="label "><s:text name="carMan.level"/>:</td>
-							<td class="value" ><s:select list="carManLevelList" listKey="value" listValue="value"   headerKey="" headerValue="%{getText('carMan.please.choose')}" name="e.level"style="width:208px" ></s:select></td>
+							<td class="value" ><s:select list="carManLevelList" listKey="value" listValue="value"   headerKey="" headerValue="" name="e.level"style="width:208px" ></s:select></td>
 						</tr>
 						<tr>
 							<td class="label w80"><s:text name="carMan.gz"/>:</td>
@@ -140,13 +140,13 @@
 						</tr>
 						<tr>
 							<td class="label"><s:text name="carMan.drivingStatus"/>:</td>
-							<td class="value"><s:select list="driverClassesList" listKey="value" listValue="value"   headerKey="" headerValue="%{getText('carMan.please.choose')}"  name="e.drivingStatus"style="width:208px" ></s:select></td>
+							<td class="value"><s:select list="#{0:'未定义',1:'正班',2:'副班',3:'顶班'}" listKey="key" listValue="value"   headerKey="" headerValue=""  name="e.drivingStatus"style="width:208px" ></s:select></td>
 							<td class="label"><s:text name="carMan.extZRR"/>:</td>
 							<td class="value"><s:textfield name="e.extZRR"/></td>
 						</tr>
 						<tr>
 						<td class="label"><s:text name="carMan.description"/>:</td>
-						<td class="value" colspan="4" rowspan="3"><s:textarea name="e.description" /></td>
+						<td class="value" colspan="4" rowspan="5"><s:textarea name="e.description"  rows="5"/></td>
 					</tr>
 					</tbody>
 				</table>
