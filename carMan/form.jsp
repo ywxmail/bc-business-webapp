@@ -15,8 +15,9 @@
 							value="e.sex" cssStyle="width:auto;"/></td>
 						<td class="label"><s:text name="carMan.type"/>:</td>
 						<td class="value" colspan="3"><s:radio name="e.type" list="#{'0':'司机','1':'责任人','2':'司机和责任人'}" cssStyle="width:auto;"/></td>
-						<td rowspan="7" style="text-align:right;width:110px;" title='点击更改照片'>
-							<img id="carMan_photo" style='overfloat:hidden;width:110px;height:160px;background: url("<s:url value="%{portrait}" />") no-repeat;' />
+						<td rowspan="7" style="text-align:center;vertical-align: top;width:110px;" title='点击更改照片'>
+							<img id="portrait" style="width:110px;height:140px;cursor: pointer;" title='<s:text name="image.click2change"/>'
+								src='<s:url value="/bc/image/download"><s:param name='puid' value='e.uid'/><s:param name='ptype' value='%{"portrait"}'/><s:param name='ts' value='ts'/></s:url>'/>
 						</td>
 					</tr>
 					<tr>
