@@ -5,28 +5,6 @@ bc.contractLabourForm = {
 		// 初始化多页签
 		$form.find('#formTabs').tabs();
 		
-		//绑定选择上级的按钮事件处理
-//		$form.find("#selectBelong,:input[name='e.unit.name']").click(function(){
-//			var data = {};
-//			var selected = $form.find(":input[name='e.unit.id']").val();
-//			//var myId = $form.find(":input[name='e.id']").val();
-//			if(selected && selected.length > 0)
-//				data.selected = selected;//当前选择的
-//			//if(myId && myId.length > 0)
-//			//	data.exclude = myId;//排除选择自己
-//			
-//			bc.identity.selectUnit({
-//				data: data,
-//				onOk: function(actor){
-//					//if(myId != actor.id){
-//						$form.find(":input[name='e.unit.name']").val(actor.name);
-//						$form.find(":input[name='e.unit.id']").val(actor.id);
-//					//}else{
-//					//	alert("不能选择自己作为自己的上级！");
-//					//}
-//				}
-//			});
-//		});
 		// 选择车辆车牌
 		$form.find(":input[name='plate']").click(function() {
 					var data = {};
@@ -57,22 +35,20 @@ bc.contractLabourForm = {
 							$form.find(":input[name='e.driver.id']").val(carMan.id);
 							$form.find(":input[name='e.driver.name']").val(carMan.name);
 							
-							
-							
-							/*
-							var url="/bc-business/contractLabour/carManMess?carManId="+carMan.id;
+							var url = "/bc-business/contractLabour/certMess?carManId="+carMan.id;
 							$.ajax({ url: url,dataType:"json", success: update_page});
 							function update_page(json){
-								
-							
-								$form.find(":input[name='e.car.id']").val(json.carId);
-								$form.find(":input[name='e.car.motorcade.name']").val(json.motorcadeName);
-								
-								$form.find(":input[name='e.certNo']").val(carMan.cert4CYZG);
+
+								if(json.certCode != null){
+									$form.find(":input[name='e.certNo']").val(json.certCode);
+								}else{
+									$form.find(":input[name='e.certNo']").val("");
+								}
 							}
-							*/
+							
 						}
 					});
+					
 		});
 		
 		
