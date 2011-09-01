@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div title='<s:text name="createcarByDriver.title"/>' data-type='form' class="bc-page"
 	data-saveUrl='<s:url value="/bc-business/carByDriver/save" />'
-	data-js='<s:url value=" /bc-business/carByDriver/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/car/select.js" />,<s:url value="/bc-business/carMan/select.js" />'
+	data-js='<s:url value="/bc-business/carByDriver/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/car/select.js" />,<s:url value="/bc-business/carMan/select.js" />'
 	data-initMethod='bc.business.carByDriverForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="carByDriverForm" theme="simple">
@@ -11,7 +11,7 @@
 				<tbody>
 					<tr>
 						<td class="label"><s:text name="carByDriver.car.plateNo"/>:</td>
-						<td class="value "><s:textfield name="plate" title='%{getText("carByDriver.title.click2selectCar")}' value="%{e.car.plateType+e.car.plateNo }"/></td>
+						<td class="value "><s:textfield name="plate" title='%{getText("carByDriver.title.click2selectCar")}' value="%{e.car.plateType+e.car.plateNo }" readonly="true"/></td>
 					</tr>
 					<tr>
 					<s:if test="%{carManId != null}">
@@ -19,12 +19,12 @@
 						<td class="value"><s:textfield name="e.driver.name"  readonly="true"/></td>
 					</s:if><s:else>
 					    <td class="label"> <s:text name="carByDriver.driver"/>:</td>
-						<td class="value"><s:textfield name="e.driver.name"  title='%{getText("carByDriver.title.click2selectCarMan")}' id="driverName"/></td>
+						<td class="value"><s:textfield name="e.driver.name"  title='%{getText("carByDriver.title.click2selectCarMan")}' id="driverName" readonly="true"/></td>
 					</s:else>
 					</tr>
 					<tr>
 						<td class="label"> *<s:text name="carByDriver.classes"/>:</td>
-						<td class="value" ><s:select  name="e.classes" list="driverClassesList" listKey="value" listValue="value"   headerKey="" headerValue="%{getText('carMan.please.choose')}"  data-validate="required"style="width:283px"/></td>
+						<td class="value" ><s:select  name="e.classes"  list="#{0:'未定义',1:'正班',2:'副班',3:'顶班'}" listKey="key" listValue="value"   headerKey="" headerValue=""  headerValue="%{getText('label.please.choose')}"  data-validate="required"style="width:283px"/></td>
 					</tr>
 					<tr>
 						<td class="label"><s:text name="carByDriver.timeInterva"/>:</td>
