@@ -1,7 +1,5 @@
-if (!bc.business)
-bc.business = {};
-
-bc.business.carByDriverForm = {
+if(!window['bs'])window['bs']={};
+bs.carByDriverForm = {
 	init : function() {
 		var $form = $(this);
 		
@@ -22,7 +20,7 @@ bc.business.carByDriverForm = {
 		});
 		
 		// 选择司机
-		$form.find(":input[name='e.driver.name'][readonly!='readonly']").click(function() {
+		$form.find("#driverName").click(function() {
 			var selecteds = $form.find(":input[name='e.driver.id']").val();
 			bs.selectDriver({
 				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,

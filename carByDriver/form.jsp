@@ -2,8 +2,8 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div title='<s:text name="createcarByDriver.title"/>' data-type='form' class="bc-page"
 	data-saveUrl='<s:url value="/bc-business/carByDriver/save" />'
-	data-js='<s:url value="/bc-business/carByDriver/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/car/select.js" />,<s:url value="/bc-business/carMan/select.js" />'
-	data-initMethod='bc.business.carByDriverForm.init'
+	data-js='<s:url value="/bc-business/carByDriver/form.js" />,<s:url value="/bc-business/bs.js" />'
+	data-initMethod='bs.carByDriverForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="carByDriverForm" theme="simple">
 		<div class="formFields ui-widget-content" >
@@ -16,10 +16,10 @@
 					<tr>
 					<s:if test="%{carManId != null}">
 						<td class="label"> <s:text name="carByDriver.driver"/>:</td>
-						<td class="value"><s:textfield name="e.driver.name" readonly="true"/></td>
+						<td class="value"><s:textfield name="e.driver.name" readonly="true" cssClass="ui-state-disabled" /></td>
 					</s:if><s:else>
 					    <td class="label"> <s:text name="carByDriver.driver"/>:</td>
-						<td class="value"><s:textfield name="e.driver.name"  title='%{getText("carByDriver.title.click2selectCarMan")}' id="driverName" readonly="true"/></td>
+						<td class="value"><s:textfield name="e.driver.name" title='%{getText("carByDriver.title.click2selectCarMan")}' id="driverName" readonly="true"/></td>
 					</s:else>
 					</tr>
 					<tr>

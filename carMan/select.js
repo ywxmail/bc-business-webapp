@@ -1,4 +1,4 @@
-if (!bs) bs = {};
+if(!window['bs'])window['bs']={};
 bs.carManSelectDialog = {
 	/** 点击确认按钮后的处理函数 */
 	clickOk : function() {
@@ -24,7 +24,7 @@ bs.carManSelectDialog = {
 			$tds.each(function(i){
 				data.push({
 					id: $(this).attr("data-id"),
-					name:$($trs.get(i)).find("td:eq(0)").attr("data-value");
+					name:$($trs.get(i)).find("td:eq(0)").attr("data-value")
 				});
 			});
 		}

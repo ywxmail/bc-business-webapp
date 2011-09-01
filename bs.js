@@ -34,7 +34,7 @@ bs.selectCarMan = function(option) {
 	
 	//弹出选择对话框
 	bc.page.newWin(jQuery.extend({
-		url: bc.root + "/bs-business/carman/select",
+		url: bc.root + "/bc-business/selectCarMan/list",
 		name: option.title,
 		mid: option.mid,
 		afterClose: function(status){
@@ -42,7 +42,7 @@ bs.selectCarMan = function(option) {
 				option.onOk(status);
 			}
 		}
-	},option);
+	},option));
 };
 
 /**
@@ -58,7 +58,7 @@ bs.selectDriver = function(option) {
 		mid: 'selectDriver',
 		title: '选择司机信息',
 		types: '0,2'
-	},option);
+	},option));
 };
 
 /**
@@ -74,7 +74,7 @@ bs.selectCharger = function(option) {
 		mid: 'selectDriver',
 		title: '选择责任人信息',
 		types: '1,2'
-	},option);
+	},option));
 };
 
 /**
@@ -88,7 +88,7 @@ bs.selectCharger = function(option) {
 bs.selectMotorcade = function(option) {
 	// 构建默认参数
 	option = jQuery.extend({
-		mid: 'selectMotorcade'
+		mid: 'selectMotorcade',
 		title: '选择车队信息'
 	},option);
 	
@@ -103,7 +103,7 @@ bs.selectMotorcade = function(option) {
 	
 	//弹出选择对话框
 	bc.page.newWin(jQuery.extend({
-		url: bc.root + "/bs-business/motorcade/select",
+		url: bc.root + "/bc-business/motorcade/select",
 		name: option.title,
 		mid: option.mid,
 		afterClose: function(status){
@@ -111,7 +111,7 @@ bs.selectMotorcade = function(option) {
 				option.onOk(status);
 			}
 		}
-	},option);
+	},option));
 };
 
 /**
@@ -125,7 +125,7 @@ bs.selectMotorcade = function(option) {
 bs.selectCar = function(option) {
 	// 构建默认参数
 	option = jQuery.extend({
-		mid: 'selectCar'
+		mid: 'selectCar',
 		title: '选择车辆信息'
 	},option);
 	
@@ -140,7 +140,7 @@ bs.selectCar = function(option) {
 	
 	//弹出选择对话框
 	bc.page.newWin(jQuery.extend({
-		url: bc.root + "/bs-business/car/select",
+		url: bc.root + "/bc-business/car/select",
 		name: option.title,
 		mid: option.mid,
 		afterClose: function(status){
@@ -148,5 +148,5 @@ bs.selectCar = function(option) {
 				option.onOk(status);
 			}
 		}
-	},option);
+	},option));
 };
