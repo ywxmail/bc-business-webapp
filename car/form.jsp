@@ -6,7 +6,7 @@
 	data-initMethod='bc.carForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="carForm" theme="simple">
-		<div class="formFields ui-widget-content" style="width:760px;">
+		<div class="formFields ui-widget-content" style="width:800px;">
 			<table class="formFields" cellspacing="2" cellpadding="0">
 				<tbody>
 					<tr>
@@ -18,7 +18,14 @@
 					</tr>
 					<tr>
 						<td class="label" >*<s:text name="car.plate"/>:</td>
-						<td class="value" ><s:textfield name="e.plateType" cssStyle="width:4em;" data-validate="required"/><s:textfield name="e.plateNo" cssStyle="width:8em;" data-validate="required" /></td>
+						<td class="value" >
+							<s:if test="!e.isNew()">
+								<s:textfield name="e.plateType" cssStyle="width:4em;" data-validate="required"/><s:textfield name="e.plateNo" cssStyle="width:8em;" data-validate="required" />
+							</s:if>
+							<s:else>
+								<s:textfield name="e.plateType" cssStyle="width:4em;" value='%{getText("car.plate.yue.A")}' data-validate="required"/><s:textfield name="e.plateNo" cssStyle="width:8em;" data-validate="required" />
+							</s:else>
+						</td>
 						<td class="label" >*<s:text name="car.motorcade"/>:</td>
 						<td class="value" >
 							<s:select name="e.motorcade.id" list="motorcadeList" listKey="id" listValue="name" value="e.motorcade.id" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}"  ></s:select>
@@ -97,9 +104,11 @@
 			</table>
 		</div>
 		<div class="formTabs" id="formTabs">
+		<s:if test="!e.isNew()">
 			<ul>
+				<li><a href="#otherFormFields">其他信息</a></li>
 				<li><a href='<s:url value="/bc/carMan/list" />'>营运司机</a></li>
-				<li><a href='<s:url value="/bc/error/todo" />'>合同</a></li>
+				<li><a href='<s:url value="/bc/contract/list" />'>合同</a></li>
 				<li><a href='<s:url value="/bc/error/todo" />'>保险</a></li>
 				<li><a href='<s:url value="/bc/error/todo" />'>证件</a></li>
 				<li><a href='<s:url value="/bc/error/todo" />'>配件</a></li>
@@ -108,9 +117,9 @@
 				<li><a href='<s:url value="/bc/error/todo" />'>事故</a></li>
 				<li><a href='<s:url value="/bc/error/todo" />'>变更历史</a></li>
 				<li><a href='<s:url value="/bc/error/todo" />'>操作日志</a></li>
-				<li><a href="#otherFormFields">其他信息</a></li>
 			</ul>
-			<div id="otherFormFields" style="width:760px;">
+		</s:if>
+			<div id="otherFormFields" style="width:800px;">
 				<table class="formFields" cellspacing="2" cellpadding="0" >
 					<tbody>
 						<tr style="height: 1px;">
