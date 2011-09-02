@@ -15,14 +15,16 @@ bs.selectCarMan = function(option) {
 	// 构建默认参数
 	option = jQuery.extend({
 		mid: 'selectCarMan',
-		title: '选择司机责任人信息'
+		title: '选择司机责任人信息',
+		types: '0,1,2'
 	},option);
 	
 	// 将一些配置参数放到data参数内(这些参数是提交到服务器的参数)
 	option.data = jQuery.extend({
-		multiple: false,
-		types: '0,1,2'
+		multiple: false
 	},option.data);
+	if(option.types)
+		option.data.types = option.types;
 	if(option.title)
 		option.data.title = option.title;
 	if(option.selecteds)
@@ -140,7 +142,7 @@ bs.selectCar = function(option) {
 	
 	//弹出选择对话框
 	bc.page.newWin(jQuery.extend({
-		url: bc.root + "/bc-business/car/select",
+		url: bc.root + "/bc-business/selectCar/list",
 		name: option.title,
 		mid: option.mid,
 		afterClose: function(status){
