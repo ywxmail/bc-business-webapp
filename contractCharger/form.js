@@ -29,6 +29,23 @@ bc.contractChargerForm = {
 			});
 		});
 		
+		//日期控件设置日期范围
+		var dates = $form.find(':input[name^="e.startDate"], :input[name^="e.endDate"]').datepicker({
+			changeYear:     true,
+			firstDay: 		7,
+			dateFormat:		"yy-mm-dd",//yy4位年份、MM-大写的月份
+			onSelect: function( selectedDate ) {
+				var option = this.name == "e.startDate" ? "minDate" : "maxDate",
+					instance = $( this ).data( "datepicker" ),
+					date = $.datepicker.parseDate(
+						instance.settings.dateFormat ||
+						$.datepicker._defaults.dateFormat,
+						selectedDate, instance.settings );
+				dates.not( this ).datepicker( "option", option, date );
+			}
+		});
+
+		
 		/* 选择司机责任人*/
 		//需要组装的li
 		var liTpl = '<li class="horizontal ui-widget-content ui-corner-all ui-state-highlight" data-id="{0}">'+
@@ -96,6 +113,7 @@ bc.contractChargerForm = {
 		$form.find("span.click2remove").click(function(){
 			$(this).parent().remove();
 		});*/
+		
 	},
 	/**保存的处理*/
 	save:function(){

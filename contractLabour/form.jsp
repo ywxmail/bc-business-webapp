@@ -30,11 +30,11 @@
 							&nbsp;从
 							<input type="text" name="e.startDate" data-validate="date"
 							value='<s:date format="yyyy-MM-dd" name="e.startDate" />'
-							class="bc-date" style="max-width: 6.5em;"/>
+							style="max-width: 6.5em;" readonly="readonly"/>
 							&nbsp;到
 							<input type="text" name="e.endDate" data-validate="date"
 							value='<s:date format="yyyy-MM-dd" name="e.endDate" />'
-							class="bc-date" style="max-width: 6.5em;"/>
+							style="max-width: 6.5em;" readonly="readonly"/>
 						</td>
 					</tr>
 					<tr>
