@@ -72,8 +72,8 @@ bs.selectDriver = function(option) {
  * @option {String} selecteds [可选]已选中责任人的id值，多个值用逗号连接
  */
 bs.selectCharger = function(option) {
-	return bs.selectCharger(jQuery.extend({
-		mid: 'selectDriver',
+	return bs.selectCarMan(jQuery.extend({
+		mid: 'selectCharger',
 		title: '选择责任人信息',
 		types: '1,2'
 	},option));
