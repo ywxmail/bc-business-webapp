@@ -1,3 +1,4 @@
+if(!window['bs'])window['bs']={};
 bc.contractChargerForm = {
 	init : function() {
 		var $form = $(this);
@@ -7,12 +8,9 @@ bc.contractChargerForm = {
 		
 		/* 选择车辆车牌*/
 		$form.find(":input[name='plate']").click(function() {
-			var data = {};
-			var selected = $form.find(":input[name='plate']").val();
-			if (selected && selected.length > 0)
-				data.selected = selected;
-			bc.business.slectCarPlateNo.selectCar({
-				data : data,
+			var selecteds = $form.find(":input[name='plate']").val();
+			bs.selectCar({
+				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
 				onOk : function(car) {
 					$form.find(":input[name='e.car.id']").val(car.id);
 					$form.find(":input[name='plate']").val(car.plate);
@@ -40,14 +38,15 @@ bc.contractChargerForm = {
 		var title = $form.find("#assignChargers").attr("data-removeTitle");
 		
 		$form.find("#addChargers").click(function() {
-			var data = {};
 			var $ul = $form.find("#assignChargers ul");
 			var $lis = $ul.find("li");
 
-			bc.business.slectCarManName.selectCarMan({
-				data : data,
-				onOk : function(charger) {
-					var chargers = [charger];
+			bs.selectCharger({
+				multiple : true,
+				onOk : function(chargers) {
+					//onOk : function(charger) {  未修改选择司机责任人方法的时候chargers传进来是单个对象所以要转成数组遍历
+					//var chargers = [charger];
+					
 					//添加司机责任人
 					$.each(chargers,function(i,charger){
 						if($lis.filter("[data-id='" + charger.id + "']").size() > 0){//已存在
