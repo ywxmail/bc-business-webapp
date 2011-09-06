@@ -130,7 +130,7 @@
 							<td class="label "><s:text name="carMan.cert4Indentity"/>:</td>
 							<td class="value" ><s:textfield name="e.cert4Indentity"/></td>
 							<td class="label "><s:text name="carMan.level"/>:</td>
-							<td class="value" ><s:select list="carManLevelList" listKey="value" listValue="value"   headerKey="" headerValue="" name="e.level"style="width:208px" ></s:select></td>
+							<td class="value" ><s:select list="carManLevelList" listKey="value" listValue="value" headerKey="" headerValue="" name="e.level" style="width:208px" ></s:select></td>
 						</tr>
 						<tr>
 							<td class="label w80"><s:text name="carMan.gz"/>:</td>
@@ -141,7 +141,7 @@
 						</tr>
 						<tr>
 							<td class="label"><s:text name="carMan.drivingStatus"/>:</td>
-							<td class="value"><s:select list="#{0:'未定义',1:'正班',2:'副班',3:'顶班'}" listKey="key" listValue="value"   headerKey="" headerValue=""  name="e.drivingStatus"style="width:208px" ></s:select></td>
+							<td class="value"><s:select list="#{0:'未定义',1:'正班',2:'副班',3:'顶班'}" listKey="key" listValue="value" headerKey="" headerValue="" name="e.drivingStatus" style="width:208px" ></s:select></td>
 							<td class="label"><s:text name="carMan.extZRR"/>:</td>
 							<td class="value"><s:textfield name="e.extZRR"/></td>
 						</tr>
