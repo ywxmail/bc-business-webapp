@@ -1,3 +1,4 @@
+if(!window['bs'])window['bs']={};
 bc.contractChargerForm = {
 	init : function() {
 		var $form = $(this);
@@ -7,12 +8,9 @@ bc.contractChargerForm = {
 		
 		/* 选择车辆车牌*/
 		$form.find(":input[name='plate']").click(function() {
-			var data = {};
-			var selected = $form.find(":input[name='plate']").val();
-			if (selected && selected.length > 0)
-				data.selected = selected;
-			bc.business.slectCarPlateNo.selectCar({
-				data : data,
+			var selecteds = $form.find(":input[name='plate']").val();
+			bs.selectCar({
+				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
 				onOk : function(car) {
 					$form.find(":input[name='e.car.id']").val(car.id);
 					$form.find(":input[name='plate']").val(car.plate);
@@ -31,6 +29,23 @@ bc.contractChargerForm = {
 			});
 		});
 		
+		//日期控件设置日期范围
+		var dates = $form.find(':input[name^="e.startDate"], :input[name^="e.endDate"]').datepicker({
+			changeYear:     true,
+			firstDay: 		7,
+			dateFormat:		"yy-mm-dd",//yy4位年份、MM-大写的月份
+			onSelect: function( selectedDate ) {
+				var option = this.name == "e.startDate" ? "minDate" : "maxDate",
+					instance = $( this ).data( "datepicker" ),
+					date = $.datepicker.parseDate(
+						instance.settings.dateFormat ||
+						$.datepicker._defaults.dateFormat,
+						selectedDate, instance.settings );
+				dates.not( this ).datepicker( "option", option, date );
+			}
+		});
+
+		
 		/* 选择司机责任人*/
 		//需要组装的li
 		var liTpl = '<li class="horizontal ui-widget-content ui-corner-all ui-state-highlight" data-id="{0}">'+
@@ -40,14 +55,15 @@ bc.contractChargerForm = {
 		var title = $form.find("#assignChargers").attr("data-removeTitle");
 		
 		$form.find("#addChargers").click(function() {
-			var data = {};
 			var $ul = $form.find("#assignChargers ul");
 			var $lis = $ul.find("li");
 
-			bc.business.slectCarManName.selectCarMan({
-				data : data,
-				onOk : function(charger) {
-					var chargers = [charger];
+			bs.selectCharger({
+				multiple : true,
+				onOk : function(chargers) {
+					//onOk : function(charger) {  未修改选择司机责任人方法的时候chargers传进来是单个对象所以要转成数组遍历
+					//var chargers = [charger];
+					
 					//添加司机责任人
 					$.each(chargers,function(i,charger){
 						if($lis.filter("[data-id='" + charger.id + "']").size() > 0){//已存在
@@ -97,6 +113,7 @@ bc.contractChargerForm = {
 		$form.find("span.click2remove").click(function(){
 			$(this).parent().remove();
 		});*/
+		
 	},
 	/**保存的处理*/
 	save:function(){
