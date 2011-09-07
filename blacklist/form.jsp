@@ -31,13 +31,13 @@
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="blacklist.type"/>:</td>
-						<td class="value" ><s:select list="blackTypeList" listKey="value" listValue="value"   headerKey="" headerValue="%{getText('blacklist.please.choose')}" name="e.type"style="width:267px" data-validate="required"></s:select></td>
+						<td class="value" ><s:select list="blackTypeList" listKey="value" listValue="value"   headerKey="" headerValue="%{getText('label.please.choose')}" name="e.type"style="width:267px" data-validate="required"></s:select></td>
 						<td class="label"><s:text name="blacklist.code"/>:</td>
 						<td class="value"><s:textfield name="e.code"  /></td>
 					</tr>
 					<tr>
 						<td class="label" ><s:text name="blacklist.level"/>:</td>
-						<td class="value" ><s:select list="blackLevelList" listKey="value" listValue="value"   headerKey="" headerValue="%{getText('blacklist.please.choose')}" name="e.level"style="width:267px" ></s:select></td>
+						<td class="value" ><s:select list="blackLevelList" listKey="value" listValue="value"   headerKey="" headerValue="%{getText('label.please.choose')}" name="e.level"style="width:267px" ></s:select></td>
 					</tr>
 					<tr>
 						<td class="label" colspan="2">
