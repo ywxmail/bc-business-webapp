@@ -14,9 +14,9 @@
 						<td class="value "><s:textfield name="e.code" data-validate="required" /></td>
 						<td class="label">*<s:text name="contract.signDate"/>:</td>
 						<td class="value">
-							<input type="text" name="e.signDate" data-validate="date"
+							<input type="text" name="e.signDate" data-validate='{"type":"date","required":true}'
 							value='<s:date format="yyyy-MM-dd" name="e.signDate" />'
-							class="bc-date"/>
+							class="bc-date" data-cfg='{changeYear:true}'/>
 						</td>
 					</tr>
 					<tr>
@@ -27,11 +27,11 @@
 						<td class="label">*<s:text name="contract.deadline"/>:</td>
 						<td class="value">
 							&nbsp;从
-							<input type="text" name="e.startDate" data-validate="date"
+							<input type="text" name="e.startDate" data-validate='{"type":"date","required":true}'
 							value='<s:date format="yyyy-MM-dd" name="e.startDate" />'
 							style="max-width: 6.5em;" readonly="readonly" />
 							&nbsp;到
-							<input type="text" name="e.endDate" data-validate="date"
+							<input type="text" name="e.endDate" data-validate='{"type":"date","required":true}'
 							value='<s:date format="yyyy-MM-dd" name="e.endDate" />'
 							style="max-width: 6.5em;" readonly="readonly" />
 						</td>
