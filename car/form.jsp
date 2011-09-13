@@ -52,13 +52,13 @@
 						<td class="value" >
 							<input type="text" name="e.registerDate" data-validate="date"
 							value='<s:date format="yyyy-MM-dd" name="e.registerDate" />'
-							class="bc-date" style="width: 22em" />
+							class="bc-date" style="width: 22em" data-cfg='{changeYear:true}' />
 						</td>
 						<td class="label" ><s:text name="car.factoryDate"/>:</td>
 						<td class="value" >
 							<input type="text" name="e.factoryDate" data-validate="date"
 							value='<s:date format="yyyy-MM-dd" name="e.factoryDate" />'
-							class="bc-date" style="width: 22em"/>
+							class="bc-date" style="width: 22em" data-cfg='{changeYear:true}'/>
 						</td>
 					</tr>
 					<tr>
@@ -66,13 +66,13 @@
 						<td class="value" >
 							<input type="text" name="e.operateDate" data-validate="date"
 							value='<s:date format="yyyy-MM-dd" name="e.operateDate" />'
-							class="bc-date" style="width: 22em"/>
+							class="bc-date" style="width: 22em" data-cfg='{changeYear:true}'/>
 						</td>
 						<td class="label" ><s:text name="car.scrapDate"/>:</td>
 						<td class="value" >
 							<input type="text" name="e.scrapDate" data-validate="date"
 							value='<s:date format="yyyy-MM-dd" name="e.scrapDate" />'
-							class="bc-date" style="width: 22em"/>
+							class="bc-date" style="width: 22em" data-cfg='{changeYear:true}'/>
 						</td>
 					</tr>
 					<tr>
