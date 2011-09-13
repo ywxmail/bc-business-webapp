@@ -10,8 +10,13 @@
 			<table class="formFields" cellspacing="2" cellpadding="0" style="height:260px">
 				<tbody>
 					<tr>
-						<td class="label"><s:text name="carByDriver.car.plateNo"/>:</td>
+					<s:if test="%{carId != null}">
+					    <td class="label"><s:text name="carByDriver.car.plateNo"/>:</td>
 						<td class="value "><s:textfield name="plate" title='%{getText("carByDriver.title.click2selectCar")}' value="%{e.car.plateType+e.car.plateNo }" readonly="true"/></td>
+					</s:if><s:else>
+						<td class="label"><s:text name="carByDriver.car.plateNo"/>:</td>
+						<td class="value "><s:textfield name="plate" title='%{getText("carByDriver.title.click2selectCar")}' value="%{e.car.plateType+e.car.plateNo }" readonly="true" id="carName"/></td>
+						</s:else>
 					</tr>
 					<tr>
 					<s:if test="%{carManId != null}">

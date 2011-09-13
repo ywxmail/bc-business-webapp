@@ -107,7 +107,7 @@
 		<s:if test="!e.isNew()">
 			<ul>
 				<li><a href="#otherFormFields">其他信息</a></li>
-				<li><a href='<s:url value="/bc/carMan/list" />'>营运司机</a></li>
+				<li><a href='<s:url value="/bc-business/carByDriver/list?carId=%{e.id}" />'>营运司机</a></li>
 				<li><a href='<s:url value="/bc/contract/list" />'>合同</a></li>
 				<li><a href='<s:url value="/bc/error/todo" />'>保险</a></li>
 				<li><a href='<s:url value="/bc/error/todo" />'>证件</a></li>
