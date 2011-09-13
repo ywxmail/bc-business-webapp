@@ -69,7 +69,7 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="formTabs" id="formTabs">
+		<div class="formTabs" id="formTabs" style="height:300px;width:794px;overflow: hidden;">
 			<ul>
 			<s:if test="!e.isNew()">
 			    <li><a href="#otherFormFields">其他信息</a></li>
@@ -86,7 +86,7 @@
 				<li><a href="#otherFormFields">其他信息</a></li>
 				</s:else>
 			</ul>
-			<div id="otherFormFields" style="width:710px;">
+			<div id="otherFormFields">
 				<table class="formFields" cellspacing="2" cellpadding="0" >
 					<tbody>
 						<tr>
