@@ -4,7 +4,7 @@ bs.carByDriverForm = {
 		var $form = $(this);
 		
 		// 选择车辆
-		$form.find(":input[name='plate']").click(function() {
+		$form.find("#carName").click(function() {
 			var selecteds = $form.find(":input[name='e.car.id']").val();
 			bs.selectCar({
 				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,

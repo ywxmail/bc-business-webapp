@@ -28,7 +28,7 @@
 					</tr>
 					<tr>
 						<td class="label"><s:text name="carMan.region"/>:</td>
-						<td class="value"><s:select list="#{0:'未定义',1:'本市',2:'本省',3:'外省'}" listKey="key" listValue="value"   headerKey="" headerValue="" name="e.region" style="width:196px"></s:select></td>
+						<td class="value"><s:select list="#{0:'',1:'本市',2:'本省',3:'外省'}" listKey="key" listValue="value"    headerValue="" name="e.region" style="width:196px"></s:select></td>
 						<td class="label"><s:text name="carMan.birthdate"/>:</td>
 						<td class="value"><input type="text" name="e.birthdate"  
 						class="bc-date" title='<s:text name="title.click2selectDate"/>'
@@ -73,8 +73,8 @@
 			<ul>
 			<s:if test="!e.isNew()">
 			    <li><a href="#otherFormFields">其他信息</a></li>
-				<li><a href='<s:url value="/bc-business/carByDriver/paging?carManId=%{e.id}"/>'>营运车辆</a></li>
-				<li><a href='<s:url value="/bc-businsess/contract/list" />'>合同</a></li>
+				<li><a href='<s:url value="/bc-business/carByDriver/list?carManId=%{e.id}"/>'>营运车辆</a></li>
+				<li><a href='<s:url value="/bc-business/contract/list?carManId=%{e.id}" />'>合同</a></li>
 				<li><a href='<s:url value="/bc-businsess/contract/list" />'>保险</a></li>
 				<li><a href='<s:url value="/bc-businsess/contract/list" />'>证件</a></li>
 				<li><a href='<s:url value="/bc-businsess/contract/list" />'>违法违章</a></li>
@@ -91,7 +91,7 @@
 					<tbody>
 						<tr>
 							<td class="label w80"><s:text name="carMan.model"/>:</td>
-							<td class="value"><s:select list="carManModelList" listKey="value" listValue="value"  headerKey="" headerValue="" name="e.model" style="width:208px"></s:select></td>
+							<td class="value"><s:select list="carManModelList" listKey="value" listValue="value" headerKey="" headerValue="" name="e.model" style="width:208px"></s:select></td>
 							<td class="label"><s:text name="carMan.extFZJG"/>:</td>
 							<td class="value"><s:textfield name="e.extFZJG"
 						readonly="true" title='%{getText("carMan.title.click2selectBelong")}'/></td>
@@ -107,7 +107,7 @@
 							<td class="value"><input type="text" name="e.cert4DrivingFirstDate"  
 						class="bc-date" title='<s:text name="title.click2selectDate"/>'
 						value='<s:date format="yyyy-MM-dd" name="e.cert4DrivingFirstDate" />'/></td>
-							<td class="label"style="width:140px"><s:text name="carMan.cert4DrivingStartDate"/>:</td>
+							<td class="label" style="width:140px"><s:text name="carMan.cert4DrivingStartDate"/>:</td>
 							<td class="value"><input type="text" name="e.cert4DrivingStartDate"  
 						class="bc-date" title='<s:text name="title.click2selectDate"/>'
 						value='<s:date format="yyyy-MM-dd" name="e.cert4DrivingStartDate" />'/></td>
@@ -117,7 +117,7 @@
 							<td class="value"><input type="text" name="e.cert4DrivingEndDate"  
 						class="bc-date" title='<s:text name="title.click2selectDate"/>'
 						value='<s:date format="yyyy-MM-dd" name="e.cert4DrivingEndDate" />'/></td>
-							<td class="label"style="width:140px"><s:text name="carMan.cert4DrivingArchive"/>:</td>
+							<td class="label" style="width:140px"><s:text name="carMan.cert4DrivingArchive"/>:</td>
 							<td class="value"><s:textfield name="e.cert4DrivingArchive"/></td>
 						</tr>
 						<tr>
@@ -141,7 +141,7 @@
 						</tr>
 						<tr>
 							<td class="label"><s:text name="carMan.drivingStatus"/>:</td>
-							<td class="value"><s:select list="#{0:'未定义',1:'正班',2:'副班',3:'顶班'}" listKey="key" listValue="value" headerKey="" headerValue="" name="e.drivingStatus" style="width:208px" ></s:select></td>
+							<td class="value"><s:select list="#{0:'',1:'正班',2:'副班',3:'顶班'}" listKey="key" listValue="value" headerKey="" name="e.drivingStatus" style="width:208px" ></s:select></td>
 							<td class="label"><s:text name="carMan.extZRR"/>:</td>
 							<td class="value"><s:textfield name="e.extZRR"/></td>
 						</tr>

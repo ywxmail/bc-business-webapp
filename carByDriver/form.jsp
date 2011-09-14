@@ -10,8 +10,13 @@
 			<table class="formFields" cellspacing="2" cellpadding="0" style="height:260px">
 				<tbody>
 					<tr>
-						<td class="label"><s:text name="carByDriver.car.plateNo"/>:</td>
+					<s:if test="%{carId != null}">
+					    <td class="label"><s:text name="carByDriver.car.plateNo"/>:</td>
 						<td class="value "><s:textfield name="plate" title='%{getText("carByDriver.title.click2selectCar")}' value="%{e.car.plateType+e.car.plateNo }" readonly="true"/></td>
+					</s:if><s:else>
+						<td class="label"><s:text name="carByDriver.car.plateNo"/>:</td>
+						<td class="value "><s:textfield name="plate" title='%{getText("carByDriver.title.click2selectCar")}' value="%{e.car.plateType+e.car.plateNo }" readonly="true" id="carName"/></td>
+						</s:else>
 					</tr>
 					<tr>
 					<s:if test="%{carManId != null}">
@@ -24,7 +29,7 @@
 					</tr>
 					<tr>
 						<td class="label"> *<s:text name="carByDriver.classes"/>:</td>
-						<td class="value" ><s:select  name="e.classes"  list="#{0:'未定义',1:'正班',2:'副班',3:'顶班'}" listKey="key" listValue="value"   headerKey="" headerValue="%{getText('label.please.choose')}"  data-validate="required"/></td>
+						<td class="value" ><s:select  name="e.classes"  list="#{0:'',1:'正班',2:'副班',3:'顶班'}" listKey="key" listValue="value"   headerKey="" headerValue="%{getText('label.please.choose')}"  data-validate="required"/></td>
 					</tr>
 					<tr>
 						<td class="label"><s:text name="carByDriver.timeInterva"/>:</td>
