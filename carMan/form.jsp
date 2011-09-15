@@ -69,7 +69,7 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="formTabs" id="formTabs">
+		<div class="formTabs" id="formTabs" style="height:300px;width:794px;overflow: hidden;">
 			<ul>
 			<s:if test="!e.isNew()">
 			    <li><a href="#otherFormFields">其他信息</a></li>
@@ -86,12 +86,12 @@
 				<li><a href="#otherFormFields">其他信息</a></li>
 				</s:else>
 			</ul>
-			<div id="otherFormFields" style="width:710px;">
+			<div id="otherFormFields">
 				<table class="formFields" cellspacing="2" cellpadding="0" >
 					<tbody>
 						<tr>
 							<td class="label w80"><s:text name="carMan.model"/>:</td>
-							<td class="value"><s:select list="carManModelList" listKey="value" listValue="value"  headerKey="" headerValue="" name="e.model" style="width:208px"></s:select></td>
+							<td class="value"><s:select list="carManModelList" listKey="value" listValue="value" headerKey="" headerValue="" name="e.model" style="width:208px"></s:select></td>
 							<td class="label"><s:text name="carMan.extFZJG"/>:</td>
 							<td class="value"><s:textfield name="e.extFZJG"
 						readonly="true" title='%{getText("carMan.title.click2selectBelong")}'/></td>
@@ -107,7 +107,7 @@
 							<td class="value"><input type="text" name="e.cert4DrivingFirstDate"  
 						class="bc-date" title='<s:text name="title.click2selectDate"/>'
 						value='<s:date format="yyyy-MM-dd" name="e.cert4DrivingFirstDate" />'/></td>
-							<td class="label"style="width:140px"><s:text name="carMan.cert4DrivingStartDate"/>:</td>
+							<td class="label" style="width:140px"><s:text name="carMan.cert4DrivingStartDate"/>:</td>
 							<td class="value"><input type="text" name="e.cert4DrivingStartDate"  
 						class="bc-date" title='<s:text name="title.click2selectDate"/>'
 						value='<s:date format="yyyy-MM-dd" name="e.cert4DrivingStartDate" />'/></td>
@@ -117,7 +117,7 @@
 							<td class="value"><input type="text" name="e.cert4DrivingEndDate"  
 						class="bc-date" title='<s:text name="title.click2selectDate"/>'
 						value='<s:date format="yyyy-MM-dd" name="e.cert4DrivingEndDate" />'/></td>
-							<td class="label"style="width:140px"><s:text name="carMan.cert4DrivingArchive"/>:</td>
+							<td class="label" style="width:140px"><s:text name="carMan.cert4DrivingArchive"/>:</td>
 							<td class="value"><s:textfield name="e.cert4DrivingArchive"/></td>
 						</tr>
 						<tr>
@@ -130,7 +130,7 @@
 							<td class="label "><s:text name="carMan.cert4Indentity"/>:</td>
 							<td class="value" ><s:textfield name="e.cert4Indentity"/></td>
 							<td class="label "><s:text name="carMan.level"/>:</td>
-							<td class="value" ><s:select list="carManLevelList" listKey="value" listValue="value"   headerKey="" headerValue="" name="e.level"style="width:208px" ></s:select></td>
+							<td class="value" ><s:select list="carManLevelList" listKey="value" listValue="value" headerKey="" headerValue="" name="e.level" style="width:208px" ></s:select></td>
 						</tr>
 						<tr>
 							<td class="label w80"><s:text name="carMan.gz"/>:</td>
@@ -141,7 +141,7 @@
 						</tr>
 						<tr>
 							<td class="label"><s:text name="carMan.drivingStatus"/>:</td>
-							<td class="value"><s:select list="#{0:'',1:'正班',2:'副班',3:'顶班'}" listKey="key" listValue="value"   headerKey=""  name="e.drivingStatus"style="width:208px" ></s:select></td>
+							<td class="value"><s:select list="#{0:'',1:'正班',2:'副班',3:'顶班'}" listKey="key" listValue="value" headerKey="" name="e.drivingStatus" style="width:208px" ></s:select></td>
 							<td class="label"><s:text name="carMan.extZRR"/>:</td>
 							<td class="value"><s:textfield name="e.extZRR"/></td>
 						</tr>
