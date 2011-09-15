@@ -110,7 +110,7 @@
 				<li><a href='<s:url value="/bc-business/carByDriver/list?carId=%{e.id}" />'>营运司机</a></li>
 				<li><a href='<s:url value="/bc/contract/list" />'>合同</a></li>
 				<li><a href='<s:url value="/bc/error/todo" />'>保险</a></li>
-				<li><a href='<s:url value="/bc/error/todo" />'>证件</a></li>
+				<li><a href='<s:url value="/bc-business/car4Cert/list?carId=%{e.id}" />'>证件</a></li>
 				<li><a href='<s:url value="/bc/error/todo" />'>配件</a></li>
 				<li><a href='<s:url value="/bc/error/todo" />'>费用</a></li>
 				<li><a href='<s:url value="/bc/error/todo" />'>回场捡</a></li>
@@ -237,7 +237,6 @@
 		<s:hidden name="e.uid" />
 		<s:hidden name="e.id" />
 		<s:hidden name="e.author.id" />
-		<s:hidden name="e.unit.id" />
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 	</s:form>
 </div>
