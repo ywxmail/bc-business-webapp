@@ -28,7 +28,7 @@ bc.contractLabourForm = {
 					$form.find(":input[name='e.driver.id']").val(carMan.id);
 					$form.find(":input[name='e.driver.name']").val(carMan.name);
 					
-					var url = "/bc-business/contractLabour/certMess?carManId="+carMan.id;
+					var url = "/bc-business/contractLabour/certInfo?carManId="+carMan.id;
 					$.ajax({ url: url,dataType:"json", success: update_page});
 					function update_page(json){
 
