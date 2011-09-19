@@ -103,7 +103,7 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="formTabs" id="formTabs">
+		<div class="formTabs" id="formTabs" style="width:802px;">
 		<s:if test="!e.isNew()">
 			<ul>
 				<li><a href="#otherFormFields">其他信息</a></li>
