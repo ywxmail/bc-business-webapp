@@ -76,7 +76,7 @@
 				<li><a href='<s:url value="/bc-business/carByDriver/list?carManId=%{e.id}"/>'>营运车辆</a></li>
 				<li><a href='<s:url value="/bc-business/contract/list?carManId=%{e.id}" />'>合同</a></li>
 				<li><a href='<s:url value="/bc-businsess/contract/list" />'>保险</a></li>
-				<li><a href='<s:url value="/bc-businsess/contract/list" />'>证件</a></li>
+				<li><a href='<s:url value="/bc-business/driver4cert/list?carManId=%{e.id}" />'>证件</a></li>
 				<li><a href='<s:url value="/bc-businsess/contract/list" />'>违法违章</a></li>
 				<li><a href='<s:url value="/bc-businsess/contract/list" />'>表扬与投诉</a></li>
 				<li><a href='<s:url value="/bc-businsess/contract/list" />'>迁移历史</a></li>
