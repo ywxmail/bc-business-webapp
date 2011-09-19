@@ -12,7 +12,7 @@
 					<tr>
 					<s:if test="%{carId != null}">
 					    <td class="label"><s:text name="carByDriver.car.plateNo"/>:</td>
-						<td class="value "><s:textfield name="plate" title='%{getText("carByDriver.title.click2selectCar")}' value="%{e.car.plateType+e.car.plateNo }" readonly="true"/></td>
+						<td class="value "><s:textfield name="plate"  value="%{e.car.plateType+e.car.plateNo }" readonly="true" cssClass="ui-state-disabled"/></td>
 					</s:if><s:else>
 						<td class="label"><s:text name="carByDriver.car.plateNo"/>:</td>
 						<td class="value "><s:textfield name="plate" title='%{getText("carByDriver.title.click2selectCar")}' value="%{e.car.plateType+e.car.plateNo }" readonly="true" id="carName"/></td>
