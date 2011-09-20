@@ -1,18 +1,18 @@
-bc.certList = {
+bc.certcarList = {
 	/** 新建选择证件类型 */
 	create : function() {
 		bc.page.newWin({
 			url: bc.root + "/bc-business/car4cert/create",
-			name: "选择证件类型",
+			name: "选择车辆证件类型",
 			mid: "selectCert4CarType",
 			afterClose: function(type){
 				if(type != null){
 					switch(type.id){
 					case "1":
-						bc.certList.doSth('certVehicelicense','机动车行驶证','createCertVehicelicense');
+						bc.certcarList.doSth('certVehicelicense','机动车行驶证','createCertVehicelicense');
 						break;
 					case "2":
-						bc.certList.doSth('certRoadtransport','道路运输证','createCertRoadtransport');
+						bc.certcarList.doSth('certRoadtransport','道路运输证','createCertRoadtransport');
 						break;
 					default:
 						var $page = $(this);
