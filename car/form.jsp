@@ -220,15 +220,17 @@
 						</tr>
 						<tr>
 							<td class="label" ><s:text name="car.desc1"/>:</td>
-							<td class="value" ><s:textfield name="e.desc1" /></td>
-							<td class="label" ><s:text name="car.desc2" />:</td>
-							<td class="value" ><s:textfield name="e.desc2"  /></td>
+							<td class="value" colspan="3" rowspan="5"><s:textarea name="e.desc1" rows="5"/></td>
 						</tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
 						<tr>
+						    <td class="label" ><s:text name="car.desc2" />:</td>
+							<td class="value" ><s:textarea name="e.desc2"  /></td>
 							<td class="label" ><s:text name="car.desc3"/>:</td>
-							<td class="value" ><s:textfield name="e.desc3" /></td>
-							<td></td>
-							<td></td>
+							<td class="value" ><s:textarea name="e.desc3" /></td>
 						</tr>
 					</tbody>
 				</table>
