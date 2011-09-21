@@ -69,24 +69,31 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="formTabs" id="formTabs" style="height:300px;width:794px;overflow: hidden;">
-			<ul>
-			<s:if test="!e.isNew()">
-			    <li><a href="#otherFormFields">其他信息</a></li>
-				<li><a href='<s:url value="/bc-business/carByDriver/list?carManId=%{e.id}"/>'>营运车辆</a></li>
-				<li><a href='<s:url value="/bc-business/contract/list?carManId=%{e.id}" />'>合同</a></li>
-				<li><a href='<s:url value="/bc-businsess/contract/list" />'>保险</a></li>
-				<li><a href='<s:url value="/bc-business/driver4cert/list?carManId=%{e.id}" />'>证件</a></li>
-				<li><a href='<s:url value="/bc-businsess/contract/list" />'>违法违章</a></li>
-				<li><a href='<s:url value="/bc-businsess/contract/list" />'>表扬与投诉</a></li>
-				<li><a href='<s:url value="/bc-businsess/contract/list" />'>迁移历史</a></li>
-				<li><a href='<s:url value="/bc-businsess/contract/list" />'>安全学习</a></li>
-				<li><a href='<s:url value="/bc-business/blacklist/list?carManId=%{e.id}" />'>黑名单历史</a></li>
-				</s:if><s:else>
-				<li><a href="#otherFormFields">其他信息</a></li>
-				</s:else>
-			</ul>
-			<div id="otherFormFields">
+		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset"
+			data-cfg="{height:300}" style="height:300px;width:794px;overflow: hidden;">
+	        <div class="tabsContainer">
+           	 	<div class="slideContainer">
+                <ul class="tabs ui-helper-reset">
+					<s:if test="!e.isNew()">
+				    <li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">其他信息</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/carByDriver/list?carManId=%{e.id}"/>' class="ui-state-default">营运车辆</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contract/list?carManId=%{e.id}" />' class="ui-state-default">合同</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">保险</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/driver4cert/list?carManId=%{e.id}" />' class="ui-state-default">证件</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">违法违章</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">表扬与投诉</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">迁移历史</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">安全学习</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/blacklist/list?carManId=%{e.id}" />' class="ui-state-default">黑名单历史</a></li>
+					</s:if>
+					<s:else>
+				    <li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">其他信息</a></li>
+					</s:else>
+                </ul>
+            	</div>
+	        </div>
+	        <div class="contentContainer ui-helper-reset ui-widget-content">
+			<div id="otherFormFields" class="content active">
 				<table class="formFields" cellspacing="2" cellpadding="0" >
 					<tbody>
 						<tr>
@@ -151,6 +158,7 @@
 					</tr>
 					</tbody>
 				</table>
+			</div>
 			</div>
 		</div>
 		<s:hidden name="e.uid" />

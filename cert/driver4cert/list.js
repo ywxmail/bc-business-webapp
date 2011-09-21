@@ -1,28 +1,28 @@
-bc.certList = {
+bc.certdriverList = {
 	/** 新建选择证件类型 */
 	create : function() {
 		bc.page.newWin({
 			url: bc.root + "/bc-business/driver4cert/create",
-			name: "选择证件类型",
-			mid: "selectCert4CarType",
+			name: "选择车辆证件类型",
+			mid: "selectCert4CarManType",
 			afterClose: function(type){
-				//bc.certList.doSth('certIdentity','新建居民身份证','createCertIdentity');
+				//bc.certdriverList.doSth('certIdentity','新建居民身份证','createCertIdentity');
 				if(type != null){
 					switch(type.id){
 					case "1":
-						bc.certList.doSth('certIdentity','新建居民身份证','createCertIdentity');
+						bc.certdriverList.doSth('certIdentity','新建居民身份证','createCertIdentity');
 						break;
 					case "2":
-						bc.certList.doSth('certDriving','机动车驾驶证','createCertDriving');
+						bc.certdriverList.doSth('certDriving','机动车驾驶证','createCertDriving');
 						break;
 					case "3":
-						bc.certList.doSth('certCyzg','从业资格证','createCertCyzg');
+						bc.certdriverList.doSth('certCyzg','从业资格证','createCertCyzg');
 						break;
 					case "4":
-						bc.certList.doSth('certFwzg','服务资格证','createCertFwzg');
+						bc.certdriverList.doSth('certFwzg','服务资格证','createCertFwzg');
 						break;
 					case "5":
-						bc.certList.doSth('certJspx','驾驶培训证','createCertJspx');
+						bc.certdriverList.doSth('certJspx','驾驶培训证','createCertJspx');
 						break;
 					default:
 						var $page = $(this);

@@ -3,7 +3,7 @@ bc.carForm = {
 		var $form = $(this);
 		
 		// 初始化多页签
-		$form.find('#formTabs').tabs();
+		$form.find('#formTabs').bctabs(bc.page.defaultBcTabsOption);
 		
 		//绑定选择上级的按钮事件处理
 		$form.find("#selectBelong,:input[name='e.unit.name']").click(function(){

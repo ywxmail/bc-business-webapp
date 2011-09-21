@@ -103,23 +103,31 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="formTabs" id="formTabs" style="width:802px;">
-		<s:if test="!e.isNew()">
-			<ul>
-				<li><a href="#otherFormFields">其他信息</a></li>
-				<li><a href='<s:url value="/bc-business/carByDriver/list?carId=%{e.id}" />'>营运司机</a></li>
-				<li><a href='<s:url value="/bc/contract/list" />'>合同</a></li>
-				<li><a href='<s:url value="/bc/error/todo" />'>保险</a></li>
-				<li><a href='<s:url value="/bc-business/car4Cert/list?carId=%{e.id}" />'>证件</a></li>
-				<li><a href='<s:url value="/bc/error/todo" />'>配件</a></li>
-				<li><a href='<s:url value="/bc/error/todo" />'>费用</a></li>
-				<li><a href='<s:url value="/bc/error/todo" />'>回场捡</a></li>
-				<li><a href='<s:url value="/bc/error/todo" />'>事故</a></li>
-				<li><a href='<s:url value="/bc/error/todo" />'>变更历史</a></li>
-				<li><a href='<s:url value="/bc/error/todo" />'>操作日志</a></li>
-			</ul>
-		</s:if>
-			<div id="otherFormFields" style="width:800px;">
+		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:300}"
+			style="height:300px;width:800px;overflow: hidden;">
+	        <div class="tabsContainer">
+           	 	<div class="slideContainer">
+                <ul class="tabs ui-helper-reset">
+					<s:if test="!e.isNew()">
+				    <li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">其他信息</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/carByDriver/list?carId=%{e.id}"/>' class="ui-state-default">营运司机</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc/contract/list" />' class="ui-state-default">合同</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">保险</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/car4Cert/list?carId=%{e.id}" />' class="ui-state-default">证件</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">配件</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">费用</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">回场捡</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">事故</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">变更历史</a></li>
+					</s:if>
+					<s:else>
+				    <li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">其他信息</a></li>
+					</s:else>
+                </ul>
+            	</div>
+	        </div>
+	        <div class="contentContainer ui-helper-reset ui-widget-content">
+			<div id="otherFormFields" class="content active" style="width:800px;">
 				<table class="formFields" cellspacing="2" cellpadding="0" >
 					<tbody>
 						<tr style="height: 1px;">
@@ -235,10 +243,13 @@
 					</tbody>
 				</table>
 			</div>
+			</div>
 		</div>
 		<s:hidden name="e.uid" />
+
 		<s:hidden name="e.id" />
 		<s:hidden name="e.author.id" />
+		<s:hidden name="e.unit.id"/>
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 	</s:form>
 </div>
