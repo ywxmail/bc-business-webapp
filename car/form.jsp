@@ -40,42 +40,40 @@
 						</td>
 					</tr>
 					<tr>
+						<td class="label" >*<s:text name="car.registerDate"/>:</td>
+						<td class="value" >
+							<input type="text" name="e.registerDate" data-validate="date"
+							value='<s:date format="yyyy-MM-dd" name="e.registerDate" />'
+							class="bc-date" style="width: 22em" data-cfg='{changeYear:true}' />
+						</td>
+						<td class="label" >*<s:text name="car.factoryDate"/>:</td>
+						<td class="value" >
+							<input type="text" name="e.factoryDate" data-validate="date"
+							value='<s:date format="yyyy-MM-dd" name="e.factoryDate" />'
+							class="bc-date" style="width: 24.6em" data-cfg='{changeYear:true}'/>
+						</td>
+					</tr>
+					<tr>
+						<td class="label" >*<s:text name="car.operateDate"/>:</td>
+						<td class="value" >
+							<input type="text" name="e.operateDate" data-validate="date"
+							value='<s:date format="yyyy-MM-dd" name="e.operateDate" />'
+							class="bc-date" style="width: 22em" data-cfg='{changeYear:true}'/>
+						</td>
+						<td class="label" >*<s:text name="car.scrapDate"/>:</td>
+						<td class="value" >
+							<input type="text" name="e.scrapDate" data-validate="date"
+							value='<s:date format="yyyy-MM-dd" name="e.scrapDate" />'
+							class="bc-date" style="width: 24.6em" data-cfg='{changeYear:true}'/>
+						</td>
+					</tr>
+					<tr>
 						<td class="label" ><s:text name="car.factoryType"/>:</td>
 						<td class="value" >
 							<s:select name="e.factoryType" list="factoryTypeList" listKey="value" listValue="value" headerKey="" headerValue="" ></s:select>
 						</td>
 						<td class="label" ><s:text name="car.factoryModel"/>:</td>
 						<td class="value" ><s:textfield name="e.factoryModel" /></td>
-					</tr>
-					<tr>
-						<td class="label" ><s:text name="car.registerDate"/>:</td>
-						<td class="value" >
-							<input type="text" name="e.registerDate" data-validate="date"
-							value='<s:date format="yyyy-MM-dd" name="e.registerDate" />'
-							class="bc-date" style="width: 22em" data-cfg='{changeYear:true}' />
-						</td>
-						<td class="label" ><s:text name="car.factoryDate"/>:</td>
-						<td class="value" >
-							<input type="text" name="e.factoryDate" data-validate="date"
-							value='<s:date format="yyyy-MM-dd" name="e.factoryDate" />'
-							class="bc-date" style="width: 22em" data-cfg='{changeYear:true}'/>
-						</td>
-					</tr>
-					<tr>
-						<td class="label" ><s:text name="car.operateDate"/>:</td>
-						<td class="value" >
-							<input type="text" name="e.operateDate" data-validate="date"
-							value='<s:date format="yyyy-MM-dd" name="e.operateDate" />'
-							class="bc-date" style="width: 22em" data-cfg='{changeYear:true}'/>
-						</td>
-						<td class="label" ><s:text name="car.scrapDate"/>:</td>
-						<td class="value" >
-							<input type="text" name="e.scrapDate" data-validate="date"
-							value='<s:date format="yyyy-MM-dd" name="e.scrapDate" />'
-							class="bc-date" style="width: 22em" data-cfg='{changeYear:true}'/>
-						</td>
-					</tr>
-					<tr>
 					</tr>
 					<tr>
 						<td class="label" ><s:text name="car.originNo"/>:</td>
@@ -227,8 +225,8 @@
 						<tr>
 							<td class="label" ><s:text name="car.desc3"/>:</td>
 							<td class="value" ><s:textfield name="e.desc3" /></td>
-							<td></td>
-							<td></td>
+							<td class="label" ><s:text name="car.paymentType"/></td>
+							<td class="value"><s:textfield name="e.paymentType" /></td>
 						</tr>
 					</tbody>
 				</table>
