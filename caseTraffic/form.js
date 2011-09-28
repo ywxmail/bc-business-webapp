@@ -3,6 +3,7 @@ bc.caseTrafficForm = {
 	init : function() {
 		var $form = $(this);
 		
+		if(readonly) return;
 		// 初始化多页签
 		//$form.find('#formTabs').tabs();
 		
@@ -76,6 +77,7 @@ bc.caseTrafficForm = {
 	
     closefile : function(){
 		var $form = $(this);
+		var $page = $(this).next();
 	    bc.msg.confirm("确定要结案吗？",function(){
 			var url = "/bc-business/caseTraffic/closefile";
 			$.ajax({ url: url,dataType:"json", success: update_page});
@@ -85,6 +87,7 @@ bc.caseTrafficForm = {
 					$form.find(":input[name='e.closeDate']").val(json.closeDate);
 					$form.find('#divTitle').css("visibility","visible");
 					$form.find('#divValue').css("visibility","visible");
+					$page.parent().find("#bcSaveDlgButton").button("disable");
 					bc.msg.slide("结案成功,请保存！");
 //					alert('当前上下文:   \n'+ $form.html());
 //					var $button = $("span:contains('结案')").parent();
