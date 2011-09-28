@@ -52,7 +52,7 @@
 					<tr>
 						<td class="label">*<s:text name="runcase.driverName" />:</td>
 						<td>
-							<s:textfield name="e.driverName" cssStyle="width:5em;" data-validate="required"/>&nbsp;&nbsp;<s:text name="runcase.driverCert" /><s:textfield name="e.driverCert" cssStyle="width:14.4em;" data-validate="required" />
+							<s:textfield name="e.driverName" cssStyle="width:5em;" data-validate="required"/>&nbsp;&nbsp;<s:text name="runcase.driverCert" /><s:textfield name="e.driverCert" cssStyle="width:14.1em;" data-validate="required" />
 						</td>
 						<td class="label"><s:text name="runcase.receiverName1"/>:</td>
 						<td class="value "><s:textfield name="e.receiverName" /></td>
@@ -131,25 +131,28 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="formTabs" id="formTabs" style="height:250px;width:800px;overflow: hidden;">
-			<ul>
-			    <li><a href="#otherFormFieldsOne">扣罚信息</a></li>
-				<li><a href="">具体内容</a></li>
-				<li><a href="">处理意见</a></li>
-			</ul>
-			<div id="otherFormFieldsOne">
-				<table class="formFields" cellspacing="2" cellpadding="0" >
-					<tbody>
-						<tr>
-							<td class="label" colspan="1"><s:text name="runcase.chargerName"/>:<s:textfield name="e.chargerName" /></td>
-							<td class="value "></td>
-							<td class="label" ><s:text name="runcase.receipt"/>:</td>
-							<td class="value" ><s:textfield name="e.receipt" /></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:300}"
+			style="height:300px;width:800px;overflow: hidden;">
+	        <div class="tabsContainer">
+           	 	<div class="slideContainer">
+                <ul class="tabs ui-helper-reset">
+				    <li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">扣罚信息</a></li>
+					<li class="tab ui-widget-content"><a href="" class="ui-state-default">具体内容</a></li>
+					<li class="tab ui-widget-content"><a href="" class="ui-state-default">处理意见</a></li>
+                </ul>
+            	</div>
+	        </div>
+	        <div class="contentContainer ui-helper-reset ui-widget-content">
+	        	<div id="otherFormFields" class="content active" style="width:800px;">
+					<table class="formFields" cellspacing="2" cellpadding="0" >
+						<tbody>
+
+						</tbody>
+					</table>
+				</div>
+	        </div>
 		</div>
+	        
 		<s:hidden name="e.uid" />
 		<s:hidden name="e.id" />
 		<s:hidden name="e.author.id" />

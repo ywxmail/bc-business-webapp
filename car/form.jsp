@@ -40,40 +40,42 @@
 						</td>
 					</tr>
 					<tr>
-						<td class="label" >*<s:text name="car.registerDate"/>:</td>
-						<td class="value" >
-							<input type="text" name="e.registerDate" data-validate="date"
-							value='<s:date format="yyyy-MM-dd" name="e.registerDate" />'
-							class="bc-date" style="width: 22em" data-cfg='{changeYear:true}' />
-						</td>
-						<td class="label" >*<s:text name="car.factoryDate"/>:</td>
-						<td class="value" >
-							<input type="text" name="e.factoryDate" data-validate="date"
-							value='<s:date format="yyyy-MM-dd" name="e.factoryDate" />'
-							class="bc-date" style="width: 24.6em" data-cfg='{changeYear:true}'/>
-						</td>
-					</tr>
-					<tr>
-						<td class="label" >*<s:text name="car.operateDate"/>:</td>
-						<td class="value" >
-							<input type="text" name="e.operateDate" data-validate="date"
-							value='<s:date format="yyyy-MM-dd" name="e.operateDate" />'
-							class="bc-date" style="width: 22em" data-cfg='{changeYear:true}'/>
-						</td>
-						<td class="label" >*<s:text name="car.scrapDate"/>:</td>
-						<td class="value" >
-							<input type="text" name="e.scrapDate" data-validate="date"
-							value='<s:date format="yyyy-MM-dd" name="e.scrapDate" />'
-							class="bc-date" style="width: 24.6em" data-cfg='{changeYear:true}'/>
-						</td>
-					</tr>
-					<tr>
 						<td class="label" ><s:text name="car.factoryType"/>:</td>
 						<td class="value" >
 							<s:select name="e.factoryType" list="factoryTypeList" listKey="value" listValue="value" headerKey="" headerValue="" ></s:select>
 						</td>
 						<td class="label" ><s:text name="car.factoryModel"/>:</td>
 						<td class="value" ><s:textfield name="e.factoryModel" /></td>
+					</tr>
+					<tr>
+						<td class="label" ><s:text name="car.registerDate"/>:</td>
+						<td class="value" >
+							<input type="text" name="e.registerDate" data-validate="date"
+							value='<s:date format="yyyy-MM-dd" name="e.registerDate" />'
+							class="bc-date" style="width: 22em" data-cfg='{changeYear:true}' />
+						</td>
+						<td class="label" ><s:text name="car.factoryDate"/>:</td>
+						<td class="value" >
+							<input type="text" name="e.factoryDate" data-validate="date"
+							value='<s:date format="yyyy-MM-dd" name="e.factoryDate" />'
+							class="bc-date" style="width: 22em" data-cfg='{changeYear:true}'/>
+						</td>
+					</tr>
+					<tr>
+						<td class="label" ><s:text name="car.operateDate"/>:</td>
+						<td class="value" >
+							<input type="text" name="e.operateDate" data-validate="date"
+							value='<s:date format="yyyy-MM-dd" name="e.operateDate" />'
+							class="bc-date" style="width: 22em" data-cfg='{changeYear:true}'/>
+						</td>
+						<td class="label" ><s:text name="car.scrapDate"/>:</td>
+						<td class="value" >
+							<input type="text" name="e.scrapDate" data-validate="date"
+							value='<s:date format="yyyy-MM-dd" name="e.scrapDate" />'
+							class="bc-date" style="width: 22em" data-cfg='{changeYear:true}'/>
+						</td>
+					</tr>
+					<tr>
 					</tr>
 					<tr>
 						<td class="label" ><s:text name="car.originNo"/>:</td>
@@ -101,23 +103,31 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="formTabs" id="formTabs">
-		<s:if test="!e.isNew()">
-			<ul>
-				<li><a href="#otherFormFields">其他信息</a></li>
-				<li><a href='<s:url value="/bc-business/carByDriver/list?carId=%{e.id}" />'>营运司机</a></li>
-				<li><a href='<s:url value="/bc/contract/list" />'>合同</a></li>
-				<li><a href='<s:url value="/bc/error/todo" />'>保险</a></li>
-				<li><a href='<s:url value="/bc-business/car4Cert/list?carId=%{e.id}" />'>证件</a></li>
-				<li><a href='<s:url value="/bc/error/todo" />'>配件</a></li>
-				<li><a href='<s:url value="/bc/error/todo" />'>费用</a></li>
-				<li><a href='<s:url value="/bc/error/todo" />'>回场捡</a></li>
-				<li><a href='<s:url value="/bc/error/todo" />'>事故</a></li>
-				<li><a href='<s:url value="/bc/error/todo" />'>变更历史</a></li>
-				<li><a href='<s:url value="/bc/error/todo" />'>操作日志</a></li>
-			</ul>
-		</s:if>
-			<div id="otherFormFields" style="width:800px;">
+		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:300}"
+			style="height:300px;width:800px;overflow: hidden;">
+	        <div class="tabsContainer">
+           	 	<div class="slideContainer">
+                <ul class="tabs ui-helper-reset">
+					<s:if test="!e.isNew()">
+				    <li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">其他信息</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/carByDriver/list?carId=%{e.id}"/>' class="ui-state-default">营运司机</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc/contract/list" />' class="ui-state-default">合同</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">保险</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/car4Cert/list?carId=%{e.id}" />' class="ui-state-default">证件</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">配件</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">费用</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">回场捡</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">事故</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">变更历史</a></li>
+					</s:if>
+					<s:else>
+				    <li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">其他信息</a></li>
+					</s:else>
+                </ul>
+            	</div>
+	        </div>
+	        <div class="contentContainer ui-helper-reset ui-widget-content">
+			<div id="otherFormFields" class="content active" style="width:800px;">
 				<table class="formFields" cellspacing="2" cellpadding="0" >
 					<tbody>
 						<tr style="height: 1px;">
@@ -218,21 +228,25 @@
 						</tr>
 						<tr>
 							<td class="label" ><s:text name="car.desc1"/>:</td>
-							<td class="value" ><s:textfield name="e.desc1" /></td>
-							<td class="label" ><s:text name="car.desc2" />:</td>
-							<td class="value" ><s:textfield name="e.desc2"  /></td>
+							<td class="value" colspan="3" rowspan="5"><s:textarea name="e.desc1" rows="5"/></td>
 						</tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
 						<tr>
+						    <td class="label" ><s:text name="car.desc2" />:</td>
+							<td class="value" ><s:textarea name="e.desc2"  /></td>
 							<td class="label" ><s:text name="car.desc3"/>:</td>
-							<td class="value" ><s:textfield name="e.desc3" /></td>
-							<td class="label" ><s:text name="car.paymentType"/></td>
-							<td class="value"><s:textfield name="e.paymentType" /></td>
+							<td class="value" ><s:textarea name="e.desc3" /></td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
+			</div>
 		</div>
 		<s:hidden name="e.uid" />
+
 		<s:hidden name="e.id" />
 		<s:hidden name="e.author.id" />
 		<s:hidden name="e.unit.id"/>

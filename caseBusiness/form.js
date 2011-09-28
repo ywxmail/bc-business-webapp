@@ -4,7 +4,9 @@ bc.caseBusinessForm = {
 		var $form = $(this);
 		
 		// 初始化多页签
-		$form.find('#formTabs').tabs();
+		$form.find('#formTabs').bctabs(bc.page.defaultBcTabsOption);
+		
+		if(readonly) return;
 		
 		
 		//绑定车队事件
@@ -67,6 +69,7 @@ bc.caseBusinessForm = {
 	
     closefile : function(){
 		var $form = $(this);
+		var $page = $(this).next();
 	    bc.msg.confirm("确定要结案吗？",function(){
 			var url = "/bc-business/caseTraffic/closefile";
 			$.ajax({ url: url,dataType:"json", success: update_page});
@@ -76,6 +79,7 @@ bc.caseBusinessForm = {
 					$form.find(":input[name='e.closeDate']").val(json.closeDate);
 					$form.find('#divTitle').css("visibility","visible");
 					$form.find('#divValue').css("visibility","visible");
+					$page.parent().find("#bcSaveDlgButton").button("disable");
 					bc.msg.slide("结案成功,请保存!");
 //					alert('当前上下文:   \n'+ $form.html());
 //					var $button = $("span:contains('结案')").parent();

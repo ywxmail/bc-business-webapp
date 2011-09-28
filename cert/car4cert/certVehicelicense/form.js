@@ -3,6 +3,7 @@ bc.certVehicelicenseForm = {
 	init : function() {
 		var $form = $(this);
 		
+		if(readonly) return;
 		/* 初始化多页签*/
 		//$form.find('#formTabs').tabs();
 		
