@@ -188,7 +188,7 @@
 						</tbody>
 					</table>
 				</div>
-				<div id="otherFormFields2" class="content active" style="width:800px;">
+				<div id="otherFormFields2" class="content" style="width:800px;">
 					<table class="formFields" cellspacing="2" cellpadding="0" >
 						<tbody>
 							<tr>
@@ -219,7 +219,7 @@
 						</tbody>
 					</table>
 				</div>
-				<div id="otherFormFields3" class="content active" style="width:800px;">
+				<div id="otherFormFields3" class="content" style="width:800px;">
 					<table class="formFields" cellspacing="2" cellpadding="0" >
 						<tbody>
 							<tr>
