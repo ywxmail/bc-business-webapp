@@ -1,6 +1,6 @@
 if(!window['bs'])window['bs']={};
 bc.certFwzgForm = {
-	init : function() {
+	init : function(option,readonly) {
 		var $form = $(this);
 		if(readonly) return;
 		/* 初始化多页签*/

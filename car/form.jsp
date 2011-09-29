@@ -9,6 +9,12 @@
 		<div class="formFields ui-widget-content" style="width:800px;">
 			<table class="formFields" cellspacing="2" cellpadding="0">
 				<tbody>
+					<tr style="height: 1px;">
+						<td >&nbsp;</td>
+						<td style="width: 200px;">&nbsp;</td>
+						<td style="width: 100px;">&nbsp;</td>
+						<td style="width: 200px;">&nbsp;</td>
+					</tr>
 					<tr>
 						<td class="label" >*<s:text name="car.code"/>:</td>
 						<td class="value" ><s:textfield name="e.code" data-validate="required"  /></td>
@@ -40,42 +46,40 @@
 						</td>
 					</tr>
 					<tr>
+						<td class="label" >*<s:text name="car.registerDate"/>:</td>
+						<td class="value" >
+							<input type="text" name="e.registerDate" data-validate="date"
+							value='<s:date format="yyyy-MM-dd" name="e.registerDate" />'
+							class="bc-date" data-cfg='{changeYear:true}' />
+						</td>
+						<td class="label" >*<s:text name="car.factoryDate"/>:</td>
+						<td class="value" >
+							<input type="text" name="e.factoryDate" data-validate="date"
+							value='<s:date format="yyyy-MM-dd" name="e.factoryDate" />'
+							class="bc-date"  data-cfg='{changeYear:true}'/>
+						</td>
+					</tr>
+					<tr>
+						<td class="label" >*<s:text name="car.operateDate"/>:</td>
+						<td class="value" >
+							<input type="text" name="e.operateDate" data-validate="date"
+							value='<s:date format="yyyy-MM-dd" name="e.operateDate" />'
+							class="bc-date"  data-cfg='{changeYear:true}'/>
+						</td>
+						<td class="label" >*<s:text name="car.scrapDate"/>:</td>
+						<td class="value" >
+							<input type="text" name="e.scrapDate" data-validate="date"
+							value='<s:date format="yyyy-MM-dd" name="e.scrapDate" />'
+							class="bc-date"  data-cfg='{changeYear:true}'/>
+						</td>
+					</tr>
+					<tr>
 						<td class="label" ><s:text name="car.factoryType"/>:</td>
 						<td class="value" >
 							<s:select name="e.factoryType" list="factoryTypeList" listKey="value" listValue="value" headerKey="" headerValue="" ></s:select>
 						</td>
 						<td class="label" ><s:text name="car.factoryModel"/>:</td>
 						<td class="value" ><s:textfield name="e.factoryModel" /></td>
-					</tr>
-					<tr>
-						<td class="label" ><s:text name="car.registerDate"/>:</td>
-						<td class="value" >
-							<input type="text" name="e.registerDate" data-validate="date"
-							value='<s:date format="yyyy-MM-dd" name="e.registerDate" />'
-							class="bc-date" style="width: 22em" data-cfg='{changeYear:true}' />
-						</td>
-						<td class="label" ><s:text name="car.factoryDate"/>:</td>
-						<td class="value" >
-							<input type="text" name="e.factoryDate" data-validate="date"
-							value='<s:date format="yyyy-MM-dd" name="e.factoryDate" />'
-							class="bc-date" style="width: 22em" data-cfg='{changeYear:true}'/>
-						</td>
-					</tr>
-					<tr>
-						<td class="label" ><s:text name="car.operateDate"/>:</td>
-						<td class="value" >
-							<input type="text" name="e.operateDate" data-validate="date"
-							value='<s:date format="yyyy-MM-dd" name="e.operateDate" />'
-							class="bc-date" style="width: 22em" data-cfg='{changeYear:true}'/>
-						</td>
-						<td class="label" ><s:text name="car.scrapDate"/>:</td>
-						<td class="value" >
-							<input type="text" name="e.scrapDate" data-validate="date"
-							value='<s:date format="yyyy-MM-dd" name="e.scrapDate" />'
-							class="bc-date" style="width: 22em" data-cfg='{changeYear:true}'/>
-						</td>
-					</tr>
-					<tr>
 					</tr>
 					<tr>
 						<td class="label" ><s:text name="car.originNo"/>:</td>
@@ -128,120 +132,136 @@
 	        </div>
 	        <div class="contentContainer ui-helper-reset ui-widget-content">
 			<div id="otherFormFields" class="content active" style="width:800px;">
-				<table class="formFields" cellspacing="2" cellpadding="0" >
-					<tbody>
-						<tr style="height: 1px;">
-							<td >&nbsp;</td>
-							<td style="width: 200px;">&nbsp;</td>
-							<td style="width: 100px;">&nbsp;</td>
-							<td style="width: 200px;">&nbsp;</td>
-						</tr>
-						<tr>
-							<td class="label" ><s:text name="car.certNo1" />:</td>
-							<td class="value" ><s:textfield name="e.certNo1" /></td>
-							<td class="label" ><s:text name="car.certNo2"/>:</td>
-							<td class="value" ><s:textfield name="e.certNo2" /></td>
-						</tr>
-						<tr>
-							<td class="label" ><s:text name="car.invoiceNo1" />:</td>
-							<td class="value" ><s:textfield name="e.invoiceNo1" /></td>
-							<td class="label" ><s:text name="car.invoiceNo2"/>:</td>
-							<td class="value" ><s:textfield name="e.invoiceNo2" /></td>
-						</tr>
-						<tr>
-							<td class="label" ><s:text name="car.certNo3"/>:</td>
-							<td class="value" ><s:textfield name="e.certNo3"  /></td>
-							<td class="label" ><s:text name="car.originalValue"/>:</td>
-							<td class="value" ><s:textfield name="e.originalValue" data-validate="number"/></td>
-						</tr>
-						<tr>
-							<td class="label" ><s:text name="car.color"/>:</td>
-							<td class="value" >
-								<s:select name="e.color" list="colorTypeList" listKey="value" listValue="value" headerKey="" headerValue="" ></s:select>
-							</td>
-							<td class="label" ><s:text name="car.fuelType"/>:</td>
-							<td class="value" >
-								<s:select name="e.fuelType" list="fuelTypeList" listKey="value" listValue="value" headerKey="" headerValue="" ></s:select>
-							</td>
-						</tr>
-						<tr>
-							<td class="label" ><s:text name="car.engineNo"/>:</td>
-							<td class="value" ><s:textfield name="e.engineNo"  /></td>
-							<td class="label" ><s:text name="car.engineType"/>:</td>
-							<td class="value" ><s:textfield name="e.engineType" /></td>
-						</tr>
-						<tr>
-							<td class="label" ><s:text name="car.displacement"/>/<s:text name="car.power"/>:</td>
-							<td class="value" ><s:textfield name="e.displacement" data-validate="digits"  cssStyle="width:5em;"/>&nbsp;ml&nbsp;&nbsp;<s:textfield name="e.power" data-validate="number" cssStyle="width:5em;"/>&nbsp;kw</td>
-						
-						
-							<td class="label"  >
-								<s:text name="car.dim" />:
-							</td>
-							<td class="value" >
-								<s:text name="car.dimLen" />
-								<s:textfield name="e.dimLen" data-validate="digits"  cssStyle="width:3em;"/>
-								<s:text name="car.dimWidth"/>
-								<s:textfield name="e.dimWidth" data-validate="digits" cssStyle="width:3em;"/>
-								<s:text name="car.dimHeight" />
-								<s:textfield name="e.dimHeight" data-validate="digits"  cssStyle="width:3em;"/>&nbsp;mm
-							</td>
-						
-						</tr>
-						<tr>
-							<td class="label" ><s:text name="car.turnType"/>:</td>
-							<td class="value" ><s:textfield name="e.turnType"  /></td>
-							<td class="label" ><s:text name="car.tireCount"/>:</td>
-							<td class="value" ><s:textfield name="e.tireCount" data-validate="digits"/></td>
-						</tr>
-						<tr>
-							<td class="label" ><s:text name="car.tireStandard" />:</td>
-							<td class="value" ><s:textfield name="e.tireStandard"  /></td>
-							<td class="label" ><s:text name="car.axisDistance"/>:</td>
-							<td class="value" ><s:textfield name="e.axisDistance" data-validate="digits"/></td>
-						</tr>
-						<tr>
-							<td class="label" ><s:text name="car.axisCount" />:</td>
-							<td class="value" ><s:textfield name="e.axisCount" data-validate="digits"  /></td>
-							<td class="label" ><s:text name="car.pieceCount"/>:</td>
-							<td class="value" ><s:textfield name="e.pieceCount" data-validate="digits"/></td>
-						</tr>
-						<tr>
-							<td class="label" ><s:text name="car.totalWeight"/>:</td>
-							<td class="value" ><s:textfield name="e.totalWeight" data-validate="digits"/></td>
-							<td class="label" ><s:text name="car.accessWeight" />:</td>
-							<td class="value" ><s:textfield name="e.accessWeight" data-validate="digits"  /></td>
-						</tr>
-						<tr>
-							<td class="label" ><s:text name="car.accessCount"/>:</td>
-							<td class="value" ><s:textfield name="e.accessCount" data-validate="digits"/></td>
-							<td class="label" ><s:text name="car.taximeterFactory" />:</td>
-							<td class="value" >
-								<s:select name="e.taximeterFactory" list="taximeterFactoryTypeList" listKey="value" listValue="value" headerKey="" headerValue="" ></s:select>
-							</td>
-						</tr>
-						<tr>
-							<td class="label" ><s:text name="car.taximeterType"/>:</td>
-							<td class="value" ><s:textfield name="e.taximeterType" /></td>
-							<td class="label" ><s:text name="car.taximeterNo" />:</td>
-							<td class="value" ><s:textfield name="e.taximeterNo"  /></td>
-						</tr>
-						<tr>
-							<td class="label" ><s:text name="car.desc1"/>:</td>
-							<td class="value" colspan="3" rowspan="5"><s:textarea name="e.desc1" rows="5"/></td>
-						</tr>
-						<tr></tr>
-						<tr></tr>
-						<tr></tr>
-						<tr></tr>
-						<tr>
-						    <td class="label" ><s:text name="car.desc2" />:</td>
-							<td class="value" ><s:textarea name="e.desc2"  /></td>
-							<td class="label" ><s:text name="car.desc3"/>:</td>
-							<td class="value" ><s:textarea name="e.desc3" /></td>
-						</tr>
-					</tbody>
-				</table>
+				<fieldset style="width: 750px">
+					<legend>票号证号</legend>
+					<table class="formFields" cellspacing="2" cellpadding="0" >
+						<tbody>
+							<tr style="height: 1px;">
+								<td >&nbsp;</td>
+								<td style="width: 200px;">&nbsp;</td>
+								<td style="width: 100px;">&nbsp;</td>
+								<td style="width: 200px;">&nbsp;</td>
+							</tr>
+							<tr>
+								<td class="label" ><s:text name="car.certNo1" />:</td>
+								<td class="value" ><s:textfield name="e.certNo1" /></td>
+								<td class="label" ><s:text name="car.certNo2"/>:</td>
+								<td class="value" ><s:textfield name="e.certNo2" /></td>
+							</tr>
+							<tr>
+								<td class="label" ><s:text name="car.invoiceNo1" />:</td>
+								<td class="value" ><s:textfield name="e.invoiceNo1" /></td>
+								<td class="label" ><s:text name="car.invoiceNo2"/>:</td>
+								<td class="value" ><s:textfield name="e.invoiceNo2" /></td>
+							</tr>
+							<tr>
+								<td class="label" ><s:text name="car.certNo3"/>:</td>
+								<td class="value" ><s:textfield name="e.certNo3"  /></td>
+								<td class="label" ><s:text name="car.originalValue"/>:</td>
+								<td class="value" ><s:textfield name="e.originalValue" data-validate="number"/></td>
+							</tr>
+						</tbody>
+					</table>
+				</fieldset>
+				<fieldset style="width: 750px">
+					<legend>硬件参数</legend>
+					<table class="formFields" cellspacing="2" cellpadding="0" >
+						<tbody>
+							<tr style="height: 1px;">
+								<td >&nbsp;</td>
+								<td style="width: 200px;">&nbsp;</td>
+								<td style="width: 100px;">&nbsp;</td>
+								<td style="width: 200px;">&nbsp;</td>
+							</tr>
+							<tr>
+								<td class="label" ><s:text name="car.color"/>:</td>
+								<td class="value" >
+									<s:select name="e.color" list="colorTypeList" listKey="value" listValue="value" headerKey="" headerValue="" ></s:select>
+								</td>
+								<td class="label" ><s:text name="car.fuelType"/>:</td>
+								<td class="value" >
+									<s:select name="e.fuelType" list="fuelTypeList" listKey="value" listValue="value" headerKey="" headerValue="" ></s:select>
+								</td>
+							</tr>
+							<tr>
+								<td class="label" ><s:text name="car.engineNo"/>:</td>
+								<td class="value" ><s:textfield name="e.engineNo"  /></td>
+								<td class="label" ><s:text name="car.engineType"/>:</td>
+								<td class="value" ><s:textfield name="e.engineType" /></td>
+							</tr>
+							<tr>
+								<td class="label" ><s:text name="car.displacement"/>/<s:text name="car.power"/>:</td>
+								<td class="value" ><s:textfield name="e.displacement" data-validate="digits"  cssStyle="width:5em;"/>&nbsp;ml&nbsp;&nbsp;<s:textfield name="e.power" data-validate="number" cssStyle="width:5em;"/>&nbsp;kw</td>
+							
+							
+								<td class="label"  >
+									<s:text name="car.dim" />:
+								</td>
+								<td class="value" >
+									<s:text name="car.dimLen" />
+									<s:textfield name="e.dimLen" data-validate="digits"  cssStyle="width:3em;"/>
+									<s:text name="car.dimWidth"/>
+									<s:textfield name="e.dimWidth" data-validate="digits" cssStyle="width:3em;"/>
+									<s:text name="car.dimHeight" />
+									<s:textfield name="e.dimHeight" data-validate="digits"  cssStyle="width:3em;"/>&nbsp;mm
+								</td>
+							
+							</tr>
+							<tr>
+								<td class="label" ><s:text name="car.turnType"/>:</td>
+								<td class="value" ><s:textfield name="e.turnType"  /></td>
+								<td class="label" ><s:text name="car.tireCount"/>:</td>
+								<td class="value" ><s:textfield name="e.tireCount" data-validate="digits"/></td>
+							</tr>
+							<tr>
+								<td class="label" ><s:text name="car.tireStandard" />:</td>
+								<td class="value" ><s:textfield name="e.tireStandard"  /></td>
+								<td class="label" ><s:text name="car.axisDistance"/>:</td>
+								<td class="value" ><s:textfield name="e.axisDistance" data-validate="digits"/></td>
+							</tr>
+							<tr>
+								<td class="label" ><s:text name="car.axisCount" />:</td>
+								<td class="value" ><s:textfield name="e.axisCount" data-validate="digits"  /></td>
+								<td class="label" ><s:text name="car.pieceCount"/>:</td>
+								<td class="value" ><s:textfield name="e.pieceCount" data-validate="digits"/></td>
+							</tr>
+							<tr>
+								<td class="label" ><s:text name="car.totalWeight"/>:</td>
+								<td class="value" ><s:textfield name="e.totalWeight" data-validate="digits"/></td>
+								<td class="label" ><s:text name="car.accessWeight" />:</td>
+								<td class="value" ><s:textfield name="e.accessWeight" data-validate="digits"  /></td>
+							</tr>
+							<tr>
+								<td class="label" ><s:text name="car.accessCount"/>:</td>
+								<td class="value" ><s:textfield name="e.accessCount" data-validate="digits"/></td>
+								<td class="label" ><s:text name="car.taximeterFactory" />:</td>
+								<td class="value" >
+									<s:select name="e.taximeterFactory" list="taximeterFactoryTypeList" listKey="value" listValue="value" headerKey="" headerValue="" ></s:select>
+								</td>
+							</tr>
+							<tr>
+								<td class="label" ><s:text name="car.taximeterType"/>:</td>
+								<td class="value" ><s:textfield name="e.taximeterType" /></td>
+								<td class="label" ><s:text name="car.taximeterNo" />:</td>
+								<td class="value" ><s:textfield name="e.taximeterNo"  /></td>
+							</tr>
+							<tr>
+								<td class="label" ><s:text name="car.desc1"/>:</td>
+								<td class="value" colspan="3" rowspan="5"><s:textarea name="e.desc1" rows="5"/></td>
+							</tr>
+							<tr></tr>
+							<tr></tr>
+							<tr></tr>
+							<tr></tr>
+							<tr>
+							    <td class="label" ><s:text name="car.desc2" />:</td>
+								<td class="value" ><s:textarea name="e.desc2"  /></td>
+								<td class="label" ><s:text name="car.desc3"/>:</td>
+								<td class="value" ><s:textarea name="e.desc3" /></td>
+							</tr>
+						</tbody>
+					</table>
+				</fieldset>
 			</div>
 			</div>
 		</div>

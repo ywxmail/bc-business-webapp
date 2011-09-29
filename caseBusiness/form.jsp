@@ -131,22 +131,120 @@
 				</tbody>
 			</table>
 		</div>
-		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:300}"
-			style="height:300px;width:800px;overflow: hidden;">
+		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:230}"
+			style="height:230px;width:800px;overflow: hidden;">
 	        <div class="tabsContainer">
            	 	<div class="slideContainer">
                 <ul class="tabs ui-helper-reset">
-				    <li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">扣罚信息</a></li>
-					<li class="tab ui-widget-content"><a href="" class="ui-state-default">具体内容</a></li>
-					<li class="tab ui-widget-content"><a href="" class="ui-state-default">处理意见</a></li>
+				    <li class="tab ui-widget-content first active"><a href="#otherFormFields1" class="ui-state-default ui-state-active">扣罚信息</a></li>
+					<li class="tab ui-widget-content"><a href="#otherFormFields2" class="ui-state-default">具体内容</a></li>
+					<li class="tab ui-widget-content"><a href="#otherFormFields3" class="ui-state-default">处理意见</a></li>
                 </ul>
             	</div>
 	        </div>
 	        <div class="contentContainer ui-helper-reset ui-widget-content">
-	        	<div id="otherFormFields" class="content active" style="width:800px;">
+	        	<div id="otherFormFields1" class="content active" style="width:800px;">
 					<table class="formFields" cellspacing="2" cellpadding="0" >
 						<tbody>
-
+							<tr>
+								<td style="height: 1px;"></td>
+								<td style="width: 350px;">&nbsp;</td>
+								<td style="width: 90px;">&nbsp;</td>
+								<td style="width: 350px;">&nbsp;</td>
+							</tr>
+							<tr>
+								<td class="label" colspan="2" style="text-align: center">扣<s:textfield name="e.jeom" data-validate='{"type":"number","required":true}' cssStyle="width:2.5em;"/>分,
+								罚款<s:textfield name="e.penalty" data-validate='{"type":"number","required":true}' cssStyle="width:2.5em;"/>元,
+								违约金<s:textfield name="e.penalty2" data-validate='{"type":"number","required":true}' cssStyle="width:2.5em;"/>元.</td>
+								<td class="label"><s:text name="runcase.receipt"/>:</td>
+								<td class="value"><s:textfield name="e.receipt" /></td>
+							</tr>
+							<tr>
+								<td class="label"><s:text name="runcase.detain"/>:</td>
+								<td class="value" colspan="3"><s:textfield name="e.detain	" cssStyle="width:53.7em;"/></td>
+							</tr>
+							<tr>
+								<td class="label"><s:text name="runcase.confiscateCertNo" />:</td>
+								<td class="value "><s:textfield name="e.confiscateCertNo" data-validate='{"type":"digits"}'/></td>					
+								<td class="label" ><s:text name="runcase.confiscateCertType"/>:</td>
+								<td class="value" >
+									<s:select name="e.confiscateCertType" list="certList" listKey="value" listValue="value" headerKey="" headerValue="" ></s:select>
+								</td>
+							</tr>
+							<tr>
+								<td class="label"><s:text name="runcase.operator" />:</td>
+								<td class="value "><s:textfield name="e.operator" /></td>					
+								<td class="label" ><s:text name="runcase.operateUnit"/>:</td>
+								<td class="value" >
+									<s:select name="e.operateUnit" list="departmentList" listKey="value" listValue="value" headerKey="" headerValue="" ></s:select>
+								</td>
+							</tr>
+							<tr>
+								<td class="label"><s:text name="runcase.area" />:</td>
+								<td class="value "><s:textfield name="e.area" /></td>		
+								<td class="label"><s:text name="runcase.pullUnit" />:</td>
+								<td class="value "><s:textfield name="e.pullUnit" /></td>					
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div id="otherFormFields2" class="content active" style="width:800px;">
+					<table class="formFields" cellspacing="2" cellpadding="0" >
+						<tbody>
+							<tr>
+								<td style="height: 1px;"></td>
+								<td style="width: 350px;">&nbsp;</td>
+								<td style="width: 90px;">&nbsp;</td>
+								<td style="width: 350px;">&nbsp;</td>
+							</tr>
+							<tr>
+								<td class="value" colspan="4"><s:textarea name="e.comment" cssStyle="width:59.7em; text-align:right" rows="4" /></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td class="value" colspan="4">
+									<s:checkbox name="e.deliver" cssStyle="width:1em;" />
+									<s:text name="runcase.deliver2"/>
+									<s:checkbox name="e.seal" cssStyle="width:1em;" />
+									<s:text name="runcase.seal"/>
+									<s:checkbox name="e.stop" cssStyle="width:1em;" />
+									<s:text name="runcase.stop"/>
+								</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div id="otherFormFields3" class="content active" style="width:800px;">
+					<table class="formFields" cellspacing="2" cellpadding="0" >
+						<tbody>
+							<tr>
+								<td style="height: 1px;"></td>
+								<td style="width: 350px;">&nbsp;</td>
+								<td style="width: 90px;">&nbsp;</td>
+								<td style="width: 350px;">&nbsp;</td>
+							</tr>
+							<tr>
+								<td class="value" colspan="4"><s:textarea name="e.comment" cssStyle="width:59.7em; text-align:right" rows="4" /></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td class="value" colspan="4">
+									<s:checkbox name="e.invalid" cssStyle="width:1em;" />
+									<s:text name="runcase.invalid"/>
+									<s:checkbox name="e.overdue" cssStyle="width:1em;" />
+									<s:text name="runcase.overdue"/>
+								</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
 						</tbody>
 					</table>
 				</div>
