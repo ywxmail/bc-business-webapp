@@ -50,7 +50,7 @@
 					<tr>
 						<td class="label">*<s:text name="runcase.driverName" />:</td>
 						<td>
-							<s:textfield name="e.driverName" cssStyle="width:5em;" data-validate="required"/>&nbsp;&nbsp;<s:text name="runcase.driverCert" /><s:textfield name="e.driverCert" cssStyle="width:14.4em;" data-validate="required" />
+							<s:textfield name="e.driverName" cssStyle="width:5em;" data-validate="required"/>&nbsp;&nbsp;<s:text name="runcase.driverCert" /><s:textfield name="e.driverCert" data-validate="required" />
 						</td>
 						<td class="label" ><s:text name="runcase.duty"/>:</td>
 						<td class="value" >
