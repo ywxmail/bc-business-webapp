@@ -9,7 +9,7 @@
 		<div class="formFields ui-widget-content" style="width:800px;">
 			<table class="formFields" cellspacing="2" cellpadding="0">
 				<tbody>
-					<tr style="height: 1px;">
+					<tr style="line-height: 1px;">
 						<td >&nbsp;</td>
 						<td style="width: 200px;">&nbsp;</td>
 						<td style="width: 100px;">&nbsp;</td>
@@ -29,7 +29,7 @@
 								<s:textfield name="e.plateType" cssStyle="width:4em;" data-validate="required"/><s:textfield name="e.plateNo" cssStyle="width:8em;" data-validate="required" />
 							</s:if>
 							<s:else>
-								<s:textfield name="e.plateType" cssStyle="width:4em;" value='%{getText("car.plate.yue.A")}' data-validate="required"/><s:textfield name="e.plateNo" cssStyle="width:8em;" data-validate="required" />
+								<s:textfield name="e.plateType" cssStyle="width:4em;" value='%{getText("car.plate.yue.A")+"."}' data-validate="required"/><s:textfield name="e.plateNo" cssStyle="width:8em;" data-validate="required" />
 							</s:else>
 						</td>
 						<td class="label" >*<s:text name="car.motorcade"/>:</td>
@@ -116,12 +116,14 @@
 				    <li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">其他信息</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/carByDriver/list?carId=%{e.id}"/>' class="ui-state-default">营运司机</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc/contract/list" />' class="ui-state-default">合同</a></li>
-					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">保险</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/car4Cert/list?carId=%{e.id}" />' class="ui-state-default">证件</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseTraffic/list?carId=%{e.id}" />' class="ui-state-default">交通违章</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseBusiness/list?carId=%{e.id}" />' class="ui-state-default">营运违章</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseAccident/list?carId=%{e.id}" />' class="ui-state-default">事故理赔</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">保险</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">配件</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">费用</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">回场捡</a></li>
-					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">事故</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">变更历史</a></li>
 					</s:if>
 					<s:else>
@@ -132,11 +134,11 @@
 	        </div>
 	        <div class="contentContainer ui-helper-reset ui-widget-content">
 			<div id="otherFormFields" class="content active" style="width:800px;">
-				<fieldset style="width: 750px">
+				<fieldset style="width: 750px;margin: 6px;" class="ui-corner-all ui-widget-content">
 					<legend>票号证号</legend>
 					<table class="formFields" cellspacing="2" cellpadding="0" >
 						<tbody>
-							<tr style="height: 1px;">
+							<tr style="line-height: 1px;">
 								<td >&nbsp;</td>
 								<td style="width: 200px;">&nbsp;</td>
 								<td style="width: 100px;">&nbsp;</td>
@@ -163,11 +165,11 @@
 						</tbody>
 					</table>
 				</fieldset>
-				<fieldset style="width: 750px">
+				<fieldset style="width: 750px;margin: 6px;" class="ui-corner-all ui-widget-content">
 					<legend>硬件参数</legend>
 					<table class="formFields" cellspacing="2" cellpadding="0" >
 						<tbody>
-							<tr style="height: 1px;">
+							<tr style="line-height: 1px;">
 								<td >&nbsp;</td>
 								<td style="width: 200px;">&nbsp;</td>
 								<td style="width: 100px;">&nbsp;</td>
