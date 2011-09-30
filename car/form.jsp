@@ -115,8 +115,8 @@
 					<s:if test="!e.isNew()">
 				    <li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">其他信息</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/carByDriver/list?carId=%{e.id}"/>' class="ui-state-default">营运司机</a></li>
-					<li class="tab ui-widget-content"><a href='<s:url value="/bc/contract/list" />' class="ui-state-default">合同</a></li>
-					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/car4Cert/list?carId=%{e.id}" />' class="ui-state-default">证件</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contractCharger/list?carId=%{e.id}" />' class="ui-state-default">经济合同</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/car4Cert/list?carId=%{e.id}" />' class="ui-state-default">车辆证件</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseTraffic/list?carId=%{e.id}" />' class="ui-state-default">交通违章</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseBusiness/list?carId=%{e.id}" />' class="ui-state-default">营运违章</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseAccident/list?carId=%{e.id}" />' class="ui-state-default">事故理赔</a></li>

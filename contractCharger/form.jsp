@@ -43,14 +43,19 @@
 						</td>
 						<td class="label">*<s:text name="contract.transactor"/>:</td>
 						<td class="value ">
-							<s:textfield name="e.transactor.name" data-validate="required" readonly="true"	
+							<s:textfield name="e.transactorName" data-validate="required" readonly="true"	
 							title='%{getText("contract.select.transactor")}' />
 						</td>
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="contract.car"/>:</td>
 						<td class="value ">
-							<s:textfield name="plate" data-validate="required" readonly="true" value="%{e.car.plateType+e.car.plateNo }"/>
+							<s:if test="!e.isNew()">
+								<s:textfield name="e.ext_str1" data-validate="required" disabled="true" />
+							</s:if>
+							<s:else>
+								<s:textfield name="e.ext_str1" data-validate="required" title='%{getText("cert.title.click2selectCar")}' readonly="true" />
+							</s:else>
 						</td>
 						<td class="label"><s:text name="contract.wordNo"/>:</td>
 						<td class="value "><s:textfield name="e.wordNo" /></td>
@@ -67,59 +72,7 @@
 							<s:checkbox name="e.includeCost" cssStyle="width:1em;" />
 							<s:text name="contract.charger.includeCost"/>
 						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<!-- 责任人信息 -->
-		<div id="assignChargers" style="width:710px;" class="formTable2 ui-widget-content" 
-			data-removeTitle='<s:text name="title.click2remove" />'>
-			<div class="ui-state-active title" style="position:relative;">
-				<span class="text"><s:text name="contract.charger.charger"/>：
-					<s:if test="%{e.chargers == null || e.chargers.isEmpty()}"><s:text name="label.empty"/></s:if>
-				</span>
-				<span id="addChargers" class="verticalMiddle ui-icon ui-icon-circle-plus" title='<s:text name="contract.title.click2selectCharger"/>'></span>
-			</div>
-			<s:if test="%{e.chargers != null && !e.chargers.isEmpty()}">
-			<ul class="horizontal">
-			<s:iterator value="e.chargers">
-				<li class="horizontal ui-widget-content ui-corner-all" data-id='<s:property value="id" />'>
-					<span class="text"><s:property value="name" /></span>
-					<span class="click2remove verticalMiddle ui-icon ui-icon-close" title='<s:text name="title.click2remove"/>'></span>
-				</li>
-			</s:iterator>
-			</ul>
-			</s:if>	
-		</div>
-		<div class="formTabs" id="formTabs">
-			<ul>
-				<li><a href='#contractContents'>合同内容</a></li>
-				<li><a href="#contractOldContents">旧合同内容</a></li>
-				<li><a href='#attachment'>附件</a></li>
-			</ul>
-			<div id="contractContents" style="width:710px;">
-				<div class="formEditor">
-					<s:textarea name="e.content" cssClass="bc-editor" data-validate="required"
-						 data-ptype="contractCharger.editor" data-puid='${e.uid}' 
-						 data-readonly='${e.id == null ? "false" : "true"}'
-						 >
-					</s:textarea>
-				</div>
-			</div>
-			<div id="contractOldContents" style="width:710px;">
-				<div class="formEditor">
-					<s:textarea name="e.oldContent" cssClass="bc-editor" data-validate="required"
-						 data-ptype="contractCharger.editor" data-puid='${e.uid}' 
-						 data-readonly='${e.id == null ? "false" : "true"}'
-						 >
-					</s:textarea>
-				</div>
-			</div>
-			<div id="attachment" style="width:710px;">
-				<s:property value="%{attachsUI}" escapeHtml="false"/>
-			</div>
-			<table class="formFields" cellspacing="2" cellpadding="0">
-				<tbody>
+					</tr>			
 					<tr>
 						<td class="label" colspan="4">
 							<div class="formTopInfo">
@@ -138,13 +91,78 @@
 				</tbody>
 			</table>
 		</div>
+		<!-- 责任人信息 -->
+		<div id="assignChargers" style="width:710px;" class="formTable2 ui-widget-content" 
+			data-removeTitle='<s:text name="title.click2remove" />'>
+			<div class="ui-state-active title" style="position:relative;">
+				<span class="text"><s:text name="contract.charger.charger"/>：
+					<s:if test="%{e.changerId1 == null || e.changerName1 == null}"><s:text name="label.empty"/></s:if>
+				</span>
+				<span id="addChargers" class="verticalMiddle ui-icon ui-icon-circle-plus" title='<s:text name="contract.title.click2selectCharger"/>'></span>
+			</div>
+			<ul class="horizontal">
+			<s:if test="%{e.changerId1 != null && e.changerName1 != null}">
+				<li class="horizontal ui-widget-content ui-corner-all" data-id='<s:property value="e.changerId1" />'>
+					<span class="text"><s:property value="e.changerName1" /></span>
+					<span class="click2remove verticalMiddle ui-icon ui-icon-close" title='<s:text name="title.click2remove"/>'></span>
+				</li>
+			</s:if>
+			<s:if test="%{e.changerId2 != null && e.changerName2 != null}">
+				<li class="horizontal ui-widget-content ui-corner-all" data-id='<s:property value="e.changerId2" />'>
+					<span class="text"><s:property value="e.changerName2" /></span>
+					<span class="click2remove verticalMiddle ui-icon ui-icon-close" title='<s:text name="title.click2remove"/>'></span>
+				</li>
+			</s:if>	
+			</ul>
+		</div>
+		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:300}"
+			style="height:300px;width:710px;overflow: hidden;">
+			<div class="tabsContainer">
+           	 	<div class="slideContainer">
+					<ul class="tabs ui-helper-reset">
+						<li class="tab ui-widget-content first active"><a href="#contractContents" class="ui-state-default ui-state-active">合同内容</a></li>
+						<li class="tab ui-widget-content"><a href="#contractOldContents" class="ui-state-default">旧合同内容</a></li>
+						<li class="tab ui-widget-content"><a href='#attachment' class="ui-state-default">附件</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="contentContainer ui-helper-reset ui-widget-content">
+				<div id="contractContents" class="content active" style="width:710px;">
+					<div class="formEditor">
+						<s:textarea name="e.content" cssClass="bc-editor" data-validate="required"
+							 data-ptype="contractCharger.editor" data-puid='${e.uid}' 
+							 data-readonly='${e.id == null ? "false" : "true"}'
+							 >
+						</s:textarea>
+					</div>
+				</div>
+				<div id="contractOldContents" class="content" style="width:710px;">
+					<div class="formEditor">
+						<s:textarea name="e.oldContent" cssClass="bc-editor" cssStyle="width: 680px;height:280px" data-validate="required"
+							 data-ptype="contractCharger.editor" data-puid='${e.uid}' 
+							 data-readonly='${e.id == null ? "false" : "true"}'
+							 >
+						</s:textarea>
+					</div>
+				</div>
+				<div id="attachment" class="content" style="width:710px;">
+					<s:property value="%{attachsUI}" escapeHtml="false"/>
+				</div>
+			</div>
+		</div>
 		<s:hidden name="e.id" />
 		<s:hidden name="e.author.id" />
-		<s:hidden name="e.car.id" />
-		<s:hidden name="e.transactor.id" />
 		<s:hidden name="e.uid"/>
 		<s:hidden name="e.type"/>
-		<s:hidden name="assignChargerIds" />
+		<s:hidden name="carId" />
+		<s:hidden name="e.transactorId" />
+		<s:hidden name="e.changerId1" />
+		<s:hidden name="e.changerName1" />
+		<s:hidden name="e.changerId2" />
+		<s:hidden name="e.changerName2" />
+		<!-- 
+		<s:hidden name="e.transactor.id" />
+		 -->
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 	</s:form>
 </div>
