@@ -77,6 +77,7 @@
 					<s:if test="!e.isNew()">
 				    <li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">其他信息</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/carByDriver/list?carManId=%{e.id}"/>' class="ui-state-default">营运车辆</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/blacklist/list?carManId=%{e.id}" />' class="ui-state-default">黑名单历史</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contract/list?carManId=%{e.id}" />' class="ui-state-default">合同</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">保险</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/driver4cert/list?carManId=%{e.id}" />' class="ui-state-default">证件</a></li>
@@ -84,7 +85,6 @@
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">表扬与投诉</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">迁移历史</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">安全学习</a></li>
-					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/blacklist/list?carManId=%{e.id}" />' class="ui-state-default">黑名单历史</a></li>
 					</s:if>
 					<s:else>
 				    <li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">其他信息</a></li>

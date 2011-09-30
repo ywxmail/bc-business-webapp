@@ -256,9 +256,9 @@
 							<tr></tr>
 							<tr></tr>
 							<tr>
-							    <td class="label" ><s:text name="car.desc2" />:</td>
+							    <td class="label" style="float:right;"><s:text name="car.desc2" />:</td>
 								<td class="value" ><s:textarea name="e.desc2"  /></td>
-								<td class="label" ><s:text name="car.desc3"/>:</td>
+								<td class="label" style="float:right;"><s:text name="car.desc3"/>:</td>
 								<td class="value" ><s:textarea name="e.desc3" /></td>
 							</tr>
 						</tbody>
