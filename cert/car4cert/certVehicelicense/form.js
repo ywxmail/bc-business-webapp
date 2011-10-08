@@ -34,7 +34,7 @@ bc.certVehicelicenseForm = {
 					$form.find(":input[name='e.plate']").val(car.plate);
 					$form.find(":input[name='carId']").val(car.id);
 					
-					var url = "/bc-business/certVehicelicense/carInfo?carId="+car.id;
+					var url = bc.root + "/bc-business/certVehicelicense/carInfo?carId="+car.id;
 					$.ajax({ url: url,dataType:"json", success: update_page});
 					function update_page(json){
 						$form.find(":input[name='e.registerDate']"	).val(json.registerdate);

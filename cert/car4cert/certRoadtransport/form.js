@@ -32,7 +32,7 @@ bc.certRoadtransportForm = {
 					$form.find(":input[name='e.plate']").val(car.plate);
 					$form.find(":input[name='carId']").val(car.id);
 					
-					var url = "/bc-business/certRoadtransport/carInfo?carId="+car.id;
+					var url = bc.root + "/bc-business/certRoadtransport/carInfo?carId="+car.id;
 					$.ajax({ url: url,dataType:"json", success: update_page});
 					function update_page(json){
 //						$form.find(":input[name='e.registerDate']"	).val(json.registerdate);
