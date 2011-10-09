@@ -36,7 +36,7 @@ bs.selectCarMan = function(option) {
 	
 	//弹出选择对话框
 	bc.page.newWin(jQuery.extend({
-		url: bc.root + "/bc-business/selectCarMan/list",
+		url: bc.root + "/bc-business/selectCarMan/paging",
 		name: option.title,
 		mid: option.mid,
 		afterClose: function(status){
