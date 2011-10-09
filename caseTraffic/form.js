@@ -79,7 +79,7 @@ bc.caseTrafficForm = {
 		var $form = $(this);
 		var $page = $(this).next();
 	    bc.msg.confirm("确定要结案吗？",function(){
-			var url = "/bc-business/caseTraffic/closefile";
+			var url = bc.root + "/bc-business/caseTraffic/closefile";
 			$.ajax({ url: url,dataType:"json", success: update_page});
 			function update_page(json){
 				if(json.status != null && json.status == 1){
