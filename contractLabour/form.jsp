@@ -22,8 +22,13 @@
 					<tr>
 						<td class="label">*<s:text name="contract.labour.driver"/>:</td>
 						<td class="value ">
-							<s:textfield name="e.driver.name" data-validate="required"	
-							title='%{getText("carByDriver.title.click2selectCarMan")}' />
+							<s:if test="!e.isNew()">
+								<s:textfield name="ext_str2_temp" value="%{e.ext_str2}" data-validate="required" disabled="true" />
+								<s:hidden name="e.ext_str2" />
+							</s:if>
+							<s:else>
+								<s:textfield name="e.ext_str2" data-validate="required" title='%{getText("cert.title.click2selectCar")}' readonly="true" />
+							</s:else>
 						</td>
 						<td class="label">*<s:text name="contract.deadline"/>:</td>
 						<td class="value">
@@ -40,11 +45,11 @@
 					<tr>
 						<td class="label">*<s:text name="contract.car"/>:</td>
 						<td class="value ">
-							<s:textfield name="plate" data-validate="required" readonly="true" value="%{e.car.plateType+e.car.plateNo }"/>
+							<s:textfield name="e.ext_str1" data-validate="required" readonly="true" />
 						</td>
 						<td class="label">*<s:text name="contract.transactor"/>:</td>
 						<td class="value ">
-							<s:textfield name="e.transactor.name" data-validate="required" readonly="true"	
+							<s:textfield name="e.transactorName" data-validate="required" readonly="true"	
 							title='%{getText("contract.select.transactor")}' />
 						</td>
 					</tr>
@@ -72,67 +77,73 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="formTabs" id="formTabs">
-			<ul>
-				<li><a href="#otherFormFields">其他信息</a></li>
-				<li><a href='#contractContents'>合同内容</a></li>
-				<li><a href='#attachment'>附件</a></li>
-			</ul>
-			<div id="otherFormFields" style="width:710px;">
-				<table class="formFields" cellspacing="2" cellpadding="0" >
-					<tbody>
-						<tr style="height: 1px;">
-							<td style="width: 100px;">&nbsp;</td>
-							<td style="width: 300px;">&nbsp;</td>
-							<td >&nbsp;</td>
-
-						</tr>
-						<tr>
-							<td class="label"><s:text name="contract.labour.preIndustryName"/>:</td>
-							<td class="value" colspan="2"><s:textfield name="e.preIndustryName" cssStyle="width:43em;" /></td>
-							<td>&nbsp;</td>
-						</tr>
-						<tr>
-							<td class="label"><s:text name="contract.labour.preIndustryType"/>:</td>
-							<td class="value"><s:radio name="e.preIndustryType" list="#{false:getText('contract.labour.preIndustryType.not'),true:getText('contract.labour.preIndustryType.yes')}" cssStyle="width:auto;" /></td>
-							<td  colspan="5" class="label" style="text-align: left;">
-								<s:checkbox name="e.additionProtocol" cssStyle="width:1em;" />
-								<s:text name="contract.labour.additionProtocol"/>
-								<s:checkbox name="e.filing" cssStyle="width:1em;"/>
-								<s:text name="contract.labour.filing"/>
-								<s:checkbox name="e.dole" cssStyle="width:1em;" />
-								<s:text name="contract.labour.dole"/>
-							</td>
-		
-						</tr>
-						<tr>
-							<td class="label"><s:text name="contract.labour.hiringProcedure"/>:</td>
-							<td class="value"><s:radio name="e.hiringProcedure" list="#{false:getText('contract.labour.hiringProcedure.not')+'&nbsp;&nbsp;&nbsp;',true:getText('contract.labour.hiringProcedure.yes')}" cssStyle="width:auto;"/></td>
-							<td>&nbsp;</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div id="contractContents" style="width:710px;">
-				<div class="formEditor">
-					<s:textarea name="e.content" cssClass="bc-editor" data-validate="required"
-						 data-ptype="contractLabour.editor" data-puid='${e.uid}' 
-						 data-readonly='${e.id == null ? "false" : "true"}'
-						 >
-					</s:textarea>
+		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:300}"
+			style="height:300px;width:710px;overflow: hidden;">
+			<div class="tabsContainer">
+           	 	<div class="slideContainer">
+					<ul class="tabs ui-helper-reset">
+						<li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">其他信息</a></li>
+						<li class="tab ui-widget-content"><a href="#contractContents" class="ui-state-default">合同内容</a></li>
+						<li class="tab ui-widget-content"><a href='#attachment' class="ui-state-default">附件</a></li>
+					</ul>
 				</div>
 			</div>
-			<div id="attachment" style="width:710px;">
-				<s:property value="%{attachsUI}" escapeHtml="false"/>
+			<div class="contentContainer ui-helper-reset ui-widget-content">
+				<div id="otherFormFields" class="content active" style="width:710px;">
+					<table class="formFields" cellspacing="2" cellpadding="0" >
+						<tbody>
+							<tr style="height: 1px;">
+								<td style="width: 100px;">&nbsp;</td>
+								<td style="width: 300px;">&nbsp;</td>
+								<td >&nbsp;</td>
+		
+							</tr>
+							<tr>
+								<td class="label"><s:text name="contract.labour.preIndustryName"/>:</td>
+								<td class="value" colspan="2"><s:textfield name="e.preIndustryName" cssStyle="width:43em;" /></td>
+								<td>&nbsp;</td>
+							</tr>
+							<tr>
+								<td class="label"><s:text name="contract.labour.preIndustryType"/>:</td>
+								<td class="value"><s:radio name="e.preIndustryType" list="#{false:getText('contract.labour.preIndustryType.not'),true:getText('contract.labour.preIndustryType.yes')}" cssStyle="width:auto;" /></td>
+								<td  colspan="5" class="label" style="text-align: left;">
+									<s:checkbox name="e.additionProtocol" cssStyle="width:1em;" />
+									<s:text name="contract.labour.additionProtocol"/>
+									<s:checkbox name="e.filing" cssStyle="width:1em;"/>
+									<s:text name="contract.labour.filing"/>
+									<s:checkbox name="e.dole" cssStyle="width:1em;" />
+									<s:text name="contract.labour.dole"/>
+								</td>
+			
+							</tr>
+							<tr>
+								<td class="label"><s:text name="contract.labour.hiringProcedure"/>:</td>
+								<td class="value"><s:radio name="e.hiringProcedure" list="#{false:getText('contract.labour.hiringProcedure.not')+'&nbsp;&nbsp;&nbsp;',true:getText('contract.labour.hiringProcedure.yes')}" cssStyle="width:auto;"/></td>
+								<td>&nbsp;</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div id="contractContents" class="content" style="width:710px;">
+					<div class="formEditor">
+						<s:textarea name="e.content" cssClass="bc-editor" cssStyle="width: 680px;height:280px" data-validate="required"
+							 data-ptype="contractLabour.editor" data-puid='${e.uid}' 
+							 data-readonly='${e.id == null ? "false" : "true"}'
+							 >
+						</s:textarea>
+					</div>
+				</div>
+				<div id="attachment"  class="content"style="width:710px;">
+					<s:property value="%{attachsUI}" escapeHtml="false"/>
+				</div>
 			</div>
 		</div>
 		<s:hidden name="e.id" />
 		<s:hidden name="e.author.id" />
-		<s:hidden name="e.driver.id" />
-		<s:hidden name="e.car.id" />
-		<s:hidden name="e.transactor.id" />
+		<s:hidden name="e.transactorId" />
 		<s:hidden name="e.uid"/>
 		<s:hidden name="e.type"/>
+		<s:hidden name="carManId"/>
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 	</s:form>
 </div>

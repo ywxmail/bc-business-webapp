@@ -51,7 +51,8 @@
 						<td class="label">*<s:text name="contract.car"/>:</td>
 						<td class="value ">
 							<s:if test="!e.isNew()">
-								<s:textfield name="e.ext_str1" data-validate="required" disabled="true" />
+								<s:textfield name="ext_str1_temp" value="%{e.ext_str1}" data-validate="required" disabled="true" />
+								<s:hidden name="e.ext_str1" />
 							</s:if>
 							<s:else>
 								<s:textfield name="e.ext_str1" data-validate="required" title='%{getText("cert.title.click2selectCar")}' readonly="true" />
