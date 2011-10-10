@@ -5,8 +5,9 @@ bc.caseAccidentForm = {
 		
 		if(readonly) return;
 		// 初始化多页签
-		//$form.find('#formTabs').tabs();
+        $form.find('#formTabs').bctabs(bc.page.defaultBcTabsOption);
 		
+		if(readonly) return;
 		//绑定车队事件
 		$form.find(":input[name='e.motorcadeId']").change(function(){
 			var $select = $(this);
@@ -51,20 +52,42 @@ bc.caseAccidentForm = {
 				}
 			});
 		});
-		
-		// 绑定邮递日期事件
+		// 绑定是否送保事件
 		$form.find(":checkbox[name='e.deliver']").change(function() {
 			if(this.checked){
-				$form.find('#tdTitle1').css("visibility","visible");
-				$form.find('#tdValue1').css("visibility","visible");
+				$form.find('#deliverDate2Title').css("visibility","visible");
+				$form.find('#deliverDate2Value').css("visibility","visible");
+				$form.find('#deliverMoneyTitle').css("visibility","visible");
+				$form.find('#deliverMoneyValue').css("visibility","visible");
 			}else{
-				$form.find('#tdTitle1').css("visibility","hidden");
-				$form.find('#tdValue1').css("visibility","hidden");
+				$form.find('#deliverDate2Title').css("visibility","hidden");
+				$form.find('#deliverDate2Value').css("visibility","hidden");
+				$form.find('#deliverMoneyTitle').css("visibility","hidden");
+				$form.find('#deliverMoneyValue').css("visibility","hidden");
+			}
+		});
+		
+		// 绑定是否保险公司是否赔款事件
+		$form.find(":checkbox[name='e.claim']").change(function() {
+			if(this.checked){
+				$form.find('#claimDateTitle').css("visibility","visible");
+				$form.find('#claimDateValue').css("visibility","visible");
+				$form.find('#claimCodeTitle').css("visibility","visible");
+				$form.find('#claimCodeValue').css("visibility","visible");
+				$form.find('#claimNo1Title').css("visibility","visible");
+				$form.find('#claimNo1Value').css("visibility","visible");
+			}else{
+				$form.find('#claimDateTitle').css("visibility","hidden");
+				$form.find('#claimDateValue').css("visibility","hidden");
+				$form.find('#claimCodeTitle').css("visibility","hidden");
+				$form.find('#claimCodeValue').css("visibility","hidden");
+				$form.find('#claimNo1Title').css("visibility","hidden");
+				$form.find('#claimNo1Value').css("visibility","hidden");
 			}
 		});
 		
 		// 绑定签领日期事件
-		$form.find(":checkbox[name='e.sign']").change(function() {
+		$form.find(":checkbox[name='e.pay']").change(function() {
 			if(this.checked){
 				$form.find('#tdTitle2').css("visibility","visible");
 				$form.find('#tdValue2').css("visibility","visible");
@@ -79,7 +102,7 @@ bc.caseAccidentForm = {
 		var $form = $(this);
 		var $page = $(this).next();
 	    bc.msg.confirm("确定要结案吗？",function(){
-			var url = "/bc-business/caseTraffic/closefile";
+			var url =bc.root +"/bc-business/caseTraffic/closefile";
 			$.ajax({ url: url,dataType:"json", success: update_page});
 			function update_page(json){
 				if(json.status != null && json.status == 1){
@@ -89,11 +112,7 @@ bc.caseAccidentForm = {
 					$form.find('#divValue').css("visibility","visible");
 					$page.parent().find("#bcSaveDlgButton").button("disable");
 					bc.msg.slide("结案成功,请保存！");
-//					alert('当前上下文:   \n'+ $form.html());
-//					var $button = $("span:contains('结案')").parent();
-//					alert('结案的爸爸:   \n'+$button.html());
-//					alert('结案的爸爸的爸爸:   \n'+$button.parent().html());
-//					return false;
+
 				}
 			}
 	    });

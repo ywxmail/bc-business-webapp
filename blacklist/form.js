@@ -38,7 +38,7 @@ bc.business.blacklistForm = {
 							.val();
 					if (selected && selected.length > 0)
 						data.selected = selected;
-					bc.business.slectCarManName.selectCarMan({
+					bs.selectDriver({
 						data : data,
 						onOk : function(carMan) {
 							$form.find(":input[name='e.driver.id']").val(carMan.id);
@@ -48,7 +48,7 @@ bc.business.blacklistForm = {
 							$form.find(":input[name='plate']").val("");
 							$form.find(":input[name='e.car.motorcade.name']").val("");
 							
-							var url="/bc-business/blacklist/carManMess?carManId="+carMan.id;
+							var url=bc.root +"/bc-business/blacklist/carManMess?carManId="+carMan.id;
 							$.ajax({ url: url,dataType:"json", success: update_page});
 							function update_page(json){
 									

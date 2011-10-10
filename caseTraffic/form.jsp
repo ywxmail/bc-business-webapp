@@ -9,8 +9,8 @@
 		<div class="formFields ui-widget-content" style="width:800px;">
 			<table class="formFields" cellspacing="2" cellpadding="0">
 				<tbody>
-					<tr>
-						<td style="height: 1px;"></td>
+					<tr style="line-height: 1px;">
+						<td></td>
 						<td style="width: 350px;">&nbsp;</td>
 						<td style="width: 60px;">&nbsp;</td>
 						<td style="width: 350px;">&nbsp;</td>
