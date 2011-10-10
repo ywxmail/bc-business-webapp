@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div title='<s:text name="blacklist.title"/>' data-type='form' class="bc-page"
 	data-saveUrl='<s:url value="/bc-business/blacklist/save" />'
-	data-js='<s:url value=" /bc-business/blacklist/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/carMan/select.js" />'
+	data-js='<s:url value="/bc-business/blacklist/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js" />'
 	data-initMethod='bc.business.blacklistForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="blacklistForm" theme="simple">
