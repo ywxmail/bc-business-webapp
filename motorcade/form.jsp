@@ -6,14 +6,17 @@
 	data-saveUrl='<s:url value="/bc-business/motorcade/save" />'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="motorcadeForm" theme="simple">
-		<div class="formFields ui-widget-content">
+		<div class="formFields ui-widget-content" style="width:600px;">
 			<table class="formFields" cellspacing="2" cellpadding="0">
 				<tbody>
 					<tr>
-						<td class="label">* <s:text name="label.code"/>:</td>
-						<td class="value w200"><s:textfield name="e.code" data-validate="required"/></td>
-						<td class="label"><s:text name="motorcade.principal"/>:</td>
-						<td class="value"><s:textfield name="e.principal"/></td>
+						<td class="label">*<s:text name="motorcade.unit"/>:</td>
+						<td class="value"><s:textfield name="e.unit.name" data-validate="required"
+							readonly="true" title='%{getText("motorcade.title.click2selectUnit")}'/></td>
+						<td class="label"><s:text name="motorcade.paymentDate"/>:</td>
+						<td class="value">
+							<s:select name="e.paymentDate" list="paymentDates" listKey="key" listValue="value"></s:select>
+						</td>
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="motorcade.name"/>:</td>
@@ -22,9 +25,9 @@
 						<td class="value"><s:textfield name="e.phone" data-validate='{required:false,type:"phone"}' /></td>
 					</tr>
 					<tr>
-						<td class="label">*<s:text name="motorcade.company"/>:</td>
-						<td class="value"><s:textfield name="e.company" data-validate="required"
-							readonly="true" title='%{getText("motorcade.title.click2selectCompany")}'/></td>
+						<td class="label"><s:text name="motorcade.principal"/>:</td>
+						<td class="value"><s:textfield name="e.principalName"
+							readonly="true" title='%{getText("motorcade.title.click2selectPrincipal")}'/></td>
 						<td class="label"><s:text name="motorcade.fax"/>:</td>
 						<td class="value"><s:textfield name="e.fax"  data-validate='{required:false,type:"phone"}'/></td>
 					</tr>
@@ -35,8 +38,10 @@
 						<td class="value"><s:textfield name="e.address" /></td>
 					</tr>
 					<tr>
-						<td class="label">* <s:text name="label.status"/>:</td>
-						<td class="value" colspan="3"><s:radio name="e.status" list="#{'0':'正常','1':'已禁用','2':'已删除'}" 
+						<td class="label"><s:text name="label.order"/>:</td>
+						<td class="value"><s:textfield name="e.code"/></td>
+						<td class="label"><s:text name="label.status"/>:</td>
+						<td class="value"><s:radio name="e.status" list="#{'0':'正常','1':'已禁用','2':'已删除'}" 
 							value="e.status" cssStyle="width:auto;"/></td>
 					</tr>
 					<tr>
@@ -46,16 +51,18 @@
 				</tbody>
 			</table>
 		</div>
-	    <div class="formTopInfo">
+	    <div class="formTopInfo" style="width:600px;">
 	    	登记：<s:property value="e.author.name" />(<s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>)
 			<s:if test="%{e.modifier != null}">
 			，最后修改：<s:property value="e.modifier.name" />(<s:date name="e.modifiedDate" format="yyyy-MM-dd HH:mm:ss"/>)
 			</s:if>
 		</div>
 		<s:hidden name="e.paymentDate" />
-		<s:hidden name="e.fullName" />
-		
 		<s:hidden name="e.id" />
+		<s:hidden name="e.type" />
+		<s:hidden name="e.unit.id" />
+		<s:hidden name="e.principalId" />
+		<s:hidden name="e.parent.id" />
 		<s:hidden name="e.author.id" />
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 		<s:hidden name="e.modifier.id"/>
