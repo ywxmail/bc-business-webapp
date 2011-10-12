@@ -6,37 +6,25 @@
 	data-saveUrl='<s:url value="/bc-business/motorcade/save" />'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="motorcadeForm" theme="simple">
-	    <div class="formTopInfo">
-			<s:property value="e.authorName" />(<s:property value="e.authorDepartName" />) 创建于  <s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>
-		</div>
 		<div class="formFields ui-widget-content">
 			<table class="formFields" cellspacing="2" cellpadding="0">
 				<tbody>
 					<tr>
 						<td class="label">* <s:text name="label.code"/>:</td>
 						<td class="value w200"><s:textfield name="e.code" data-validate="required"/></td>
-						<td class="label">*<s:text name="motorcade.paymentDate"/>:</td>
-						<td class="value"><input type="text" name="e.paymentDate"  data-validate="required"
-						class="bc-date" title='<s:text name="title.click2selectDate"/>'
-						value='<s:date format="yyyy-MM-dd" name="e.paymentDate" />'/></td>
+						<td class="label"><s:text name="motorcade.principal"/>:</td>
+						<td class="value"><s:textfield name="e.principal"/></td>
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="motorcade.name"/>:</td>
 						<td class="value"><s:textfield name="e.name" data-validate='required'/></td>
-						<td class="label"><s:text name="motorcade.principal"/>:</td>
-						<td class="value"><s:textfield name="e.principal"
-						readonly="true" title='%{getText("motorcade.title.click2selectPrincipal")}'/></td>
-					</tr>
-					<tr>
-						<td class="label">*<s:text name="motorcade.fullName"/>:</td>
-						<td class="value"><s:textfield name="e.fullName" data-validate='required'/></td>
 						<td class="label"><s:text name="label.phone"/>:</td>
 						<td class="value"><s:textfield name="e.phone" data-validate='{required:false,type:"phone"}' /></td>
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="motorcade.company"/>:</td>
 						<td class="value"><s:textfield name="e.company" data-validate="required"
-						readonly="true" title='%{getText("motorcade.title.click2selectCompany")}'/></td>
+							readonly="true" title='%{getText("motorcade.title.click2selectCompany")}'/></td>
 						<td class="label"><s:text name="motorcade.fax"/>:</td>
 						<td class="value"><s:textfield name="e.fax"  data-validate='{required:false,type:"phone"}'/></td>
 					</tr>
@@ -48,29 +36,29 @@
 					</tr>
 					<tr>
 						<td class="label">* <s:text name="label.status"/>:</td>
-						<td class="value"><s:radio name="e.status" list="#{'1':'启用中','2':'已删除','0':'已禁用'}" 
-						value="e.status" cssStyle="width:auto;"/></td>
-						<td class="label"><s:text name="motorcade.lastupdated_date"/>:</td>
-						<td class="value"><s:date format="yyyy-MM-dd HH:mm:ss" name="e.modifiedDate" />
-						<s:property value="e.modifierName" /></td>
+						<td class="value" colspan="3"><s:radio name="e.status" list="#{'0':'正常','1':'已禁用','2':'已删除'}" 
+							value="e.status" cssStyle="width:auto;"/></td>
 					</tr>
 					<tr>
-						<td class="label" ><s:text name="motorcade.description"/>:</td>
-						<td class="value" colspan="3" rowspan="2"><s:textarea name="e.description" /></td>
+						<td class="topLabel" ><s:text name="motorcade.description"/>:</td>
+						<td class="value" colspan="3"><s:textarea name="e.description" rows="5"/></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
+	    <div class="formTopInfo">
+	    	登记：<s:property value="e.author.name" />(<s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>)
+			<s:if test="%{e.modifier != null}">
+			，最后修改：<s:property value="e.modifier.name" />(<s:date name="e.modifiedDate" format="yyyy-MM-dd HH:mm:ss"/>)
+			</s:if>
+		</div>
+		<s:hidden name="e.paymentDate" />
+		<s:hidden name="e.fullName" />
+		
 		<s:hidden name="e.id" />
 		<s:hidden name="e.author.id" />
-		<s:hidden name="e.modifierName" />
-		<s:hidden name="e.modifierId" />
-		<s:hidden name="e.author.name" />
-		<s:hidden name="e.authorDepartId" />
-		<s:hidden name="e.authorDepartName" />
-		<s:hidden name="e.authorUnitId" />
-		<s:hidden name="e.authorUnitName" />
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
+		<s:hidden name="e.modifier.id"/>
 		<input type="hidden" name="e.modifiedDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.modifiedDate" />'/>
 	</s:form>
 </div>
