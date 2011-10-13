@@ -59,6 +59,7 @@
 		</div>
 		<s:hidden name="e.paymentDate" />
 		<s:hidden name="e.id" />
+		<s:hidden name="e.uid" />
 		<s:hidden name="e.type" />
 		<s:hidden name="e.unit.id" />
 		<s:hidden name="e.principalId" />
