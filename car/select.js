@@ -18,13 +18,20 @@ bs.carSelectDialog = {
 			data = {};
 			data.id = $tds.attr("data-id");
 			data.plate = $grid.find(">.data>.right tr.ui-state-focus").find("td:eq(0)").text();
+			var p = data.plate.split(".");
+			data.plateType = p[0];
+			data.plateNo = p[1];
 		}else{//多选
 			data = [];
 			var $trs = $grid.find(">.data>.right tr.ui-state-focus");
 			$tds.each(function(i){
+				var plate = $($trs.get(i)).find("td:eq(0)").text();
+				var p = plate.split(".");
 				data.push({
 					id: $(this).attr("data-id"),
-					plate:$($trs.get(i)).find("td:eq(0)").text()
+					plate:plate,
+					plateType:p[0],
+					plateNo:p[1]
 				});
 			});
 		}
