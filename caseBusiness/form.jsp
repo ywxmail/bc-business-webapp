@@ -71,7 +71,7 @@
 							<s:select name="e.sort" list="properitesList" listKey="value" listValue="value" headerKey="" headerValue="" ></s:select>
 						</td>
 						<td class="label">*<s:text name="runcase.code" />:</td>
-						<td class="value "><s:textfield name="e.code" data-validate='{"required":true,"type":"number"}'/></td>					
+						<td class="value "><s:textfield name="e.code" data-validate="required" /></td>					
 					</tr>
 					<tr>
 						<td class="label"><s:text name="runcase.extent"/></td>
@@ -83,10 +83,11 @@
 							<s:select name="e.source" list="sourcesValue" listKey="key" listValue="value" value="e.source"  headerKey="" headerValue=""  ></s:select>
 						</td>
 					</tr>
+					<!--
 					<tr>
 						<td class="label">
 							<div id="divTitle" style="
-								<s:if test="%{e.status != null && statusesValue[e.status] != null && e.status == 1}">
+								<s:if test="%{ e.status == 1}">
 									visibility: visible;
 								</s:if>
 								<s:else>
@@ -98,7 +99,7 @@
 						</td>
 						<td class="value">
 							<div id="divValue" style="
-								<s:if test="%{e.status != null && statusesValue[e.status] != null && e.status == 1}">
+								<s:if test="%{ e.status == 1}">
 									visibility: visible;
 								</s:if>
 								<s:else>
@@ -113,11 +114,13 @@
 						<td></td>
 						<td></td>
 					</tr>
+					 -->
 					<tr>
 						<td class="label" colspan="4">
 							<div class="formTopInfo">
-								<s:if test="%{e.status != null && statusesValue[e.status] != null}">
 								状态：<s:property value="%{statusesValue[e.status]}" />，
+								<s:if test="%{e.closerName != null && e.closeDate && e.status == 1}">
+									结案人:<s:property value="e.closerName" />(<s:date name="e.closeDate" format="yyyy-MM-dd HH:mm:ss"/>),
 								</s:if>
 								<s:if test="%{e.author.name != null}">
 								登记：<s:property value="e.author.name" />(<s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>)
@@ -153,7 +156,7 @@
 								<td style="width: 350px;">&nbsp;</td>
 							</tr>
 							<tr>
-								<td class="label" colspan="2" style="text-align: center">扣<s:textfield name="e.jeom" data-validate='{"type":"number","required":true}' cssStyle="width:2.5em;"/>分,
+								<td class="label" colspan="2" style="text-align: center">*扣<s:textfield name="e.jeom" data-validate='{"type":"number","required":true}' cssStyle="width:2.5em;"/>分,
 								罚款<s:textfield name="e.penalty" data-validate='{"type":"number","required":true}' cssStyle="width:2.5em;"/>元,
 								违约金<s:textfield name="e.penalty2" data-validate='{"type":"number","required":true}' cssStyle="width:2.5em;"/>元.</td>
 								<td class="label"><s:text name="runcase.receipt"/>:</td>
@@ -165,7 +168,7 @@
 							</tr>
 							<tr>
 								<td class="label"><s:text name="runcase.confiscateCertNo" />:</td>
-								<td class="value "><s:textfield name="e.confiscateCertNo" data-validate='{"type":"digits"}'/></td>					
+								<td class="value "><s:textfield name="e.confiscateCertNo" /></td>					
 								<td class="label" ><s:text name="runcase.confiscateCertType"/>:</td>
 								<td class="value" >
 									<s:select name="e.confiscateCertType" list="certList" listKey="value" listValue="value" headerKey="" headerValue="" ></s:select>
@@ -259,8 +262,9 @@
 		<s:hidden name="e.driverId" />
 		<s:hidden name="e.chargerId" />
 		<s:hidden name="e.closerId" />
-		<s:hidden name="e.status" />
+		<s:hidden name="e.closerName" />
 		<s:hidden name="e.receiverId" />
+		<s:hidden name="isClosed" />
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 		
 	</s:form>

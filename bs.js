@@ -1,9 +1,11 @@
-if (!bs) bs = {};
+if(!window['bs'])window['bs']={};
 
 /**
  * 选择司机、责任人信息
  * @param {Object} option 配置参数
  * @option {Boolean} multiple [可选]是否允许多选，默认false
+ * @option {Boolean} paging [可选]是否分页，默认true
+ * @option {String} status [可选]车辆的状态，默认在案，设为空则代表所有状态
  * @option {String} types [可选]类型：0-司机、1-责任人2-司机和责任人，多个值用逗号连接，为空代表选择所有类型
  * @option {Function} onOk 选择完毕后的回调函数，函数第一个参数为选中的司机、责任人信息，
  * 							如果为多选则返回的是数组，每个司机、责任人的格式为{id:[id],name:[name],type:[type]}
@@ -15,12 +17,14 @@ bs.selectCarMan = function(option) {
 	// 构建默认参数
 	option = jQuery.extend({
 		mid: 'selectCarMan',
+		paging: true,
 		title: '选择司机责任人信息',
 		types: '0,1,2'
 	},option);
 	
 	// 将一些配置参数放到data参数内(这些参数是提交到服务器的参数)
 	option.data = jQuery.extend({
+		status: '0',
 		multiple: false
 	},option.data);
 	if(option.types)
@@ -36,7 +40,7 @@ bs.selectCarMan = function(option) {
 	
 	//弹出选择对话框
 	bc.page.newWin(jQuery.extend({
-		url: bc.root + "/bc-business/selectCarMan/paging",
+		url: bc.root + "/bc-business/selectCarMan/" + (option.paging ? "paging" : "list"),
 		name: option.title,
 		mid: option.mid,
 		afterClose: function(status){
@@ -120,6 +124,8 @@ bs.selectMotorcade = function(option) {
  * 选择车辆信息
  * @param {Object} option 配置参数
  * @option {Boolean} multiple [可选]是否允许多选，默认false
+ * @option {Boolean} paging [可选]是否分页，默认true
+ * @option {String} status [可选]车辆的状态，默认在案，设为空则代表所有状态
  * @option {Function} onOk 选择完毕后的回调函数，函数第一个参数为选中的车辆信息，
  * 							如果为多选则返回的是数组，每个车辆的格式为{id:[id],name:[name]}
  * @option {String} selecteds [可选]已选中车辆的id值，多个值用逗号连接
@@ -128,11 +134,13 @@ bs.selectCar = function(option) {
 	// 构建默认参数
 	option = jQuery.extend({
 		mid: 'selectCar',
+		paging: true,
 		title: '选择车辆信息'
 	},option);
 	
 	// 将一些配置参数放到data参数内(这些参数是提交到服务器的参数)
 	option.data = jQuery.extend({
+		status: '0',
 		multiple: false
 	},option.data);
 	if(option.selecteds)
@@ -142,7 +150,7 @@ bs.selectCar = function(option) {
 	
 	//弹出选择对话框
 	bc.page.newWin(jQuery.extend({
-		url: bc.root + "/bc-business/selectCar/list",
+		url: bc.root + "/bc-business/selectCar/" + (option.paging ? "paging" : "list"),
 		name: option.title,
 		mid: option.mid,
 		afterClose: function(status){

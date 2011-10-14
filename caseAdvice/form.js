@@ -1,13 +1,11 @@
 if(!window['bs'])window['bs']={};
-bc.caseBusinessForm = {
+bc.caseAccidentForm = {
 	init : function(option,readonly) {
 		var $form = $(this);
 		
-		// 初始化多页签
-		$form.find('#formTabs').bctabs(bc.page.defaultBcTabsOption);
-		
 		if(readonly) return;
-		
+		// 初始化多页签
+		//$form.find('#formTabs').tabs();
 		
 		//绑定车队事件
 		$form.find(":input[name='e.motorcadeId']").change(function(){
@@ -54,42 +52,39 @@ bc.caseBusinessForm = {
 			});
 		});
 		
-		// 接案人
-		$form.find(":input[name='e.receiverName']").click(function(){
-			bc.identity.selectUser({
-				selecteds: $form.find(":input[name='e.receiverName']").val(),
-				onOk : function(user) {
-					$form.find(":input[name='e.receiverId']").val(user.id);
-					$form.find(":input[name='e.receiverName']").val(user.name);
-				}
-			});
-		})
-
+		// 绑定邮递日期事件
+		$form.find(":checkbox[name='e.deliver']").change(function() {
+			if(this.checked){
+				$form.find('#tdTitle1').css("visibility","visible");
+				$form.find('#tdValue1').css("visibility","visible");
+			}else{
+				$form.find('#tdTitle1').css("visibility","hidden");
+				$form.find('#tdValue1').css("visibility","hidden");
+			}
+		});
+		
+		// 绑定签领日期事件
+		$form.find(":checkbox[name='e.sign']").change(function() {
+			if(this.checked){
+				$form.find('#tdTitle2').css("visibility","visible");
+				$form.find('#tdValue2').css("visibility","visible");
+			}else{
+				$form.find('#tdTitle2').css("visibility","hidden");
+				$form.find('#tdValue2').css("visibility","hidden");
+			}
+		});
 	},
 	
-	closefile : function(){
-		var $form = $(this);
-		bc.msg.confirm("确定要结案吗？",function(){
-			$form.find(":input[name='isClosed']").val("1");
-			//调用标准的方法执行保存
-			bc.page.save.call($form);
-			$form.dialog("close");
-		});
-	}
-	
- /*   
-  	closefile : function(){
+    closefile : function(){
 		var $form = $(this);
 		var $page = $(this).next();
 	    bc.msg.confirm("确定要结案吗？",function(){
-			var url = bc.root + "/bc-business/caseTraffic/closefile";
+			var url = "/bc-business/caseTraffic/closefile";
 			$.ajax({ url: url,dataType:"json", success: update_page});
 			function update_page(json){
 				if(json.status != null && json.status == 1){
 					$form.find(":input[name='e.status']").val("1");
 					$form.find(":input[name='e.closeDate']").val(json.closeDate);
-					$form.find(":input[name='e.closerId']").val(json.closeId);
-					$form.find(":input[name='e.closerName']").val(json.closeName);
 					$form.find('#divTitle').css("visibility","visible");
 					$form.find('#divValue').css("visibility","visible");
 					$page.parent().find("#bcSaveDlgButton").button("disable");
@@ -103,5 +98,4 @@ bc.caseBusinessForm = {
 			}
 	    });
 	}
-	*/
 };
