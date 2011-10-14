@@ -16,7 +16,7 @@ bc.caseAccidentForm = {
 		});
 		
 		// 选择车辆车牌
-		$form.find(":input[name='e.carPlate']").click(function() {
+		$form.find("#carPlate").click(function() {
 			var selecteds = $form.find(":input[name='e.carPlate']").val();
 			bs.selectCar({
 				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
@@ -28,7 +28,7 @@ bc.caseAccidentForm = {
 		});
 		
 		// 选择司机
-		$form.find(":input[name='e.driverName']").click(function() {
+		$form.find("#driverName").click(function() {
 			var selecteds = $form.find(":input[name='e.driverName']").val();
 			bs.selectDriver({
 				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
@@ -49,6 +49,17 @@ bc.caseAccidentForm = {
 				onOk : function(carMan) {
 					$form.find(":input[name='e.chargerId']").val(carMan.id);
 					$form.find(":input[name='e.chargerName']").val(carMan.name);
+				}
+			});
+		});
+		//经办人
+		$form.find(":input[name='e.receiverName']").click(function(){
+			bc.identity.selectUser({
+				history: false,
+				selectdes:$form.find(":input[name='e.receiverId']").val(),
+				onOk : function(user) {
+					$form.find(":input[name='e.receiverId']").val(user.id);
+					$form.find(":input[name='e.receiverName']").val(user.name);
 				}
 			});
 		});
@@ -89,11 +100,9 @@ bc.caseAccidentForm = {
 		// 绑定签领日期事件
 		$form.find(":checkbox[name='e.pay']").change(function() {
 			if(this.checked){
-				$form.find('#tdTitle2').css("visibility","visible");
-				$form.find('#tdValue2').css("visibility","visible");
+				$form.find('#pay').css("visibility","visible");
 			}else{
-				$form.find('#tdTitle2').css("visibility","hidden");
-				$form.find('#tdValue2').css("visibility","hidden");
+				$form.find('#pay').css("visibility","hidden");
 			}
 		});
 	},
@@ -102,12 +111,14 @@ bc.caseAccidentForm = {
 		var $form = $(this);
 		var $page = $(this).next();
 	    bc.msg.confirm("确定要结案吗？",function(){
-			var url =bc.root +"/bc-business/caseTraffic/closefile";
+			var url =bc.root +"/bc-business/caseAccident/closefile";
 			$.ajax({ url: url,dataType:"json", success: update_page});
 			function update_page(json){
 				if(json.status != null && json.status == 1){
 					$form.find(":input[name='e.status']").val("1");
 					$form.find(":input[name='e.closeDate']").val(json.closeDate);
+					$form.find(":input[name='e.closerId']").val(json.closerId);
+					$form.find(":input[name='e.closerName']").val(json.closerName);
 					$form.find('#divTitle').css("visibility","visible");
 					$form.find('#divValue').css("visibility","visible");
 					$page.parent().find("#bcSaveDlgButton").button("disable");

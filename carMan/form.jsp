@@ -81,9 +81,9 @@
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/driver4cert/list?carManId=%{e.id}" />' class="ui-state-default">证件</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseTraffic/list?carManId=%{e.id}" />' class="ui-state-default">交通违章</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseBusiness/list?carManId=%{e.id}" />' class="ui-state-default">营运违章</a></li>
-					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseAccident/paging?carManId=%{e.id}" />' class="ui-state-default">事故</a></li>
-					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseAdvice/paging?carManId=%{e.id}" />' class="ui-state-default">投诉</a></li>
-					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/casePraise/paging?carManId=%{e.id}" />' class="ui-state-default">表扬</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseAccident/list?carManId=%{e.id}" />' class="ui-state-default">事故理赔</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseAdvice/list?carManId=%{e.id}" />' class="ui-state-default">投诉</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/casePraise/list?carManId=%{e.id}" />' class="ui-state-default">表扬</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/blacklist/list?carManId=%{e.id}" />' class="ui-state-default">黑名单</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">迁移历史</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">保险</a></li>
