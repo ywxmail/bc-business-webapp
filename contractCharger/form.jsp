@@ -50,13 +50,13 @@
 					<tr>
 						<td class="label">*<s:text name="contract.car"/>:</td>
 						<td class="value ">
-							<s:if test="!e.isNew()">
-								<s:textfield name="ext_str1_temp" value="%{e.ext_str1}" data-validate="required" disabled="true" />
-								<s:hidden name="e.ext_str1" />
-							</s:if>
-							<s:else>
-								<s:textfield name="e.ext_str1" data-validate="required" title='%{getText("cert.title.click2selectCar")}' readonly="true" />
-							</s:else>
+							<!-- 
+								<s:if test="!e.isNew()">
+									<s:textfield name="ext_str1_temp" value="%{e.ext_str1}" data-validate="required" disabled="true" />
+									<s:hidden name="e.ext_str1" />
+								</s:if>
+							 -->
+							<s:textfield name="e.ext_str1" data-validate="required" title='%{getText("contract.title.click2selectCar")}' readonly="true" />
 						</td>
 						<td class="label"><s:text name="contract.wordNo"/>:</td>
 						<td class="value "><s:textfield name="e.wordNo" /></td>
@@ -77,9 +77,7 @@
 					<tr>
 						<td class="label" colspan="4">
 							<div class="formTopInfo">
-								<s:if test="%{e.status != null && statusesValue[e.status] != null}">
 								状态：<s:property value="%{statusesValue[e.status]}" />，
-								</s:if>
 								<s:if test="%{e.author.name != null}">
 								登记：<s:property value="e.author.name" />(<s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>)
 								</s:if>
@@ -97,24 +95,20 @@
 			data-removeTitle='<s:text name="title.click2remove" />'>
 			<div class="ui-state-active title" style="position:relative;">
 				<span class="text"><s:text name="contract.charger.charger"/>：
-					<s:if test="%{e.changerId1 == null || e.changerName1 == null}"><s:text name="label.empty"/></s:if>
+					<s:if test="%{chargerInfoMap == null || chargerInfoMap.isEmpty()}"><s:text name="label.empty"/></s:if>
 				</span>
 				<span id="addChargers" class="verticalMiddle ui-icon ui-icon-circle-plus" title='<s:text name="contract.title.click2selectCharger"/>'></span>
 			</div>
+			<s:if test="%{chargerInfoMap != null && !chargerInfoMap.isEmpty()}">
 			<ul class="horizontal">
-			<s:if test="%{e.changerId1 != null && e.changerName1 != null}">
-				<li class="horizontal ui-widget-content ui-corner-all" data-id='<s:property value="e.changerId1" />'>
-					<span class="text"><s:property value="e.changerName1" /></span>
+			<s:iterator value="chargerInfoMap">
+				<li class="horizontal ui-widget-content ui-corner-all" data-id='<s:property value="key" />'>
+					<span class="text"><s:property value="value" /></span>
 					<span class="click2remove verticalMiddle ui-icon ui-icon-close" title='<s:text name="title.click2remove"/>'></span>
 				</li>
-			</s:if>
-			<s:if test="%{e.changerId2 != null && e.changerName2 != null}">
-				<li class="horizontal ui-widget-content ui-corner-all" data-id='<s:property value="e.changerId2" />'>
-					<span class="text"><s:property value="e.changerName2" /></span>
-					<span class="click2remove verticalMiddle ui-icon ui-icon-close" title='<s:text name="title.click2remove"/>'></span>
-				</li>
-			</s:if>	
+			</s:iterator>
 			</ul>
+			</s:if>	
 		</div>
 		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:300}"
 			style="height:300px;width:710px;overflow: hidden;">
@@ -156,12 +150,15 @@
 		<s:hidden name="e.uid"/>
 		<s:hidden name="e.type"/>
 		<s:hidden name="carId" />
+		<s:hidden name="oldCarId" />
+		<s:hidden name="assignChargerIds" />
+		<s:hidden name="assignChargerNames" />
+		<!-- 
 		<s:hidden name="e.transactorId" />
 		<s:hidden name="e.changerId1" />
 		<s:hidden name="e.changerName1" />
 		<s:hidden name="e.changerId2" />
 		<s:hidden name="e.changerName2" />
-		<!-- 
 		<s:hidden name="e.transactor.id" />
 		 -->
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>

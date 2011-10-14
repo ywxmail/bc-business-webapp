@@ -46,9 +46,99 @@ bc.contractChargerForm = {
 				dates.not( this ).datepicker( "option", option, date );
 			}
 		});
-
 		
 		/* 选择司机责任人*/
+		//需要组装的li
+		var liTpl = '<li class="horizontal ui-widget-content ui-corner-all ui-state-highlight" data-id="{0}">'+
+		'<span class="text">{1}</span>'+
+		'<span class="click2remove verticalMiddle ui-icon ui-icon-close" title={2}></span></li>';
+		var ulTpl = '<ul class="horizontal"></ul>';
+		var title = $form.find("#assignChargers").attr("data-removeTitle");
+		
+		$form.find("#addChargers").click(function() {
+			var data = {};
+			var $ul = $form.find("#assignChargers ul");
+			var $lis = $ul.find("li");
+
+			bs.selectCharger({
+				multiple : true,
+				onOk : function(chargers) {
+					//var chargers = [charger];
+					//添加司机责任人
+					$.each(chargers,function(i,charger){
+						if($lis.filter("[data-id='" + charger.id + "']").size() > 0){//已存在
+							logger.info("duplicate select: id=" + charger.id + ",name=" + charger.name);
+						}else{//新添加的
+							if(!$ul.size()){//先创建ul元素
+								$ul = $(ulTpl).appendTo($form.find("#assignChargers"));
+							}
+							//组装并加入对应的值
+							var $liObj = $(liTpl.format(charger.id,charger.name,title)).appendTo($ul);
+							//绑定删除事件
+							$liObj.find("span.click2remove").click(function(){
+								$(this).parent().remove();
+							});
+							//绑定查看事件
+							$liObj.find("span.text").click(function(){
+								bc.page.newWin({
+									url: bc.root + "/bc-business/carMan/edit?id="+charger.id,
+									name: "查看责任人信息",
+									mid:  "viewCharger"
+								})
+							});
+						}
+					});
+				}
+			});
+		});
+		
+		//绑定查看,删除责任人的按钮事件处理
+		var $objs = $form.find('.horizontal').children('span.text');
+		$.each($objs,function(i,obj){
+			//绑定查看
+			$(obj).click(function(){
+				bc.page.newWin({
+					url: bc.root + "/bc-business/carMan/edit?id="+$(obj).parent().attr('data-id'),
+					name: "查看责任人信息",
+					mid:  "viewCharger"
+				})
+			});
+			//绑定删除
+			$(obj).next().click(function(){
+				$(this).parent().remove();
+			});
+		});
+		
+		
+	},
+	
+	//保存的处理
+	save:function(){
+		$page = $(this);
+		//先将角色的id合并到隐藏域
+		var ids=[];
+		var names=[];
+		$page.find("#assignChargers li").each(function(){
+			ids.push($(this).attr("data-id"));
+			names.push($(this).text());
+		});
+		if(names != null && names.length > 0){
+			$page.find(":input[name=assignChargerIds]").val(ids.join(","));
+			$page.find(":input[name=assignChargerNames]").val(names.join(","));
+		}else{
+			bc.msg.slide("最少选择一个责任人！");
+			return false;
+		}
+		
+		//调用标准的方法执行保存
+		bc.page.save.call(this);
+	}
+		
+		
+		
+
+/**		
+		// 选择司机责任人
 		//需要组装的li
 		var liTpl = '<li class="horizontal ui-widget-content ui-corner-all ui-state-highlight" data-id="{0}">'+
 		'<span class="text">{1}</span>'+
@@ -138,13 +228,13 @@ bc.contractChargerForm = {
 			});
 		});
 		
-/*		//绑定删除责任人的按钮事件处理
-		$form.find("span.click2remove").click(function(){
-			$(this).parent().remove();
-		});*/
+		//绑定删除责任人的按钮事件处理
+		//$form.find("span.click2remove").click(function(){
+		//	$(this).parent().remove();
+		//});
 		
 	},
-	 /**保存的处理*/
+	//保存的处理
 	save : function(){
 		$page = $(this);
 		if(($page.find(":input[name='e.changerId1']").val().length > 0 &&
@@ -177,5 +267,5 @@ bc.contractChargerForm = {
 			})
 		});
 	}
-
+**/
 };

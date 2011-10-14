@@ -92,9 +92,7 @@
 					<tr>
 						<td class="label" colspan="4">
 							<div class="formTopInfo">
-								<s:if test="%{e.status != null && statusesValue[e.status] != null}">
 								状态：<s:property value="%{statusesValue[e.status]}" />，
-								</s:if>
 								<s:if test="%{e.author.name != null}">
 								登记：<s:property value="e.author.name" />(<s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>)
 								</s:if>
@@ -115,7 +113,7 @@
 					<s:if test="!e.isNew()">
 				    <li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">其他信息</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/carByDriver/list?carId=%{e.id}"/>' class="ui-state-default">营运司机</a></li>
-					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contractCharger/list?carId=%{e.id}" />' class="ui-state-default">合同</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contract/list?carId=%{e.id}" />' class="ui-state-default">合同</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/car4Cert/list?carId=%{e.id}" />' class="ui-state-default">证件</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseTraffic/list?carId=%{e.id}" />' class="ui-state-default">交通违章</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseBusiness/list?carId=%{e.id}" />' class="ui-state-default">营运违章</a></li>
@@ -207,7 +205,6 @@
 									<s:text name="car.dimHeight" />
 									<s:textfield name="e.dimHeight" data-validate="digits"  cssStyle="width:3em;"/>&nbsp;mm
 								</td>
-							
 							</tr>
 							<tr>
 								<td class="label" ><s:text name="car.turnType"/>:</td>
@@ -272,6 +269,8 @@
 		<s:hidden name="e.id" />
 		<s:hidden name="e.author.id" />
 		<s:hidden name="e.unit.id"/>
+		<s:hidden name="e.driver"/>
+		<s:hidden name="e.charger"/>
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 	</s:form>
 </div>

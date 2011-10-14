@@ -69,7 +69,7 @@
 						<td class="label"><s:text name="runcase.jeom"/>:</td>
 						<td class="value "><s:textfield name="e.jeom" data-validate='{"type":"number",max:100}'/></td>
 						<td class="label">*<s:text name="runcase.code" />:</td>
-						<td class="value "><s:textfield name="e.code" data-validate='{"required":true,"type":"number"}'/></td>
+						<td class="value "><s:textfield name="e.code" data-validate="required" /></td>
 					</tr>
 					<tr>
 						<td class="label">
@@ -80,36 +80,43 @@
 							<s:checkbox name="e.sign" cssStyle="width:1em;" />
 							<s:text name="runcase.sign"/>
 						</td>
-						<td class="label">
-							<div id="divTitle" style="
-								<s:if test="%{e.status != null && statusesValue[e.status] != null && e.status == 1}">
-									visibility: visible;
-								</s:if>
-								<s:else>
-									visibility: hidden;
-								</s:else>
-								">
-								<s:text name="runcase.closeDate"/>:
-							</div>
+						
+						<td>
 						</td>
-						<td class="value">
-							<div id="divValue" style="
-								<s:if test="%{e.status != null && statusesValue[e.status] != null && e.status == 1}">
-									visibility: visible;
-								</s:if>
-								<s:else>
-									visibility: hidden;
-								</s:else>
-								">
-								<input type="text" name="e.closeDate" data-validate='{"type": "date"}'
-								value='<s:date format="yyyy-MM-dd" name="e.closeDate" />'
-								class="bc-date" data-cfg='{changeYear:true}'/>
-							</div>
+						<td>
 						</td>
+						<!--
+							<td class="label">
+								<div id="divTitle" style="
+									<s:if test="%{ e.status == 1}">
+										visibility: visible;
+									</s:if>
+									<s:else>
+										visibility: hidden;
+									</s:else>
+									">
+									<s:text name="runcase.closeDate"/>:
+								</div>
+							</td>
+							<td class="value">
+								<div id="divValue" style="
+									<s:if test="%{ e.status == 1}">
+										visibility: visible;
+									</s:if>
+									<s:else>
+										visibility: hidden;
+									</s:else>
+									">
+									<input type="text" name="e.closeDate" data-validate='{"type": "date"}'
+									value='<s:date format="yyyy-MM-dd" name="e.closeDate" />'
+									class="bc-date" data-cfg='{changeYear:true}'/>
+								</div>
+							</td>
+						  -->
 					</tr>
 					<tr>
 						<td id="tdTitle1" class="label" style="
-							<s:if test="%{e.status != null && statusesValue[e.status] != null && e.status == 1}">
+							<s:if test="%{e.deliverDate != null}">
 								visibility: visible;
 							</s:if>
 							<s:else>
@@ -119,7 +126,7 @@
 							<s:text name="runcase.deliverDate1"/>:
 						</td>
 						<td id="tdValue1" class="value" style="
-							<s:if test="%{e.status != null && statusesValue[e.status] != null && e.status == 1}">
+							<s:if test="%{e.deliverDate != null}">
 								visibility: visible;
 							</s:if>
 							<s:else>
@@ -131,7 +138,7 @@
 							class="bc-date" data-cfg='{changeYear:true}'/>
 						</td>
 						<td id="tdTitle2" class="label" style="
-							<s:if test="%{e.status != null && statusesValue[e.status] != null && e.status == 1}">
+							<s:if test="%{e.signDate != null}">
 								visibility: visible;
 							</s:if>
 							<s:else>
@@ -141,7 +148,7 @@
 							<s:text name="runcase.signDate"/>:
 						</td>
 						<td id="tdValue2" class="value"style="
-							<s:if test="%{e.status != null && statusesValue[e.status] != null && e.status == 1}">
+							<s:if test="%{e.signDate != null}">
 								visibility: visible;
 							</s:if>
 							<s:else>
@@ -162,7 +169,7 @@
 						<td></td>
 					</tr>
 					<tr>
-						<td class="value" colspan="4"><s:textarea name="e.comment" cssStyle="width:59.7em; text-align:right" rows="4" /></td>
+						<td class="value" colspan="4"><s:textarea name="e.comment" cssStyle="width:59.7em; text-align:left" rows="4" /></td>
 						<td></td>
 						<td></td>
 						<td></td>
@@ -170,8 +177,9 @@
 					<tr>
 						<td class="label" colspan="4">
 							<div class="formTopInfo">
-								<s:if test="%{e.status != null && statusesValue[e.status] != null}">
 								状态：<s:property value="%{statusesValue[e.status]}" />，
+								<s:if test="%{e.closerName != null && e.closeDate && e.status == 1}">
+									结案人:<s:property value="e.closerName" />(<s:date name="e.closeDate" format="yyyy-MM-dd HH:mm:ss"/>),
 								</s:if>
 								<s:if test="%{e.author.name != null}">
 								登记：<s:property value="e.author.name" />(<s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>)
@@ -193,7 +201,8 @@
 		<s:hidden name="e.driverId" />
 		<s:hidden name="e.chargerId" />
 		<s:hidden name="e.closerId" />
-		<s:hidden name="e.status" />
+		<s:hidden name="e.closerName" />
+		<s:hidden name="isClosed" />
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 		
 	</s:form>
