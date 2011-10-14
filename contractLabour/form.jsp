@@ -22,6 +22,7 @@
 					<tr>
 						<td class="label">*<s:text name="contract.labour.driver"/>:</td>
 						<td class="value ">
+						<!--
 							<s:if test="!e.isNew()">
 								<s:textfield name="ext_str2_temp" value="%{e.ext_str2}" data-validate="required" disabled="true" />
 								<s:hidden name="e.ext_str2" />
@@ -29,6 +30,8 @@
 							<s:else>
 								<s:textfield name="e.ext_str2" data-validate="required" title='%{getText("cert.title.click2selectCar")}' readonly="true" />
 							</s:else>
+						 -->
+						 	<s:textfield name="e.ext_str2" data-validate="required" title='%{getText("contract.title.click2selectCarMan")}' readonly="true" />
 						</td>
 						<td class="label">*<s:text name="contract.deadline"/>:</td>
 						<td class="value">
@@ -43,9 +46,9 @@
 						</td>
 					</tr>
 					<tr>
-						<td class="label">*<s:text name="contract.car"/>:</td>
+						<td class="label">*<s:text name="contract.car" />:</td>
 						<td class="value ">
-							<s:textfield name="e.ext_str1" data-validate="required" readonly="true" />
+							<s:textfield name="e.ext_str1" data-validate="required" readonly="true" title='%{getText("contract.title.click2selectCar")}' />
 						</td>
 						<td class="label">*<s:text name="contract.transactor"/>:</td>
 						<td class="value ">
@@ -62,9 +65,7 @@
 					<tr>
 						<td class="label" colspan="4">
 							<div class="formTopInfo">
-								<s:if test="%{e.status != null && statusesValue[e.status] != null}">
 								状态：<s:property value="%{statusesValue[e.status]}" />，
-								</s:if>
 								<s:if test="%{e.author.name != null}">
 								登记：<s:property value="e.author.name" />(<s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>)
 								</s:if>
@@ -144,6 +145,9 @@
 		<s:hidden name="e.uid"/>
 		<s:hidden name="e.type"/>
 		<s:hidden name="carManId"/>
+		<s:hidden name="carId"/>
+		<s:hidden name="oldCarManId"/>
+		<s:hidden name="oldCarId"/>
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 	</s:form>
 </div>

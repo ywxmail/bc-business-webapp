@@ -75,7 +75,17 @@ bc.caseTrafficForm = {
 		});
 	},
 	
-    closefile : function(){
+	closefile : function(){
+		var $form = $(this);
+		bc.msg.confirm("确定要结案吗？",function(){
+			//调用标准的方法执行保存
+			$form.find(":input[name='isClosed']").val("1");
+			bc.page.save.call($form);
+			$form.dialog("close");
+		});
+	}
+ /*   
+  	closefile : function(){
 		var $form = $(this);
 		var $page = $(this).next();
 	    bc.msg.confirm("确定要结案吗？",function(){
@@ -85,6 +95,8 @@ bc.caseTrafficForm = {
 				if(json.status != null && json.status == 1){
 					$form.find(":input[name='e.status']").val("1");
 					$form.find(":input[name='e.closeDate']").val(json.closeDate);
+					$form.find(":input[name='e.closerId']").val(json.closeId);
+					$form.find(":input[name='e.closerName']").val(json.closeName);
 					$form.find('#divTitle').css("visibility","visible");
 					$form.find('#divValue').css("visibility","visible");
 					$page.parent().find("#bcSaveDlgButton").button("disable");
@@ -98,4 +110,5 @@ bc.caseTrafficForm = {
 			}
 	    });
 	}
+	*/
 };

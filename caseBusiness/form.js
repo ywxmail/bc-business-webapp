@@ -67,7 +67,18 @@ bc.caseBusinessForm = {
 
 	},
 	
-    closefile : function(){
+	closefile : function(){
+		var $form = $(this);
+		bc.msg.confirm("确定要结案吗？",function(){
+			$form.find(":input[name='isClosed']").val("1");
+			//调用标准的方法执行保存
+			bc.page.save.call($form);
+			$form.dialog("close");
+		});
+	}
+	
+ /*   
+  	closefile : function(){
 		var $form = $(this);
 		var $page = $(this).next();
 	    bc.msg.confirm("确定要结案吗？",function(){
@@ -77,10 +88,12 @@ bc.caseBusinessForm = {
 				if(json.status != null && json.status == 1){
 					$form.find(":input[name='e.status']").val("1");
 					$form.find(":input[name='e.closeDate']").val(json.closeDate);
+					$form.find(":input[name='e.closerId']").val(json.closeId);
+					$form.find(":input[name='e.closerName']").val(json.closeName);
 					$form.find('#divTitle').css("visibility","visible");
 					$form.find('#divValue').css("visibility","visible");
 					$page.parent().find("#bcSaveDlgButton").button("disable");
-					bc.msg.slide("结案成功,请保存!");
+					bc.msg.slide("结案成功,请保存！");
 //					alert('当前上下文:   \n'+ $form.html());
 //					var $button = $("span:contains('结案')").parent();
 //					alert('结案的爸爸:   \n'+$button.html());
@@ -90,4 +103,5 @@ bc.caseBusinessForm = {
 			}
 	    });
 	}
+	*/
 };

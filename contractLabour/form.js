@@ -10,11 +10,12 @@ bc.contractLabourForm = {
 		
 		// 选择车辆车牌
 		$form.find(":input[name='e.ext_str1']").click(function() {
-			var selecteds = $form.find(":input[name='e.ext_str1']").val();
+			var selecteds = $form.find(":input[name='carId']").val();
 			bs.selectCar({
 				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
 				onOk : function(car) {
 					$form.find(":input[name='e.ext_str1']").val(car.plate);
+					$form.find(":input[name='carId']").val(car.id);
 				}
 			});
 		});
