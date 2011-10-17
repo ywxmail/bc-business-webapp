@@ -8,6 +8,7 @@ bc.business.blacklistForm = {
 		//选择锁定人
 		$form.find(":input[name='e.locker.name']").click(function(){
 			bc.identity.selectUser({
+				history: false,
 				selectdes:$form.find(":input[name='e.locker.id']").val(),
 				onOk : function(user) {
 					$form.find(":input[name='e.locker.id']").val(user.id);
@@ -20,6 +21,7 @@ bc.business.blacklistForm = {
 		//选择解锁人
 		$form.find(":input[name='e.unlocker.name']").click(function(){
 			bc.identity.selectUser({
+				history: false,
 				selecteds: $form.find(":input[name='e.unlocker.id']").val(),
 				onOk : function(user) {
 					$form.find(":input[name='e.unlocker.id']").val(user.id);

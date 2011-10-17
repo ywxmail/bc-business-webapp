@@ -41,14 +41,15 @@ bc.caseAccidentForm = {
 		});
 		
 		
-		// 责任人
+		// 负责人
 		$form.find(":input[name='e.chargerName']").click(function() {
 			var selecteds = $form.find(":input[name='e.chargerName']").val();
-			bs.selectCharger({
+			bc.identity.selectUser({
+				history: false,
 				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
-				onOk : function(carMan) {
-					$form.find(":input[name='e.chargerId']").val(carMan.id);
-					$form.find(":input[name='e.chargerName']").val(carMan.name);
+				onOk : function(user) {
+					$form.find(":input[name='e.chargerId']").val(user.id);
+					$form.find(":input[name='e.chargerName']").val(user.name);
 				}
 			});
 		});

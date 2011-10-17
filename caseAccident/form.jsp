@@ -103,9 +103,13 @@
 					<tr>
 						<td class="label" colspan="4">
 							<div class="formTopInfo">
-								状态：<s:property value="%{statusesValue[e.status]}" />&nbsp;&nbsp;&nbsp;&nbsp;登记：<s:property value="e.author.name" />(<s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>)
+								状态：<s:property value="%{statusesValue[e.status]}" />
+								<s:if test="%{e.closerId != null}">
+								  结案人：<s:property value="e.closerName" />(<s:date name="e.closeDate" format="yyyy-MM-dd HH:mm:ss"/>)
+								</s:if>
+								&nbsp;&nbsp;&nbsp;&nbsp;登记：<s:property value="e.author.name" />(<s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>)
 								<s:if test="%{e.modifier != null}">
-								，最后修改：<s:property value="e.modifier.name" />(<s:date name="e.modifiedDate" format="yyyy-MM-dd HH:mm:ss"/>)
+								  最后修改：<s:property value="e.modifier.name" />(<s:date name="e.modifiedDate" format="yyyy-MM-dd HH:mm:ss"/>)
 								</s:if>
 							</div>
 						</td>
@@ -415,7 +419,7 @@
 		<s:hidden name="e.status" />
 		<s:hidden name="e.closerId" />
 		<s:hidden name="e.receiverId" />
-		
+		<s:hidden name="e.chargerId" />
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 		
 	</s:form>
