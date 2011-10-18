@@ -97,8 +97,6 @@
 						<td class="value">
 						<s:select name="e.driverClasses" list="#{0:'',1:'正班',2:'副班',3:'顶班'}" listKey="key" listValue="value"   data-validate="required"/>
 						</td>
-						<td class="label"><s:text name="runcase.closerName"/>:</td>
-						<td class="value "><s:textfield name="e.closerName" /></td>
 					</tr>
 					<tr>
 						<td class="label" colspan="4">
@@ -420,6 +418,9 @@
 		<s:hidden name="e.closerId" />
 		<s:hidden name="e.receiverId" />
 		<s:hidden name="e.chargerId" />
+		<s:hidden name="isClosed" />
+		<s:hidden name="isMoreCar" />
+		<s:hidden name="carManId" />
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 		
 	</s:form>

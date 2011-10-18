@@ -3,11 +3,26 @@ bc.caseAccidentForm = {
 	init : function(option,readonly) {
 		var $form = $(this);
 		
-		if(readonly) return;
+		//if(readonly) return;
 		// 初始化多页签
         $form.find('#formTabs').bctabs(bc.page.defaultBcTabsOption);
 		
 		if(readonly) return;
+		if($form.find(":input[name='isMoreCar']").val()=="true"){
+			
+				var carManId=$form.find(":input[name='carManId']").val();
+				var url=bc.root +"/bc-business/selectMoreCarWithCarMan/selectCars?carManId="+carManId;
+				var option = jQuery.extend({
+					url: url,
+					mid: "selectCar",
+					afterClose: function(car){
+						$form.find(":input[name='e.carId']").val(car.id);
+						$form.find(":input[name='e.carPlate']").val(car.name);
+					}
+				},option);
+				bc.page.newWin(option);
+				
+		};
 		//绑定车队事件
 		$form.find(":input[name='e.motorcadeId']").change(function(){
 			var $select = $(this);
@@ -107,26 +122,33 @@ bc.caseAccidentForm = {
 			}
 		});
 	},
-	
-    closefile : function(){
+	closefile : function(){
 		var $form = $(this);
-		var $page = $(this).next();
-	    bc.msg.confirm("确定要结案吗？",function(){
-			var url =bc.root +"/bc-business/caseAccident/closefile";
-			$.ajax({ url: url,dataType:"json", success: update_page});
-			function update_page(json){
-				if(json.status != null && json.status == 1){
-					$form.find(":input[name='e.status']").val("1");
-					$form.find(":input[name='e.closeDate']").val(json.closeDate);
-					$form.find(":input[name='e.closerId']").val(json.closerId);
-					$form.find(":input[name='e.closerName']").val(json.closerName);
-					$form.find('#divTitle').css("visibility","visible");
-					$form.find('#divValue').css("visibility","visible");
-					$page.parent().find("#bcSaveDlgButton").button("disable");
-					bc.msg.slide("结案成功,请保存！");
-
-				}
-			}
-	    });
+		bc.msg.confirm("确定要结案吗？",function(){
+			$form.find(":input[name='isClosed']").val("1");
+			//调用标准的方法执行保存
+			bc.page.save.call($form);
+		});
 	}
+//    closefile : function(){
+//		var $form = $(this);
+//		var $page = $(this).next();
+//	    bc.msg.confirm("确定要结案吗？",function(){
+//			var url =bc.root +"/bc-business/caseAccident/closefile";
+//			$.ajax({ url: url,dataType:"json", success: update_page});
+//			function update_page(json){
+//				if(json.status != null && json.status == 1){
+//					$form.find(":input[name='e.status']").val("1");
+//					$form.find(":input[name='e.closeDate']").val(json.closeDate);
+//					$form.find(":input[name='e.closerId']").val(json.closerId);
+//					$form.find(":input[name='e.closerName']").val(json.closerName);
+//					$form.find('#divTitle').css("visibility","visible");
+//					$form.find('#divValue').css("visibility","visible");
+//					$page.parent().find("#bcSaveDlgButton").button("disable");
+//					bc.msg.slide("结案成功,请保存！");
+//
+//				}
+//			}
+//	    });
+//	}
 };
