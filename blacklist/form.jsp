@@ -21,7 +21,7 @@
 					<td class="value"><s:textfield name="e.driver.name"  title='%{getText("blacklist.title.click2selectCarMan")}' id="driverName" data-validate="required"/></td>
 					</s:else>
 					    <td class="label">*<s:text name="blacklist.unit"/>:</td>
-						<td class="value"><s:textfield name="e.car.unit.name"   readonly="true" data-validate="required"/></td>
+						<td class="value"><s:textfield name="e.oldNnitName"   readonly="true" data-validate="required"/></td>
 					</tr>
 					<tr>
 						<td class="label"> *<s:text name="blacklist.car.plateNo"/>:</td>
@@ -96,7 +96,6 @@
 		<s:hidden name="e.car.id" />
 		<s:hidden name="e.driver.id" />
 		<s:hidden name="e.author.id" />
-		<s:hidden name="e.unit.id" />
 		<s:hidden name="e.motorcade.id" />
 		<s:hidden name="e.modifier.id"/>
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>

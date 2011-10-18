@@ -14,6 +14,7 @@ bc.caseAccidentForm = {
 				var url=bc.root +"/bc-business/selectMoreCarWithCarMan/selectCars?carManId="+carManId;
 				var option = jQuery.extend({
 					url: url,
+					name: "选择车辆信息",
 					mid: "selectCar",
 					afterClose: function(car){
 						$form.find(":input[name='e.carId']").val(car.id);

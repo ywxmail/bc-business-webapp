@@ -19,8 +19,7 @@
 						<td class="label" >*<s:text name="car.code"/>:</td>
 						<td class="value" ><s:textfield name="e.code" data-validate="required"  /></td>
 						<td class="label" >*<s:text name="car.unit"/>:</td>
-						<td class="value" ><s:textfield name="e.unit.name"
-							readonly="true"	title='%{getText("user.title.click2selectBelong")}' data-validate="required" /></td>
+						<td class="value" ><s:textfield name="e.oldNnitName"/></td>
 					</tr>
 					<tr>
 						<td class="label" >*<s:text name="car.plate"/>:</td>
@@ -268,7 +267,6 @@
 
 		<s:hidden name="e.id" />
 		<s:hidden name="e.author.id" />
-		<s:hidden name="e.unit.id"/>
 		<s:hidden name="e.driver"/>
 		<s:hidden name="e.charger"/>
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
