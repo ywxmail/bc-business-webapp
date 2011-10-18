@@ -25,7 +25,7 @@
 					</tr>
 					<tr>
 						<td class="label"> *<s:text name="blacklist.car.plateNo"/>:</td>
-						<td class="value "><s:textfield name="plate" title='%{getText("carByDriver.title.click2selectCar")}' value="%{e.car.plateType+e.car.plateNo }" readonly="true" data-validate="required"/></td>
+						<td class="value "><s:textfield name="plate"  value="%{e.car.plateType+e.car.plateNo }" readonly="true" data-validate="required"/></td>
 						<td class="label">*<s:text name="blacklist.motorcade.name"/>:</td>
 						<td class="value"><s:textfield name="e.car.motorcade.name" readonly="true" data-validate="required"/></td>
 					</tr>
