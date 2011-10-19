@@ -60,7 +60,7 @@
 						<td class="value"><s:textfield name="e.carPlate"  readonly="true" cssClass="ui-state-disabled" /></td>
 					    </s:if><s:else>
 					    <td class="label">*<s:text name="runcase.carPlate"/>:</td>
-						<td class="value"><s:textfield name="e.carPlate"  title='%{getText("carByDriver.title.click2selectCarMan")}' id="carPlate" readonly="true"/></td>
+						<td class="value"><s:textfield name="e.carPlate"  title='%{getText("carByDriver.title.click2selectCar")}' id="carPlate" readonly="true"/></td>
 					    </s:else>
 						<td class="label" ><s:text name="runcase.receiveCode"/>:</td>
 						<td class="value "><s:textfield name="e.receiveCode"/></td>
@@ -72,7 +72,7 @@
 						&nbsp;&nbsp;*<s:text name="runcase.driverCert" />:<s:textfield name="e.driverCert"  data-validate="required" cssStyle="width:10em;"/></td>
 					    </s:if><s:else>
 					    <td class="label">*<s:text name="runcase.driverName"/>:</td>
-						<td class="value"><s:textfield name="e.driverName" cssStyle="width:8em;" title='%{getText("carByDriver.title.click2selectCarMan")}' id="driverName" readonly="true"/>
+						<td class="value"><s:textfield name="e.driverName" cssStyle="width:8em;"  cssStyle="width:8em;" readonly="true"/>
 						&nbsp;&nbsp;*<s:text name="runcase.driverCert" />:<s:textfield name="e.driverCert"  data-validate="required" cssStyle="width:10em;"/></td>
 					     </s:else>
 						<td class="label"><s:text name="runcase.department"/>:</td>

@@ -17,7 +17,8 @@ bs.selectMoreCar = {
 		var item;
 		var item=[];
 		//单选
-		var item={id: select.value,name: select.options[select.selectedIndex].text};
+		var item={id: select.value.split(",")[0],motorcadeId:select.value.split(",")[1],
+				name: select.options[select.selectedIndex].text};
 		$page.data("data-status",item);
 		$page.dialog("close");
 	}

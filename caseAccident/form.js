@@ -19,6 +19,7 @@ bc.caseAccidentForm = {
 					afterClose: function(car){
 						$form.find(":input[name='e.carId']").val(car.id);
 						$form.find(":input[name='e.carPlate']").val(car.name);
+						$form.find(":input[name='e.motorcadeId']").val(car.motorcadeId);
 					}
 				},option);
 				bc.page.newWin(option);
@@ -58,22 +59,37 @@ bc.caseAccidentForm = {
 				onOk : function(car) {
 					$form.find(":input[name='e.carId']").val(car.id);
 					$form.find(":input[name='e.carPlate']").val(car.plate);
+					
+					var url=bc.root +"/bc-business/selectMoreCarManWithCar/selectCarMans?carId="+car.id;
+					var option = jQuery.extend({
+						url: url,
+						name: "选择司机信息",
+						mid: "selectCarMan",
+						afterClose: function(carMan){
+							$form.find(":input[name='e.driverId']").val(carMan.id);
+							$form.find(":input[name='e.driverName']").val(carMan.name);
+							$form.find(":input[name='e.driverCert']").val(carMan.cert4FWZG);
+							$form.find(":input[name='e.driverArea']").val(carMan.region);
+							$form.find(":input[name='e.driverClasses']").val(carMan.drivingStatus);
+						}
+					},option);
+					bc.page.newWin(option);	
 				}
 			});
 		});
 		
-		// 选择司机
-		$form.find("#driverName").click(function() {
-			var selecteds = $form.find(":input[name='e.driverName']").val();
-			bs.selectDriver({
-				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
-				onOk : function(carMan) {
-					$form.find(":input[name='e.driverId']").val(carMan.id);
-					$form.find(":input[name='e.driverName']").val(carMan.name);
-				}
-			});
-					
-		});
+//		// 选择司机
+//		$form.find("#driverName").click(function() {
+//			var selecteds = $form.find(":input[name='e.driverName']").val();
+//			bs.selectDriver({
+//				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
+//				onOk : function(carMan) {
+//					$form.find(":input[name='e.driverId']").val(carMan.id);
+//					$form.find(":input[name='e.driverName']").val(carMan.name);
+//				}
+//			});
+//					
+//		});
 		
 		
 		// 负责人
