@@ -53,13 +53,13 @@ bc.certVehicelicenseForm = {
 			});
 		});
 		
-		//绑定选择上级的按钮事件处理
-		$form.find("#selectBelong,:input[name='e.owner']").click(function(){
-			bc.identity.selectUnit({
-				onOk: function(actor){
-					$form.find(":input[name='e.owner']").val(actor.name);
-				}
-			});
-		});
+//		//绑定选择上级的按钮事件处理
+//		$form.find("#selectBelong,:input[name='e.owner']").click(function(){
+//			bc.identity.selectUnit({
+//				onOk: function(actor){
+//					$form.find(":input[name='e.owner']").val(actor.name);
+//				}
+//			});
+//		});
 	}
 };

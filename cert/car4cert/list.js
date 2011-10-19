@@ -1,7 +1,31 @@
 bc.certcarList = {
 	/** 新建选择证件类型 */
-	create : function() {
-		bc.page.newWin({
+	create : function(option) {
+		var $page = $(this);
+		function doSth(urlStr,nameStr,midStr,id){
+			var url;
+			if(id != null){
+				url = bc.root + "/bc-business/"+urlStr+"/create"+id;
+			}else{
+				url = bc.root + "/bc-business/"+urlStr+"/create";
+			}
+			bc.page.newWin({
+				url:  url,
+				name: nameStr,
+				mid:  midStr,
+				afterClose: function(status){
+					if(status){
+						//刷新视图
+						bc.grid.reloadData($page);
+					}
+				}
+			})
+		}
+		var id;
+		if(option != null && option.extras.carId){
+			id = '?carId='+option.extras.carId;
+		}
+		var $B = bc.page.newWin({
 			url: bc.root + "/bc-business/car4cert/create",
 			name: "选择车辆证件类型",
 			mid: "selectCert4CarType",
@@ -9,14 +33,11 @@ bc.certcarList = {
 				if(type != null){
 					switch(type.id){
 					case "1":
-						bc.certcarList.doSth('certVehicelicense','机动车行驶证','createCertVehicelicense');
+						doSth('certVehicelicense','机动车行驶证','createCertVehicelicense',id);
 						break;
 					case "2":
-						bc.certcarList.doSth('certRoadtransport','道路运输证','createCertRoadtransport');
+						doSth('certRoadtransport','道路运输证','createCertRoadtransport',id);
 						break;
-					default:
-						var $page = $(this);
-						$page.dialog("close");
 					}
 				}
 			}
@@ -46,14 +67,6 @@ bc.certcarList = {
 		option =  $.extend(option, {url: url});
 		bc.page.edit.call(this, option);		
 	
-	},
-	
-	doSth : function(urlStr,nameStr,midStr){
-		bc.page.newWin({
-			url:  bc.root + "/bc-business/"+urlStr+"/create",
-			name: nameStr,
-			mid:  midStr
-		})
 	}
 };
 

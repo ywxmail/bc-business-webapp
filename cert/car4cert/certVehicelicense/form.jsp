@@ -28,8 +28,7 @@
 						</tr>
 						<tr>
 							<td class="label">*<s:text name="cert.4car.owner" />:</td>
-							<td class="value" ><s:textfield name="e.owner"
-							readonly="true"	title='%{getText("cert.title.click2selectBelong")}' data-validate="required" />
+							<td class="value" ><s:textfield name="e.owner"data-validate="required" />
 							</td>
 							<td class="label">*<s:text name="cert.4car.useCharacter"/>:</td>
 							<td class="value">
@@ -51,7 +50,7 @@
 						<tr>
 							<td class="label">*<s:text name="cert.4car.vin"/>:</td>
 							<td class="value">
-								<s:textfield name="e.vin" data-validate='{"type":"number","required":true}' />
+								<s:textfield name="e.vin" data-validate="required" />
 							</td>
 							<td class="label">*<s:text name="cert.issueDate"/>:</td>
 							<td class="value">
@@ -63,7 +62,7 @@
 						<tr>
 							<td class="label">*<s:text name="cert.4car.engineNo"/>:</td>
 							<td class="value">
-								<s:textfield name="e.engineNo" data-validate='{"type":"number","required":true}' />
+								<s:textfield name="e.engineNo" data-validate="required" />
 							</td>
 							<td class="label">*<s:text name="cert.4car.scrapDate"/>:</td>
 							<td class="value">
@@ -176,9 +175,7 @@
 				<tr>
 					<td class="label" colspan="4">
 						<div class="formTopInfo">
-							<s:if test="%{e.status != null && statusesValue[e.status] != null}">
 							状态：<s:property value="%{statusesValue[e.status]}" />，
-							</s:if>
 							<s:if test="%{e.author.name != null}">
 							登记：<s:property value="e.author.name" />(<s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>)
 							</s:if>

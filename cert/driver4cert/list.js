@@ -1,6 +1,30 @@
 bc.certdriverList = {
 	/** 新建选择证件类型 */
-	create : function() {
+	create : function(option) {
+		var $page = $(this);
+		function doSth (urlStr,nameStr,midStr,id){
+			var url;
+			if(id != null){
+				url = bc.root + "/bc-business/"+urlStr+"/create"+id;
+			}else{
+				url = bc.root + "/bc-business/"+urlStr+"/create";
+			}
+			bc.page.newWin({
+				url:  url,
+				name: nameStr,
+				mid:  midStr,
+				afterClose: function(status){
+					if(status){
+						//刷新视图
+						bc.grid.reloadData($page);
+					}
+				}
+			})
+		}
+		var id;
+		if(option != null && option.extras.carManId){
+			id = '?carManId='+option.extras.carManId;
+		}
 		bc.page.newWin({
 			url: bc.root + "/bc-business/driver4cert/create",
 			name: "选择车辆证件类型",
@@ -10,19 +34,19 @@ bc.certdriverList = {
 				if(type != null){
 					switch(type.id){
 					case "1":
-						bc.certdriverList.doSth('certIdentity','新建居民身份证','createCertIdentity');
+						doSth('certIdentity','新建居民身份证','createCertIdentity',id);
 						break;
 					case "2":
-						bc.certdriverList.doSth('certDriving','机动车驾驶证','createCertDriving');
+						doSth('certDriving','机动车驾驶证','createCertDriving',id);
 						break;
 					case "3":
-						bc.certdriverList.doSth('certCyzg','从业资格证','createCertCyzg');
+						doSth('certCyzg','从业资格证','createCertCyzg',id);
 						break;
 					case "4":
-						bc.certdriverList.doSth('certFwzg','服务资格证','createCertFwzg');
+						doSth('certFwzg','服务资格证','createCertFwzg',id);
 						break;
 					case "5":
-						bc.certdriverList.doSth('certJspx','驾驶培训证','createCertJspx');
+						doSth('certJspx','驾驶培训证','createCertJspx',id);
 						break;
 					default:
 						var $page = $(this);
@@ -73,14 +97,7 @@ bc.certdriverList = {
 		//
 		bc.page.edit.call(this, option);		
 	
-	},
-	
-	doSth : function(urlStr,nameStr,midStr){
-		bc.page.newWin({
-			url:  bc.root + "/bc-business/"+urlStr+"/create",
-			name: nameStr,
-			mid:  midStr
-		})
 	}
+	
 };
 
