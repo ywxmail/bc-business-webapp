@@ -24,6 +24,25 @@ bc.caseAccidentForm = {
 				bc.page.newWin(option);
 				
 		};
+		if($form.find(":input[name='isMoreCarMan']").val()=="true"){
+			
+			var carId=$form.find(":input[name='carId']").val();
+			var url=bc.root +"/bc-business/selectMoreCarManWithCar/selectCarMans?carId="+carId;
+			var option = jQuery.extend({
+				url: url,
+				name: "选择司机信息",
+				mid: "selectCarMan",
+				afterClose: function(carMan){
+					$form.find(":input[name='e.driverId']").val(carMan.id);
+					$form.find(":input[name='e.driverName']").val(carMan.name);
+					$form.find(":input[name='e.driverCert']").val(carMan.cert4FWZG);
+					$form.find(":input[name='e.driverArea']").val(carMan.region);
+					$form.find(":input[name='e.driverClasses']").val(carMan.drivingStatus);
+				}
+			},option);
+			bc.page.newWin(option);
+			
+	};
 		//绑定车队事件
 		$form.find(":input[name='e.motorcadeId']").change(function(){
 			var $select = $(this);
@@ -129,6 +148,8 @@ bc.caseAccidentForm = {
 			$form.find(":input[name='isClosed']").val("1");
 			//调用标准的方法执行保存
 			bc.page.save.call($form);
+			//bc.page.submit.call($form);
+			
 		});
 	}
 //    closefile : function(){

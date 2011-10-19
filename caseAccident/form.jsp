@@ -55,9 +55,9 @@
 						</td>
 					</tr>
 					<tr>
-					<s:if test="%{carManId != null}">
+					<s:if test="%{carManId != null || carId !=null }">
 						<td class="label">*<s:text name="runcase.carPlate"/>:</td>
-						<td class="value"><s:textfield name="e.carPlate"  readonly="true"  /></td>
+						<td class="value"><s:textfield name="e.carPlate"  readonly="true" cssClass="ui-state-disabled" /></td>
 					    </s:if><s:else>
 					    <td class="label">*<s:text name="runcase.carPlate"/>:</td>
 						<td class="value"><s:textfield name="e.carPlate"  title='%{getText("carByDriver.title.click2selectCarMan")}' id="carPlate" readonly="true"/></td>
@@ -66,9 +66,9 @@
 						<td class="value "><s:textfield name="e.receiveCode"/></td>
 					</tr>
 					<tr>
-						<s:if test="%{carManId != null}">
+						<s:if test="%{carManId != null || carId !=null}">
 						<td class="label">*<s:text name="runcase.driverName"/>:</td>
-						<td class="value"><s:textfield name="e.driverName" cssStyle="width:8em;" readonly="true"  />
+						<td class="value"><s:textfield name="e.driverName" cssStyle="width:8em;" readonly="true" cssClass="ui-state-disabled" />
 						&nbsp;&nbsp;*<s:text name="runcase.driverCert" />:<s:textfield name="e.driverCert"  data-validate="required" cssStyle="width:10em;"/></td>
 					    </s:if><s:else>
 					    <td class="label">*<s:text name="runcase.driverName"/>:</td>
@@ -420,7 +420,9 @@
 		<s:hidden name="e.chargerId" />
 		<s:hidden name="isClosed" />
 		<s:hidden name="isMoreCar" />
+		<s:hidden name="isMoreCarMan" />
 		<s:hidden name="carManId" />
+		<s:hidden name="carId" />
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 		
 	</s:form>

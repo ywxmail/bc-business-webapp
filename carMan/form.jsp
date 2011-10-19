@@ -103,7 +103,7 @@
 							<td class="label w80"><s:text name="carMan.model"/>:</td>
 							<td class="value"><s:select list="carManModelList" listKey="value" listValue="value" headerKey="" headerValue="" name="e.model" style="width:208px"></s:select></td>
 							<td class="label"><s:text name="carMan.extFZJG"/>:</td>
-							<td class="value"><s:textfield name="e.oldNnitName"/></td>
+							<td class="value"><s:textfield name="e.oldUnitName"/></td>
 						</tr>
 						<tr>
 							<td class="label"><s:text name="carMan.orderNo"/>:</td>

@@ -21,7 +21,7 @@
 					<td class="value"><s:textfield name="e.driver.name"  title='%{getText("blacklist.title.click2selectCarMan")}' id="driverName" data-validate="required"/></td>
 					</s:else>
 					    <td class="label">*<s:text name="blacklist.unit"/>:</td>
-						<td class="value"><s:textfield name="e.oldNnitName"   readonly="true" data-validate="required"/></td>
+						<td class="value"><s:textfield name="e.oldUnitName"   readonly="true" data-validate="required"/></td>
 					</tr>
 					<tr>
 						<td class="label"> *<s:text name="blacklist.car.plateNo"/>:</td>

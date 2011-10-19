@@ -19,7 +19,7 @@
 						<td class="label" >*<s:text name="car.code"/>:</td>
 						<td class="value" ><s:textfield name="e.code" data-validate="required"  /></td>
 						<td class="label" >*<s:text name="car.unit"/>:</td>
-						<td class="value" ><s:textfield name="e.oldNnitName"/></td>
+						<td class="value" ><s:textfield name="e.oldUnitName"/></td>
 					</tr>
 					<tr>
 						<td class="label" >*<s:text name="car.plate"/>:</td>
