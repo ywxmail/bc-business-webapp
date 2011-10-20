@@ -202,6 +202,11 @@ bc.caseAccidentForm = {
 			//调用标准的方法执行保存
 			bc.page.save.call($form,{callback:function(){
 				$form.dialog("close");
+				//显示结案成功提示信息
+				bc.msg.slide("结案成功");
+				
+				//返回false，禁止默认的“保存成功”提示信息的显示
+				return false;
 			}});
 		});
 	}
