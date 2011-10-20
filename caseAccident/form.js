@@ -17,13 +17,18 @@ bc.caseAccidentForm = {
 					name: "选择车辆信息",
 					mid: "selectCar",
 					afterClose: function(car){
+						if(car){
 						$form.find(":input[name='e.carId']").val(car.id);
 						$form.find(":input[name='e.carPlate']").val(car.name);
 						$form.find(":input[name='e.motorcadeId']").val(car.motorcadeId);
+						}
 					}
 				},option);
 				bc.page.newWin(option);
 				
+		};
+		if($form.find(":input[name='isNullCar']").val()=="true"){
+			bc.msg.slide("该司机还没有驾驶任何车辆！");	
 		};
 		if($form.find(":input[name='isMoreCarMan']").val()=="true"){
 			
@@ -34,15 +39,20 @@ bc.caseAccidentForm = {
 				name: "选择司机信息",
 				mid: "selectCarMan",
 				afterClose: function(carMan){
+					if(carMan){
 					$form.find(":input[name='e.driverId']").val(carMan.id);
 					$form.find(":input[name='e.driverName']").val(carMan.name);
 					$form.find(":input[name='e.driverCert']").val(carMan.cert4FWZG);
 					$form.find(":input[name='e.driverArea']").val(carMan.region);
 					$form.find(":input[name='e.driverClasses']").val(carMan.drivingStatus);
+					}
 				}
 			},option);
 			bc.page.newWin(option);
 			
+	};
+	if($form.find(":input[name='isNullCarMan']").val()=="true"){
+		bc.msg.slide("该车辆还没有被任何司机驾驶！");	
 	};
 		//绑定车队事件
 		$form.find(":input[name='e.motorcadeId']").change(function(){
@@ -60,36 +70,31 @@ bc.caseAccidentForm = {
 					$form.find(":input[name='e.carId']").val(car.id);
 					$form.find(":input[name='e.carPlate']").val(car.plate);
 					
-					var url=bc.root +"/bc-business/selectMoreCarManWithCar/selectCarMans?carId="+car.id;
-					var option = jQuery.extend({
-						url: url,
-						name: "选择司机信息",
-						mid: "selectCarMan",
-						afterClose: function(carMan){
-							$form.find(":input[name='e.driverId']").val(carMan.id);
-							$form.find(":input[name='e.driverName']").val(carMan.name);
-							$form.find(":input[name='e.driverCert']").val(carMan.cert4FWZG);
-							$form.find(":input[name='e.driverArea']").val(carMan.region);
-							$form.find(":input[name='e.driverClasses']").val(carMan.drivingStatus);
-						}
-					},option);
-					bc.page.newWin(option);	
+					
+					var url=bc.root +"/bc-business/caseAccident/selectCarMansInfo?carId="+car.id;
+					
+					
+//					var url=bc.root +"/bc-business/selectMoreCarManWithCar/selectCarMans?carId="+car.id;
+//					var option = jQuery.extend({
+//						url: url,
+//						name: "选择司机信息",
+//						mid: "selectCarMan",
+//						afterClose: function(carMan){
+//							if(carMan){
+//							$form.find(":input[name='e.driverId']").val(carMan.id);
+//							$form.find(":input[name='e.driverName']").val(carMan.name);
+//							$form.find(":input[name='e.driverCert']").val(carMan.cert4FWZG);
+//							$form.find(":input[name='e.driverArea']").val(carMan.region);
+//							$form.find(":input[name='e.driverClasses']").val(carMan.drivingStatus);
+//							}
+//						}
+//					},option);
+//					bc.page.newWin(option);	
 				}
 			});
 		});
 		
-//		// 选择司机
-//		$form.find("#driverName").click(function() {
-//			var selecteds = $form.find(":input[name='e.driverName']").val();
-//			bs.selectDriver({
-//				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
-//				onOk : function(carMan) {
-//					$form.find(":input[name='e.driverId']").val(carMan.id);
-//					$form.find(":input[name='e.driverName']").val(carMan.name);
-//				}
-//			});
-//					
-//		});
+//		
 		
 		
 		// 负责人
