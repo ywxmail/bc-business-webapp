@@ -23,6 +23,7 @@ bc.contractChargerForm = {
 		/* 选择经办人*/
 		$form.find(":input[name='e.transactorName']").click(function(){
 			bc.identity.selectUser({
+				history : false,
 				selecteds: $form.find(":input[name='e.transactorId']").val(),
 				onOk : function(user) {
 					$form.find(":input[name='e.transactorName']").val(user.name);

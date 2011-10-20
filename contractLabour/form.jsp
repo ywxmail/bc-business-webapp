@@ -148,6 +148,8 @@
 		<s:hidden name="carId"/>
 		<s:hidden name="oldCarManId"/>
 		<s:hidden name="oldCarId"/>
+		<s:hidden name="isMoreCar"/>
+		<s:hidden name="isMoreCarMan"/>
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 	</s:form>
 </div>

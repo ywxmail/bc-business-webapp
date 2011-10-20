@@ -79,7 +79,9 @@ bc.caseTrafficForm = {
 		var $form = $(this);
 		bc.msg.confirm("确定要结案吗？",function(){
 			//调用标准的方法执行保存
-			$form.find(":input[name='isClosed']").val("1");
+			$form.find(":input[name='e.status']").val("1");
+			if(!bc.validator.validate($form))
+				return;
 			bc.page.save.call($form);
 			$form.dialog("close");
 		});

@@ -1,6 +1,14 @@
 bc.contractList = {
 	/** 新建选择合同类型 */
-	create : function() {
+	create : function(option) {
+		var $page = $(this);
+		var id;
+		if(option != null && option.extras.carId){
+			id = '?carId='+option.extras.carId;
+		}
+		if(option != null && option.extras.carManId){
+			id = '?carManId='+option.extras.carManId;
+		}
 		bc.page.newWin({
 			url: bc.root + "/bc-business/contract/create",
 			name: "选择合同类型",
@@ -8,19 +16,28 @@ bc.contractList = {
 			afterClose: function(type){
 				if(type != null && type.id == 1){
 					bc.page.newWin({
-						url: bc.root + "/bc-business/contractLabour/create",
+						url: bc.root + "/bc-business/contractLabour/create"+id,
 						name: "新建劳动合同",
-						mid:  "createContractLabour"
+						mid:  "createContractLabour",
+						afterClose: function(status){
+							if(status){
+								//刷新视图
+								bc.grid.reloadData($page);
+							}
+						}
 					})
 				}else if(type != null && type.id == 2){
 					bc.page.newWin({
-						url: bc.root + "/bc-business/contractCharger/create",
+						url: bc.root + "/bc-business/contractCharger/create"+id,
 						name: "新建经济合同",
-						mid:  "createContractCharger"
+						mid:  "createContractCharger",
+						afterClose: function(status){
+							if(status){
+								//刷新视图
+								bc.grid.reloadData($page);
+							}
+						}
 					})
-				}else{
-					var $page = $(this);
-					$page.dialog("close");
 				}
 			}
 		});

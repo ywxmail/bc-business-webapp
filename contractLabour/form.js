@@ -8,6 +8,47 @@ bc.contractLabourForm = {
 		
 		if(readonly) return;
 		
+		//预加载一个司机关联多台车的对话框选择
+		if($form.find(":input[name='isMoreCar']").val()=="true"){
+			
+			var carManId=$form.find(":input[name='carManId']").val();
+			var url= bc.root +"/bc-business/selectMoreCarWithCarMan/selectCars?carManId="+carManId;
+			var option = jQuery.extend({
+				url: url,
+				name: "选择车辆信息",
+				mid: "selectCar",
+				afterClose: function(car){
+					if(car != null){
+						$form.find(":input[name='carId']").val(car.id);
+						$form.find(":input[name='e.ext_str1']").val(car.name);
+					}
+				}
+			},option);
+			bc.page.newWin(option);
+			
+		};
+		
+		//预加载一台车关联多个司机的对话框选择
+		if($form.find(":input[name='isMoreCarMan']").val()=="true"){
+			
+			var carId=$form.find(":input[name='carId']").val();
+			var url=bc.root +"/bc-business/selectMoreCarManWithCar/selectCarMans?carId="+carId;
+			var option = jQuery.extend({
+				url: url,
+				name: "选择司机信息",
+				mid: "selectCarMan",
+				afterClose: function(carMan){
+					if(carMan != null){
+						$form.find(":input[name='carManId']").val(carMan.id);
+						$form.find(":input[name='e.ext_str2']").val(carMan.name);
+						$form.find(":input[name='e.certNo']").val(carMan.cert4FWZG);
+					}
+				}
+			},option);
+			bc.page.newWin(option);
+			
+		};
+		
 		// 选择车辆车牌
 		$form.find(":input[name='e.ext_str1']").click(function() {
 			var selecteds = $form.find(":input[name='carId']").val();
@@ -16,6 +57,22 @@ bc.contractLabourForm = {
 				onOk : function(car) {
 					$form.find(":input[name='e.ext_str1']").val(car.plate);
 					$form.find(":input[name='carId']").val(car.id);
+					
+					var url=bc.root +"/bc-business/selectMoreCarManWithCar/selectCarMans?carId="+car.id;
+					var option = jQuery.extend({
+						url: url,
+						name: "选择司机信息",
+						mid: "selectCarMan",
+						afterClose: function(carMan){
+							if(carMan != null){
+								$form.find(":input[name='carManId']").val(carMan.id);
+								$form.find(":input[name='e.ext_str2']").val(carMan.name);
+								$form.find(":input[name='e.certNo']").val(carMan.cert4FWZG);
+							}
+						}
+					},option);
+					bc.page.newWin(option);	
+					
 				}
 			});
 		});
@@ -49,6 +106,7 @@ bc.contractLabourForm = {
 		//选择经办人
 		$form.find(":input[name='e.transactorName']").click(function(){
 			bc.identity.selectUser({
+				history : false,
 				selecteds: $form.find("input[name='e.transactorId']").val(),
 				onOk : function(user) {
 					$form.find(":input[name='e.transactorId']").val(user.id);

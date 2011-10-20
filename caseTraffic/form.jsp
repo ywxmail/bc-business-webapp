@@ -202,7 +202,7 @@
 		<s:hidden name="e.chargerId" />
 		<s:hidden name="e.closerId" />
 		<s:hidden name="e.closerName" />
-		<s:hidden name="isClosed" />
+		<s:hidden name="e.status" />
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 		
 	</s:form>
