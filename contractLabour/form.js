@@ -18,8 +18,10 @@ bc.contractLabourForm = {
 				name: "选择车辆信息",
 				mid: "selectCar",
 				afterClose: function(car){
-					$form.find(":input[name='carId']").val(car.id);
-					$form.find(":input[name='e.ext_str1']").val(car.name);
+					if(car != null){
+						$form.find(":input[name='carId']").val(car.id);
+						$form.find(":input[name='e.ext_str1']").val(car.name);
+					}
 				}
 			},option);
 			bc.page.newWin(option);
@@ -36,9 +38,11 @@ bc.contractLabourForm = {
 				name: "选择司机信息",
 				mid: "selectCarMan",
 				afterClose: function(carMan){
-					$form.find(":input[name='carManId']").val(carMan.id);
-					$form.find(":input[name='e.ext_str2']").val(carMan.name);
-					$form.find(":input[name='e.certNo']").val(carMan.cert4FWZG);
+					if(carMan != null){
+						$form.find(":input[name='carManId']").val(carMan.id);
+						$form.find(":input[name='e.ext_str2']").val(carMan.name);
+						$form.find(":input[name='e.certNo']").val(carMan.cert4FWZG);
+					}
 				}
 			},option);
 			bc.page.newWin(option);
@@ -60,9 +64,11 @@ bc.contractLabourForm = {
 						name: "选择司机信息",
 						mid: "selectCarMan",
 						afterClose: function(carMan){
-							$form.find(":input[name='carManId']").val(carMan.id);
-							$form.find(":input[name='e.ext_str2']").val(carMan.name);
-							$form.find(":input[name='e.certNo']").val(carMan.cert4FWZG);
+							if(carMan != null){
+								$form.find(":input[name='carManId']").val(carMan.id);
+								$form.find(":input[name='e.ext_str2']").val(carMan.name);
+								$form.find(":input[name='e.certNo']").val(carMan.cert4FWZG);
+							}
 						}
 					},option);
 					bc.page.newWin(option);	
