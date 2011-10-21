@@ -100,15 +100,8 @@ bc.caseAccidentForm = {
 								html.push('</select>');
 								html.push('</div>');
 								html.push('</div>');
+								html = $(html.join("")).appendTo("body");
 								
-								//弹出对话框让用户选择司机
-								html = $(html.join("")).appendTo("body").dialog({
-									id: "selectAccidentDriver",
-									title: "所选车辆有多个营运司机，请选择事发司机",
-									dialogClass: 'bc-ui-dialog ui-widget-header',
-									width:300,modal:true,
-									buttons:[{text:"确定",click: onSelectDriver}],
-								});
 								//绑定双击事件
 								var driversEl = html.find("#drivers").dblclick(onSelectDriver)[0];
 								function onSelectDriver(){
@@ -121,6 +114,15 @@ bc.caseAccidentForm = {
 									//销毁对话框
 									html.dialog("destroy").remove();
 								}
+								
+								//弹出对话框让用户选择司机
+								html.dialog({
+									id: "selectAccidentDriver",
+									title: "所选车辆有多个营运司机，请选择事发司机",
+									dialogClass: 'bc-ui-dialog ui-widget-header',
+									width:300,modal:true,
+									buttons:[{text:"确定",click: onSelectDriver}],
+								});
 							}
 						}
 					});
