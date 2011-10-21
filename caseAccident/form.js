@@ -81,6 +81,14 @@ bc.caseAccidentForm = {
 						dataType:"json",
 						success: function(drivers){
 							logger.info("drivers=" + $.toJSON(drivers));
+							if(drivers.length==0){
+								$form.find(":input[name='e.driverId']").val("");
+								$form.find(":input[name='e.driverName']").val("");
+								$form.find(":input[name='e.driverCert']").val("");
+								$form.find(":input[name='e.driverArea']").val("");
+								$form.find(":input[name='e.driverClasses']").val("");
+								bc.msg.slide("该车辆还没有被任何司机驾驶！");
+							}
 							if(drivers.length == 1){//单个司机直接填写
 								updateFieldsFromDriver(drivers[0]);
 							}else if(drivers.length > 1){//多个司机，让用户选择后再填写
