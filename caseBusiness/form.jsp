@@ -201,7 +201,7 @@
 								<td style="width: 350px;">&nbsp;</td>
 							</tr>
 							<tr>
-								<td class="value" colspan="4"><s:textarea name="e.comment" cssStyle="width:59.7em; text-align:right" rows="4" /></td>
+								<td class="value" colspan="4"><s:textarea name="e.description" cssStyle="width:59.7em; text-align:left" rows="4" /></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -232,7 +232,7 @@
 								<td style="width: 350px;">&nbsp;</td>
 							</tr>
 							<tr>
-								<td class="value" colspan="4"><s:textarea name="e.comment" cssStyle="width:59.7em; text-align:right" rows="4" /></td>
+								<td class="value" colspan="4"><s:textarea name="e.comment" cssStyle="width:59.7em; text-align:left" rows="4" /></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -265,6 +265,12 @@
 		<s:hidden name="e.closerName" />
 		<s:hidden name="e.receiverId" />
 		<s:hidden name="e.status" />
+		<s:hidden name="isMoreCar" />
+		<s:hidden name="isMoreCarMan" />
+		<s:hidden name="carId" />
+		<s:hidden name="carManId" />
+		<s:hidden name="isNullCarMan" />
+		<s:hidden name="isNullCar" />
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 		
 	</s:form>

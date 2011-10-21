@@ -25,7 +25,9 @@ bc.contractLabourForm = {
 				}
 			},option);
 			bc.page.newWin(option);
-			
+		};
+		if($form.find(":input[name='isNullCar']").val()=="true"){
+			bc.msg.slide("此司机没有驾驶任何车辆！");	
 		};
 		
 		//预加载一台车关联多个司机的对话框选择
@@ -48,6 +50,9 @@ bc.contractLabourForm = {
 			bc.page.newWin(option);
 			
 		};
+		if($form.find(":input[name='isNullCarMan']").val()=="true"){
+			bc.msg.slide("此车辆没有被任何司机驾驶！");	
+		};
 		
 		// 选择车辆车牌
 		$form.find(":input[name='e.ext_str1']").click(function() {
@@ -58,20 +63,60 @@ bc.contractLabourForm = {
 					$form.find(":input[name='e.ext_str1']").val(car.plate);
 					$form.find(":input[name='carId']").val(car.id);
 					
-					var url=bc.root +"/bc-business/selectMoreCarManWithCar/selectCarMans?carId="+car.id;
-					var option = jQuery.extend({
-						url: url,
-						name: "选择司机信息",
-						mid: "selectCarMan",
-						afterClose: function(carMan){
-							if(carMan != null){
-								$form.find(":input[name='carManId']").val(carMan.id);
-								$form.find(":input[name='e.ext_str2']").val(carMan.name);
-								$form.find(":input[name='e.certNo']").val(carMan.cert4FWZG);
+					var url = bc.root + "/bc-business/contractLabour/carManInfo?carId="+car.id;
+					$.ajax({ url: url,dataType:"json", success: update_page});
+					function update_page(json){
+						$form.find(":input[name='isMoreCar']").val(json.isMore);
+						if($form.find(":input[name='isMoreCar']").val()=="false"){
+							if(json.id != null){
+								$form.find(":input[name='carManId']").val(json.id);
+							}else{
+								$form.find(":input[name='carManId']").val('');
+								bc.msg.slide("此车辆没有被任何司机驾驶！");
 							}
+							if(json.name != null){
+								$form.find(":input[name='e.ext_str2']").val(json.name);
+							}else{
+								$form.find(":input[name='e.ext_str2']").val('');
+							}
+							if(json.certNo != null){
+								$form.find(":input[name='e.certNo']").val(json.certNo);
+							}else{
+								$form.find(":input[name='e.certNo']").val('');
+							}
+						}else{
+							var url=bc.root +"/bc-business/selectMoreCarManWithCar/selectCarMans?carId="+car.id;
+							var option = jQuery.extend({
+								url: url,
+								name: "选择司机信息",
+								mid: "selectCarMan",
+								afterClose: function(carMan){
+									if(carMan != null){
+										$form.find(":input[name='carManId']").val(carMan.id);
+										$form.find(":input[name='e.ext_str2']").val(carMan.name);
+										$form.find(":input[name='e.certNo']").val(carMan.cert4FWZG);
+									}
+								}
+							},option);
+							bc.page.newWin(option);
 						}
-					},option);
-					bc.page.newWin(option);	
+
+					}
+					
+//					var url=bc.root +"/bc-business/selectMoreCarManWithCar/selectCarMans?carId="+car.id;
+//					var option = jQuery.extend({
+//						url: url,
+//						name: "选择司机信息",
+//						mid: "selectCarMan",
+//						afterClose: function(carMan){
+//							if(carMan != null){
+//								$form.find(":input[name='carManId']").val(carMan.id);
+//								$form.find(":input[name='e.ext_str2']").val(carMan.name);
+//								$form.find(":input[name='e.certNo']").val(carMan.cert4FWZG);
+//							}
+//						}
+//					},option);
+//					bc.page.newWin(option);	
 					
 				}
 			});
