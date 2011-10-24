@@ -7,45 +7,50 @@
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="carByDriverForm" theme="simple">
 		<div class="formFields ui-widget-content" >
-			<table class="formFields" cellspacing="2" cellpadding="0" style="height:260px">
+			<table class="formFields" cellspacing="2" cellpadding="0">
 				<tbody>
 					<tr>
 					<s:if test="%{carId != null}">
 					    <td class="label"><s:text name="carByDriver.car.plateNo"/>:</td>
-						<td class="value "><s:textfield name="plate" title='%{getText("carByDriver.title.click2selectCar")}' value="%{e.car.plateType+e.car.plateNo }" readonly="true" cssClass="ui-state-disabled"/></td>
+						<td class="value "><s:textfield name="plate" title='%{getText("carByDriver.title.click2selectCar")}' 
+							value="%{e.car.plateType+e.car.plateNo }" readonly="true" cssClass="ui-state-disabled"/></td>
 					</s:if><s:else>
-						<td class="label"><s:text name="carByDriver.car.plateNo"/>:</td>
-						<td class="value "><s:textfield name="plate" title='%{getText("carByDriver.title.click2selectCar")}' value="%{e.car.plateType+e.car.plateNo }" readonly="true" id="carName"/></td>
+						<td class="label">*<s:text name="carByDriver.car.plateNo"/>:</td>
+						<td class="value "><s:textfield name="plate" title='%{getText("carByDriver.title.click2selectCar")}' 
+							value="%{e.car.plateType+e.car.plateNo }" readonly="true" id="carName" data-validate="required"/></td>
 						</s:else>
 					</tr>
 					<tr>
 					<s:if test="%{carManId != null}">
-						<td class="label"> <s:text name="carByDriver.driver"/>:</td>
+						<td class="label"><s:text name="carByDriver.driver"/>:</td>
 						<td class="value"><s:textfield name="e.driver.name" readonly="true" cssClass="ui-state-disabled" /></td>
 					</s:if><s:else>
-					    <td class="label"> <s:text name="carByDriver.driver"/>:</td>
-						<td class="value"><s:textfield name="e.driver.name" title='%{getText("carByDriver.title.click2selectCarMan")}' id="driverName" readonly="true"/></td>
+					    <td class="label">*<s:text name="carByDriver.driver"/>:</td>
+						<td class="value"><s:textfield name="e.driver.name" title='%{getText("carByDriver.title.click2selectCarMan")}'
+							 id="driverName" readonly="true" data-validate="required"/></td>
 					</s:else>
 					</tr>
 					<tr>
-						<td class="label"> *<s:text name="carByDriver.classes"/>:</td>
-						<td class="value" ><s:select  name="e.classes"  list="#{0:'',1:'正班',2:'副班',3:'顶班'}" listKey="key" listValue="value"   data-validate="required"/></td>
+						<td class="label">*<s:text name="carByDriver.classes"/>:</td>
+						<td class="value" ><s:select name="e.classes" list="#{0:'',1:'正班',2:'副班',3:'顶班'}" 
+							listKey="key" listValue="value" data-validate="required"/></td>
 					</tr>
+					<!-- 
 					<tr>
 						<td class="label"><s:text name="carByDriver.timeInterva"/>:</td>
 						<td class="value">从<input type="text" name="e.startDate" style="width:120px" 
 						class="bc-date" title='<s:text name="title.click2selectDate"/>'value='<s:date format="yyyy-MM-dd" name="e.startDate" />'/>
 						到<input type="text" name="e.endDate" style="width: 120px" 
 						class="bc-date" title='<s:text name="title.click2selectDate"/>'value='<s:date format="yyyy-MM-dd" name="e.endDate" />'/></td>
-					</tr>
+					</tr> -->
 					<tr>
 						<td class="label"><s:text name="carByDriver.statuses"/>:</td>
 						<td><s:radio name="e.status" list="statusesValueList" listKey="key"
 							value="e.status" cssStyle="width:auto;"/></td>
 					</tr>
 					<tr>
-						<td class="label" ><s:text name="carByDriver.description"/>:</td>
-						<td class="value" rowspan="2"><s:textarea name="e.description" /></td>
+						<td class="topLabel" ><s:text name="carByDriver.description"/>:</td>
+						<td class="value"><s:textarea name="e.description" rows="5"/></td>
 					</tr>
 					<tr>
 						<td class="label" colspan="2" rowspan="2">
@@ -64,6 +69,8 @@
 		<s:hidden name="e.car.id" />
 		<s:hidden name="e.driver.id" />
 		<s:hidden name="e.author.id" />
+		<s:hidden name="e.startDate" />
+		<s:hidden name="e.endDate" />
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 	</s:form>
 </div>
