@@ -38,8 +38,8 @@
 						<td class="value"><s:textfield name="e.address" /></td>
 					</tr>
 					<tr>
-						<td class="label"><s:text name="label.order"/>:</td>
-						<td class="value"><s:textfield name="e.code"/></td>
+						<td class="label">*<s:text name="label.order"/>:</td>
+						<td class="value"><s:textfield name="e.code" data-validate="required"/></td>
 						<td class="label"><s:text name="label.status"/>:</td>
 						<td class="value"><s:radio name="e.status" list="#{'0':'正常','1':'已禁用','2':'已删除'}" 
 							value="e.status" cssStyle="width:auto;"/></td>
