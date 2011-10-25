@@ -19,10 +19,10 @@
 						<td class="label" >*<s:text name="car.plate"/>:</td>
 						<td class="value" >
 							<s:if test="!e.isNew()">
-								<s:textfield name="e.plateType" cssStyle="width:4em;" data-validate="required"/><s:textfield name="e.plateNo" cssStyle="width:8em;" data-validate="required" />
+								<s:textfield name="e.plateType" cssStyle="width:4em;text-align:right;" data-validate="required"/><s:textfield name="e.plateNo" cssStyle="width:8em;" data-validate="required" />
 							</s:if>
 							<s:else>
-								<s:textfield name="e.plateType" cssStyle="width:4em;" value='%{getText("car.plate.yue.A")}' data-validate="required"/><s:textfield name="e.plateNo" cssStyle="width:8em;" data-validate="required" />
+								<s:textfield name="e.plateType" cssStyle="width:4em;text-align:right;" value='%{getText("car.plate.yue.A")}' data-validate="required"/><s:textfield name="e.plateNo" cssStyle="width:8em;" data-validate="required" />
 							</s:else>
 						</td>
 						<td class="label" >*<s:text name="car.vin"/>:</td>
