@@ -17,18 +17,21 @@ bs.carManSelectDialog = {
 		if($grid.hasClass("singleSelect")){//单选
 			data = {};
 			data.id = $tds.attr("data-id");
-			data.name = $grid.find(">.data>.right tr.ui-state-focus").find("td:eq(0)").attr("data-value");
+			var $trs = $grid.find(">.data>.right tr.ui-state-focus");
+			data.name = $trs.find("td:eq(0)").attr("data-value");
+			data.cert4FWZG = $trs.find("td:eq(1)").attr("data-value");
 		}else{//多选
 			data = [];
 			var $trs = $grid.find(">.data>.right tr.ui-state-focus");
 			$tds.each(function(i){
 				data.push({
 					id: $(this).attr("data-id"),
-					name:$($trs.get(i)).find("td:eq(0)").attr("data-value")
+					name:$($trs.get(i)).find("td:eq(0)").attr("data-value"),
+					cert4FWZG:$($trs.get(i)).find("td:eq(1)").attr("data-value")
 				});
 			});
 		}
-		//logger.info($.toJSON(data));
+		logger.info($.toJSON(data));
 		
 		// 返回
 		$page.data("data-status", data);
