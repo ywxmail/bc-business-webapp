@@ -16,12 +16,6 @@
 						<td style="width: 200px;">&nbsp;</td>
 					</tr>
 					<tr>
-						<td class="label" >*<s:text name="car.code"/>:</td>
-						<td class="value" ><s:textfield name="e.code" data-validate="required"  /></td>
-						<td class="label" >*<s:text name="car.unit"/>:</td>
-						<td class="value" ><s:textfield name="e.oldUnitName"/></td>
-					</tr>
-					<tr>
 						<td class="label" >*<s:text name="car.plate"/>:</td>
 						<td class="value" >
 							<s:if test="!e.isNew()">
@@ -31,18 +25,26 @@
 								<s:textfield name="e.plateType" cssStyle="width:4em;" value='%{getText("car.plate.yue.A")}' data-validate="required"/><s:textfield name="e.plateNo" cssStyle="width:8em;" data-validate="required" />
 							</s:else>
 						</td>
+						<td class="label" >*<s:text name="car.vin"/>:</td>
+						<td class="value" ><s:textfield name="e.vin" data-validate="required" /></td>
+					</tr>
+					<tr>
 						<td class="label" >*<s:text name="car.motorcade"/>:</td>
 						<td class="value" >
 							<s:select name="e.motorcade.id" list="motorcadeList" listKey="id" listValue="name" value="e.motorcade.id" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}"  ></s:select>
 						</td>
+						<td class="label" ><s:text name="car.factoryType"/>:</td>
+						<td class="value" >
+							<s:select name="e.factoryType" list="factoryTypeList" listKey="value" listValue="value" headerKey="" headerValue="" ></s:select>
+						</td>
 					</tr>
 					<tr>
-						<td class="label" >*<s:text name="car.vin"/>:</td>
-						<td class="value" ><s:textfield name="e.vin" data-validate="required" /></td>
 						<td class="label" >*<s:text name="car.businessType"/>:</td>
 						<td class="value" >
 							<s:select name="e.businessType" list="businessTypeList" listKey="value" listValue="value"  data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" ></s:select>
 						</td>
+						<td class="label" ><s:text name="car.factoryModel"/>:</td>
+						<td class="value" ><s:textfield name="e.factoryModel" /></td>
 					</tr>
 					<tr>
 						<td class="label" >*<s:text name="car.registerDate"/>:</td>
@@ -51,11 +53,9 @@
 							value='<s:date format="yyyy-MM-dd" name="e.registerDate" />'
 							class="bc-date" data-cfg='{changeYear:true}' />
 						</td>
-						<td class="label" >*<s:text name="car.factoryDate"/>:</td>
+						<td class="label" ><s:text name="car.level"/>:</td>
 						<td class="value" >
-							<input type="text" name="e.factoryDate" data-validate="date"
-							value='<s:date format="yyyy-MM-dd" name="e.factoryDate" />'
-							class="bc-date"  data-cfg='{changeYear:true}'/>
+							<s:select name="e.level" list="levelTypeList" listKey="value" listValue="value" headerKey="" headerValue="" ></s:select>
 						</td>
 					</tr>
 					<tr>
@@ -65,28 +65,28 @@
 							value='<s:date format="yyyy-MM-dd" name="e.operateDate" />'
 							class="bc-date"  data-cfg='{changeYear:true}'/>
 						</td>
+						<td class="label" ><s:text name="car.originNo"/>:</td>
+						<td class="value" ><s:textfield name="e.originNo" /></td>
+					</tr>
+					<tr>
+						<td class="label" >*<s:text name="car.factoryDate"/>:</td>
+						<td class="value" >
+							<input type="text" name="e.factoryDate" data-validate="date"
+							value='<s:date format="yyyy-MM-dd" name="e.factoryDate" />'
+							class="bc-date"  data-cfg='{changeYear:true}'/>
+						</td>
+						<td class="label" ><s:text name="car.code"/>:</td>
+						<td class="value" ><s:textfield name="e.code" /></td>
+					</tr>
+					<tr>
 						<td class="label" >*<s:text name="car.scrapDate"/>:</td>
 						<td class="value" >
 							<input type="text" name="e.scrapDate" data-validate="date"
 							value='<s:date format="yyyy-MM-dd" name="e.scrapDate" />'
 							class="bc-date"  data-cfg='{changeYear:true}'/>
 						</td>
-					</tr>
-					<tr>
-						<td class="label" ><s:text name="car.factoryType"/>:</td>
-						<td class="value" >
-							<s:select name="e.factoryType" list="factoryTypeList" listKey="value" listValue="value" headerKey="" headerValue="" ></s:select>
-						</td>
-						<td class="label" ><s:text name="car.factoryModel"/>:</td>
-						<td class="value" ><s:textfield name="e.factoryModel" /></td>
-					</tr>
-					<tr>
-						<td class="label" ><s:text name="car.originNo"/>:</td>
-						<td class="value" ><s:textfield name="e.originNo" /></td>
-						<td class="label" ><s:text name="car.level"/>:</td>
-						<td class="value" >
-							<s:select name="e.level" list="levelTypeList" listKey="value" listValue="value" headerKey="" headerValue="" ></s:select>
-						</td>
+						<td class="label" ><s:text name="car.unit"/>:</td>
+						<td class="value" ><s:textfield name="e.oldUnitName"/></td>
 					</tr>					
 					<tr>
 						<td class="label" colspan="4">
