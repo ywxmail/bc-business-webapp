@@ -101,9 +101,9 @@
 					<tr>
 						<td class="label" colspan="4">
 							<div class="formTopInfo">
-								状态：<s:property value="%{statusesValue[e.status]}" />
+								状态：<s:property value="%{statusesValue[e.status]}" /> ,
 								<s:if test="%{e.closerId != null}">
-								  结案人：<s:property value="e.closerName" />(<s:date name="e.closeDate" format="yyyy-MM-dd HH:mm:ss"/>)
+								    结案人：<s:property value="e.closerName" />(<s:date name="e.closeDate" format="yyyy-MM-dd HH:mm:ss"/>)
 								</s:if>
 								&nbsp;&nbsp;&nbsp;&nbsp;登记：<s:property value="e.author.name" />(<s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>)
 								<s:if test="%{e.modifier != null}">
