@@ -81,5 +81,18 @@ bs.selectTest = {
 				}
 			});
 		});
+		
+		//通过车辆id查询相关信息
+		$page.find("#findInfoByCar").click(function(){
+			bs.selectCar({onOk: function(car){
+				logger.info("car=" + $.toJSON(car));
+				bs.findInfoByCar({
+					carId: car.id,
+					success: function(info){
+						logger.info("info=" + $.toJSON(info));
+					}
+				});
+			}});
+		});
 	}
 };

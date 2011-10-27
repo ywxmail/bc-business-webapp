@@ -33,4 +33,8 @@
 		<input id="selectCarman" type="button" value="选择司机+责任人(单选)">
 		<input id="selectCarmans" type="button" value="选择司机+责任人(多选)">
 	</fieldset>
+	<fieldset>
+		<legend>通过车辆id查询相关信息</legend>
+		<input id="findInfoByCar" type="button" value="通过车辆id">
+	</fieldset>
 </div>
