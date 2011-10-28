@@ -208,6 +208,14 @@ bc.caseAdviceForm = {
 	
 	closefile : function(){
 		var $form = $(this);
+		if($form.find(":input[name='e.carPlate']").val().length < 1
+			|| $form.find(":input[name='e.driverId']").val().length < 1	
+			|| $form.find(":input[name='e.motorcadeId']").val().length < 1
+			|| $form.find(":input[name='e.receiverName']").val().length < 1
+			){
+			alert('请确认司机,车辆,车队,经办人信息是否填写完整!!');
+			return;
+		}
 		if(!bc.validator.validate($form))
 			return;
 		bc.msg.confirm("确定要结案吗？",function(){

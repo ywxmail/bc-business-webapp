@@ -11,7 +11,7 @@
 				<tbody>
 					<tr>
 						<td class="label">*<s:text name="contract.code"/>:</td>
-						<td class="value "><s:textfield name="e.code" data-validate="required" /></td>
+						<td class="value "><s:textfield name="e.code" data-validate="required" readonly="true" /></td>
 						<td class="label">*<s:text name="contract.signDate"/>:</td>
 						<td class="value">
 							<input type="text" name="e.signDate" data-validate='{"type":"date","required":true}'

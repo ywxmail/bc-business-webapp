@@ -71,7 +71,7 @@
 							<s:select name="e.sort" list="properitesList" listKey="value" listValue="value" headerKey="" headerValue="" ></s:select>
 						</td>
 						<td class="label">*<s:text name="runcase.code" />:</td>
-						<td class="value "><s:textfield name="e.code" data-validate="required" /></td>					
+						<td class="value "><s:textfield name="e.code" data-validate="required" readonly="true" /></td>					
 					</tr>
 					<tr>
 						<td class="label"><s:text name="runcase.extent"/></td>

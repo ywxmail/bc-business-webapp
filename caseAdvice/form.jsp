@@ -17,7 +17,7 @@
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="runcase.code" />:</td>
-						<td class="value "><s:textfield name="e.code" data-validate="required" /></td>
+						<td class="value "><s:textfield name="e.code" data-validate="required" readonly="true" /></td>
 						<td class="label">*<s:text name="runcase.receiveDate3"/>:</td>
 						<td class="value">
 							<input type="text" name="e.receiveDate" data-validate='{"type":"datetime","required":true}'
@@ -50,7 +50,7 @@
 										<td class="value">
 										<div style="position:relative;">
 											<s:textfield name="e.subject" cssStyle="width:29em;" data-validate="required" />
-											<span id="selectSubject" class="verticalMiddle ui-icon ui-icon-circle-plus" style="margin-top : -7px;" title='<s:text name="runcase.title.click2selectcomplain"/>'></span>
+											<span id="selectSubject" class="verticalMiddle ui-icon ui-icon-circle-plus" style="margin-top : -7px;right: 20px" title='<s:text name="runcase.title.click2selectcomplain"/>'></span>
 										</div>
 										</td>
 										<td class="label">*<s:text name="runcase.happenDate"/>:</td>
@@ -122,7 +122,7 @@
 						<tbody>
 							<tr>
 								<td class="label" colspan="2">
-								    <fieldset style="width:400px;height: 110px;">
+								    <fieldset style="height: 110px;width: 350px;">
 								    	<legend>被投诉方信息</legend>
 								        <table class="formFields" cellspacing="2" cellpadding="0" style="height:100px">
 											<tr style="line-height: 1px;">
@@ -154,14 +154,14 @@
 						                   <tr>
 						                   		<td class="label" ><s:text name="runcase.motorcadeName"/>:</td>
 												<td class="value" colspan="3">
-													<s:select name="e.motorcadeId" list="motorcadeList" listKey="id" listValue="name" value="e.motorcadeId" headerKey="" headerValue=""  ></s:select>
+													<s:select name="e.motorcadeId" list="motorcadeList" listKey="key" listValue="value" value="e.motorcadeId" headerKey="" headerValue=""  ></s:select>
 												</td>
 						                   </tr>
 								        </table>
 								   </fieldset>
 								</td>
 								<td class="value" colspan="2">
-									<fieldset style="width:400px;height: 110px;">
+									<fieldset style="height: 110px;">
 						          		<legend>投诉人信息</legend>
 						          		<table class="formFields" cellspacing="2" cellpadding="0" style="height:100px;">
 								          	<tr style="line-height: 1px;">
@@ -202,9 +202,9 @@
 						          		<table class="formFields" cellspacing="2" cellpadding="0" style="height:100px;">
 						          			<tr style="line-height: 1px;">
 												<td></td>
-												<td style="width: 350px;">&nbsp;</td>
+												<td style="width: 200px;">&nbsp;</td>
 												<td style="width: 90px;">&nbsp;</td>
-												<td style="width: 350px;">&nbsp;</td>
+												<td style="width: 200px;">&nbsp;</td>
 											</tr>
 						          			<tr>
 												<td class="label"><s:text name="runcase.ticket"/>:</td>
@@ -223,11 +223,11 @@
 												<td class="value">
 													<input type="text" name="e.ridingStartTime	" data-validate='{"type":"datetime"}'
 													value='<s:date format="yyyy-MM-dd HH:mm" name="e.ridingStartTime" />'
-													class="bc-datetime" data-cfg='{changeYear:true}' style="max-width: 10em;"/>
+													class="bc-datetime" data-cfg='{changeYear:true}' style="max-width: 8em;"/>
 													&nbsp;到
 													<input type="text" name="e.ridingEndTime" data-validate='{"type":"datetime"}'
 													value='<s:date format="yyyy-MM-dd HH:mm" name="e.ridingEndTime" />'
-													class="bc-datetime" data-cfg='{changeYear:true}' style="max-width: 10em;"/>
+													class="bc-datetime" data-cfg='{changeYear:true}' style="max-width: 8em;"/>
 												</td>
 												<td class="label"><s:text name="runcase.charge"/>:</td>
 												<td class="value"><s:textfield name="e.charge" /></td>
@@ -235,18 +235,18 @@
 											<tr>
 												<td class="label"><s:text name="runcase.path"/>:</td>
 												<td class="value">
-													<s:textfield name="e.pathFrom" cssStyle="width:10em;"/>
+													<s:textfield name="e.pathFrom" cssStyle="width:8em;"/>
 													&nbsp;到
-													<s:textfield name="e.pathTo" cssStyle="width:10em;"/>
+													<s:textfield name="e.pathTo" cssStyle="width:8em;"/>
 												</td>
 												<td class="label"><s:text name="runcase.passengerCount"/>:</td>
-												<td class="value"><s:textfield name="e.passengerCount" cssStyle="width:2.5em;" data-validate='{"type":"number"}' />&nbsp;男<s:textfield name="e.passengerManCount" data-validate='{"type":"number"}' cssStyle="width:2.5em;" />&nbsp;女
-												<s:textfield name="e.passengerWomanCount" cssStyle="width:2.5em;" data-validate='{"type":"number"}' />&nbsp;童<s:textfield name="e.passengerChildCount"cssStyle="width:2.5em;" data-validate='{"type":"number"}' />
+												<td class="value"><s:textfield name="e.passengerCount" cssStyle="width:2.5em;" data-validate='{"type":"number",max:9}' />&nbsp;男<s:textfield name="e.passengerManCount" data-validate='{"type":"number",max:9}' cssStyle="width:2.5em;" />&nbsp;女
+												<s:textfield name="e.passengerWomanCount" cssStyle="width:2.5em;" data-validate='{"type":"number",max:9}' />&nbsp;童<s:textfield name="e.passengerChildCount"cssStyle="width:2.5em;" data-validate='{"type":"number",max:9}' />
 												</td>
 											</tr>
 											<tr>
 												<td class="label"><s:text name="runcase.gongjiao"/>:</td>
-												<td class="value" colspan="3"><s:textfield name="e.path" cssStyle="width:55.6em;" /></td>
+												<td class="value" colspan="3"><s:textfield name="e.path" cssStyle="width:40em;" /></td>
 											</tr>
 						          		</table>
 							        </fieldset>
@@ -258,11 +258,11 @@
 				<div id="otherFormFields2" class="content" style="width:800px;">
 					<table class="formFields" cellspacing="2" cellpadding="0" >
 						<tbody>
-							<tr>
-								<td style="height: 1px;"></td>
-								<td style="width: 350px;">&nbsp;</td>
+							<tr style="line-height: 1px;">
+								<td>&nbsp;</td>
+								<td style="width: 200px;">&nbsp;</td>
 								<td style="width: 90px;">&nbsp;</td>
-								<td style="width: 350px;">&nbsp;</td>
+								<td style="width: 200px;">&nbsp;</td>
 							</tr>
 							<tr>
 								<td class="label"><s:text name="runcase.extent"/></td>
@@ -290,7 +290,7 @@
 							<tr>
 								<td class="label"><s:text name="runcase.deliverDate3"/>:</td>
 								<td class="value">
-									<input type="text" name="e.deliverDate data-validate='{"type":"datetime"}'
+									<input type="text" name="e.deliverDate" data-validate='{"type":"datetime"}'
 									value='<s:date format="yyyy-MM-dd HH:mm" name="e.deliverDate" />'
 									class="bc-datetime" data-cfg='{changeYear:true}'/>
 								</td>
