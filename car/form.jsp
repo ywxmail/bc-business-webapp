@@ -31,7 +31,7 @@
 					<tr>
 						<td class="label" >*<s:text name="car.motorcade"/>:</td>
 						<td class="value" >
-							<s:select name="e.motorcade.id" list="motorcadeList" listKey="id" listValue="name" value="e.motorcade.id" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}"  ></s:select>
+							<s:select name="e.motorcade.id" list="motorcadeList" listKey="key" listValue="value" value="e.motorcade.id" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}"  ></s:select>
 						</td>
 						<td class="label" ><s:text name="car.factoryType"/>:</td>
 						<td class="value" >

@@ -28,7 +28,7 @@
 					<tr>
 						<td class="label" ><s:text name="runcase.motorcadeName"/>:</td>
 						<td class="value" >
-							<s:select name="e.motorcadeId" list="motorcadeList" listKey="id" listValue="name" value="e.motorcadeId" headerKey="" headerValue=""  ></s:select>
+							<s:select name="e.motorcadeId" list="motorcadeList" listKey="key" listValue="value" value="e.motorcadeId" headerKey="" headerValue=""  ></s:select>
 						</td>
 						<td class="label">*<s:text name="runcase.happenDate"/>:</td>
 						<td class="value">
