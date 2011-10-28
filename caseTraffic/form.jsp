@@ -44,7 +44,7 @@
 						</td>
 						<td class="label" ><s:text name="runcase.source"/>:</td>
 						<td class="value" >
-							<s:select name="e.source" list="sourcesValue" listKey="key" listValue="value" value="e.source"  headerKey="" headerValue=""  ></s:select>
+							<s:select name="e.from" list="sourcesValue" listKey="key" listValue="value" value="e.source"  headerKey="" headerValue=""  ></s:select>
 						</td>
 					</tr>
 					<tr>
