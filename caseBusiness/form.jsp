@@ -17,7 +17,7 @@
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="runcase.subject"/>:</td>
-						<td class="value" colspan="3"><s:textfield name="e.subject	" cssStyle="width:53.7em;" data-validate="required"/></td>
+						<td class="value" colspan="3"><s:textfield name="e.subject" cssStyle="width:53.7em;" data-validate="required"/></td>
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="runcase.address"/>:</td>
@@ -28,7 +28,7 @@
 					<tr>
 						<td class="label" ><s:text name="runcase.motorcadeName"/>:</td>
 						<td class="value" >
-							<s:select name="e.motorcadeId" list="motorcadeList" listKey="id" listValue="name" value="e.motorcadeId" headerKey="" headerValue=""  ></s:select>
+							<s:select name="e.motorcadeId" list="motorcadeList" listKey="key" listValue="value" value="e.motorcadeId" headerKey="" headerValue=""  ></s:select>
 						</td>
 						<td class="label">*<s:text name="runcase.happenDate"/>:</td>
 						<td class="value">
