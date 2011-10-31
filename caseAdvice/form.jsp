@@ -50,7 +50,7 @@
 										<td class="value">
 										<div style="position:relative;">
 											<s:textfield name="e.subject" cssStyle="width:29em;" data-validate="required" />
-											<span id="selectSubject" class="verticalMiddle ui-icon ui-icon-circle-plus" style="margin-top : -7px;right: 20px" title='<s:text name="runcase.title.click2selectcomplain"/>'></span>
+											<span id="selectSubject" class="verticalMiddle ui-icon ui-icon-circle-plus" style="margin-top : -7px;right: 48px" title='<s:text name="runcase.title.click2selectcomplain"/>'></span>
 										</div>
 										</td>
 										<td class="label">*<s:text name="runcase.happenDate"/>:</td>
@@ -246,7 +246,7 @@
 											</tr>
 											<tr>
 												<td class="label"><s:text name="runcase.gongjiao"/>:</td>
-												<td class="value" colspan="3"><s:textfield name="e.path" cssStyle="width:40em;" /></td>
+												<td class="value" colspan="3"><s:textfield name="e.path" cssStyle="width:50em;" /></td>
 											</tr>
 						          		</table>
 							        </fieldset>
@@ -267,15 +267,15 @@
 							<tr>
 								<td class="label"><s:text name="runcase.extent"/></td>
 								<td class="value">
-								<s:select name="e.extent" list="degreeList" listKey="value" listValue="value" headerKey="" headerValue="" ></s:select>
+								<s:select name="e.extent" list="degreeList" listKey="value" listValue="value" headerKey="" headerValue="" cssStyle="width:20.5em;" ></s:select>
 								</td>
 								<td class="label"><s:text name="runcase.receiverName2"/>:</td>
-								<td class="value "><s:textfield name="e.receiverName" /></td>
+								<td class="value "><s:textfield name="e.receiverName" style="width:20em;" /></td>
 							</tr>
 							<tr>
 								<td class="label" ><s:text name="runcase.duty"/>:</td>
 								<td class="value" >
-									<s:select name="e.duty" list="dutyList" listKey="value" listValue="value"  headerKey="" headerValue="" cssStyle="width:12em;"  ></s:select>
+									<s:select name="e.duty" list="dutyList" listKey="value" listValue="value"  headerKey="" headerValue="" cssStyle="width:16em;"  ></s:select>
 									<s:checkbox name="e.invalid" cssStyle="width:1em;" />
 									<s:text name="runcase.invalid"/>
 								</td>
@@ -283,16 +283,16 @@
 								<td class="value">
 									<input type="text" name="e.noticeDate" data-validate='{"type":"datetime"}'
 									value='<s:date format="yyyy-MM-dd HH:mm" name="e.noticeDate" />'
-									class="bc-datetime" data-cfg='{changeYear:true}'/>
+									class="bc-datetime" data-cfg='{changeYear:true}' style="width:20em;" />
 								</td>
 							</tr>
 							<s:if test="e.status == 1">
 							<tr>
 								<td class="label"><s:text name="runcase.deliverDate3"/>:</td>
 								<td class="value">
-									<input type="text" name="e.deliverDate" data-validate='{"type":"datetime"}'
+									<input type="text" name="e.deliverDate" data-validate='{"type":"datetime"}' 
 									value='<s:date format="yyyy-MM-dd HH:mm" name="e.deliverDate" />'
-									class="bc-datetime" data-cfg='{changeYear:true}'/>
+									class="bc-datetime" data-cfg='{changeYear:true}' style="width:20em;"/>
 								</td>
 								<td></td>
 								<td></td>
@@ -300,9 +300,9 @@
 							</s:if>
 							<tr>
 								<td class="label"><s:text name="runcase.result"/>:</td>
-								<td><s:textarea name="e.result" cssStyle="width:24em; text-align:left" rows="4" /></td>
+								<td><s:textarea name="e.result" cssStyle="width:20em; text-align:left" rows="4" /></td>
 								<td class="label"><s:text name="runcase.description"/>:</td>
-								<td><s:textarea name="e.description" cssStyle="width:24em; text-align:left" rows="4" /></td>
+								<td><s:textarea name="e.description" cssStyle="width:20em; text-align:left" rows="4" /></td>
 							</tr>
 						</tbody>
 					</table>
