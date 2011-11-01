@@ -57,7 +57,7 @@ bc.caseAccidentForm = {
 		});
 		
 		// 选择车辆车牌
-		$form.find("#carPlate").click(function() {
+		$form.find("#selectCar").click(function() {
 			var selecteds = $form.find(":input[name='e.carPlate']").val();
 			bs.selectCar({
 				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
