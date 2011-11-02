@@ -43,10 +43,16 @@
 						</td>
 					</tr>
 					<tr>
-						<td class="label" ><s:text name="runcase.motorcadeName"/>:</td>
-						<td class="value" >
-							<s:select name="e.motorcadeId" list="motorcadeList" listKey="key" listValue="value" value="e.motorcadeId" headerKey="" headerValue=""  ></s:select>
-						</td>
+					<s:if test="%{carManId != null || carId !=null }">
+						<td class="label">*<s:text name="runcase.carPlate"/>:</td>
+						<td class="value"><s:textfield name="e.carPlate"  readonly="true" cssClass="ui-state-disabled" /></td>
+					    </s:if><s:else>
+					    <td class="label">*<s:text name="runcase.carPlate"/>:</td>
+						<td class="value" style="position:relative;display: block;"><s:textfield name="e.carPlate" 
+					    data-validate="required" cssClass="ui-widget-content" readonly="true"/>
+					    <span id="selectCar" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></span>
+					    </td>
+					    </s:else>
 						<td class="label">*<s:text name="runcase.receiveDate2"/>:</td>
 						<td class="value">
 							<input type="text" name="e.receiveDate" data-validate='{"type":"datetime","required":true}'
@@ -55,13 +61,10 @@
 						</td>
 					</tr>
 					<tr>
-					<s:if test="%{carManId != null || carId !=null }">
-						<td class="label">*<s:text name="runcase.carPlate"/>:</td>
-						<td class="value"><s:textfield name="e.carPlate"  readonly="true" cssClass="ui-state-disabled" /></td>
-					    </s:if><s:else>
-					    <td class="label">*<s:text name="runcase.carPlate"/>:</td>
-						<td class="value"><s:textfield name="e.carPlate"  title='%{getText("carByDriver.title.click2selectCar")}' id="carPlate" readonly="true"/></td>
-					    </s:else>
+					    <td class="label" ><s:text name="runcase.motorcadeName"/>:</td>
+						<td class="value" >
+							<s:select name="e.motorcadeId" list="motorcadeList" listKey="key" listValue="value" value="e.motorcadeId" headerKey="" headerValue=""  ></s:select>
+						</td>
 						<td class="label" ><s:text name="runcase.receiveCode"/>:</td>
 						<td class="value "><s:textfield name="e.receiveCode"/></td>
 					</tr>
@@ -86,16 +89,16 @@
 						</td>
 					</tr>
 					<tr>
-						<td class="label" ><s:text name="runcase.driverType"/>:</td>
-						<td class="value" ><s:select name="e.driverType" list="#{0:'',1:'车主',2:'司机',3:'非编'}" listKey="key" listValue="value"   />
+					    <td class="label"><s:text name="runcase.driverClasses"/></td>
+						<td class="value">
+						<s:select name="e.driverClasses" list="#{0:'',1:'正班',2:'副班',3:'顶班'}" listKey="key" listValue="value"   data-validate="required"/>
 						</td>
 						<td class="label">*<s:text name="runcase.principal" />:</td>
 						<td class="value "><s:textfield name="e.chargerName" data-validate='{"required":true}'/></td>					
 					</tr>
 					<tr>
-						<td class="label"><s:text name="runcase.driverClasses"/></td>
-						<td class="value">
-						<s:select name="e.driverClasses" list="#{0:'',1:'正班',2:'副班',3:'顶班'}" listKey="key" listValue="value"   data-validate="required"/>
+						<td class="label" ><s:text name="runcase.driverType"/>:</td>
+						<td class="value" ><s:select name="e.driverType" list="#{0:'',1:'车主',2:'司机',3:'非编'}" listKey="key" listValue="value"   />
 						</td>
 					</tr>
 					<tr>
