@@ -60,7 +60,7 @@ bc.caseBusinessForm = {
 		});
 		
 		// 选择车辆车牌
-		$form.find(":input[name='e.carPlate']").click(function() {
+		$form.find("#selectCarPlate").click(function() {
 			var selecteds = $form.find(":input[name='e.carPlate']").val();
 			bs.selectCar({
 				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
@@ -125,7 +125,7 @@ bc.caseBusinessForm = {
 								
 								//弹出对话框让用户选择司机
 								html.dialog({
-									id: "selectTrafficDriver",
+									id: "selectBusinessDriver",
 									title: "所选车辆有多个营运司机，请选择事发司机",
 									dialogClass: 'bc-ui-dialog ui-widget-header',
 									width:300,modal:true,
@@ -140,7 +140,7 @@ bc.caseBusinessForm = {
 		});
 		
 		// 选择司机
-		$form.find(":input[name='e.driverName']").click(function() {
+		$form.find("#selectDriverName").click(function() {
 			var selecteds = $form.find(":input[name='e.driverName']").val();
 			bs.selectDriver({
 				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
@@ -154,7 +154,7 @@ bc.caseBusinessForm = {
 		
 		
 		// 责任人
-		$form.find(":input[name='e.chargerName']").click(function() {
+		$form.find("#selectChargerName").click(function() {
 			var selecteds = $form.find(":input[name='e.chargerName']").val();
 			bs.selectCharger({
 				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
@@ -166,7 +166,7 @@ bc.caseBusinessForm = {
 		});
 		
 		// 接案人
-		$form.find(":input[name='e.receiverName']").click(function(){
+		$form.find("#selectReceiverName").click(function(){
 			bc.identity.selectUser({
 				history: false,
 				selecteds: $form.find(":input[name='e.receiverName']").val(),

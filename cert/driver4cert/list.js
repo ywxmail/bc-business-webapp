@@ -22,7 +22,7 @@ bc.certdriverList = {
 			})
 		}
 		var id;
-		if(option != null && option.extras.carManId){
+		if(option != null && option.extras && option.extras.carManId){
 			id = '?carManId='+option.extras.carManId;
 		}
 		bc.page.newWin({
