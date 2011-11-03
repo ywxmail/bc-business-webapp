@@ -22,7 +22,7 @@ bc.certcarList = {
 			})
 		}
 		var id;
-		if(option != null && option.extras.carId){
+		if(option != null && option.extras && option.extras.carId){
 			id = '?carId='+option.extras.carId;
 		}
 		var $B = bc.page.newWin({

@@ -102,7 +102,7 @@
 				<legend>其他信息</legend>
 				<table class="formFields" cellspacing="2" cellpadding="0">
 					<tbody>
-						<tr style="height: 1px;">
+						<tr style="line-height: 1px;">
 							<td style="width: 80px;">&nbsp;</td>
 							<td style="width: 270px;">&nbsp;</td>
 							<td style="width: 85px;">&nbsp;</td>

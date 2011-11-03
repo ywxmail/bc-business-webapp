@@ -9,14 +9,21 @@
 		<div class="formFields ui-widget-content"  style="width:710px;">
 			<table class="formFields" cellspacing="2" cellpadding="0">
 				<tbody>
+					<tr class="widthMarker">
+						<td >&nbsp;</td>
+						<td style="width: 200px;">&nbsp;</td>
+						<td style="width: 60px;">&nbsp;</td>
+						<td style="width: 220px;">&nbsp;</td>
+					</tr>
 					<tr>
 						<td class="label">*<s:text name="contract.code"/>:</td>
 						<td class="value "><s:textfield name="e.code" data-validate="required" readonly="true" /></td>
 						<td class="label">*<s:text name="contract.signDate"/>:</td>
-						<td class="value">
+						<td class="value" style="position:relative;display: block;">
 							<input type="text" name="e.signDate" data-validate='{"type":"date","required":true}'
 							value='<s:date format="yyyy-MM-dd" name="e.signDate" />'
 							class="bc-date" data-cfg='{changeYear:true}'/>
+							<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectSignDate"></span>
 						</td>
 					</tr>
 					<tr>
@@ -26,14 +33,20 @@
 						</td>
 						<td class="label">*<s:text name="contract.deadline"/>:</td>
 						<td class="value">
+							<span style="position:relative;">
 							&nbsp;从
-							<input type="text" name="e.startDate" data-validate='{"type":"date","required":true}'
-							value='<s:date format="yyyy-MM-dd" name="e.startDate" />'
-							style="max-width: 6.5em;" readonly="readonly" />
+								<input type="text" name="e.startDate" data-validate='{"type":"date","required":true}'
+								value='<s:date format="yyyy-MM-dd" name="e.startDate" />'
+								style="max-width: 7em;" readonly="readonly" />
+								<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectStartDate"></span>
+							</span>
 							&nbsp;到
-							<input type="text" name="e.endDate" data-validate='{"type":"date","required":true}'
-							value='<s:date format="yyyy-MM-dd" name="e.endDate" />'
-							style="max-width: 6.5em;" readonly="readonly" />
+							<span style="position:relative;">
+								<input type="text" name="e.endDate" data-validate='{"type":"date","required":true}'
+								value='<s:date format="yyyy-MM-dd" name="e.endDate" />'
+								style="max-width: 7em;" readonly="readonly" />
+								<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectEndDate"></span>
+							</span>
 						</td>
 					</tr>
 					<tr>
@@ -42,14 +55,15 @@
 							<s:select name="e.businessType" list="businessTypeList" listKey="value" listValue="value"  data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" ></s:select>
 						</td>
 						<td class="label">*<s:text name="contract.transactor"/>:</td>
-						<td class="value ">
+						<td class="value" style="position:relative;display: block;">
 							<s:textfield name="e.transactorName" data-validate="required" readonly="true"	
 							title='%{getText("contract.select.transactor")}' />
+							<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectTransactorName"></span>
 						</td>
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="contract.car"/>:</td>
-						<td class="value ">
+						<td class="value" style="position:relative;display: block;">
 							<!-- 
 								<s:if test="!e.isNew()">
 									<s:textfield name="ext_str1_temp" value="%{e.ext_str1}" data-validate="required" disabled="true" />
@@ -57,6 +71,7 @@
 								</s:if>
 							 -->
 							<s:textfield name="e.ext_str1" data-validate="required" title='%{getText("contract.title.click2selectCar")}' readonly="true" />
+							<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectCarPlate"></span>
 						</td>
 						<td class="label"><s:text name="contract.wordNo"/>:</td>
 						<td class="value "><s:textfield name="e.wordNo" /></td>
@@ -122,25 +137,25 @@
 				</div>
 			</div>
 			<div class="contentContainer ui-helper-reset ui-widget-content">
-				<div id="contractContents" class="content active" style="width:710px;">
+				<div id="contractContents" class="content active" >
 					<div class="formEditor">
-						<s:textarea name="e.content" cssClass="bc-editor" data-validate="required"
-							 data-ptype="contractCharger.editor" data-puid='${e.uid}' 
-							 data-readonly='${e.id == null ? "false" : "true"}'
-							 >
-						</s:textarea>
+						<textarea name="e.content" class="bc-editor" style="width: 690px;height:215px" data-validate="required"
+							 data-ptype="contractCharger" data-puid='${e.uid}' 
+							 data-readonly='${readonly}'>
+							 ${e.content}
+						</textarea>
 					</div>
 				</div>
-				<div id="contractOldContents" class="content" style="width:710px;">
+				<div id="contractOldContents" class="content" >
 					<div class="formEditor">
-						<s:textarea name="e.oldContent" cssClass="bc-editor" cssStyle="width: 680px;height:280px" data-validate="required"
-							 data-ptype="contractCharger.editor" data-puid='${e.uid}' 
-							 data-readonly='${e.id == null ? "false" : "true"}'
-							 >
-						</s:textarea>
+						<textarea name="e.oldContent" class="bc-editor" style="width: 690px;height:215px" data-validate="required"
+							 data-ptype="contractCharger" data-puid='${e.uid}' 
+							 data-readonly='${readonly}'>
+							 ${e.content}
+						</textarea>
 					</div>
 				</div>
-				<div id="attachment" class="content" style="width:710px;">
+				<div id="attachment" class="content" >
 					<s:property value="%{attachsUI}" escapeHtml="false"/>
 				</div>
 			</div>

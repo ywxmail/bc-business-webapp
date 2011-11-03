@@ -9,20 +9,21 @@
 		<div class="formFields ui-widget-content" style="width:800px;">
 			<table class="formFields" cellspacing="2" cellpadding="0">
 				<tbody>
-					<tr style="line-height: 1px;">
+					<tr class="widthMarker">
 						<td></td>
-						<td style="width: 350px;">&nbsp;</td>
-						<td style="width: 60px;">&nbsp;</td>
-						<td style="width: 350px;">&nbsp;</td>
+						<td style="width: 200px;">&nbsp;</td>
+						<td style="width: 80px;">&nbsp;</td>
+						<td style="width: 200px;">&nbsp;</td>
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="runcase.code" />:</td>
 						<td class="value "><s:textfield name="e.code" data-validate="required" readonly="true" /></td>
 						<td class="label">*<s:text name="runcase.receiveDate3"/>:</td>
-						<td class="value">
+						<td class="value" style="position:relative;display: block;">
 							<input type="text" name="e.receiveDate" data-validate='{"type":"datetime","required":true}'
 							value='<s:date format="yyyy-MM-dd HH:mm" name="e.receiveDate" />'
 							class="bc-datetime" data-cfg='{changeYear:true}'/>
+							<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectReceiveDate"></span>
 						</td>
 					<tr>
 						<td class="label"><s:text name="runcase.receiveCode"/>:</td>
@@ -31,7 +32,7 @@
 						<td class="value ">
 							<s:select list="#{0:getText('runcase.select.complain'),1:getText('runcase.select.suggest')}"
 								 cssStyle="width:100%;height:100%;" value="selected" data-validate="required"
-								multiple="%{multiple}" />
+								multiple="%{multiple}" name="e.adviceType" />
 							</td>
 					</tr>
 					<tr>
@@ -54,10 +55,11 @@
 										</div>
 										</td>
 										<td class="label">*<s:text name="runcase.happenDate"/>:</td>
-										<td class="value">
+										<td class="value" style="position:relative;display: block;">
 											<input type="text" name="e.happenDate" data-validate='{"type":"datetime","required":true}'
 											value='<s:date format="yyyy-MM-dd HH:mm" name="e.happenDate" />'
 											class="bc-datetime" data-cfg='{changeYear:true}'/>
+											<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectHappenDate"></span>
 										</td>
 						    		</tr>
 						    		<tr>
@@ -134,7 +136,10 @@
 											<tr>
 								               	<td class="label"><s:text name="runcase.carPlate"/>:</td>
 												<td class="value">
-													<s:textfield name="e.carPlate" readonly="true" />
+													<span style="position:relative;">
+														<s:textfield name="e.carPlate" readonly="true" />
+														<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectCarPlate"></span>
+													</span>
 												</td>
 												<td class="label">
 													<s:text name="runcase.carColor"/>:
@@ -146,8 +151,11 @@
 							               <tr>
 							               		<td class="label"><s:text name="runcase.driverName" />:</td>
 												<td class="value" colspan="3">
-													<s:textfield name="e.driverName" cssStyle="width:9em;" />
-													 <s:radio name="e.driverSex" list="#{'1':'男','2':'女'}" 
+													<span style="position:relative;">
+														<s:textfield name="e.driverName" cssStyle="width:9em;" />
+														<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectDriverName" style="right: 9px"></span>
+													</span>
+													<s:radio name="e.driverSex" list="#{'1':'男','2':'女'}" 
 													value="e.sex" cssStyle="width:auto;"/>
 												</td>
 						                   </tr>
@@ -200,10 +208,10 @@
 									<fieldset>
 						          		<legend>补充信息</legend>
 						          		<table class="formFields" cellspacing="2" cellpadding="0" style="height:100px;">
-						          			<tr style="line-height: 1px;">
+											<tr class="widthMarker">
 												<td></td>
 												<td style="width: 200px;">&nbsp;</td>
-												<td style="width: 90px;">&nbsp;</td>
+												<td style="width: 80px;">&nbsp;</td>
 												<td style="width: 200px;">&nbsp;</td>
 											</tr>
 						          			<tr>
@@ -221,13 +229,19 @@
 											<tr>
 												<td class="label"><s:text name="runcase.ridingTime"/>:</td>
 												<td class="value">
-													<input type="text" name="e.ridingStartTime	" data-validate='{"type":"datetime"}'
-													value='<s:date format="yyyy-MM-dd HH:mm" name="e.ridingStartTime" />'
-													class="bc-datetime" data-cfg='{changeYear:true}' style="max-width: 8em;"/>
+													<span style="position:relative;">
+														<input type="text" name="e.ridingStartTime" data-validate='{"type":"datetime"}'
+														value='<s:date format="yyyy-MM-dd HH:mm" name="e.ridingStartTime" />'
+														class="bc-datetime" data-cfg='{changeYear:true}' style="max-width: 8em;"/>
+														<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectRidingStartTime"></span>
+													</span>
 													&nbsp;到
-													<input type="text" name="e.ridingEndTime" data-validate='{"type":"datetime"}'
-													value='<s:date format="yyyy-MM-dd HH:mm" name="e.ridingEndTime" />'
-													class="bc-datetime" data-cfg='{changeYear:true}' style="max-width: 8em;"/>
+													<span style="position:relative;">
+														<input type="text" name="e.ridingEndTime" data-validate='{"type":"datetime"}'
+														value='<s:date format="yyyy-MM-dd HH:mm" name="e.ridingEndTime" />'
+														class="bc-datetime" data-cfg='{changeYear:true}' style="max-width: 8em;"/>
+														<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectRidingEndTime"></span>
+													</span>
 												</td>
 												<td class="label"><s:text name="runcase.charge"/>:</td>
 												<td class="value"><s:textfield name="e.charge" /></td>
@@ -258,10 +272,10 @@
 				<div id="otherFormFields2" class="content" style="width:800px;">
 					<table class="formFields" cellspacing="2" cellpadding="0" >
 						<tbody>
-							<tr style="line-height: 1px;">
-								<td>&nbsp;</td>
+							<tr class="widthMarker">
+								<td></td>
 								<td style="width: 200px;">&nbsp;</td>
-								<td style="width: 90px;">&nbsp;</td>
+								<td style="width: 80px;">&nbsp;</td>
 								<td style="width: 200px;">&nbsp;</td>
 							</tr>
 							<tr>
@@ -270,29 +284,34 @@
 								<s:select name="e.extent" list="degreeList" listKey="value" listValue="value" headerKey="" headerValue="" cssStyle="width:20.5em;" ></s:select>
 								</td>
 								<td class="label"><s:text name="runcase.receiverName2"/>:</td>
-								<td class="value "><s:textfield name="e.receiverName" style="width:20em;" /></td>
+								<td class="value" style="position:relative;display: block;">
+									<s:textfield name="e.receiverName" style="width:20em;"/>
+									<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectReceiverName" style="right: 40px;"></span>
+								</td>
 							</tr>
 							<tr>
 								<td class="label" ><s:text name="runcase.duty"/>:</td>
-								<td class="value" >
+								<td class="value">
 									<s:select name="e.duty" list="dutyList" listKey="value" listValue="value"  headerKey="" headerValue="" cssStyle="width:16em;"  ></s:select>
 									<s:checkbox name="e.invalid" cssStyle="width:1em;" />
 									<s:text name="runcase.invalid"/>
 								</td>
 								<td class="label"><s:text name="runcase.noticeDate"/>:</td>
-								<td class="value">
+								<td class="value" style="position:relative;display: block;">
 									<input type="text" name="e.noticeDate" data-validate='{"type":"datetime"}'
 									value='<s:date format="yyyy-MM-dd HH:mm" name="e.noticeDate" />'
 									class="bc-datetime" data-cfg='{changeYear:true}' style="width:20em;" />
+									<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectNoticeDate" style="right: 40px;"></span>
 								</td>
 							</tr>
 							<s:if test="e.status == 1">
 							<tr>
 								<td class="label"><s:text name="runcase.deliverDate3"/>:</td>
-								<td class="value">
+								<td class="value" style="position:relative;display: block;">
 									<input type="text" name="e.deliverDate" data-validate='{"type":"datetime"}' 
 									value='<s:date format="yyyy-MM-dd HH:mm" name="e.deliverDate" />'
 									class="bc-datetime" data-cfg='{changeYear:true}' style="width:20em;"/>
+									<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectDeliverDate" style="right: 40px;"></span>
 								</td>
 								<td></td>
 								<td></td>

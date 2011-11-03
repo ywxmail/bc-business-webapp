@@ -9,19 +9,26 @@
 		<div class="formFields ui-widget-content"  style="width:710px;">
 			<table class="formFields" cellspacing="2" cellpadding="0">
 				<tbody>
+					<tr class="widthMarker">
+						<td >&nbsp;</td>
+						<td style="width: 200px;">&nbsp;</td>
+						<td style="width: 80px;">&nbsp;</td>
+						<td style="width: 200px;">&nbsp;</td>
+					</tr>
 					<tr>
 						<td class="label">*<s:text name="contract.code"/>:</td>
-						<td class="value "><s:textfield name="e.code" data-validate="required" readonly="true" /></td>
+						<td class="value"><s:textfield name="e.code" data-validate="required" readonly="true" /></td>
 						<td class="label">*<s:text name="contract.signDate"/>:</td>
-						<td class="value">
+						<td class="value" style="position:relative;display: block;">
 							<input type="text" name="e.signDate" data-validate='{"type":"date","required":true}'
 							value='<s:date format="yyyy-MM-dd" name="e.signDate" />'
-							class="bc-date" data-cfg='{changeYear:true}'/>
+							class="bc-date ui-widget-content" data-cfg='{changeYear:true}'/>
+							<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectSignDate"></span>
 						</td>
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="contract.labour.driver"/>:</td>
-						<td class="value ">
+						<td class="value">
 						<!--
 							<s:if test="!e.isNew()">
 								<s:textfield name="ext_str2_temp" value="%{e.ext_str2}" data-validate="required" disabled="true" />
@@ -31,24 +38,34 @@
 								<s:textfield name="e.ext_str2" data-validate="required" title='%{getText("cert.title.click2selectCar")}' readonly="true" />
 							</s:else>
 						 -->
-						 	<s:textfield name="e.ext_str2" data-validate="required" title='%{getText("contract.title.click2selectCarMan")}' readonly="true" />
+						 	<span style="position:relative;">
+						 		<s:textfield name="e.ext_str2" data-validate="required" title='%{getText("contract.title.click2selectCarMan")}' readonly="true" />
+								<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectDriverName"></span>
+							</span>
 						</td>
 						<td class="label">*<s:text name="contract.deadline"/>:</td>
-						<td class="value">
+						<td class="value" >
+							<span style="position:relative;">
 							&nbsp;从
-							<input type="text" name="e.startDate" data-validate='{"type":"date","required":true}' 
-							value='<s:date format="yyyy-MM-dd" name="e.startDate" />'
-							style="max-width: 6.5em;" />
+								<input type="text" name="e.startDate" data-validate='{"type":"date","required":true}' 
+								value='<s:date format="yyyy-MM-dd" name="e.startDate" />'
+								style="max-width: 7em;" />
+								<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectStartDate"></span>
+							</span>
+							<span style="position:relative;">
 							&nbsp;到
-							<input type="text" name="e.endDate" data-validate='{"type":"date","required":true}'
-							value='<s:date format="yyyy-MM-dd" name="e.endDate" />'
-							style="max-width: 6.5em;" />
+								<input type="text" name="e.endDate" data-validate='{"type":"date","required":true}'
+								value='<s:date format="yyyy-MM-dd" name="e.endDate" />'
+								style="max-width: 7em;" />
+								<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectEndDate"></span>
+							</span>
 						</td>
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="contract.car" />:</td>
-						<td class="value ">
+						<td class="value" style="position:relative;display: block;">
 							<s:textfield name="e.ext_str1" data-validate="required" readonly="true" title='%{getText("contract.title.click2selectCar")}' />
+							<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectCarPlate"></span>
 						</td>
 						<td class="label">*<s:text name="contract.transactor"/>:</td>
 						<td class="value ">
@@ -90,10 +107,10 @@
 				</div>
 			</div>
 			<div class="contentContainer ui-helper-reset ui-widget-content">
-				<div id="otherFormFields" class="content active" style="width:710px;">
+				<div id="otherFormFields" class="content active" >
 					<table class="formFields" cellspacing="2" cellpadding="0" >
 						<tbody>
-							<tr style="height: 1px;">
+							<tr style="line-height: 1px;">
 								<td style="width: 100px;">&nbsp;</td>
 								<td style="width: 300px;">&nbsp;</td>
 								<td >&nbsp;</td>
@@ -101,7 +118,7 @@
 							</tr>
 							<tr>
 								<td class="label"><s:text name="contract.labour.preIndustryName"/>:</td>
-								<td class="value" colspan="2"><s:textfield name="e.preIndustryName" cssStyle="width:43em;" /></td>
+								<td class="value" colspan="2"><s:textfield name="e.preIndustryName" cssStyle="width:45em;" /></td>
 								<td>&nbsp;</td>
 							</tr>
 							<tr>
@@ -125,13 +142,13 @@
 						</tbody>
 					</table>
 				</div>
-				<div id="contractContents" class="content" style="width:710px;">
+				<div id="contractContents" class="content" >
 					<div class="formEditor">
-						<s:textarea name="e.content" cssClass="bc-editor" cssStyle="width: 680px;height:280px" data-validate="required"
+						<textarea name="e.content" class="bc-editor" style="width: 690px;height:215px" data-validate="required"
 							 data-ptype="contractLabour.editor" data-puid='${e.uid}' 
-							 data-readonly='${e.id == null ? "false" : "true"}'
-							 >
-						</s:textarea>
+							 data-readonly='${readonly}'>
+							 ${e.content}
+						</textarea>
 					</div>
 				</div>
 				<div id="attachment"  class="content"style="width:710px;">

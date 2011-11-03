@@ -9,7 +9,7 @@ bc.contractChargerForm = {
 		if(readonly) return;
 		
 		/* 选择车辆车牌*/
-		$form.find(":input[name='e.ext_str1']").click(function() {
+		$form.find("#selectCarPlate").click(function() {
 			var selecteds = $form.find(":input[name='carId']").val();
 			bs.selectCar({
 				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
@@ -21,7 +21,7 @@ bc.contractChargerForm = {
 		});
 		
 		/* 选择经办人*/
-		$form.find(":input[name='e.transactorName']").click(function(){
+		$form.find("#selectTransactorName").click(function(){
 			bc.identity.selectUser({
 				history : false,
 				selecteds: $form.find(":input[name='e.transactorId']").val(),
