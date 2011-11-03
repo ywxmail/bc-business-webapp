@@ -75,7 +75,7 @@
 						&nbsp;&nbsp;*<s:text name="runcase.driverCert" />:<s:textfield name="e.driverCert"  data-validate="required" cssStyle="width:10em;"/></td>
 					    </s:if><s:else>
 					    <td class="label">*<s:text name="runcase.driverName"/>:</td>
-						<td class="value"><s:textfield name="e.driverName" cssStyle="width:8em;"  cssStyle="width:8em;" readonly="true"/>
+						<td class="value"><s:textfield name="e.driverName" cssStyle="width:8em;"  readonly="true"/>
 						&nbsp;&nbsp;*<s:text name="runcase.driverCert" />:<s:textfield name="e.driverCert"  data-validate="required" cssStyle="width:10em;"/></td>
 					     </s:else>
 						<td class="label"><s:text name="runcase.department"/>:</td>

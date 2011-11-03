@@ -14,69 +14,87 @@
 						<td class="value " colspan="3"><s:textfield name="e.subject"  data-validate="required" /></td>
 					</tr>
 					<tr>
-					<td class="label">*<s:text name="blacklist.driver"/>:</td>
-					<s:if test="%{carManId != null}">
-						<td class="value"><s:textfield name="e.driver.name" readonly="true"  data-validate="required"/></td>
-					</s:if><s:else>
-					<td class="value"><s:textfield name="e.driver.name"  title='%{getText("blacklist.title.click2selectCarMan")}' id="driverName" data-validate="required"/></td>
-					</s:else>
-					    <td class="label">*<s:text name="blacklist.unit"/>:</td>
-						<td class="value"><s:textfield name="e.oldUnitName"   readonly="true" data-validate="required"/></td>
-					</tr>
-					<tr>
-						<td class="label"> *<s:text name="blacklist.car.plateNo"/>:</td>
-						<td class="value "><s:textfield name="plate"  value="%{e.car.plateType+e.car.plateNo }" readonly="true" data-validate="required"/></td>
-						<td class="label">*<s:text name="blacklist.motorcade.name"/>:</td>
+					   <td class="label">*<s:text name="blacklist.car.plateNo"/>:</td>
+					<s:if test="%{carManId != null || carId !=null }">
+						<td class="value"><s:textfield name="plate" value="%{e.car.plateType+e.car.plateNo }" readonly="true" cssClass="ui-state-disabled"/></td>
+					    </s:if><s:else>
+						<td class="value" style="position:relative;display: block;"><s:textfield name="plate" value="%{e.car.plateType+e.car.plateNo }"
+					    data-validate="required" cssClass="ui-widget-content" readonly="true"/>
+					    <span id="selectCar" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></span>
+					    </td>
+					    </s:else>
+					    <td class="label">*<s:text name="blacklist.motorcade.name"/>:</td>
 						<td class="value"><s:textfield name="e.car.motorcade.name" readonly="true" data-validate="required"/></td>
 					</tr>
 					<tr>
-						<td class="label">*<s:text name="blacklist.type"/>:</td>
-						<td class="value" ><s:select list="blackTypeList" listKey="value" listValue="value"   headerKey="" headerValue="%{getText('label.please.choose')}" name="e.type" style="width:267px" data-validate="required"></s:select></td>
+						<td class="label">*<s:text name="blacklist.driver"/>:</td>
+					<s:if test="%{carManId != null}">
+						<td class="value"><s:textfield name="e.driver.name" readonly="true"  data-validate="required"/></td>
+					</s:if><s:else>
+					    <td class="value"><s:textfield name="e.driver.name"  id="driverName" data-validate="required"/></td>
+					</s:else>
 						<td class="label"><s:text name="blacklist.code"/>:</td>
 						<td class="value"><s:textfield name="e.code"  /></td>
 					</tr>
 					<tr>
-						<td class="label" ><s:text name="blacklist.level"/>:</td>
-						<td class="value" ><s:select list="blackLevelList" listKey="value" listValue="value"   headerKey="" headerValue="%{getText('label.please.choose')}" name="e.level" style="width:267px" ></s:select></td>
+						<td class="label">*<s:text name="blacklist.type"/>:</td>
+						<td class="value" ><s:select list="blackTypeList" listKey="value" listValue="value"   headerKey="" headerValue="%{getText('label.please.choose')}" name="e.type" style="width:267px" data-validate="required"></s:select></td>
+						<td class="label"><s:text name="blacklist.unit"/>:</td>
+						<td class="value"><s:textfield name="e.oldUnitName"   readonly="true" /></td>
 					</tr>
 					<tr>
-						<td class="label" colspan="2">
+						<td class="label" ><s:text name="blacklist.level"/>:</td>
+						<td class="value" ><s:select list="blackLevelList" listKey="value" listValue="value"   headerKey="" headerValue=""  name="e.level" style="width:267px" ></s:select></td>
+					</tr>
+					<tr>
+						<td class="label" colspan="2" style="text-align:left;">
 						    <fieldset style="width:320px">
 						          <legend>锁定信息</legend>
 						          <table class="formFields" cellspacing="2" cellpadding="0" style="height:200px">
-						               <tr>
-						                   <td class="label" >*<s:text name="blacklist.lockDate"/>:</td>
-						                   <td class="value"><input type="text" name="e.lockDate"  class="bc-date" title='<s:text name="title.click2selectDate"/>'
-						                    value='<s:date format="yyyy-MM-dd" name="e.lockDate" />' data-validate="required"/></td>
-					                   </tr>
+						          <s:if test="%{e.status==2||e.status==0||e.status==1}">
+						              <tr>
+					                      <td class="label"><s:text name="blacklist.locker.name"/>:</td>
+					                      <td><s:property value="e.locker.name" />(<s:date name="e.lockDate" format="yyyy-MM-dd HH:mm:ss"/>)</td>
+					                  </tr>
+					               </s:if>
 					                   <tr>
-						                   <td class="label">*<s:text name="blacklist.locker.name"/>:</td>
-						                   <td class="value" ><s:textfield name="e.locker.name" title='%{getText("blacklist.title.click2selectlocker")}' data-validate="required"/></td>
+						                   <td class="label">*<s:text name="blacklist.lockReason"/>:</td>
+						                   <td class="value"  rowspan="10"><s:textarea name="e.lockReason" rows="10" data-validate="required"/></td>
 					                   </tr>
-					                   <tr>
-						                   <td class="label"><s:text name="blacklist.lockReason"/>:</td>
-						                   <td class="value"  rowspan="10"><s:textarea name="e.lockReason" rows="10"/></td>
-					                   </tr>
+					                  
 						          </table>
 						   </fieldset>
 						</td>
-						<td class="value" colspan="2">
+						<td class="value" colspan="2" >
 						    <fieldset style="width:320px">
 						          <legend>解锁信息</legend>
-						          <table class="formFields" cellspacing="2" cellpadding="0" style="height:200px">
-						              <tr>
-						                  <td class="label" ><s:text name="blacklist.unlockDate"/>:</td>
-						                  <td class="value"><input type="text" name="e.unlockDate"  class="bc-date" title='<s:text name="title.click2selectDate"/>'
-						                   value='<s:date format="yyyy-MM-dd" name="e.unlockDate" />'/></td>
-					                  </tr>
-					                  <tr>
-						                  <td class="label"><s:text name="blacklist.unlocker.name"/>:</td>
-						                  <td class="value" ><s:textfield name="e.unlocker.name" title='%{getText("blacklist.title.click2selectunlocker")}' /></td>
-					                  </tr>
-					                  <tr>
-						                  <td class="label"><s:text name="blacklist.unlockReason"/>:</td>
-						                  <td class="value" rowspan="10" ><s:textarea name="e.unlockReason" rows="10" cols=""/></td>
-					                  </tr>
+						          <table class="formFields" cellspacing="2" cellpadding="0" style="height:200px" >
+ 						          <s:if test="%{e.status==1}">
+						               <tr>
+					                      <td class="label"><s:text name="blacklist.unlocker.name"/>:</td>
+					                      <td><s:property value="e.unlocker.name" />(<s:date name="e.unlockDate" format="yyyy-MM-dd HH:mm:ss"/>)</td>
+					                   </tr>
+					                   <tr>
+						                    <td class="label"><s:text name="blacklist.unlockReason"/>:</td>
+						                    <td class="value" rowspan="10" ><s:textarea name="e.unlockReason" rows="10"  /></td>
+					                      </tr>
+					               </s:if><s:elseif test="%{e.status==2}" >
+					                     <tr>
+					                        <td class="label" style="height:19px "></td>
+					                     </tr>
+					                     <tr>
+						                    <td class="label"><s:text name="blacklist.unlockReason"/>:</td>
+						                    <td class="value" rowspan="10" ><s:textarea name="e.unlockReason" rows="10"  /></td>
+					                      </tr>
+					                     </s:elseif><s:else >
+					                      <tr>
+					                        <td class="label" style="height:19px "></td>
+					                      </tr>
+					                      <tr>
+						                    <td class="label">*<s:text name="blacklist.unlockReason"/>:</td>
+						                    <td class="value" rowspan="10" ><s:textarea name="e.unlockReason" rows="10" data-validate="required"/></td>
+					                      </tr>
+					                   </s:else>
 						        </table>
 						    </fieldset>
 						</td>
@@ -84,6 +102,11 @@
 				</tbody>
 			</table>
 			<div class="formTopInfo">
+			        <s:if test="%{e.status == 2}">
+			               状态：新建
+			        </s:if><s:else>
+			               状态：<s:property value="%{statusesValue[e.status]}" /> ,
+			               </s:else>
 					登记：<s:property value="e.author.name" />(<s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>)
 					<s:if test="%{e.modifier != null}">
 					最后修改：<s:property value="e.modifier.name" />(<s:date name="e.modifiedDate" format="yyyy-MM-dd HH:mm:ss"/>)
@@ -98,6 +121,15 @@
 		<s:hidden name="e.author.id" />
 		<s:hidden name="e.motorcade.id" />
 		<s:hidden name="e.modifier.id"/>
+		<s:hidden name="e.status"/>
+		<s:hidden name="isNullCarMan" />
+		<s:hidden name="isNullCar" />
+		<s:hidden name="isMoreCar" />
+		<s:hidden name="isMoreCarMan" />
+		<s:hidden name="carManId" />
+		<s:hidden name="carId" />
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
+		<input type="hidden" name="e.lockDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.lockDate" />'/>
+		<input type="hidden" name="e.unlockDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.unlockDate" />'/>
 	</s:form>
 </div>

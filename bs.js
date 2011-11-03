@@ -236,7 +236,7 @@ bs.findInfoByCar = function(option) {
 					option.success.call(json,{
 						car: json.car,
 						motorcade: json.motorcade,
-						dirver: drivers[driversEl.selectedIndex]
+						driver: drivers[driversEl.selectedIndex]
 					});
 					//销毁对话框
 					html.dialog("destroy").remove();
