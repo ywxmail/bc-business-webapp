@@ -11,8 +11,10 @@
 				<tbody>
 					<tr>
 						<td class="label">*<s:text name="motorcade.unit"/>:</td>
-						<td class="value"><s:textfield name="e.unit.name" data-validate="required"
-							readonly="true" title='%{getText("motorcade.title.click2selectUnit")}'/></td>
+						<td class="value" style="position:relative;display: block;"><s:textfield name="e.unit.name" data-validate="required"
+							readonly="true"/>
+							<span id="selectBelong" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></span>
+						</td>
 						<td class="label"><s:text name="motorcade.paymentDate"/>:</td>
 						<td class="value">
 							<s:select name="e.paymentDate" list="paymentDates" listKey="key" listValue="value"></s:select>
@@ -25,9 +27,11 @@
 						<td class="value"><s:textfield name="e.phone" data-validate='{required:false,type:"phone"}' /></td>
 					</tr>
 					<tr>
-						<td class="label"><s:text name="motorcade.principal"/>:</td>
-						<td class="value"><s:textfield name="e.principalName"
-							readonly="true" title='%{getText("motorcade.title.click2selectPrincipal")}'/></td>
+						<td class="label">*<s:text name="motorcade.principal"/>:</td>
+						<td class="value" style="position:relative;display: block;"><s:textfield name="e.principalName" data-validate='required'
+							readonly="true"/>
+							<span id="selectPrincipal" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></span>
+						</td>
 						<td class="label"><s:text name="motorcade.fax"/>:</td>
 						<td class="value"><s:textfield name="e.fax"  data-validate='{required:false,type:"phone"}'/></td>
 					</tr>

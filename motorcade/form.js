@@ -5,7 +5,7 @@ bc.business.motorcadeForm = {
 	init : function() {
 		var $form = $(this);
 		// 绑定选择所属单位的按钮事件处理
-		$form.find(":input[name='e.unit.name']").click(function() {
+		$form.find("#selectBelong").click(function() {
 			bc.identity.selectUnit({
 				selecteds: $form.find(":input[name='e.unit.id']").val(),
 				onOk: function(unit){
@@ -16,7 +16,7 @@ bc.business.motorcadeForm = {
 		});
 
 		// 选择负责人
-		$form.find(":input[name='e.principalName']").click(function() {
+		$form.find("#selectPrincipal").click(function() {
 			bc.identity.selectUser({
 				history:false,
 				selecteds: $form.find(":input[name='e.principalId']").val(),
