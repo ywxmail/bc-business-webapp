@@ -69,13 +69,13 @@
 						    <fieldset style="width:320px">
 						          <legend>解锁信息</legend>
 						          <table class="formFields" cellspacing="2" cellpadding="0" style="height:200px" >
- 						          <s:if test="%{e.status==1}">
+ 						          <s:if test="%{e.status==1||e.status==0}">
 						               <tr>
 					                      <td class="label"><s:text name="blacklist.unlocker.name"/>:</td>
 					                      <td><s:property value="e.unlocker.name" />(<s:date name="e.unlockDate" format="yyyy-MM-dd HH:mm:ss"/>)</td>
 					                   </tr>
 					                   <tr>
-						                    <td class="label"><s:text name="blacklist.unlockReason"/>:</td>
+						                    <td class="label">*<s:text name="blacklist.unlockReason"/>:</td>
 						                    <td class="value" rowspan="10" ><s:textarea name="e.unlockReason" rows="10"  /></td>
 					                      </tr>
 					               </s:if><s:elseif test="%{e.status==2}" >
