@@ -51,17 +51,14 @@
 						    <fieldset style="width:320px">
 						          <legend>锁定信息</legend>
 						          <table class="formFields" cellspacing="2" cellpadding="0" style="height:200px">
-						          <s:if test="%{e.status==2||e.status==0||e.status==1}">
 						              <tr>
 					                      <td class="label"><s:text name="blacklist.locker.name"/>:</td>
 					                      <td><s:property value="e.locker.name" />(<s:date name="e.lockDate" format="yyyy-MM-dd HH:mm:ss"/>)</td>
 					                  </tr>
-					               </s:if>
 					                   <tr>
 						                   <td class="label">*<s:text name="blacklist.lockReason"/>:</td>
 						                   <td class="value"  rowspan="10"><s:textarea name="e.lockReason" rows="10" data-validate="required"/></td>
 					                   </tr>
-					                  
 						          </table>
 						   </fieldset>
 						</td>
@@ -69,8 +66,16 @@
 						    <fieldset style="width:320px">
 						          <legend>解锁信息</legend>
 						          <table class="formFields" cellspacing="2" cellpadding="0" style="height:200px" >
- 						          <s:if test="%{e.status==1||e.status==0}">
-						               <tr>
+ 						          <s:if test="e.isNew()" >
+ 						          <tr>
+					                        <td class="label" style="height:19px "></td>
+					                     </tr>
+					                     <tr>
+						                    <td class="label"><s:text name="blacklist.unlockReason"/>:</td>
+						                    <td class="value" rowspan="10" ><s:textarea name="e.unlockReason" rows="10"  /></td>
+					                      </tr>
+					               </s:if><s:else >
+					                      <tr>
 					                      <td class="label"><s:text name="blacklist.unlocker.name"/>:</td>
 					                      <td><s:property value="e.unlocker.name" />(<s:date name="e.unlockDate" format="yyyy-MM-dd HH:mm:ss"/>)</td>
 					                   </tr>
@@ -78,23 +83,7 @@
 						                    <td class="label">*<s:text name="blacklist.unlockReason"/>:</td>
 						                    <td class="value" rowspan="10" ><s:textarea name="e.unlockReason" rows="10"  /></td>
 					                      </tr>
-					               </s:if><s:elseif test="%{e.status==2}" >
-					                     <tr>
-					                        <td class="label" style="height:19px "></td>
-					                     </tr>
-					                     <tr>
-						                    <td class="label"><s:text name="blacklist.unlockReason"/>:</td>
-						                    <td class="value" rowspan="10" ><s:textarea name="e.unlockReason" rows="10"  /></td>
-					                      </tr>
-					                     </s:elseif><s:else >
-					                      <tr>
-					                        <td class="label" style="height:19px "></td>
-					                      </tr>
-					                      <tr>
-						                    <td class="label">*<s:text name="blacklist.unlockReason"/>:</td>
-						                    <td class="value" rowspan="10" ><s:textarea name="e.unlockReason" rows="10" data-validate="required"/></td>
-					                      </tr>
-					                   </s:else>
+					                     </s:else>
 						        </table>
 						    </fieldset>
 						</td>
@@ -102,7 +91,7 @@
 				</tbody>
 			</table>
 			<div class="formTopInfo">
-			        <s:if test="%{e.status == 2}">
+			        <s:if test="%{e.isNew()}">
 			               状态：新建
 			        </s:if><s:else>
 			               状态：<s:property value="%{statusesValue[e.status]}" /> ,
