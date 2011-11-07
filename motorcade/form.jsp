@@ -11,9 +11,16 @@
 				<tbody>
 					<tr>
 						<td class="label">*<s:text name="motorcade.unit"/>:</td>
-						<td class="value" style="position:relative;display: block;"><s:textfield name="e.unit.name" data-validate="required"
+						<td class="value relative"><s:textfield name="e.unit.name" data-validate="required"
 							readonly="true"/>
-							<span id="selectBelong" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></span>
+							<ul class="inputIcons">
+								<li class="selectUnit inputIcon ui-icon ui-icon-circle-plus" 
+									data-cfg='{"valueField":"e.unit.id","mapping":"e.unit.id=id,e.unit.name=name"}'
+									title='<s:text name="title.click2select"/>'></li>
+								<li class="clearSelect inputIcon ui-icon ui-icon-circle-close" 
+									data-cfg='e.unit.id,e.unit.name'
+									title='<s:text name="title.click2clear"/>'></li>
+							</ul>
 						</td>
 						<td class="label"><s:text name="motorcade.paymentDate"/>:</td>
 						<td class="value">
@@ -28,9 +35,16 @@
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="motorcade.principal"/>:</td>
-						<td class="value" style="position:relative;display: block;"><s:textfield name="e.principalName" data-validate='required'
+						<td class="value relative"><s:textfield name="e.principalName" data-validate='required'
 							readonly="true"/>
-							<span id="selectPrincipal" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></span>
+							<ul class="inputIcons">
+								<li class="selectUser inputIcon ui-icon ui-icon-circle-plus" 
+									data-cfg='{"valueField":"e.principalId","mapping":"e.principalId=id,e.principalName=name"}'
+									title='<s:text name="title.click2select"/>'></li>
+								<li class="clearSelect inputIcon ui-icon ui-icon-circle-close" 
+									data-cfg='e.principalId,e.principalName'
+									title='<s:text name="title.click2clear"/>'></li>
+							</ul>
 						</td>
 						<td class="label"><s:text name="motorcade.fax"/>:</td>
 						<td class="value"><s:textfield name="e.fax"  data-validate='{required:false,type:"phone"}'/></td>
