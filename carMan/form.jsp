@@ -7,13 +7,13 @@
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="carManForm" theme="simple">
 		<div class="formFields ui-widget-content" style="width:810px;">
-			<table class="formTable2 ui-widget-content" cellspacing="2" cellpadding="0">
-				    <tr class="widthMarke">
-                       <td >&nbsp;</td>
-                       <td style="width: 200px;">&nbsp;</td>
-                       <td style="width: 80px;">&nbsp;</td>
-                       <td style="width: 200px;">&nbsp;</td>
-                    </tr>
+			<table class="formFields" cellspacing="2" cellpadding="0">
+				    <tr style="line-height: 1px;">
+						<td >&nbsp;</td>
+						<td style="width: 200px;">&nbsp;</td>
+						<td style="width: 100px;">&nbsp;</td>
+						<td style="width: 200px;">&nbsp;</td>
+					</tr>
 					<tr>
 						<td class="label">*<s:text name="carMan.name"/>:</td>
 						<td class="value"><s:textfield name="e.name" cssStyle="width:8em;" data-validate="required"/><s:radio name="e.sex" list="#{'1':'男','2':'女'}" 
@@ -78,7 +78,7 @@
 			</table>
 		</div>
 		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset"
-			data-cfg="{height:300}" style="height:300px;width:794px;overflow: hidden;">
+			data-cfg="{height:300}" style="height:300px;width:810px;overflow: hidden;">
 	        <div class="tabsContainer">
            	 	<div class="slideContainer">
                 <ul class="tabs ui-helper-reset">
@@ -103,10 +103,16 @@
                 </ul>
             	</div>
 	        </div>
-	        <div class="contentContainer ui-helper-reset ui-widget-content"style="width:810px;">
-			<div id="otherFormFields" class="content active">
-				<table class="formFields" cellspacing="2" cellpadding="0" style="width:794px;">
+	        <div class="contentContainer ui-helper-reset ui-widget-content">
+			<div id="otherFormFields" class="content active" style="width:810px;">
+				<table class="formFields" cellspacing="2" cellpadding="0" >
 					<tbody>
+					    <tr style="line-height: 1px;">
+						   <td >&nbsp;</td>
+						   <td style="width: 200px;">&nbsp;</td>
+						   <td style="width: 100px;">&nbsp;</td>
+						   <td style="width: 200px;">&nbsp;</td>
+					    </tr>
 						<tr>
 							<td class="label w80"><s:text name="carMan.model"/>:</td>
 							<td class="value"><s:select list="carManModelList" listKey="value" listValue="value" headerKey="" headerValue="" name="e.model" style="width:208px"></s:select></td>
