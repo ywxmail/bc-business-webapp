@@ -72,11 +72,11 @@
 						<s:if test="%{carManId != null || carId !=null}">
 						<td class="label">*<s:text name="runcase.driverName"/>:</td>
 						<td class="value"><s:textfield name="e.driverName" cssStyle="width:8em;" readonly="true" cssClass="ui-state-disabled" />
-						&nbsp;&nbsp;*<s:text name="runcase.driverCert" />:<s:textfield name="e.driverCert"  data-validate="required" cssStyle="width:10em;"/></td>
+						&nbsp;&nbsp;*<s:text name="runcase.driverCert" />:<s:textfield name="e.driverCert"  data-validate="required" cssStyle="width:10em;" cssClass="ui-state-disabled"/></td>
 					    </s:if><s:else>
 					    <td class="label">*<s:text name="runcase.driverName"/>:</td>
 						<td class="value"><s:textfield name="e.driverName" cssStyle="width:8em;"  readonly="true"/>
-						&nbsp;&nbsp;*<s:text name="runcase.driverCert" />:<s:textfield name="e.driverCert"  data-validate="required" cssStyle="width:10em;"/></td>
+						&nbsp;&nbsp;*<s:text name="runcase.driverCert" />:<s:textfield name="e.driverCert"  data-validate="required" cssStyle="width:10em;" cssClass="ui-state-disabled"/></td>
 					     </s:else>
 						<td class="label"><s:text name="runcase.department"/>:</td>
 						<td class="value "><s:select name="e.department" list="departmentList" listKey="value" listValue="value"  headerKey="" headerValue=""  />
