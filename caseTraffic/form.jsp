@@ -17,7 +17,7 @@
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="runcase.subject"/>:</td>
-						<td class="value" colspan="3"><s:textfield name="e.subject" cssStyle="width:53.7em;" data-validate="required"/></td>
+						<td class="value" colspan="3"><s:textfield name="e.subject" cssStyle="width:51em;" data-validate="required"/></td>
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="runcase.address"/>:</td>
