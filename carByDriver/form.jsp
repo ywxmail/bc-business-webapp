@@ -48,8 +48,7 @@
 					</tr> -->
 					<tr>
 						<td class="label"><s:text name="carByDriver.statuses"/>:</td>
-						<td><s:radio name="e.status" list="statusesValueList" listKey="key"
-							value="e.status" cssStyle="width:auto;"/></td>
+						<td><s:radio name="e.status" list="#{'0':'在案','1':'注销'}" cssStyle="width:auto;"/></td>
 					</tr>
 					<tr>
 						<td class="topLabel" ><s:text name="carByDriver.description"/>:</td>
