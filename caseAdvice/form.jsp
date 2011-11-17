@@ -33,7 +33,7 @@
 							<s:select list="#{0:getText('runcase.select.complain'),1:getText('runcase.select.suggest')}"
 								 cssStyle="width:100%;height:100%;" value="selected" data-validate="required"
 								multiple="%{multiple}" name="e.adviceType" />
-							</td>
+						</td>
 					</tr>
 					<tr>
 						<td class="label" colspan="4">

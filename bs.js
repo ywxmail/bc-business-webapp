@@ -168,18 +168,23 @@ bs.selectCar = function(option) {
  * @option {String} carPlate 车牌号，如"粤A.E1P11"，如果指定了carId将忽略该参数
  * @option {Function} success 信息获取成功后的回调函数，函数第一个参数为返回的相关信息，格式为
  * 	{
- * 		car:{id:[id],plate:[plate],status:[status]},
+ * 		car:{id:[id],plate:[plate],status:[status],registerDate:[registerDate]bsType:[bsType]},
  * 		motorcade:{
  * 			id: [id],						-- 车队id
  * 			name: [name]					-- 车队名称
  * 		},
- * 		dirver:{
- * 			id: [id],					-- 司机id
- * 			name: [name],				-- 司机姓名
- * 			sex: [sex],					-- 司机性别
- * 			classes: [classes],			-- 司机营运班次
- * 			cert4FWZG: [cert4FWZG],		-- 司机的服务资格证
- * 			icId: [icId]				-- 司机IC卡的id
+ * 		driver:{
+ * 			id: [id],						-- 司机id
+ * 			name: [name],					-- 司机姓名
+ * 			sex: [sex],						-- 司机性别
+ * 			classes: [classes],				-- 司机营运班次
+ * 			cert4FWZG: [cert4FWZG],			-- 司机的服务资格证
+ * 			cert4IDENTITY: [cert4IDENTITY],	-- 司机身份证
+ *			origin： [origin],				-- 籍贯
+ *			houseType： [houseType],			-- 户口类型
+ *			birthDate： [birthDate],			-- 出生日期
+ *			age： [age],						-- 年龄
+ * 			icId: [icId]					-- 司机IC卡的id
  * 		}
  * 	}
  */

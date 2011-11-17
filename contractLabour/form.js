@@ -34,96 +34,55 @@ bc.contractLabourForm = {
 		if($form.find(":input[name='isMoreCarMan']").val()=="true"){
 			
 			var carId=$form.find(":input[name='carId']").val();
-			var url=bc.root +"/bc-business/selectMoreCarManWithCar/selectCarMans?carId="+carId;
-			var option = jQuery.extend({
-				url: url,
-				name: "选择司机信息",
-				mid: "selectCarMan",
-				afterClose: function(carMan){
-					if(carMan != null){
-						$form.find(":input[name='carManId']").val(carMan.id);
-						$form.find(":input[name='e.ext_str2']").val(carMan.name);
-						$form.find(":input[name='e.certNo']").val(carMan.cert4FWZG);
+			bs.findInfoByCar({
+				carId: carId,
+				success: function(info){
+					$form.find(":input[name='carManId']").val(info.driver.id);
+					$form.find(":input[name='e.ext_str2']").val(info.driver.name);
+					$form.find(":input[name='e.certNo']").val(info.driver.cert4FWZG);
+					$form.find(":input[name='e.certIdentity']").val(info.driver.cert4IDENTITY);
+					$form.find(":input[name='e.age']").val(info.driver.age);
+					$form.find(":input[name='e.birthDate']").val(info.driver.birthDate);
+					$form.find(":input[name='e.houseType']").val(info.driver.houseType);
+					$form.find(":input[name='e.origin']").val(info.driver.origin);
+					if(info.driver.sex == 2){
+						$form.find(":radio[name='e.sex']")[1].checked = true;
 					}
 				}
-			},option);
-			bc.page.newWin(option);
-			
+			});
 		};
 		if($form.find(":input[name='isNullCarMan']").val()=="true"){
 			bc.msg.slide("此车辆没有被任何司机驾驶！");	
 		};
 		
 		// 选择车辆车牌
-		$form.find("#selectCarPlate").click(function() {
-			var selecteds = $form.find(":input[name='carId']").val();
-			bs.selectCar({
-				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
-				onOk : function(car) {
-					$form.find(":input[name='e.ext_str1']").val(car.plate);
-					$form.find(":input[name='carId']").val(car.id);
-					
-					var url = bc.root + "/bc-business/contractLabour/carManInfo?carId="+car.id;
-					$.ajax({ url: url,dataType:"json", success: update_page});
-					function update_page(json){
-						$form.find(":input[name='isMoreCar']").val(json.isMore);
-						if($form.find(":input[name='isMoreCar']").val()=="false"){
-							if(json.id != null){
-								$form.find(":input[name='carManId']").val(json.id);
-							}else{
-								$form.find(":input[name='carManId']").val('');
-								bc.msg.slide("此车辆没有被任何司机驾驶！");
-							}
-							if(json.name != null){
-								$form.find(":input[name='e.ext_str2']").val(json.name);
-							}else{
-								$form.find(":input[name='e.ext_str2']").val('');
-							}
-							if(json.certNo != null){
-								$form.find(":input[name='e.certNo']").val(json.certNo);
-							}else{
-								$form.find(":input[name='e.certNo']").val('');
-							}
-						}else{
-							var url=bc.root +"/bc-business/selectMoreCarManWithCar/selectCarMans?carId="+car.id;
-							var option = jQuery.extend({
-								url: url,
-								name: "选择司机信息",
-								mid: "selectCarMan",
-								afterClose: function(carMan){
-									if(carMan != null){
-										$form.find(":input[name='carManId']").val(carMan.id);
-										$form.find(":input[name='e.ext_str2']").val(carMan.name);
-										$form.find(":input[name='e.certNo']").val(carMan.cert4FWZG);
-									}
-								}
-							},option);
-							bc.page.newWin(option);
+		$form.find("#selectCarPlate").click(function(){
+			bs.selectCar({onOk: function(car){
+				bs.findInfoByCar({
+					carId: car.id,
+					success: function(info){
+						$form.find(":input[name='e.ext_str1']").val(info.car.plate);
+						$form.find(":input[name='carId']").val(info.car.id);
+						$form.find(":input[name='e.registerDate']").val(info.car.registerDate);
+						$form.find(":input[name='e.bsType']").val(info.car.bsType);
+						$form.find(":input[name='carManId']").val(info.driver.id);
+						$form.find(":input[name='e.ext_str2']").val(info.driver.name);
+						$form.find(":input[name='e.certNo']").val(info.driver.cert4FWZG);
+						$form.find(":input[name='e.certIdentity']").val(info.driver.cert4IDENTITY);
+						$form.find(":input[name='e.age']").val(info.driver.age);
+						$form.find(":input[name='e.birthDate']").val(info.driver.birthDate);
+						$form.find(":input[name='e.houseType']").val(info.driver.houseType);
+						$form.find(":input[name='e.origin']").val(info.driver.origin);
+						if(info.driver.sex == 2){
+							$form.find(":radio[name='e.sex']")[1].checked = true;
 						}
-
 					}
-					
-//					var url=bc.root +"/bc-business/selectMoreCarManWithCar/selectCarMans?carId="+car.id;
-//					var option = jQuery.extend({
-//						url: url,
-//						name: "选择司机信息",
-//						mid: "selectCarMan",
-//						afterClose: function(carMan){
-//							if(carMan != null){
-//								$form.find(":input[name='carManId']").val(carMan.id);
-//								$form.find(":input[name='e.ext_str2']").val(carMan.name);
-//								$form.find(":input[name='e.certNo']").val(carMan.cert4FWZG);
-//							}
-//						}
-//					},option);
-//					bc.page.newWin(option);	
-					
-				}
-			});
+				});
+			}});
 		});
 		
 		// 选择司机
-		$form.find(":input[name='e.ext_str2']").click(function() {
+		$form.find("#selectDriverName").click(function() {
 			var selecteds = $form.find(":input[name='carManId']").val();
 			bs.selectDriver({
 				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
@@ -160,8 +119,8 @@ bc.contractLabourForm = {
 			});
 		});
 		
-		//日期控件设置日期范围
-		var dates = $form.find(':input[name^="e.startDate"], :input[name^="e.endDate"]').datepicker({
+		//签约期限日期控件设置日期范围
+		var startDates = $form.find(':input[name^="e.startDate"], :input[name^="e.endDate"]').datepicker({
 			changeYear:     true,
 			firstDay: 		7,
 			dateFormat:		"yy-mm-dd",//yy4位年份、MM-大写的月份
@@ -172,9 +131,24 @@ bc.contractLabourForm = {
 						instance.settings.dateFormat ||
 						$.datepicker._defaults.dateFormat,
 						selectedDate, instance.settings );
-				dates.not( this ).datepicker( "option", option, date );
+				startDates.not( this ).datepicker( "option", option, date );
 			}
 		});
 
+		//申领期限日期控件设置日期范围
+		var getDates = $form.find(':input[name^="e.getStartDate"], :input[name^="e.getEndDate"]').datepicker({
+			changeYear:     true,
+			firstDay: 		7,
+			dateFormat:		"yy-mm-dd",//yy4位年份、MM-大写的月份
+			onSelect: function( selectedDate ) {
+				var option = this.name == "e.getStartDate" ? "minDate" : "maxDate",
+					instance = $( this ).data( "datepicker" ),
+					date = $.datepicker.parseDate(
+						instance.settings.dateFormat ||
+						$.datepicker._defaults.dateFormat,
+						selectedDate, instance.settings );
+				getDates.not( this ).datepicker( "option", option, date );
+			}
+		});
 	}
 };
