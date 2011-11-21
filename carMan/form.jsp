@@ -16,7 +16,7 @@
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="carMan.name"/>:</td>
-						<td class="value"><s:textfield name="e.name" cssStyle="width:8em;" data-validate="required"/><s:radio name="e.sex" list="#{'1':'男','2':'女'}" 
+						<td class="value"><s:textfield name="e.name" cssStyle="width:8em;" data-validate="required" cssClass="ui-widget-content"/><s:radio name="e.sex" list="#{'1':'男','2':'女'}" 
 							value="e.sex" cssStyle="width:auto;"/></td>
 						<td class="label"><s:text name="carMan.type"/>:</td>
 						<td class="value" colspan="3"><s:radio name="e.type" list="#{'0':'司机','1':'责任人','2':'司机和责任人'}" cssStyle="width:auto;"/></td>
@@ -27,13 +27,13 @@
 					</tr>
 					<tr>
 						<td class="label"><s:text name="carMan.origin"/>:</td>
-						<td class="value"><s:textfield name="e.origin"/></td>
+						<td class="value"><s:textfield name="e.origin" cssClass="ui-widget-content"/></td>
 						<td class="label"><s:text name="carMan.houseType"/>:</td>
-						<td class="value"><s:select list="carManHouseTypeList" listKey="value" listValue="value"   headerKey="" headerValue="" name="e.houseType" style="width:231px"></s:select></td>
+						<td class="value"><s:select list="carManHouseTypeList" listKey="value" listValue="value"   headerKey="" headerValue="" name="e.houseType" style="width:231px" cssClass="ui-widget-content"></s:select></td>
 					</tr>
 					<tr>
 						<td class="label"><s:text name="carMan.region"/>:</td>
-						<td class="value"><s:select list="#{0:'',1:'本市',2:'本省',3:'外省'}" listKey="key" listValue="value"    headerValue="" name="e.region" style="width:196px"></s:select></td>
+						<td class="value"><s:select list="#{0:'',1:'本市',2:'本省',3:'外省'}" listKey="key" listValue="value" cssClass="ui-widget-content" headerValue="" name="e.region" style="width:196px"></s:select></td>
 						<td class="label"><s:text name="carMan.birthdate"/>:</td>
 						<td class="value" style="position:relative;display: block;"><input type="text" name="e.birthdate" 
 						data-validate="date"class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
@@ -43,7 +43,7 @@
 					</tr>
 					<tr>
 						<td class="label"><s:text name="carMan.phone"/>:</td>
-						<td class="value"><s:textfield name="e.phone" data-validate='{required:false,type:"phone"}' /></td>
+						<td class="value"><s:textfield name="e.phone" data-validate='{required:false,type:"phone"}' cssClass="ui-widget-content"/></td>
 						<td class="label"><s:text name="carMan.workDate"/>:</td>
 						<td class="value" style="position:relative;display: block;"><input type="text" name="e.workDate" 
 						data-validate="date"class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
@@ -53,17 +53,17 @@
 					</tr>
 					<tr>
 						<td class="label"><s:text name="carMan.phone1"/>:</td>
-						<td class="value"><s:textfield name="e.phone1" data-validate='{required:false,type:"phone"}' /></td>
+						<td class="value"><s:textfield name="e.phone1" data-validate='{required:false,type:"phone"}' cssClass="ui-widget-content"/></td>
 						<td class="label"><s:text name="carMan.formerUnit"/>:</td>
-						<td class="value"><s:textfield name="e.formerUnit"/></td>
+						<td class="value"><s:textfield name="e.formerUnit" cssClass="ui-widget-content"/></td>
 					</tr>
 					<tr>
 						<td class="label"><s:text name="carMan.address"/>:</td>
-						<td class="value" colspan="3"><s:textfield name="e.address" cssStyle="width:590px"/></td>
+						<td class="value" colspan="3"><s:textfield name="e.address" cssStyle="width:590px" cssClass="ui-widget-content"/></td>
 					</tr>
 					<tr>
 						<td class="label"><s:text name="carMan.address1"/>:</td>
-						<td class="value" colspan="3"><s:textfield name="e.address1" cssStyle="width:590px" /></td>
+						<td class="value" colspan="3"><s:textfield name="e.address1" cssStyle="width:590px" cssClass="ui-widget-content"/></td>
 					</tr>
 					<tr>
 						<td class="label" colspan="4">
@@ -115,15 +115,15 @@
 					    </tr>
 						<tr>
 							<td class="label w80"><s:text name="carMan.model"/>:</td>
-							<td class="value"><s:select list="carManModelList" listKey="value" listValue="value" headerKey="" headerValue="" name="e.model" style="width:208px"></s:select></td>
+							<td class="value"><s:select list="carManModelList" listKey="value" listValue="value" headerKey="" headerValue="" name="e.model" style="width:208px" cssClass="ui-widget-content"></s:select></td>
 							<td class="label"><s:text name="carMan.extFZJG"/>:</td>
-							<td class="value"><s:textfield name="e.oldUnitName"/></td>
+							<td class="value"><s:textfield name="e.oldUnitName" cssClass="ui-widget-content"/></td>
 						</tr>
 						<tr>
 							<td class="label"><s:text name="carMan.orderNo"/>:</td>
-							<td class="value"><s:textfield name="e.orderNo" /></td>
+							<td class="value"><s:textfield name="e.orderNo" cssClass="ui-widget-content"/></td>
 							<td class="label"><s:text name="carMan.cert4Driving"/>:</td>
-							<td class="value"><s:textfield name="e.cert4Driving"/></td>
+							<td class="value"><s:textfield name="e.cert4Driving" cssClass="ui-widget-content"/></td>
 						</tr>
 						<tr>
 							<td class="label" style="width:140px"><s:text name="carMan.cert4DrivingFirstDate"/>:</td>
@@ -147,36 +147,36 @@
 					         <span class="selectButton verticalMiddle ui-icon ui-icon-calendar"></span>
 				             </td>
 							<td class="label" style="width:140px"><s:text name="carMan.cert4DrivingArchive"/>:</td>
-							<td class="value"><s:textfield name="e.cert4DrivingArchive"/></td>
+							<td class="value"><s:textfield name="e.cert4DrivingArchive" cssClass="ui-widget-content"/></td>
 						</tr>
 						<tr>
 							<td class="label"><s:text name="carMan.cert4FWZG"/>:</td>
-							<td class="value"><s:textfield name="e.cert4FWZG"/></td>
+							<td class="value"><s:textfield name="e.cert4FWZG" cssClass="ui-widget-content"/></td>
 							<td class="label"style="width:140px"><s:text name="carMan.cert4CYZG"/>:</td>
-							<td class="value"><s:textfield name="e.cert4CYZG"/></td>
+							<td class="value"><s:textfield name="e.cert4CYZG" cssClass="ui-widget-content"/></td>
 						</tr>
 						<tr>
 							<td class="label "><s:text name="carMan.cert4Indentity"/>:</td>
-							<td class="value" ><s:textfield name="e.cert4Indentity"/></td>
+							<td class="value" ><s:textfield name="e.cert4Indentity" cssClass="ui-widget-content"/></td>
 							<td class="label "><s:text name="carMan.level"/>:</td>
-							<td class="value" ><s:select list="carManLevelList" listKey="value" listValue="value" headerKey="" headerValue="" name="e.level" style="width:208px" ></s:select></td>
+							<td class="value" ><s:select list="carManLevelList" listKey="value" listValue="value" headerKey="" headerValue="" name="e.level" style="width:208px" cssClass="ui-widget-content"></s:select></td>
 						</tr>
 						<tr>
 							<td class="label w80"><s:text name="carMan.gz"/>:</td>
 							<td class="value"><s:radio name="e.gz" list="#{'true':'是','false':'否'}" 
 							value="e.gz" cssStyle="width:auto;"/></td>
 							<td class="label"><s:text name="carMan.accessCerts"/>:</td>
-							<td class="value"><s:textfield name="e.accessCerts"/></td>
+							<td class="value"><s:textfield name="e.accessCerts" cssClass="ui-widget-content"/></td>
 						</tr>
 						<tr>
 							<td class="label"><s:text name="carMan.drivingStatus"/>:</td>
-							<td class="value"><s:select list="#{0:'',1:'正班',2:'副班',3:'顶班'}" listKey="key" listValue="value" headerKey="" name="e.drivingStatus" style="width:208px" ></s:select></td>
+							<td class="value"><s:select list="#{0:'',1:'正班',2:'副班',3:'顶班'}" listKey="key" listValue="value" headerKey="" name="e.drivingStatus" style="width:208px" cssClass="ui-widget-content"></s:select></td>
 							<td class="label"><s:text name="carMan.extZRR"/>:</td>
-							<td class="value"><s:textfield name="e.extZRR"/></td>
+							<td class="value"><s:textfield name="e.extZRR" cssClass="ui-widget-content"/></td>
 						</tr>
 						<tr>
 						<td class="label"><s:text name="carMan.description"/>:</td>
-						<td class="value" colspan="4" rowspan="5"><s:textarea name="e.description"  rows="5"/></td>
+						<td class="value" colspan="4" rowspan="5"><s:textarea name="e.description"  rows="5" cssClass="ui-widget-content"/></td>
 					</tr>
 					</tbody>
 				</table>

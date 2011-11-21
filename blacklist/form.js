@@ -128,6 +128,9 @@ bc.business.blacklistForm = {
 	//绑定锁定事件
 	lcoker : function(){
 		var $form = $(this);
+		//表单验证
+		if(!bc.validator.validate($form))
+			return;
 		bc.msg.confirm("请确定信息是否准确！一但执行锁定功能将无法进行修改，是否继续执行？",function(){
 			//status=0为锁定状态
 			$form.find(":input[name='e.status']").val("0");
@@ -145,6 +148,9 @@ bc.business.blacklistForm = {
 	//绑定解锁事件
 	unlcoker : function(){
 		var $form = $(this);
+		//表单验证
+		if(!bc.validator.validate($form))
+			return;
 		bc.msg.confirm("请确定信息是否准确！一但执行解锁功能将无法进行修改，是否继续执行？",function(){
 			//status=1为解锁状态
 			$form.find(":input[name='e.status']").val("1");

@@ -17,23 +17,23 @@
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="runcase.caseNo3"/>:</td>
-						<td class="value "><s:textfield name="e.code"  data-validate="required" /></td>
+						<td class="value "><s:textfield name="e.code"  data-validate="required" cssClass="ui-widget-content"/></td>
 						<td class="label">*<s:text name="runcase.address"/>:</td>
-						<td class="value "><s:textfield name="e.address" data-validate="required" /></td>
+						<td class="value "><s:textfield name="e.address" data-validate="required" cssClass="ui-widget-content"/></td>
 					</tr>
 					
 					<tr>
 						<td class="label" ><s:text name="runcase.sort"/>:</td>
 						<td class="value" >
-							<s:select name="e.sort" list="sortList" listKey="value" listValue="value" headerKey="" headerValue="" ></s:select>
+							<s:select name="e.sort" list="sortList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
 						</td>
 						<td class="label"><s:text name="runcase.weather"/>:</td>
-						<td class="value "><s:textfield name="e.weather" /></td>
+						<td class="value "><s:textfield name="e.weather" cssClass="ui-widget-content"/></td>
 					</tr>
 					<tr>
 						<td class="label"><s:text name="runcase.duty"/></td>
 						<td class="value">
-						<s:select name="e.duty" list="dutyList" listKey="value" listValue="value" headerKey="" headerValue="" ></s:select>
+						<s:select name="e.duty" list="dutyList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
 						</td>
 						<td class="label" >*<s:text name="runcase.happenDate"/>:</td>
 						<td class="value" >
@@ -45,7 +45,7 @@
 					<tr>
 					<s:if test="%{carManId != null || carId !=null }">
 						<td class="label">*<s:text name="runcase.carPlate"/>:</td>
-						<td class="value"><s:textfield name="e.carPlate"  readonly="true" cssClass="ui-state-disabled" /></td>
+						<td class="value"><s:textfield name="e.carPlate"  readonly="true" cssClass="ui-state-disabled ui-widget-content" /></td>
 					    </s:if><s:else>
 					    <td class="label">*<s:text name="runcase.carPlate"/>:</td>
 						<td class="value" style="position:relative;display: block;"><s:textfield name="e.carPlate" 
@@ -63,42 +63,42 @@
 					<tr>
 					    <td class="label" ><s:text name="runcase.motorcadeName"/>:</td>
 						<td class="value" >
-							<s:select name="e.motorcadeId" list="motorcadeList" listKey="key" listValue="value" value="e.motorcadeId" headerKey="" headerValue=""  ></s:select>
+							<s:select name="e.motorcadeId" list="motorcadeList" listKey="key" listValue="value" value="e.motorcadeId" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
 						</td>
 						<td class="label" ><s:text name="runcase.receiveCode"/>:</td>
-						<td class="value "><s:textfield name="e.receiveCode"/></td>
+						<td class="value "><s:textfield name="e.receiveCode" cssClass="ui-widget-content"/></td>
 					</tr>
 					<tr>
 						<s:if test="%{carManId != null || carId !=null}">
-						<td class="label">*<s:text name="runcase.driverName"/>:</td>
-						<td class="value"><s:textfield name="e.driverName" cssStyle="width:8em;" readonly="true" cssClass="ui-state-disabled" />
-						&nbsp;&nbsp;*<s:text name="runcase.driverCert" />:<s:textfield name="e.driverCert"  data-validate="required" cssStyle="width:10em;" cssClass="ui-state-disabled"/></td>
+						<td class="label"><s:text name="runcase.driverName"/>:</td>
+						<td class="value"><s:textfield name="e.driverName" cssStyle="width:8em;" readonly="true" cssClass="ui-state-disabled ui-widget-content" />
+						&nbsp;&nbsp;<s:text name="runcase.driverCert" />:<s:textfield name="e.driverCert"  data-validate="required" cssStyle="width:10em;" cssClass="ui-state-disabled ui-widget-content"/></td>
 					    </s:if><s:else>
-					    <td class="label">*<s:text name="runcase.driverName"/>:</td>
-						<td class="value"><s:textfield name="e.driverName" cssStyle="width:8em;"  readonly="true"/>
-						&nbsp;&nbsp;*<s:text name="runcase.driverCert" />:<s:textfield name="e.driverCert"  data-validate="required" cssStyle="width:10em;" cssClass="ui-state-disabled"/></td>
+					    <td class="label"><s:text name="runcase.driverName"/>:</td>
+						<td class="value"><s:textfield name="e.driverName" cssStyle="width:8em;"  readonly="true" cssClass="ui-state-disabled ui-widget-content"/>
+						&nbsp;&nbsp;<s:text name="runcase.driverCert" />:<s:textfield name="e.driverCert"  data-validate="required" cssStyle="width:10em;" cssClass="ui-state-disabled ui-widget-content"/></td>
 					     </s:else>
 						<td class="label"><s:text name="runcase.department"/>:</td>
-						<td class="value "><s:select name="e.department" list="departmentList" listKey="value" listValue="value"  headerKey="" headerValue=""  />
+						<td class="value "><s:select name="e.department" list="departmentList" listKey="value" listValue="value"  headerKey="" headerValue=""  cssClass="ui-widget-content"/>
 					</tr>
 					<tr>
 						<td class="label"><s:text name="runcase.driverArea"/>:</td>
-						<td class="value"><s:select list="#{0:'',1:'本市',2:'本省',3:'外省'}" listKey="key" listValue="value"    headerValue="" name="e.driverArea" /></td>
+						<td class="value"><s:select list="#{0:'',1:'本市',2:'本省',3:'外省'}" listKey="key" listValue="value"    headerValue="" name="e.driverArea" cssClass="ui-widget-content"/></td>
 						<td class="label" ><s:text name="runcase.receiverName2"/>:</td>
-						<td class="value" ><s:textfield name="e.receiverName" />
+						<td class="value" ><s:textfield name="e.receiverName" cssClass="ui-widget-content"/>
 						</td>
 					</tr>
 					<tr>
 					    <td class="label"><s:text name="runcase.driverClasses"/></td>
 						<td class="value">
-						<s:select name="e.driverClasses" list="#{0:'',1:'正班',2:'副班',3:'顶班'}" listKey="key" listValue="value"   data-validate="required"/>
+						<s:select name="e.driverClasses" list="#{0:'',1:'正班',2:'副班',3:'顶班'}" listKey="key" listValue="value"   data-validate="required" cssClass="ui-widget-content"/>
 						</td>
 						<td class="label">*<s:text name="runcase.principal" />:</td>
-						<td class="value "><s:textfield name="e.chargerName" data-validate='{"required":true}'/></td>					
+						<td class="value "><s:textfield name="e.chargerName" data-validate='{"required":true}' cssClass="ui-widget-content"/></td>					
 					</tr>
 					<tr>
 						<td class="label" ><s:text name="runcase.driverType"/>:</td>
-						<td class="value" ><s:select name="e.driverType" list="#{0:'',1:'车主',2:'司机',3:'非编'}" listKey="key" listValue="value"   />
+						<td class="value" ><s:select name="e.driverType" list="#{0:'',1:'车主',2:'司机',3:'非编'}" listKey="key" listValue="value" cssClass="ui-widget-content"/>
 						</td>
 					</tr>
 					<tr>
@@ -135,7 +135,7 @@
 					<table class="formFields" cellspacing="2" cellpadding="0" >
 						<tbody>
 							<tr>
-								<td class="value" colspan="4" ><s:textarea name="e.description" cssStyle="width:59.7em" rows="10" /></td>
+								<td class="value" colspan="4" ><s:textarea name="e.description" cssStyle="width:59.7em" rows="10" cssClass="ui-widget-content"/></td>
 							</tr>
 						</tbody>
 					</table>
@@ -151,34 +151,34 @@
 							</tr>
 							<tr>
 							   <td class="label"><s:text name="runcase.casualties"/>:</td>
-						       <td class="value "><s:textfield name="e.casualties"   cssStyle="width:20em;" /></td>
+						       <td class="value "><s:textfield name="e.casualties"   cssStyle="width:20em;" cssClass="ui-widget-content"/></td>
 						       <td class="label"><s:text name="runcase.costDetail"/>:</td>
 						       <td class="value"></td>
 							</tr>
 							<tr>
 							   <td class="label"><s:text name="runcase.carHurt"/>:</td>
-						       <td class="value "><s:textfield name="e.carHurt"   cssStyle="width:20em;"/></td>
-						       <td class="value " colspan="2" rowspan="5"><s:textarea name="e.costDetail" cssStyle="width:29.4em" rows="7" /></td>	
+						       <td class="value "><s:textfield name="e.carHurt"   cssStyle="width:20em;" cssClass="ui-widget-content"/></td>
+						       <td class="value " colspan="2" rowspan="5"><s:textarea name="e.costDetail" cssStyle="width:29.4em" rows="7" cssClass="ui-widget-content"/></td>	
 							</tr>
 							<tr>
 							   <td class="label"><s:text name="runcase.thirdParty"/>:</td>
-						       <td class="value "><s:textfield name="e.thirdParty"   cssStyle="width:16em;"/>
+						       <td class="value "><s:textfield name="e.thirdParty" cssStyle="width:16em;" cssClass="ui-widget-content"/>
 						       <s:checkbox name="e.rob" cssStyle="width:1em;" /><s:text name="runcase.rob"/></td>
 							</tr>
 							<tr>
 							  <td class="label"><s:text name="runcase.hurtCount" />:</td>
 						<td>
-							<s:textfield name="e.hurtCount" cssStyle="width:7em;" />&nbsp;&nbsp;<s:text name="runcase.deadCount" /><s:textfield name="e.deadCount"   cssStyle="width:7em;"/>
+							<s:textfield name="e.hurtCount" cssStyle="width:7em;" cssClass="ui-widget-content"/>&nbsp;&nbsp;<s:text name="runcase.deadCount" /><s:textfield name="e.deadCount"   cssStyle="width:7em;" cssClass="ui-widget-content"/>
 						</td>
 							</tr>
 							<tr>
 							   <td class="label"><s:text name="runcase.actualLoss"/>:</td>
-						       <td class="value "><s:textfield name="e.actualLoss"  cssStyle="width:18em;"/>元</td>
+						       <td class="value "><s:textfield name="e.actualLoss"  cssStyle="width:18em;" cssClass="ui-widget-content"/>元</td>
 							</tr>
 							<tr>
 							<td class="value "></td>	
 						<td>
-							<s:checkbox name="e.innerFix" cssStyle="width:1em;" /><s:text name="runcase.innerFix"/>&nbsp;&nbsp;<s:text name="runcase.fixCost" /><s:textfield name="e.fixCost"  />元
+							<s:checkbox name="e.innerFix" cssStyle="width:1em;" /><s:text name="runcase.innerFix"/>&nbsp;&nbsp;<s:text name="runcase.fixCost" /><s:textfield name="e.fixCost" cssClass="ui-widget-content"/>元
 						</td>
 							</tr>
 						</tbody>
@@ -195,7 +195,8 @@
 							</tr>
 							 <tr>
 								   <td class="label">*<s:text name="runcase.insuranceCompany"/>:</td>
-							       <td class="value "><s:select  list="companyList" listKey="value" listValue="value"  headerKey="" headerValue=""  name="e.insuranceCompany"  data-validate="required" cssStyle="width:20em;" /></td>
+							       <td class="value "><s:select  list="companyList" listKey="value" listValue="value"  headerKey="" headerValue=""  name="e.insuranceCompany"  data-validate="required" 
+							       cssStyle="width:20em;" cssClass="ui-widget-content"/></td>
 							       <td class="label" style="width:700px">
 							       <s:checkbox name="e.deliver" cssStyle="width:1em;" /><s:text name="runcase.deliver3"/>
 							       <s:checkbox name="e.claim" cssStyle="width:1em;" /><s:text name="runcase.claim"/>
@@ -239,7 +240,7 @@
 										 visibility: hidden;
 									     </s:else>
 									     ">
-									     <s:textfield name="e.deliverMoney" style="width:80px "/>
+									     <s:textfield name="e.deliverMoney" style="width:80px " cssClass="ui-widget-content"/>
 								     </samp>
 								     <samp id="pay" style='<s:if test="%{e.pay==true}">
 										  visibility: visible;
@@ -277,7 +278,7 @@
 										 visibility: hidden;
 									     </s:else>
 									     ">
-									     <s:textfield name="e.payMoney" style="width:80px "/>
+									     <s:textfield name="e.payMoney" style="width:80px" cssClass="ui-widget-content"/>
 								     </samp>
 								   </td>
 						    </tr>
@@ -319,7 +320,7 @@
 										 visibility: hidden;
 									     </s:else>
 									     ">
-									     <s:textfield name="e.claimCode" style="width:100px "/>
+									     <s:textfield name="e.claimCode" style="width:100px" cssClass="ui-widget-content"/>
 								     </samp>
 								     <samp id="pay" style='width:80px;<s:if test="%{e.pay==true}">
 										visibility: visible;
@@ -337,7 +338,7 @@
 										 visibility: hidden;
 									     </s:else>
 									     ">
-									     <s:textfield name="e.payCode" style="width:80px "/>
+									     <s:textfield name="e.payCode" style="width:80px" cssClass="ui-widget-content"/>
 								     </samp>
 								     </tr>
 								     <tr>     
@@ -358,7 +359,7 @@
 										 visibility: hidden;
 									     </s:else>
 									     ">
-									     <s:textfield name="e.claimNo2" style="width:100px "/>
+									     <s:textfield name="e.claimNo2" style="width:100px" cssClass="ui-widget-content"/>
 								     </samp>
 								     <samp id="claimNo1Title" style='width:80px;<s:if test="%{e.claim==true}">
 										visibility: visible;
@@ -376,7 +377,7 @@
 										 visibility: hidden;
 									     </s:else>
 									     ">
-									     <s:textfield name="e.claimMoney" style="width:80px "/>
+									     <s:textfield name="e.claimMoney" style="width:80px" cssClass="ui-widget-content"/>
 								     </samp>
 								     <samp id="claimNo1Title" style='width:80px;<s:if test="%{e.claim==true}">
 										visibility: visible;
@@ -394,7 +395,7 @@
 										 visibility: hidden;
 									     </s:else>
 									     ">
-									     <s:textfield name="e.claimNo1" style="width:100px "/>
+									     <s:textfield name="e.claimNo1" style="width:100px" cssClass="ui-widget-content"/>
 								     </samp>
 								   </td>
 						    </tr>
@@ -402,7 +403,7 @@
 							     <td class="label"><s:text name="runcase.insuranceInfo"/>:</td>
 							</tr>
 							<tr>
-								 <td class="value" colspan="4"><s:textarea name="e.costDetail" cssStyle="width:59.4em" rows="5" /></td>
+								 <td class="value" colspan="4"><s:textarea name="e.costDetail" cssStyle="width:59.4em" rows="5" cssClass="ui-widget-content"/></td>
 							</tr>
 						</tbody>
 					</table>
