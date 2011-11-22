@@ -36,7 +36,7 @@
 					<tr>
 						<td class="label">*<s:text name="carByDriver.classes"/>:</td>
 						<td class="value" ><s:select name="e.classes" list="#{0:'',1:'正班',2:'副班',3:'顶班'}" 
-							listKey="key" listValue="value" data-validate="required" /></td>
+							listKey="key" listValue="value" data-validate="required" cssClass="ui-widget-content"/></td>
 					</tr>
 					<!-- 
 					<tr>
@@ -52,7 +52,7 @@
 					</tr>
 					<tr>
 						<td class="topLabel" ><s:text name="carByDriver.description"/>:</td>
-						<td class="value"><s:textarea name="e.description" rows="5"/></td>
+						<td class="value"><s:textarea name="e.description" rows="5" cssClass="ui-widget-content"/></td>
 					</tr>
 					<tr>
 						<td class="label" colspan="2" rowspan="2">
