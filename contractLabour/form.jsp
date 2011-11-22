@@ -32,7 +32,7 @@
 							<tr>
 								<td class="label">
 									<div class="formTopInfo" style="text-align: left;">
-										<s:text name="contract.labour.ver"/>:&nbsp;<s:property value="e.ver" />
+										<s:text name="contract.labour.ver"/>:&nbsp;<s:property value="e.verMajor" />.<s:property value="e.verMinor" />
 									</div>
 								</td>
 							</tr>
@@ -310,7 +310,6 @@
 		<s:hidden name="isMoreCarMan"/>
 		<s:hidden name="isNullCar"/>
 		<s:hidden name="isNullCarMan"/>
-		<s:hidden name="flag" />
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 	</s:form>
 </div>
