@@ -61,6 +61,8 @@ bc.contractLabourForm = {
 				bs.findInfoByCar({
 					carId: car.id,
 					success: function(info){
+						//TODO 根据车辆ID查找关联的司机否存在劳动合同
+						
 						$form.find(":input[name='e.ext_str1']").val(info.car.plate);
 						$form.find(":input[name='carId']").val(info.car.id);
 						$form.find(":input[name='e.registerDate']").val(info.car.registerDate);

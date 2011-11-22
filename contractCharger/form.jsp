@@ -17,19 +17,19 @@
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="contract.code"/>:</td>
-						<td class="value "><s:textfield name="e.code" data-validate="required" readonly="true" /></td>
+						<td class="value "><s:textfield name="e.code" data-validate="required" readonly="true"  cssClass="ui-widget-content"/></td>
 						<td class="label">*<s:text name="contract.signDate"/>:</td>
 						<td class="value" style="position:relative;display: block;">
 							<input type="text" name="e.signDate" data-validate='{"type":"date","required":true}'
 							value='<s:date format="yyyy-MM-dd" name="e.signDate" />'
-							class="bc-date" data-cfg='{changeYear:true}'/>
+							class="bc-date ui-widget-content" data-cfg='{changeYear:true}'/>
 							<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectSignDate"></span>
 						</td>
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="contract.charger.signType"/>:</td>
 						<td class="value ">
-							<s:select name="e.signType" list="signTypeList" listKey="value" listValue="value"  data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" ></s:select>
+							<s:select name="e.signType" list="signTypeList" listKey="value" listValue="value"  data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" ></s:select>
 						</td>
 						<td class="label">*<s:text name="contract.deadline"/>:</td>
 						<td class="value">
@@ -37,14 +37,14 @@
 							&nbsp;从
 								<input type="text" name="e.startDate" data-validate='{"type":"date","required":true}'
 								value='<s:date format="yyyy-MM-dd" name="e.startDate" />'
-								style="max-width: 7em;" readonly="readonly" />
+								style="max-width: 7em;" readonly="readonly" class="ui-widget-content" />
 								<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectStartDate"></span>
 							</span>
 							&nbsp;到
 							<span style="position:relative;">
 								<input type="text" name="e.endDate" data-validate='{"type":"date","required":true}'
 								value='<s:date format="yyyy-MM-dd" name="e.endDate" />'
-								style="max-width: 7em;" readonly="readonly" />
+								style="max-width: 7em;" readonly="readonly" class="ui-widget-content" />
 								<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectEndDate"></span>
 							</span>
 						</td>
@@ -52,13 +52,13 @@
 					<tr>
 						<td class="label" >*<s:text name="contract.charger.businessType"/>:</td>
 						<td class="value" >
-							<s:select name="e.businessType" list="businessTypeList" listKey="value" listValue="value"  data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" ></s:select>
+							<s:select name="e.businessType" list="businessTypeList" listKey="value" listValue="value"  data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content"></s:select>
 						</td>
 						<td class="label">*<s:text name="contract.transactor"/>:</td>
 						<td class="value" style="position:relative;display: block;">
 							<s:textfield name="e.transactorName" data-validate="required" readonly="true"	
-							title='%{getText("contract.select.transactor")}' />
-							<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectTransactorName"></span>
+							title='%{getText("contract.select.transactor")}' cssClass="ui-widget-content ui-state-disabled" />
+							<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectTransactorName" ></span>
 						</td>
 					</tr>
 					<tr>
@@ -70,11 +70,11 @@
 									<s:hidden name="e.ext_str1" />
 								</s:if>
 							 -->
-							<s:textfield name="e.ext_str1" data-validate="required" title='%{getText("contract.title.click2selectCar")}' readonly="true" />
+							<s:textfield name="e.ext_str1" data-validate="required" title='%{getText("contract.title.click2selectCar")}' readonly="true" cssClass="ui-widget-content ui-state-disabled" />
 							<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectCarPlate"></span>
 						</td>
 						<td class="label"><s:text name="contract.wordNo"/>:</td>
-						<td class="value "><s:textfield name="e.wordNo" /></td>
+						<td class="value "><s:textfield name="e.wordNo" cssClass="ui-widget-content" /></td>
 					</tr>
 					<tr>
 						<td></td>
