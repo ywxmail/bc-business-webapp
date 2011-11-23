@@ -5,7 +5,8 @@ bc.contractLabourForm = {
 		
 		/* 初始化多页签*/
 		$form.find('#formTabs').bctabs(bc.page.defaultBcTabsOption);
-		
+		//var id = $form.find(":input[name='e.id']").val();
+		//if(readonly && id == null) return;
 		if(readonly) return;
 		
 		//预加载一个司机关联多台车的对话框选择
@@ -152,5 +153,13 @@ bc.contractLabourForm = {
 				getDates.not( this ).datepicker( "option", option, date );
 			}
 		});
+	},
+	
+	/**
+	 * 上下文为按钮所在窗口，第一个参数为选中的项({text:[text]},value:[value])
+	 * 
+	 */
+	selectMenuButtonItem : function(option) {
+		logger.info("selectMenuButtonItem:option=" + $.toJSON(option));
 	}
 };

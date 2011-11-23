@@ -14,7 +14,7 @@
 						<li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">基本信息</a></li>
 						<li class="tab ui-widget-content"><a href="#contractContents" class="ui-state-default">合同内容</a></li>
 						<li class="tab ui-widget-content"><a href='#attachment' class="ui-state-default">附件</a></li>
-						<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">历史版本</a></li>
+						<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contractLabours/list?contractId=%{e.id}"/>' class="ui-state-default">历史版本</a></li>
 						<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">工伤</a></li>
 					</ul>
 				</div>
@@ -300,8 +300,9 @@
 		<s:hidden name="e.author.id" />
 		<s:hidden name="e.uid"/>
 		<s:hidden name="e.type"/>
-		<s:hidden name="e.ver"/>
-		<s:hidden name="e.operateType"/>
+		<s:hidden name="e.verMajor"/>
+		<s:hidden name="e.verMinor"/>
+		<s:hidden name="e.opType"/>
 		<s:hidden name="carManId"/>
 		<s:hidden name="carId"/>
 		<s:hidden name="oldCarManId"/>
