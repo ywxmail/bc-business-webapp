@@ -69,7 +69,7 @@
 						          <table class="formFields" cellspacing="2" cellpadding="0" style="height:200px" >
  						          <s:if test="e.isNew()" >
  						          <tr>
-					                        <td class="label" style="height:19px "></td>
+					                        <td class="label" style="height:19px"></td>
 					                     </tr>
 					                     <tr>
 						                    <td class="label"><s:text name="blacklist.unlockReason"/>:</td>
