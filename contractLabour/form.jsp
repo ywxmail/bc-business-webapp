@@ -14,7 +14,7 @@
 						<li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">基本信息</a></li>
 						<li class="tab ui-widget-content"><a href="#contractContents" class="ui-state-default">合同内容</a></li>
 						<li class="tab ui-widget-content"><a href='#attachment' class="ui-state-default">附件</a></li>
-						<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contractLabours/list?contractId=%{e.id}"/>' class="ui-state-default">历史版本</a></li>
+						<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contractLabours/list?contractId=%{(e.pid != null)?e.pid:0}"/>' class="ui-state-default">历史版本</a></li>
 						<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">工伤</a></li>
 					</ul>
 				</div>
@@ -31,7 +31,7 @@
 							</tr>
 							<tr>
 								<td class="label">
-									<div class="formTopInfo" style="text-align: left;">
+									<div class="formTopInfo" id="showVer" style="text-align: left;">
 										<s:text name="contract.labour.ver"/>:&nbsp;<s:property value="e.verMajor" />.<s:property value="e.verMinor" />
 									</div>
 								</td>
@@ -114,7 +114,7 @@
 											<tr>
 												<td class="label">*<s:text name="contract.labour.age"/>:</td>
 												<td class="value">
-												 	<s:textfield name="e.age" data-validate="required" readonly="true" cssStyle="width:6.5em;" cssClass="ui-widget-content" />
+												 	<s:textfield name="e.age" data-validate="required" cssStyle="width:6.5em;" cssClass="ui-widget-content" />
 													&nbsp;&nbsp;&nbsp;<s:text name="contract.labour.sex"/>
 													<s:radio name="e.sex" list="#{'1':'男','2':'女'}" 
 													value="e.sex" cssStyle="width:auto;"/>
@@ -284,7 +284,7 @@
 				</div>
 				<div id="contractContents" class="content" >
 					<div class="formEditor">
-						<textarea name="e.content" class="bc-editor ui-widget-content" style="width: 690px;height:590px" data-validate="required"
+						<textarea name="e.content" id="textareaId" class="bc-editor ui-widget-content" style="width: 690px;height:590px" data-validate="required"
 							 data-ptype="contractLabour.editor" data-puid='${e.uid}' 
 							 data-readonly='${readonly}'>
 							 ${e.content} 
@@ -299,10 +299,13 @@
 		<s:hidden name="e.id" />
 		<s:hidden name="e.author.id" />
 		<s:hidden name="e.uid"/>
+		<s:hidden name="e.status"/>
+		<s:hidden name="e.pid"/>
 		<s:hidden name="e.type"/>
 		<s:hidden name="e.verMajor"/>
 		<s:hidden name="e.verMinor"/>
 		<s:hidden name="e.opType"/>
+		<s:hidden name="e.patchNo"/>
 		<s:hidden name="carManId"/>
 		<s:hidden name="carId"/>
 		<s:hidden name="oldCarManId"/>
