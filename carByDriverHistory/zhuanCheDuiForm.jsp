@@ -27,11 +27,11 @@
 						          <legend>迁自</legend>
 						          <table class="formFields" cellspacing="2" cellpadding="0" >
 						              <tr><td class="label" >*<s:text name="carByDriverHistory.oldCar"/>:</td>
-						                   <td class="value relative" style="position:relative;display: block;"><s:textfield name="oldPlate" value="%{e.fromCar.plateType+e.fromCar.plateNo }"
+						                   <td class="value relative" style="position:relative;display: block;"><s:textfield name="e.fromCar.name" value="%{e.fromCar.plateType+e.fromCar.plateNo }"
 					                        data-validate="required" cssClass="ui-widget-content" readonly="true"/>
 					                           <ul class="inputIcons">
                                                    <li id="selectOldCar" class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></li>
-                                                   <li class="clearSelect inputIcon ui-icon ui-icon-circle-close" data-cfg="oldPlate" title='<s:text name="title.click2clear"/>'></li>
+                                                   <li class="clearSelect inputIcon ui-icon ui-icon-circle-close" data-cfg="e.fromCar.name" title='<s:text name="title.click2clear"/>'></li>
                                                </ul>
                                             </td>
 						                  <td class="label"><s:text name="carByDriverHistory.oldMotorcade"/>:</td>
@@ -70,11 +70,13 @@
 		   </div>
 		</div>
 		<s:hidden name="e.id" />
+		<s:hidden name="e.driver.id" />
 		<s:hidden name="e.moveType" />
 		<s:hidden name="e.author.id" />
 		<s:hidden name="e.modifier.id"/>
 		<s:hidden name="e.fromMotorcadedId"/>
-		<s:hidden name="e.fromCarId"/>
+		<s:hidden name="e.fromCar.id"/>
+		<s:hidden name="e.toCar.id"/>
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 		
 	</s:form>

@@ -6,36 +6,36 @@ bc.business.carByDriverHistoryForm = {
 		
 		// 选择迁自车辆
 		$form.find("#selectOldCar").click(function() {
-			var selecteds = $form.find(":input[name='e.fromCarId']").val();
+			var selecteds = $form.find(":input[name='e.fromCar.id']").val();
 			bs.selectCar({
 				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
 				onOk : function(car) {
-					$form.find(":input[name='e.fromCarId']").val(car.id);
-					$form.find(":input[name='oldPlate']").val(car.plate);
+					$form.find(":input[name='e.fromCar.id']").val(car.id);
+					$form.find(":input[name='e.fromCar.name']").val(car.plate);
 					
 				}
 			});
 		});
 		// 选择迁往车辆
 		$form.find("#selectNewCar").click(function() {
-			var selecteds = $form.find(":input[name='e.toCarId']").val();
+			var selecteds = $form.find(":input[name='e.toCar.id']").val();
 			bs.selectCar({
 				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
 				onOk : function(car) {
-					$form.find(":input[name='e.toCarId']").val(car.id);
-					$form.find(":input[name='newPlate']").val(car.plate);
+					$form.find(":input[name='e.toCar.id']").val(car.id);
+					$form.find(":input[name='e.toCar.name']").val(car.plate);
 				}
 			});
 		});
 		
 		// 选择司机
 		$form.find("#driverName").click(function() {
-			var selecteds = $form.find(":input[name='e.driverId']").val();
+			var selecteds = $form.find(":input[name='e.driver.id']").val();
 			bs.selectDriver({
 				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
 				onOk : function(driver) {
-					$form.find(":input[name='e.driverId']").val(driver.id);
-					$form.find(":input[name='e.driverName']").val(driver.name);
+					$form.find(":input[name='e.driver.id']").val(driver.id);
+					$form.find(":input[name='e.driver.name']").val(driver.name);
 				}
 			});
 		});
