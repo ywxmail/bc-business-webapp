@@ -219,6 +219,8 @@
 		<s:hidden name="e.closerId" />
 		<s:hidden name="e.closerName" />
 		<s:hidden name="e.status" />
+		<s:hidden name="e.syncUid" />
+		<s:hidden name="e.syncId" />
 		<s:hidden name="isMoreCar" />
 		<s:hidden name="isMoreCarMan" />
 		<s:hidden name="carId" />
