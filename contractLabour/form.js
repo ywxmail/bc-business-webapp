@@ -3,15 +3,21 @@ bc.contractLabourForm = {
 	init : function(option,readonly,page) {
 		var $form;
 		
-		/* 初始化多页签*/
-		
 		if(page == null){
 			$form = $(this);
 		}else{
 			$form = page;
 		}
+		/* 初始化多页签*/
 		$form.find('#formTabs').bctabs(bc.page.defaultBcTabsOption);
-		if(readonly) return;
+		if(readonly){
+			$form.parent().find('#bcSaveBtn').hide();
+			return;
+		}else{
+			$form.parent().find('#bcOpBtn').hide();
+			$form.parent().find('#bcSaveBtn').show();
+		}
+		//if(readonly) return;
 		//预加载一个司机关联多台车的对话框选择
 		if($form.find(":input[name='isMoreCar']").val()=="true"){
 			
@@ -60,29 +66,53 @@ bc.contractLabourForm = {
 		};
 		
 		// 选择车辆车牌
-		
 		$form.find("#selectCarPlate").click(function(){
 			bs.selectCar({onOk: function(car){
 				bs.findInfoByCar({
 					carId: car.id,
 					success: function(info){
 						//TODO 根据车辆ID查找关联的司机否存在劳动合同
-						
-						$form.find(":input[name='e.ext_str1']").val(info.car.plate);
-						$form.find(":input[name='carId']").val(info.car.id);
-						$form.find(":input[name='e.registerDate']").val(info.car.registerDate);
-						$form.find(":input[name='e.bsType']").val(info.car.bsType);
-						$form.find(":input[name='carManId']").val(info.driver.id);
-						$form.find(":input[name='e.ext_str2']").val(info.driver.name);
-						$form.find(":input[name='e.certNo']").val(info.driver.cert4FWZG);
-						$form.find(":input[name='e.certIdentity']").val(info.driver.cert4IDENTITY);
-						$form.find(":input[name='e.age']").val(info.driver.age);
-						$form.find(":input[name='e.birthDate']").val(info.driver.birthDate);
-						$form.find(":input[name='e.houseType']").val(info.driver.houseType);
-						$form.find(":input[name='e.origin']").val(info.driver.origin);
-						if(info.driver.sex == 2){
-							$form.find(":radio[name='e.sex']")[1].checked = true;
+						var url = bc.root + "/bc-business/contractLabour/isExistContract?carManId="+info.driver.id;
+						$.ajax({ url: url,dataType:"json", success: tips});
+						function tips (json){
+							var num = 0;
+							if(json.isExistContract == "true"){
+								bc.msg.alert("此司机已存在劳动合同版本,请维护原有的劳动合同版本！");
+								num = 1;
+							}
+							if(num == 0){
+								$form.find(":input[name='e.ext_str1']").val(info.car.plate);
+								$form.find(":input[name='carId']").val(info.car.id);
+								$form.find(":input[name='e.registerDate']").val(info.car.registerDate);
+								$form.find(":input[name='e.bsType']").val(info.car.bsType);
+								$form.find(":input[name='carManId']").val(info.driver.id);
+								$form.find(":input[name='e.ext_str2']").val(info.driver.name);
+								$form.find(":input[name='e.certNo']").val(info.driver.cert4FWZG);
+								$form.find(":input[name='e.certIdentity']").val(info.driver.cert4IDENTITY);
+								$form.find(":input[name='e.age']").val(info.driver.age);
+								$form.find(":input[name='e.birthDate']").val(info.driver.birthDate);
+								$form.find(":input[name='e.houseType']").val(info.driver.houseType);
+								$form.find(":input[name='e.origin']").val(info.driver.origin);
+								if(info.driver.sex == 2){
+									$form.find(":radio[name='e.sex']")[1].checked = true;
+								}
+							}
+							if(num == 1){
+								$form.find(":input[name='e.ext_str1']").val('');
+								$form.find(":input[name='carId']").val('');
+								$form.find(":input[name='e.registerDate']").val('');
+								$form.find(":input[name='e.bsType']").val('');
+								$form.find(":input[name='carManId']").val('');
+								$form.find(":input[name='e.ext_str2']").val('');
+								$form.find(":input[name='e.certNo']").val('');
+								$form.find(":input[name='e.certIdentity']").val('');
+								$form.find(":input[name='e.age']").val('');
+								$form.find(":input[name='e.birthDate']").val('');
+								$form.find(":input[name='e.houseType']").val('');
+								$form.find(":input[name='e.origin']").val('');
+							}
 						}
+	
 					}
 				});
 			}});

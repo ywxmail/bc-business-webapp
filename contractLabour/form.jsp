@@ -51,21 +51,23 @@
 												<td class="label">*<s:text name="contract.code"/>:</td>
 												<td class="value"><s:textfield name="e.code" data-validate="required" cssClass="ui-widget-content " /></td>
 												<td class="label">*<s:text name="contract.deadline"/>:</td>
-												<td class="value" >
-													<span style="position:relative;">
-													&nbsp;从
-														<input type="text" name="e.startDate" data-validate='{"type":"date","required":true}' 
-														value='<s:date format="yyyy-MM-dd" name="e.startDate" />'
-														style="max-width: 7em;" class="ui-widget-content" />
-														<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectStartDate"></span>
-													</span>
-													<span style="position:relative;">
-													&nbsp;到
-														<input type="text" name="e.endDate" data-validate='{"type":"date","required":true}'
+												<td class="value">
+												<div style="position : relative; display: inline-block">
+													&nbsp;从<input type="text" name="e.startDate" readonly="readonly" data-validate='{"type":"date","required":true}' 
+														value='<s:date format="yyyy-MM-dd" name="e.startDate" />' 
+														style="width: 7em;" class="bc-date ui-widget-content" />
+														<ul class="inputIcons" style="right : 0px;">
+															<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.startDate' ></li>
+														</ul>
+												</div>
+												<div style="position : relative; display: inline-block">
+													&nbsp;到<input type="text" name="e.endDate" readonly="readonly" data-validate='{"type":"date","required":true}'
 														value='<s:date format="yyyy-MM-dd" name="e.endDate" />'
-														style="max-width: 7em;" class="ui-widget-content" />
-														<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectEndDate"></span>
-													</span>
+														style="width: 7em;" class="bc-date ui-widget-content" />
+														<ul class="inputIcons" style="right : 0px;">
+															<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.endDate' ></li>
+														</ul>
+												</div>
 												</td>
 											</tr>
 								        </table>
@@ -85,25 +87,39 @@
 											</tr>
 											<tr>
 												<td class="label">*<s:text name="contract.car" />:</td>
+												<!--
 												<td class="value" style="position:relative;display: block;">
 													<s:textfield name="e.ext_str1" data-validate="required" readonly="true" title='%{getText("contract.title.click2selectCar")}' cssClass="ui-widget-content ui-state-disabled" />
 													<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectCarPlate"></span>
 												</td>
+												 -->
+												 <td class="value relative">
+												 	<s:textfield name="e.ext_str1" data-validate="required" readonly="true" cssClass="ui-widget-content ui-state-disabled" />
+												 	<ul class="inputIcons">
+												 		<li class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="contract.title.click2selectCar"/>' id="selectCarPlate">
+												 		<li class="clearSelect inputIcon ui-icon ui-icon-circle-close" data-cfg="e.ext_str1,carId"></li>
+												 	</ul>
+												 </td>
 												<td class="label"><s:text name="contract.labour.registerDate"/>:</td>
 												<td class="value" style="position:relative;display: block;">
 													<input type="text" name="e.registerDate" data-validate='{"type":"date"}'
 													value='<s:date format="yyyy-MM-dd" name="e.registerDate" />'
 													class="bc-date ui-widget-content" data-cfg='{changeYear:true}' />
-													<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectRegisterDate"></span>
+													<ul class="inputIcons">
+														<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.registerDate'></li>
+													</ul>
 												</td>
 											</tr>
 											<tr>
 												<td class="label">*<s:text name="contract.labour.driver"/>:</td>
 												<td class="value">
-												 	<span style="position:relative;">
-												 		<s:textfield name="e.ext_str2" data-validate="required" title='%{getText("contract.title.click2selectCarMan")}' readonly="true" cssStyle="width:6.5em;" cssClass="ui-widget-content ui-state-disabled" />
-														<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectDriverName"></span>
-													</span>
+													<div style="position:relative;display: inline-block">
+												 		<s:textfield name="e.ext_str2" data-validate="required" readonly="true" cssStyle="width:6.5em;" cssClass="ui-widget-content ui-state-disabled" />
+														<ul class="inputIcons">
+													 		<li class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="contract.title.click2selectCarMan"/>' id="selectDriverName">
+													 		<li class="clearSelect inputIcon ui-icon ui-icon-circle-close" data-cfg="e.ext_str2,carManId"></li>
+													 	</ul>
+													 </div>
 													<s:text name="contract.labour.certNo"/>&nbsp;<s:textfield name="e.certNo" data-validate="required" cssStyle="width:6em;" cssClass="ui-widget-content" />
 												</td>
 												<td class="label" >*<s:text name="contract.labour.bsType"/>:</td>
@@ -124,7 +140,9 @@
 													<input type="text" name="e.birthDate" data-validate='{"type":"date"}'
 													value='<s:date format="yyyy-MM-dd" name="e.birthDate" />'
 													class="bc-date ui-widget-content" data-cfg='{changeYear:true}' />
-													<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectBirthDate"></span>
+													<ul class="inputIcons">
+														<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.birthDate' ></li>
+													</ul>
 												</td>
 											</tr>
 											<tr>
@@ -169,7 +187,9 @@
 													<input type="text" name="e.joinDate" data-validate='{"type":"date","required":true}'
 													value='<s:date format="yyyy-MM-dd" name="e.joinDate" />'
 													class="bc-date ui-widget-content" data-cfg='{changeYear:true}' />
-													<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectjoinDate"></span>
+													<ul class="inputIcons">
+														<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.joinDate' ></li>
+													</ul>
 												</td>
 											</tr>
 											<tr>
@@ -191,21 +211,23 @@
 													<s:text name="contract.labour.funding"/>
 												</td>
 												<td class="label"><s:text name="contract.labour.getDaedLine"/>:</td>
-												<td class="value" >
-													<span style="position:relative;">
-													&nbsp;从
-														<input type="text" name="e.getStartDate" data-validate='{"type":"date"}' 
-														value='<s:date format="yyyy-MM-dd" name="e.getStartDate" />' class="ui-widget-content"
-														style="max-width: 7em;" />
-														<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectGetStartDate"></span>
-													</span>
-													<span style="position:relative;">
-													&nbsp;到
-														<input type="text" name="e.getEndDate" data-validate='{"type":"date"}'
-														value='<s:date format="yyyy-MM-dd" name="e.getEndDate" />' class="ui-widget-content"
-														style="max-width: 7em;" />
-														<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectGetEndDate"></span>
-													</span>
+												<td class="value">
+													<div style="position:relative;display: inline-block">
+													&nbsp;从<input type="text" name="e.getStartDate" readonly="readonly" data-validate='{"type":"date"}' 
+														value='<s:date format="yyyy-MM-dd" name="e.getStartDate" />' class="bc-date ui-widget-content"
+														style="width: 7em;" />
+														<ul class="inputIcons" style="right : 0px;">
+															<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.getStartDate' ></li>
+														</ul>
+													</div>
+													<div style="position:relative;display: inline-block">
+													&nbsp;到<input type="text" name="e.getEndDate" readonly="readonly" data-validate='{"type":"date"}'
+														value='<s:date format="yyyy-MM-dd" name="e.getEndDate" />' class="bc-date ui-widget-content"
+														style="width: 7em;" />
+														<ul class="inputIcons" style="right : 0px;">
+															<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.getEndDate' ></li>
+														</ul>
+													</div>
 												</td>
 											</tr>
 											<tr>
@@ -248,14 +270,18 @@
 																	<input type="text" name="e.breedingDate" data-validate='{"type":"date"}'
 																	value='<s:date format="yyyy-MM-dd" name="e.breedingDate" />'
 																	class="bc-date ui-widget-content" data-cfg='{changeYear:true}' />
-																	<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectBreedingDate"></span>
+																	<ul class="inputIcons">
+																		<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.breedingDate' ></li>
+																	</ul>
 																</td>
 																<td class="label"><s:text name="contract.labour.insureDate"/>:</td>
 																<td class="value" style="position:relative;display: block;">
 																	<input type="text" name="e.insureDate" data-validate='{"type":"date"}'
 																	value='<s:date format="yyyy-MM-dd" name="e.insureDate" />'
 																	class="bc-date ui-widget-content" data-cfg='{changeYear:true}'/>
-																	<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectInsureDate"></span>
+																	<ul class="inputIcons">
+																		<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.insureDate' ></li>
+																	</ul>
 																</td>
 												        	</tr>
 										        		</table>
