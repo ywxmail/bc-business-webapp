@@ -36,7 +36,7 @@
 						<td class="value"><s:select list="#{0:'',1:'本市',2:'本省',3:'外省'}" listKey="key" listValue="value" cssClass="ui-widget-content" headerValue="" name="e.region" style="width:196px"></s:select></td>
 						<td class="label"><s:text name="carMan.birthdate"/>:</td>
 						<td class="value" style="position:relative;display: block;"><input type="text" name="e.birthdate" 
-						data-validate="date"class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
+						data-validate='{required:false,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
 					    value='<s:date format="yyyy-MM-dd" name="e.birthdate" />'/>
 					    <span class="selectButton verticalMiddle ui-icon ui-icon-calendar"></span>
 				        </td>
@@ -46,7 +46,7 @@
 						<td class="value"><s:textfield name="e.phone" data-validate='{required:false,type:"phone"}' cssClass="ui-widget-content"/></td>
 						<td class="label"><s:text name="carMan.workDate"/>:</td>
 						<td class="value" style="position:relative;display: block;"><input type="text" name="e.workDate" 
-						data-validate="date"class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
+						data-validate='{required:false,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
 					    value='<s:date format="yyyy-MM-dd" name="e.workDate" />'/>
 					    <span class="selectButton verticalMiddle ui-icon ui-icon-calendar"></span>
 				        </td>
@@ -128,13 +128,13 @@
 						<tr>
 							<td class="label" style="width:140px"><s:text name="carMan.cert4DrivingFirstDate"/>:</td>
 							<td class="value" style="position:relative;display: block;"><input type="text" name="e.cert4DrivingFirstDate" 
-						    data-validate="date"class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
+						    data-validate='{required:false,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
 					         value='<s:date format="yyyy-MM-dd" name="e.cert4DrivingFirstDate" />'/>
 					        <span class="selectButton verticalMiddle ui-icon ui-icon-calendar"></span>
 				            </td>
 							<td class="label" style="width:140px"><s:text name="carMan.cert4DrivingStartDate"/>:</td>
 							<td class="value" style="position:relative;display: block;"><input type="text" name="e.cert4DrivingStartDate" 
-						     data-validate="date"class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
+						     data-validate='{required:false,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
 					         value='<s:date format="yyyy-MM-dd" name="e.cert4DrivingStartDate" />'/>
 					         <span class="selectButton verticalMiddle ui-icon ui-icon-calendar"></span>
 				             </td>
@@ -142,7 +142,7 @@
 						<tr>
 							<td class="label"><s:text name="carMan.cert4DrivingEndDate"/>:</td>
 							<td class="value" style="position:relative;display: block;"><input type="text" name="e.cert4DrivingEndDate" 
-						     data-validate="date"class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
+						     data-validate='{required:false,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
 					         value='<s:date format="yyyy-MM-dd" name="e.cert4DrivingEndDate" />'/>
 					         <span class="selectButton verticalMiddle ui-icon ui-icon-calendar"></span>
 				             </td>
