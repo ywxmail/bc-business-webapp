@@ -1,6 +1,6 @@
 if (!window['bs'])
 	window['bs'] = {};
-bs.sync4InfractTrafficsView = {
+bs.jinDunJTWFView = {
 	/** 页面的初始化方法 */
 	init : function(option, readonly) {
 		var $page = $(this);
@@ -13,30 +13,30 @@ bs.sync4InfractTrafficsView = {
 		
 		if(option.value.indexOf("mark") == 0){
 			//标记为的操作
-			bs.sync4InfractTrafficsView.changeStatus($page,option.value.split(".")[1]);
-		} else if(option.value.indexOf("sync") == 0){
+			bs.jinDunJTWFView.changeStatus($page,option.value.split(".")[1]);
+		} else if(option.value.indexOf("jindunSpider") == 0){
 			//同步的操作
-			bs.sync4InfractTrafficsView.sync($page,option.value.split(".")[1]);
+			bs.jinDunJTWFView.sync($page,option.value.split(".")[1]);
 		}else{
 			alert("不支持的操作类型!");
 		}
 	},
 	syncing: false,
 	/** 同步的操作 */
-	sync : function($page,dateType) {
-		if(bs.sync4InfractTrafficsView.syncing){
-			alert("上次执行的同步操作还在后台进行中，请耐心等待！");
+	sync : function($page,unitId) {
+		if(bs.jinDunJTWFView.syncing){
+			alert("上次执行的网络抓取操作还在后台进行中，请耐心等待！");
 			return;
 		}
 		//同步前先确认
-		bc.msg.confirm("确定要执行同步处理吗？",function(){
-			bs.sync4InfractTrafficsView.syncing = true;
+		bc.msg.confirm("确定要执行网络抓取处理吗？(金盾网的网络抓取比较耗时，要耐心等候！)",function(){
+			bs.jinDunJTWFView.syncing = true;
 			jQuery.ajax({
-				url: bc.root + "/bc-business/sync4InfractTraffics/sync", 
-				data: {dateType: dateType}, 
+				url: bc.root + "/bc-business/jinDunJTWFs/sync", 
+				data: {unitId: unitId}, 
 				dataType: "json",
 				success: function(json) {
-					bs.sync4InfractTrafficsView.syncing = false;
+					bs.jinDunJTWFView.syncing = false;
 					if(json.success){
 						// 显示处理结果
 						bc.msg.slide(json.msg);
@@ -49,7 +49,7 @@ bs.sync4InfractTrafficsView = {
 				}
 			});
 			// 显示提示结果
-			bc.msg.slide("正在后台执行同步操作，完成后会提示你！");
+			bc.msg.slide("正在后台执行网络抓取操作，完成后会提示你！");
 		});
 	},
 	/** 标记为的操作 */
@@ -111,8 +111,8 @@ bs.sync4InfractTrafficsView = {
 				}
 				// 执行生成操作：带参数跳转到交通违法表单
 				bc.page.newWin({
-					url: bc.root + "/bc-business/case4InfractTraffic/generateFromSync", 
-					mid: "case4InfractTraffic.generateFromSync",
+					url: bc.root + "/bc-business/case4InfractTraffic/createFromJinDun", 
+					mid: "case4InfractTraffic.createFromJinDun",
 					name: "生成交通违法处理单",
 					data: {syncId: ids[0]}
 				});
