@@ -17,25 +17,29 @@ bs.carSelectDialog = {
 		if($grid.hasClass("singleSelect")){//单选
 			data = {};
 			data.id = $tds.attr("data-id");
-			data.plate = $grid.find(">.data>.right tr.ui-state-focus").find("td:eq(0)").text();
+			var $tr = $grid.find(">.data>.right tr.ui-state-focus");
+			data.plate = $tr.find("td:eq(0)").text();
 			var p = data.plate.split(".");
 			data.plateType = p[0];
 			data.plateNo = p[1];
+			$.extend(data,$tr.data("hidden"));
 		}else{//多选
 			data = [];
 			var $trs = $grid.find(">.data>.right tr.ui-state-focus");
 			$tds.each(function(i){
-				var plate = $($trs.get(i)).find("td:eq(0)").text();
+				var $tr = $($trs.get(i));
+				var plate = $tr.find("td:eq(0)").text();
 				var p = plate.split(".");
-				data.push({
+				logger.info("--" + $.toJSON($tr.data("hidden")));
+				data.push($.extend({
 					id: $(this).attr("data-id"),
 					plate:plate,
 					plateType:p[0],
 					plateNo:p[1]
-				});
+				},$tr.data("hidden")));
 			});
 		}
-		//logger.info($.toJSON(data));
+		logger.info($.toJSON(data));
 		
 		// 返回
 		$page.data("data-status", data);
