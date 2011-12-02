@@ -17,38 +17,38 @@
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="runcase.subject"/>:</td>
-						<td class="value" colspan="3"><s:textfield name="e.subject" cssStyle="width:53.7em;" data-validate="required"/></td>
+						<td class="value" colspan="3"><s:textfield name="e.subject" cssStyle="width:53.7em;" data-validate="required" cssClass="ui-widget-content"/></td>
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="runcase.address"/>:</td>
-						<td class="value"><s:textfield name="e.address"  data-validate="required" /></td>
+						<td class="value"><s:textfield name="e.address"  data-validate="required" cssClass="ui-widget-content"/></td>
 						<td class="label">*<s:text name="runcase.caseNo2"/>:</td>
-						<td class="value "><s:textfield name="e.caseNo" data-validate="required" /></td>
+						<td class="value "><s:textfield name="e.caseNo" data-validate="required" cssClass="ui-widget-content" /></td>
 					</tr>
 					<tr>
 						<td class="label" ><s:text name="runcase.motorcadeName"/>:</td>
 						<td class="value" >
-							<s:select name="e.motorcadeId" list="motorcadeList" listKey="key" listValue="value" value="e.motorcadeId" headerKey="" headerValue=""  ></s:select>
+							<s:select name="e.motorcadeId" list="motorcadeList" listKey="key" listValue="value" value="e.motorcadeId" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
 						</td>
 						<td class="label">*<s:text name="runcase.happenDate"/>:</td>
 						<td class="value" style="position:relative;display: block;">
 							<input type="text" name="e.happenDate" data-validate='{"type":"datetime","required":true}'
 							value='<s:date format="yyyy-MM-dd HH:mm" name="e.happenDate" />'
-							class="bc-datetime" data-cfg='{changeYear:true}'/>
+							class="bc-datetime ui-widget-content" data-cfg='{changeYear:true}'/>
 							<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectHappenDate"></span>
 						</td>
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="runcase.carPlate"/>:</td>
 						<td class="value" style="position:relative;display: block;">
-							<s:textfield name="e.carPlate" data-validate="required" readonly="true" />
+							<s:textfield name="e.carPlate" data-validate="required" readonly="true" cssClass="ui-widget-content ui-state-disabled"/>
 							<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectCarPlate"></span>
 						</td>
 						<td class="label" ><s:text name="runcase.receiveDate1"/>:</td>
 						<td class="value" style="position:relative;display: block;">
 							<input type="text" name="e.receiveDate" data-validate='{"type": "date"}'
 							value='<s:date format="yyyy-MM-dd" name="e.receiveDate" />'
-							class="bc-date" data-cfg='{changeYear:true}'/>
+							class="bc-date ui-widget-content" data-cfg='{changeYear:true}'/>
 							<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectReceiveDate"></span>
 						</td>
 					</tr>
@@ -56,45 +56,45 @@
 						<td class="label">*<s:text name="runcase.driverName" />:</td>
 						<td>
 							<span style="position:relative;">
-								<s:textfield name="e.driverName" cssStyle="width:5em;" data-validate="required"/>
+								<s:textfield name="e.driverName" cssStyle="width:5em;" data-validate="required" cssClass="ui-widget-content ui-state-disabled"/>
 								<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectDriverName"></span>
 							</span>
 							&nbsp;&nbsp;
-							<s:text name="runcase.driverCert" /><s:textfield name="e.driverCert" data-validate="required" />
+							<s:text name="runcase.driverCert" /><s:textfield name="e.driverCert" data-validate="required" cssClass="ui-widget-content"/>
 						</td>
 						<td class="label"><s:text name="runcase.receiverName1"/>:</td>
 						<td class="value" style="position:relative;display: block;">
-							<s:textfield name="e.receiverName" />
+							<s:textfield name="e.receiverName" cssClass="ui-widget-content"/>
 							<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectReceiverName"></span>
 						</td>
 					</tr>
 					<tr>
 						<td class="label"><s:text name="runcase.chargerName"/>:</td>
 						<td class="value" style="position:relative;display: block;">
-							<s:textfield name="e.chargerName" />
+							<s:textfield name="e.chargerName" cssClass="ui-widget-content"/>
 							<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectChargerName"></span>
 						</td>
 						<td class="label" ><s:text name="runcase.duty"/>:</td>
 						<td class="value" >
-							<s:select name="e.duty" list="dutyList" listKey="value" listValue="value"  headerKey="" headerValue="" ></s:select>
+							<s:select name="e.duty" list="dutyList" listKey="value" listValue="value"  headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
 						</td>
 					</tr>
 					<tr>
 						<td class="label" ><s:text name="runcase.sort"/>:</td>
 						<td class="value" >
-							<s:select name="e.sort" list="properitesList" listKey="value" listValue="value" headerKey="" headerValue="" ></s:select>
+							<s:select name="e.sort" list="properitesList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
 						</td>
 						<td class="label">*<s:text name="runcase.code" />:</td>
-						<td class="value "><s:textfield name="e.code" data-validate="required" readonly="true" /></td>					
+						<td class="value "><s:textfield name="e.code" data-validate="required" readonly="true" cssClass="ui-widget-content"/></td>					
 					</tr>
 					<tr>
 						<td class="label"><s:text name="runcase.extent"/></td>
 						<td class="value">
-						<s:select name="e.extent" list="degreeList" listKey="value" listValue="value" headerKey="" headerValue="" ></s:select>
+						<s:select name="e.extent" list="degreeList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
 						</td>
 						<td class="label" ><s:text name="runcase.source"/>:</td>
 						<td class="value" >
-							<s:select name="e.from" list="sourcesValue" listKey="key" listValue="value" value="e.source"  headerKey="" headerValue=""  ></s:select>
+							<s:select name="e.from" list="sourcesValue" listKey="key" listValue="value" value="e.source"  headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
 						</td>
 					</tr>
 					<!--
@@ -170,37 +170,37 @@
 								<td style="width: 350px;">&nbsp;</td>
 							</tr>
 							<tr>
-								<td class="label" colspan="2" style="text-align: center">*扣<s:textfield name="e.jeom" data-validate='{"type":"number","required":true}' cssStyle="width:2.5em;"/>分,
-								罚款<s:textfield name="e.penalty" data-validate='{"type":"number","required":true}' cssStyle="width:2.5em;"/>元,
-								违约金<s:textfield name="e.penalty2" data-validate='{"type":"number","required":true}' cssStyle="width:2.5em;"/>元.</td>
+								<td class="label" colspan="2" style="text-align: center">*扣<s:textfield name="e.jeom" data-validate='{"type":"number","required":true}' cssStyle="width:2.5em;" cssClass="ui-widget-content"/>分,
+								罚款<s:textfield name="e.penalty" data-validate='{"type":"number","required":true}' cssStyle="width:2.5em;" cssClass="ui-widget-content"/>元,
+								违约金<s:textfield name="e.penalty2" data-validate='{"type":"number","required":true}' cssStyle="width:2.5em;" cssClass="ui-widget-content"/>元.</td>
 								<td class="label"><s:text name="runcase.receipt"/>:</td>
-								<td class="value"><s:textfield name="e.receipt" /></td>
+								<td class="value"><s:textfield name="e.receipt" cssClass="ui-widget-content"/></td>
 							</tr>
 							<tr>
 								<td class="label"><s:text name="runcase.detain"/>:</td>
-								<td class="value" colspan="3"><s:textfield name="e.detain	" cssStyle="width:53.7em;"/></td>
+								<td class="value" colspan="3"><s:textfield name="e.detain	" cssStyle="width:53.7em;" cssClass="ui-widget-content"/></td>
 							</tr>
 							<tr>
 								<td class="label"><s:text name="runcase.confiscateCertNo" />:</td>
-								<td class="value "><s:textfield name="e.confiscateCertNo" /></td>					
+								<td class="value "><s:textfield name="e.confiscateCertNo" cssClass="ui-widget-content"/></td>					
 								<td class="label" ><s:text name="runcase.confiscateCertType"/>:</td>
 								<td class="value" >
-									<s:select name="e.confiscateCertType" list="certList" listKey="value" listValue="value" headerKey="" headerValue="" ></s:select>
+									<s:select name="e.confiscateCertType" list="certList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
 								</td>
 							</tr>
 							<tr>
 								<td class="label"><s:text name="runcase.operator" />:</td>
-								<td class="value "><s:textfield name="e.operator" /></td>					
+								<td class="value "><s:textfield name="e.operator" cssClass="ui-widget-content"/></td>					
 								<td class="label" ><s:text name="runcase.operateUnit"/>:</td>
 								<td class="value" >
-									<s:select name="e.operateUnit" list="departmentList" listKey="value" listValue="value" headerKey="" headerValue="" ></s:select>
+									<s:select name="e.operateUnit" list="departmentList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
 								</td>
 							</tr>
 							<tr>
 								<td class="label"><s:text name="runcase.area" />:</td>
-								<td class="value "><s:textfield name="e.area" /></td>		
+								<td class="value "><s:textfield name="e.area" cssClass="ui-widget-content"/></td>		
 								<td class="label"><s:text name="runcase.pullUnit" />:</td>
-								<td class="value "><s:textfield name="e.pullUnit" /></td>					
+								<td class="value "><s:textfield name="e.pullUnit" cssClass="ui-widget-content"/></td>					
 							</tr>
 						</tbody>
 					</table>
@@ -215,7 +215,7 @@
 								<td style="width: 350px;">&nbsp;</td>
 							</tr>
 							<tr>
-								<td class="value" colspan="4"><s:textarea name="e.description" cssStyle="width:59.7em; text-align:left" rows="4" /></td>
+								<td class="value" colspan="4"><s:textarea name="e.description" cssStyle="width:59.7em; text-align:left" rows="4" cssClass="ui-widget-content"/></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -246,7 +246,7 @@
 								<td style="width: 350px;">&nbsp;</td>
 							</tr>
 							<tr>
-								<td class="value" colspan="4"><s:textarea name="e.comment" cssStyle="width:59.7em; text-align:left" rows="4" /></td>
+								<td class="value" colspan="4"><s:textarea name="e.comment" cssStyle="width:59.7em; text-align:left" rows="4" cssClass="ui-widget-content"/></td>
 								<td></td>
 								<td></td>
 								<td></td>

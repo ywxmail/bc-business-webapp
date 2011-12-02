@@ -17,69 +17,69 @@
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="runcase.subject"/>:</td>
-						<td class="value" colspan="3"><s:textfield name="e.subject" cssStyle="width:51em;" data-validate="required"/></td>
+						<td class="value" colspan="3"><s:textfield name="e.subject" cssStyle="width:51em;" data-validate="required" cssClass="ui-widget-content"/></td>
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="runcase.address"/>:</td>
-						<td class="value "><s:textfield name="e.address"  data-validate="required" /></td>
+						<td class="value "><s:textfield name="e.address"  data-validate="required" cssClass="ui-widget-content"/></td>
 						<td class="label">*<s:text name="runcase.caseNo1"/>:</td>
-						<td class="value "><s:textfield name="e.caseNo" data-validate="required" /></td>
+						<td class="value "><s:textfield name="e.caseNo" data-validate="required" cssClass="ui-widget-content"/></td>
 					</tr>
 					<tr>
-						<td class="label" ><s:text name="runcase.motorcadeName"/>:</td>
+						<td class="label" ><s:text name="runcase.motorcadeName" />:</td>
 						<td class="value" >
-							<s:select name="e.motorcadeId" list="motorcadeList" listKey="key" listValue="value" value="e.motorcadeId" headerKey="" headerValue=""  ></s:select>
+							<s:select name="e.motorcadeId" list="motorcadeList" listKey="key" listValue="value" value="e.motorcadeId" headerKey="" headerValue=""  cssClass="ui-widget-content"></s:select>
 						</td>
 						<td class="label">*<s:text name="runcase.happenDate"/>:</td>
 						<td class="value" style="position:relative;display: block;">
 							<input type="text" name="e.happenDate" data-validate='{"type":"datetime","required":true}'
 							value='<s:date format="yyyy-MM-dd HH:mm" name="e.happenDate" />'
-							class="bc-datetime" data-cfg='{changeYear:true}'/>
+							class="bc-datetime ui-widget-content" data-cfg='{changeYear:true}'/>
 							<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectHappenDate"></span>
 						</td>
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="runcase.carPlate"/>:</td>
 						<td class="value" style="position:relative;display: block;">
-							<s:textfield name="e.carPlate" data-validate="required" readonly="true" />
+							<s:textfield name="e.carPlate" data-validate="required" readonly="true" cssClass="ui-widget-content ui-state-disabled"/>
 							<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectCarPlate"></span>
 						</td>
 						<td class="label" ><s:text name="runcase.source"/>:</td>
 						<td class="value" >
-							<s:select name="e.from" list="sourcesValue" listKey="key" listValue="value" value="e.source"  headerKey="" headerValue=""  ></s:select>
+							<s:select name="e.from" list="sourcesValue" listKey="key" listValue="value" value="e.source"  headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
 						</td>
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="runcase.driverName" />:</td>
 						<td>
 							<span style="position:relative;">
-								<s:textfield name="e.driverName" cssStyle="width:5em;" data-validate="required"/>
+								<s:textfield name="e.driverName" cssStyle="width:5em;" data-validate="required" cssClass="ui-widget-content ui-state-disabled"/>
 								<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectDriverName"></span>
 							</span>
 							&nbsp;&nbsp;
-							<s:text name="runcase.driverCert" /><s:textfield name="e.driverCert" data-validate="required" />
+							<s:text name="runcase.driverCert" /><s:textfield name="e.driverCert" data-validate="required" cssClass="ui-widget-content"/>
 						</td>
 						<td class="label" ><s:text name="runcase.duty"/>:</td>
 						<td class="value" >
-							<s:select name="e.duty" list="dutyList" listKey="value" listValue="value"  headerKey="" headerValue="" ></s:select>
+							<s:select name="e.duty" list="dutyList" listKey="value" listValue="value"  headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
 						</td>
 					</tr>
 					<tr>
 						<td class="label"><s:text name="runcase.chargerName"/>:</td>
 						<td class="value" style="position:relative;display: block;">
-							<s:textfield name="e.chargerName" />
+							<s:textfield name="e.chargerName" cssClass="ui-widget-content" />
 							<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectChargerName"></span>
 						</td>
 						<td class="label"><s:text name="runcase.sort"/>:</td>
 						<td class="value" >
-							<s:select name="e.sort" list="properitesList" listKey="value" listValue="value" headerKey="" headerValue="" ></s:select>
+							<s:select name="e.sort" list="properitesList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
 						</td>
 					</tr>
 					<tr>
 						<td class="label"><s:text name="runcase.jeom"/>:</td>
-						<td class="value "><s:textfield name="e.jeom" data-validate='{"type":"number",max:100}'/></td>
+						<td class="value "><s:textfield name="e.jeom" data-validate='{"type":"number",max:100}' cssClass="ui-widget-content"/></td>
 						<td class="label">*<s:text name="runcase.code" />:</td>
-						<td class="value "><s:textfield name="e.code" data-validate="required" readonly="true" /></td>
+						<td class="value "><s:textfield name="e.code" data-validate="required" readonly="true" cssClass="ui-widget-content"/></td>
 					</tr>
 					<tr>
 						<td class="label">
@@ -146,7 +146,7 @@
 							<span style="position:relative;">
 								<input type="text" name="e.deliverDate" data-validate='{"type": "date"}'
 								value='<s:date format="yyyy-MM-dd" name="e.deliverDate" />'
-								class="bc-date" data-cfg='{changeYear:true}'/>
+								class="bc-date ui-widget-content" data-cfg='{changeYear:true}'/>
 								<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectDeliverDate"></span>
 							</span>
 						</td>
@@ -171,7 +171,7 @@
 							<span style="position:relative;">
 								<input type="text" name="e.signDate" data-validate='{"type": "datetime"}'
 								value='<s:date format="yyyy-MM-dd HH:mm" name="e.signDate" />'
-								class="bc-datetime" data-cfg='{changeYear:true}'/>
+								class="bc-datetime ui-widget-content" data-cfg='{changeYear:true}'/>
 								<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectDeliverDate"></span>
 							</span>
 						</td>
@@ -185,7 +185,7 @@
 						<td></td>
 					</tr>
 					<tr>
-						<td class="value" colspan="4"><s:textarea name="e.comment" cssStyle="width:59.7em; text-align:left" rows="4" /></td>
+						<td class="value" colspan="4"><s:textarea name="e.comment" cssStyle="width:59.7em; text-align:left" rows="4" cssClass="ui-widget-content"/></td>
 						<td></td>
 						<td></td>
 						<td></td>
@@ -219,6 +219,8 @@
 		<s:hidden name="e.closerId" />
 		<s:hidden name="e.closerName" />
 		<s:hidden name="e.status" />
+		<s:hidden name="e.syncUid" />
+		<s:hidden name="e.syncId" />
 		<s:hidden name="isMoreCar" />
 		<s:hidden name="isMoreCarMan" />
 		<s:hidden name="carId" />
