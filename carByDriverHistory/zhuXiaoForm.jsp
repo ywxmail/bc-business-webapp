@@ -48,7 +48,8 @@
                                                </ul>
                                             </td>
                                             <td class="label"><s:text name="carByDriverHistory.oldMotorcade"/>:</td>
-						                    <td class="value"><s:textfield name="e.fromMotorcadeName" cssClass="ui-widget-content"/></td>
+						                    <td class="value"> <s:select name="e.fromMotorcadeId" list="motorcadeList" listKey="key" listValue="value" value="e.fromMotorcadeId" 
+						                    headerKey="" headerValue="" cssClass="ui-widget-content"></s:select></td>
 					                  </tr>
 						              <tr><td class="label"><s:text name="carByDriverHistory.oldDriverState"/>:</td>
 						                 <td class="value" ><s:select name="e.fromClasses" list="#{0:'',1:'正班',2:'副班',3:'顶班'}" 

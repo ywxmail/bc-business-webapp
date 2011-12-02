@@ -13,18 +13,15 @@ bc.business.carByDriverHistoryForm = {
 				onOk : function(car) {
 					$form.find(":input[name='e.fromCar.id']").val(car.id);
 					$form.find(":input[name='e.fromCar.name']").val(car.plate);
-					
-				}
-			});
-		});
-		// 选择迁往车辆
-		$form.find("#selectNewCar").click(function() {
-			var selecteds = $form.find(":input[name='e.toCar.id']").val();
-			bs.selectCar({
-				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
-				onOk : function(car) {
-					$form.find(":input[name='e.toCar.id']").val(car.id);
-					$form.find(":input[name='e.toCar.name']").val(car.plate);
+					$form.find(":input[name='e.fromMotorcadeId']").val(car.motorcadeId);
+					 var $select = $form.find(":input[name='e.fromMotorcadeId']");
+					 var selectEl = $select[0];
+					if(bc.select.isExist(selectEl, car.motorcadeId)){
+						$select.val(car.motorcadeId);
+					}else{
+						selectEl.options[selectEl.length] = new Option(car.motorcadeName, car.motorcadeId);
+						selectEl.options[selectEl.length-1].selected = true;
+					}
 				}
 			});
 		});
