@@ -263,3 +263,107 @@ bs.findInfoByCar = function(option) {
 		}
 	});
 };
+
+/**
+ * 通过司机id或姓名查询相关信息
+ * @param {Object} option 配置参数
+ * @option {String} driverId 司机id
+ * @option {String} driverName 姓名
+ * @option {Function} success 信息获取成功后的回调函数，函数第一个参数为返回的相关信息，格式为
+ * 	{
+ * 		car:{id:[id],plate:[plate],registerDate:[registerDate]bsType:[bsType]},
+ * 		motorcade:{
+ * 			id: [id],						-- 车队id
+ * 			name: [name]					-- 车队名称
+ * 		},
+ * 		driver:{
+ * 			id: [id],						-- 司机id
+ * 			name: [name],					-- 司机姓名
+ * 			sex: [sex],						-- 司机性别
+ * 			classes: [classes],				-- 司机营运班次
+ * 			cert4FWZG: [cert4FWZG],			-- 司机的服务资格证
+ * 			cert4IDENTITY: [cert4IDENTITY],	-- 司机身份证
+ *			origin： [origin],				-- 籍贯
+ *			houseType： [houseType],			-- 户口类型
+ *			birthDate： [birthDate],			-- 出生日期
+ *			age： [age],						-- 年龄
+ * 			icId: [icId]					-- 司机IC卡的id
+ *            status: [status]                --司机状态
+ * 		}
+ * 	}
+ */
+bs.findInfoByDriver = function(option) {
+	var data = {};
+	if(option.driverId) data.driverId = option.driverId;
+	if(option.driverName) data.driverName = option.driverName;
+	bc.ajax({
+		dataType: "json", data: data,
+		url: bc.root + "/bc-business/findInfoByDriver",
+		success: function(json){
+			logger.info("json=" + $.toJSON(json));
+			if(json.cars.length == 0){
+				//提示用户此不正常现象
+				alert("没有找到所选司机对应的营运车辆信息，无法处理，请联系管理员！");
+				
+				//直接调用回调函数,但没有司机信息
+				option.success.call(json,{
+					driver: json.driver,
+					motorcade: json.motorcade
+				});
+			}else if(json.cars.length == 1){
+				//直接调用回调函数，返回车辆信息
+				option.success.call(json,{
+					driver: json.driver,
+					motorcade: json.motorcade,
+					car: json.cars[0]
+				});
+			}else{
+				//--让用户选择车辆后再调用回调函数
+				//生成对话框的html代码
+				var html = [];
+				html.push('<div class="bc-page" data-type="dialog">');
+				html.push('<div style="margin: 4px;">');
+				html.push('<select id="cars" size="10" style="width:100%;height:100%;">');
+				var cars = json.cars;
+				for(var i=0; i<cars.length; i++){
+					html.push('<option value="' + cars[i].id + '"');
+					if(i == 0){
+						//默认选中第一辆车
+						html.push(' selected="selected"');
+					}
+					html.push('>' + cars[i].plate + '</option>');
+				}
+				html.push('</select>');
+				html.push('</div>');
+				html.push('</div>');
+				html = $(html.join("")).appendTo("body");
+				
+				//绑定双击事件
+				function onSelectCar(){
+					if(carsEl.selectedIndex == -1){
+						alert("请先选择车辆！");
+						return false;
+					}
+					//调用回调函数，返回车辆信息
+					option.success.call(json,{
+						driver: json.driver,
+						motorcade: json.motorcade,
+						car: cars[carsEl.selectedIndex]
+					});
+					//销毁对话框
+					html.dialog("destroy").remove();
+				}
+				var carsEl = html.find("#cars").dblclick(onSelectCar)[0];
+				
+				//弹出对话框让用户选择车辆
+				html.dialog({
+					id: "selectcar4findInfoByDriver",
+					title: "此司机营运多辆车，请选择一辆",
+					dialogClass: 'bc-ui-dialog ui-widget-header',
+					width:300,modal:true,
+					buttons:[{text:"确定",click: onSelectCar}]
+				});				
+			}
+		}
+	});
+};

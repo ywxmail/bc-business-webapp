@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div title='<s:text name="carByDriverHistory.title"/>' data-type='form' class="bc-page"
     data-saveUrl='<s:url value="/bc-business/carByDriverHistory/save" />'
-	data-js='<s:url value="/bc-business/carByDriverHistory/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js" />'
+	data-js='<s:url value="/bc/libs/select.js" />,<s:url value="/bc-business/carByDriverHistory/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js" />'
 	data-initMethod='bc.business.carByDriverHistoryForm.init'
 	data-option='{
 		"buttons":[{"text":"<s:text name="label.save"/>","action":"save"}],
@@ -16,7 +16,7 @@
 					<s:if test="%{carManId != null}">
 						<td class="value"><s:textfield name="e.driver.name" readonly="true"  data-validate="required" cssClass="ui-widget-content ui-state-disabled" /></td>
 					</s:if><s:else>
-					    <td class="value relative"><s:textfield name="e.driver.name"  id="driverName" data-validate="required" cssClass="ui-widget-content" />
+					    <td class="value relative"><s:textfield name="e.driver.name"  id="selectDriver" data-validate="required" cssClass="ui-widget-content" />
 					        <ul class="inputIcons">
                                <li class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></li>
                                <li class="clearSelect inputIcon ui-icon ui-icon-circle-close" data-cfg="e.driver.name" title='<s:text name="title.click2clear"/>'></li>

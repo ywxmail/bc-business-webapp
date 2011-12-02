@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div title='<s:text name="carByDriverHistory.title"/>' data-type='form' class="bc-page"
     data-saveUrl='<s:url value="/bc-business/carByDriverHistory/save" />'
-	data-js='<s:url value="/bc-business/carByDriverHistory/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js" />'
+	data-js='<s:url value="/bc/libs/select.js" />,<s:url value="/bc-business/carByDriverHistory/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js" />'
 	data-initMethod='bc.business.carByDriverHistoryForm.init'
 	data-option='{
 		"buttons":[{"text":"<s:text name="label.save"/>","action":"save"}],
@@ -72,7 +72,8 @@
                                             </td>
 					                  </tr>
 						              <tr><td class="label"><s:text name="carByDriverHistory.newMotorcade"/>:</td>
-						                  <td class="value"><s:textfield name="e.toMotorcadeName" cssClass="ui-widget-content"/></td>
+						                 <td class="value"> <s:select name="e.toMotorcadeId" list="motorcadeList" listKey="key" listValue="value" value="e.toMotorcadeId" 
+						                 headerKey="" headerValue="" cssClass="ui-widget-content"></s:select></td>
 						              </tr>
 						              <tr><td class="label"><s:text name="carByDriverHistory.newDriverState"/>:</td>
 						                 <td class="value" ><s:select name="e.toClasses" list="#{0:'',1:'正班',2:'副班',3:'顶班'}" 
@@ -101,7 +102,6 @@
 		<s:hidden name="e.author.id" />
 		<s:hidden name="e.modifier.id"/>
 		<s:hidden name="e.fromMotorcadedId"/>
-		<s:hidden name="e.toMotorcadeId"/>
 		<s:hidden name="e.fromCar.id"/>
 		<s:hidden name="e.toCar.id"/>
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>

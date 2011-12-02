@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div title='<s:text name="carByDriverHistory.title"/>' data-type='form' class="bc-page"
     data-saveUrl='<s:url value="/bc-business/carByDriverHistory/save" />'
-	data-js='<s:url value="/bc-business/carByDriverHistory/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js" />'
+	data-js='<s:url value="/bc/libs/select.js" />,<s:url value="/bc-business/carByDriverHistory/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js" />'
 	data-initMethod='bc.business.carByDriverHistoryForm.init'
 	data-option='{
 		"buttons":[{"text":"<s:text name="label.save"/>","action":"save"}],
@@ -22,20 +22,26 @@
 				        </td>
 					</tr>
 					<tr>
+					     <td class="label" >*<s:text name="carByDriverHistory.oldCar"/>:</td>
+						  <td class="value relative" style="position:relative;display: block;"><s:textfield name="e.fromCar.name" value="%{e.fromCar.plateType+e.fromCar.plateNo }"
+					            data-validate="required" cssClass="ui-widget-content" readonly="true"/>
+					                  <ul class="inputIcons">
+                                            <li id="selectOldCar" class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></li>
+                                            <li class="clearSelect inputIcon ui-icon ui-icon-circle-close" data-cfg="e.fromCar.name" title='<s:text name="title.click2clear"/>'></li>
+                                      </ul>
+                        </td>
+					</tr>
+					<tr>
 						<td class="label" colspan="4" style="text-align:left;">
 						    <fieldset style="width:680px">
 						          <legend>迁自</legend>
 						          <table class="formFields" cellspacing="2" cellpadding="0" >
-						              <tr><td class="label" >*<s:text name="carByDriverHistory.oldCar"/>:</td>
-						                   <td class="value relative" style="position:relative;display: block;"><s:textfield name="e.fromCar.name" value="%{e.fromCar.plateType+e.fromCar.plateNo }"
-					                        data-validate="required" cssClass="ui-widget-content" readonly="true"/>
-					                           <ul class="inputIcons">
-                                                   <li id="selectOldCar" class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></li>
-                                                   <li class="clearSelect inputIcon ui-icon ui-icon-circle-close" data-cfg="e.fromCar.name" title='<s:text name="title.click2clear"/>'></li>
-                                               </ul>
-                                            </td>
+						              <tr>
 						                  <td class="label"><s:text name="carByDriverHistory.oldMotorcade"/>:</td>
-						                  <td class="value"><s:textfield name="e.fromMotorcadeName" cssClass="ui-widget-content"/></td>
+						                  <td class="value" >
+							              <s:select name="e.fromMotorcadeId" list="motorcadeList" listKey="key" listValue="value" 
+		 					              value="e.fromMotorcadeId" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
+						                  </td>
 						            </tr>
 						          </table>
 						   </fieldset>
