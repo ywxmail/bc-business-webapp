@@ -49,7 +49,7 @@
 											</tr>
 											<tr>
 												<td class="label">*<s:text name="contract.code"/>:</td>
-												<td class="value"><s:textfield name="e.code" data-validate="required" cssClass="ui-widget-content " /></td>
+												<td class="value"><s:textfield name="e.code" data-validate="required" readonly="true" cssClass="ui-widget-content " /></td>
 												<td class="label">*<s:text name="contract.deadline"/>:</td>
 												<td class="value">
 												<div style="position : relative; display: inline-block">

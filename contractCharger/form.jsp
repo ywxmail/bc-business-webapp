@@ -168,6 +168,9 @@
 		<s:hidden name="oldCarId" />
 		<s:hidden name="assignChargerIds" />
 		<s:hidden name="assignChargerNames" />
+		<s:hidden name="e.status"/>
+		<s:hidden name="e.opType"/>
+		<s:hidden name="e.patchNo"/>
 		<!-- 
 		<s:hidden name="e.transactorId" />
 		<s:hidden name="e.changerId1" />
