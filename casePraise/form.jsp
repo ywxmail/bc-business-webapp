@@ -169,7 +169,7 @@
 												<td>&nbsp;</td>
 											</tr>
 								          	<tr>
-								          		<td class="label">*<s:text name="runcase.advisorName" />:</td>
+								          		<td class="label">*<s:text name="runcase.praiseName" />:</td>
 												<td class="value" colspan="3">
 													<s:textfield name="e.advisorName" cssStyle="width:9em;" data-validate="required" cssClass="ui-widget-content"/>
 													 <s:radio name="e.advisorSex" list="#{'1':'男','2':'女'}" 
@@ -178,13 +178,13 @@
 												</td>
 							                </tr>
 							                <tr>
-							                	<td class="label">*<s:text name="runcase.advisorPhone" />:</td>
+							                	<td class="label">*<s:text name="runcase.praiseHome" />:</td>
 							                	<td class="value" colspan="3">
 													<s:textfield name="e.advisorPhone" data-validate='{"type":"number" ,"required":true}' cssClass="ui-widget-content"/>
 												</td>
 							                </tr>
 							                <tr>
-							               		<td class="label"><s:text name="runcase.advisorCert" />:</td>
+							               		<td class="label"><s:text name="runcase.praiseCert" />:</td>
 							                	<td class="value" colspan="3">
 													<s:textfield name="e.advisorCert" cssClass="ui-widget-content"/>
 												</td>

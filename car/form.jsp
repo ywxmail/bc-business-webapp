@@ -48,10 +48,13 @@
 					</tr>
 					<tr>
 						<td class="label" >*<s:text name="car.registerDate"/>:</td>
-						<td class="value" >
-							<input type="text" name="e.registerDate" data-validate="date"
+						<td class="value relative">
+							<input type="text" name="e.registerDate" data-validate='{"type":"date"}'
 							value='<s:date format="yyyy-MM-dd" name="e.registerDate" />'
 							class="bc-date ui-widget-content" data-cfg='{changeYear:true}' />
+							<ul class="inputIcons">
+								<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.registerDate'></li>
+							</ul>
 						</td>
 						<td class="label" ><s:text name="car.level"/>:</td>
 						<td class="value" >
@@ -60,30 +63,39 @@
 					</tr>
 					<tr>
 						<td class="label" >*<s:text name="car.operateDate"/>:</td>
-						<td class="value" >
-							<input type="text" name="e.operateDate" data-validate="date"
+						<td class="value relative" >
+							<input type="text" name="e.operateDate" data-validate='{"type":"date"}'
 							value='<s:date format="yyyy-MM-dd" name="e.operateDate" />'
 							class="bc-date ui-widget-content"  data-cfg='{changeYear:true}'/>
+							<ul class="inputIcons">
+								<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.operateDate'></li>
+							</ul>
 						</td>
 						<td class="label" ><s:text name="car.originNo"/>:</td>
 						<td class="value" ><s:textfield name="e.originNo" cssClass="ui-widget-content"/></td>
 					</tr>
 					<tr>
 						<td class="label" >*<s:text name="car.factoryDate"/>:</td>
-						<td class="value" >
-							<input type="text" name="e.factoryDate" data-validate="date"
+						<td class="value relative" >
+							<input type="text" name="e.factoryDate" data-validate='{"type":"date"}'
 							value='<s:date format="yyyy-MM-dd" name="e.factoryDate" />'
 							class="bc-date ui-widget-content"  data-cfg='{changeYear:true}'/>
+							<ul class="inputIcons">
+								<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.factoryDate'></li>
+							</ul>
 						</td>
 						<td class="label" ><s:text name="car.code"/>:</td>
 						<td class="value" ><s:textfield name="e.code" cssClass="ui-widget-content"/></td>
 					</tr>
 					<tr>
 						<td class="label" >*<s:text name="car.scrapDate"/>:</td>
-						<td class="value" >
-							<input type="text" name="e.scrapDate" data-validate="date"
+						<td class="value relative" >
+							<input type="text" name="e.scrapDate" data-validate='{"type":"date"}'
 							value='<s:date format="yyyy-MM-dd" name="e.scrapDate" />'
 							class="bc-date ui-widget-content"  data-cfg='{changeYear:true}'/>
+							<ul class="inputIcons">
+								<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.scrapDate'></li>
+							</ul>
 						</td>
 						<td class="label" ><s:text name="car.unit"/>:</td>
 						<td class="value" ><s:textfield name="e.oldUnitName" cssClass="ui-widget-content"/></td>
@@ -160,7 +172,7 @@
 								<td class="label" ><s:text name="car.certNo3"/>:</td>
 								<td class="value" ><s:textfield name="e.certNo3"  cssClass="ui-widget-content"/></td>
 								<td class="label" ><s:text name="car.originalValue"/>:</td>
-								<td class="value" ><s:textfield name="e.originalValue" data-validate="number" cssClass="ui-widget-content"/></td>
+								<td class="value" ><s:textfield name="e.originalValue" data-validate='{"type":"number"}' cssClass="ui-widget-content"/></td>
 							</tr>
 						</tbody>
 					</table>
@@ -193,46 +205,46 @@
 							</tr>
 							<tr>
 								<td class="label" ><s:text name="car.displacement"/>/<s:text name="car.power"/>:</td>
-								<td class="value" ><s:textfield name="e.displacement" data-validate="digits"  cssStyle="width:5em;" cssClass="ui-widget-content"/>&nbsp;ml&nbsp;&nbsp;<s:textfield name="e.power" data-validate="number" cssStyle="width:5em;" cssClass="ui-widget-content"/>&nbsp;kw</td>
+								<td class="value" ><s:textfield name="e.displacement" data-validate='{"type" : "digits"}'  cssStyle="width:5em;" cssClass="ui-widget-content"/>&nbsp;ml&nbsp;&nbsp;<s:textfield name="e.power" data-validate='{"type" : "number"}' cssStyle="width:5em;" cssClass="ui-widget-content"/>&nbsp;kw</td>
 								<td class="label"  >
 									<s:text name="car.dim" />:
 								</td>
 								<td class="value" >
 									<s:text name="car.dimLen" />
-									<s:textfield name="e.dimLen" data-validate="digits"  cssStyle="width:3em;" cssClass="ui-widget-content"/>
+									<s:textfield name="e.dimLen" data-validate='{"type" : "digits"}'  cssStyle="width:3em;" cssClass="ui-widget-content"/>
 									<s:text name="car.dimWidth"/>
-									<s:textfield name="e.dimWidth" data-validate="digits" cssStyle="width:3em;" cssClass="ui-widget-content"/>
+									<s:textfield name="e.dimWidth" data-validate='{"type" : "digits"}'  cssStyle="width:3em;" cssClass="ui-widget-content"/>
 									<s:text name="car.dimHeight" />
-									<s:textfield name="e.dimHeight" data-validate="digits"  cssStyle="width:3em;" cssClass="ui-widget-content"/>&nbsp;mm
+									<s:textfield name="e.dimHeight" data-validate='{"type" : "digits"}'   cssStyle="width:3em;" cssClass="ui-widget-content"/>&nbsp;mm
 								</td>
 							</tr>
 							<tr>
 								<td class="label" ><s:text name="car.turnType"/>:</td>
 								<td class="value" ><s:textfield name="e.turnType" cssClass="ui-widget-content"/></td>
 								<td class="label" ><s:text name="car.tireCount"/>:</td>
-								<td class="value" ><s:textfield name="e.tireCount" data-validate="digits" cssClass="ui-widget-content"/></td>
+								<td class="value" ><s:textfield name="e.tireCount" data-validate='{"type" : "digits"}' cssClass="ui-widget-content"/></td>
 							</tr>
 							<tr>
 								<td class="label" ><s:text name="car.tireStandard" />:</td>
 								<td class="value" ><s:textfield name="e.tireStandard" cssClass="ui-widget-content"/></td>
 								<td class="label" ><s:text name="car.axisDistance"/>:</td>
-								<td class="value" ><s:textfield name="e.axisDistance" data-validate="digits" cssClass="ui-widget-content"/></td>
+								<td class="value" ><s:textfield name="e.axisDistance" data-validate='{"type" : "digits"}' cssClass="ui-widget-content"/></td>
 							</tr>
 							<tr>
 								<td class="label" ><s:text name="car.axisCount" />:</td>
-								<td class="value" ><s:textfield name="e.axisCount" data-validate="digits" cssClass="ui-widget-content"/></td>
+								<td class="value" ><s:textfield name="e.axisCount" data-validate='{"type" : "digits"}' cssClass="ui-widget-content"/></td>
 								<td class="label" ><s:text name="car.pieceCount"/>:</td>
-								<td class="value" ><s:textfield name="e.pieceCount" data-validate="digits" cssClass="ui-widget-content"/></td>
+								<td class="value" ><s:textfield name="e.pieceCount" data-validate='{"type" : "digits"}'cssClass="ui-widget-content"/></td>
 							</tr>
 							<tr>
 								<td class="label" ><s:text name="car.totalWeight"/>:</td>
-								<td class="value" ><s:textfield name="e.totalWeight" data-validate="digits" cssClass="ui-widget-content"/></td>
+								<td class="value" ><s:textfield name="e.totalWeight" data-validate='{"type" : "digits"}' cssClass="ui-widget-content"/></td>
 								<td class="label" ><s:text name="car.accessWeight" />:</td>
-								<td class="value" ><s:textfield name="e.accessWeight" data-validate="digits" cssClass="ui-widget-content"/></td>
+								<td class="value" ><s:textfield name="e.accessWeight" data-validate='{"type" : "digits"}' cssClass="ui-widget-content"/></td>
 							</tr>
 							<tr>
 								<td class="label" ><s:text name="car.accessCount"/>:</td>
-								<td class="value" ><s:textfield name="e.accessCount" data-validate="digits" cssClass="ui-widget-content"/></td>
+								<td class="value" ><s:textfield name="e.accessCount" data-validate='{"type" : "digits"}' cssClass="ui-widget-content"/></td>
 								<td class="label" ><s:text name="car.taximeterFactory" />:</td>
 								<td class="value" >
 									<s:select name="e.taximeterFactory" list="taximeterFactoryTypeList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
