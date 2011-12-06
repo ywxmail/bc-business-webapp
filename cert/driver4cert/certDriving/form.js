@@ -23,7 +23,7 @@ bc.certDrivingForm = {
 //		});
 		
 		// 选择司机
-		$form.find(":input[name='e.name'][disabled!='disabled']").click(function() {
+		$form.find("#selectCarMan").click(function() {
 			var selecteds = $form.find(":input[name='e.name']").val();
 			bs.selectDriver({
 				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,

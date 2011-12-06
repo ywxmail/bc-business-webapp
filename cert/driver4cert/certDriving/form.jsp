@@ -11,69 +11,89 @@
 				<legend>正页</legend>
 				<table class="formFields" cellspacing="2" cellpadding="0">
 					<tbody>
+						<tr class="widthMarker">
+							<td >&nbsp;</td>
+							<td style="width: 200px;">&nbsp;</td>
+							<td style="width: 80px;">&nbsp;</td>
+							<td style="width: 200px;">&nbsp;</td>
+						</tr>
 						<tr>
 							<td class="label">*<s:text name="cert.carMan" /><s:text name="cert.name"/>:</td>
 							<td class="value" style="width: 17em;">
 								<s:if test="!e.isNew()">
-									<s:textfield name="e.name" data-validate="required" cssStyle="max-width: 10em;" disabled="true" />
+									<s:textfield name="e.name" data-validate="required" cssStyle="max-width: 10em;" disabled="true" cssClass="ui-widget-content ui-state-disabled" readonly="true"/>
 								</s:if>
 								<s:else>
-									<s:textfield name="e.name" data-validate="required" cssStyle="max-width: 10em;" title='%{getText("cert.title.click2selectCarMan")}' readonly="true" />
+								<div style="position : relative; display: inline-block">
+									<s:textfield name="e.name" data-validate="required" cssStyle="max-width: 10em;" cssClass="ui-widget-content ui-state-disabled"  readonly="true" />
+									<ul class="inputIcons">
+								 		<li class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="cert.title.click2selectCarMan"/>' id="selectCarMan">
+								 	</ul>
+								 </div>
 								</s:else>
 								<s:radio name="e.sex" list="#{'1':'男','2':'女'}" 
 								value="e.sex" cssStyle="width:auto;"/>
 							</td>
 							<td class="label" style="width: 7em;">*<s:text name="cert.birthdate"/>:</td>
-							<td class="value">
+							<td class="value" style="position:relative;display: block;">
 								<input type="text" name="e.birthdate" data-validate='{"type":"date","required":true}'
 								value='<s:date format="yyyy-MM-dd" name="e.birthdate" />'
-								class="bc-date" data-cfg='{changeYear:true}' />
+								class="bc-date ui-widget-content" data-cfg='{changeYear:true}' />
+								<ul class="inputIcons">
+									<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.birthdate'></li>
+								</ul>
 							</td>
 						</tr>
 						<tr>
 							<td class="label">*<s:text name="cert.certCode"/>:</td>
 							<td class="value">
-								<s:textfield name="e.certCode" data-validate='{"type":"number","required":true}' />
+								<s:textfield name="e.certCode" data-validate='{"type":"number","required":true}' cssClass="ui-widget-content"/>
 							</td>
 							<td class="label">*<s:text name="cert.nation"/>:</td>
 							<td class="value">
-								<s:textfield name="e.nation" data-validate="required"/>
+								<s:textfield name="e.nation" data-validate="required" cssClass="ui-widget-content"/>
 							</td>
 						</tr>
 						<tr>
 							<td class="label">*<s:text name="cert.model"/>:</td>
 							<td class="value">
-								<s:textfield name="e.model" data-validate="required"/>
+								<s:textfield name="e.model" data-validate="required" cssClass="ui-widget-content"/>
 							</td>
 							<td class="label">*<s:text name="cert.receiveDate"/>:</td>
-							<td class="value">
+							<td class="value" style="position:relative;display: block;">
 								<input type="text" name="e.receiveDate" data-validate='{"type":"date","required":true}'
 								value='<s:date format="yyyy-MM-dd" name="e.receiveDate" />'
-								class="bc-date" data-cfg='{changeYear:true}' />
+								class="bc-date ui-widget-content" data-cfg='{changeYear:true}' />
+								<ul class="inputIcons">
+									<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.receiveDate'></li>
+								</ul>
 							</td>
 						</tr>
 						<tr>
 							<td class="label">*<s:text name="cert.startDate2"/>:</td>
-							<td class="value">
+							<td class="value" style="position:relative;display: block;">
 								<input type="text" name="e.startDate" data-validate='{"type":"date","required":true}'
 								value='<s:date format="yyyy-MM-dd" name="e.startDate" />'
-								class="bc-date" data-cfg='{changeYear:true}' />
+								class="bc-date ui-widget-content" data-cfg='{changeYear:true}' />
+								<ul class="inputIcons">
+									<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.startDate'></li>
+								</ul>
 							</td>
 							<td class="label">*<s:text name="cert.validFor" />:</td>
 							<td class="value" >
-								<s:textfield name="e.validFor" data-validate='{"type":"number","required":true}'  cssStyle="width:3em;"/>
+								<s:textfield name="e.validFor" data-validate='{"type":"number","required":true}'  cssStyle="width:3em;" cssClass="ui-widget-content"/>
 							</td>
 						</tr>	
 						<tr>
 							<td class="label"><s:text name="cert.address"/>:</td>
 							<td class="value" colspan="3">
-								<s:textfield name="e.address" cssStyle="width:46em;"/>
+								<s:textfield name="e.address" cssStyle="width:46em;" cssClass="ui-widget-content"/>
 							</td>
 						</tr>
 						<tr>
 							<td class="label"><s:text name="cert.licencer"/>:</td>
 							<td class="value" colspan="3">
-								<s:textfield name="e.licencer" cssStyle="width:46em;"/>
+								<s:textfield name="e.licencer" cssStyle="width:46em;" cssClass="ui-widget-content"/>
 							</td>
 						</tr>				
 					</tbody>
@@ -86,12 +106,12 @@
 						<tr>
 							<td class="label">*<s:text name="cert.archiveNo"/>:</td>
 							<td class="value" colspan="3">
-								<s:textfield name="e.archiveNo" data-validate="required" cssStyle="width:46em;"/>
+								<s:textfield name="e.archiveNo" data-validate="required" cssStyle="width:46em;" cssClass="ui-widget-content"/>
 							</td>
 						</tr>
 						<tr>
 							<td class="label" style="text-align: left">
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<s:text name="cert.record"/>:
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<s:text name="cert.record"/>:
 							</td>
 							<td></td>
 							<td></td>
@@ -99,7 +119,7 @@
 						</tr>
 						<tr>
 							<td class="value" colspan="4" style="text-align: right">
-								<s:textarea name="e.record" cssStyle="width:46em;" />
+								<s:textarea name="e.record" cssStyle="width:46em;" cssClass="ui-widget-content"/>
 							</td>
 							<td></td>
 							<td></td>
