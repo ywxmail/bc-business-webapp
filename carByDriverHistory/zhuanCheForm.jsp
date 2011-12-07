@@ -16,9 +16,9 @@
 					<s:if test="%{carManId != null}">
 						<td class="value"><s:textfield name="e.driver.name" readonly="true"  data-validate="required" cssClass="ui-widget-content ui-state-disabled" /></td>
 					</s:if><s:else>
-					    <td class="value relative"><s:textfield name="e.driver.name"  id="driverName" data-validate="required" cssClass="ui-widget-content" />
+					    <td class="value relative"><s:textfield name="e.driver.name" data-validate="required" cssClass="ui-widget-content" />
 					        <ul class="inputIcons">
-                               <li class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></li>
+                               <li id="driverName" class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></li>
                                <li class="clearSelect inputIcon ui-icon ui-icon-circle-close" data-cfg="e.driver.name" title='<s:text name="title.click2clear"/>'></li>
                             </ul>
 					    </td>
@@ -49,7 +49,8 @@
                                             </td>
 					                  </tr>
 						              <tr><td class="label"><s:text name="carByDriverHistory.oldMotorcade"/>:</td>
-						                  <td class="value"><s:textfield name="e.fromMotorcadeName" cssClass="ui-widget-content"/></td>
+						                 <td class="value"> <s:select name="e.fromMotorcadeId" list="motorcadeList" listKey="key" listValue="value" value="e.fromMotorcadeId" 
+						                 headerKey="" headerValue="" cssClass="ui-widget-content"></s:select></td>
 						              </tr>
 						              <tr><td class="label"><s:text name="carByDriverHistory.oldDriverState"/>:</td>
 						                 <td class="value" ><s:select name="e.fromClasses" list="#{0:'',1:'正班',2:'副班',3:'顶班'}" 
@@ -101,7 +102,6 @@
 		<s:hidden name="e.driver.id" />
 		<s:hidden name="e.author.id" />
 		<s:hidden name="e.modifier.id"/>
-		<s:hidden name="e.fromMotorcadedId"/>
 		<s:hidden name="e.fromCar.id"/>
 		<s:hidden name="e.toCar.id"/>
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>

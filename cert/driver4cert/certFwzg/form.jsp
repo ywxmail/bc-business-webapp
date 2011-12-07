@@ -6,52 +6,66 @@
 	data-initMethod='bc.certFwzgForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="certFwzgForm" theme="simple">
-		<div class="formFields ui-widget-content"  style="width:375px;">
+		<div class="formFields ui-widget-content"  style="width:355px;">
 			<fieldset style="width: 325px">
 				<legend>正面</legend>
 				<table class="formFields" cellspacing="2" cellpadding="0">
 					<tbody>
+						<tr class="widthMarker">
+							<td >&nbsp;</td>
+							<td style="width: 200px;">&nbsp;</td>
+							<td style="width: 80px;">&nbsp;</td>
+							<td style="width: 200px;">&nbsp;</td>
+						</tr>
 						<tr>
 							<td class="label">*<s:text name="cert.carMan" /><s:text name="cert.name"/>:</td>
-							<td class="value" >
+							<td class="value" colspan="3" >
 								<s:if test="!e.isNew()">
-									<s:textfield name="e.name" data-validate="required" disabled="true" />
+									<s:textfield name="e.name" data-validate="required" disabled="true" cssClass="ui-widget-content ui-state-disabled" readonly="true" style="width: 17.5em"/>
 								</s:if>
 								<s:else>
-									<s:textfield name="e.name" data-validate="required" title='%{getText("cert.title.click2selectCarMan")}' readonly="true" />
+								<div style="position : relative; display: inline-block">
+									<s:textfield name="e.name" data-validate="required"  cssClass="ui-widget-content ui-state-disabled"  readonly="true" style="width: 17.5em"/>
+									<ul class="inputIcons">
+								 		<li class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="cert.title.click2selectCarMan"/>' id="selectCarMan">
+								 	</ul>
+								 </div>
 								</s:else>
 							</td>
 						</tr>
 						<tr>
 							<td class="label">*<s:text name="cert.certCode"/>:</td>
-							<td class="value">
-								<s:textfield name="e.certCode" data-validate='{"type":"number","required":true}' />
+							<td class="value" colspan="3">
+								<s:textfield name="e.certCode" data-validate='{"type":"number","required":true}' cssClass="ui-widget-content"/>
 							</td>
 						</tr>
 						<tr>
 							<td class="label"><s:text name="cert.serviceUnit" />:</td>
-							<td class="value" ><s:textfield name="e.serviceUnit"
-							readonly="true"	title='%{getText("cert.title.click2selectBelong")}' />
+							<td class="value" colspan="3"><s:textfield name="e.serviceUnit"
+							readonly="true"	title='%{getText("cert.title.click2selectBelong")}' cssClass="ui-widget-content"/>
 							</td>
 						</tr>
 						<tr>
 							<td class="label"><s:text name="cert.level"/>:</td>
-							<td class="value">
-								<s:textfield name="e.level" />
+							<td class="value" colspan="3">
+								<s:textfield name="e.level" cssClass="ui-widget-content"/>
 							</td>
 						</tr>
 						<tr>
 							<td class="label">*<s:text name="cert.issueDate"/>:</td>
-							<td class="value">
+							<td class="value" colspan="3" style="position:relative;display: block;">
 								<input type="text" name="e.issueDate" data-validate='{"type":"date","required":true}'
 								value='<s:date format="yyyy-MM-dd" name="e.issueDate" />'
-								class="bc-date" data-cfg='{changeYear:true}' />
+								class="bc-date ui-widget-content" data-cfg='{changeYear:true}' style="width: 17.5em"/>
+								<ul class="inputIcons">
+									<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.issueDate'></li>
+								</ul>
 							</td>
 						</tr>
 						<tr>
 							<td class="label">*<s:text name="cert.licencer"/>:</td>
-							<td class="value">
-								<s:textfield name="e.licencer" />
+							<td class="value" colspan="3">
+								<s:textfield name="e.licencer" cssClass="ui-widget-content"/>
 							</td>
 						</tr>
 					</tbody>

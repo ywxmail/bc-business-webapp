@@ -12,7 +12,7 @@ bc.business.MoveTypeList = {
 					var url=bc.root +"/bc-business/carByDriverHistory/create?moveType="+MoveType.id;
 					var option = jQuery.extend({
 						url: url,
-						name: "迁移记录",
+						name:"迁移记录",
 						mid: "carByDriverHistory",
 						afterClose: function(MoveType){
 							//重新加载列表

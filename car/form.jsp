@@ -132,6 +132,7 @@
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseAdvices/list?carId=%{e.id}" />' class="ui-state-default">投诉</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/casePraises/list?carId=%{e.id}" />' class="ui-state-default">表扬</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/blacklists/list?carId=%{e.id}" />' class="ui-state-default">黑名单</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/carByDriverHistorys/list?carId=%{e.id}" />' class="ui-state-default">迁移历史</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">保险</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">配件</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">费用</a></li>
@@ -198,8 +199,8 @@
 								</td>
 							</tr>
 							<tr>
-								<td class="label" ><s:text name="car.engineNo"/>:</td>
-								<td class="value" ><s:textfield name="e.engineNo" cssClass="ui-widget-content"/></td>
+								<td class="label" >*<s:text name="car.engineNo"/>:</td>
+								<td class="value" ><s:textfield name="e.engineNo" cssClass="ui-widget-content" data-validate="required"/></td>
 								<td class="label" ><s:text name="car.engineType"/>:</td>
 								<td class="value" ><s:textfield name="e.engineType" cssClass="ui-widget-content"/></td>
 							</tr>

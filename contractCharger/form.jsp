@@ -23,7 +23,9 @@
 							<input type="text" name="e.signDate" data-validate='{"type":"date","required":true}'
 							value='<s:date format="yyyy-MM-dd" name="e.signDate" />'
 							class="bc-date ui-widget-content" data-cfg='{changeYear:true}'/>
-							<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectSignDate"></span>
+							<ul class="inputIcons">
+								<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.signDate' ></li>
+							</ul>
 						</td>
 					</tr>
 					<tr>
@@ -33,20 +35,22 @@
 						</td>
 						<td class="label">*<s:text name="contract.deadline"/>:</td>
 						<td class="value">
-							<span style="position:relative;">
-							&nbsp;从
-								<input type="text" name="e.startDate" data-validate='{"type":"date","required":true}'
+							<div style="position : relative; display: inline-block">
+							&nbsp;从<input type="text" name="e.startDate" data-validate='{"type":"date","required":true}'
 								value='<s:date format="yyyy-MM-dd" name="e.startDate" />'
-								style="max-width: 7em;" readonly="readonly" class="ui-widget-content" />
-								<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectStartDate"></span>
-							</span>
-							&nbsp;到
-							<span style="position:relative;">
-								<input type="text" name="e.endDate" data-validate='{"type":"date","required":true}'
+								style="width: 7em;" readonly="readonly" class="bc-date ui-widget-content" />
+								<ul class="inputIcons" style="right : 0px;">
+									<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.startDate' ></li>
+								</ul>
+							</div>
+							<div style="position : relative; display: inline-block">
+							&nbsp;到<input type="text" name="e.endDate" data-validate='{"type":"date","required":true}'
 								value='<s:date format="yyyy-MM-dd" name="e.endDate" />'
-								style="max-width: 7em;" readonly="readonly" class="ui-widget-content" />
-								<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectEndDate"></span>
-							</span>
+								style="width: 7em;" readonly="readonly" class="bc-date ui-widget-content" />
+								<ul class="inputIcons" style="right : 0px;">
+									<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.endDate' ></li>
+								</ul>
+							</div>
 						</td>
 					</tr>
 					<tr>

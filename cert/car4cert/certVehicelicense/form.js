@@ -26,7 +26,7 @@ bc.certVehicelicenseForm = {
 		*/
 		
 		// 选择车辆
-		$form.find(":input[name='e.plate'][disabled!='disabled']").click(function() {
+		$form.find("#selectCarPlate").click(function() {
 			var selecteds = $form.find(":input[name='e.name']").val();
 			bs.selectCar({
 				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
