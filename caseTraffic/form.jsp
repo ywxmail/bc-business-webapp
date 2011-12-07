@@ -46,7 +46,7 @@
 						</td>
 						<td class="label" ><s:text name="runcase.source"/>:</td>
 						<td class="value" >
-							<s:select name="e.from" list="sourcesValue" listKey="key" listValue="value" value="e.source"  headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
+							<s:textfield name="e.from" cssClass="ui-widget-content" />
 						</td>
 					</tr>
 					<tr>
@@ -227,6 +227,7 @@
 		<s:hidden name="carManId" />
 		<s:hidden name="isNullCarMan" />
 		<s:hidden name="isNullCar" />
+		<s:hidden name="e.source"/>
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 		
 	</s:form>
