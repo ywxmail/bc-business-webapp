@@ -15,34 +15,85 @@ bs.carByDriverForm = {
 			});
 		});
 		// 选择顶班车辆
-		var car=null;
-		var carId=null;
+		
 		var $select = $form.find(":input[name='plates']");
 		var selectEl = $select[0];
-		$form.find("#selectShiftworkCar").click(function() {
+		$form.find("#addCar").click(function() {
 			var selecteds = $form.find(":input[name='e.car.id']").val();
 			bs.selectCar({
 				multiple: true,
 				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
 				onOk : function(cars) {
+					var car=null;
+					var carId=null;
 					for(var i=0;i<cars.length;i++){
-						car+=cars[i].plate+",";
-						carId+=cars[i].id;
-						carId=carId.replace("null","");
-						car=car.replace("null","");
-						car=car.substr(car.length-8,car.length);
-						carId=carId.substr(car.length-8,car.length);
-						alert(carId);
+						car=cars[i].plate;
+						carId=cars[i].id;
 						selectEl.options[selectEl.length] = new Option(car, carId);
 					}
-					
-//					car=car+selectedCar;
-//					car=car.replace("null","");
-//					$form.find(":input[name='plates']").val(car);
-//					selectEl.options[selectEl.length] = new Option(car.motorcadeName, car.motorcadeId);
-//					selectEl.options[selectEl.length-1].selected = true;
+					//$form.find(":input[name='e.driver.id']").val(carId);
 				}
 			});
+		});
+		//删除所选中的车辆
+		$form.find("#removeCar").click(function() {
+			var selectedindex = selectEl.selectedIndex;
+			var length=selectEl.options.length;
+			if(length==0){
+				bc.msg.slide("车辆列表为空！无法执行操作！");
+			}else{
+               if(selectedindex !=-1){
+            	   selectEl.options[selectedindex]=null;
+                           }else{
+                        	   bc.msg.slide("请选择车辆！");  
+                           }
+			}
+
+		});
+		//向上移动所选中的车辆
+		$form.find("#upCar").click(function() {
+			var selectedindex = selectEl.selectedIndex;
+			var length=selectEl.options.length;
+			if(length==0){
+				bc.msg.slide("车辆列表为空！无法执行操作！");
+			}else{
+			if(selectedindex==0){
+				bc.msg.slide("当前位置为最前一行！");
+				return false;
+			}
+			if(selectedindex != -1){
+				var pre=selectEl.options[selectedindex-1];
+				var sel=selectEl.options[selectedindex];
+				selectEl.options[selectedindex-1]=new Option(sel.text, sel.value);
+				selectEl.options[selectedindex-1].selected = true;
+				selectEl.options[selectedindex]=new Option(pre.text, pre.value);
+			  }else{
+				bc.msg.slide("请选择车辆！");
+			  }
+		   }	
+		});
+		
+		//向上移动所选中的车辆
+		$form.find("#downCar").click(function() {
+			var selectedindex = selectEl.selectedIndex;
+			var length=selectEl.options.length;
+			if(length==0){
+				bc.msg.slide("车辆列表为空！无法执行操作！");
+			}else{
+			if(selectedindex==length-1){
+				bc.msg.slide("当前位置为最后一行！");
+				return false;
+			}
+			if(selectedindex != -1){
+				var pre=selectEl.options[selectedindex+1];
+				var sel=selectEl.options[selectedindex];
+				selectEl.options[selectedindex+1]=new Option(sel.text, sel.value);
+				selectEl.options[selectedindex+1].selected = true;
+				selectEl.options[selectedindex]=new Option(pre.text, pre.value);
+			  }else{
+				bc.msg.slide("请选择车辆！");
+			  }
+		   }	
 		});
 		// 选择司机
 		$form.find("#selectDriver").click(function() {

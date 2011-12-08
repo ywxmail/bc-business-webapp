@@ -30,8 +30,8 @@
 							    <tr>
 								   <!--   <td ><s:textarea name="plates" value="%{e.car.plateType+e.car.plateNo }" readonly="true" rows="6" cssClass="ui-widget-content"/></td>-->
 								    <td><s:select name="plates" list="cars" listKey="key" listValue="value" theme="simple" size="10" cssStyle="width:100%;height:80%;"/></td>
-								    <td style="width:40px;text-align: center;vertical-align: middle;"><input type="button" id="selectShiftworkCar" value="+" style="width:30px;"/><br><input type="button" value="-" style="width:30px;"/><br>
-									    <input type="button" value="↑" style="width:30px;"/><br><input type="button" value="↓" style="width:30px;"/></td>
+								    <td style="width:40px;text-align: center;vertical-align: middle;"><input type="button" id="addCar" value="+" style="width:30px;"/><br><input id="removeCar" type="button" value="-" style="width:30px;"/><br>
+									    <input type="button" id="upCar" value="↑" style="width:30px;"/><br><input type="button" id="downCar" value="↓" style="width:30px;"/></td>
 							    </tr>
 						    </table>
 					    <td>
@@ -41,7 +41,7 @@
 						<!--  
 						<td class="value" ><s:select name="e.classes" list="#{0:'',1:'正班',2:'副班',3:'顶班'}" 
 							listKey="key" listValue="value" data-validate="required" cssClass="ui-widget-content"/></td>-->
-						<td class="value"><s:textfield  value="顶班" cssClass="ui-widget-content ui-state-disabled" readonly="true"/></td>
+						<td class="value"><s:textfield name="e.classes" value="顶班" cssClass="ui-widget-content ui-state-disabled" readonly="true"/></td>
 					</tr>
 					<!-- 
 					<tr>
