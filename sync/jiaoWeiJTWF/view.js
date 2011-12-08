@@ -111,7 +111,7 @@ bs.jiaoWeiJTWFView = {
 				}
 				// 执行生成操作：带参数跳转到交通违法表单
 				bc.page.newWin({
-					url: bc.root + "/bc-business/case4InfractTraffic/createFromJiaoWei", 
+					url: bc.root + "/bc-business/caseTraffic/createFromJiaoWei", 
 					mid: "case4InfractTraffic.createFromJiaoWei",
 					name: "生成交通违法处理单",
 					data: {syncId: ids[0]}

@@ -16,10 +16,10 @@ bs.carView = {
 			var $tr,plateNo,engineNo;
 			$trs.each(function(){
 				$tr = $(this);
-				plateNo = $tr.children("td[data-column='c.plate_no']").attr("data-value");// 车牌号
+				plateNo = $tr.children("td[data-column='c.plate_no']").attr("data-value");// 车牌号，不含"粤A"
 				engineNo = $tr.children("td[data-column='c.engine_no']").attr("data-value");// 发动机号
 				if(engineNo && engineNo.length >= 4){
-					engineNo = engineNo.substr(engineNo.length - 4);
+					engineNo = engineNo.substr(engineNo.length - 4);//发动机后四位数字
 					var url = "http://www.gzjd.gov.cn/gzwfcx/chaxunservlet?ywlx=cxlist";
 					url += "&hpzl=02";
 					url += "&hphm=" + "A" + plateNo;
@@ -42,7 +42,7 @@ bs.carView = {
 			bc.page.newWin({
 				mid: "jinDunSpider4JiaoTongWeiFa",
 				name: "金盾网交通违法信息",
-				url: bc.root + "/bc-business/jinDunSpider4JiaoTongWeiFa/list",
+				url: bc.root + "/bc-business/jinDunJTWFs/paging",
 				carIds: carIds.join(",")
 			});
 		}

@@ -17,6 +17,34 @@ bs.jinDunJTWFView = {
 		} else if(option.value.indexOf("jindunSpider") == 0){
 			//同步的操作
 			bs.jinDunJTWFView.sync($page,option.value.split(".")[1]);
+		} else if(option.value == "opento"){
+			//--金盾网原始查询
+			
+			// 确定选中的行
+			var $trs = $page.find(">.bc-grid>.data>.right tr.ui-state-focus");
+			if($trs.length == 0){
+				bc.msg.slide("请先选择信息！");
+				return;
+			}
+			
+			//跳转到金盾网的交通违法查询页面
+			var $tr,plateNo,engineNo;
+			$trs.each(function(){
+				$tr = $(this);
+				plateNo = $tr.children("td[data-column='t.car_plate_no']").attr("data-value");// 车牌号，不含"粤A"
+				engineNo = $tr.children("td[data-column='t.engine_no']").attr("data-value");// 发动机号
+				if(engineNo && engineNo.length >= 4){
+					engineNo = engineNo.substr(engineNo.length - 4);//发动机后四位数字
+					var url = "http://www.gzjd.gov.cn/gzwfcx/chaxunservlet?ywlx=cxlist";
+					url += "&hpzl=02";
+					url += "&hphm=" + "A" + plateNo;
+					url += "&fdjh=" + engineNo;
+					url += "&jm=156756dfgd75sdfsdf123fasdfsdfsdf" + "A" + plateNo + engineNo;
+					window.open(url,"_blank");
+				}else{
+					bc.msg.slide(plateNo + "的发动机号码不合规范，无法处理！");
+				}
+			});
 		}else{
 			alert("不支持的操作类型!");
 		}
@@ -111,7 +139,7 @@ bs.jinDunJTWFView = {
 				}
 				// 执行生成操作：带参数跳转到交通违法表单
 				bc.page.newWin({
-					url: bc.root + "/bc-business/case4InfractTraffic/createFromJinDun", 
+					url: bc.root + "/bc-business/caseTraffic/createFromJinDun", 
 					mid: "case4InfractTraffic.createFromJinDun",
 					name: "生成交通违法处理单",
 					data: {syncId: ids[0]}
