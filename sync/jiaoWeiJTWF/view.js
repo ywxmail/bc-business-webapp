@@ -91,7 +91,7 @@ bs.jiaoWeiJTWFView = {
 		
 		// 检测是否选中条目
 		if(ids.length ==0){
-			bc.msg.slide("请先选择要处理的信息！");
+			//bc.msg.slide("请先选择要处理的信息！");
 			return;
 		}else if(ids.length >1 ){
 			bc.msg.slide("一次只可以生成一条处理单，请确认您只选择了一条信息！");
@@ -106,7 +106,15 @@ bs.jiaoWeiJTWFView = {
 			success: function(json) {
 				// 如果已经生成过就提示用户
 				if(!json.success){
-					alert(json.msg);
+					bc.msg.confirm("该同步记录已生成过相应的处理单,不可重复生成! 需要查阅已生成的处理单吗?",function(){
+						bc.page.newWin({
+							url: bc.root + "/bc-business/caseTraffic/edit",
+							name: "交通违章信息",
+							data: {syncId: ids[0]},
+							mid:  "editCaseTraffic4JiaoWei"
+						})
+					});
+					//alert(json.msg);
 					return;
 				}
 				// 执行生成操作：带参数跳转到交通违法表单
