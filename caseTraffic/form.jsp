@@ -21,7 +21,7 @@
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="runcase.address"/>:</td>
-						<td class="value "><s:textfield name="e.address"  data-validate="required" cssClass="ui-widget-content"/></td>
+						<td class="value "><s:textfield name="e.address"  cssClass="ui-widget-content"/></td>
 						<td class="label">*<s:text name="runcase.caseNo1"/>:</td>
 						<td class="value "><s:textfield name="e.caseNo" data-validate="required" cssClass="ui-widget-content"/></td>
 					</tr>
@@ -35,7 +35,9 @@
 							<input type="text" name="e.happenDate" data-validate='{"type":"datetime","required":true}'
 							value='<s:date format="yyyy-MM-dd HH:mm" name="e.happenDate" />'
 							class="bc-datetime ui-widget-content" data-cfg='{changeYear:true}'/>
-							<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectHappenDate"></span>
+							<ul class="inputIcons">
+								<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.happenDate'></li>
+							</ul>
 						</td>
 					</tr>
 					<tr>
@@ -227,6 +229,7 @@
 		<s:hidden name="carManId" />
 		<s:hidden name="isNullCarMan" />
 		<s:hidden name="isNullCar" />
+		<s:hidden name="isSync" />
 		<s:hidden name="syncId" />
 		<s:hidden name="e.source"/>
 		<!-- <s:hidden name="isExist" /> -->

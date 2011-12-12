@@ -134,12 +134,12 @@ bs.jinDunJTWFView = {
 			success: function(json) {
 				// 如果已经生成过就提示用户
 				if(!json.success){
-					bc.msg.confirm("该同步记录已生成过相应的处理单,不可重复生成! 需要查阅已生成的处理单吗?",function(){
+					bc.msg.confirm("该同步记录已生成过相应的处理单，不可重复生成！ 需要查阅已生成的处理单吗？",function(){
 						bc.page.newWin({
 							url: bc.root + "/bc-business/caseTraffic/edit",
+							mid:  "case4InfractTraffic.editFrom4JinDun",
 							name: "交通违章信息",
-							data: {syncId: ids[0]},
-							mid:  "editCaseTraffic4JinDun"
+							data: {syncId: ids[0]}
 						})
 					});
 					//alert(json.msg);
