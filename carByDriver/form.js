@@ -14,7 +14,7 @@ bs.carByDriverForm = {
 				}
 			});
 		});
-		// 选择顶班车辆
+		// 添加顶班车辆
 		
 		var $select = $form.find(":input[name='plates']");
 		var selectEl = $select[0];
@@ -103,6 +103,16 @@ bs.carByDriverForm = {
 				onOk : function(driver) {
 					$form.find(":input[name='e.driver.id']").val(driver.id);
 					$form.find(":input[name='e.driver.name']").val(driver.name);
+				}
+			});
+		});
+		// 选择顶班司机
+		$form.find("#selectShiftworkDriver").click(function() {
+			bs.selectDriver({
+				//selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
+				onOk : function(driver) {
+					$form.find(":input[name='driverId']").val(driver.id);
+					$form.find(":input[name='driverName']").val(driver.name);
 				}
 			});
 		});
