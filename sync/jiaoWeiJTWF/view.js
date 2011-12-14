@@ -122,7 +122,10 @@ bs.jiaoWeiJTWFView = {
 					url: bc.root + "/bc-business/caseTraffic/createFromJiaoWei", 
 					mid: "case4InfractTraffic.createFromJiaoWei",
 					name: "生成交通违法处理单",
-					data: {syncId: ids[0]}
+					data: {syncId: ids[0]},
+					afterClose: function(status){
+						if(status)bc.grid.reloadData($page);
+					}
 				});
 			}
 		});

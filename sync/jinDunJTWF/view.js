@@ -150,7 +150,10 @@ bs.jinDunJTWFView = {
 					url: bc.root + "/bc-business/caseTraffic/createFromJinDun", 
 					mid: "case4InfractTraffic.createFromJinDun",
 					name: "生成交通违法处理单",
-					data: {syncId: ids[0]}
+					data: {syncId: ids[0]},
+					afterClose: function(status){
+						if(status)bc.grid.reloadData($page);
+					}
 				});
 			}
 		});

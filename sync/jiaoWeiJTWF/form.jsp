@@ -33,7 +33,7 @@
 					</tr>
 					<tr>
 						<td class="label"><s:text name="jiaoWeiJTWF.jeom"/>:</td>
-						<td class="value"><s:textfield name="e.jeom" cssClass="ui-widget-content"/></td>
+						<td class="value"><s:textfield name="e.jeom" value="%{getText('bs.format.number',{e.jeom})}" cssClass="ui-widget-content"/></td>
 						<td class="label"><s:text name="jiaoWeiJTWF.syncCode"/>:</td>
 						<td class="value"><s:textfield name="e.syncCode"  cssClass="ui-widget-content"/></td>
 					</tr>

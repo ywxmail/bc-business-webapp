@@ -79,7 +79,7 @@
 					</tr>
 					<tr>
 						<td class="label"><s:text name="runcase.jeom"/>:</td>
-						<td class="value "><s:textfield name="e.jeom" data-validate='{"type":"number",max:100}' cssClass="ui-widget-content"/></td>
+						<td class="value "><s:textfield name="e.jeom" value="%{getText('bs.format.number',{e.jeom})}" data-validate='{"type":"number",max:100}' cssClass="ui-widget-content"/></td>
 						<td class="label">*<s:text name="runcase.code" />:</td>
 						<td class="value "><s:textfield name="e.code" data-validate="required" readonly="true" cssClass="ui-widget-content"/></td>
 					</tr>
