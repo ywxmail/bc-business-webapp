@@ -311,7 +311,7 @@ bc.contractLabourForm = {
 		var verMajor = $page.find(":input[name='e.verMajor']").val();
 		var verMinor = $page.find(":input[name='e.verMinor']").val();
 		if(flag){ //设置主版本号(转车,续约)
-			$page.find("#showVer").html('版本号:&nbsp;'
+			$page.parent().find(".ui-dialog-title").html('劳动合同信息 - v'
 				+$page.find(":input[name='e.verMajor']").val(eval(++verMajor)).val()+'.'
 				+verMinor
 			);
@@ -328,7 +328,7 @@ bc.contractLabourForm = {
 				)
 			}
 		}else{ //设置次版本号(维护)
-			$page.find("#showVer").html('版本号:&nbsp;'+verMajor+'.'
+			$page.parent().find(".ui-dialog-title").html('劳动合同信息 - v'+verMajor+'.'
 				+$page.find(":input[name='e.verMinor']").val(eval(++verMinor)).val()
 			);
 		}

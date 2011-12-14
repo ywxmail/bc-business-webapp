@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<div title='<s:text name="contract.labour.title"/>' data-type='form' class="bc-page"
+<div title='<s:text name="contract.labour.title"/> - v<s:property value="e.verMajor" />.<s:property value="e.verMinor" />' data-type='form' class="bc-page"
 	data-saveUrl='<s:url value="/bc-business/contractLabour/save" />'
 	data-js='<s:url value="/bc-business/contractLabour/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js" />,<s:url value="/ui-libs/xheditor/1.1.7/xheditor-zh-cn.min.js?ts=0" />'
 	data-initMethod='bc.contractLabourForm.init'
@@ -30,13 +30,6 @@
 								<td style="width: 200px;">&nbsp;</td>
 								<td style="width: 80px;">&nbsp;</td>
 								<td style="width: 200px;">&nbsp;</td>
-							</tr>
-							<tr>
-								<td class="label">
-									<div class="formTopInfo" id="showVer" style="text-align: left;">
-										<s:text name="contract.labour.ver"/>:&nbsp;<s:property value="e.verMajor" />.<s:property value="e.verMinor" />
-									</div>
-								</td>
 							</tr>
 							<tr>
 								<td class="value" colspan="4">
