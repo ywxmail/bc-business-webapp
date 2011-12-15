@@ -378,7 +378,7 @@ var $document = $(document);
 $document.delegate(".showCar",{
 	click: function() {
 		var $this = $(this);
-		var carId = $this.data("cfg");
+		var carId = $this.attr("data-cfg");
 		if(!carId){
 			alert("没有配置dom元素data-cfg属性的值，无法处理！");
 			return;
@@ -430,6 +430,8 @@ $document.delegate(".selectCar",{
 							$form.find("#" + c[0]).text(car[c1[0]]);
 						}else if(c1[1]=="html"){
 							$form.find("#" + c[0]).html(car[c1[0]]);
+						}else if(c1[1]=="attr"){
+							$form.find("#" + c[0]).attr("data-cfg",car[c1[0]]);
 						}
 					}
 				}
