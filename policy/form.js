@@ -150,7 +150,9 @@ bc.policyForm = {
 				$form.find('#greenslipSameDateFieldset').css("visibility","visible");
 			}
 		});
-		
+		if($form.find(":checkbox[name='e.greenslipSameDate']")[0].checked==true){
+			$form.find('#greenslipSameDateFieldset').css("visibility","hidden");
+		}
 		//选择经办人
 		$form.find(":input[name='e.transactorName']").click(function(){
 			bc.identity.selectUser({

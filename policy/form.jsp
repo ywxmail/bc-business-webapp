@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<div title='<s:text name="policy.title"/>' data-type='form' class="bc-page"
+<div title='<s:text name="policy.title"/>-v<s:property value="e.verMajor"/>' data-type='form' class="bc-page"
 	data-saveUrl='<s:url value="/bc-business/policy/save" />'
 	data-js='<s:url value="/bc-business/policy/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js" />,<s:url value="/ui-libs/xheditor/1.1.7/xheditor-zh-cn.min.js?ts=0" />'
 	data-initMethod='bc.policyForm.init'
@@ -12,9 +12,10 @@
            	 	<div class="slideContainer">
                 <ul class="tabs ui-helper-reset">
 				    <li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">基本资料</a></li>
+				    <li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">险种</a></li>
 				    <li class="tab ui-widget-content"><a href="#otherFormFields4" class="ui-state-default">附件</a></li>
 					<s:if test="!e.isNew()">
-					<li class="tab ui-widget-content"><a href="" class="ui-state-default">历史版本</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">历史版本</a></li>
 					</s:if>
                 </ul>
             	</div>
@@ -37,7 +38,7 @@
 											<tr>
 												<td class="label">*<s:text name="policy.carId"/>:</td>
 					                               <td class="value relative">
-												      <div class="input ui-widget-content"><span class="link showCar" data-cfg='<s:property value="e.car.id" />' id="carInfo"><s:property value="%{e.car.plateType+e.car.plateNo }" /></span>
+												      <div class="input ui-widget-content" data-validate="required" ><span class="link showCar" data-cfg='<s:property value="e.car.id" />' id="carInfo" ><s:property value="%{e.car.plateType+e.car.plateNo }" /></span>
 												      </div>
 												      <ul class="inputIcons">
 												        <li class="selectCar inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>' data-cfg='e.car.id=id,carInfo=plate|text,carInfo=id|attr'></li>
@@ -83,20 +84,20 @@
 							                    <td class="label">*<s:text name="policy.commerialDeadline"/>:</td>
 												<td class="value">
 												<div style="position : relative; display: inline-block">
-													&nbsp;从<input type="text" name="e.commerialStartDate" readonly="readonly" data-validate='{"type":"date","required":true}' 
-														value='<s:date format="yyyy-MM-dd" name="e.commerialStartDate" />' 
-														style="width: 7em;" class="bc-date ui-widget-content" />
-														<ul class="inputIcons" style="right : 0px;">
-															<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.commerialStartDate' ></li>
-														</ul>
+													&nbsp;从<input type="text" name="e.commerialStartDate" 
+						                            data-validate='{required:false,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
+					                                value='<s:date format="yyyy-MM-dd" name="e.commerialStartDate" />' style="width: 7em;"/>
+					                                <ul class="inputIcons" style="right : 0px;">
+														<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.commerialStartDate' ></li>
+												    </ul>
 												</div>
 												<div style="position : relative; display: inline-block">
-													&nbsp;到<input type="text" name="e.commerialEndDate" readonly="readonly" data-validate='{"type":"date","required":true}'
-														value='<s:date format="yyyy-MM-dd" name="e.commerialEndDate" />'
-														style="width: 7em;" class="bc-date ui-widget-content" />
-														<ul class="inputIcons" style="right : 0px;">
-															<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.commerialEndDate' ></li>
-														</ul>
+													&nbsp;到<input type="text" name="e.commerialEndDate" 
+						                            data-validate='{required:false,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
+					                                value='<s:date format="yyyy-MM-dd" name="e.commerialEndDate" />' style="width: 7em;"/>
+					                                <ul class="inputIcons" style="right : 0px;">
+														<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.commerialEndDate' ></li>
+												    </ul>
 												</div>
 												</td>
 											</tr>
@@ -133,13 +134,13 @@
 											         </tr>
 											         <tr>
 											             <td class="label">*<s:text name="policy.greenslipNo"/>:</td>
-												         <td class="value"><s:textfield name="e.commerialNo" cssClass="ui-widget-content"/></td>
+												         <td class="value"><s:textfield name="e.greenslipNo" cssClass="ui-widget-content"/></td>
 												         <td class="label">*<s:text name="policy.assured"/>:</td>
 												         <td class="value"><s:textfield name="e.assured" cssClass="ui-widget-content"/></td>
 											        </tr>
 											        <tr>
 											             <td class="label" style="width: 90px;">*<s:text name="policy.Company"/>:</td>
-							                             <td class="value "><s:select  list="companyList" listKey="value" listValue="value"  headerKey="" headerValue=""  name="e.commerialCompany"  data-validate="required" 
+							                             <td class="value "><s:select  list="companyList" listKey="value" listValue="value"  headerKey="" headerValue=""  name="e.greenslipCompany"  
 							                               cssStyle="width:20em;" cssClass="ui-widget-content"/></td>
 							                             <td class="label"></td>
 												           <td class="value">
@@ -149,7 +150,7 @@
 											          </tr>
 											          <tr>
 											              <td class="label">
-								                               <samp id="greenslipSameDateFieldset" style='<s:if test="%{e.greenslipSameDate==true || e.greenslip==true}">
+								                               <samp id="greenslipSameDateFieldset" style='<s:if test="%{e.greenslipSameDate==false || e.greenslip==true}">
 										                         visibility: visible;
 									                            </s:if>
 									                            <s:else>
@@ -160,7 +161,7 @@
 								                                 </samp>
 								                           </td>
 								                           <td class="value" style="width:240px;">
-								                               <div id="greenslipSameDateFieldset" style='<s:if test="%{e.greenslipSameDate==true || e.greenslip==true}">
+								                               <div id="greenslipSameDateFieldset" style='<s:if test="%{e.greenslipSameDate==false || e.greenslip==true}">
 										                         visibility: visible;
 									                            </s:if>
 									                            <s:else>
@@ -168,20 +169,20 @@
 									                             </s:else>
 									                             '>
 									                            <div style="position : relative; display: inline-block">
-													               &nbsp;从<input type="text" name="e.greenslipStartDate" readonly="readonly" data-validate='{"type":"date","required":true}' 
-														           value='<s:date format="yyyy-MM-dd" name="e.greenslipStartDate" />' 
-														           style="width: 7em;" class="bc-date ui-widget-content" />
-														           <ul class="inputIcons" style="right : 0px;">
-															       <li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.greenslipStartDate' ></li>
-														           </ul>
+													               &nbsp;从<input type="text" name="e.greenslipStartDate" 
+										                            data-validate='{required:false,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
+									                                value='<s:date format="yyyy-MM-dd" name="e.greenslipStartDate" />' style="width: 7em;"/>
+									                                <ul class="inputIcons" style="right : 0px;">
+																		<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.greenslipStartDate' ></li>
+																    </ul>
 												                 </div>
 												                 <div style="position : relative; display: inline-block">
-													               &nbsp;到<input type="text" name="e.greenslipEndDate" readonly="readonly" data-validate='{"type":"date","required":true}'
-														           value='<s:date format="yyyy-MM-dd" name="e.greenslipEndDate" />'
-														           style="width: 7em;" class="bc-date ui-widget-content" />
-														           <ul class="inputIcons" style="right : 0px;">
-															       <li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.greenslipEndDate' ></li>
-														           </ul>
+													               &nbsp;到<input type="text" name="e.greenslipEndDate" 
+										                            data-validate='{required:false,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
+									                                value='<s:date format="yyyy-MM-dd" name="e.greenslipEndDate" />' style="width: 7em;"/>
+									                                <ul class="inputIcons" style="right : 0px;">
+																		<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.greenslipEndDate' ></li>
+																    </ul>
 												                 </div>
 								                                </div>
 								                           </td>
