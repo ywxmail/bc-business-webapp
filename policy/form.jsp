@@ -36,22 +36,13 @@
 							                </tr>
 											<tr>
 												<td class="label">*<s:text name="policy.carId"/>:</td>
-												<s:if test="e.isNew()">
-												   <td class="value" style="position:relative;display: block;"><s:textfield name="plate" value="%{e.car.plateType+e.car.plateNo }"
-					                                   data-validate="required" cssClass="ui-widget-content" readonly="true"/>
-					                                   <span id="selectCar" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" 
-					                                       title='<s:text name="title.click2select"/>'></span>
-					                               </td>
-												</s:if><s:else>
-												   <td class="value relative"><!--<s:textfield name="plate" id="carInfo" value="%{e.car.plateType+e.car.plateNo }" style="text-decoration: underline;cursor:pointer;"
-					                                   data-validate="required" cssClass="ui-widget-content" readonly="true"/>-->
+					                               <td class="value relative">
 												      <div class="input ui-widget-content"><span class="link showCar" data-cfg='<s:property value="e.car.id" />' id="carInfo"><s:property value="%{e.car.plateType+e.car.plateNo }" /></span>
 												      </div>
 												      <ul class="inputIcons">
-												        <li class="selectCar inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>' data-cfg='e.car.id=id,carInfo=plate|text'></li>
+												        <li class="selectCar inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>' data-cfg='e.car.id=id,carInfo=plate|text,carInfo=id|attr'></li>
 												      </ul>
 					                                </td>
-												</s:else>
 												
 												<td class="label">*<s:text name="policy.liabilityNo"/>:</td>
 												<td class="value"><s:textfield name="e.liabilityNo" cssClass="ui-widget-content"/></td>
