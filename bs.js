@@ -439,3 +439,73 @@ $document.delegate(".selectCar",{
 		});
 	}
 });
+
+/**
+ * 打开所选择的司机的表单的自动处理
+ * 需要在dom元素中配置data-cfg属性，格式为：data-cfg='<s:property value="e.carMan.id" />'
+ * <s:property value="e.carMan.id" />为司机Id
+ */
+$document.delegate(".showCarMan",{
+	click: function() {
+		var $this = $(this);
+		var carManId = $this.attr("data-cfg");
+		if(!carManId){
+			alert("没有配置dom元素data-cfg属性的值，无法处理！");
+			return;
+		}
+		
+		var url=bc.root +"/bc-business/carMan/edit?id="+carManId;
+		var option = jQuery.extend({
+			url: url,
+			name: $this.text(),
+			mid: "carMan" + carManId,
+		},option);
+		bc.page.newWin(option);
+	}
+});
+
+/**
+ * 选择司机的自动处理。
+ * 需要在dom元素中配置data-cfg属性，格式为：域1name=id|text,域2name=name"
+ * 如"e.carMan.id=id,carManInfo=plate|text"
+ */
+$document.delegate(".selectCarMan",{
+	click: function() {
+		var $this = $(this);
+		var cfg = $this.data("cfg");
+		if(!cfg){
+			alert("没有配置dom元素data-cfg属性的值，无法处理！");
+			return;
+		}
+		if(typeof cfg == "string")
+			cfg = {mapping:cfg};
+		
+		var $form = $this.closest("form");
+		bs.selectCarMan({
+			onOk : function(carMan) {
+				var mapping = cfg.mapping.split(",");
+				var c,c1;
+				for(var i=0; i<mapping.length; i++){
+					c = mapping[i].split("=");
+					if(c.length != 2){
+						alert("mapping的格式配置错误，无法处理！请检查dom元素data-cfg的配置,mapping=" + mapping[i]);
+						return;
+					}
+					c1 = c[1].split(/\|/);
+					logger.info(c1.join(","));
+					if(c1.length == 1){
+						$form.find(":input[name='" + c[0] + "']").val(carMan[c[1]]);
+					}else{
+						if(c1[1]=="text"){
+							$form.find("#" + c[0]).text(carMan[c1[0]]);
+						}else if(c1[1]=="html"){
+							$form.find("#" + c[0]).html(carMan[c1[0]]);
+						}else if(c1[1]=="attr"){
+							$form.find("#" + c[0]).attr("data-cfg",carMan[c1[0]]);
+						}
+					}
+				}
+			}
+		});
+	}
+});
