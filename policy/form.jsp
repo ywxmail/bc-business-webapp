@@ -211,7 +211,8 @@
 				<div id="otherFormFields4" class="content" style="width:800px;">
 	                 <s:property value="%{attachsUI}" escapeHtml="false"/>
 	            </div>
-			</div>	
+			</div>
+			<div>*<s:text name="policy.amount"/>:<s:textfield name="e.amount" size="10" cssClass="ui-widget-content"/>元</div>	
 		</div>
 		<s:hidden name="e.id"/>
 		<s:hidden name="e.car.id"/>
