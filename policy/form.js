@@ -1,5 +1,5 @@
 if(!window['bs'])window['bs']={};
-bc.contractLabourForm = {
+bc.policyForm = {
 	init : function(option,readonly,page) {
 		var $form;
 		
@@ -118,32 +118,41 @@ bc.contractLabourForm = {
 			}});
 		});
 		
-		// 选择司机
-		$form.find("#selectDriverName").click(function() {
-			var selecteds = $form.find(":input[name='carManId']").val();
-			bs.selectDriver({
-				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
-				onOk : function(carMan) {
-					$form.find(":input[name='e.ext_str2']").val(carMan.name);
-					$form.find(":input[name='carManId']").val(carMan.id);
-					
-					var url = bc.root + "/bc-business/contractLabour/certInfo?carManId="+carMan.id;
-					$.ajax({ url: url,dataType:"json", success: update_page});
-					function update_page(json){
-
-						if(json.cert_code != null){
-							$form.find(":input[name='e.certNo']").val(json.cert_code);
-						}else{
-							$form.find(":input[name='e.certNo']").val("");
-						}
-					}
-					
-				}
-			});
-					
+//		// 选择车辆
+//		$form.find("#selectCar").click(function() {
+//			var selecteds = $form.find(":input[name='e.car.id']").val();
+//			bs.selectCar({
+//				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
+//				onOk : function(car) {
+//					$form.find(":input[name='e.car.id']").val(car.id);
+//					$form.find(":input[name='plate']").val(car.plate);
+//					$form.find("#carInfo").text(car.plate);
+//				}
+//			});
+//		});
+		// 绑定是否购买强制险事件
+		$form.find(":checkbox[name='e.greenslip']").change(function() {
+			if(this.checked){
+				$form.find('#greenslipFieldset').css("visibility","visible");
+				$form.find('#greenslipSameDateFieldset').css("visibility","visible");
+				$form.find(":checkbox[name='e.greenslipSameDate']")[0].checked = false;
+			}else{
+				$form.find('#greenslipFieldset').css("visibility","hidden");
+				$form.find('#greenslipSameDateFieldset').css("visibility","hidden");
+				$form.find(":checkbox[name='e.greenslipSameDate']")[0].checked = false;
+			}
 		});
-		
-		
+		// 强制险是否与商业险同期
+		$form.find(":checkbox[name='e.greenslipSameDate']").change(function() {
+			if(this.checked){
+				$form.find('#greenslipSameDateFieldset').css("visibility","hidden");
+			}else{
+				$form.find('#greenslipSameDateFieldset').css("visibility","visible");
+			}
+		});
+		if($form.find(":checkbox[name='e.greenslipSameDate']")[0].checked==true){
+			$form.find('#greenslipSameDateFieldset').css("visibility","hidden");
+		}
 		//选择经办人
 		$form.find(":input[name='e.transactorName']").click(function(){
 			bc.identity.selectUser({
@@ -157,7 +166,7 @@ bc.contractLabourForm = {
 		});
 		
 		//签约期限日期控件设置日期范围
-		var startDates = $form.find(':input[name^="e.startDate"], :input[name^="e.endDate""]').datepicker({
+		var startDates = $form.find(':input[name^="e.startDate"], :input[name^="e.endDate"]').datepicker({
 			changeYear:     true,
 			firstDay: 		7,
 			dateFormat:		"yy-mm-dd",//yy4位年份、MM-大写的月份
@@ -172,7 +181,7 @@ bc.contractLabourForm = {
 			}
 		});
 
-		///申领期限日期控件设置日期范围
+		//申领期限日期控件设置日期范围
 		var getDates = $form.find(':input[name^="e.getStartDate"], :input[name^="e.getEndDate"]').datepicker({
 			changeYear:     true,
 			firstDay: 		7,
@@ -311,7 +320,7 @@ bc.contractLabourForm = {
 		var verMajor = $page.find(":input[name='e.verMajor']").val();
 		var verMinor = $page.find(":input[name='e.verMinor']").val();
 		if(flag){ //设置主版本号(转车,续约)
-			$page.parent().find(".ui-dialog-title").html('劳动合同信息 - v'
+			$page.find("#showVer").html('版本号:&nbsp;'
 				+$page.find(":input[name='e.verMajor']").val(eval(++verMajor)).val()+'.'
 				+verMinor
 			);
@@ -328,7 +337,7 @@ bc.contractLabourForm = {
 				)
 			}
 		}else{ //设置次版本号(维护)
-			$page.parent().find(".ui-dialog-title").html('劳动合同信息 - v'+verMajor+'.'
+			$page.find("#showVer").html('版本号:&nbsp;'+verMajor+'.'
 				+$page.find(":input[name='e.verMinor']").val(eval(++verMinor)).val()
 			);
 		}

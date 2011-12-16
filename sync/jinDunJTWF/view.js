@@ -134,7 +134,15 @@ bs.jinDunJTWFView = {
 			success: function(json) {
 				// 如果已经生成过就提示用户
 				if(!json.success){
-					alert(json.msg);
+					bc.msg.confirm("该同步记录已生成过相应的处理单，不可重复生成！ 需要查阅已生成的处理单吗？",function(){
+						bc.page.newWin({
+							url: bc.root + "/bc-business/caseTraffic/edit",
+							mid:  "case4InfractTraffic.editFrom4JinDun",
+							name: "交通违章信息",
+							data: {syncId: ids[0]}
+						})
+					});
+					//alert(json.msg);
 					return;
 				}
 				// 执行生成操作：带参数跳转到交通违法表单
@@ -142,7 +150,10 @@ bs.jinDunJTWFView = {
 					url: bc.root + "/bc-business/caseTraffic/createFromJinDun", 
 					mid: "case4InfractTraffic.createFromJinDun",
 					name: "生成交通违法处理单",
-					data: {syncId: ids[0]}
+					data: {syncId: ids[0]},
+					afterClose: function(status){
+						if(status)bc.grid.reloadData($page);
+					}
 				});
 			}
 		});
