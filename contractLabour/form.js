@@ -156,8 +156,8 @@ bc.contractLabourForm = {
 			});
 		});
 		
-		//商业险期限日期控件设置日期范围
-		var startDates = $form.find(':input[name^="e.commerialStartDate"], :input[name^="e.commerialEndDate"]').datepicker({
+		//签约期限日期控件设置日期范围
+		var startDates = $form.find(':input[name^="e.startDate"], :input[name^="e.endDate""]').datepicker({
 			changeYear:     true,
 			firstDay: 		7,
 			dateFormat:		"yy-mm-dd",//yy4位年份、MM-大写的月份
@@ -172,8 +172,8 @@ bc.contractLabourForm = {
 			}
 		});
 
-		//强制险期限日期控件设置日期范围
-		var getDates = $form.find(':input[name^="e.greenslipStartDate"], :input[name^="e.greenslipEndDate"]').datepicker({
+		///申领期限日期控件设置日期范围
+		var getDates = $form.find(':input[name^="e.getStartDate"], :input[name^="e.getEndDate"]').datepicker({
 			changeYear:     true,
 			firstDay: 		7,
 			dateFormat:		"yy-mm-dd",//yy4位年份、MM-大写的月份
