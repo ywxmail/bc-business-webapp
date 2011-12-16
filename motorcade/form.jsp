@@ -75,7 +75,6 @@
 			，最后修改：<s:property value="e.modifier.name" />(<s:date name="e.modifiedDate" format="yyyy-MM-dd HH:mm:ss"/>)
 			</s:if>
 		</div>
-		<s:hidden name="e.paymentDate" />
 		<s:hidden name="e.id" />
 		<s:hidden name="e.uid" />
 		<s:hidden name="e.type" />

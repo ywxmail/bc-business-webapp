@@ -4,9 +4,9 @@
 	data-saveUrl='<s:url value="/bc-business/car/save" />'
 	data-js='<s:url value="/bc-business/car/form.js" />,<s:url value="/bc/identity/identity.js" />'
 	data-initMethod='bc.carForm.init'
-	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
+	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:hidden;">
 	<s:form name="carForm" theme="simple">
-		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:870}"
+		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:490}"
 		 style="overflow: hidden;">
 			<div class="tabsContainer">
            	 	<div class="slideContainer">
@@ -256,13 +256,9 @@
 									<td class="value" ><s:textfield name="e.taximeterNo"  cssClass="ui-widget-content"/></td>
 								</tr>
 								<tr>
-									<td class="label" ><s:text name="car.desc1"/>:</td>
-									<td class="value" colspan="3" rowspan="5"><s:textarea name="e.desc1" rows="5" cssClass="ui-widget-content"/></td>
+									<td class="topLabel" ><s:text name="car.desc1"/>:</td>
+									<td class="value" colspan="3"><s:textarea name="e.desc1" rows="5" cssClass="ui-widget-content"/></td>
 								</tr>
-								<tr></tr>
-								<tr></tr>
-								<tr></tr>
-								<tr></tr>
 								<tr>
 								    <td class="label" style="float:right;"><s:text name="car.desc2"/>:</td>
 									<td class="value" ><s:textarea name="e.desc2" cssClass="ui-widget-content"/></td>
