@@ -94,18 +94,6 @@
 						<tr>
 							<td class="label"><s:text name="carMan.model"/>:</td>
 							<td class="value"><s:select list="carManModelList" listKey="value" listValue="value" headerKey="" headerValue="" name="e.model"  cssClass="ui-widget-content"></s:select></td>
-							<td class="label"><s:text name="carMan.extFZJG"/>:</td>
-							<td class="value" colspan="2"><s:textfield name="e.oldUnitName" cssClass="ui-widget-content"/></td>
-						</tr>
-						<tr>
-							<td class="label"><s:text name="carMan.orderNo"/>:</td>
-							<td class="value"><s:textfield name="e.orderNo" cssClass="ui-widget-content"/></td>
-							<td class="label"><s:text name="carMan.cert4Driving"/>:</td>
-							<td class="value" colspan="2"><s:textfield name="e.cert4Driving" cssClass="ui-widget-content"/></td>
-						</tr>
-						<tr>
-				            <td class="label"><s:text name="carMan.cert4FWZG"/>:</td>
-							<td class="value"><s:textfield name="e.cert4FWZG" cssClass="ui-widget-content"/></td>
 							<td class="label"><s:text name="carMan.cert4DrivingFirstDate"/>:</td>
 							<td colspan="2" class="value relative"><input type="text" name="e.cert4DrivingFirstDate" 
 						    	data-validate='{required:false,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
@@ -114,24 +102,42 @@
 				            </td>
 						</tr>
 						<tr>
-							<td class="label"><s:text name="carMan.cert4DrivingArchive"/>:</td>
-							<td class="value"><s:textfield name="e.cert4DrivingArchive" cssClass="ui-widget-content"/></td>
-							<td class="label"><s:text name="carMan.cert4DrivingEndDate"/>:</td>
-							<td colspan="2" class="value relative"><input type="text" name="e.cert4DrivingEndDate" 
-						     	data-validate='{required:false,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
-					         	value='<s:date format="yyyy-MM-dd" name="e.cert4DrivingEndDate" />'/>
-					         	<span class="selectButton verticalMiddle ui-icon ui-icon-calendar"></span>
-				            </td>
-						</tr>
-						<tr>
-							<td class="label"><s:text name="carMan.cert4CYZG"/>:</td>
-							<td class="value"><s:textfield name="e.cert4CYZG" cssClass="ui-widget-content"/></td>
+							<td class="label"><s:text name="carMan.orderNo"/>:</td>
+							<td class="value"><s:textfield name="e.orderNo" cssClass="ui-widget-content"/></td>
 							<td class="label"><s:text name="carMan.cert4DrivingStartDate"/>:</td>
 							<td class="value relative"><input type="text" name="e.cert4DrivingStartDate" 
 						    	data-validate='{required:false,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
 					         	value='<s:date format="yyyy-MM-dd" name="e.cert4DrivingStartDate" />'/>
 					        	<span class="selectButton verticalMiddle ui-icon ui-icon-calendar"></span>
 				            </td>
+							
+						</tr>
+						<tr>
+				            <td class="label"><s:text name="carMan.cert4FWZG"/>:</td>
+							<td class="value"><s:textfield name="e.cert4FWZG" cssClass="ui-widget-content"/></td>
+							<td class="label"><s:text name="carMan.cert4DrivingEndDate"/>:</td>
+							<td colspan="2" class="value relative"><input type="text" name="e.cert4DrivingEndDate" 
+						     	data-validate='{required:false,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
+					         	value='<s:date format="yyyy-MM-dd" name="e.cert4DrivingEndDate" />'/>
+					         	<span class="selectButton verticalMiddle ui-icon ui-icon-calendar"></span>
+				            </td>
+							
+							
+						</tr>
+						<tr>
+							
+				            <td class="label"><s:text name="carMan.cert4Driving"/>:</td>
+							<td class="value"><s:textfield name="e.cert4Driving" cssClass="ui-widget-content"/></td>
+							<td class="label"><s:text name="carMan.extFZJG"/>:</td>
+							<td class="value" colspan="2"><s:textfield name="e.oldUnitName" cssClass="ui-widget-content"/></td>
+						</tr>
+						<tr>
+							<td class="label"><s:text name="carMan.cert4CYZG"/>:</td>
+							<td class="value"><s:textfield name="e.cert4CYZG" cssClass="ui-widget-content"/></td>
+							<td class="label"><s:text name="carMan.cert4DrivingArchive"/>:</td>
+							<td class="value" colspan="2"><s:textfield name="e.cert4DrivingArchive" cssClass="ui-widget-content"/></td>
+							
+							
 						</tr>
 						<tr>
 							<td class="label"><s:text name="carMan.cert4Indentity"/>:</td>
