@@ -67,7 +67,7 @@ bs.jinDunJTWFView = {
 					bs.jinDunJTWFView.syncing = false;
 					if(json.success){
 						// 显示处理结果
-						bc.msg.slide(json.msg);
+						alert(json.msg);
 						
 						// 重新加载列表
 						bc.grid.reloadData($page);
