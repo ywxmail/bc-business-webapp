@@ -219,6 +219,7 @@
 		<s:hidden name="e.author.id"/>
 		<s:hidden name="e.uid"/>
 		<s:hidden name="e.status"/>
+		<s:hidden name="e.patchNo"/>
 		
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 	</s:form>
