@@ -175,13 +175,13 @@
 		<s:hidden name="e.status"/>
 		<s:hidden name="e.opType"/>
 		<s:hidden name="e.patchNo"/>
-		<!-- 
 		<s:hidden name="e.transactorId" />
+		<!-- 
+		<s:hidden name="e.transactor.id" />
 		<s:hidden name="e.changerId1" />
 		<s:hidden name="e.changerName1" />
 		<s:hidden name="e.changerId2" />
 		<s:hidden name="e.changerName2" />
-		<s:hidden name="e.transactor.id" />
 		 -->
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 	</s:form>
