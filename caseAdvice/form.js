@@ -126,7 +126,7 @@ bc.caseAdviceForm = {
 								//弹出对话框让用户选择司机
 								html.dialog({
 									id: "selectAdviceDriver",
-									title: "所选车辆有多个营运司机，请选择事发司机",
+									title: "所选车辆有多个营运司机，请选择当事司机",
 									dialogClass: 'bc-ui-dialog ui-widget-header',
 									width:300,modal:true,
 									buttons:[{text:"确定",click: onSelectDriver}],
