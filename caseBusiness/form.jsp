@@ -170,9 +170,9 @@
 								<td style="width: 350px;">&nbsp;</td>
 							</tr>
 							<tr>
-								<td class="label" colspan="2" style="text-align: center">*扣<s:textfield name="e.jeom" data-validate='{"type":"number","required":true}' cssStyle="width:2.5em;" cssClass="ui-widget-content"/>分,
-								罚款<s:textfield name="e.penalty" data-validate='{"type":"number","required":true}' cssStyle="width:2.5em;" cssClass="ui-widget-content"/>元,
-								违约金<s:textfield name="e.penalty2" data-validate='{"type":"number","required":true}' cssStyle="width:2.5em;" cssClass="ui-widget-content"/>元.</td>
+								<td class="label" colspan="2" style="text-align: center">*扣<s:textfield name="e.jeom" value="%{getText('bs.format.number',{e.jeom})}" data-validate='{"type":"number","required":true}' cssStyle="width:2.5em;" cssClass="ui-widget-content"/>分,
+								罚款<s:textfield name="e.penalty" value="%{getText('bs.format.number',{e.penalty})}" data-validate='{"type":"number","required":true}' cssStyle="width:2.5em;" cssClass="ui-widget-content"/>元,
+								违约金<s:textfield name="e.penalty2" value="%{getText('bs.format.number',{e.penalty2})}" data-validate='{"type":"number","required":true}' cssStyle="width:2.5em;" cssClass="ui-widget-content"/>元.</td>
 								<td class="label"><s:text name="runcase.receipt"/>:</td>
 								<td class="value"><s:textfield name="e.receipt" cssClass="ui-widget-content"/></td>
 							</tr>

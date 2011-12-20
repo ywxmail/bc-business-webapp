@@ -6,7 +6,7 @@
 	data-initMethod='bc.contractLabourForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:hidden;">
 	<s:form name="contractLabourForm" theme="simple">
-		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:495}"
+		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:365}"
 			style="width:710px;overflow: hidden;">
 			<div class="tabsContainer">
            	 	<div class="slideContainer">
@@ -303,7 +303,7 @@
 				</div>
 				<div id="contractContents" class="content" >
 					<div class="formEditor">
-						<textarea name="e.content" id="textareaId" class="bc-editor ui-widget-content" style="width: 690px;height:590px" data-validate="required"
+						<textarea name="e.content" id="textareaId" class="bc-editor ui-widget-content" style="width: 690px;height:280px" data-validate="required"
 							 data-ptype="contractLabour.editor" data-puid='${e.uid}' 
 							 data-readonly='${readonly}'>
 							 ${e.content} 
