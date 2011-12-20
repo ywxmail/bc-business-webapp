@@ -7,7 +7,7 @@
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:hidden;">
 	<s:form name="contractLabourForm" theme="simple">
 		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:365}"
-			style="width:710px;overflow: hidden;">
+			style="width:760px;overflow: hidden;">
 			<div class="tabsContainer">
            	 	<div class="slideContainer">
 					<ul class="tabs ui-helper-reset">
@@ -244,7 +244,7 @@
 											</tr>
 											<tr>
 												<td class="label"><s:text name="contract.labour.certPay"/>:</td>
-												<td class="value" colspan="4">
+												<td class="value" colspan="3">
 													<s:checkbox name="e.iQMA" cssStyle="width:1em;" />
 													<s:text name="contract.labour.iQMA"/>
 													<s:checkbox name="e.accountBook" cssStyle="width:1em;"/>
@@ -269,7 +269,7 @@
 												<td class="value" colspan="4">
 													<fieldset>
 										          		<legend>生育险待遇</legend>
-										          		<table class="formFields" cellspacing="2" cellpadding="0" style="height:40px;">
+										          		<table class="formFields" cellspacing="2" cellpadding="0">
 										          			<tr class="widthMarker">
 																<td >&nbsp;</td>
 																<td style="width: 200px;">&nbsp;</td>
@@ -322,7 +322,7 @@
 				</div>
 				<div id="contractContents" class="content" >
 					<div class="formEditor">
-						<textarea name="e.content" id="textareaId" class="bc-editor ui-widget-content" style="width: 690px;height:280px" data-validate="required"
+						<textarea name="e.content" id="textareaId" class="bc-editor ui-widget-content" style="width: 740px;height:280px" data-validate="required"
 							 data-ptype="contractLabour.editor" data-puid='${e.uid}' 
 							 data-readonly='${readonly}'>
 							 ${e.content} 
