@@ -14,7 +14,9 @@
 						<li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">基本信息</a></li>
 						<li class="tab ui-widget-content"><a href="#contractContents" class="ui-state-default">合同内容</a></li>
 						<li class="tab ui-widget-content"><a href='#attachment' class="ui-state-default">附件</a></li>
-						<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contractLabours/list?contractId=%{(e.pid != null)?e.pid:0}"/>' class="ui-state-default">历史版本</a></li>
+						<s:if test="e.main == 0">
+							<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contractLabours/list?contractId=%{(e.pid != null)?e.pid:0}&patchNo=%{e.patchNo}"/>' class="ui-state-default">历史版本</a></li>
+						</s:if>
 						<s:if test="!e.isNew()">
 							<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/injury/list?contractId=%{e.id}" />' class="ui-state-default">工伤</a></li>
 						</s:if>
@@ -153,8 +155,14 @@
 												<td class="value">
 												 	<s:textfield name="e.certIdentity" cssClass="ui-widget-content" />
 												</td>
-												<td class="label"></td>
-												<td class="value">
+												<td class="label"><s:text name="contract.labour.leaveDate"/>:</td>
+												<td class="value" style="position:relative;display: block;">
+													<input type="text" name="e.leaveDate" data-validate='{"type":"date"}'
+													value='<s:date format="yyyy-MM-dd" name="e.leaveDate" />'
+													class="bc-date ui-widget-content" data-cfg='{changeYear:true}' />
+													<ul class="inputIcons">
+														<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.leaveDate' ></li>
+													</ul>
 												</td>
 											</tr>
 						        		</table>
@@ -190,9 +198,14 @@
 												<td class="value">
 													<s:select name="e.insuranceType" list="insurancetypeList" data-validate="required" listKey="value" listValue="value" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" />
 												</td>
-												<td class="label"><s:text name="contract.labour.buyUnit"/>:</td>
-												<td class="value">
-													<s:select name="e.buyUnit" list="buyUnitList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content" ></s:select>
+												<td class="label"><s:text name="contract.labour.stopDate"/>:</td>
+												<td class="value" style="position:relative;display: block;">
+													<input type="text" name="e.stopDate" data-validate='{"type":"date"}'
+													value='<s:date format="yyyy-MM-dd" name="e.stopDate" />'
+													class="bc-date ui-widget-content" data-cfg='{changeYear:true}' />
+													<ul class="inputIcons">
+														<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.stopDate' ></li>
+													</ul>
 												</td>
 											</tr>
 											<tr>
@@ -221,6 +234,12 @@
 															<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.getEndDate' ></li>
 														</ul>
 													</div>
+												</td>
+											</tr>
+											<tr>
+												<td class="label"><s:text name="contract.labour.buyUnit"/>:</td>
+												<td class="value">
+													<s:select name="e.buyUnit" list="buyUnitList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content" ></s:select>
 												</td>
 											</tr>
 											<tr>
