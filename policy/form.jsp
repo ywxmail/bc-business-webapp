@@ -30,10 +30,10 @@
 								    	<legend>基本信息</legend>
 								        <table class="formFields" cellspacing="2" cellpadding="0">
 											<tr class="widthMarker">
-								                <td >&nbsp;</td>
-								                <td style="width: 220px;">&nbsp;</td>
 								                <td style="width: 80px;">&nbsp;</td>
-								                <td style="width: 200px;">&nbsp;</td>
+								                <td style="width: 260px;">&nbsp;</td>
+								                <td style="width: 80px;">&nbsp;</td>
+								                <td >&nbsp;</td>
 							                </tr>
 											<tr>
 												<td class="label">*<s:text name="policy.carId"/>:</td>
@@ -66,11 +66,11 @@
 						          		<legend>商业险</legend>
 						          		<table class="formFields" cellspacing="2" cellpadding="0" >
 											<tr class="widthMarker">
-												<td >&nbsp;</td>
-												<td style="width: 200px;">&nbsp;</td>
-												<td style="width: 80px;">&nbsp;</td>
-												<td style="width: 240px;">&nbsp;</td>
-											</tr>
+								                <td style="width: 80px;">&nbsp;</td>
+								                <td style="width: 260px;">&nbsp;</td>
+								                <td style="width: 80px;">&nbsp;</td>
+								                <td >&nbsp;</td>
+							                </tr>
 											<tr>
 											    <td class="label">*<s:text name="policy.commerialNo"/>:</td>
 												<td class="value"><s:textfield name="e.commerialNo" cssClass="ui-widget-content"/></td>
@@ -78,7 +78,7 @@
 												<td class="value"><s:textfield name="e.assured" cssClass="ui-widget-content"/></td>
 											</tr>
 											<tr>
-											    <td class="label" style="width: 90px;">*<s:text name="policy.Company"/>:</td>
+											    <td class="label">*<s:text name="policy.Company"/>:</td>
 							                    <td class="value "><s:select  list="companyList" listKey="value" listValue="value"  headerKey="" headerValue=""  name="e.commerialCompany"  data-validate="required" 
 							                         cssStyle="width:20em;" cssClass="ui-widget-content"/></td>
 							                    <td class="label">*<s:text name="policy.commerialDeadline"/>:</td>
@@ -127,11 +127,11 @@
 						          		        <legend>强制险</legend>
 						          		         <table class="formFields" cellspacing="2" cellpadding="0">
 											         <tr class="widthMarker">
-												        <td >&nbsp;</td>
-												        <td style="width: 200px;">&nbsp;</td>
-												        <td style="width: 80px;">&nbsp;</td>
-												        <td style="width: 240px;">&nbsp;</td>
-											         </tr>
+										                <td style="width: 80px;">&nbsp;</td>
+										                <td style="width: 260px;">&nbsp;</td>
+										                <td style="width: 80px;">&nbsp;</td>
+										                <td >&nbsp;</td>
+							                         </tr>
 											         <tr>
 											             <td class="label">*<s:text name="policy.greenslipNo"/>:</td>
 												         <td class="value"><s:textfield name="e.greenslipNo" cssClass="ui-widget-content"/></td>
@@ -139,7 +139,7 @@
 												         <td class="value"><s:textfield name="e.assured" cssClass="ui-widget-content"/></td>
 											        </tr>
 											        <tr>
-											             <td class="label" style="width: 90px;">*<s:text name="policy.Company"/>:</td>
+											             <td class="label">*<s:text name="policy.Company"/>:</td>
 							                             <td class="value "><s:select  list="companyList" listKey="value" listValue="value"  headerKey="" headerValue=""  name="e.greenslipCompany"  
 							                               cssStyle="width:20em;" cssClass="ui-widget-content"/></td>
 							                             <td class="label"></td>
@@ -193,6 +193,48 @@
 						    	</td>
 							</tr>
 							<tr>
+								<td class="value" colspan="4">
+								    <fieldset>
+								    	<legend>险种</legend>
+								    	   <div id="assignChargers" style="width:100%;" class="formTable2 ui-widget-content" 
+			                                        data-removeTitle='<s:text name="title.click2remove" />'>
+													<div class="ui-state-active title" style="position:relative;">
+														<span class="text"><s:text name="policy.insuranceType"/>：
+															<s:if test="%{chargerInfoMap == null || chargerInfoMap.isEmpty()}"><s:text name="label.empty"/></s:if>
+														</span>
+														<span id="addChargers" class="verticalMiddle ui-icon ui-icon-circle-plus" title='<s:text name="contract.title.click2selectCharger"/>'></span>
+														<span id="addChargers" class="verticalMiddle ui-icon ui-icon-circle-plus" title='<s:text name="contract.title.click2selectCharger"/>'></span>
+													</div>
+													<s:if test="%{chargerInfoMap != null && !chargerInfoMap.isEmpty()}">
+													<ul class="horizontal">
+													<s:iterator value="chargerInfoMap">
+														<li class="horizontal ui-widget-content ui-corner-all" data-id='<s:property value="key" />'>
+															<span class="text"><s:property value="value" /></span>
+															<span class="click2remove verticalMiddle ui-icon ui-icon-close" title='<s:text name="title.click2remove"/>'></span>
+														</li>
+													</s:iterator>
+													</ul>
+													</s:if>	
+										   </div>
+								           <table  border="1" cellspacing="0" cellspacing="2" cellpadding="0" style="width: 100%">
+								             <tr>
+								                 <th>险种名称</th>
+								                 <th>保额</th>
+								                 <th>保费</th>
+							                 </tr>
+											 <tr class="widthMarker">
+								                <td style="width: 220px;height: 20px;">&nbsp;</td>
+								                <td style="width: 220px;">&nbsp;</td>
+								                <td >&nbsp;</td>
+							                 </tr>
+											 <tr>
+												
+											 </tr>
+								        </table>
+								   </fieldset>
+								</td>
+							</tr>
+							<tr>
 								<td class="label" colspan="4">
 									<div class="formTopInfo">
 										状态：<s:property value="%{statusesValue[e.status]}" />，
@@ -220,6 +262,9 @@
 		<s:hidden name="e.uid"/>
 		<s:hidden name="e.status"/>
 		<s:hidden name="e.patchNo"/>
+		<s:hidden name="e.opType"/>
+		<s:hidden name="e.verMajor"/>
+		<s:hidden name="e.pid"/>
 		
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 	</s:form>
