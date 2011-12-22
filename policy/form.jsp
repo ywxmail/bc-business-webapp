@@ -126,30 +126,26 @@
 									        <fieldset>
 						          		        <legend>强制险</legend>
 						          		         <table class="formFields" cellspacing="2" cellpadding="0">
-											         <tr class="widthMarker">
+													<tr class="widthMarker">
 										                <td style="width: 80px;">&nbsp;</td>
 										                <td style="width: 260px;">&nbsp;</td>
 										                <td style="width: 80px;">&nbsp;</td>
 										                <td >&nbsp;</td>
-							                         </tr>
+									                </tr>
 											         <tr>
 											             <td class="label">*<s:text name="policy.greenslipNo"/>:</td>
 												         <td class="value"><s:textfield name="e.greenslipNo" cssClass="ui-widget-content"/></td>
-												         <td class="label">*<s:text name="policy.assured"/>:</td>
-												         <td class="value"><s:textfield name="e.assured" cssClass="ui-widget-content"/></td>
+											             <td class="label">*<s:text name="policy.Company"/>:</td>
+							                             <td class="value" ><s:select  list="companyList" listKey="value" listValue="value"  headerKey="" headerValue=""  name="e.greenslipCompany"  
+							                               cssStyle="width:20em;" cssClass="ui-widget-content"/></td>
 											        </tr>
 											        <tr>
-											             <td class="label">*<s:text name="policy.Company"/>:</td>
-							                             <td class="value "><s:select  list="companyList" listKey="value" listValue="value"  headerKey="" headerValue=""  name="e.greenslipCompany"  
-							                               cssStyle="width:20em;" cssClass="ui-widget-content"/></td>
 							                             <td class="label"></td>
 												           <td class="value">
 													       <s:checkbox name="e.greenslipSameDate" cssStyle="width:1em;" />
 													       <s:text name="policy.greenslipSameDate"/>
 												         </td>
-											          </tr>
-											          <tr>
-											              <td class="label">
+											             <td class="label">
 								                               <samp id="greenslipSameDateFieldset" style='<s:if test="%{e.greenslipSameDate==false || e.greenslip==true}">
 										                         visibility: visible;
 									                            </s:if>
@@ -157,10 +153,10 @@
 										                         visibility: hidden;
 									                             </s:else>
 									                             '>
-									                            &nbsp;&nbsp;<s:text name="policy.commerialDeadline"/>:
+									                             <s:text name="policy.commerialDeadline"/>:
 								                                 </samp>
 								                           </td>
-								                           <td class="value" style="width:240px;">
+								                           <td class="value" >
 								                               <div id="greenslipSameDateFieldset" style='<s:if test="%{e.greenslipSameDate==false || e.greenslip==true}">
 										                         visibility: visible;
 									                            </s:if>

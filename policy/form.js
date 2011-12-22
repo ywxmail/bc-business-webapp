@@ -79,7 +79,6 @@ bc.policyForm = {
 			+	'</table>'
 			+'</div>'
 		);
-		//bc.policyForm.init(null,false,$page);
 		
 		switch(option.value){
 			case "2":	//维护
@@ -89,7 +88,7 @@ bc.policyForm = {
 				bc.policyForm.setData(3,$page,true);
 				break;
 			case "4":	//停保
-				bc.msg.confirm("确定此劳动合同的持有人离职吗？",function(){
+				bc.msg.confirm("确定此车停保吗？",function(){
 					$page.find(":input[name='e.status']").val("1");
 					$page.find(":input[name='e.opType']").val("4");
 					$page.data("data-status","saved");
@@ -108,16 +107,17 @@ bc.policyForm = {
 	//维护,续保处理
 	setData : function (opType,context,flag){
 		var $page = context;
-		//清空id新增一份维护操作类型的合同
-		var verMajor = $page.find(":input[name='e.verMajor']").val();
-	    $page.find(":input[name='e.verMajor']").val(verMajor++);
-	    alert(verMajor++);
-		var eId = $page.find(":input[name='e.id']").val();
-		if(eId.length > 0){
-			$page.find(":input[name='e.pid']").val(eId);
+		bc.policyForm.init(null,false,$page);
+		//续保时，对pid的操作
+		if(flag){
+			var eId = $page.find(":input[name='e.id']").val();
+			if(eId.length > 0){
+				$page.find(":input[name='e.pid']").val(eId);
+			}
+			//清空id,uid新增一份续保操作类型的合同
+			$page.find(":input[name='e.id']").val('');
+			$page.find(":input[name='e.uid']").val('');
 		}
-		$page.find(":input[name='e.id']").val('');
-		$page.find(":input[name='e.uid']").val('');
 		$page.find(":input[name='e.opType']").val(opType);
 		$page.parent().find('#bcSaveBtn').show();
 		$page.parent().find('#bcOpBtn').hide();
