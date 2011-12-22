@@ -7,14 +7,16 @@
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:hidden;">
 	<s:form name="contractLabourForm" theme="simple">
 		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:365}"
-			style="width:710px;overflow: hidden;">
+			style="width:760px;overflow: hidden;">
 			<div class="tabsContainer">
            	 	<div class="slideContainer">
 					<ul class="tabs ui-helper-reset">
 						<li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">基本信息</a></li>
 						<li class="tab ui-widget-content"><a href="#contractContents" class="ui-state-default">合同内容</a></li>
 						<li class="tab ui-widget-content"><a href='#attachment' class="ui-state-default">附件</a></li>
-						<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contractLabours/list?contractId=%{(e.pid != null)?e.pid:0}"/>' class="ui-state-default">历史版本</a></li>
+						<s:if test="e.main == 0">
+							<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contractLabours/list?contractId=%{(e.pid != null)?e.pid:0}&patchNo=%{e.patchNo}"/>' class="ui-state-default">历史版本</a></li>
+						</s:if>
 						<s:if test="!e.isNew()">
 							<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/injury/list?contractId=%{e.id}" />' class="ui-state-default">工伤</a></li>
 						</s:if>
@@ -153,8 +155,14 @@
 												<td class="value">
 												 	<s:textfield name="e.certIdentity" cssClass="ui-widget-content" />
 												</td>
-												<td class="label"></td>
-												<td class="value">
+												<td class="label"><s:text name="contract.labour.leaveDate"/>:</td>
+												<td class="value" style="position:relative;display: block;">
+													<input type="text" name="e.leaveDate" data-validate='{"type":"date"}'
+													value='<s:date format="yyyy-MM-dd" name="e.leaveDate" />'
+													class="bc-date ui-widget-content" data-cfg='{changeYear:true}' />
+													<ul class="inputIcons">
+														<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.leaveDate' ></li>
+													</ul>
 												</td>
 											</tr>
 						        		</table>
@@ -190,9 +198,14 @@
 												<td class="value">
 													<s:select name="e.insuranceType" list="insurancetypeList" data-validate="required" listKey="value" listValue="value" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" />
 												</td>
-												<td class="label"><s:text name="contract.labour.buyUnit"/>:</td>
-												<td class="value">
-													<s:select name="e.buyUnit" list="buyUnitList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content" ></s:select>
+												<td class="label"><s:text name="contract.labour.stopDate"/>:</td>
+												<td class="value" style="position:relative;display: block;">
+													<input type="text" name="e.stopDate" data-validate='{"type":"date"}'
+													value='<s:date format="yyyy-MM-dd" name="e.stopDate" />'
+													class="bc-date ui-widget-content" data-cfg='{changeYear:true}' />
+													<ul class="inputIcons">
+														<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.stopDate' ></li>
+													</ul>
 												</td>
 											</tr>
 											<tr>
@@ -224,8 +237,14 @@
 												</td>
 											</tr>
 											<tr>
+												<td class="label"><s:text name="contract.labour.buyUnit"/>:</td>
+												<td class="value">
+													<s:select name="e.buyUnit" list="buyUnitList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content" ></s:select>
+												</td>
+											</tr>
+											<tr>
 												<td class="label"><s:text name="contract.labour.certPay"/>:</td>
-												<td class="value" colspan="4">
+												<td class="value" colspan="3">
 													<s:checkbox name="e.iQMA" cssStyle="width:1em;" />
 													<s:text name="contract.labour.iQMA"/>
 													<s:checkbox name="e.accountBook" cssStyle="width:1em;"/>
@@ -250,7 +269,7 @@
 												<td class="value" colspan="4">
 													<fieldset>
 										          		<legend>生育险待遇</legend>
-										          		<table class="formFields" cellspacing="2" cellpadding="0" style="height:40px;">
+										          		<table class="formFields" cellspacing="2" cellpadding="0">
 										          			<tr class="widthMarker">
 																<td >&nbsp;</td>
 																<td style="width: 200px;">&nbsp;</td>
@@ -303,7 +322,7 @@
 				</div>
 				<div id="contractContents" class="content" >
 					<div class="formEditor">
-						<textarea name="e.content" id="textareaId" class="bc-editor ui-widget-content" style="width: 690px;height:280px" data-validate="required"
+						<textarea name="e.content" id="textareaId" class="bc-editor ui-widget-content" style="width: 740px;height:280px" data-validate="required"
 							 data-ptype="contractLabour.editor" data-puid='${e.uid}' 
 							 data-readonly='${readonly}'>
 							 ${e.content} 
