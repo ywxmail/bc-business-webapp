@@ -349,6 +349,10 @@
 		<s:hidden name="isNullCarMan" />
 		<s:hidden name="isNullCar" />
 		<s:hidden name="e.source"/>
+		<s:hidden name="e.syncUid" />
+		<s:hidden name="e.syncId" />
+		<s:hidden name="isSync" />
+		<s:hidden name="syncId" />
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 		
 	</s:form>
