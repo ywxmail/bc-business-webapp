@@ -88,7 +88,6 @@ bs.jiaoWeiADVICEView = {
 		
 		// 获取用户选中的条目
 		var ids = bc.grid.getSelected($page.find(".bc-grid"));
-		
 		// 检测是否选中条目
 		if(ids.length ==0){
 			//bc.msg.slide("请先选择要处理的信息！");
@@ -114,7 +113,6 @@ bs.jiaoWeiADVICEView = {
 							data: {syncId: ids[0]}
 						})
 					});
-					//alert(json.msg);
 					return;
 				}
 				// 执行生成操作：带参数跳转到交通违法表单
