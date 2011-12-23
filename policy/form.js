@@ -39,10 +39,36 @@ bc.policyForm = {
 				$form.find('#greenslipSameDateFieldset').css("visibility","visible");
 			}
 		});
+		//如果选中强制险是否与商业险同期选择框则将强制险的保险期限隐藏
 		if($form.find(":checkbox[name='e.greenslipSameDate']")[0].checked==true){
 			$form.find('#greenslipSameDateFieldset').css("visibility","hidden");
 		}
 		
+		var table=$form.find("#tables")[0];
+		// 选择车辆保单险种
+		$form.find("#selectInsuranceType").click(function() {
+			bs.selectInsuranceType({
+				multiple: true,
+				onOk : function(selectInsuranceTypes) {
+					for(var i=0;i<selectInsuranceTypes.length;i++){
+						//插入行
+						var newRow=table.insertRow(tables.rows.length);
+						//插入列
+						var newCell1=newRow.insertCell(0);
+						newCell1.innerHTML=selectInsuranceTypes[i].name;//插入名称
+						var newCell2=newRow.insertCell(1);
+						newCell2.innerHTML=selectInsuranceTypes[i].coverage;//插入保额
+						var newCell3=newRow.insertCell(2);
+						newCell3.innerHTML=selectInsuranceTypes[i].premium;//插入保费
+						var newCell4=newRow.insertCell(3);
+						newCell4.innerHTML=selectInsuranceTypes[i].description;//插入备注
+						//newCell4.innerHTML= "<input ID='txtName' type='text'/>";
+						
+						
+					}
+				}
+			});
+		});
 	},
 	/**
 	 * 上下文为按钮所在窗口，第一个参数为选中的项({text:[text]},value:[value])

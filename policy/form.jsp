@@ -135,16 +135,16 @@
 											         <tr>
 											             <td class="label">*<s:text name="policy.greenslipNo"/>:</td>
 												         <td class="value"><s:textfield name="e.greenslipNo" cssClass="ui-widget-content"/></td>
-											             <td class="label">*<s:text name="policy.Company"/>:</td>
-							                             <td class="value" ><s:select  list="companyList" listKey="value" listValue="value"  headerKey="" headerValue=""  name="e.greenslipCompany"  
-							                               cssStyle="width:20em;" cssClass="ui-widget-content"/></td>
-											        </tr>
-											        <tr>
 							                             <td class="label"></td>
-												           <td class="value">
+												         <td class="value">
 													       <s:checkbox name="e.greenslipSameDate" cssStyle="width:1em;" />
 													       <s:text name="policy.greenslipSameDate"/>
 												         </td>
+											        </tr>
+											        <tr>
+											             <td class="label">*<s:text name="policy.Company"/>:</td>
+							                             <td class="value" ><s:select  list="companyList" listKey="value" listValue="value"  headerKey="" headerValue=""  name="e.greenslipCompany"  
+							                               cssStyle="width:20em;" cssClass="ui-widget-content"/></td>
 											             <td class="label">
 								                               <samp id="greenslipSameDateFieldset" style='<s:if test="%{e.greenslipSameDate==false || e.greenslip==true}">
 										                         visibility: visible;
@@ -192,36 +192,39 @@
 								<td class="value" colspan="4">
 								    <fieldset>
 								    	<legend>险种</legend>
-								    	   <div id="assignChargers" style="width:100%;" class="formTable2 ui-widget-content" 
-			                                        data-removeTitle='<s:text name="title.click2remove" />'>
-													<div class="ui-state-active title" style="position:relative;">
-														<span class="text"><s:text name="policy.insuranceType"/>：
-															<s:if test="%{chargerInfoMap == null || chargerInfoMap.isEmpty()}"><s:text name="label.empty"/></s:if>
-														</span>
-														<span id="addChargers" class="verticalMiddle ui-icon ui-icon-circle-plus" title='<s:text name="contract.title.click2selectCharger"/>'></span>
-														<span id="addChargers" class="verticalMiddle ui-icon ui-icon-circle-plus" title='<s:text name="contract.title.click2selectCharger"/>'></span>
-													</div>
-													<s:if test="%{chargerInfoMap != null && !chargerInfoMap.isEmpty()}">
-													<ul class="horizontal">
-													<s:iterator value="chargerInfoMap">
-														<li class="horizontal ui-widget-content ui-corner-all" data-id='<s:property value="key" />'>
-															<span class="text"><s:property value="value" /></span>
-															<span class="click2remove verticalMiddle ui-icon ui-icon-close" title='<s:text name="title.click2remove"/>'></span>
-														</li>
-													</s:iterator>
-													</ul>
-													</s:if>	
-										   </div>
-								           <table  border="1" cellspacing="0" cellspacing="2" cellpadding="0" style="width: 100%">
+								           <table  border="1" cellspacing="0" cellspacing="2" cellpadding="0" style="width: 100%" id="tables">
 								             <tr>
-								                 <th>险种名称</th>
-								                 <th>保额</th>
-								                 <th>保费</th>
-							                 </tr>
-											 <tr class="widthMarker">
-								                <td style="width: 220px;height: 20px;">&nbsp;</td>
-								                <td style="width: 220px;">&nbsp;</td>
-								                <td >&nbsp;</td>
+									             <td colspan="2" style="height: 20px;">
+											    	   <div id="assignChargers" style="width:96%;" class="formTable2 ui-widget-content" 
+						                                        data-removeTitle='<s:text name="title.click2remove" />'>
+																<div class="ui-state-active title" style="position:relative;">
+																	<span class="text"><s:text name="policy.insuranceType"/>：
+																		<s:if test="%{chargerInfoMap == null || chargerInfoMap.isEmpty()}"><s:text name="label.empty"/></s:if>
+																	</span>
+																	<span id="addChargers" class="verticalMiddle ui-icon ui-icon-circle-plus" title='<s:text name="contract.title.click2selectCharger"/>'></span>
+																	<span id="addChargers" class="verticalMiddle ui-icon ui-icon-circle-plus" title='<s:text name="contract.title.click2selectCharger"/>'></span>
+																</div>
+																<s:if test="%{chargerInfoMap != null && !chargerInfoMap.isEmpty()}">
+																<ul class="horizontal">
+																<s:iterator value="chargerInfoMap">
+																	<li class="horizontal ui-widget-content ui-corner-all" data-id='<s:property value="key" />'>
+																		<span class="text"><s:property value="value" /></span>
+																		<span class="click2remove verticalMiddle ui-icon ui-icon-close" title='<s:text name="title.click2remove"/>'></span>
+																	</li>
+																</s:iterator>
+																</ul>
+																</s:if>	
+													   </div>
+									             </td>
+									             <td colspan="2">
+													   <input type="button" id="selectInsuranceType" value="点击选择险种">
+									             </td>
+								             </tr>
+								             <tr class="widthMarker">
+								                 <th style="width: 105px;height: 20px;">险种名称</th>
+								                 <th style="width: 105px;">保额</th>
+								                 <th style="width: 105px;">保费</th>
+								                 <th>备注</th>
 							                 </tr>
 											 <tr>
 												
