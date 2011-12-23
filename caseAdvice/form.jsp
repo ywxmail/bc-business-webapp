@@ -222,7 +222,7 @@
 											</tr>
 											<tr>
 												<td class="label"><s:text name="runcase.machinePrice"/>:</td>
-												<td class="value"><s:textfield name="e.machinePrice" cssClass="ui-widget-content"/></td>
+												<td class="value"><s:textfield name="e.machinePrice" value="%{getText('bs.format.number',{e.machinePrice})}" cssClass="ui-widget-content"/></td>
 												<td class="label"><s:text name="runcase.driverCert"/>:</td>
 												<td class="value"><s:textfield name="e.driverCert" cssClass="ui-widget-content"/></td>
 											</tr>
@@ -244,7 +244,7 @@
 													</span>
 												</td>
 												<td class="label"><s:text name="runcase.charge"/>:</td>
-												<td class="value"><s:textfield name="e.charge" cssClass="ui-widget-content"/></td>
+												<td class="value"><s:textfield name="e.charge" value="%{getText('bs.format.number',{e.charge})}" cssClass="ui-widget-content"/></td>
 											</tr>
 											<tr>
 												<td class="label"><s:text name="runcase.path"/>:</td>
@@ -349,6 +349,10 @@
 		<s:hidden name="isNullCarMan" />
 		<s:hidden name="isNullCar" />
 		<s:hidden name="e.source"/>
+		<s:hidden name="e.syncUid" />
+		<s:hidden name="e.syncId" />
+		<s:hidden name="isSync" />
+		<s:hidden name="syncId" />
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 		
 	</s:form>

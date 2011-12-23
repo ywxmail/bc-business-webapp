@@ -293,7 +293,6 @@ bc.contractLabourForm = {
 			case "5":	//离职
 				bc.msg.confirm("确定此劳动合同的持有人离职吗？",function(){
 					$page.find(":input[name='e.status']").val("2");
-					$page.find(":input[name='e.opType']").val("5");
 					$page.data("data-status","saved");
 					var option = { callback : function (){
 							$page.dialog("close");

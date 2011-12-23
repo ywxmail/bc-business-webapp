@@ -110,10 +110,15 @@
 												<td class="label">*<s:text name="contract.labour.driver"/>:</td>
 												<td class="value">
 													<div style="position:relative;display: inline-block">
-												 		<s:textfield name="e.ext_str2" data-validate="required" readonly="true" cssStyle="width:6.5em;" cssClass="ui-widget-content ui-state-disabled" />
-														<ul class="inputIcons">
-													 		<li class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="contract.title.click2selectCarMan"/>' id="selectDriverName">
-													 	</ul>
+													    <s:if test="e.isNew()">
+													 		<s:textfield name="e.ext_str2" data-validate="required" readonly="true" cssStyle="width:6.5em;" cssClass="ui-widget-content ui-state-disabled" />
+															<ul class="inputIcons">
+														 		<li class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="contract.title.click2selectCarMan"/>' id="selectDriverName">
+														 	</ul>
+													 	</s:if>
+													 	<s:else>
+													 		<s:textfield name="e.ext_str2" data-validate="required" readonly="true" cssStyle="width:6.5em;" cssClass="ui-widget-content ui-state-disabled" />
+													 	</s:else>
 													 </div>
 													<s:text name="contract.labour.certNo"/>&nbsp;<s:textfield name="e.certNo" data-validate="required" cssStyle="width:6em;" cssClass="ui-widget-content" />
 												</td>
