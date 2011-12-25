@@ -4,7 +4,7 @@
 	data-saveUrl='<s:url value="/bc-business/policy/save" />'
 	data-js='<s:url value="/bc-business/policy/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js" />,<s:url value="/ui-libs/xheditor/1.1.7/xheditor-zh-cn.min.js?ts=0" />'
 	data-initMethod='bc.policyForm.init'
-	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
+	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:hidden;">
 	<s:form name="policyForm" theme="simple">
 		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:420}"
 			style="width:710px;overflow: hidden;">
@@ -189,51 +189,6 @@
 						    	</td>
 							</tr>
 							<tr>
-								<td class="value" colspan="4">
-								    <fieldset>
-								    	<legend>险种</legend>
-								           <table  border="1" cellspacing="0" cellspacing="2" cellpadding="0" style="width: 100%" id="tables">
-								             <tr>
-									             <td colspan="2" style="height: 20px;">
-											    	   <div id="assignChargers" style="width:96%;" class="formTable2 ui-widget-content" 
-						                                        data-removeTitle='<s:text name="title.click2remove" />'>
-																<div class="ui-state-active title" style="position:relative;">
-																	<span class="text"><s:text name="policy.insuranceType"/>：
-																		<s:if test="%{chargerInfoMap == null || chargerInfoMap.isEmpty()}"><s:text name="label.empty"/></s:if>
-																	</span>
-																	<span id="addChargers" class="verticalMiddle ui-icon ui-icon-circle-plus" title='<s:text name="contract.title.click2selectCharger"/>'></span>
-																	<span id="addChargers" class="verticalMiddle ui-icon ui-icon-circle-plus" title='<s:text name="contract.title.click2selectCharger"/>'></span>
-																</div>
-																<s:if test="%{chargerInfoMap != null && !chargerInfoMap.isEmpty()}">
-																<ul class="horizontal">
-																<s:iterator value="chargerInfoMap">
-																	<li class="horizontal ui-widget-content ui-corner-all" data-id='<s:property value="key" />'>
-																		<span class="text"><s:property value="value" /></span>
-																		<span class="click2remove verticalMiddle ui-icon ui-icon-close" title='<s:text name="title.click2remove"/>'></span>
-																	</li>
-																</s:iterator>
-																</ul>
-																</s:if>	
-													   </div>
-									             </td>
-									             <td colspan="2">
-													   <input type="button" id="selectInsuranceType" value="点击选择险种">
-									             </td>
-								             </tr>
-								             <tr class="widthMarker">
-								                 <th style="width: 105px;height: 20px;">险种名称</th>
-								                 <th style="width: 105px;">保额</th>
-								                 <th style="width: 105px;">保费</th>
-								                 <th>备注</th>
-							                 </tr>
-											 <tr>
-												
-											 </tr>
-								        </table>
-								   </fieldset>
-								</td>
-							</tr>
-							<tr>
 								<td class="label" colspan="4">
 									<div class="formTopInfo">
 										状态：<s:property value="%{statusesValue[e.status]}" />，
@@ -248,6 +203,39 @@
 							</tr>
 						</tbody>
 					</table>
+					<!-- 购买的险种 -->
+					<div class="ui-widget-content" style="border-left-width:0;border-right-width:0;">
+						<div class="ui-state-active title" style="position:relative;">
+							<span class="text"><s:text name="policy.insuranceType"/>：</span>
+							<ul class="inputIcons">
+								<li id="selectInsuranceType" class="inputIcon ui-icon ui-icon-circle-plus"
+									title='<s:text name="title.click2selectInsuranceType"/>'></li>
+								<li id="selectTemplate" class="inputIcon ui-icon ui-icon-circle-check"
+									title='<s:text name="title.click2selectTemplate"/>'></li>
+								<li id="deleteInsuranceType" class="inputIcon ui-icon ui-icon-circle-close"
+									title='<s:text name="title.click2deleteInsuranceType"/>'></li>
+							</ul>
+						</div>
+				    	<div class="bc-grid header">
+						<table class="table" id="buyPlantTables" cellspacing="0" cellpadding="0" style="width: 100%">
+							<tr class="ui-state-default row">
+								<td class="first" style="width: 250px;height: 20px;">险种名称</td>
+								<td class="middle" style="width: 105px;">保额</td>
+								<td class="middle" style="width: 105px;">保费</td>
+								<td class="last">备注</td>
+							</tr>
+							<s:iterator var="b" value="e.buyPlants">
+							<tr class="ui-state-default row" data-id='<s:property value="id"/>'>
+								<td class="id first" style="padding:0;text-align:left;"><span class="ui-icon"></span>
+									<input style="width:90%;height:100%;border:none;margin:0;padding:0 0 0 2px;background:none;" readonly="readonly""text" class="ui-widget-content" value='<s:property value="name"/>'/></td>
+								<td class="middle" style="padding:0;text-align:left;"><input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" value='<s:property value="coverage"/>'/></td>
+								<td class="middle" style="padding:0;text-align:left;"><input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" value='<s:property value="premium"/>'/></td>
+								<td class="last" style="padding:0;text-align:left;"><input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" value='<s:property value="description"/>'/></td>
+							</tr>
+							</s:iterator>
+						</table>
+						</div>
+					</div>
 				</div>
 				<div id="otherFormFields4" class="content" style="width:800px;">
 	                 <s:property value="%{attachsUI}" escapeHtml="false"/>
@@ -264,6 +252,7 @@
 		<s:hidden name="e.opType"/>
 		<s:hidden name="e.verMajor"/>
 		<s:hidden name="e.pid"/>
+		<s:hidden name="buyPlants"/>
 		
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 	</s:form>

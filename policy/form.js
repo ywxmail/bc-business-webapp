@@ -1,9 +1,7 @@
 if(!window['bs'])window['bs']={};
 bc.policyForm = {
 	init : function(option,readonly,page) {
-		
 		var $form;
-		
 		if(page == null){
 			$form = $(this);
 		}else{
@@ -15,8 +13,8 @@ bc.policyForm = {
 			$form.parent().find('#bcSaveBtn').hide();
 			return;
 		}else{
-			$form.parent().find('#bcOpBtn').hide();
-			$form.parent().find('#bcSaveBtn').show();
+			//$form.parent().find('#bcOpBtn').hide();
+			//$form.parent().find('#bcSaveBtn').show();
 		}
 		//if(readonly) return;
 		//是否购买强制险
@@ -44,7 +42,26 @@ bc.policyForm = {
 			$form.find('#greenslipSameDateFieldset').css("visibility","hidden");
 		}
 		
-		var table=$form.find("#tables")[0];
+		var tableEl=$form.find("#buyPlantTables")[0];
+	
+		/**购买险种表格中插入input控件
+		 * @option {string} name 单元格的name属性值
+		 * @option {Object} value 单元格的json值
+		 * @option {Boolean} readonly 单元格是否只读
+		 * @option {Boolean} isFirst 单元格是列头
+		 */
+		function buildInput(name,value,readonly,isFirst){
+			var s = '<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;';
+			if(isFirst){
+				s += 'background:none;';
+			}
+			s += '" name="' + name + '" type="text" class="ui-widget-content" value="' + value + '"';
+			if(readonly){
+				s += ' readonly="' + readonly + '"';
+			}
+			s += '/>';
+			return s;
+		}
 		// 选择车辆保单险种
 		$form.find("#selectInsuranceType").click(function() {
 			bs.selectInsuranceType({
@@ -52,30 +69,87 @@ bc.policyForm = {
 				onOk : function(selectInsuranceTypes) {
 					for(var i=0;i<selectInsuranceTypes.length;i++){
 						//插入行
-						var newRow=table.insertRow(tables.rows.length);
+						var newRow=tableEl.insertRow(tableEl.rows.length);
+						newRow.setAttribute("class","ui-state-default row");
 						//插入列
-						var newCell1=newRow.insertCell(0);
-						newCell1.innerHTML=selectInsuranceTypes[i].name;//插入名称
-						var newCell2=newRow.insertCell(1);
-						newCell2.innerHTML=selectInsuranceTypes[i].coverage;//插入保额
-						var newCell3=newRow.insertCell(2);
-						newCell3.innerHTML=selectInsuranceTypes[i].premium;//插入保费
-						var newCell4=newRow.insertCell(3);
-						newCell4.innerHTML=selectInsuranceTypes[i].description;//插入备注
-						//newCell4.innerHTML= "<input ID='txtName' type='text'/>";
+						var cell=newRow.insertCell(0);
+						cell.style.padding="0";
+						cell.style.textAlign="left";
+						cell.setAttribute("class","first");
+						cell.innerHTML=buildInput("name",selectInsuranceTypes[i].name,true,true);//插入名称
 						
+						cell=newRow.insertCell(1);
+						cell.style.padding="0";
+						cell.style.textAlign="left";
+						cell.setAttribute("class","middle");
+						cell.innerHTML=buildInput("coverage",selectInsuranceTypes[i].coverage);//插入保额
 						
+						cell=newRow.insertCell(2);
+						cell.style.padding="0";
+						cell.style.textAlign="left";
+						cell.setAttribute("class","middle");
+						cell.innerHTML=buildInput("premium",selectInsuranceTypes[i].premium);//插入保费
+						
+						cell=newRow.insertCell(3);
+						cell.style.padding="0";
+						cell.style.textAlign="left";
+						cell.setAttribute("class","middle");
+						cell.innerHTML=buildInput("description",selectInsuranceTypes[i].description);//插入备注
 					}
 				}
 			});
 		});
+		//添加选中险种
+		$form.find("#buyPlantTables").delegate("tr:gt(0)","click",function(){
+			$(this).toggleClass("ui-state-default ui-state-focus").find("td:eq(0)>span.ui-icon").toggleClass("ui-icon-check");
+		});
+		//删除表中选中的险种
+		$form.find("#deleteInsuranceType").click(function() {
+			var $trs = $form.find("#buyPlantTables tr.ui-state-focus");
+			if($trs.length == 0){
+				bc.msg.slide("请先选择要删除的险种！");
+				return;
+			}
+			bc.msg.confirm("确定要删除选定的 <b>"+$trs.length+"</b>个险种吗？",function(){
+				for(var i=0;i<$trs.length;i++){
+					$($trs[i]).remove();
+				}
+			});
+			
+		});
+		
 	},
+	/**保存的处理*/
+	save:function(){
+		$page = $(this);
+		//先将购买险种合并到隐藏域
+		var buyPlants=[];
+		//将购买险种表中的内容添加到buyPlants里
+		$page.find("#buyPlantTables tr:gt(0)").each(function(){
+			var $inputs = $(this).find("td>input");
+			var json = {
+				name: $inputs[0].value,
+				coverage: $inputs[1].value,
+				premium: $inputs[2].value,
+				description: $inputs[3].value
+			};
+			var id = $(this).attr("data-id");
+			if(id && id.length > 0)
+				json.id = id;
+			buyPlants.push(json);
+		});
+		$page.find(":input[name='buyPlants']").val($.toJSON(buyPlants));
+		//调用标准的方法执行保存
+		bc.page.save.call(this);
+	},
+	
+	
 	/**
 	 * 上下文为按钮所在窗口，第一个参数为选中的项({text:[text]},value:[value])
 	 * 
 	 */
 	selectMenuButtonItem : function(option) {
-		logger.info("selectMenuButtonItem:option=" + $.toJSON(option));
+		//logger.info("selectMenuButtonItem:option=" + $.toJSON(option));
 		
 		var $page = $(this);
 		//可编辑表单的处理
@@ -83,29 +157,10 @@ bc.policyForm = {
 			logger.debug("disabled:" + this.name);
 			this.disabled=false;
 		});
-		$page.find("ul.inputIcons,span.selectButton").each(function(){
-			$(this).show();
-		});
-		//重新设定附件
-		var attuId = $page.find(":hidden[name='e.uid']").val();
-		$page.find("#attachment").html(
-			'<div data-extensions="bat,sh,reg,zip,rar,7z,gz,tar,pdf,txt,doc,xls,docx,xlsx,ppt,pptx,png,psd,jpg,jpeg,gif,tif,tiff,mp3,mid,wma,swf,avi,wmv,mkv,apk" data-maxsize="1048576000" data-maxcount="6" data-ptype="contractLabour.main" data-puid='+attuId+' class="attachs formAttachs">' 
-			+	'<table cellspacing="0" cellpadding="0" class="header">'
-			+		'<tbody>'
-			+		'<tr>'
-			+			'<td class="summary">'
-			+			'<span id="totalCount">0</span>&nbsp;个附件共&nbsp;<span data-size="0" id="totalSize">0Bytes</span>'
-			+			'</td>'
-			+			'<td class="uploadFile">添加附件<input type="file" multiple="" name="uploadFile" id="fid1322123360263" class="uploadFile">'
-			+			'</td>'
-			+			'<td><a data-action="downloadAll" class="operation" href="#">打包下载</a><a data-action="deleteAll" class="operation" href="#">全部删除</a>'
-			+			'</td>'
-			+		'</tr>'
-			+		'</tbody>'
-			+	'</table>'
-			+'</div>'
-		);
-		
+//		$page.find("ul.inputIcons,span.selectButton").each(function(){
+//			$(this).show();
+//		});
+//
 		switch(option.value){
 			case "2":	//维护
 				bc.policyForm.setData(2,$page,false);
