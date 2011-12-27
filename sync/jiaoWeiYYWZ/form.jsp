@@ -105,7 +105,7 @@
 											<td class="label"><s:text name="jiaoWeiYYWZ.detain"/>:</td>
 											<td class="value"><s:textfield name="e.detain" cssClass="ui-widget-content"/></td>
 											<td class="label"><s:text name="jiaoWeiYYWZ.penalty"/>:</td>
-											<td class="value"><s:textfield name="e.penalty" cssClass="ui-widget-content"/></td>
+											<td class="value"><s:textfield name="e.penalty" value="%{getText('bs.format.number',{e.penalty})}" cssClass="ui-widget-content"/></td>
 										</tr>
 										<tr>
 											<td class="label"><s:text name="jiaoWeiYYWZ.pullUnit"/>:</td>
@@ -165,7 +165,7 @@
 							<td class="label"><s:text name="jiaoWeiYYWZ.businessCertNo"/>:</td>
 							<td class="value"><s:textfield name="e.businessCertNo"  cssClass="ui-widget-content"/></td>
 							<td class="label"><s:text name="jiaoWeiYYWZ.seating"/>:</td>
-							<td class="value"><s:textfield name="e.seating"  cssClass="ui-widget-content"/></td>
+							<td class="value"><s:textfield name="e.seating" value="%{getText('bs.format.number',{e.seating})}" cssClass="ui-widget-content"/></td>
 						</tr>
 						<tr>
 							<td class="label"><s:text name="jiaoWeiYYWZ.oweRecord"/>:</td>

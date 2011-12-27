@@ -86,12 +86,12 @@
 												<td class="label">*<s:text name="contract.car" />:</td>
 												<!--
 												<td class="value" style="position:relative;display: block;">
-													<s:textfield name="e.ext_str1" data-validate="required" readonly="true" title='%{getText("contract.title.click2selectCar")}' cssClass="ui-widget-content ui-state-disabled" />
+													<s:textfield name="e.ext_str1" data-validate="required" readonly="true" title='%{getText("contract.title.click2selectCar")}' cssClass="ui-widget-content " />
 													<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectCarPlate"></span>
 												</td>
 												 -->
 												 <td class="value relative">
-												 	<s:textfield name="e.ext_str1" data-validate="required" readonly="true" cssClass="ui-widget-content ui-state-disabled" />
+												 	<s:textfield name="e.ext_str1" data-validate="required" readonly="true" cssClass="ui-widget-content " />
 												 	<ul class="inputIcons">
 												 		<li class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="contract.title.click2selectCar"/>' id="selectCarPlate">
 												 	</ul>
@@ -111,13 +111,13 @@
 												<td class="value">
 													<div style="position:relative;display: inline-block">
 													    <s:if test="e.isNew()">
-													 		<s:textfield name="e.ext_str2" data-validate="required" readonly="true" cssStyle="width:6.5em;" cssClass="ui-widget-content ui-state-disabled" />
+													 		<s:textfield name="e.ext_str2" data-validate="required" readonly="true" cssStyle="width:6.5em;" cssClass="ui-widget-content " />
 															<ul class="inputIcons">
 														 		<li class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="contract.title.click2selectCarMan"/>' id="selectDriverName">
 														 	</ul>
 													 	</s:if>
 													 	<s:else>
-													 		<s:textfield name="e.ext_str2" data-validate="required" readonly="true" cssStyle="width:6.5em;" cssClass="ui-widget-content ui-state-disabled" />
+													 		<s:textfield name="e.ext_str2" data-validate="required" readonly="true" cssStyle="width:6.5em;" cssClass="ui-widget-content " />
 													 	</s:else>
 													 </div>
 													<s:text name="contract.labour.certNo"/>&nbsp;<s:textfield name="e.certNo" data-validate="required" cssStyle="width:6em;" cssClass="ui-widget-content" />

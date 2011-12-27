@@ -127,7 +127,7 @@
 								               	<td class="label"><s:text name="runcase.carPlate"/>:</td>
 												<td class="value">
 													<span style="position:relative;">
-														<s:textfield name="e.carPlate" readonly="true" cssClass="ui-widget-content ui-state-disabled"/>
+														<s:textfield name="e.carPlate" readonly="true" cssClass="ui-widget-content "/>
 														<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectCarPlate" ></span>
 													</span>
 												</td>
@@ -142,7 +142,7 @@
 							               		<td class="label"><s:text name="runcase.driverName" />:</td>
 												<td class="value" colspan="3">
 													<span style="position:relative;">
-														<s:textfield name="e.driverName" cssStyle="width:9em;" readonly="true" cssClass="ui-widget-content ui-state-disabled" />
+														<s:textfield name="e.driverName" cssStyle="width:9em;" readonly="true" cssClass="ui-widget-content " />
 														<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectDriverName" style="right: 9px"></span>
 													</span>
 													 <s:radio name="e.driverSex" list="#{'1':'男','2':'女'}" 
@@ -275,7 +275,7 @@
 								</td>
 								<td class="label"><s:text name="runcase.receiverName2"/>:</td>
 								<td class="value" style="position:relative;display: block;">
-									<s:textfield name="e.receiverName" style="width:20em;" cssClass="ui-widget-content ui-state-disabled"/>		
+									<s:textfield name="e.receiverName" style="width:20em;" cssClass="ui-widget-content "/>		
 									<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectReceiverName" style="right: 40px;"></span>
 								</td>
 							</tr>

@@ -21,10 +21,10 @@
 							<td class="label" style="width: 7em;">*<s:text name="cert.4car.car" />:</td>
 							<td class="value relative">
 								<s:if test="!e.isNew()">
-									<s:textfield name="e.plate" data-validate="required" disabled="true" cssClass="ui-widget-content ui-state-disabled" readonly="true" />
+									<s:textfield name="e.plate" data-validate="required" disabled="true" cssClass="ui-widget-content " readonly="true" />
 								</s:if>
 								<s:else>
-									<s:textfield name="e.plate" data-validate="required" cssClass="ui-widget-content ui-state-disabled" readonly="true" />
+									<s:textfield name="e.plate" data-validate="required" cssClass="ui-widget-content " readonly="true" />
 									<ul class="inputIcons">
 								 		<li class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="cert.title.click2selectCar"/>' id="selectCarPlate">
 								 	</ul>
