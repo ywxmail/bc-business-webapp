@@ -190,181 +190,116 @@ bc.contractLabourForm = {
 	},
 	
 	/**
-	 * 上下文为按钮所在窗口，第一个参数为选中的项({text:[text]},value:[value])
+	 * 操作按钮的回调函数
 	 * 
 	 */
 	selectMenuButtonItem : function(option) {
 		logger.info("selectMenuButtonItem:option=" + $.toJSON(option));
 		// option.value的值参考 Contract.OPTYPE_XXX 常数的定义
-		if(option.value == "4"){//续签
+		if(option.value == "4"){//续约 renew
 			bc.contractLabourForm.doRenew($(this));
-			return;
+		}else if(option.value == "5"){//离职 resign
+			bc.contractLabourForm.doResign($(this));
+		}else if(option.value == "3"){//转车 transfer
+			bc.contractLabourForm.doChangeCar($(this));
+		}else if(option.value == "2"){//维护 maintenance
+			bc.contractLabourForm.doMaintenance($(this));
 		}
-		
-		var $page = $(this);
-		//可编辑表单的处理
-		$page.find(":input:visible").each(function(){
-			logger.debug("disabled:" + this.name);
-			this.disabled=false;
-		});
-		$page.find("ul.inputIcons,span.selectButton").each(function(){
-			$(this).show();
-		});
-			
-		//先卸载元素已绑定的编辑器
-		$page.find("#textareaId").xheditor(false);
-		//绑定富文本编辑器
-		$page.find("textarea.bc-editor").each(function(){
-			$this = $(this);
-			$this.xheditor(bc.editor.getConfig({
-				ptype: $this.attr("data-ptype"),
-				puid: $this.attr("data-puid"),
-				readonly: false,
-				tools: $this.attr("data-tools")
-			}));
-		});
-		
-		//绑定日期选择
-		$page.find('.bc-date[readonly!="readonly"],.bc-time[readonly!="readonly"],.bc-datetime[readonly!="readonly"]')
-			.each(function bindSelectCalendar(){
-				var $this = $(this);
-				var cfg = $this.attr("data-cfg");
-				if(cfg && cfg.length > 0){
-					cfg = eval("(" + cfg + ")");
-				}else{
-					cfg = {};
-				}
-				if(typeof cfg.onSelect == "string"){
-					var fn = bc.getNested(cfg.onSelect);
-					if(typeof fn != "function"){
-						alert('函数“' + cfg.onSelect + '”没有定义！');
-						return false;
-					}
-					cfg.onSelect = fn;
-				}
-				cfg = jQuery.extend({
-					//showWeek: true,//显示第几周
-					//showButtonPanel: true,//显示今天按钮、
-					showOtherMonths: true,
-					selectOtherMonths: true,
-					firstDay: 7,
-					dateFormat:"yy-mm-dd"//yy4位年份、MM-大写的月份
-				},cfg);
-				
-				if($this.hasClass('bc-date'))
-					$this.datepicker(cfg);
-				else if($this.hasClass('bc-datetime'))
-					$this.datetimepicker(cfg);
-				else
-					$this.timepicker(cfg);
-		});
-		
-		//重新设定附件
-		var attuId = $page.find(":hidden[name='e.uid']").val();
-		$page.find("#attachment").html(
-			'<div data-extensions="bat,sh,reg,zip,rar,7z,gz,tar,pdf,txt,doc,xls,docx,xlsx,ppt,pptx,png,psd,jpg,jpeg,gif,tif,tiff,mp3,mid,wma,swf,avi,wmv,mkv,apk" data-maxsize="1048576000" data-maxcount="6" data-ptype="contractLabour.main" data-puid='+attuId+' class="attachs formAttachs">' 
-			+	'<table cellspacing="0" cellpadding="0" class="header">'
-			+		'<tbody>'
-			+		'<tr>'
-			+			'<td class="summary">'
-			+			'<span id="totalCount">0</span>&nbsp;个附件共&nbsp;<span data-size="0" id="totalSize">0Bytes</span>'
-			+			'</td>'
-			+			'<td class="uploadFile">添加附件<input type="file" multiple="" name="uploadFile" id="fid1322123360263" class="uploadFile">'
-			+			'</td>'
-			+			'<td><a data-action="downloadAll" class="operation" href="#">打包下载</a><a data-action="deleteAll" class="operation" href="#">全部删除</a>'
-			+			'</td>'
-			+		'</tr>'
-			+		'</tbody>'
-			+	'</table>'
-			+'</div>'
-		);
-		bc.contractLabourForm.init(null,false,$page);
-		
-		switch(option.value){
-			case "2":	//维护
-				bc.contractLabourForm.setData(2,$page,false);
-				break;
-			case "3":	//转车
-				bc.contractLabourForm.setData(3,$page,true);
-				break;
-			case "4":	//续约
-				bc.contractLabourForm.setData(4,$page,true);
-				break;
-			case "5":	//离职
-				bc.msg.confirm("确定此劳动合同的持有人离职吗？",function(){
-					$page.find(":input[name='e.status']").val("2");
-					$page.data("data-status","saved");
-					var option = { callback : function (){
-							$page.dialog("close");
-						}
-					};
-					//调用标准的方法执行保存
-					bc.page.save.call($page,option);
-				});
-				break;
-		}
-
 	},
 	
-	//维护,转车,续签处理清空内容
-	setData : function (opType,context,flag){
-		var $page = context;
-		$page.find(":input[name='e.status']").val(0);
-		$page.find(":input[name='e.opType']").val(opType);
-		var verMajor = $page.find(":input[name='e.verMajor']").val();
-		var verMinor = $page.find(":input[name='e.verMinor']").val();
-		if(flag){ //设置主版本号(转车,续约)
-			$page.parent().find(".ui-dialog-title").html('劳动合同信息 - v'
-				+$page.find(":input[name='e.verMajor']").val(eval(++verMajor)).val()+'.'
-				+verMinor
-			);
-			//设置合同编号自增
-			var code = $page.find(":input[name='e.code']").val();
-			if(code.split('-')[1]){
-				var lastNo = eval(++code.split('-')[1]);
-				$page.find(":input[name='e.code']").val(
-					code.split('-')[0]+'-'+ lastNo
-				);
-			}else{
-				$page.find(":input[name='e.code']").val(
-					code+'-'+'1'
-				)
-			}
-		}else{ //设置次版本号(维护)
-			$page.parent().find(".ui-dialog-title").html('劳动合同信息 - v'+verMajor+'.'
-				+$page.find(":input[name='e.verMinor']").val(eval(++verMinor)).val()
-			);
-		}
-		//清空id新增一份维护操作类型的合同
-		var eId = $page.find(":input[name='e.id']").val();
-		if(eId.length > 0){
-			$page.find(":input[name='e.pid']").val(eId);
-		}
-		$page.find(":input[name='e.id']").val('');
-		$page.find(":input[name='e.uid']").val('');
+	/** 维护处理 */
+	doMaintenance : function($page) {
+		// 关闭当前窗口
+		$page.dialog("close");
+		
+		// 重新打开可编辑表单
+		bc.page.newWin({
+			name: "维护" + $page.find(":input[name='e.ext_str2']").val() + "的劳动合同",
+			mid: "contract4Labour" + $page.find(":input[name='e.id']").val(),
+			url: bc.root + "/bc-business/contractLabour/doMaintenance",
+			data: {id: $page.find(":input[name='e.id']").val()}
+		});
 	},
 	
-	//续签处理
+	/** 续签处理 */
 	doRenew : function($page) {
 		// 让用户输入新的合同期限
 		bc.page.newWin({
-			name:"劳动合同续签",
+			name:"劳动合同续约",
 			mid: "renewContract4Labour",
 			url: bc.root + "/bc/common/selectDateRange",
-			data: {startDate: $page.find(":input[name='e.endDate']").val(),title:"请输入新的合同期限"},
+			data: {startDate: $page.find(":input[name='e.endDate']").val(),title:"请输入新的续约期限"},
 			afterClose: function(status){
 				logger.info("status=" + $.toJSON(status));
 				if(!status) return;
 				
 				//执行续签处理
 				bc.ajax({
-					url: bc.root + "/bc-business/contract4LabourOperate/renew",
+					url: bc.root + "/bc-business/contract4LabourOperate/doRenew",
 					dataType: "json",
 					data: {newStartDate: status.startDate,newEndDate: status.endDate,id: $page.find(":input[name='e.id']").val()},
 					success: function(json){
-						logger.info("renew result=" + $.toJSON(json));
+						logger.info("doRenew result=" + $.toJSON(json));
 						//完成后提示用户
-						alert(json.msg);
+						bc.msg.info(json.msg);
+						$page.data("data-status","saved");
+						$page.dialog("close");
+					}
+				});
+			}
+		});
+	},
+	
+	/** 离职处理 */
+	doResign : function($page) {
+		// 让用户输入离职日期，默认为当前时间
+		bc.page.newWin({
+			name:"劳动合同离职处理",
+			mid: "resignContract4Labour",
+			url: bc.root + "/bc/common/selectDate",
+			data: {title:"请输入司机的离职日期"},
+			afterClose: function(status){
+				logger.info("status=" + $.toJSON(status));
+				if(!status) return;
+				
+				//执行离职处理
+				bc.ajax({
+					url: bc.root + "/bc-business/contract4LabourOperate/doResign",
+					dataType: "json",
+					data: {resignDate: status,id: $page.find(":input[name='e.id']").val()},
+					success: function(json){
+						logger.info("doResign result=" + $.toJSON(json));
+						//完成后提示用户
+						bc.msg.info(json.msg);
+						$page.data("data-status","saved");
+						$page.dialog("close");
+					}
+				});
+			}
+		});
+	},
+	
+	/** 转车处理 */
+	doChangeCar : function($page) {
+		// 让用户选择新的车辆
+		bs.selectCar({
+			title: "请为司机劳动合同选择新的车辆",
+			onOk: function(car){
+				// 不允许选择原来的车辆
+				if(car.id == $page.find(":input[name='carId']").val()){
+					bc.msg.alert("你所选择的车辆与原车辆相同，转车操作将被忽略！");
+					return;
+				}
+				
+				// 执行转车处理
+				bc.ajax({
+					url: bc.root + "/bc-business/contract4LabourOperate/doChangeCar",
+					dataType: "json",
+					data: {newCarId: car.id,id: $page.find(":input[name='e.id']").val()},
+					success: function(json){
+						logger.info("doChangeCar result=" + $.toJSON(json));
+						//完成后提示用户
+						bc.msg.info(json.msg);
 						$page.data("data-status","saved");
 						$page.dialog("close");
 					}
