@@ -349,10 +349,8 @@
 		<s:hidden name="e.verMinor"/>
 		<s:hidden name="e.opType"/>
 		<s:hidden name="e.patchNo"/>
-		<s:hidden name="carManId"/>
+		<s:hidden name="driverId"/>
 		<s:hidden name="carId"/>
-		<s:hidden name="oldCarManId"/>
-		<s:hidden name="oldCarId"/>
 		<s:hidden name="isMoreCar"/>
 		<s:hidden name="isMoreCarMan"/>
 		<s:hidden name="isNullCar"/>
