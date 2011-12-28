@@ -1,5 +1,5 @@
 if(!window['bs'])window['bs']={};
-bc.contractLabourForm = {
+bc.contract4LabourForm = {
 	init : function(option,readonly,page) {
 		var $form;
 		if(page == null){
@@ -71,7 +71,7 @@ bc.contractLabourForm = {
 					carId: car.id,
 					success: function(info){
 						//TODO 根据车辆ID查找关联的司机否存在劳动合同
-						var url = bc.root + "/bc-business/contractLabour/isExistContract?carManId="+info.driver.id;
+						var url = bc.root + "/bc-business/contract4Labour/isExistContract?carManId="+info.driver.id;
 						$.ajax({ url: url,dataType:"json", success: tips});
 						function tips (json){
 							var num = 0;
@@ -126,7 +126,7 @@ bc.contractLabourForm = {
 					$form.find(":input[name='e.ext_str2']").val(carMan.name);
 					$form.find(":input[name='carManId']").val(carMan.id);
 					
-					var url = bc.root + "/bc-business/contractLabour/certInfo?carManId="+carMan.id;
+					var url = bc.root + "/bc-business/contract4Labour/certInfo?carManId="+carMan.id;
 					$.ajax({ url: url,dataType:"json", success: update_page});
 					function update_page(json){
 
@@ -197,13 +197,13 @@ bc.contractLabourForm = {
 		logger.info("selectMenuButtonItem:option=" + $.toJSON(option));
 		// option.value的值参考 Contract.OPTYPE_XXX 常数的定义
 		if(option.value == "4"){//续约 renew
-			bc.contractLabourForm.doRenew($(this));
+			bc.contract4LabourForm.doRenew($(this));
 		}else if(option.value == "5"){//离职 resign
-			bc.contractLabourForm.doResign($(this));
+			bc.contract4LabourForm.doResign($(this));
 		}else if(option.value == "3"){//转车 transfer
-			bc.contractLabourForm.doChangeCar($(this));
+			bc.contract4LabourForm.doChangeCar($(this));
 		}else if(option.value == "2"){//维护 maintenance
-			bc.contractLabourForm.doMaintenance($(this));
+			bc.contract4LabourForm.doMaintenance($(this));
 		}
 	},
 	
@@ -216,7 +216,7 @@ bc.contractLabourForm = {
 		bc.page.newWin({
 			name: "维护" + $page.find(":input[name='e.ext_str2']").val() + "的劳动合同",
 			mid: "contract4Labour" + $page.find(":input[name='e.id']").val(),
-			url: bc.root + "/bc-business/contractLabour/doMaintenance",
+			url: bc.root + "/bc-business/contract4Labour/edit",
 			data: {id: $page.find(":input[name='e.id']").val()}
 		});
 	},
