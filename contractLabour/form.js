@@ -2,7 +2,6 @@ if(!window['bs'])window['bs']={};
 bc.contractLabourForm = {
 	init : function(option,readonly,page) {
 		var $form;
-		
 		if(page == null){
 			$form = $(this);
 		}else{
@@ -196,6 +195,11 @@ bc.contractLabourForm = {
 	 */
 	selectMenuButtonItem : function(option) {
 		logger.info("selectMenuButtonItem:option=" + $.toJSON(option));
+		// option.value的值参考 Contract.OPTYPE_XXX 常数的定义
+		if(option.value == "4"){//续签
+			bc.contractLabourForm.doRenew($(this));
+			return;
+		}
 		
 		var $page = $(this);
 		//可编辑表单的处理
@@ -289,7 +293,6 @@ bc.contractLabourForm = {
 			case "5":	//离职
 				bc.msg.confirm("确定此劳动合同的持有人离职吗？",function(){
 					$page.find(":input[name='e.status']").val("2");
-					$page.find(":input[name='e.opType']").val("5");
 					$page.data("data-status","saved");
 					var option = { callback : function (){
 							$page.dialog("close");
@@ -339,5 +342,34 @@ bc.contractLabourForm = {
 		}
 		$page.find(":input[name='e.id']").val('');
 		$page.find(":input[name='e.uid']").val('');
+	},
+	
+	//续签处理
+	doRenew : function($page) {
+		// 让用户输入新的合同期限
+		bc.page.newWin({
+			name:"劳动合同续签",
+			mid: "renewContract4Labour",
+			url: bc.root + "/bc/common/selectDateRange",
+			data: {startDate: $page.find(":input[name='e.endDate']").val(),title:"请输入新的合同期限"},
+			afterClose: function(status){
+				logger.info("status=" + $.toJSON(status));
+				if(!status) return;
+				
+				//执行续签处理
+				bc.ajax({
+					url: bc.root + "/bc-business/contract4LabourOperate/renew",
+					dataType: "json",
+					data: {newStartDate: status.startDate,newEndDate: status.endDate,id: $page.find(":input[name='e.id']").val()},
+					success: function(json){
+						logger.info("renew result=" + $.toJSON(json));
+						//完成后提示用户
+						alert(json.msg);
+						$page.data("data-status","saved");
+						$page.dialog("close");
+					}
+				});
+			}
+		});
 	}
 };

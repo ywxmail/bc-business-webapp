@@ -194,8 +194,16 @@ bc.caseBusinessForm = {
 			//调用标准的方法执行保存
 			bc.page.save.call($form,option);
 		});
-	}
+	},
 	
+	//保存的处理
+	save:function(){
+		var $form = $(this);
+		$form.find(":input[name='e.status']").val("0");
+		$form.data("data-status","saved");
+		//调用标准的方法执行保存
+		bc.page.save.call($form);
+	}
  /*   
   	closefile : function(){
 		var $form = $(this);

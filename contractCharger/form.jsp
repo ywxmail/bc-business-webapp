@@ -11,9 +11,9 @@
 				<tbody>
 					<tr class="widthMarker">
 						<td >&nbsp;</td>
-						<td style="width: 200px;">&nbsp;</td>
+						<td style="width: 250px;">&nbsp;</td>
 						<td style="width: 60px;">&nbsp;</td>
-						<td style="width: 220px;">&nbsp;</td>
+						<td style="width: 250px;">&nbsp;</td>
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="contract.code"/>:</td>
@@ -61,7 +61,7 @@
 						<td class="label">*<s:text name="contract.transactor"/>:</td>
 						<td class="value" style="position:relative;display: block;">
 							<s:textfield name="e.transactorName" data-validate="required" readonly="true"	
-							title='%{getText("contract.select.transactor")}' cssClass="ui-widget-content ui-state-disabled" />
+							title='%{getText("contract.select.transactor")}' cssClass="ui-widget-content " />
 							<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectTransactorName" ></span>
 						</td>
 					</tr>
@@ -74,7 +74,7 @@
 									<s:hidden name="e.ext_str1" />
 								</s:if>
 							 -->
-							<s:textfield name="e.ext_str1" data-validate="required" title='%{getText("contract.title.click2selectCar")}' readonly="true" cssClass="ui-widget-content ui-state-disabled" />
+							<s:textfield name="e.ext_str1" data-validate="required" title='%{getText("contract.title.click2selectCar")}' readonly="true" cssClass="ui-widget-content " />
 							<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectCarPlate"></span>
 						</td>
 						<td class="label"><s:text name="contract.wordNo"/>:</td>

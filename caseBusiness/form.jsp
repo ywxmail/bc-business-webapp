@@ -41,7 +41,7 @@
 					<tr>
 						<td class="label">*<s:text name="runcase.carPlate"/>:</td>
 						<td class="value" style="position:relative;display: block;">
-							<s:textfield name="e.carPlate" data-validate="required" readonly="true" cssClass="ui-widget-content ui-state-disabled"/>
+							<s:textfield name="e.carPlate" data-validate="required" readonly="true" cssClass="ui-widget-content "/>
 							<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectCarPlate"></span>
 						</td>
 						<td class="label" ><s:text name="runcase.receiveDate1"/>:</td>
@@ -56,7 +56,7 @@
 						<td class="label">*<s:text name="runcase.driverName" />:</td>
 						<td>
 							<span style="position:relative;">
-								<s:textfield name="e.driverName" cssStyle="width:5em;" data-validate="required" cssClass="ui-widget-content ui-state-disabled"/>
+								<s:textfield name="e.driverName" cssStyle="width:5em;" data-validate="required" cssClass="ui-widget-content "/>
 								<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectDriverName"></span>
 							</span>
 							&nbsp;&nbsp;
@@ -148,8 +148,8 @@
 				</tbody>
 			</table>
 		</div>
-		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:230}"
-			style="height:230px;width:800px;overflow: hidden;">
+		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset"
+			style="width:800px;overflow: hidden;">
 	        <div class="tabsContainer">
            	 	<div class="slideContainer">
                 <ul class="tabs ui-helper-reset">
@@ -279,12 +279,16 @@
 		<s:hidden name="e.closerName" />
 		<s:hidden name="e.receiverId" />
 		<s:hidden name="e.status" />
+		<s:hidden name="e.syncUid" />
+		<s:hidden name="e.syncId" />
 		<s:hidden name="isMoreCar" />
 		<s:hidden name="isMoreCarMan" />
 		<s:hidden name="carId" />
 		<s:hidden name="carManId" />
 		<s:hidden name="isNullCarMan" />
 		<s:hidden name="isNullCar" />
+		<s:hidden name="isSync" />
+		<s:hidden name="syncId" />
 		<s:hidden name="e.source"/>
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 		

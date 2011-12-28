@@ -1,6 +1,6 @@
 if (!window['bs'])
 	window['bs'] = {};
-bs.jiaoWeiJTWFView = {
+bs.jiaoWeiADVICEView = {
 	/** 页面的初始化方法 */
 	init : function(option, readonly) {
 		var $page = $(this);
@@ -13,10 +13,10 @@ bs.jiaoWeiJTWFView = {
 		
 		if(option.value.indexOf("mark") == 0){
 			//标记为的操作
-			bs.jiaoWeiJTWFView.changeStatus($page,option.value.split(".")[1]);
+			bs.jiaoWeiADVICEView.changeStatus($page,option.value.split(".")[1]);
 		} else if(option.value.indexOf("sync") == 0){
 			//同步的操作
-			bs.jiaoWeiJTWFView.sync($page,option.value.split(".")[1]);
+			bs.jiaoWeiADVICEView.sync($page,option.value.split(".")[1]);
 		}else{
 			alert("不支持的操作类型!");
 		}
@@ -24,19 +24,19 @@ bs.jiaoWeiJTWFView = {
 	syncing: false,
 	/** 同步的操作 */
 	sync : function($page,dateType) {
-		if(bs.jiaoWeiJTWFView.syncing){
+		if(bs.jiaoWeiADVICEView.syncing){
 			alert("上次执行的同步操作还在后台进行中，请耐心等待！");
 			return;
 		}
 		//同步前先确认
 		bc.msg.confirm("确定要执行同步处理吗？",function(){
-			bs.jiaoWeiJTWFView.syncing = true;
+			bs.jiaoWeiADVICEView.syncing = true;
 			jQuery.ajax({
-				url: bc.root + "/bc-business/jiaoWeiJTWFs/sync", 
+				url: bc.root + "/bc-business/jiaoWeiADVICEs/sync", 
 				data: {dateType: dateType}, 
 				dataType: "json",
 				success: function(json) {
-					bs.jiaoWeiJTWFView.syncing = false;
+					bs.jiaoWeiADVICEView.syncing = false;
 					if(json.success){
 						// 显示处理结果
 						bc.msg.slide(json.msg);
@@ -88,7 +88,6 @@ bs.jiaoWeiJTWFView = {
 		
 		// 获取用户选中的条目
 		var ids = bc.grid.getSelected($page.find(".bc-grid"));
-		
 		// 检测是否选中条目
 		if(ids.length ==0){
 			//bc.msg.slide("请先选择要处理的信息！");
@@ -108,20 +107,19 @@ bs.jiaoWeiJTWFView = {
 				if(!json.success){
 					bc.msg.confirm("该同步记录已生成过相应的处理单，不可重复生成！ 需要查阅已生成的处理单吗？",function(){
 						bc.page.newWin({
-							url: bc.root + "/bc-business/caseTraffic/edit",
-							mid:  "case4InfractTraffic.editFromJiaoWei",
-							name: "交通违章信息",
+							url: bc.root + "/bc-business/caseAdvice/edit",
+							mid:  "case4InfractAdvice.editFromJiaoWei",
+							name: "投诉与建议信息",
 							data: {syncId: ids[0]}
 						})
 					});
-					//alert(json.msg);
 					return;
 				}
 				// 执行生成操作：带参数跳转到交通违法表单
 				bc.page.newWin({
-					url: bc.root + "/bc-business/caseTraffic/createFromJiaoWei", 
-					mid: "case4InfractTraffic.createFromJiaoWei",
-					name: "生成交通违法处理单",
+					url: bc.root + "/bc-business/caseAdvice/createFromJiaoWei", 
+					mid: "case4InfractAdvice.createFromJiaoWei",
+					name: "生成投诉与建议处理单",
 					data: {syncId: ids[0]},
 					afterClose: function(status){
 						if(status)bc.grid.reloadData($page);
