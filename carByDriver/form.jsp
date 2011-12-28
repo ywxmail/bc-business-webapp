@@ -15,10 +15,13 @@
 						<td class="value "><s:textfield name="plate" value="%{e.car.plateType+e.car.plateNo }" readonly="true" cssClass="ui-state-disabled"/></td>
 					</s:if><s:else>
 						<td class="label">*<s:text name="carByDriver.car.plateNo"/>:</td>
-						<td class="value" style="position:relative;display: block;"><s:textfield name="plate" value="%{e.car.plateType+e.car.plateNo }"
-					    data-validate="required" cssClass="ui-widget-content" readonly="true"/>
-					    <span id="selectCar" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></span>
-					    </td>
+                        <td class="value relative">
+					      <div class="input ui-widget-content" data-validate="required" ><span class="link showCar" data-cfg='<s:property value="e.car.id" />' id="carInfo" ><s:property value="%{e.car.plateType+e.car.plateNo }" /></span>
+					      </div>
+					      <ul class="inputIcons">
+					        <li class="selectCar inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>' data-cfg='e.car.id=id,carInfo=plate|text,carInfo=id|attr'></li>
+					      </ul>
+                        </td>
 						</s:else>
 					</tr>
 					<tr>
@@ -27,10 +30,18 @@
 						<td class="value"><s:textfield name="e.driver.name" readonly="true" cssClass="ui-state-disabled" /></td>
 					</s:if><s:else>
 					    <td class="label">*<s:text name="carByDriver.driver"/>:</td>
-						<td class="value" style="position:relative;display: block;"><s:textfield name="e.driver.name" 
+                        <td class="value relative">
+					      <div class="input ui-widget-content" data-validate="required" ><span class="link showCarMan" data-cfg='<s:property value="e.driver.id"/>' id="carManInfo" ><s:property value="%{e.driver.name}" /></span>
+					      </div>
+					      <ul class="inputIcons">
+					        <li class="selectCarMan inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>' data-cfg='e.driver.id=id,carManInfo=name|text,carManInfo=id|attr'></li>
+					      </ul>
+                        </td>
+
+						<!--<td class="value" style="position:relative;display: block;"><s:textfield name="e.driver.name" 
 					    data-validate="required" cssClass="ui-widget-content" readonly="true"/>
 					    <span id="selectDriver" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></span>
-					    </td>
+					    </td>-->
 					</s:else>
 					</tr>
 					<tr>
