@@ -37,7 +37,7 @@
 					    <tr class="widthMarker">
 							<td style="width: 100px;">&nbsp;</td>
 							<td style="width: 240px;">&nbsp;</td>
-							<td style="width: 100px;">&nbsp;</td>
+							<td style="width: 110px;">&nbsp;</td>
 							<td style="width: 120px;">&nbsp;</td>
 							<td rowspan="10" style="text-align:center;vertical-align: top;width:110px;" title='点击更改照片'>
 								<img id="portrait" style="width:110px;height:140px;cursor: pointer;" title='<s:text name="image.click2change"/>'
@@ -105,7 +105,7 @@
 							<td class="label"><s:text name="carMan.orderNo"/>:</td>
 							<td class="value"><s:textfield name="e.orderNo" cssClass="ui-widget-content"/></td>
 							<td class="label"><s:text name="carMan.cert4DrivingStartDate"/>:</td>
-							<td class="value relative"><input type="text" name="e.cert4DrivingStartDate" 
+							<td colspan="2" class="value relative"><input type="text" name="e.cert4DrivingStartDate" 
 						    	data-validate='{required:false,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
 					         	value='<s:date format="yyyy-MM-dd" name="e.cert4DrivingStartDate" />'/>
 					        	<span class="selectButton verticalMiddle ui-icon ui-icon-calendar"></span>
