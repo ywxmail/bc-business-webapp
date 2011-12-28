@@ -1,11 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<div title='<s:text name="contract.labour.title"/> - v<s:property value="e.verMajor" />.<s:property value="e.verMinor" />' data-type='form' class="bc-page"
-	data-saveUrl='<s:url value="/bc-business/contractLabour/save" />'
-	data-js='<s:url value="/bc-business/contractLabour/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js" />,<s:url value="/ui-libs/xheditor/1.1.7/xheditor-zh-cn.min.js?ts=0" />'
-	data-initMethod='bc.contractLabourForm.init'
+<div title='<s:text name="contract4Labour.title"/> - v<s:property value="e.verMajor" />.<s:property value="e.verMinor" />' data-type='form' class="bc-page"
+	data-saveUrl='<s:url value="/bc-business/contract4Labour/save" />'
+	data-js='<s:url value="/bc-business/contract4Labour/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js" />,<s:url value="/ui-libs/xheditor/1.1.7/xheditor-zh-cn.min.js?ts=0" />'
+	data-initMethod='bc.contract4LabourForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:hidden;">
-	<s:form name="contractLabourForm" theme="simple">
+	<s:form name="contract4LabourForm" theme="simple">
 		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:365}"
 			style="width:760px;overflow: hidden;">
 			<div class="tabsContainer">
@@ -15,7 +15,7 @@
 						<li class="tab ui-widget-content"><a href="#contractContents" class="ui-state-default">合同内容</a></li>
 						<li class="tab ui-widget-content"><a href='#attachment' class="ui-state-default">附件</a></li>
 						<s:if test="e.main == 0">
-							<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contractLabours/list?contractId=%{(e.pid != null)?e.pid:0}&patchNo=%{e.patchNo}"/>' class="ui-state-default">历史版本</a></li>
+							<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contract4Labours/list?contractId=%{(e.pid != null)?e.pid:0}&patchNo=%{e.patchNo}"/>' class="ui-state-default">历史版本</a></li>
 						</s:if>
 						<s:if test="!e.isNew()">
 							<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/injury/list?contractId=%{e.id}" />' class="ui-state-default">工伤</a></li>
@@ -96,7 +96,7 @@
 												 		<li class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="contract.title.click2selectCar"/>' id="selectCarPlate">
 												 	</ul>
 												 </td>
-												<td class="label"><s:text name="contract.labour.registerDate"/>:</td>
+												<td class="label"><s:text name="contract4Labour.registerDate"/>:</td>
 												<td class="value" style="position:relative;display: block;">
 													<input type="text" name="e.registerDate" data-validate='{"type":"date"}'
 													value='<s:date format="yyyy-MM-dd" name="e.registerDate" />'
@@ -107,7 +107,7 @@
 												</td>
 											</tr>
 											<tr>
-												<td class="label">*<s:text name="contract.labour.driver"/>:</td>
+												<td class="label">*<s:text name="contract4Labour.driver"/>:</td>
 												<td class="value">
 													<div style="position:relative;display: inline-block">
 													    <s:if test="e.isNew()">
@@ -120,22 +120,22 @@
 													 		<s:textfield name="e.ext_str2" data-validate="required" readonly="true" cssStyle="width:6.5em;" cssClass="ui-widget-content " />
 													 	</s:else>
 													 </div>
-													<s:text name="contract.labour.certNo"/>&nbsp;<s:textfield name="e.certNo" data-validate="required" cssStyle="width:6em;" cssClass="ui-widget-content" />
+													<s:text name="contract4Labour.certNo"/>&nbsp;<s:textfield name="e.certNo" data-validate="required" cssStyle="width:6em;" cssClass="ui-widget-content" />
 												</td>
-												<td class="label" >*<s:text name="contract.labour.bsType"/>:</td>
+												<td class="label" >*<s:text name="contract4Labour.bsType"/>:</td>
 												<td class="value" >
 													<s:select name="e.bsType" list="businessTypeList" listKey="value" listValue="value"  data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" ></s:select>
 												</td>
 											</tr>
 											<tr>
-												<td class="label">*<s:text name="contract.labour.age"/>:</td>
+												<td class="label">*<s:text name="contract4Labour.age"/>:</td>
 												<td class="value">
 												 	<s:textfield name="e.age" data-validate="required" cssStyle="width:6.5em;" cssClass="ui-widget-content" />
-													&nbsp;&nbsp;&nbsp;<s:text name="contract.labour.sex"/>
+													&nbsp;&nbsp;&nbsp;<s:text name="contract4Labour.sex"/>
 													<s:radio name="e.sex" list="#{'1':'男','2':'女'}" 
 													value="e.sex" cssStyle="width:auto;"/>
 												</td>
-												<td class="label"><s:text name="contract.labour.birthDate"/>:</td>
+												<td class="label"><s:text name="contract4Labour.birthDate"/>:</td>
 												<td class="value" style="position:relative;display: block;">
 													<input type="text" name="e.birthDate" data-validate='{"type":"date"}'
 													value='<s:date format="yyyy-MM-dd" name="e.birthDate" />'
@@ -146,21 +146,21 @@
 												</td>
 											</tr>
 											<tr>
-												<td class="label"><s:text name="contract.labour.origin"/>:</td>
+												<td class="label"><s:text name="contract4Labour.origin"/>:</td>
 												<td class="value">
 												 	<s:textfield name="e.origin" cssClass="ui-widget-content" />
 												</td>
-												<td class="label" ><s:text name="contract.labour.houseType"/>:</td>
+												<td class="label" ><s:text name="contract4Labour.houseType"/>:</td>
 												<td class="value" >
 													<s:select name="e.houseType" list="houseTypeList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
 												</td>
 											</tr>
 											<tr>
-												<td class="label"><s:text name="contract.labour.certIdentity"/>:</td>
+												<td class="label"><s:text name="contract4Labour.certIdentity"/>:</td>
 												<td class="value">
 												 	<s:textfield name="e.certIdentity" cssClass="ui-widget-content" />
 												</td>
-												<td class="label"><s:text name="contract.labour.leaveDate"/>:</td>
+												<td class="label"><s:text name="contract4Labour.leaveDate"/>:</td>
 												<td class="value" style="position:relative;display: block;">
 													<input type="text" name="e.leaveDate" data-validate='{"type":"date"}'
 													value='<s:date format="yyyy-MM-dd" name="e.leaveDate" />'
@@ -186,9 +186,9 @@
 												<td style="width: 220px;">&nbsp;</td>
 											</tr>
 											<tr>
-												<td class="label">*<s:text name="contract.labour.insurCode"/>:</td>
+												<td class="label">*<s:text name="contract4Labour.insurCode"/>:</td>
 												<td class="value"><s:textfield name="e.insurCode" data-validate="required" cssClass="ui-widget-content"/></td>
-												<td class="label">*<s:text name="contract.labour.joinDate"/>:</td>
+												<td class="label">*<s:text name="contract4Labour.joinDate"/>:</td>
 												<td class="value" style="position:relative;display: block;">
 													<input type="text" name="e.joinDate" data-validate='{"type":"date","required":true}'
 													value='<s:date format="yyyy-MM-dd" name="e.joinDate" />'
@@ -199,11 +199,11 @@
 												</td>
 											</tr>
 											<tr>
-												<td class="label">*<s:text name="contract.labour.insuranceType"/>:</td>
+												<td class="label">*<s:text name="contract4Labour.insuranceType"/>:</td>
 												<td class="value">
 													<s:select name="e.insuranceType" list="insurancetypeList" data-validate="required" listKey="value" listValue="value" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" />
 												</td>
-												<td class="label"><s:text name="contract.labour.stopDate"/>:</td>
+												<td class="label"><s:text name="contract4Labour.stopDate"/>:</td>
 												<td class="value" style="position:relative;display: block;">
 													<input type="text" name="e.stopDate" data-validate='{"type":"date"}'
 													value='<s:date format="yyyy-MM-dd" name="e.stopDate" />'
@@ -214,14 +214,14 @@
 												</td>
 											</tr>
 											<tr>
-												<td class="label"><s:text name="contract.labour.zizhu"/>:</td>
+												<td class="label"><s:text name="contract4Labour.zizhu"/>:</td>
 												<td class="value">
 													<s:checkbox name="e.dole" cssStyle="width:1em;" />
-													<s:text name="contract.labour.dole"/>
+													<s:text name="contract4Labour.dole"/>
 													<s:checkbox name="e.funding" cssStyle="width:1em;"/>
-													<s:text name="contract.labour.funding"/>
+													<s:text name="contract4Labour.funding"/>
 												</td>
-												<td class="label"><s:text name="contract.labour.getDaedLine"/>:</td>
+												<td class="label"><s:text name="contract4Labour.getDaedLine"/>:</td>
 												<td class="value">
 													<div style="position:relative;display: inline-block">
 													&nbsp;从<input type="text" name="e.getStartDate" readonly="readonly" data-validate='{"type":"date"}' 
@@ -242,32 +242,32 @@
 												</td>
 											</tr>
 											<tr>
-												<td class="label"><s:text name="contract.labour.buyUnit"/>:</td>
+												<td class="label"><s:text name="contract4Labour.buyUnit"/>:</td>
 												<td class="value">
 													<s:select name="e.buyUnit" list="buyUnitList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content" ></s:select>
 												</td>
 											</tr>
 											<tr>
-												<td class="label"><s:text name="contract.labour.certPay"/>:</td>
+												<td class="label"><s:text name="contract4Labour.certPay"/>:</td>
 												<td class="value" colspan="3">
 													<s:checkbox name="e.iQMA" cssStyle="width:1em;" />
-													<s:text name="contract.labour.iQMA"/>
+													<s:text name="contract4Labour.iQMA"/>
 													<s:checkbox name="e.accountBook" cssStyle="width:1em;"/>
-													<s:text name="contract.labour.accountBook"/>
+													<s:text name="contract4Labour.accountBook"/>
 													<s:checkbox name="e.identityCards" cssStyle="width:1em;"/>
-													<s:text name="contract.labour.identityCards"/>
+													<s:text name="contract4Labour.identityCards"/>
 													<s:checkbox name="e.fPC" cssStyle="width:1em;"/>
-													<s:text name="contract.labour.fPC"/>
+													<s:text name="contract4Labour.fPC"/>
 													<s:checkbox name="e.unemployed" cssStyle="width:1em;"/>
-													<s:text name="contract.labour.unemployed"/>
+													<s:text name="contract4Labour.unemployed"/>
 													<s:checkbox name="e.healthForm" cssStyle="width:1em;"/>
-													<s:text name="contract.labour.healthForm"/>
+													<s:text name="contract4Labour.healthForm"/>
 													<s:checkbox name="e.photo" cssStyle="width:1em;"/>
-													<s:text name="contract.labour.photo"/>
+													<s:text name="contract4Labour.photo"/>
 												</td>
 											</tr>
 											<tr>
-												<td class="label" style="vertical-align: top;"><s:text name="contract.labour.remark"/>:</td>
+												<td class="label" style="vertical-align: top;"><s:text name="contract4Labour.remark"/>:</td>
 												<td class="value" colspan="3"><s:textarea name="e.remark" rows="5" cssClass="ui-widget-content" /></td>
 											</tr>
 											<tr>
@@ -282,7 +282,7 @@
 																<td style="width: 220px;">&nbsp;</td>
 															</tr>
 										        			 <tr>
-																<td class="label"><s:text name="contract.labour.breedingDate"/>:</td>
+																<td class="label"><s:text name="contract4Labour.breedingDate"/>:</td>
 																<td class="value" style="position:relative;display: block;">
 																	<input type="text" name="e.breedingDate" data-validate='{"type":"date"}'
 																	value='<s:date format="yyyy-MM-dd" name="e.breedingDate" />'
@@ -291,7 +291,7 @@
 																		<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.breedingDate' ></li>
 																	</ul>
 																</td>
-																<td class="label"><s:text name="contract.labour.insureDate"/>:</td>
+																<td class="label"><s:text name="contract4Labour.insureDate"/>:</td>
 																<td class="value" style="position:relative;display: block;">
 																	<input type="text" name="e.insureDate" data-validate='{"type":"date"}'
 																	value='<s:date format="yyyy-MM-dd" name="e.insureDate" />'
@@ -328,7 +328,7 @@
 				<div id="contractContents" class="content" >
 					<div class="formEditor">
 						<textarea name="e.content" id="textareaId" class="bc-editor ui-widget-content" style="width: 740px;height:280px" data-validate="required"
-							 data-ptype="contractLabour.editor" data-puid='${e.uid}' 
+							 data-ptype="contract4Labour.editor" data-puid='${e.uid}' 
 							 data-readonly='${readonly}'>
 							 ${e.content} 
 						</textarea>
