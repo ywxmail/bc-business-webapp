@@ -4,157 +4,142 @@
 	data-saveUrl='<s:url value="/bc-business/caseAdvice/save" />'
 	data-js='<s:url value="/bc-business/caseAdvice/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js" />'
 	data-initMethod='bc.caseAdviceForm.init'
-	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
+	data-option='<s:property value="%{formPageOption}"/>' style="overflow: hidden;">
 	<s:form name="caseAdviceForm" theme="simple">
-		<div class="formFields ui-widget-content" style="width:800px;">
-			<table class="formFields" cellspacing="2" cellpadding="0">
-				<tbody>
-					<tr class="widthMarker">
-						<td></td>
-						<td style="width: 200px;">&nbsp;</td>
-						<td style="width: 80px;">&nbsp;</td>
-						<td style="width: 200px;">&nbsp;</td>
-					</tr>
-					<tr>
-						<td class="label">*<s:text name="runcase.code" />:</td>
-						<td class="value "><s:textfield name="e.code" data-validate="required" readonly="true" cssClass="ui-widget-content"/></td>
-						<td class="label">*<s:text name="runcase.receiveDate3"/>:</td>
-						<td class="value" style="position:relative;display: block;">
-							<input type="text" name="e.receiveDate" data-validate='{"type":"datetime","required":true}'
-							value='<s:date format="yyyy-MM-dd HH:mm" name="e.receiveDate" />'
-							class="bc-datetime ui-widget-content" data-cfg='{changeYear:true}'/>
-							<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectReceiveDate"></span>
-						</td>
-					<tr>
-						<td class="label"><s:text name="runcase.receiveCode"/>:</td>
-						<td class="value "><s:textfield name="e.receiveCode" cssClass="ui-widget-content"/></td>
-						<td class="label">*<s:text name="runcase.adviceType"/>:</td>
-						<td class="value ">
-							<s:select list="#{0:getText('runcase.select.complain'),1:getText('runcase.select.suggest')}"
-								 cssStyle="width:100%;height:100%;" value="selected" data-validate="required"
-								multiple="%{multiple}" name="e.adviceType" cssClass="ui-widget-content"/>
-						</td>
-					</tr>
-					<tr>
-						<td class="label" colspan="4">
-						    <fieldset>
-						    	<legend>投诉项目</legend>
-						    	<table class="formFields" cellspacing="2" cellpadding="0">
-						    		<tr style="line-height: 1px;">
-										<td></td>
-										<td style="width: 380px;">&nbsp;</td>
-										<td style="width: 20px;">&nbsp;</td>
-										<td style="width: 130px;">&nbsp;</td>
-									</tr>
-						    		<tr>
-						    			<td class="label">*<s:text name="runcase.subject2"/><s:text name="runcase.big"/>:</td>
-										<td class="value">
-										<div style="position:relative;">
-											<s:textfield name="e.subject" cssStyle="width:29em;" data-validate="required" cssClass="ui-widget-content"/>
-											<span id="selectSubject" class="verticalMiddle ui-icon ui-icon-circle-plus" style="margin-top : -7px;right: 48px" title='<s:text name="runcase.title.click2selectcomplain"/>'></span>
-										</div>
-										</td>
-										<td class="label">*<s:text name="runcase.happenDate"/>:</td>
-										<td class="value" style="position:relative;display: block;">
-											<input type="text" name="e.happenDate" data-validate='{"type":"datetime","required":true}'
-											value='<s:date format="yyyy-MM-dd HH:mm" name="e.happenDate" />'
-											class="bc-datetime ui-widget-content" data-cfg='{changeYear:true}'/>
-											<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectHappenDate"></span>
-										</td>
-						    		</tr>
-						    		<tr>
-						    			<td class="label"><s:text name="runcase.subject2"/><s:text name="runcase.small"/>:</td>
-										<td class="value"><s:textfield name="e.subject2" cssStyle="width:29em;" cssClass="ui-widget-content"/></td>
-						    			<td class="label" ><s:text name="runcase.source"/>:</td>
-										<td class="value" >
-											<s:textfield name="e.from" cssClass="ui-widget-content" />
-										</td>
-									</tr>
-									<tr>
-										<td class="label" style="text-align: left;" >
-											<s:text name="runcase.detail"/>:
-										</td>
-										<td></td>
-										<td></td>
-										<td></td>
-									</tr>
-									<tr>
-										<td class="value" colspan="4"><s:textarea name="e.detail" cssStyle="width:57em; text-align:left" rows="4" cssClass="ui-widget-content"/></td>
-										<td></td>
-										<td></td>
-										<td></td>
-									</tr>
-						    	</table>
-						    </fieldset>
-						</td>
-					</tr>
-					<tr>
-						<td class="label" colspan="4">
-							<div class="formTopInfo">
-								状态：<s:property value="%{statusesValue[e.status]}" />，
-								<s:if test="%{e.closerName != null && e.closeDate && e.status == 1}">
-									结案人:<s:property value="e.closerName" />(<s:date name="e.closeDate" format="yyyy-MM-dd HH:mm:ss"/>),
-								</s:if>
-								<s:if test="%{e.author.name != null}">
-								登记：<s:property value="e.author.name" />(<s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>)
-								</s:if>
-								<s:if test="%{e.modifier != null}">
-								，最后修改：<s:property value="e.modifier.name" />(<s:date name="e.modifiedDate" format="yyyy-MM-dd HH:mm:ss"/>)
-								</s:if>
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:230}"
-			style="height:230px;width:800px;overflow: hidden;">
-	        <div class="tabsContainer">
-           	 	<div class="slideContainer">
-                <ul class="tabs ui-helper-reset">
-				    <li class="tab ui-widget-content first active"><a href="#otherFormFields1" class="ui-state-default ui-state-active">详细信息</a></li>
+	<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:380}"
+		style="width:810px;overflow: hidden;">
+        <div class="tabsContainer">
+			<div class="slideContainer">
+				<ul class="tabs ui-helper-reset">
+	   				<li class="tab ui-widget-content first active"><a href="#otherFormFields1" class="ui-state-default ui-state-active">详细信息</a></li>
 					<li class="tab ui-widget-content"><a href="#otherFormFields2" class="ui-state-default">处理情况</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">回发企业意见</a></li>
-                </ul>
-            	</div>
-	        </div>
-	        <div class="contentContainer ui-helper-reset ui-widget-content">
-	        	<div id="otherFormFields1" class="content active" style="width:800px;">
-					<table class="formFields" cellspacing="2" cellpadding="0" >
+	          	</ul>
+           	</div>
+        </div>
+        <div class="contentContainer ui-helper-reset ui-widget-content">
+			<div id="otherFormFields1" class="content active">
+				<div class="ui-widget-content">
+					<table cellspacing="2" cellpadding="0">
 						<tbody>
 							<tr>
-								<td class="label" colspan="2">
-								    <fieldset style="height: 110px;width: 350px;">
-								    	<legend>被投诉方信息</legend>
-								        <table class="formFields" cellspacing="2" cellpadding="0" style="height:100px">
-											<tr style="line-height: 1px;">
-												<td style="width: 10px;"></td>
-												<td style="width: 120px;">&nbsp;</td>
-												<td style="width: 10px;">&nbsp;</td>
+								<td class="label" colspan="4">
+								    <fieldset class="ui-widget-content">
+								    	<legend>投诉信息</legend>
+								    	<table class="formFields" cellspacing="2" cellpadding="0">
+											<tr class="widthMarker">
+												<td style="width: 80px;">&nbsp;</td>
+												<td style="width: 295px;">&nbsp;</td>
+												<td style="width: 85px;">&nbsp;</td>
 												<td>&nbsp;</td>
 											</tr>
 											<tr>
+												<td class="label">*<s:text name="runcase.code" />:</td>
+												<td class="value "><s:textfield name="e.code" data-validate="required" readonly="true" cssClass="ui-widget-content"/></td>
+												<td class="label">*<s:text name="runcase.receiveDate3"/>:</td>
+												<td class="value" style="position:relative;display: block;">
+													<input type="text" name="e.receiveDate" data-validate='{"type":"datetime","required":true}'
+													value='<s:date format="yyyy-MM-dd HH:mm" name="e.receiveDate" />'
+													class="bc-datetime ui-widget-content" data-cfg='{changeYear:true}'/>
+													<ul class="inputIcons">
+														<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.receiveDate'></li>
+													</ul>
+												</td>
+											<tr>
+												<td class="label"><s:text name="runcase.receiveCode"/>:</td>
+												<td class="value "><s:textfield name="e.receiveCode" cssClass="ui-widget-content"/></td>
+												<td class="label">*<s:text name="runcase.adviceType"/>:</td>
+												<td class="value ">
+													<s:select list="#{0:getText('runcase.select.complain'),1:getText('runcase.select.suggest')}"
+														 cssStyle="width:100%;height:100%;" value="selected" data-validate="required"
+														multiple="%{multiple}" name="e.adviceType" cssClass="ui-widget-content"/>
+												</td>
+											</tr>
+								    		<tr>
+								    			<td class="label">*<s:text name="runcase.subject2"/><s:text name="runcase.big"/>:</td>
+												<td class="value relative">
+													<s:textfield name="e.subject" data-validate="required" cssClass="ui-widget-content"/>
+													<ul class="inputIcons">
+												 		<li class="inputIcon ui-icon ui-icon-circle-plus" id="selectSubject">
+												 	</ul>
+												</td>
+												<td class="label">*<s:text name="runcase.happenDate"/>:</td>
+												<td class="value" style="position:relative;display: block;">
+													<input type="text" name="e.happenDate" data-validate='{"type":"datetime","required":true}'
+													value='<s:date format="yyyy-MM-dd HH:mm" name="e.happenDate" />'
+													class="bc-datetime ui-widget-content" data-cfg='{changeYear:true}'/>
+													<ul class="inputIcons">
+														<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.happenDate'></li>
+													</ul>
+												</td>
+								    		</tr>
+								    		<tr>
+								    			<td class="label"><s:text name="runcase.subject2"/><s:text name="runcase.small"/>:</td>
+												<td class="value"><s:textfield name="e.subject2" cssClass="ui-widget-content"/></td>
+								    			<td class="label" ><s:text name="runcase.source"/>:</td>
+												<td class="value" >
+													<s:textfield name="e.from" cssClass="ui-widget-content" />
+												</td>
+											</tr>
+											<tr>
+												<td class="topLabel">
+													<s:text name="runcase.detail"/>:
+												</td>
+												<td class="value" colspan="3"><s:textarea name="e.detail" cssStyle="width:50.8em;" rows="4" cssClass="ui-widget-content"/></td>
+											</tr>
+								    	</table>
+								    </fieldset>
+								</td>
+							</tr>
+							<tr>
+								<td class="label" colspan="4">
+									<div class="formTopInfo">
+										状态：<s:property value="%{statusesValue[e.status]}" />，
+										<s:if test="%{e.closerName != null && e.closeDate && e.status == 1}">
+											结案人:<s:property value="e.closerName" />(<s:date name="e.closeDate" format="yyyy-MM-dd HH:mm:ss"/>),
+										</s:if>
+										<s:if test="%{e.author.name != null}">
+										登记：<s:property value="e.author.name" />(<s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>)
+										</s:if>
+										<s:if test="%{e.modifier != null}">
+										，最后修改：<s:property value="e.modifier.name" />(<s:date name="e.modifiedDate" format="yyyy-MM-dd HH:mm:ss"/>)
+										</s:if>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+								    <fieldset class="ui-widget-content" style="height: 115px;">
+								    	<legend>被投诉方信息</legend>
+								        <table class="formFields" cellspacing="2" cellpadding="0" style="height:100px; width: 100%;">
+											<tr class="widthMarker">
+												<td >&nbsp;</td>
+												<td style="width: 200px;"></td>
+												<td style="width: 80px;"></td>
+												<td style="width: 200px;"></td>
+											</tr>
+											<tr>
 								               	<td class="label"><s:text name="runcase.carPlate"/>:</td>
-												<td class="value">
-													<span style="position:relative;">
-														<s:textfield name="e.carPlate" readonly="true" cssClass="ui-widget-content "/>
-														<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectCarPlate"></span>
-													</span>
-												</td>
-												<td class="label">
-													<s:text name="runcase.carColor"/>:
-												</td>
-												<td class="value">
-													<s:textfield name="e.carColor" cssClass="ui-widget-content"/>
+												<td class="value" colspan="3">
+													<div style="position:relative;display: inline-block" >
+														<s:textfield name="e.carPlate" readonly="true" cssStyle="width:8em;"  cssClass="ui-widget-content "/>
+														<ul class="inputIcons">
+													 		<li class="inputIcon ui-icon ui-icon-circle-plus" id="selectCarPlate">
+													 	</ul>
+												 	</div>
+												 	<s:text name="runcase.carColor"/>:
+												 	<s:textfield name="e.carColor" cssStyle="width:3em;"  cssClass="ui-widget-content"/>
 												</td>
 							               </tr>
 							               <tr>
 							               		<td class="label"><s:text name="runcase.driverName"/>:</td>
 												<td class="value" colspan="3">
-													<span style="position:relative;">
-														<s:textfield name="e.driverName" cssStyle="width:9em;" readonly="true" cssClass="ui-widget-content "/>
-														<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectDriverName" style="right: 9px"></span>
-													</span>
+													<div style="position:relative;display: inline-block" >
+														<s:textfield name="e.driverName" cssStyle="width:8em;" readonly="true" cssClass="ui-widget-content "/>
+														<ul class="inputIcons">
+												 			<li class="inputIcon ui-icon ui-icon-circle-plus" id="selectDriverName">
+												 		</ul>
+													</div>
 													<s:radio name="e.driverSex" list="#{'1':'男','2':'女'}" 
 													value="e.sex" cssStyle="width:auto;"/>
 												</td>
@@ -168,20 +153,20 @@
 								        </table>
 								   </fieldset>
 								</td>
-								<td class="value" colspan="2">
-									<fieldset style="height: 110px;">
+								<td colspan="2">
+									<fieldset class="ui-widget-content" style="height: 115px;">
 						          		<legend>投诉人信息</legend>
-						          		<table class="formFields" cellspacing="2" cellpadding="0" style="height:100px;">
-								          	<tr style="line-height: 1px;">
-												<td style="width: 10px;"></td>
-												<td style="width: 120px;">&nbsp;</td>
-												<td style="width: 10px;">&nbsp;</td>
-												<td>&nbsp;</td>
+						          		<table class="formFields" cellspacing="2" cellpadding="0" style="height:100px;width: 100%;">
+								          	<tr class="widthMarker">
+												<td >&nbsp;</td>
+												<td style="width: 200px;"></td>
+												<td style="width: 80px;"></td>
+												<td style="width: 200px;"></td>
 											</tr>
 								          	<tr>
 								          		<td class="label">*<s:text name="runcase.advisorName" />:</td>
 												<td class="value" colspan="3">
-													<s:textfield name="e.advisorName" cssStyle="width:9em;" data-validate="required" cssClass="ui-widget-content"/>
+													<s:textfield name="e.advisorName" cssStyle="width:8em;" data-validate="required" cssClass="ui-widget-content"/>
 													 <s:radio name="e.advisorSex" list="#{'1':'男','2':'女'}" 
 													value="e.sex" cssStyle="width:auto;"/>
 													<s:text name="runcase.advisorAge" />:<s:textfield name="e.advisorAge" cssStyle="width:2.5em;" cssClass="ui-widget-content"/>
@@ -204,15 +189,15 @@
 						    	</td>
 							</tr>
 							<tr>
-								<td class="label" colspan="4">
-									<fieldset>
-						          		<legend>补充信息</legend>
-						          		<table class="formFields" cellspacing="2" cellpadding="0" style="height:100px;">
+								<td colspan="4">
+									<fieldset class="ui-widget-content" style="padding:0;">
+						          		<legend style="margin:10px;">补充信息</legend>
+						          		<table class="formFields" cellspacing="2" cellpadding="0">
 											<tr class="widthMarker">
-												<td></td>
-												<td style="width: 200px;">&nbsp;</td>
 												<td style="width: 80px;">&nbsp;</td>
-												<td style="width: 200px;">&nbsp;</td>
+												<td style="width: 295px;">&nbsp;</td>
+												<td style="width: 80px;">&nbsp;</td>
+												<td>&nbsp;</td>
 											</tr>
 						          			<tr>
 												<td class="label"><s:text name="runcase.ticket"/>:</td>
@@ -227,40 +212,49 @@
 												<td class="value"><s:textfield name="e.driverCert" cssClass="ui-widget-content"/></td>
 											</tr>
 											<tr>
-												<td class="label"><s:text name="runcase.ridingTime"/>:</td>
-												<td class="value">
-													<span style="position:relative;">
-														<input type="text" name="e.ridingStartTime" data-validate='{"type":"datetime"}'
-														value='<s:date format="yyyy-MM-dd HH:mm" name="e.ridingStartTime" />'
-														class="bc-datetime ui-widget-content" data-cfg='{changeYear:true}' style="max-width: 8em;"/>
-														<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectRidingStartTime"></span>
-													</span>
-													&nbsp;到
-													<span style="position:relative;">
-														<input type="text" name="e.ridingEndTime" data-validate='{"type":"datetime"}'
-														value='<s:date format="yyyy-MM-dd HH:mm" name="e.ridingEndTime" />'
-														class="bc-datetime ui-widget-content" data-cfg='{changeYear:true}' style="max-width: 8em;"/>
-														<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectRidingEndTime"></span>
-													</span>
+												<td class="label"><s:text name="runcase.ridingStartTime"/>:</td>
+												<td class="value" style="position:relative;display: block;">
+													<input type="text" name="e.ridingStartTime" data-validate='{"type":"datetime","required":true}'
+													value='<s:date format="yyyy-MM-dd HH:mm" name="e.ridingStartTime" />'
+													class="bc-datetime ui-widget-content" data-cfg='{changeYear:true}'/>
+													<ul class="inputIcons">
+														<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.ridingStartTime'></li>
+													</ul>
+												</td>
+												<td class="label"><s:text name="runcase.ridingEndTime"/>:</td>
+												<td class="value" style="position:relative;display: block;">
+													<input type="text" name="e.ridingEndTime" data-validate='{"type":"datetime","required":true}'
+													value='<s:date format="yyyy-MM-dd HH:mm" name="e.ridingEndTime" />'
+													class="bc-datetime ui-widget-content" data-cfg='{changeYear:true}'/>
+													<ul class="inputIcons">
+														<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.ridingEndTime'></li>
+													</ul>
+												</td>
+											</tr>
+											<tr>
+												<td class="label"><s:text name="runcase.path"/>:</td>
+												<td class="value" colspan="3">
+										      		<table style="width:100%;" cellspacing="0" cellpadding="0">
+														<tr>
+															<td style="width: 20px;">从</td>
+															<td style="width: 275px;"><s:textfield name="e.pathFrom" cssStyle="width:98%;" cssClass="ui-widget-content"/></td>
+															<td style="width: 85px;text-align: right;">到&nbsp;</td>
+															<td><s:textfield name="e.pathTo" cssStyle="width:98%;" cssClass="ui-widget-content"/></td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+											<tr>
+												<td class="label"><s:text name="runcase.passengerCount"/>:</td>
+												<td class="value"><s:textfield name="e.passengerCount" cssStyle="width:2.5em;" data-validate='{"type":"number",max:9}' cssClass="ui-widget-content"/>&nbsp;男<s:textfield name="e.passengerManCount" data-validate='{"type":"number",max:9}' cssStyle="width:2.5em;" cssClass="ui-widget-content"/>&nbsp;女
+												<s:textfield name="e.passengerWomanCount" cssStyle="width:2.5em;" data-validate='{"type":"number",max:9}' cssClass="ui-widget-content" />&nbsp;童<s:textfield name="e.passengerChildCount"cssStyle="width:2.5em;" data-validate='{"type":"number",max:9}' cssClass="ui-widget-content"/>
 												</td>
 												<td class="label"><s:text name="runcase.charge"/>:</td>
 												<td class="value"><s:textfield name="e.charge" value="%{getText('bs.format.number',{e.charge})}" cssClass="ui-widget-content"/></td>
 											</tr>
 											<tr>
-												<td class="label"><s:text name="runcase.path"/>:</td>
-												<td class="value">
-													<s:textfield name="e.pathFrom" cssStyle="width:8em;" cssClass="ui-widget-content"/>
-													&nbsp;到
-													<s:textfield name="e.pathTo" cssStyle="width:8em;" cssClass="ui-widget-content"/>
-												</td>
-												<td class="label"><s:text name="runcase.passengerCount"/>:</td>
-												<td class="value"><s:textfield name="e.passengerCount" cssStyle="width:2.5em;" data-validate='{"type":"number",max:9}' cssClass="ui-widget-content"/>&nbsp;男<s:textfield name="e.passengerManCount" data-validate='{"type":"number",max:9}' cssStyle="width:2.5em;" cssClass="ui-widget-content"/>&nbsp;女
-												<s:textfield name="e.passengerWomanCount" cssStyle="width:2.5em;" data-validate='{"type":"number",max:9}' cssClass="ui-widget-content" />&nbsp;童<s:textfield name="e.passengerChildCount"cssStyle="width:2.5em;" data-validate='{"type":"number",max:9}' cssClass="ui-widget-content"/>
-												</td>
-											</tr>
-											<tr>
 												<td class="label"><s:text name="runcase.gongjiao"/>:</td>
-												<td class="value" colspan="3"><s:textfield name="e.path" cssStyle="width:50em;" cssClass="ui-widget-content"/></td>
+												<td class="value" colspan="3"><s:textfield name="e.path" cssClass="ui-widget-content"/></td>
 											</tr>
 						          		</table>
 							        </fieldset>
@@ -269,91 +263,98 @@
 						</tbody>
 					</table>
 				</div>
-				<div id="otherFormFields2" class="content" style="width:800px;">
-					<table class="formFields" cellspacing="2" cellpadding="0" >
-						<tbody>
-							<tr class="widthMarker">
-								<td></td>
-								<td style="width: 200px;">&nbsp;</td>
-								<td style="width: 80px;">&nbsp;</td>
-								<td style="width: 200px;">&nbsp;</td>
-							</tr>
-							<tr>
-								<td class="label"><s:text name="runcase.extent"/></td>
-								<td class="value">
-								<s:select name="e.extent" list="degreeList" listKey="value" listValue="value" headerKey="" headerValue="" cssStyle="width:20.5em;" cssClass="ui-widget-content"></s:select>
-								</td>
-								<td class="label"><s:text name="runcase.receiverName2"/>:</td>
-								<td class="value" style="position:relative;display: block;">
-									<s:textfield name="e.receiverName" style="width:20em;" cssClass="ui-widget-content "/>
-									<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectReceiverName" style="right: 40px;"></span>
-								</td>
-							</tr>
-							<tr>
-								<td class="label" ><s:text name="runcase.duty"/>:</td>
-								<td class="value">
-									<s:select name="e.duty" list="dutyList" listKey="value" listValue="value"  headerKey="" headerValue="" cssStyle="width:16em;" cssClass="ui-widget-content"></s:select>
-									<s:checkbox name="e.invalid" cssStyle="width:1em;" />
-									<s:text name="runcase.invalid"/>
-								</td>
-								<td class="label"><s:text name="runcase.noticeDate"/>:</td>
-								<td class="value" style="position:relative;display: block;">
-									<input type="text" name="e.noticeDate" data-validate='{"type":"datetime"}'
-									value='<s:date format="yyyy-MM-dd HH:mm" name="e.noticeDate" />'
-									class="bc-datetime ui-widget-content" data-cfg='{changeYear:true}' style="width:20em;" />
-									<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectNoticeDate" style="right: 40px;"></span>
-								</td>
-							</tr>
-							<s:if test="e.status == 1">
-							<tr>
-								<td class="label"><s:text name="runcase.deliverDate3"/>:</td>
-								<td class="value" style="position:relative;display: block;">
-									<input type="text" name="e.deliverDate" data-validate='{"type":"datetime"}' 
-									value='<s:date format="yyyy-MM-dd HH:mm" name="e.deliverDate" />'
-									class="bc-datetime ui-widget-content" data-cfg='{changeYear:true}' style="width:20em;"/>
-									<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectDeliverDate" style="right: 40px;"></span>
-								</td>
-								<td></td>
-								<td></td>
-							</tr>
-							</s:if>
-							<tr>
-								<td class="label"><s:text name="runcase.result"/>:</td>
-								<td><s:textarea name="e.result" cssStyle="width:20em; text-align:left" rows="4" cssClass="ui-widget-content"/></td>
-								<td class="label"><s:text name="runcase.description"/>:</td>
-								<td><s:textarea name="e.description" cssStyle="width:20em; text-align:left" rows="4" cssClass="ui-widget-content"/></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-	        </div>
+			</div>
+			<div id="otherFormFields2" class="content">
+				<table class="formFields" cellspacing="2" cellpadding="0" >
+					<tbody>
+						<tr class="widthMarker">
+							<td>&nbsp;</td>
+							<td style="width: 325px;">&nbsp;</td>
+							<td style="width: 90px;">&nbsp;</td>
+							<td style="width: 290px;">&nbsp;</td>
+						</tr>
+						<tr>
+							<td class="label"><s:text name="runcase.extent"/></td>
+							<td class="value">
+							<s:select name="e.extent" list="degreeList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
+							</td>
+							<td class="label"><s:text name="runcase.receiverName2"/>:</td>
+							<td class="value relative">
+								<s:textfield name="e.receiverName" cssClass="ui-widget-content "/>
+								<ul class="inputIcons">
+							 		<li class="inputIcon ui-icon ui-icon-circle-plus" id="selectReceiverName">
+							 	</ul>
+							</td>
+						</tr>
+						<tr>
+							<td class="label" ><s:text name="runcase.duty"/>:</td>
+							<td class="value">
+								<s:select name="e.duty" list="dutyList" listKey="value" listValue="value"  headerKey="" headerValue="" cssStyle="width:15em;" cssClass="ui-widget-content"></s:select>
+								<s:checkbox name="e.invalid" cssStyle="width:1em;" />
+								<s:text name="runcase.invalid"/>
+							</td>
+							<td class="label"><s:text name="runcase.noticeDate"/>:</td>
+							<td class="value" style="position:relative;display: block;">
+								<input type="text" name="e.noticeDate" data-validate='{"type":"datetime"}'
+								value='<s:date format="yyyy-MM-dd HH:mm" name="e.noticeDate" />'
+								class="bc-datetime ui-widget-content" data-cfg='{changeYear:true}'/>
+								<ul class="inputIcons">
+									<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.noticeDate'></li>
+								</ul>
+							</td>
+						</tr>
+						<s:if test="e.status == 1">
+						<tr>
+							<td class="label"><s:text name="runcase.deliverDate3"/>:</td>
+							<td class="value" style="position:relative;display: block;">
+								<input type="text" name="e.deliverDate" data-validate='{"type":"datetime"}'
+								value='<s:date format="yyyy-MM-dd HH:mm" name="e.deliverDate" />'
+								class="bc-datetime ui-widget-content" data-cfg='{changeYear:true}'/>
+								<ul class="inputIcons">
+									<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.deliverDate'></li>
+								</ul>
+							</td>
+							<td></td>
+							<td></td>
+						</tr>
+						</s:if>
+						<tr>
+							<td class="topLabel"><s:text name="runcase.result"/>:</td>
+							<td><s:textarea name="e.result" cssStyle="width:24em;" rows="4" cssClass="ui-widget-content"/></td>
+							<td class="topLabel"><s:text name="runcase.description"/>:</td>
+							<td><s:textarea name="e.description" cssStyle="width:22em;" rows="4" cssClass="ui-widget-content"/></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
-	        
-		<s:hidden name="e.uid" />
-		<s:hidden name="e.id" />
-		<s:hidden name="e.author.id" />
-		<s:hidden name="e.motorcadeName" />
-		<s:hidden name="e.carId" />
-		<s:hidden name="e.driverId" />
-		<!--
-		<s:hidden name="e.chargerId" />
-		!-->
-		<s:hidden name="e.closerId" />
-		<s:hidden name="e.closerName" />
-		<s:hidden name="e.receiverId" />
-		<s:hidden name="e.status" />
-		<s:hidden name="isMoreCar" />
-		<s:hidden name="isMoreCarMan" />
-		<s:hidden name="carId" />
-		<s:hidden name="carManId" />
-		<s:hidden name="isNullCarMan" />
-		<s:hidden name="isNullCar" />
-		<s:hidden name="e.source"/>
-		<s:hidden name="e.syncUid" />
-		<s:hidden name="e.syncId" />
-		<s:hidden name="isSync" />
-		<s:hidden name="syncId" />
-		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
+	</div>
+		
+	<s:hidden name="e.uid" />
+	<s:hidden name="e.id" />
+	<s:hidden name="e.author.id" />
+	<s:hidden name="e.motorcadeName" />
+	<s:hidden name="e.carId" />
+	<s:hidden name="e.driverId" />
+	<!--
+	<s:hidden name="e.chargerId" />
+	!-->
+	<s:hidden name="e.closerId" />
+	<s:hidden name="e.closerName" />
+	<s:hidden name="e.receiverId" />
+	<s:hidden name="e.status" />
+	<s:hidden name="isMoreCar" />
+	<s:hidden name="isMoreCarMan" />
+	<s:hidden name="carId" />
+	<s:hidden name="carManId" />
+	<s:hidden name="isNullCarMan" />
+	<s:hidden name="isNullCar" />
+	<s:hidden name="e.source"/>
+	<s:hidden name="e.syncUid" />
+	<s:hidden name="e.syncId" />
+	<s:hidden name="isSync" />
+	<s:hidden name="syncId" />
+	<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 		
 	</s:form>
 </div>

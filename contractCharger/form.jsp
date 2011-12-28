@@ -11,9 +11,9 @@
 				<tbody>
 					<tr class="widthMarker">
 						<td >&nbsp;</td>
-						<td style="width: 200px;">&nbsp;</td>
+						<td style="width: 250px;">&nbsp;</td>
 						<td style="width: 60px;">&nbsp;</td>
-						<td style="width: 220px;">&nbsp;</td>
+						<td style="width: 250px;">&nbsp;</td>
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="contract.code"/>:</td>

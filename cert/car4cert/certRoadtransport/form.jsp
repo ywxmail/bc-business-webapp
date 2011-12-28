@@ -7,7 +7,7 @@
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="certRoadtransportForm" theme="simple">
 		<div class="formFields ui-widget-content"  style="width:730px;">
-			<fieldset style="width: 680px">
+			<fieldset class="ui-widget-content" style="width: 680px">
 				<legend>基本信息</legend>
 				<table class="formFields" cellspacing="2" cellpadding="0">
 					<tbody>
@@ -87,7 +87,7 @@
 						<tr>
 							<td class="label"><s:text name="cert.address"/>:</td>
 							<td class="value" colspan="3">
-								<s:textfield name="e.address" cssStyle="width:46em;" cssClass="ui-widget-content"/>
+								<s:textfield name="e.address" cssStyle="width:44em;" cssClass="ui-widget-content"/>
 							</td>
 						</tr>
 						<tr>
@@ -107,7 +107,7 @@
 					</tbody>
 				</table>
 			</fieldset>
-			<fieldset style="width: 700px">
+			<fieldset class="ui-widget-content" style="width: 700px">
 				<legend>车辆审检及技术等级记录</legend>
 				<table class="formFields" cellspacing="2" cellpadding="0">
 					<tbody>
@@ -140,7 +140,7 @@
 					</tbody>
 				</table>
 			</fieldset>
-			<fieldset style="width: 700px">
+			<fieldset class="ui-widget-content" style="width: 700px">
 				<legend>复印件</legend>
 				<s:property value="%{attachsUI}" escapeHtml="false" />
 			</fieldset>

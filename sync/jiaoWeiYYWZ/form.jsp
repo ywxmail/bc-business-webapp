@@ -6,7 +6,7 @@
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="jiaoWeiYYWZForm" theme="simple">
 		<div class="formFields ui-widget-content" style="width:670px;overflow: hidden;">
-			<fieldset>
+			<fieldset class="ui-widget-content">
           		<legend>当事人信息</legend>
 				<table class="formFields" cellspacing="2" cellpadding="0">
 					<tbody>
@@ -31,7 +31,7 @@
 					</tbody>
 				</table>
 			</fieldset>
-			<fieldset>
+			<fieldset class="ui-widget-content">
           		<legend>违章信息</legend>
 				<table class="formFields" cellspacing="2" cellpadding="0">
 					<tbody>
@@ -92,7 +92,7 @@
 						</tr>
 						<tr>
 							<td class="value" colspan="4">
-								<fieldset>
+								<fieldset class="ui-widget-content">
 				          		<legend>扣罚信息</legend>
 									<table class="formFields" cellspacing="2" cellpadding="0">
 										<tr class="widthMarker">
@@ -127,7 +127,7 @@
 					</tbody>
 				</table>
 			</fieldset>
-			<fieldset>
+			<fieldset class="ui-widget-content">
           		<legend>其它信息</legend>
 				<table class="formFields" cellspacing="2" cellpadding="0">
 					<tbody>

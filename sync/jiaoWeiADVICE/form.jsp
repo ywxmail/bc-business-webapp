@@ -6,7 +6,7 @@
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="jiaoWeiADVICEForm" theme="simple">
 		<div class="formFields ui-widget-content" style="width:670px;overflow: hidden;">
-			<fieldset>
+			<fieldset class="ui-widget-content">
           		<legend>被投诉人信息</legend>
 				<table class="formFields" cellspacing="2" cellpadding="0">
 					<tbody>
@@ -37,7 +37,7 @@
 					</tbody>
 				</table>
 			</fieldset>
-			<fieldset>
+			<fieldset class="ui-widget-content">
           		<legend>投诉人信息</legend>
 				<table class="formFields" cellspacing="2" cellpadding="0">
 					<tbody>
@@ -60,7 +60,7 @@
 							<td class="value"><s:textfield name="e.advisorAge" cssStyle="width: 4em" cssClass="ui-widget-content"/>&nbsp;&nbsp;性别:<s:textfield name="e.advisorSex" cssStyle="width: 1.5em" cssClass="ui-widget-content"/></td>
 						</tr>
 						<tr>
-							<td class="label"><s:text name="jiaoWeiADVICE.content"/>:</td>
+							<td class="topLabel"><s:text name="jiaoWeiADVICE.content"/>:</td>
 							<td class="value" colspan="3"><s:textarea name="e.content" cssStyle="width: 42em" cssClass="ui-widget-content" cols="4"/></td>
 						<tr>
 							<td class="label" colspan="4">
@@ -72,7 +72,7 @@
 					</tbody>
 				</table>
 			</fieldset>
-			<fieldset>
+			<fieldset class="ui-widget-content">
           		<legend>处理信息</legend>
 				<table class="formFields" cellspacing="2" cellpadding="0">
 					<tbody>

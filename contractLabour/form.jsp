@@ -35,7 +35,7 @@
 							</tr>
 							<tr>
 								<td class="value" colspan="4">
-								    <fieldset>
+								    <fieldset class="ui-widget-content">
 								    	<legend>合同信息</legend>
 								        <table class="formFields" cellspacing="2" cellpadding="0">
 											<tr class="widthMarker">
@@ -73,7 +73,7 @@
 							</tr>
 							<tr>
 								<td class="value" colspan="4">
-									<fieldset>
+									<fieldset class="ui-widget-content">
 						          		<legend>司机车辆信息</legend>
 						          		<table class="formFields" cellspacing="2" cellpadding="0" >
 											<tr class="widthMarker">
@@ -176,7 +176,7 @@
 							</tr>
 							<tr>
 								<td class="value" colspan="4">
-									<fieldset>
+									<fieldset class="ui-widget-content">
 						          		<legend>社保信息</legend>
 						          		<table class="formFields" cellspacing="2" cellpadding="0">
 											<tr class="widthMarker">
@@ -272,7 +272,7 @@
 											</tr>
 											<tr>
 												<td class="value" colspan="4">
-													<fieldset>
+													<fieldset class="ui-widget-content">
 										          		<legend>生育险待遇</legend>
 										          		<table class="formFields" cellspacing="2" cellpadding="0">
 										          			<tr class="widthMarker">
