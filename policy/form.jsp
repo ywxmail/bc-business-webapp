@@ -12,10 +12,9 @@
            	 	<div class="slideContainer">
                 <ul class="tabs ui-helper-reset">
 				    <li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">基本资料</a></li>
-				    <li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">险种</a></li>
 				    <li class="tab ui-widget-content"><a href="#otherFormFields4" class="ui-state-default">附件</a></li>
 					<s:if test="!e.isNew()">
-					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">历史版本</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/policys/list?carId=%{e.car.id}" />' class="ui-state-default">历史版本</a></li>
 					</s:if>
                 </ul>
             	</div>
@@ -55,6 +54,14 @@
 					                              value='<s:date format="yyyy-MM-dd" name="e.registerDate" />'/>
 					                              <span class="selectButton verticalMiddle ui-icon ui-icon-calendar"></span>
 				                                 </td>
+				                                 <s:if test="%{e.status==1}">
+											     <td class="label"><s:text name="policy.stopDate"/>:</td>
+						                         <td class="value" style="position:relative;display: block;"><input type="text" name="e.stopDate" 
+						                          data-validate='{required:false,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
+					                              value='<s:date format="yyyy-MM-dd" name="e.stopDate" />'/>
+					                              <span class="selectButton verticalMiddle ui-icon ui-icon-calendar"></span>
+				                                 </td>
+				                                 </s:if>
 											</tr>
 								        </table>
 								   </fieldset>
@@ -210,8 +217,8 @@
 							<ul class="inputIcons">
 								<li id="selectInsuranceType" class="inputIcon ui-icon ui-icon-circle-plus"
 									title='<s:text name="title.click2selectInsuranceType"/>'></li>
-								<li id="selectTemplate" class="inputIcon ui-icon ui-icon-circle-check"
-									title='<s:text name="title.click2selectTemplate"/>'></li>
+								<!--<li id="selectTemplate" class="inputIcon ui-icon ui-icon-circle-check"
+									title='<s:text name="title.click2selectTemplate"/>'></li>-->
 								<li id="deleteInsuranceType" class="inputIcon ui-icon ui-icon-circle-close"
 									title='<s:text name="title.click2deleteInsuranceType"/>'></li>
 							</ul>
@@ -220,16 +227,16 @@
 						<table class="table" id="buyPlantTables" cellspacing="0" cellpadding="0" style="width: 100%">
 							<tr class="ui-state-default row">
 								<td class="first" style="width: 250px;height: 20px;">险种名称</td>
-								<td class="middle" style="width: 105px;">保额</td>
-								<td class="middle" style="width: 105px;">保费</td>
+								<td class="middle" style="width: 105px;">保额(元)</td>
+								<td class="middle" style="width: 105px;">保费(元)</td>
 								<td class="last">备注</td>
 							</tr>
 							<s:iterator var="b" value="e.buyPlants">
 							<tr class="ui-state-default row" data-id='<s:property value="id"/>'>
 								<td class="id first" style="padding:0;text-align:left;"><span class="ui-icon"></span>
-									<input style="width:90%;height:100%;border:none;margin:0;padding:0 0 0 2px;background:none;" readonly="readonly""text" class="ui-widget-content" value='<s:property value="name"/>'/></td>
-								<td class="middle" style="padding:0;text-align:left;"><input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" value='<s:property value="coverage"/>'/></td>
-								<td class="middle" style="padding:0;text-align:left;"><input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" value='<s:property value="premium"/>'/></td>
+									<input style="width:90%;height:100%;border:none;margin:0;padding:0 0 0 2px;background:none;" readonly="readonly" type="text" class="ui-widget-content" value='<s:property value="name"/>'/></td>
+								<td class="middle" style="padding:0;text-align:left;"><input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" value='<s:property value="%{getText('bs.format.number',{coverage})}"/>'/></td>
+								<td class="middle" style="padding:0;text-align:left;"><input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" value='<s:property value="%{getText('bs.format.number',{premium})}"/>'/></td>
 								<td class="last" style="padding:0;text-align:left;"><input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" value='<s:property value="description"/>'/></td>
 							</tr>
 							</s:iterator>

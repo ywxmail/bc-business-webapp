@@ -53,6 +53,7 @@ bc.policyForm = {
 		function buildInput(name,value,readonly,isFirst){
 			var s = '<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;';
 			if(isFirst){
+				s='<span class="ui-icon"></span><input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;'
 				s += 'background:none;';
 			}
 			s += '" name="' + name + '" type="text" class="ui-widget-content" value="' + value + '"';
@@ -75,7 +76,7 @@ bc.policyForm = {
 						var cell=newRow.insertCell(0);
 						cell.style.padding="0";
 						cell.style.textAlign="left";
-						cell.setAttribute("class","first");
+						cell.setAttribute("class","id first");
 						cell.innerHTML=buildInput("name",selectInsuranceTypes[i].name,true,true);//插入名称
 						
 						cell=newRow.insertCell(1);
@@ -157,10 +158,10 @@ bc.policyForm = {
 			logger.debug("disabled:" + this.name);
 			this.disabled=false;
 		});
-//		$page.find("ul.inputIcons,span.selectButton").each(function(){
-//			$(this).show();
-//		});
-//
+		$page.find("ul.inputIcons,span.selectButton").each(function(){
+			$(this).show();
+		});
+
 		switch(option.value){
 			case "2":	//维护
 				bc.policyForm.setData(2,$page,false);
