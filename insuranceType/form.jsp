@@ -11,15 +11,15 @@
 				<tbody>
 					<tr>
 					    <td class="label"><s:text name="insuranceType.name"/>:</td>
-						<td class="value "><s:textfield name="e.name" cssClass="ui-state-disabled"/></td>
+						<td class="value "><s:textfield name="e.name" cssClass="ui-widget-content"/></td>
 					</tr>
 					<tr>
 						<td class="label"><s:text name="insuranceType.coverage"/>:</td>
-						<td class="value"><s:textfield name="e.coverage"cssClass="ui-state-disabled" /></td>
+						<td class="value"><s:textfield name="e.coverage"cssClass="ui-widget-content" /></td>
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="insuranceType.premium"/>:</td>
-						<td class="value"><s:textfield name="e.premium"cssClass="ui-state-disabled" /></td>
+						<td class="value"><s:textfield name="e.premium"cssClass="ui-widget-content" /></td>
 					</tr>
 					<tr>
 						<td class="label"><s:text name="insuranceType.statuses"/>:</td>
