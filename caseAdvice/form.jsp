@@ -38,9 +38,9 @@
 												<td class="value "><s:textfield name="e.code" data-validate="required" readonly="true" cssClass="ui-widget-content"/></td>
 												<td class="label">*<s:text name="runcase.receiveDate3"/>:</td>
 												<td class="value" style="position:relative;display: block;">
-													<input type="text" name="e.receiveDate" data-validate='{"type":"datetime","required":true}'
-													value='<s:date format="yyyy-MM-dd HH:mm" name="e.receiveDate" />'
-													class="bc-datetime ui-widget-content" data-cfg='{changeYear:true}'/>
+													<input type="text" name="e.receiveDate" data-validate='{"required":true}'
+													value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.receiveDate" />'
+													class="bc-datetime ui-widget-content" data-cfg='{changeYear:true,showSecond:true,timeFormat:"hh:mm:ss"}'/>
 													<ul class="inputIcons">
 														<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.receiveDate'></li>
 													</ul>
@@ -66,8 +66,8 @@
 												<td class="label">*<s:text name="runcase.happenDate"/>:</td>
 												<td class="value" style="position:relative;display: block;">
 													<input type="text" name="e.happenDate" data-validate='{"type":"datetime","required":true}'
-													value='<s:date format="yyyy-MM-dd HH:mm" name="e.happenDate" />'
-													class="bc-datetime ui-widget-content" data-cfg='{changeYear:true}'/>
+													value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.happenDate" />'
+													class="bc-datetime ui-widget-content" data-cfg='{changeYear:true,showSecond:true,timeFormat:"hh:mm:ss"}'/>
 													<ul class="inputIcons">
 														<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.happenDate'></li>
 													</ul>

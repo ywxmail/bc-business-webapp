@@ -6,7 +6,7 @@
 	data-initMethod='bc.carForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:hidden;">
 	<s:form name="carForm" theme="simple">
-		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:490}"
+		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:400}"
 		 style="overflow: hidden;">
 			<div class="tabsContainer">
            	 	<div class="slideContainer">
@@ -187,18 +187,18 @@
 									<td style="width: 200px;">&nbsp;</td>
 								</tr>
 								<tr>
-									<td class="label" ><s:text name="car.color"/>:</td>
-									<td class="value" >
-										<s:select name="e.color" list="colorTypeList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
-									</td>
+									<td class="label" >*<s:text name="car.engineNo"/>:</td>
+									<td class="value" ><s:textfield name="e.engineNo" cssClass="ui-widget-content" data-validate="required"/></td>
 									<td class="label" ><s:text name="car.fuelType"/>:</td>
 									<td class="value" >
 										<s:select name="e.fuelType" list="fuelTypeList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
 									</td>
 								</tr>
 								<tr>
-									<td class="label" >*<s:text name="car.engineNo"/>:</td>
-									<td class="value" ><s:textfield name="e.engineNo" cssClass="ui-widget-content" data-validate="required"/></td>
+									<td class="label" ><s:text name="car.color"/>:</td>
+									<td class="value" >
+										<s:select name="e.color" list="colorTypeList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
+									</td>
 									<td class="label" ><s:text name="car.engineType"/>:</td>
 									<td class="value" ><s:textfield name="e.engineType" cssClass="ui-widget-content"/></td>
 								</tr>
