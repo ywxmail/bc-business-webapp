@@ -16,9 +16,9 @@
 					<tr>
 					   <td class="label">*<s:text name="blacklist.car.plateNo"/>:</td>
 					<s:if test="%{carManId != null || carId !=null }">
-						<td class="value"><s:textfield name="plate" value="%{e.car.plateType+e.car.plateNo }" readonly="true" cssClass="ui-widget-content ui-state-disabled"/></td>
+						<td class="value"><s:textfield name="plate" value="%{e.car.plateType+'.'+e.car.plateNo }" readonly="true" cssClass="ui-widget-content ui-state-disabled"/></td>
 					    </s:if><s:else>
-						<td class="value" style="position:relative;display: block;"><s:textfield name="plate" value="%{e.car.plateType+e.car.plateNo }"
+						<td class="value" style="position:relative;display: block;"><s:textfield name="plate" value="%{e.car.plateType+'.'+e.car.plateNo }"
 					    data-validate="required" cssClass="ui-widget-content" readonly="true" />
 					    <span id="selectCar" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></span>
 					    </td>

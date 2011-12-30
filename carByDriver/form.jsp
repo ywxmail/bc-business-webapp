@@ -12,11 +12,11 @@
 					<tr>
 					<s:if test="%{carId != null}">
 					    <td class="label"><s:text name="carByDriver.car.plateNo"/>:</td>
-						<td class="value "><s:textfield name="plate" value="%{e.car.plateType+e.car.plateNo }" readonly="true" cssClass="ui-state-disabled"/></td>
+						<td class="value "><s:textfield name="plate" value="%{e.car.plateType+'.'+e.car.plateNo }" readonly="true" cssClass="ui-state-disabled"/></td>
 					</s:if><s:else>
 						<td class="label">*<s:text name="carByDriver.car.plateNo"/>:</td>
                         <td class="value relative">
-					      <div class="input ui-widget-content" data-validate="required" ><span class="link showCar" data-cfg='<s:property value="e.car.id" />' id="carInfo" ><s:property value="%{e.car.plateType+e.car.plateNo }" /></span>
+					      <div class="input ui-widget-content" data-validate="required" ><span class="link showCar" data-cfg='<s:property value="e.car.id" />' id="carInfo" ><s:property value="%{e.car.plateType+'.'+e.car.plateNo }" /></span>
 					      </div>
 					      <ul class="inputIcons">
 					        <li class="selectCar inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>' data-cfg='e.car.id=id,carInfo=plate|text,carInfo=id|attr'></li>
