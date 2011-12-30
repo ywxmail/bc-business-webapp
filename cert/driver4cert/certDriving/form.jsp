@@ -81,7 +81,7 @@
 							</td>
 							<td class="label">*<s:text name="cert.validFor" />:</td>
 							<td class="value" >
-								<s:textfield name="e.validFor" data-validate='{"type":"number","required":true}'  cssStyle="width:3em;" cssClass="ui-widget-content"/>
+								<s:textfield name="e.validFor" data-validate='{"type":"number","required":true}'  cssStyle="width:3em;" cssClass="ui-widget-content"/>年
 							</td>
 						</tr>	
 						<tr>
