@@ -6,7 +6,7 @@
 	data-initMethod='bc.carManForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:hidden;">
 	<s:form name="carManForm" theme="simple">
-		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:490}" style="width:775px;">
+		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:470}" style="width:775px;">
 	        <div class="tabsContainer">
            	 	<div class="slideContainer">
                 <ul class="tabs ui-helper-reset">
@@ -46,7 +46,8 @@
 						</tr>
 						<tr>
 							<td class="label"><s:text name="carMan.type"/>:</td>
-							<td class="value"><s:radio name="e.type" list="#{'0':'司机','1':'责任人','2':'司机和责任人'}" cssStyle="width:auto;"/></td>
+							<td class="value"><s:checkboxlist name="e.type" list="#{'0':'司机','1':'责任人','2':'司机和责任人'}" cssStyle="width:auto;"/>-->
+							   <s:radio name="e.type" list="#{'0':'司机','1':'责任人','2':'司机责任人','3':'非编'}" cssStyle="width:auto;"/></td>
 							<td class="label"><s:text name="carMan.region"/>:</td>
 							<td class="value"><s:select list="#{0:'',1:'本市',2:'本省',3:'外省'}" listKey="key" listValue="value" cssClass="ui-widget-content" headerValue="" name="e.region"></s:select></td>
 						</tr>
@@ -102,8 +103,10 @@
 				            </td>
 						</tr>
 						<tr>
-							<td class="label"><s:text name="carMan.orderNo"/>:</td>
-							<td class="value"><s:textfield name="e.orderNo" cssClass="ui-widget-content"/></td>
+							<!--<td class="label"><s:text name="carMan.orderNo"/>:</td>
+							<td class="value"><s:textfield name="e.orderNo" cssClass="ui-widget-content"/></td>-->
+							<td class="label"><s:text name="carMan.accessCerts"/>:</td>
+							<td class="value"><s:textfield name="e.accessCerts" cssClass="ui-widget-content"/></td>
 							<td class="label"><s:text name="carMan.cert4DrivingStartDate"/>:</td>
 							<td colspan="2" class="value relative"><input type="text" name="e.cert4DrivingStartDate" 
 						    	data-validate='{required:false,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
@@ -146,20 +149,20 @@
 							<td class="value" colspan="2"><s:select list="carManLevelList" listKey="value" listValue="value" headerKey="" headerValue="" name="e.level"  cssClass="ui-widget-content"></s:select></td>
 						</tr>
 						<tr>
-							<td class="label"><s:text name="carMan.gz"/>:</td>
+							<td class="label"><s:text name="carMan.status"/>:</td>
+						    <td class="value"><s:radio name="e.status" list="#{'0':'在案','1':'注销'}" cssStyle="width:auto;"/></td>
+						    <td class="label"><s:text name="carMan.gz"/>:</td>
 							<td class="value"><s:radio name="e.gz" list="#{'true':'是','false':'否'}" value="e.gz" cssStyle="width:auto;"/></td>
-							<td class="label"><s:text name="carMan.accessCerts"/>:</td>
-							<td class="value" colspan="2"><s:textfield name="e.accessCerts" cssClass="ui-widget-content"/></td>
 						</tr>
 						<tr>
-							<td class="label"><s:text name="carMan.drivingStatus"/>:</td>
+							<!--<td class="label"><s:text name="carMan.drivingStatus"/>:</td>
 							<td class="value"><s:select list="#{0:'',1:'正班',2:'副班',3:'顶班'}" listKey="key" listValue="value" headerKey="" name="e.drivingStatus" style="width:208px" cssClass="ui-widget-content"></s:select></td>
 							<td class="label"><s:text name="carMan.extZRR"/>:</td>
-							<td class="value" colspan="2"><s:textfield name="e.extZRR" cssClass="ui-widget-content"/></td>
+							<td class="value" colspan="2"><s:textfield name="e.extZRR" cssClass="ui-widget-content"/></td>-->
 						</tr>
 						<tr>
 							<td class="topLabel"><s:text name="carMan.description"/>:</td>
-							<td class="value" colspan="4"><s:textarea name="e.description"  rows="5" cssClass="ui-widget-content"/></td>
+							<td class="value" colspan="4"><s:textarea name="e.description"  rows="3" cssClass="ui-widget-content"/></td>
 						</tr>
 						<tr>
 							<td class="label" colspan="5">
@@ -177,9 +180,10 @@
 			</div>
 		</div>
 		<s:hidden name="e.uid" />
-		<s:hidden name="e.status"/>
 		<s:hidden name="e.id" />
 		<s:hidden name="e.author.id" />
+		<s:hidden name="e.drivingStatus" />
+		<s:hidden name="e.e.extZRR" />
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 		<s:hidden name="e.modifier.id"/>
 		<input type="hidden" name="e.modifiedDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.modifiedDate" />'/>
