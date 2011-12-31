@@ -139,7 +139,7 @@ bc.caseAccidentForm = {
 		});
 		
 		// 负责人
-		$form.find(":input[name='e.chargerName']").click(function() {
+		$form.find("#selectPrincipal").click(function() {
 			var selecteds = $form.find(":input[name='e.chargerName']").val();
 			bc.identity.selectUser({
 				history: false,
@@ -152,7 +152,7 @@ bc.caseAccidentForm = {
 		});
 		
 		//经办人
-		$form.find(":input[name='e.receiverName']").click(function(){
+		$form.find("#selectReceiver").click(function(){
 			bc.identity.selectUser({
 				history: false,
 				selectdes:$form.find(":input[name='e.receiverId']").val(),

@@ -11,7 +11,7 @@
 				<tbody>
 					<tr>
 						<td class="label">*<s:text name="blacklist.subject"/>:</td>
-						<td class="value " colspan="3"><s:textfield name="e.subject"  data-validate="required" cssClass="ui-widget-content ui-state-disabled"/></td>
+						<td class="value " colspan="3"><s:textfield name="e.subject"  data-validate="required" cssClass="ui-widget-content"/></td>
 					</tr>
 					<tr>
 					   <td class="label">*<s:text name="blacklist.car.plateNo"/>:</td>

@@ -85,7 +85,10 @@
 						<td class="label"><s:text name="runcase.driverArea"/>:</td>
 						<td class="value"><s:select list="#{0:'',1:'本市',2:'本省',3:'外省'}" listKey="key" listValue="value"    headerValue="" name="e.driverArea" cssClass="ui-widget-content"/></td>
 						<td class="label" ><s:text name="runcase.receiverName2"/>:</td>
-						<td class="value" ><s:textfield name="e.receiverName" cssClass="ui-widget-content"/>
+						<td class="value relative"><s:textfield name="e.receiverName" cssClass="ui-widget-content"/>
+						<ul class="inputIcons">
+							 <li id="selectReceiver" class=" inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></li>
+						</ul>
 						</td>
 					</tr>
 					<tr>
@@ -94,7 +97,11 @@
 						<s:select name="e.driverClasses" list="#{0:'',1:'正班',2:'副班',3:'顶班'}" listKey="key" listValue="value"   data-validate="required" cssClass="ui-widget-content"/>
 						</td>
 						<td class="label">*<s:text name="runcase.principal" />:</td>
-						<td class="value "><s:textfield name="e.chargerName" data-validate='{"required":true}' cssClass="ui-widget-content"/></td>					
+						<td class="value relative"><s:textfield name="e.chargerName" data-validate='{"required":true}' cssClass="ui-widget-content"/>
+						<ul class="inputIcons">
+							 <li id="selectPrincipal" class=" inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></li>
+						</ul>
+						</td>					
 					</tr>
 					<tr>
 						<td class="label" ><s:text name="runcase.driverType"/>:</td>

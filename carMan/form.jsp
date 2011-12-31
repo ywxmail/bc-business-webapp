@@ -45,7 +45,7 @@
 						</tr>
 						<tr>
 							<td class="label"><s:text name="carMan.type"/>:</td>
-							<td class="value"><s:checkboxlist name="e.type" list="#{'0':'司机','1':'责任人','2':'司机和责任人'}" cssStyle="width:auto;"/>-->
+							<td class="value"><!--<s:checkboxlist name="e.type" list="#{'0':'司机','1':'责任人','2':'司机和责任人'}" cssStyle="width:auto;"/>-->
 							   <s:radio name="e.type" list="#{'0':'司机','1':'责任人','2':'司机责任人','3':'非编'}" cssStyle="width:auto;"/></td>
 							<td class="label"><s:text name="carMan.region"/>:</td>
 							<td class="value"><s:select list="#{0:'',1:'本市',2:'本省',3:'外省'}" listKey="key" listValue="value" cssClass="ui-widget-content" headerValue="" name="e.region"></s:select></td>
