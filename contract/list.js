@@ -7,7 +7,7 @@ bc.contractList = {
 			id = '?carId='+option.extras.carId;
 		}
 		if(option != null && option.extras.carManId){
-			id = '?carManId='+option.extras.carManId;
+			id = '?driverId='+option.extras.carManId;
 		}
 		bc.page.newWin({
 			url: bc.root + "/bc-business/contract/create",
@@ -16,9 +16,9 @@ bc.contractList = {
 			afterClose: function(type){
 				if(type != null && type.id == 1){
 					bc.page.newWin({
-						url: bc.root + "/bc-business/contractLabour/create"+id,
+						url: bc.root + "/bc-business/contract4Labour/create"+id,
 						name: "新建劳动合同",
-						mid:  "createContractLabour",
+						mid:  "createContract4Labour",
 						afterClose: function(status){
 							if(status){
 								//刷新视图
@@ -28,9 +28,9 @@ bc.contractList = {
 					})
 				}else if(type != null && type.id == 2){
 					bc.page.newWin({
-						url: bc.root + "/bc-business/contractCharger/create"+id,
+						url: bc.root + "/bc-business/contract4Charger/create"+id,
 						name: "新建经济合同",
-						mid:  "createContractCharger",
+						mid:  "createContract4Charger",
 						afterClose: function(status){
 							if(status){
 								//刷新视图
@@ -50,15 +50,13 @@ bc.contractList = {
 		//logger.info("type is?  " + $tdType);
 
 		if($tdType == 1){
-			url = bc.root + "/bc-business/contractLabour/edit";
+			url = bc.root + "/bc-business/contract4Labour/open";
 		}else{
-			url = bc.root + "/bc-business/contractCharger/edit";
+			url = bc.root + "/bc-business/contract4Charger/open";
 		}
-		
 		option = option || {};
 		//option对象的函数个数
 		option =  $.extend(option, {url: url});
-		//
 		bc.page.edit.call(this, option);		
 	
 	},
@@ -71,9 +69,9 @@ bc.contractList = {
 		//logger.info("type is?  " + $tdType);
 		
 		if($tdType == 1){
-			url = bc.root + "/bc-business/contractLabour/delete";
+			url = bc.root + "/bc-business/contract4Labour/delete";
 		}else{
-			url = bc.root + "/bc-business/contractCharger/delete";
+			url = bc.root + "/bc-business/contract4Charger/delete";
 		}
 		var data=null;
 		var $tds = $page.find(".bc-grid>.data>.left tr.ui-state-focus>td.id");

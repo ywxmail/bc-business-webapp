@@ -1,5 +1,5 @@
 if(!window['bs'])window['bs']={};
-bc.contractChargerForm = {
+bc.contract4ChargerForm = {
 	init : function(option,readonly) {
 		var $form = $(this);
 		
@@ -8,14 +8,27 @@ bc.contractChargerForm = {
 		
 		if(readonly) return;
 		
+		if($form.find(":input[name='isExistContract']").val()=="true"){
+			bc.msg.alert("所选车辆已配置了相应的经济合同，不能重复配置，建议您编辑原来的经济合同！");
+		};
+		
 		/* 选择车辆车牌*/
 		$form.find("#selectCarPlate").click(function() {
 			var selecteds = $form.find(":input[name='carId']").val();
 			bs.selectCar({
 				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
 				onOk : function(car) {
-					$form.find(":input[name='e.ext_str1']").val(car.plate);
-					$form.find(":input[name='carId']").val(car.id);
+					var url = bc.root + "/bc-business/contract4Charger/isExistContract?carId="+car.id;
+					$.ajax({url: url,dataType:"json",success: function (json){
+						if(json.isExistContract){
+							bc.msg.alert("所选车辆已配置了相应的经济合同，不能重复配置，建议您编辑原来的经济合同！");
+							$form.find(":input[name='e.ext_str1']").val('');
+							$form.find(":input[name='carId']").val('');
+						}else{
+							$form.find(":input[name='e.ext_str1']").val(car.plate);
+							$form.find(":input[name='carId']").val(car.id);
+						}
+					}});
 				}
 			});
 		});
@@ -33,20 +46,22 @@ bc.contractChargerForm = {
 		});
 		
 		//日期控件设置日期范围
-		var dates = $form.find(':input[name^="e.startDate"], :input[name^="e.endDate"]').datepicker({
-			changeYear:     true,
-			firstDay: 		7,
-			dateFormat:		"yy-mm-dd",//yy4位年份、MM-大写的月份
-			onSelect: function( selectedDate ) {
-				var option = this.name == "e.startDate" ? "minDate" : "maxDate",
-					instance = $( this ).data( "datepicker" ),
-					date = $.datepicker.parseDate(
-						instance.settings.dateFormat ||
-						$.datepicker._defaults.dateFormat,
-						selectedDate, instance.settings );
-				dates.not( this ).datepicker( "option", option, date );
-			}
-		});
+		if($form.find(":input[name='e.id']").val().length <= 0){ //只能在新建时可以选择开始日期和结束日期
+			var dates = $form.find(':input[name^="e.startDate"], :input[name^="e.endDate"]').datepicker({
+				changeYear:     true,
+				firstDay: 		7,
+				dateFormat:		"yy-mm-dd",//yy4位年份、MM-大写的月份
+				onSelect: function( selectedDate ) {
+					var option = this.name == "e.startDate" ? "minDate" : "maxDate",
+						instance = $( this ).data( "datepicker" ),
+						date = $.datepicker.parseDate(
+							instance.settings.dateFormat ||
+							$.datepicker._defaults.dateFormat,
+							selectedDate, instance.settings );
+					dates.not( this ).datepicker( "option", option, date );
+				}
+			});
+		}
 		
 		/* 选择司机责任人*/
 		//需要组装的li
@@ -113,6 +128,51 @@ bc.contractChargerForm = {
 		
 	},
 	
+	/** 维护处理 */
+	doMaintenance : function($page) {
+		var $page = $(this);
+		// 关闭当前窗口
+		$page.dialog("close");
+		
+		// 重新打开可编辑表单
+		bc.page.newWin({
+			name: "维护" + $page.find(":input[name='e.ext_str1']").val() + "的经济合同",
+			mid: "contract4Charger" + $page.find(":input[name='e.id']").val(),
+			url: bc.root + "/bc-business/contract4Charger/edit",
+			data: {id: $page.find(":input[name='e.id']").val()}
+		});
+	},
+	
+	/** 续签处理 */
+	doRenew : function($page) {
+		var $page = $(this);
+		// 让用户输入新的合同期限
+		bc.page.newWin({
+			name:"经济合同续约",
+			mid: "renewContract4Charger",
+			url: bc.root + "/bc/common/selectDateRange",
+			data: {startDate: $page.find(":input[name='e.endDate']").val(),title:"请输入新的续约期限"},
+			afterClose: function(status){
+				logger.info("status=" + $.toJSON(status));
+				if(!status) return;
+				
+				//执行续签处理
+				bc.ajax({
+					url: bc.root + "/bc-business/contract4ChargerOperate/doRenew",
+					dataType: "json",
+					data: {newStartDate: status.startDate,newEndDate: status.endDate,id: $page.find(":input[name='e.id']").val()},
+					success: function(json){
+						logger.info("doRenew result=" + $.toJSON(json));
+						//完成后提示用户
+						bc.msg.info(json.msg);
+						$page.data("data-status","saved");
+						$page.dialog("close");
+					}
+				});
+			}
+		});
+	},
+	
 	//保存的处理
 	save:function(){
 		$page = $(this);
@@ -121,16 +181,17 @@ bc.contractChargerForm = {
 		var names=[];
 		$page.find("#assignChargers li").each(function(){
 			ids.push($(this).attr("data-id"));
-			names.push($(this).text());
+			names.push($(this).find(".text").text());
 		});
 		if(names != null && names.length > 0){
 			$page.find(":input[name=assignChargerIds]").val(ids.join(","));
 			$page.find(":input[name=assignChargerNames]").val(names.join(","));
+			alert($page.find(":input[name=assignChargerIds]").val());
+			alert($page.find(":input[name=assignChargerNames]").val());
 		}else{
 			bc.msg.slide("最少选择一个责任人！");
 			return false;
 		}
-		
 		//调用标准的方法执行保存
 		bc.page.save.call(this);
 	}
