@@ -9,6 +9,10 @@ bc.contract4LabourForm = {
 		//只读状态就不需要执行其它初始化，直接返回
 		if(readonly) return;
 		
+		if($page.find(":input[name='isExistContract']").val()=="true"){
+			bc.msg.alert("所选司机已配置了相应的劳动合同，不能重复配置，建议您编辑原来的劳动合同！");
+		};
+		
 		//预加载一个司机关联多台车的对话框选择
 		if($page.find(":input[name='isMoreCar']").val()=="true"){
 			var driverId=$page.find(":input[name='driverId']").val();
@@ -127,20 +131,22 @@ bc.contract4LabourForm = {
 		});
 		
 		//签约期限日期控件设置日期范围
-		var startDates = $page.find(':input[name^="e.startDate"], :input[name^="e.endDate"]').datepicker({
-			changeYear : true,
-			firstDay : 7,
-			dateFormat : "yy-mm-dd",// yy4位年份、MM-大写的月份
-			onSelect: function( selectedDate ) {
-				var option = this.name == "e.startDate" ? "minDate" : "maxDate",
-					instance = $( this ).data( "datepicker" ),
-					date = $.datepicker.parseDate(
-						instance.settings.dateFormat ||
-						$.datepicker._defaults.dateFormat,
-						selectedDate, instance.settings );
-				startDates.not( this ).datepicker( "option", option, date );
-			}
-		});
+		if($page.find(":input[name='e.id']").val().length <= 0){ //只能在新建时可以选择开始日期和结束日期
+			var startDates = $page.find(':input[name^="e.startDate"], :input[name^="e.endDate"]').datepicker({
+				changeYear : true,
+				firstDay : 7,
+				dateFormat : "yy-mm-dd",// yy4位年份、MM-大写的月份
+				onSelect: function( selectedDate ) {
+					var option = this.name == "e.startDate" ? "minDate" : "maxDate",
+						instance = $( this ).data( "datepicker" ),
+						date = $.datepicker.parseDate(
+							instance.settings.dateFormat ||
+							$.datepicker._defaults.dateFormat,
+							selectedDate, instance.settings );
+					startDates.not( this ).datepicker( "option", option, date );
+				}
+			});
+		}
 
 		///申领期限日期控件设置日期范围
 		var getDates = $page.find(':input[name^="e.getStartDate"], :input[name^="e.getEndDate"]').datepicker({
@@ -166,19 +172,20 @@ bc.contract4LabourForm = {
 	selectMenuButtonItem : function(option) {
 		logger.info("selectMenuButtonItem:option=" + $.toJSON(option));
 		// option.value的值参考 Contract.OPTYPE_XXX 常数的定义
-		if(option.value == "4"){//续约 renew
-			bc.contract4LabourForm.doRenew($(this));
-		}else if(option.value == "5"){//离职 resign
-			bc.contract4LabourForm.doResign($(this));
-		}else if(option.value == "3"){//转车 transfer
-			bc.contract4LabourForm.doChangeCar($(this));
-		}else if(option.value == "2"){//维护 maintenance
-			bc.contract4LabourForm.doMaintenance($(this));
+		if(option.id == "4"){//续约 renew
+			bc.contract4LabourForm.doRenew.call(this);
+		}else if(option.id == "5"){//离职 resign
+			bc.contract4LabourForm.doResign.call(this);
+		}else if(option.id == "3"){//转车 transfer
+			bc.contract4LabourForm.doChangeCar.call(this);
+		}else if(option.id == "2"){//维护 maintenance
+			bc.contract4LabourForm.doMaintenance.call(this);
 		}
 	},
 	
 	/** 维护处理 */
 	doMaintenance : function($page) {
+		var $page = $(this);
 		// 关闭当前窗口
 		$page.dialog("close");
 		
@@ -193,6 +200,7 @@ bc.contract4LabourForm = {
 	
 	/** 续签处理 */
 	doRenew : function($page) {
+		var $page = $(this);
 		// 让用户输入新的合同期限
 		bc.page.newWin({
 			name:"劳动合同续约",
@@ -222,6 +230,7 @@ bc.contract4LabourForm = {
 	
 	/** 离职处理 */
 	doResign : function($page) {
+		var $page = $(this);
 		// 让用户输入离职日期，默认为当前时间
 		bc.page.newWin({
 			name:"劳动合同离职处理",
@@ -251,6 +260,7 @@ bc.contract4LabourForm = {
 	
 	/** 转车处理 */
 	doChangeCar : function($page) {
+		var $page = $(this);
 		// 让用户选择新的车辆
 		bs.selectCar({
 			title: "请为司机劳动合同选择新的车辆",
@@ -265,7 +275,9 @@ bc.contract4LabourForm = {
 				bc.ajax({
 					url: bc.root + "/bc-business/contract4LabourOperate/doChangeCar",
 					dataType: "json",
-					data: {newCarId: car.id,id: $page.find(":input[name='e.id']").val()},
+					data: {newCarId: car.id,
+						   newCarPlate: car.plate,
+						   id: $page.find(":input[name='e.id']").val()},
 					success: function(json){
 						logger.info("doChangeCar result=" + $.toJSON(json));
 						//完成后提示用户
