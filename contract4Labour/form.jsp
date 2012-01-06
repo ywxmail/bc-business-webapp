@@ -18,7 +18,7 @@
 							<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contract4Labours/list?contractId=%{(e.pid != null)?e.pid:0}&patchNo=%{e.patchNo}"/>' class="ui-state-default">历史版本</a></li>
 						</s:if>
 						<s:if test="!e.isNew()">
-							<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/injurys/list?contractId=%{e.id}" />' class="ui-state-default">工伤</a></li>
+							<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/injury/list?contractId=%{e.id}" />' class="ui-state-default">工伤</a></li>
 						</s:if>
 					</ul>
 				</div>
@@ -49,32 +49,22 @@
 												<td class="value"><s:textfield name="e.code" data-validate="required" readonly="true" cssClass="ui-widget-content" /></td>
 												<td class="label">*<s:text name="contract.deadline"/>:</td>
 												<td class="value">
-												<s:if test="e.isNew()">
-													<div style="position : relative; display: inline-block">
-														&nbsp;从<input type="text" name="e.startDate" readonly="readonly" data-validate='{"type":"date","required":true}' 
-															value='<s:date format="yyyy-MM-dd" name="e.startDate" />' 
-															style="width: 7em;" class="bc-date ui-widget-content" />
-															<ul class="inputIcons" style="right : 0px;">
-																<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.startDate' ></li>
-															</ul>
-													</div>
-													<div style="position : relative; display: inline-block">
-														&nbsp;到<input type="text" name="e.endDate" readonly="readonly" data-validate='{"type":"date","required":true}'
-															value='<s:date format="yyyy-MM-dd" name="e.endDate" />'
-															style="width: 7em;" class="bc-date ui-widget-content" />
-															<ul class="inputIcons" style="right : 0px;">
-																<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.endDate' ></li>
-															</ul>
-													</div>
-												</s:if>
-												<s:else>
+												<div style="position : relative; display: inline-block">
 													&nbsp;从<input type="text" name="e.startDate" readonly="readonly" data-validate='{"type":"date","required":true}' 
-															value='<s:date format="yyyy-MM-dd" name="e.startDate" />' 
-															style="width: 7em;" class="ui-widget-content" />
+														value='<s:date format="yyyy-MM-dd" name="e.startDate" />' 
+														style="width: 7em;" class="bc-date ui-widget-content" />
+														<ul class="inputIcons" style="right : 0px;">
+															<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.startDate' ></li>
+														</ul>
+												</div>
+												<div style="position : relative; display: inline-block">
 													&nbsp;到<input type="text" name="e.endDate" readonly="readonly" data-validate='{"type":"date","required":true}'
-															value='<s:date format="yyyy-MM-dd" name="e.endDate" />'
-															style="width: 7em;" class="ui-widget-content" />
-												</s:else>
+														value='<s:date format="yyyy-MM-dd" name="e.endDate" />'
+														style="width: 7em;" class="bc-date ui-widget-content" />
+														<ul class="inputIcons" style="right : 0px;">
+															<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.endDate' ></li>
+														</ul>
+												</div>
 												</td>
 											</tr>
 								        </table>
@@ -101,12 +91,10 @@
 												</td>
 												 -->
 												 <td class="value relative">
-												 <s:textfield name="e.ext_str1" data-validate="required" readonly="true" cssClass="ui-widget-content" />
-												 <s:if test="e.isNew()">
+												 	<s:textfield name="e.ext_str1" data-validate="required" readonly="true" cssClass="ui-widget-content " />
 												 	<ul class="inputIcons">
 												 		<li class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="contract.title.click2selectCar"/>' id="selectCarPlate">
 												 	</ul>
-												 </s:if>
 												 </td>
 												<td class="label"><s:text name="contract4Labour.registerDate"/>:</td>
 												<td class="value" style="position:relative;display: block;">
@@ -122,12 +110,15 @@
 												<td class="label">*<s:text name="contract4Labour.driver"/>:</td>
 												<td class="value">
 													<div style="position:relative;display: inline-block">
-													 	<s:textfield name="e.ext_str2" data-validate="required" readonly="true" cssStyle="width:6.5em;" cssClass="ui-widget-content " />
 													    <s:if test="e.isNew()">
+													 		<s:textfield name="e.ext_str2" data-validate="required" readonly="true" cssStyle="width:6.5em;" cssClass="ui-widget-content " />
 															<ul class="inputIcons">
 														 		<li class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="contract.title.click2selectCarMan"/>' id="selectDriverName">
 														 	</ul>
 													 	</s:if>
+													 	<s:else>
+													 		<s:textfield name="e.ext_str2" data-validate="required" readonly="true" cssStyle="width:6.5em;" cssClass="ui-widget-content " />
+													 	</s:else>
 													 </div>
 													<s:text name="contract4Labour.certNo"/>&nbsp;<s:textfield name="e.certNo" data-validate="required" cssStyle="width:6em;" cssClass="ui-widget-content" />
 												</td>
@@ -321,9 +312,9 @@
 							<tr>
 								<td class="label" colspan="4">
 									<div class="formTopInfo">
-										状态：<s:property value="%{statusesValue[e.status]}" />
+										状态：<s:property value="%{statusesValue[e.status]}" />，
 										<s:if test="%{e.author.name != null}">
-										，登记：<s:property value="e.author.name" />(<s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>)
+										登记：<s:property value="e.author.name" />(<s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>)
 										</s:if>
 										<s:if test="%{e.modifier != null}">
 										，最后修改：<s:property value="e.modifier.name" />(<s:date name="e.modifiedDate" format="yyyy-MM-dd HH:mm:ss"/>)
@@ -364,7 +355,6 @@
 		<s:hidden name="isMoreCarMan"/>
 		<s:hidden name="isNullCar"/>
 		<s:hidden name="isNullCarMan"/>
-		<s:hidden name="isExistContract"/>
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 	</s:form>
 </div>
