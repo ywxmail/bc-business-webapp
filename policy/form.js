@@ -1,22 +1,11 @@
 if(!window['bs'])window['bs']={};
 bc.policyForm = {
-	init : function(option,readonly,page) {
-		var $form;
-		if(page == null){
-			$form = $(this);
-		}else{
-			$form = page;
-		}
+	init : function(option,readonly) {
+		var $form=$(this);
 		/* 初始化多页签*/
 		$form.find('#formTabs').bctabs(bc.page.defaultBcTabsOption);
-		if(readonly){
-			$form.parent().find('#bcSaveBtn').hide();
-			return;
-		}else{
-			//$form.parent().find('#bcOpBtn').hide();
-			//$form.parent().find('#bcSaveBtn').show();
-		}
-		//if(readonly) return;
+		//只读状态就不需要执行其它初始化，直接返回
+		if(readonly) return;
 		//是否购买强制险
 		$form.find(":checkbox[name='e.greenslip']").change(function() {
 			if(this.checked){
@@ -119,6 +108,7 @@ bc.policyForm = {
 			
 		});
 		
+		
 	},
 	/**保存的处理*/
 	save:function(){
@@ -143,66 +133,68 @@ bc.policyForm = {
 		//调用标准的方法执行保存
 		bc.page.save.call(this);
 	},
-	
-	
-	/**
-	 * 上下文为按钮所在窗口，第一个参数为选中的项({text:[text]},value:[value])
-	 * 
-	 */
-	selectMenuButtonItem : function(option) {
-		//logger.info("selectMenuButtonItem:option=" + $.toJSON(option));
-		
+	/** 续保处理 */
+	doRenew : function() {
 		var $page = $(this);
-		//可编辑表单的处理
-		$page.find(":input:visible").each(function(){
-			logger.debug("disabled:" + this.name);
-			this.disabled=false;
-		});
-		$page.find("ul.inputIcons,span.selectButton").each(function(){
-			$(this).show();
-		});
-
-		switch(option.value){
-			case "2":	//维护
-				bc.policyForm.setData(2,$page,false);
-				break;
-			case "3":	//续保
-				bc.policyForm.setData(3,$page,true);
-				break;
-			case "4":	//停保
-				bc.msg.confirm("确定此车停保吗？",function(){
-					$page.find(":input[name='e.status']").val("1");
-					$page.find(":input[name='e.opType']").val("4");
+		bc.msg.confirm("是否对"+$page.find("#carInfo").text() + "进行续保？",function(){
+			// 关闭当前窗口
+			$page.dialog("close");
+			// 续保表单
+			bc.page.newWin({
+				name: $page.find("#carInfo").text()+"  续保",
+				mid: "policyDoRenew" + $page.find(":input[name='e.id']").val(),
+				url: bc.root + "/bc-business/policy4CarOperate/doRenew",
+				data: {id: $page.find(":input[name='e.id']").val()},
+				afterClose: function(status){
 					$page.data("data-status","saved");
-					var option = { callback : function (){
-							$page.dialog("close");
-						}
-					};
-					//调用标准的方法执行保存
-					bc.page.save.call($page,option);
+				}
+			});
+		});
+	},
+	/** 停保处理 */
+	doSurrender : function() {
+		var $page = $(this);
+		// 让用户输入离职日期，默认为当前时间
+		bc.page.newWin({
+			name:"车辆停保处理",
+			mid: "surrenderPolicy4CarOperate",
+			url: bc.root + "/bc/common/selectDate",
+			data: {title:"请输入停保日期"},
+			afterClose: function(data){
+				logger.info("data=" + $.toJSON(data));
+				if(!data) return;
+				//执行离职处理
+				bc.ajax({
+					url: bc.root + "/bc-business/policy4CarOperate/doSurrender",
+					dataType: "json",
+					data: {surrenderDate: data,id: $page.find(":input[name='e.id']").val()},
+					success: function(json){
+						//完成后提示用户
+						bc.msg.info(json.msg);
+						$page.dialog("close");
+					}
 				});
-				break;
-		}
+			}
+		});
+	},
+
+	/** 维护处理 */
+	doMaintenance : function() {
+		var $page = $(this);
+		bc.msg.confirm("是否对"+$page.find("#carInfo").text() + "的保单进行维护？",function(){
+			// 关闭当前窗口
+			$page.dialog("close");
+			// 重新打开可编辑表单
+			bc.page.newWin({
+				name: "维护" + $page.find("#carInfo").text() + "的保单",
+				mid: "policy" + $page.find(":input[name='e.id']").val(),
+				url: bc.root + "/bc-business/policy/edit",
+				data: {id: $page.find(":input[name='e.id']").val()}
+			});
+		});
 
 	},
-	
-	//维护,续保处理
-	setData : function (opType,context,flag){
-		var $page = context;
-		bc.policyForm.init(null,false,$page);
-		//续保时，对pid的操作
-		if(flag){
-			var eId = $page.find(":input[name='e.id']").val();
-			if(eId.length > 0){
-				$page.find(":input[name='e.pid']").val(eId);
-			}
-			//清空id,uid新增一份续保操作类型的合同
-			$page.find(":input[name='e.id']").val('');
-			$page.find(":input[name='e.uid']").val('');
-		}
-		$page.find(":input[name='e.opType']").val(opType);
-		$page.parent().find('#bcSaveBtn').show();
-		$page.parent().find('#bcOpBtn').hide();
-	}
+
+
 		
 };

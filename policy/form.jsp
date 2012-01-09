@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<div title='<s:text name="policy.title"/>-v<s:property value="e.verMajor"/>' data-type='form' class="bc-page"
+<div title='<s:property value="%{e.car.plateType+'.'+e.car.plateNo }" /> <s:text name="policy.title"/>-v<s:property value="e.verMajor"/>.<s:property value="e.verMinor"/>' data-type='form' class="bc-page"
 	data-saveUrl='<s:url value="/bc-business/policy/save" />'
 	data-js='<s:url value="/bc-business/policy/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js" />,<s:url value="/ui-libs/xheditor/1.1.7/xheditor-zh-cn.min.js?ts=0" />'
 	data-initMethod='bc.policyForm.init'
@@ -54,7 +54,7 @@
 					                              value='<s:date format="yyyy-MM-dd" name="e.registerDate" />'/>
 					                              <span class="selectButton verticalMiddle ui-icon ui-icon-calendar"></span>
 				                                 </td>
-				                                 <s:if test="%{e.status==1}">
+				                                 <s:if test="%{e.status==2}">
 											     <td class="label"><s:text name="policy.stopDate"/>:</td>
 						                         <td class="value" style="position:relative;display: block;"><input type="text" name="e.stopDate" 
 						                          data-validate='{required:false,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
@@ -258,8 +258,10 @@
 		<s:hidden name="e.patchNo"/>
 		<s:hidden name="e.opType"/>
 		<s:hidden name="e.verMajor"/>
+		<s:hidden name="e.verMinor"/>
 		<s:hidden name="e.pid"/>
 		<s:hidden name="buyPlants"/>
+		<s:hidden name="e.stopDate"/>
 		
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 	</s:form>
