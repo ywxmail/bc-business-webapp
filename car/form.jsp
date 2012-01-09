@@ -79,7 +79,7 @@
 							<tr>
 								<td class="label" >*<s:text name="car.registerDate"/>:</td>
 								<td class="value relative">
-									<input type="text" name="e.registerDate" data-validate='{"type":"date"}'
+									<input type="text" name="e.registerDate" data-validate='{"type":"date","required":true}'
 									value='<s:date format="yyyy-MM-dd" name="e.registerDate" />'
 									class="bc-date ui-widget-content" data-cfg='{changeYear:true}' />
 									<ul class="inputIcons">
@@ -94,7 +94,7 @@
 							<tr>
 								<td class="label" >*<s:text name="car.operateDate"/>:</td>
 								<td class="value relative" >
-									<input type="text" name="e.operateDate" data-validate='{"type":"date"}'
+									<input type="text" name="e.operateDate" data-validate='{"type":"date","required":true}'
 									value='<s:date format="yyyy-MM-dd" name="e.operateDate" />'
 									class="bc-date ui-widget-content"  data-cfg='{changeYear:true}'/>
 									<ul class="inputIcons">
@@ -107,7 +107,7 @@
 							<tr>
 								<td class="label" >*<s:text name="car.factoryDate"/>:</td>
 								<td class="value relative" >
-									<input type="text" name="e.factoryDate" data-validate='{"type":"date"}'
+									<input type="text" name="e.factoryDate" data-validate='{"type":"date","required":true}'
 									value='<s:date format="yyyy-MM-dd" name="e.factoryDate" />'
 									class="bc-date ui-widget-content"  data-cfg='{changeYear:true}'/>
 									<ul class="inputIcons">
@@ -120,7 +120,7 @@
 							<tr>
 								<td class="label" >*<s:text name="car.scrapDate"/>:</td>
 								<td class="value relative" >
-									<input type="text" name="e.scrapDate" data-validate='{"type":"date"}'
+									<input type="text" name="e.scrapDate" data-validate='{"type":"date","required":true}'
 									value='<s:date format="yyyy-MM-dd" name="e.scrapDate" />'
 									class="bc-date ui-widget-content"  data-cfg='{changeYear:true}'/>
 									<ul class="inputIcons">
