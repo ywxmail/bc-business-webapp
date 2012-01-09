@@ -179,16 +179,19 @@ bc.contract4LabourForm = {
 	
 	/** 维护处理 */
 	doMaintenance : function($page) {
+		var $page = $(this);
 		// 关闭当前窗口
-		$page.dialog("close");
-		
-		// 重新打开可编辑表单
-		bc.page.newWin({
-			name: "维护" + $page.find(":input[name='e.ext_str2']").val() + "的劳动合同",
-			mid: "contract4Labour" + $page.find(":input[name='e.id']").val(),
-			url: bc.root + "/bc-business/contract4Labour/edit",
-			data: {id: $page.find(":input[name='e.id']").val()}
+		bc.msg.confirm("确定维护此合同？",function(){
+			$page.dialog("close");
+			// 重新打开可编辑表单
+			bc.page.newWin({
+				name: "维护" + $page.find(":input[name='e.ext_str2']").val() + "的劳动合同",
+				mid: "contract4Labour" + $page.find(":input[name='e.id']").val(),
+				url: bc.root + "/bc-business/contract4Labour/edit",
+				data: {id: $page.find(":input[name='e.id']").val()}
+			});
 		});
+		
 	},
 	
 	/** 续签处理 */

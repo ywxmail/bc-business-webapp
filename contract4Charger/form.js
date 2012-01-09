@@ -128,19 +128,40 @@ bc.contract4ChargerForm = {
 		
 	},
 	
+	/**
+	 * 操作按钮的回调函数
+	 * 
+	 */
+	selectMenuButtonItem : function(option) {
+		logger.info("selectMenuButtonItem:option=" + $.toJSON(option));
+		// option.value的值参考 Contract.OPTYPE_XXX 常数的定义
+		if(option.value == "4"){//续约 renew
+			bc.contract4LabourForm.doRenew($(this));
+		}else if(option.value == "5"){//离职 resign
+			bc.contract4LabourForm.doResign($(this));
+		}else if(option.value == "3"){//转车 transfer
+			bc.contract4LabourForm.doChangeCar($(this));
+		}else if(option.value == "2"){//维护 maintenance
+			bc.contract4LabourForm.doMaintenance($(this));
+		}
+	},
+	
 	/** 维护处理 */
 	doMaintenance : function($page) {
 		var $page = $(this);
 		// 关闭当前窗口
-		$page.dialog("close");
-		
-		// 重新打开可编辑表单
-		bc.page.newWin({
-			name: "维护" + $page.find(":input[name='e.ext_str1']").val() + "的经济合同",
-			mid: "contract4Charger" + $page.find(":input[name='e.id']").val(),
-			url: bc.root + "/bc-business/contract4Charger/edit",
-			data: {id: $page.find(":input[name='e.id']").val()}
+		bc.msg.confirm("确定维护此合同？",function(){
+			$page.dialog("close");
+			// 重新打开可编辑表单
+			bc.page.newWin({
+				name: "维护" + $page.find(":input[name='e.ext_str1']").val() + "的经济合同",
+				mid: "contract4Charger" + $page.find(":input[name='e.id']").val(),
+				url: bc.root + "/bc-business/contract4Charger/edit",
+				data: {id: $page.find(":input[name='e.id']").val()}
+			});
 		});
+		
+
 	},
 	
 	/** 续签处理 */
