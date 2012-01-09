@@ -19,7 +19,7 @@
 						</tr>
 						<tr>
 							<td class="label">*<s:text name="cert.carMan" /><s:text name="cert.name"/>:</td>
-							<td class="value" style="width: 17em;">
+							<td class="value">
 								<s:if test="!e.isNew()">
 									<s:textfield name="e.name" data-validate="required" cssStyle="max-width: 10em;" disabled="true" cssClass="ui-widget-content " readonly="true"/>
 								</s:if>
@@ -57,7 +57,7 @@
 						<tr>
 							<td class="label"><s:text name="cert.address"/>:</td>
 							<td class="value" colspan="3">
-								<s:textfield name="e.address" cssStyle="width:46em;" cssClass="ui-widget-content"/>
+								<s:textfield name="e.address" cssClass="ui-widget-content"/>
 							</td>
 						</tr>
 					</tbody>
@@ -75,7 +75,7 @@
 						</tr>
 						<tr>
 							<td class="label">*<s:text name="cert.licencer"/>:</td>
-							<td class="value" style="width: 17em;">
+							<td class="value">
 								<s:textfield name="e.licencer" data-validate="required" cssClass="ui-widget-content"/>
 							</td>
 							<td class="label">*<s:text name="cert.effectiveDate"/>:</td>

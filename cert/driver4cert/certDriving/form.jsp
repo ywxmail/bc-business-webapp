@@ -6,8 +6,7 @@
 	data-initMethod='bc.certDrivingForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="certDrivingForm" theme="simple">
-		<div class="formFields ui-widget-content"  style="width:750px;">
-			<fieldset style="width: 700px">
+			<fieldset style="width: 690px">
 				<legend>正页</legend>
 				<table class="formFields" cellspacing="2" cellpadding="0">
 					<tbody>
@@ -99,7 +98,7 @@
 					</tbody>
 				</table>
 			</fieldset>
-			<fieldset style="width: 700px">
+			<fieldset style="width: 690px">
 				<legend>副面</legend>
 				<table class="formFields" cellspacing="2" cellpadding="0">
 					<tbody>
@@ -110,29 +109,20 @@
 							</td>
 						</tr>
 						<tr>
-							<td class="label" style="text-align: left">
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<s:text name="cert.record"/>:
+							<td class="topLabel">
+								<s:text name="cert.record"/>:
 							</td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td class="value" colspan="4" style="text-align: right">
+							<td class="value" colspan="3">
 								<s:textarea name="e.record" cssStyle="width:46em;" cssClass="ui-widget-content"/>
 							</td>
-							<td></td>
-							<td></td>
-							<td></td>
 						</tr>
 					</tbody>
 				</table>
 			</fieldset>
-			<fieldset style="width: 700px">
+			<fieldset style="width: 690px">
 				<legend>复印件</legend>
 				<s:property value="%{attachsUI}" escapeHtml="false" />
 			</fieldset>
-		</div>
 		<table class="formFields" cellspacing="2" cellpadding="0">
 			<tbody>
 				<tr>

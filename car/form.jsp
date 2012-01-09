@@ -171,7 +171,7 @@
 									<td class="label" ><s:text name="car.certNo3"/>:</td>
 									<td class="value" ><s:textfield name="e.certNo3"  cssClass="ui-widget-content"/></td>
 									<td class="label" ><s:text name="car.originalValue"/>:</td>
-									<td class="value" ><s:textfield name="e.originalValue" data-validate='{"type":"number"}' cssClass="ui-widget-content"/></td>
+									<td class="value" ><s:textfield name="e.originalValue" value="%{getText('bs.format.number',{e.originalValue})}" data-validate='{"type":"number"}' cssClass="ui-widget-content"/></td>
 								</tr>
 							</tbody>
 						</table>
@@ -204,7 +204,7 @@
 								</tr>
 								<tr>
 									<td class="label" ><s:text name="car.displacement"/>/<s:text name="car.power"/>:</td>
-									<td class="value" ><s:textfield name="e.displacement" data-validate='{"type" : "digits"}'  cssStyle="width:5em;" cssClass="ui-widget-content"/>&nbsp;ml&nbsp;&nbsp;<s:textfield name="e.power" data-validate='{"type" : "number"}' cssStyle="width:5em;" cssClass="ui-widget-content"/>&nbsp;kw</td>
+									<td class="value" ><s:textfield name="e.displacement" data-validate='{"type" : "digits"}'  cssStyle="width:5em;" cssClass="ui-widget-content"/>&nbsp;ml&nbsp;&nbsp;<s:textfield name="e.power" value="%{getText('bs.format.number',{e.power})}" data-validate='{"type" : "number"}' cssStyle="width:5em;" cssClass="ui-widget-content"/>&nbsp;kw</td>
 									<td class="label"  >
 										<s:text name="car.dim" />:
 									</td>
