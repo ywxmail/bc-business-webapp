@@ -21,7 +21,7 @@
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="runcase.address"/>:</td>
-						<td class="value "><s:textfield name="e.address"  cssClass="ui-widget-content"/></td>
+						<td class="value "><s:textfield name="e.address" data-validate="required" cssClass="ui-widget-content"/></td>
 						<td class="label">*<s:text name="runcase.caseNo1"/>:</td>
 						<td class="value "><s:textfield name="e.caseNo" data-validate="required" cssClass="ui-widget-content"/></td>
 					</tr>
