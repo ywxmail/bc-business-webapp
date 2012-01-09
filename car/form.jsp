@@ -128,7 +128,7 @@
 									</ul>
 								</td>
 								<td class="label" ><s:text name="car.unit"/>:</td>
-								<td class="value" ><s:textfield name="e.oldUnitName" cssClass="ui-widget-content"/></td>
+								<td class="value" ><s:textfield name="e.oldUnitName" readonly="true" cssClass="ui-widget-content"/></td>
 							</tr>					
 							<tr>
 								<td class="label" colspan="4">
