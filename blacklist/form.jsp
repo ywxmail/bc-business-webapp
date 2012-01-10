@@ -31,7 +31,7 @@
 					<s:if test="%{carManId != null}">
 						<td class="value"><s:textfield name="e.driver.name" readonly="true"  data-validate="required" cssClass="ui-widget-content ui-state-disabled" /></td>
 					</s:if><s:else>
-					    <td class="value"><s:textfield name="e.driver.name"  id="driverName" data-validate="required" cssClass="ui-widget-content ui-state-disabled" /></td>
+					    <td class="value"><s:textfield name="e.driver.name"  id="driverName" readonly="true" data-validate="required" cssClass="ui-widget-content ui-state-disabled" /></td>
 					</s:else>
 						<td class="label"><s:text name="blacklist.code"/>:</td>
 						<td class="value"><s:textfield name="e.code" cssClass="ui-widget-content"/></td>
