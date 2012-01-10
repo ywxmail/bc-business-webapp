@@ -38,8 +38,8 @@
 											<td class="label">*<s:text name="runcase.receiveDate4"/>:</td>
 											<td class="value" style="position:relative;display: block;">
 												<input type="text" name="e.receiveDate" data-validate='{"type":"datetime","required":true}'
-												value='<s:date format="yyyy-MM-dd HH:mm" name="e.receiveDate" />'
-												class="bc-datetime ui-widget-content" data-cfg='{changeYear:true}'/>
+												value='<s:date format="yyyy-MM-dd hh:mm:ss" name="e.receiveDate" />'
+												class="bc-datetime ui-widget-content" data-cfg='{changeYear:true,showSecond:true,timeFormat:"hh:mm:ss"}'/>
 												<ul class="inputIcons">
 													<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.receiveDate'></li>
 												</ul>
@@ -56,8 +56,8 @@
 											<td class="label">*<s:text name="runcase.happenDate"/>:</td>
 											<td class="value" style="position:relative;display: block;">
 												<input type="text" name="e.happenDate" data-validate='{"type":"datetime","required":true}'
-												value='<s:date format="yyyy-MM-dd HH:mm" name="e.happenDate" />'
-												class="bc-datetime ui-widget-content" data-cfg='{changeYear:true}'/>
+												value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.happenDate" />'
+												class="bc-datetime ui-widget-content" data-cfg='{changeYear:true,showSecond:true,timeFormat:"hh:mm:ss"}'/>
 												<ul class="inputIcons">
 													<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.happenDate'></li>
 												</ul>
@@ -68,7 +68,7 @@
 											<td class="value"><s:textfield name="e.subject2" cssClass="ui-widget-content"/></td>
 							    			<td class="label" ><s:text name="runcase.source"/>:</td>
 											<td class="value" >
-												<s:textfield name="e.from" cssClass="ui-widget-content" />
+												<s:textfield name="e.from" cssClass="ui-widget-content" cssStyle="width: 15em" />(<s:property value="sourceStr"/>)
 											</td>
 										</tr>
 										<tr>
@@ -190,23 +190,23 @@
 											<td>&nbsp;</td>
 										</tr>
 					          			<tr>
-											<td class="label"><s:text name="runcase.ticket"/>:</td>
-											<td class="value"><s:textfield name="e.ticket" cssClass="ui-widget-content"/></td>
+					          				<td class="label"><s:text name="runcase.driverCert"/>:</td>
+											<td class="value"><s:textfield name="e.driverCert" cssClass="ui-widget-content"/></td>
 											<td class="label"><s:text name="runcase.driverFeature"/>:</td>
 											<td class="value"><s:textfield name="e.driverFeature" cssClass="ui-widget-content"/></td>
 										</tr>
 										<tr>
 											<td class="label"><s:text name="runcase.machinePrice"/>:</td>
 											<td class="value"><s:textfield name="e.machinePrice" value="%{getText('bs.format.number',{e.machinePrice})}" cssClass="ui-widget-content"/></td>
-											<td class="label"><s:text name="runcase.driverCert"/>:</td>
-											<td class="value"><s:textfield name="e.driverCert" cssClass="ui-widget-content"/></td>
+											<td class="label"><s:text name="runcase.ticket"/>:</td>
+											<td class="value"><s:textfield name="e.ticket" cssClass="ui-widget-content"/></td>
 										</tr>
 										<tr>
 											<td class="label"><s:text name="runcase.ridingStartTime"/>:</td>
 											<td class="value" style="position:relative;display: block;">
 												<input type="text" name="e.ridingStartTime" data-validate='{"type":"datetime"}'
-												value='<s:date format="yyyy-MM-dd HH:mm" name="e.ridingStartTime" />'
-												class="bc-datetime ui-widget-content" data-cfg='{changeYear:true}'/>
+												value='<s:date format="yyyy-MM-dd hh:mm:ss" name="e.ridingStartTime" />'
+												class="bc-datetime ui-widget-content" data-cfg='{changeYear:true,showSecond:true,timeFormat:"hh:mm:ss"}'/>
 												<ul class="inputIcons">
 													<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.ridingStartTime'></li>
 												</ul>
@@ -214,8 +214,8 @@
 											<td class="label"><s:text name="runcase.ridingEndTime"/>:</td>
 											<td class="value" style="position:relative;display: block;">
 												<input type="text" name="e.ridingEndTime" data-validate='{"type":"datetime"}'
-												value='<s:date format="yyyy-MM-dd HH:mm" name="e.ridingEndTime" />'
-												class="bc-datetime ui-widget-content" data-cfg='{changeYear:true}'/>
+												value='<s:date format="yyyy-MM-dd hh:mm:ss" name="e.ridingEndTime" />'
+												class="bc-datetime ui-widget-content" data-cfg='{changeYear:true,showSecond:true,timeFormat:"hh:mm:ss"}'/>
 												<ul class="inputIcons">
 													<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.ridingEndTime'></li>
 												</ul>

@@ -33,9 +33,11 @@
 						<td class="label">*<s:text name="runcase.happenDate"/>:</td>
 						<td class="value" style="position:relative;display: block;">
 							<input type="text" name="e.happenDate" data-validate='{"type":"datetime","required":true}'
-							value='<s:date format="yyyy-MM-dd HH:mm" name="e.happenDate" />'
-							class="bc-datetime ui-widget-content" data-cfg='{changeYear:true}'/>
-							<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectHappenDate"></span>
+							value='<s:date format="yyyy-MM-dd hh:mm:ss" name="e.happenDate" />'
+							class="bc-datetime ui-widget-content" data-cfg='{changeYear:true,showSecond:true,timeFormat:"hh:mm:ss"}'/>
+							<ul class="inputIcons">
+								<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.happenDate'></li>
+							</ul>
 						</td>
 					</tr>
 					<tr>
@@ -49,7 +51,9 @@
 							<input type="text" name="e.receiveDate" data-validate='{"type": "date"}'
 							value='<s:date format="yyyy-MM-dd" name="e.receiveDate" />'
 							class="bc-date ui-widget-content" data-cfg='{changeYear:true}'/>
-							<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectReceiveDate"></span>
+							<ul class="inputIcons">
+								<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.receiveDate'></li>
+							</ul>
 						</td>
 					</tr>
 					<tr>
@@ -94,7 +98,7 @@
 						</td>
 						<td class="label" ><s:text name="runcase.source"/>:</td>
 						<td class="value" >
-							<s:textfield name="e.from" list="sourcesValue" cssClass="ui-widget-content" />
+							<s:textfield name="e.from" cssClass="ui-widget-content" cssStyle="width: 15em" />(<s:property value="sourceStr"/>)
 						</td>
 					</tr>
 					<!--

@@ -355,6 +355,7 @@
 		<s:hidden name="isMoreCarMan"/>
 		<s:hidden name="isNullCar"/>
 		<s:hidden name="isNullCarMan"/>
+		<s:hidden name="isExistContract"/>
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 	</s:form>
 </div>

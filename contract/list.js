@@ -6,8 +6,8 @@ bc.contractList = {
 		if(option != null && option.extras.carId){
 			id = '?carId='+option.extras.carId;
 		}
-		if(option != null && option.extras.carManId){
-			id = '?driverId='+option.extras.carManId;
+		if(option != null && option.extras.driverId){
+			id = '?driverId='+option.extras.driverId;
 		}
 		bc.page.newWin({
 			url: bc.root + "/bc-business/contract/create",

@@ -33,8 +33,8 @@
 						<td class="label">*<s:text name="runcase.happenDate"/>:</td>
 						<td class="value" style="position:relative;display: block;">
 							<input type="text" name="e.happenDate" data-validate='{"type":"datetime","required":true}'
-							value='<s:date format="yyyy-MM-dd HH:mm" name="e.happenDate" />'
-							class="bc-datetime ui-widget-content" data-cfg='{changeYear:true}'/>
+							value='<s:date format="yyyy-MM-dd hh:mm:ss" name="e.happenDate" />'
+							class="bc-datetime ui-widget-content" data-cfg='{changeYear:true,showSecond:true,timeFormat:"hh:mm:ss"}'/>
 							<ul class="inputIcons">
 								<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.happenDate'></li>
 							</ul>
@@ -46,9 +46,9 @@
 							<s:textfield name="e.carPlate" data-validate="required" readonly="true" cssClass="ui-widget-content "/>
 							<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectCarPlate"></span>
 						</td>
-						<td class="label" ><s:text name="runcase.source"/>:</td>
+						<td class="label" ><s:text name="runcase.from"/>:</td>
 						<td class="value" >
-							<s:textfield name="e.from" cssClass="ui-widget-content" />
+							<s:textfield name="e.from" cssClass="ui-widget-content" cssStyle="width: 15em" />(<s:property value="sourceStr"/>)
 						</td>
 					</tr>
 					<tr>
@@ -172,7 +172,7 @@
 							">
 							<span style="position:relative;">
 								<input type="text" name="e.signDate" data-validate='{"type": "datetime"}'
-								value='<s:date format="yyyy-MM-dd HH:mm" name="e.signDate" />'
+								value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.signDate" />'
 								class="bc-datetime ui-widget-content" data-cfg='{changeYear:true}'/>
 								<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectDeliverDate"></span>
 							</span>
