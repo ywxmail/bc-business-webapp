@@ -46,8 +46,8 @@
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="carByDriver.classes"/>:</td>
-						<td class="value" ><s:select name="e.classes" list="#{0:'',1:'正班',2:'副班',3:'顶班'}" 
-							listKey="key" listValue="value" data-validate="required" cssClass="ui-widget-content"/></td>
+						<td class="value" ><s:select name="e.classes" list="#{'':'---请选择---',1:'正班',2:'副班',3:'顶班'}" 
+							listKey="key" listValue="value" data-validate="required" cssClass="ui-widget-content"></s:select></td>
 					</tr>
 					<!-- 
 					<tr>
