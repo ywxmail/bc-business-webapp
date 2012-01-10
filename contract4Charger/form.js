@@ -9,7 +9,7 @@ bc.contract4ChargerForm = {
 		if(readonly) return;
 		
 		if($form.find(":input[name='isExistContract']").val()=="true"){
-			bc.msg.alert("所选车辆已配置了相应的经济合同，不能重复配置，建议您编辑原来的经济合同！");
+			bc.msg.alert("所选车辆已配置了相应的经济合同，不能重复配置，请您编辑原来的经济合同！");
 		};
 		
 		/* 选择车辆车牌*/
@@ -21,7 +21,7 @@ bc.contract4ChargerForm = {
 					var url = bc.root + "/bc-business/contract4Charger/isExistContract?carId="+car.id;
 					$.ajax({url: url,dataType:"json",success: function (json){
 						if(json.isExistContract){
-							bc.msg.alert("所选车辆已配置了相应的经济合同，不能重复配置，建议您编辑原来的经济合同！");
+							bc.msg.alert("所选车辆已配置了相应的经济合同，不能重复配置，请您编辑原来的经济合同！");
 							$form.find(":input[name='e.ext_str1']").val('');
 							$form.find(":input[name='carId']").val('');
 						}else{

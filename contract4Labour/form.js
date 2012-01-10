@@ -9,6 +9,10 @@ bc.contract4LabourForm = {
 		//只读状态就不需要执行其它初始化，直接返回
 		if(readonly) return;
 		
+		if($page.find(":input[name='isExistContract']").val()=="true"){
+			bc.msg.alert("所选司机已配置了相应的劳动合同，不能重复配置，请您编辑原来的劳动合同！");
+		};
+		
 		//预加载一个司机关联多台车的对话框选择
 		if($page.find(":input[name='isMoreCar']").val()=="true"){
 			var driverId=$page.find(":input[name='driverId']").val();
@@ -66,7 +70,7 @@ bc.contract4LabourForm = {
 						var url = bc.root + "/bc-business/contract4Labour/isExistContract?driverId="+info.driver.id;
 						$.ajax({url: url,dataType:"json",success: function (json){
 							if(json.isExistContract){
-								bc.msg.alert("所选司机已配置了相应的劳动合同，不能重复配置，建议您编辑原来的劳动合同！");
+								bc.msg.alert("所选司机已配置了相应的劳动合同，不能重复配置，请您编辑原来的劳动合同！");
 								$page.find(":input[name='e.ext_str1']").val('');
 								$page.find(":input[name='carId']").val('');
 								$page.find(":input[name='e.registerDate']").val('');
@@ -183,7 +187,6 @@ bc.contract4LabourForm = {
 		// 关闭当前窗口
 		bc.msg.confirm("确定维护此合同？",function(){
 			$page.dialog("close");
-			alert($page.html());
 			// 重新打开可编辑表单
 			bc.page.newWin({
 				name: "维护" + $page.find(":input[name='e.ext_str2']").val() + "的劳动合同",

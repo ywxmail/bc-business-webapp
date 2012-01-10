@@ -38,8 +38,8 @@
 						<td class="label" >*<s:text name="runcase.happenDate"/>:</td>
 						<td class="value" >
 							<input type="text" name="e.happenDate" data-validate='{"type":"datetime","required":true}'
-							value='<s:date format="yyyy-MM-dd HH:mm" name="e.happenDate" />'
-							class="bc-datetime" data-cfg='{changeYear:true}'/>
+							value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.happenDate" />'
+							class="bc-datetime" data-cfg='{changeYear:true,showSecond:true,timeFormat:"hh:mm:ss"}'/>
 						</td>
 					</tr>
 					<tr>
