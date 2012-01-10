@@ -14,7 +14,7 @@
 				    <li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">基本资料</a></li>
 				    <li class="tab ui-widget-content"><a href="#otherFormFields4" class="ui-state-default">附件</a></li>
 					<s:if test="!e.isNew()">
-					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/policys/list?carId=%{e.car.id}" />' class="ui-state-default">历史版本</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/policys/list?carId=%{e.car.id}&main=1&policyId=%{e.id}"/>' class="ui-state-default">历史版本</a></li>
 					</s:if>
                 </ul>
             	</div>
@@ -36,6 +36,9 @@
 							                </tr>
 											<tr>
 												<td class="label">*<s:text name="policy.carId"/>:</td>
+												<s:if test="%{carId != null}">
+						                          <td class="value "><s:textfield name="plate" value="%{e.car.plateType+'.'+e.car.plateNo }" readonly="true" cssClass="ui-state-disabled"/></td>
+					                            </s:if><s:else>
 					                               <td class="value relative">
 												      <div class="input ui-widget-content" data-validate="required" ><span class="link showCar" data-cfg='<s:property value="e.car.id" />' id="carInfo" ><s:property value="%{e.car.plateType+'.'+e.car.plateNo }" /></span>
 												      </div>
@@ -43,9 +46,9 @@
 												        <li class="selectCar inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>' data-cfg='e.car.id=id,carInfo=plate|text,carInfo=id|attr'></li>
 												      </ul>
 					                                </td>
-												
+												</s:else>
 												<td class="label">*<s:text name="policy.liabilityNo"/>:</td>
-												<td class="value"><s:textfield name="e.liabilityNo" cssClass="ui-widget-content"/></td>
+												<td class="value"><s:textfield name="e.liabilityNo" cssClass="ui-widget-content" data-validate="required"/></td>
 											</tr>
 											<tr>
 											     <td class="label"><s:text name="policy.registerDate"/>:</td>
@@ -80,9 +83,9 @@
 							                </tr>
 											<tr>
 											    <td class="label">*<s:text name="policy.commerialNo"/>:</td>
-												<td class="value"><s:textfield name="e.commerialNo" cssClass="ui-widget-content"/></td>
+												<td class="value"><s:textfield name="e.commerialNo" cssClass="ui-widget-content" data-validate="required"/></td>
 												<td class="label">*<s:text name="policy.assured"/>:</td>
-												<td class="value"><s:textfield name="e.assured" cssClass="ui-widget-content"/></td>
+												<td class="value"><s:textfield name="e.assured" cssClass="ui-widget-content" data-validate="required"/></td>
 											</tr>
 											<tr>
 											    <td class="label">*<s:text name="policy.Company"/>:</td>
@@ -92,7 +95,7 @@
 												<td class="value">
 												<div style="position : relative; display: inline-block">
 													&nbsp;从<input type="text" name="e.commerialStartDate" 
-						                            data-validate='{required:false,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
+						                            data-validate='{required:true,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
 					                                value='<s:date format="yyyy-MM-dd" name="e.commerialStartDate" />' style="width: 7em;"/>
 					                                <ul class="inputIcons" style="right : 0px;">
 														<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.commerialStartDate' ></li>
@@ -100,7 +103,7 @@
 												</div>
 												<div style="position : relative; display: inline-block">
 													&nbsp;到<input type="text" name="e.commerialEndDate" 
-						                            data-validate='{required:false,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
+						                            data-validate='{required:true,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
 					                                value='<s:date format="yyyy-MM-dd" name="e.commerialEndDate" />' style="width: 7em;"/>
 					                                <ul class="inputIcons" style="right : 0px;">
 														<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.commerialEndDate' ></li>
@@ -140,7 +143,7 @@
 										                <td >&nbsp;</td>
 									                </tr>
 											         <tr>
-											             <td class="label">*<s:text name="policy.greenslipNo"/>:</td>
+											             <td class="label"><s:text name="policy.greenslipNo"/>:</td>
 												         <td class="value"><s:textfield name="e.greenslipNo" cssClass="ui-widget-content"/></td>
 							                             <td class="label"></td>
 												         <td class="value">
@@ -149,7 +152,7 @@
 												         </td>
 											        </tr>
 											        <tr>
-											             <td class="label">*<s:text name="policy.Company"/>:</td>
+											             <td class="label"><s:text name="policy.Company"/>:</td>
 							                             <td class="value" ><s:select  list="companyList" listKey="value" listValue="value"  headerKey="" headerValue=""  name="e.greenslipCompany"  
 							                               cssStyle="width:20em;" cssClass="ui-widget-content"/></td>
 											             <td class="label">
@@ -248,10 +251,10 @@
 	                 <s:property value="%{attachsUI}" escapeHtml="false"/>
 	            </div>
 			</div>
-			<div>*<s:text name="policy.amount"/>:<s:textfield name="e.amount" size="10" cssClass="ui-widget-content"/>元</div>	
+			<div><s:text name="policy.amount"/>:<s:textfield name="e.amount" size="10" cssClass="ui-widget-content"/>元</div>	
 		</div>
 		<s:hidden name="e.id"/>
-		<s:hidden name="e.car.id"/>
+		<s:hidden name="e.car.id" data-validate="required"/>
 		<s:hidden name="e.author.id"/>
 		<s:hidden name="e.uid"/>
 		<s:hidden name="e.status"/>
