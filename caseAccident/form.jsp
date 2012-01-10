@@ -96,8 +96,8 @@
 						<td class="value">
 						<s:select name="e.driverClasses" list="#{0:'',1:'正班',2:'副班',3:'顶班'}" listKey="key" listValue="value"   data-validate="required" cssClass="ui-widget-content"/>
 						</td>
-						<td class="label">*<s:text name="runcase.principal" />:</td>
-						<td class="value relative"><s:textfield name="e.chargerName" data-validate='{"required":true}' cssClass="ui-widget-content"/>
+						<td class="label"><s:text name="runcase.principal" />:</td>
+						<td class="value relative"><s:textfield name="e.chargerName" cssClass="ui-widget-content"/>
 						<ul class="inputIcons">
 							 <li id="selectPrincipal" class=" inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></li>
 						</ul>
@@ -202,7 +202,7 @@
 							</tr>
 							 <tr>
 								   <td class="label">*<s:text name="runcase.insuranceCompany"/>:</td>
-							       <td class="value "><s:select  list="companyList" listKey="value" listValue="value"  headerKey="" headerValue=""  name="e.insuranceCompany"  data-validate="required" 
+							       <td class="value "><s:select  list="companyList" listKey="value" listValue="value"  headerKey="" headerValue=""  name="e.insuranceCompany"
 							       cssStyle="width:20em;" cssClass="ui-widget-content"/></td>
 							       <td class="label" style="width:700px">
 							       <s:checkbox name="e.deliver" cssStyle="width:1em;" /><s:text name="runcase.deliver3"/>
