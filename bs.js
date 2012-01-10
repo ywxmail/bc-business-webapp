@@ -199,13 +199,14 @@ bs.findInfoByCar = function(option) {
 			logger.info("json=" + $.toJSON(json));
 			if(json.drivers.length == 0){
 				//提示用户此不正常现象
-				alert("没有找到所选车辆对应的营运司机信息，无法处理，请联系管理员！");
-				
-				//直接调用回调函数,但没有司机信息
-				option.success.call(json,{
-					car: json.car,
-					motorcade: json.motorcade
+				bc.msg.alert("没有找到所选车辆对应的营运司机信息，无法处理，请联系管理员！",null,function(){
+					//直接调用回调函数,但没有司机信息
+					option.success.call(json,{
+						car: json.car,
+						motorcade: json.motorcade
+					});
 				});
+
 			}else if(json.drivers.length == 1){
 				//直接调用回调函数，返回司机信息
 				option.success.call(json,{
@@ -303,12 +304,12 @@ bs.findInfoByDriver = function(option) {
 			logger.info("json=" + $.toJSON(json));
 			if(json.cars.length == 0){
 				//提示用户此不正常现象
-				alert("没有找到所选司机对应的营运车辆信息，无法处理，请联系管理员！");
-				
-				//直接调用回调函数,但没有司机信息
-				option.success.call(json,{
-					driver: json.driver,
-					motorcade: json.motorcade
+				bc.msg.alert("没有找到所选司机对应的营运车辆信息，无法处理，请联系管理员！",null,function(){
+					//直接调用回调函数,但没有司机信息
+					option.success.call(json,{
+						driver: json.driver,
+						motorcade: json.motorcade
+					});
 				});
 			}else if(json.cars.length == 1){
 				//直接调用回调函数，返回车辆信息
