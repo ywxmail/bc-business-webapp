@@ -18,7 +18,7 @@
 							<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contract4Labours/list?contractId=%{(e.pid != null)?e.pid:0}&patchNo=%{e.patchNo}"/>' class="ui-state-default">历史版本</a></li>
 						</s:if>
 						<s:if test="!e.isNew()">
-							<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/injury/list?contractId=%{e.id}" />' class="ui-state-default">工伤</a></li>
+							<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/injurys/list?contractId=%{e.id}" />' class="ui-state-default">工伤</a></li>
 						</s:if>
 					</ul>
 				</div>

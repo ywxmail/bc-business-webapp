@@ -207,8 +207,6 @@ bc.contract4ChargerForm = {
 		if(names != null && names.length > 0){
 			$page.find(":input[name=assignChargerIds]").val(ids.join(","));
 			$page.find(":input[name=assignChargerNames]").val(names.join(","));
-			alert($page.find(":input[name=assignChargerIds]").val());
-			alert($page.find(":input[name=assignChargerNames]").val());
 		}else{
 			bc.msg.slide("最少选择一个责任人！");
 			return false;

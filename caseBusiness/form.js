@@ -29,7 +29,7 @@ bc.caseBusinessForm = {
 			bc.page.newWin(option);
 		};
 		if($form.find(":input[name='isNullCar']").val()=="true"){
-			bc.msg.slide("该司机还没有驾驶任何车辆！");	
+			bc.msg.alert("该司机还没有驾驶任何车辆！");	
 		};
 		if($form.find(":input[name='isMoreCarMan']").val()=="true"){
 			var carId=$form.find(":input[name='carId']").val();
@@ -49,7 +49,7 @@ bc.caseBusinessForm = {
 			bc.page.newWin(option);
 		};
 		if($form.find(":input[name='isNullCarMan']").val()=="true"){
-			bc.msg.slide("该车辆还没有被任何司机驾驶！");	
+			bc.msg.alert("该车辆还没有被任何司机驾驶！");	
 		};
 		
 		//绑定车队事件
@@ -86,7 +86,7 @@ bc.caseBusinessForm = {
 								$form.find(":input[name='e.driverId']").val("");
 								$form.find(":input[name='e.driverName']").val("");
 								$form.find(":input[name='e.driverCert']").val("");
-								bc.msg.slide("该车辆还没有被任何司机驾驶！");
+								bc.msg.alert("该车辆还没有被任何司机驾驶！");
 							}
 							if(drivers.length == 1){//单个司机直接填写
 								updateFieldsFromDriver(drivers[0]);
