@@ -45,6 +45,12 @@ bc.policyForm = {
 				s='<span class="ui-icon"></span><input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;'
 				s += 'background:none;';
 			}
+			if(name=="coverage"||name=="premium"){
+				s += '" name="' + name + '" type="text" class="ui-widget-content" data-validate="number" value="' + value + '"';
+			}else{
+				s += '" name="' + name + '" type="text" class="ui-widget-content" value="' + value + '"';
+			}
+
 			s += '" name="' + name + '" type="text" class="ui-widget-content" value="' + value + '"';
 			if(readonly){
 				s += ' readonly="' + readonly + '"';
@@ -130,6 +136,11 @@ bc.policyForm = {
 			buyPlants.push(json);
 		});
 		$page.find(":input[name='buyPlants']").val($.toJSON(buyPlants));
+		//表单验证
+		$buyPlantTables=$page.find("#buyPlantTables tr");
+		
+		if(!bc.validator.validate($buyPlantTables))
+			return;
 		//调用标准的方法执行保存
 		bc.page.save.call(this);
 	},
