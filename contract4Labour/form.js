@@ -27,7 +27,7 @@ bc.contract4LabourForm = {
 			bc.page.newWin(optionCar);
 		};
 		if($page.find(":input[name='isNullCar']").val()=="true"){
-			bc.msg.slide("此司机没有驾驶任何车辆！");	
+			bc.msg.alert("此司机没有驾驶任何车辆！");	
 		};
 		
 		//预加载一台车关联多个司机的对话框选择
@@ -52,7 +52,7 @@ bc.contract4LabourForm = {
 			});
 		};
 		if($page.find(":input[name='isNullCarMan']").val()=="true"){
-			bc.msg.slide("此车辆没有被任何司机驾驶！");	
+			bc.msg.alert("此车辆没有被任何司机驾驶！");	
 		};
 		
 		// 选择车辆车牌
@@ -183,6 +183,7 @@ bc.contract4LabourForm = {
 		// 关闭当前窗口
 		bc.msg.confirm("确定维护此合同？",function(){
 			$page.dialog("close");
+			alert($page.html());
 			// 重新打开可编辑表单
 			bc.page.newWin({
 				name: "维护" + $page.find(":input[name='e.ext_str2']").val() + "的劳动合同",
@@ -196,6 +197,7 @@ bc.contract4LabourForm = {
 	
 	/** 续签处理 */
 	doRenew : function($page) {
+		var $page = $(this);
 		// 让用户输入新的合同期限
 		bc.page.newWin({
 			name:"劳动合同续约",
@@ -225,6 +227,7 @@ bc.contract4LabourForm = {
 	
 	/** 离职处理 */
 	doResign : function($page) {
+		var $page = $(this);
 		// 让用户输入离职日期，默认为当前时间
 		bc.page.newWin({
 			name:"劳动合同离职处理",
@@ -254,6 +257,7 @@ bc.contract4LabourForm = {
 	
 	/** 转车处理 */
 	doChangeCar : function($page) {
+		var $page = $(this);
 		// 让用户选择新的车辆
 		bs.selectCar({
 			title: "请为司机劳动合同选择新的车辆",
