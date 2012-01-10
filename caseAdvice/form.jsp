@@ -37,7 +37,7 @@
 											<td class="value "><s:textfield name="e.code" data-validate="required" readonly="true" cssClass="ui-widget-content"/></td>
 											<td class="label">*<s:text name="runcase.receiveDate3"/>:</td>
 											<td class="value" style="position:relative;display: block;">
-												<input type="text" name="e.receiveDate" data-validate='{"required":true}'
+												<input type="text" name="e.receiveDate" data-validate='{"type":"datetime","required":true}'
 												value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.receiveDate" />'
 												class="bc-datetime ui-widget-content" data-cfg='{changeYear:true,showSecond:true,timeFormat:"hh:mm:ss"}'/>
 												<ul class="inputIcons">
@@ -214,8 +214,8 @@
 											<td class="label"><s:text name="runcase.ridingStartTime"/>:</td>
 											<td class="value" style="position:relative;display: block;">
 												<input type="text" name="e.ridingStartTime" data-validate='{"type":"datetime","required":true}'
-												value='<s:date format="yyyy-MM-dd HH:mm" name="e.ridingStartTime" />'
-												class="bc-datetime ui-widget-content" data-cfg='{changeYear:true}'/>
+												value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.ridingStartTime" />'
+												class="bc-datetime ui-widget-content" data-cfg='{changeYear:true,timeFormat:"hh:mm:ss"}'/>
 												<ul class="inputIcons">
 													<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.ridingStartTime'></li>
 												</ul>
@@ -223,8 +223,8 @@
 											<td class="label"><s:text name="runcase.ridingEndTime"/>:</td>
 											<td class="value" style="position:relative;display: block;">
 												<input type="text" name="e.ridingEndTime" data-validate='{"type":"datetime","required":true}'
-												value='<s:date format="yyyy-MM-dd HH:mm" name="e.ridingEndTime" />'
-												class="bc-datetime ui-widget-content" data-cfg='{changeYear:true}'/>
+												value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.ridingEndTime" />'
+												class="bc-datetime ui-widget-content" data-cfg='{changeYear:true,timeFormat:"hh:mm:ss"}'/>
 												<ul class="inputIcons">
 													<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.ridingEndTime'></li>
 												</ul>
@@ -294,8 +294,8 @@
 							<td class="label"><s:text name="runcase.noticeDate"/>:</td>
 							<td class="value" style="position:relative;display: block;">
 								<input type="text" name="e.noticeDate" data-validate='{"type":"datetime"}'
-								value='<s:date format="yyyy-MM-dd HH:mm" name="e.noticeDate" />'
-								class="bc-datetime ui-widget-content" data-cfg='{changeYear:true}'/>
+								value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.noticeDate" />'
+								class="bc-datetime ui-widget-content" data-cfg='{changeYear:true,timeFormat:"hh:mm:ss"}'/>
 								<ul class="inputIcons">
 									<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.noticeDate'></li>
 								</ul>
@@ -306,8 +306,8 @@
 							<td class="label"><s:text name="runcase.deliverDate3"/>:</td>
 							<td class="value" style="position:relative;display: block;">
 								<input type="text" name="e.deliverDate" data-validate='{"type":"datetime"}'
-								value='<s:date format="yyyy-MM-dd HH:mm" name="e.deliverDate" />'
-								class="bc-datetime ui-widget-content" data-cfg='{changeYear:true}'/>
+								value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.deliverDate" />'
+								class="bc-datetime ui-widget-content" data-cfg='{changeYear:true,timeFormat:"hh:mm:ss"}'/>
 								<ul class="inputIcons">
 									<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.deliverDate'></li>
 								</ul>
