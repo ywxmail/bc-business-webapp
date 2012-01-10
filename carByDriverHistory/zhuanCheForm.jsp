@@ -24,7 +24,7 @@
 					    </td>
 					</s:else>
 						<td class="label"><s:text name="carByDriverHistory.moveType"/>:</td>
-						<td class="value"><s:textfield name="moveTypeValue"  value="%{moveTypeValueList[e.moveType]}"   cssClass="ui-widget-content ui-state-disabled"/></td>
+						<td class="value"><s:textfield name="moveTypeValue"  value="%{moveTypeValueList[e.moveType]}" readonly="true" cssClass="ui-widget-content ui-state-disabled"/></td>
 					</tr>
 					<tr>
 					  <td class="label">*<s:text name="carByDriverHistory.moveDate"/>:</td>
