@@ -13,6 +13,7 @@
                 <ul class="tabs ui-helper-reset">
 					<s:if test="!e.isNew()">
 				    <li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">车辆明细</a></li>
+					<li class="tab ui-widget-content"><a href= "#otherFormFields2" class="ui-state-default">注销信息</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/carByDrivers/list?carId=%{e.id}"/>' class="ui-state-default">营运司机</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contracts/list?carId=%{e.id}" />' class="ui-state-default">合同</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/policys/list?carId=%{e.id}" />' class="ui-state-default">保单</a></li>
@@ -49,10 +50,10 @@
 								<td class="label" >*<s:text name="car.plate"/>:</td>
 								<td class="value" >
 									<s:if test="!e.isNew()">
-										<s:textfield name="e.plateType" cssStyle="width:4em;text-align:right;" data-validate="required" cssClass="ui-widget-content"/><s:textfield name="e.plateNo" cssStyle="width:8em;" data-validate="required" cssClass="ui-widget-content"/>
+										<s:textfield name="e.plateType" cssStyle="width:4em;text-align:right;" data-validate="required" cssClass="ui-widget-content"/><s:textfield name="e.plateNo" cssStyle="width:8em;" data-validate='{"minLen": 5,"maxLen": 5,"required":true,"type":"string"}' cssClass="ui-widget-content"/>
 									</s:if>
 									<s:else>
-										<s:textfield name="e.plateType" cssStyle="width:4em;text-align:right;" value='%{getText("car.plate.yue.A")}' data-validate="required" cssClass="ui-widget-content"/><s:textfield name="e.plateNo" cssStyle="width:8em;" data-validate="required" cssClass="ui-widget-content"/>
+										<s:textfield name="e.plateType" cssStyle="width:4em;text-align:right;" value='%{getText("car.plate.yue.A")}' data-validate="required" cssClass="ui-widget-content"/><s:textfield name="e.plateNo" cssStyle="width:8em;" data-validate='{"minLen": 5,"maxLen": 5,"required":true,"type":"string"}' cssClass="ui-widget-content"/>
 									</s:else>
 								</td>
 								<td class="label" >*<s:text name="car.vin"/>:</td>
@@ -63,9 +64,9 @@
 								<td class="value" >
 									<s:select name="e.motorcade.id" list="motorcadeList" listKey="key" listValue="value" value="e.motorcade.id" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}"  cssClass="ui-widget-content"></s:select>
 								</td>
-								<td class="label" ><s:text name="car.factoryType"/>:</td>
+								<td class="label" >*<s:text name="car.unit"/>:</td>
 								<td class="value" >
-									<s:select name="e.factoryType" list="factoryTypeList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
+									<s:select name="e.oldUnitName" list="oldUnitList" listKey="value" listValue="value"  data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content"></s:select>
 								</td>
 							</tr>
 							<tr>
@@ -73,8 +74,8 @@
 								<td class="value" >
 									<s:select name="e.businessType" list="businessTypeList" listKey="value" listValue="value"  data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content"></s:select>
 								</td>
-								<td class="label" ><s:text name="car.factoryModel"/>:</td>
-								<td class="value" ><s:textfield name="e.factoryModel" cssClass="ui-widget-content"/></td>
+								<td class="label" >*<s:text name="car.code"/>:</td>
+								<td class="value" ><s:textfield name="e.code" data-validate="required" cssClass="ui-widget-content"/></td>
 							</tr>
 							<tr>
 								<td class="label" >*<s:text name="car.registerDate"/>:</td>
@@ -86,10 +87,8 @@
 										<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.registerDate'></li>
 									</ul>
 								</td>
-								<td class="label" ><s:text name="car.level"/>:</td>
-								<td class="value" >
-									<s:select name="e.level" list="levelTypeList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
-								</td>
+								<td class="label" ><s:text name="car.factoryModel"/>:</td>
+								<td class="value" ><s:textfield name="e.factoryModel" cssClass="ui-widget-content"/></td>
 							</tr>
 							<tr>
 								<td class="label" >*<s:text name="car.operateDate"/>:</td>
@@ -101,8 +100,11 @@
 										<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.operateDate'></li>
 									</ul>
 								</td>
-								<td class="label" ><s:text name="car.originNo"/>:</td>
-								<td class="value" ><s:textfield name="e.originNo" cssClass="ui-widget-content"/></td>
+								<td class="label" ><s:text name="car.factoryType"/>:</td>
+								<td class="value" >
+									<s:select name="e.factoryType" list="factoryTypeList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
+								</td>
+
 							</tr>
 							<tr>
 								<td class="label" >*<s:text name="car.factoryDate"/>:</td>
@@ -114,8 +116,8 @@
 										<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.factoryDate'></li>
 									</ul>
 								</td>
-								<td class="label" ><s:text name="car.code"/>:</td>
-								<td class="value" ><s:textfield name="e.code" cssClass="ui-widget-content"/></td>
+								<td class="label" ><s:text name="car.originNo"/>:</td>
+								<td class="value" ><s:textfield name="e.originNo" cssClass="ui-widget-content"/></td>
 							</tr>
 							<tr>
 								<td class="label" >*<s:text name="car.scrapDate"/>:</td>
@@ -127,8 +129,10 @@
 										<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.scrapDate'></li>
 									</ul>
 								</td>
-								<td class="label" ><s:text name="car.unit"/>:</td>
-								<td class="value" ><s:textfield name="e.oldUnitName" readonly="true" cssClass="ui-widget-content"/></td>
+								<td class="label" ><s:text name="car.level"/>:</td>
+								<td class="value" >
+									<s:select name="e.level" list="levelTypeList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
+								</td>
 							</tr>					
 							<tr>
 								<td class="label" colspan="4">
@@ -264,6 +268,77 @@
 									<td class="value" ><s:textarea name="e.desc2" cssClass="ui-widget-content"/></td>
 									<td class="label" style="float:right;"><s:text name="car.desc3"/>:</td>
 									<td class="value" ><s:textarea name="e.desc3" cssClass="ui-widget-content"/></td>
+								</tr>
+							</tbody>
+						</table>
+					</fieldset>
+				</div>
+				<div id="otherFormFields2" class="content">
+					<fieldset style="margin: 6px;" class="ui-corner-all ui-widget-content">
+						<legend>
+							<s:checkbox name="e.logout" cssStyle="width:1em;" />
+							<s:text name="car.logout"/>
+						</legend>
+						<table class="formFields" cellspacing="2" cellpadding="0">
+							<tbody>
+								<tr class="widthMarker">
+									<td>&nbsp;</td>
+									<td style="width: 240px;">&nbsp;</td>
+									<td style="width: 100px;">&nbsp;</td>
+									<td style="width: 240px;">&nbsp;</td>
+								</tr>
+								<tr>
+									<td class="label" ><s:text name="car.returnDate"/>:</td>
+									<td class="value relative">
+										<input type="text" name="e.returnDate" data-validate='{"type":"date"}'
+										value='<s:date format="yyyy-MM-dd" name="e.returnDate" />'
+										class="bc-date ui-widget-content" data-cfg='{changeYear:true}' />
+										<ul class="inputIcons">
+											<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.returnDate'></li>
+										</ul>
+									</td>
+									<td class="label" ><s:text name="car.logoutReason"/>:</td>
+									<td class="value">
+										<s:select name="e.logoutReason" list="logoutReasonList" listKey="key" listValue="value" headerKey="0" headerValue="" cssClass="ui-widget-content"></s:select>
+									</td>
+								</tr>
+								<tr>
+									<td class="label"><s:text name="car.distanceScrapMonth"/>:</td>
+									<td class="value"><s:textfield name="e.distanceScrapMonth" cssClass="ui-widget-content"/></td>
+									<td style="text-align: left">月</td>
+									<td></td>
+								<tr>
+								<tr>
+									<td class="label" style="vertical-align: top;"><s:text name="car.logoutRemark"/>:</td>
+									<td class="value" colspan="3"><s:textarea name="e.logoutRemark" rows="5" cssClass="ui-widget-content" /></td>
+								</tr>
+							</tbody>
+						</table>
+					</fieldset>
+					<fieldset style="margin: 6px;" class="ui-corner-all ui-widget-content">
+						<legend>
+							<s:checkbox name="e.verify" cssStyle="width:1em;" />
+							<s:text name="car.verify"/>
+						</legend>
+						<table class="formFields" cellspacing="2" cellpadding="0">
+							<tbody>
+								<tr class="widthMarker">
+									<td>&nbsp;</td>
+									<td style="width: 240px;">&nbsp;</td>
+									<td style="width: 100px;">&nbsp;</td>
+									<td style="width: 240px;">&nbsp;</td>
+								</tr>
+								<tr>
+									<td class="label" ><s:text name="car.verifyDate"/>:</td>
+									<td class="value relative">
+										<input type="text" name="e.verifyDate" data-validate='{"type":"date"}'
+										value='<s:date format="yyyy-MM-dd" name="e.verifyDate" />'
+										class="bc-date ui-widget-content" data-cfg='{changeYear:true}' />
+										<ul class="inputIcons">
+											<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.verifyDate'></li>
+										</ul>
+									<td></td>
+									<td></td>
 								</tr>
 							</tbody>
 						</table>
