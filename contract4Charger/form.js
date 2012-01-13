@@ -6,7 +6,74 @@ bc.contract4ChargerForm = {
 		/* 初始化多页签*/
 		$form.find('#formTabs').bctabs(bc.page.defaultBcTabsOption);
 		
+		/* 选择司机责任人*/
+		//需要组装的li
+		var liTpl = '<li class="horizontal ui-widget-content ui-corner-all ui-state-highlight" data-id="{0}">'+
+		'<span class="text"><a href="#">{1}</a></span>'+
+		'<span class="click2remove verticalMiddle ui-icon ui-icon-close" title={2}></span></li>';
+		var ulTpl = '<ul class="horizontal"></ul>';
+		var title = $form.find("#assignChargers").attr("data-removeTitle");
+		
+		$form.find("#addChargers").click(function() {
+			var data = {};
+			var $ul = $form.find("#assignChargers ul");
+			var $lis = $ul.find("li");
+
+			bs.selectCharger({
+				multiple : true,
+				onOk : function(chargers) {
+					//var chargers = [charger];
+					//添加司机责任人
+					$.each(chargers,function(i,charger){
+						if($lis.filter("[data-id='" + charger.id + "']").size() > 0){//已存在
+							logger.info("duplicate select: id=" + charger.id + ",name=" + charger.name);
+						}else{//新添加的
+							if(!$ul.size()){//先创建ul元素
+								$ul = $(ulTpl).appendTo($form.find("#assignChargers"));
+							}
+							//组装并加入对应的值
+							var $liObj = $(liTpl.format(charger.id,charger.name,title)).appendTo($ul);
+							//绑定删除事件
+							$liObj.find("span.click2remove").click(function(){
+								$(this).parent().remove();
+							});
+							//绑定查看事件
+							$liObj.find("span.text").click(function(){
+								bc.page.newWin({
+									url: bc.root + "/bc-business/carMan/edit?id="+charger.id,
+									name: "查看责任人信息",
+									mid:  "viewCharger"
+								})
+							});
+						}
+					});
+				}
+			});
+		});
+		
+		//绑定查看责任人的按钮事件处理
+		var $objs = $form.find('.horizontal').children('span.text');
+		$.each($objs,function(i,obj){
+			//绑定查看
+			$(obj).click(function(){
+				bc.page.newWin({
+					url: bc.root + "/bc-business/carMan/edit?id="+$(obj).parent().attr('data-id'),
+					name: "查看责任人信息",
+					mid:  "viewCharger"
+				})
+			});
+		});
+		
+		//只读权限控制
 		if(readonly) return;
+		
+		//绑定删除责任人的按钮事件处理
+		$.each($objs,function(i,obj){
+			//绑定删除
+			$(obj).next().click(function(){
+				$(this).parent().remove();
+			});
+		});
 		
 		if($form.find(":input[name='isExistContract']").val()=="true"){
 			bc.msg.alert("所选车辆已配置了相应的经济合同，不能重复配置，请您编辑原来的经济合同！");
@@ -62,69 +129,6 @@ bc.contract4ChargerForm = {
 				}
 			});
 		}
-		
-		/* 选择司机责任人*/
-		//需要组装的li
-		var liTpl = '<li class="horizontal ui-widget-content ui-corner-all ui-state-highlight" data-id="{0}">'+
-		'<span class="text">{1}</span>'+
-		'<span class="click2remove verticalMiddle ui-icon ui-icon-close" title={2}></span></li>';
-		var ulTpl = '<ul class="horizontal"></ul>';
-		var title = $form.find("#assignChargers").attr("data-removeTitle");
-		
-		$form.find("#addChargers").click(function() {
-			var data = {};
-			var $ul = $form.find("#assignChargers ul");
-			var $lis = $ul.find("li");
-
-			bs.selectCharger({
-				multiple : true,
-				onOk : function(chargers) {
-					//var chargers = [charger];
-					//添加司机责任人
-					$.each(chargers,function(i,charger){
-						if($lis.filter("[data-id='" + charger.id + "']").size() > 0){//已存在
-							logger.info("duplicate select: id=" + charger.id + ",name=" + charger.name);
-						}else{//新添加的
-							if(!$ul.size()){//先创建ul元素
-								$ul = $(ulTpl).appendTo($form.find("#assignChargers"));
-							}
-							//组装并加入对应的值
-							var $liObj = $(liTpl.format(charger.id,charger.name,title)).appendTo($ul);
-							//绑定删除事件
-							$liObj.find("span.click2remove").click(function(){
-								$(this).parent().remove();
-							});
-							//绑定查看事件
-							$liObj.find("span.text").click(function(){
-								bc.page.newWin({
-									url: bc.root + "/bc-business/carMan/edit?id="+charger.id,
-									name: "查看责任人信息",
-									mid:  "viewCharger"
-								})
-							});
-						}
-					});
-				}
-			});
-		});
-		
-		//绑定查看,删除责任人的按钮事件处理
-		var $objs = $form.find('.horizontal').children('span.text');
-		$.each($objs,function(i,obj){
-			//绑定查看
-			$(obj).click(function(){
-				bc.page.newWin({
-					url: bc.root + "/bc-business/carMan/edit?id="+$(obj).parent().attr('data-id'),
-					name: "查看责任人信息",
-					mid:  "viewCharger"
-				})
-			});
-			//绑定删除
-			$(obj).next().click(function(){
-				$(this).parent().remove();
-			});
-		});
-		
 		
 	},
 	

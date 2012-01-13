@@ -136,7 +136,7 @@
 			<ul class="horizontal">
 			<s:iterator value="chargerInfoMap">
 				<li class="horizontal ui-widget-content ui-corner-all" data-id='<s:property value="key" />'>
-					<span class="text"><s:property value="value" /></span>
+					<span class="text"><a href="#"><s:property value="value" /></a></span>
 					<span class="click2remove verticalMiddle ui-icon ui-icon-close" title='<s:text name="title.click2remove"/>'></span>
 				</li>
 			</s:iterator>
