@@ -261,13 +261,15 @@
 								</tr>
 								<tr>
 									<td class="topLabel" ><s:text name="car.desc1"/>:</td>
-									<td class="value" colspan="3"><s:textarea name="e.desc1" rows="5" cssClass="ui-widget-content"/></td>
+									<td class="value" colspan="3"><s:textarea name="e.desc1" rows="4" cssClass="ui-widget-content"/></td>
 								</tr>
 								<tr>
-								    <td class="label" style="float:right;"><s:text name="car.desc2"/>:</td>
-									<td class="value" ><s:textarea name="e.desc2" cssClass="ui-widget-content"/></td>
-									<td class="label" style="float:right;"><s:text name="car.desc3"/>:</td>
-									<td class="value" ><s:textarea name="e.desc3" cssClass="ui-widget-content"/></td>
+								    <td class="topLabel"><s:text name="car.desc2"/>:</td>
+									<td class="value" colspan="3"><s:textarea name="e.desc2" rows="4" cssClass="ui-widget-content"/></td>
+								</tr>
+								<tr>
+									<td class="topLabel" ><s:text name="car.desc3"/>:</td>
+									<td class="value" colspan="3"><s:textarea name="e.desc3" rows="4" cssClass="ui-widget-content"/></td>
 								</tr>
 							</tbody>
 						</table>
