@@ -89,8 +89,10 @@ bc.contract4ChargerForm = {
 					$.ajax({url: url,dataType:"json",success: function (json){
 						if(json.isExistContract){
 							bc.msg.alert("所选车辆已配置了相应的经济合同，不能重复配置，请您编辑原来的经济合同！");
-							$form.find(":input[name='e.ext_str1']").val('');
-							$form.find(":input[name='carId']").val('');
+							$form.find(":input[name='e.ext_str1']").val(car.plate);
+							$form.find(":input[name='carId']").val(car.id); 
+//							$form.find(":input[name='e.ext_str1']").val('');
+//							$form.find(":input[name='carId']").val('');
 						}else{
 							$form.find(":input[name='e.ext_str1']").val(car.plate);
 							$form.find(":input[name='carId']").val(car.id);
