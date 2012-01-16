@@ -198,7 +198,7 @@ bc.contract4LabourForm = {
 		
 	},
 	
-	/** 续签处理 */
+	/** 续约处理 */
 	doRenew : function($page) {
 		var $page = $(this);
 		// 让用户输入新的合同期限
@@ -206,7 +206,7 @@ bc.contract4LabourForm = {
 			name:"劳动合同续约",
 			mid: "renewContract4Labour",
 			url: bc.root + "/bc/common/selectDateRange",
-			data: {startDate: $page.find(":input[name='e.endDate']").val(),title:"请输入新的续约期限"},
+			data: {addDay:1,startDate: $page.find(":input[name='e.endDate']").val(),title:"请输入新的续约期限"},
 			afterClose: function(status){
 				logger.info("status=" + $.toJSON(status));
 				if(!status) return;
