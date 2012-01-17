@@ -4,32 +4,17 @@
 	data-saveUrl='<s:url value="/bc-business/policy/save" />'
 	data-js='<s:url value="/bc-business/policy/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js" />,<s:url value="/ui-libs/xheditor/1.1.7/xheditor-zh-cn.min.js?ts=0" />'
 	data-initMethod='bc.policyForm.init'
-	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:hidden;">
-	<s:form name="policyForm" theme="simple">
-		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:420}"
-			style="width:710px;overflow: hidden;">
-			<div class="tabsContainer">
-           	 	<div class="slideContainer">
-                <ul class="tabs ui-helper-reset">
-				    <li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">基本资料</a></li>
-				    <li class="tab ui-widget-content"><a href="#otherFormFields4" class="ui-state-default">附件</a></li>
-					<s:if test="!e.isNew()">
-					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/policys/list?carId=%{e.car.id}&main=1&policyId=%{e.id}"/>' class="ui-state-default">历史版本</a></li>
-					</s:if>
-                </ul>
-            	</div>
-	        </div>
-			<div class="contentContainer ui-helper-reset ui-widget-content" style="height: 400px;">
-				<div id="otherFormFields" class="content active" >
+	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
+	<s:form name="policyForm" theme="simple">			
 					<table class="formFields" cellspacing="2" cellpadding="0">
 						<tbody>
 							<tr>
 								<td class="value" colspan="4">
 								    <fieldset>
-								    	<legend>基本信息</legend>
+								    	<legend>责任险</legend>
 								        <table class="formFields" cellspacing="2" cellpadding="0">
 											<tr class="widthMarker">
-								                <td style="width: 80px;">&nbsp;</td>
+								                <td style="width: 100px;">&nbsp;</td>
 								                <td style="width: 260px;">&nbsp;</td>
 								                <td style="width: 80px;">&nbsp;</td>
 								                <td >&nbsp;</td>
@@ -51,12 +36,10 @@
 												<td class="value"><s:textfield name="e.liabilityNo" cssClass="ui-widget-content" data-validate="required"/></td>
 											</tr>
 											<tr>
-											     <td class="label"><s:text name="policy.registerDate"/>:</td>
-						                         <td class="value" style="position:relative;display: block;"><input type="text" name="e.registerDate" 
-						                          data-validate='{required:false,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
-					                              value='<s:date format="yyyy-MM-dd" name="e.registerDate" />'/>
-					                              <span class="selectButton verticalMiddle ui-icon ui-icon-calendar"></span>
-				                                 </td>
+												<!-- 责任险合计 -->
+												<td class="label"> <s:text name="policy.liabilityAmount"/>:</td>
+											    <td class="value"><s:textfield name="e.liabilityAmount" cssClass="ui-widget-content"  value="%{getText('bs.format.numberRMB',{e.liabilityAmount})}"  /></td>
+											     <!-- 停保日期 -->
 				                                 <s:if test="%{e.status==2}">
 											     <td class="label"><s:text name="policy.stopDate"/>:</td>
 						                         <td class="value" style="position:relative;display: block;"><input type="text" name="e.stopDate" 
@@ -76,7 +59,7 @@
 						          		<legend>商业险</legend>
 						          		<table class="formFields" cellspacing="2" cellpadding="0" >
 											<tr class="widthMarker">
-								                <td style="width: 80px;">&nbsp;</td>
+								                <td style="width: 100px;">&nbsp;</td>
 								                <td style="width: 260px;">&nbsp;</td>
 								                <td style="width: 80px;">&nbsp;</td>
 								                <td >&nbsp;</td>
@@ -112,6 +95,9 @@
 												</td>
 											</tr>
 											<tr>
+												<!-- 商业险合计 -->
+												<td class="label"><s:text name="policy.commerialAmount"/>:</td>
+											    <td class="value"><s:textfield name="e.commerialAmount" cssClass="ui-widget-content" value="%{getText('bs.format.numberRMB',{e.commerialAmount})}" /></td>
 											    <td class="label"></td>
 												<td class="value">
 													<s:checkbox name="e.ownrisk" cssStyle="width:1em;" />
@@ -137,7 +123,7 @@
 						          		        <legend>强制险</legend>
 						          		         <table class="formFields" cellspacing="2" cellpadding="0">
 													<tr class="widthMarker">
-										                <td style="width: 80px;">&nbsp;</td>
+										                <td style="width: 100px;">&nbsp;</td>
 										                <td style="width: 260px;">&nbsp;</td>
 										                <td style="width: 80px;">&nbsp;</td>
 										                <td >&nbsp;</td>
@@ -193,6 +179,11 @@
 								                                </div>
 								                           </td>
 											          </tr>
+											          <tr>
+											          <!-- 强制险合计 -->
+														<td class="label"> <s:text name="policy.greenslipAmount"/>:</td>
+											    		<td class="value"><s:textfield name="e.greenslipAmount" cssClass="ui-widget-content" value="%{getText('bs.format.numberRMB',{e.greenslipAmount})}"/></td>
+											          </tr>
 						        		        </table>
 						    		        </fieldset>
 								       </div>
@@ -213,6 +204,8 @@
 							</tr>
 						</tbody>
 					</table>
+					
+					
 					<!-- 购买的险种 -->
 					<div class="ui-widget-content" style="border-left-width:0;border-right-width:0;">
 						<div class="ui-state-active title" style="position:relative;">
@@ -231,28 +224,33 @@
 							<tr class="ui-state-default row">
 								<td class="first" style="width: 250px;height: 20px;">险种名称</td>
 								<td class="middle" style="width: 105px;">保额(元)</td>
-								<td class="middle" style="width: 105px;">保费(元)</td>
+								<!--去除保费  <td class="middle" style="width: 105px;">保费(元)</td>-->
 								<td class="last">备注</td>
 							</tr>
 							<s:iterator var="b" value="e.buyPlants">
 							<tr class="ui-state-default row" data-id='<s:property value="id"/>'>
 								<td class="id first" style="padding:0;text-align:left;"><span class="ui-icon"></span>
 									<input style="width:90%;height:100%;border:none;margin:0;padding:0 0 0 2px;background:none;" readonly="readonly" type="text" class="ui-widget-content" value='<s:property value="name"/>'/></td>
-								<td class="middle" style="padding:0;text-align:left;"><input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" value='<s:property value="%{getText('bs.format.number',{coverage})}"/>'/></td>
-								<td class="middle" style="padding:0;text-align:left;"><input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" value='<s:property value="%{getText('bs.format.number',{premium})}"/>'/></td>
-								<td class="last" style="padding:0;text-align:left;"><input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" value='<s:property value="description"/>'/></td>
+								<td class="middle" style="padding:0;text-align:left;">
+									<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" 
+										value='<s:property value="%{getText(coverage)}"/>'/>
+								</td>
+								
+								<!--去除保费 <td class="middle" style="padding:0;text-align:left;"><input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" value='<s:property value="%{getText('bs.format.number',{premium})}"/>'/></td>-->
+								<td class="last" style="padding:0;text-align:left;">
+									<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content"
+										 value='<s:property value="description"/>'/>
+								</td>
 							</tr>
 							</s:iterator>
 						</table>
 						</div>
 					</div>
-				</div>
-				<div id="otherFormFields4" class="content" style="width:800px;">
-	                 <s:property value="%{attachsUI}" escapeHtml="false"/>
-	            </div>
-			</div>
-			<div><s:text name="policy.amount"/>:<s:textfield name="e.amount" size="10" cssClass="ui-widget-content"/>元</div>	
-		</div>
+				
+
+
+			<!--去除合计字段  <div><s:text name="policy.amount"/>:<s:textfield name="e.amount" size="10" cssClass="ui-widget-content"/>元</div>-->	
+
 		<s:hidden name="e.id"/>
 		<s:hidden name="e.car.id" data-validate="required"/>
 		<s:hidden name="e.author.id"/>
@@ -265,7 +263,8 @@
 		<s:hidden name="e.pid"/>
 		<s:hidden name="buyPlants"/>
 		<s:hidden name="e.stopDate"/>
-		
+		<!-- 初登日期  不显示 -->
+		<input type="hidden" name="e.registerDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.registerDate" />'/>
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 	</s:form>
 </div>

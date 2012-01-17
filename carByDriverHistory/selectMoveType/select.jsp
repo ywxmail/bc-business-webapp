@@ -8,11 +8,19 @@
 		"width":300,"modal":true
 	}' >
 	<div style="margin:4px;">
-	<s:select list="#{0:getText('carByDriverHistory.moveType.cheliangdaocheliang'),1:getText('carByDriverHistory.moveType.gongsidaogongsiyizhuxiao')
+	<s:if test="%{carManId != null}">
+		<s:select list="#{0:getText('carByDriverHistory.moveType.cheliangdaocheliang'),1:getText('carByDriverHistory.moveType.gongsidaogongsiyizhuxiao')
+	         ,2:getText('carByDriverHistory.moveType.zhuxiaoweiyouquxiang'),3:getText('carByDriverHistory.moveType.youwaigongsiqianhui')
+	         ,4:getText('carByDriverHistory.moveType.jiaohuiweizhuxiao'),5:getText('carByDriverHistory.moveType.xinruzhi')}" theme="simple"
+		size="10" cssStyle="width:100%;height:100%;" value="selected" cssClass="ui-widget-content"
+		multiple="%{multiple}"></s:select>
+	</s:if><s:else>
+		<s:select list="#{0:getText('carByDriverHistory.moveType.cheliangdaocheliang'),1:getText('carByDriverHistory.moveType.gongsidaogongsiyizhuxiao')
 	         ,2:getText('carByDriverHistory.moveType.zhuxiaoweiyouquxiang'),3:getText('carByDriverHistory.moveType.youwaigongsiqianhui')
 	         ,4:getText('carByDriverHistory.moveType.jiaohuiweizhuxiao'),5:getText('carByDriverHistory.moveType.xinruzhi')
 	         ,6:getText('carByDriverHistory.moveType.cheduidaochedui')}" theme="simple"
 		size="10" cssStyle="width:100%;height:100%;" value="selected" cssClass="ui-widget-content"
 		multiple="%{multiple}"></s:select>
+	</s:else>
 	</div>
 </div>

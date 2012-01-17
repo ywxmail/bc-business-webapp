@@ -1,12 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<div title='<s:text name="carByDriverHistory.title"/>' data-type='form' class="bc-page"
+<div title='<s:property value="%{e.fromCar.plateType+'.'+e.fromCar.plateNo }" />  <s:text name="carByDriverHistory.title"/>' data-type='form' class="bc-page"
     data-saveUrl='<s:url value="/bc-business/carByDriverHistory/save" />'
 	data-js='<s:url value="/bc/libs/select.js" />,<s:url value="/bc-business/carByDriverHistory/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js" />'
 	data-initMethod='bc.business.carByDriverHistoryForm.init'
 	data-option='{
 		"buttons":[{"text":"<s:text name="label.save"/>","action":"save"}],
-		"width":725,"minWidth":320,"minHeight":200,"modal":false}' style="overflow-y:auto;">
+		"width":725,"minWidth":320,"minHeight":200,"modal":true}' style="overflow-y:auto;">
 	<s:form name="carByDriverHistoryForm" theme="simple">
 		<div class="formFields ui-widget-content" >
 			<table class="formFields" cellspacing="2" cellpadding="0"  >
