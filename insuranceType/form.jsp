@@ -19,11 +19,6 @@
 						    value="%{getText('bs.format.number',{e.coverage})}"/></td>
 					</tr>
 					<tr>
-						<td class="label"><s:text name="insuranceType.premium"/>:</td>
-						<td class="value"><s:textfield name="e.premium"cssClass="ui-widget-content" data-validate="number"
-						    value="%{getText('bs.format.number',{e.premium})}"/></td>
-					</tr>
-					<tr>
 						<td class="label"><s:text name="insuranceType.statuses"/>:</td>
 						<td><s:radio name="e.status" list="#{'0':'在案','1':'禁用'}" cssStyle="width:auto;"/></td>
 					</tr>

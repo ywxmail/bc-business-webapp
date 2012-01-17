@@ -18,8 +18,7 @@ bs.insuranceTypeSelectDialog = {
 			var $tr = $grid.find(">.data>.right tr.ui-state-focus");
 			data.name = $tr.find("td:eq(0)").text();//险种名称
 			data.coverage = $tr.find("td:eq(1)").text();//保额
-			data.premium = $tr.find("td:eq(2)").text();//保费
-			data.description = $tr.find("td:eq(3)").text();//备注
+			data.description = $tr.find("td:eq(2)").text();//备注
 		}else{//多选
 			data = [];
 			var $trs = $grid.find(">.data>.right tr.ui-state-focus");
@@ -27,8 +26,7 @@ bs.insuranceTypeSelectDialog = {
 				var $tr = $($trs.get(i));
 				var name = $tr.find("td:eq(0)").text();//险种名称
 				var coverage = $tr.find("td:eq(1)").text();//保额
-				var premium = $tr.find("td:eq(2)").text();//保费
-				var description = $tr.find("td:eq(3)").text();//备注
+				var description = $tr.find("td:eq(2)").text();//备注
 				data.push({
 					id: $(this).attr("data-id"),//险种id
 					name:name,
