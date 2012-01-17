@@ -11,11 +11,14 @@ bc.business.MoveTypeList = {
 				carId=extras.carId;
 			}
 			var url=bc.root +"/bc-business/selectMoveType";
+			if(carManId)
+				url+="?carManId=" + carManId;
 			var option = jQuery.extend({
 				url: url,
 				name: "选择迁移类型",
 				mid: "MoveType",
 				afterClose: function(MoveType){
+					if(!MoveType) return;
 					var url=bc.root +"/bc-business/carByDriverHistory/create?moveType="+MoveType.id;
 					if(carManId){
 						url+="&carManId=" + carManId;
