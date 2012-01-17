@@ -31,6 +31,19 @@ bc.policyForm = {
 			$form.find('#greenslipSameDateFieldset').css("visibility","hidden");
 		}
 		
+		if($form.find(":input[name='e.id']").val()==""){
+		//新建时如果选中商业险公司，强制险公司也跟着选
+		var sgreenslipCompany = $form.find("select[name='e.greenslipCompany']")[0];
+		$form.find("select[name='e.commerialCompany']").change(function() {
+			for(var i=0;i<sgreenslipCompany.options.length;i++){
+				if(sgreenslipCompany.options[i].value == this.value){
+					sgreenslipCompany.options[i].selected = true;
+					break;
+				}
+			}
+		});
+		}
+		
 		var tableEl=$form.find("#buyPlantTables")[0];
 	
 		/**购买险种表格中插入input控件
@@ -45,8 +58,8 @@ bc.policyForm = {
 				s='<span class="ui-icon"></span><input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;'
 				s += 'background:none;';
 			}
-			if(name=="coverage"||name=="premium"){
-				s += '" name="' + name + '" type="text" class="ui-widget-content" data-validate="number" value="' + value + '"';
+			if(name=="coverage"){
+				s += '" name="' + name + '" type="text" class="ui-widget-content" value="' + value + '"';
 			}else{
 				s += '" name="' + name + '" type="text" class="ui-widget-content" value="' + value + '"';
 			}
@@ -80,13 +93,13 @@ bc.policyForm = {
 						cell.setAttribute("class","middle");
 						cell.innerHTML=buildInput("coverage",selectInsuranceTypes[i].coverage);//插入保额
 						
-						cell=newRow.insertCell(2);
-						cell.style.padding="0";
-						cell.style.textAlign="left";
-						cell.setAttribute("class","middle");
-						cell.innerHTML=buildInput("premium",selectInsuranceTypes[i].premium);//插入保费
+						//cell=newRow.insertCell(2);
+						//cell.style.padding="0";
+						//cell.style.textAlign="left";
+						//cell.setAttribute("class","middle");
+						//cell.innerHTML=buildInput("premium",selectInsuranceTypes[i].premium);//插入保费
 						
-						cell=newRow.insertCell(3);
+						cell=newRow.insertCell(2);
 						cell.style.padding="0";
 						cell.style.textAlign="left";
 						cell.setAttribute("class","middle");
@@ -127,8 +140,8 @@ bc.policyForm = {
 			var json = {
 				name: $inputs[0].value,
 				coverage: $inputs[1].value,
-				premium: $inputs[2].value,
-				description: $inputs[3].value
+				//premium: $inputs[2].value,
+				description: $inputs[2].value
 			};
 			var id = $(this).attr("data-id");
 			if(id && id.length > 0)
