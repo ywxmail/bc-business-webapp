@@ -219,9 +219,12 @@
 										<s:if test="%{e.author.name != null}">
 										登记：<s:property value="e.author.name" />(<s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>)
 										</s:if>
-										<s:if test="%{e.modifier != null}">
-										，最后修改：<s:property value="e.modifier.name" />(<s:date name="e.modifiedDate" format="yyyy-MM-dd HH:mm:ss"/>)
+										<s:if test="%{e.logout != null}">
+										，注销：<s:property value="e.logout.name" />(<s:date name="e.logoutDate" format="yyyy-MM-dd HH:mm:ss"/>)
 										</s:if>
+										<s:elseif test="%{e.modifier != null}">
+										，最后修改：<s:property value="e.modifier.name" />(<s:date name="e.modifiedDate" format="yyyy-MM-dd HH:mm:ss"/>)
+										</s:elseif>
 									</div>
 								</td>
 							</tr>

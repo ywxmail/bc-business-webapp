@@ -189,6 +189,7 @@ bc.policyForm = {
 					success: function(json){
 						//完成后提示用户
 						bc.msg.info(json.msg);
+						$page.data("data-status","saved");
 						$page.dialog("close");
 					}
 				});
@@ -216,16 +217,18 @@ bc.policyForm = {
 	/** 注销 **/
 	doLogout : function(){
 		var $page=$(this);
-		alert("确定注销保单？");
-		bc.ajax({
-			url:bc.root + "/bc-business/policy4CarOperate/doLogout",
-			dataType: "json",
-			data: {id: $page.find(":input[name='e.id']").val()},
-			success: function(json){
-				//完成后提示用户
-				bc.msg.info(json.msg);
-				$page.dialog("close");
-			}
+		bc.msg.confirm("是否对保单进行注销？",function(){
+			bc.ajax({
+				url:bc.root + "/bc-business/policy4CarOperate/doLogout",
+				dataType: "json",
+				data: {id: $page.find(":input[name='e.id']").val()},
+				success: function(json){
+					//完成后提示用户
+					bc.msg.info(json.msg);
+					$page.data("data-status","saved");
+					$page.dialog("close");
+				}
+			});
 		});
 	},
 
