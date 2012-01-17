@@ -38,7 +38,14 @@
 											<tr>
 												<!-- 责任险合计 -->
 												<td class="label"> <s:text name="policy.liabilityAmount"/>:</td>
-											    <td class="value"><s:textfield name="e.liabilityAmount" cssClass="ui-widget-content"  value="%{getText('bs.format.numberRMB',{e.liabilityAmount})}"  /></td>
+											    <td class="value">
+											    	<s:if test="e.liabilityAmount==-1" >
+												    	<s:textfield  cssClass="ui-widget-content" value="******" />
+												    </s:if>
+												    <s:else>
+											    		<s:textfield name="e.liabilityAmount" cssClass="ui-widget-content"  value="%{getText('bs.format.numberRMB',{e.liabilityAmount})}"  />
+											    	</s:else>
+											    </td>
 											     <!-- 停保日期 -->
 				                                 <s:if test="%{e.status==2}">
 											     <td class="label"><s:text name="policy.stopDate"/>:</td>
@@ -97,7 +104,14 @@
 											<tr>
 												<!-- 商业险合计 -->
 												<td class="label"><s:text name="policy.commerialAmount"/>:</td>
-											    <td class="value"><s:textfield name="e.commerialAmount" cssClass="ui-widget-content" value="%{getText('bs.format.numberRMB',{e.commerialAmount})}" /></td>
+											    <td class="value">
+											    	<s:if test="e.commerialAmount==-1" >
+												    	<s:textfield  cssClass="ui-widget-content" value="******" />
+												    </s:if>
+												    <s:else>
+												    	<s:textfield name="e.commerialAmount" cssClass="ui-widget-content" value="%{getText('bs.format.numberRMB',{e.commerialAmount})}" />
+												    </s:else>
+											    </td>
 											    <td class="label"></td>
 												<td class="value">
 													<s:checkbox name="e.ownrisk" cssStyle="width:1em;" />
@@ -182,7 +196,14 @@
 											          <tr>
 											          <!-- 强制险合计 -->
 														<td class="label"> <s:text name="policy.greenslipAmount"/>:</td>
-											    		<td class="value"><s:textfield name="e.greenslipAmount" cssClass="ui-widget-content" value="%{getText('bs.format.numberRMB',{e.greenslipAmount})}"/></td>
+											    		<td class="value">
+												    		<s:if test="e.greenslipAmount==-1" >
+												    			<s:textfield  cssClass="ui-widget-content" value="******" />
+												    		</s:if>
+												    		<s:else>
+												    			<s:textfield name="e.greenslipAmount" cssClass="ui-widget-content" value="%{getText('bs.format.numberRMB',{e.greenslipAmount})}"   />
+												    		</s:else>
+											    		</td>
 											          </tr>
 						        		        </table>
 						    		        </fieldset>
@@ -224,7 +245,6 @@
 							<tr class="ui-state-default row">
 								<td class="first" style="width: 250px;height: 20px;">险种名称</td>
 								<td class="middle" style="width: 105px;">保额(元)</td>
-								<!--去除保费  <td class="middle" style="width: 105px;">保费(元)</td>-->
 								<td class="last">备注</td>
 							</tr>
 							<s:iterator var="b" value="e.buyPlants">
@@ -235,8 +255,6 @@
 									<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" 
 										value='<s:property value="%{getText(coverage)}"/>'/>
 								</td>
-								
-								<!--去除保费 <td class="middle" style="padding:0;text-align:left;"><input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" value='<s:property value="%{getText('bs.format.number',{premium})}"/>'/></td>-->
 								<td class="last" style="padding:0;text-align:left;">
 									<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content"
 										 value='<s:property value="description"/>'/>
@@ -247,10 +265,6 @@
 						</div>
 					</div>
 				
-
-
-			<!--去除合计字段  <div><s:text name="policy.amount"/>:<s:textfield name="e.amount" size="10" cssClass="ui-widget-content"/>元</div>-->	
-
 		<s:hidden name="e.id"/>
 		<s:hidden name="e.car.id" data-validate="required"/>
 		<s:hidden name="e.author.id"/>
@@ -263,8 +277,7 @@
 		<s:hidden name="e.pid"/>
 		<s:hidden name="buyPlants"/>
 		<s:hidden name="e.stopDate"/>
-		<!-- 初登日期  不显示 -->
-		<input type="hidden" name="e.registerDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.registerDate" />'/>
+
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 	</s:form>
 </div>
