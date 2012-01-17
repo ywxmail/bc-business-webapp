@@ -219,7 +219,20 @@ bc.contract4LabourForm = {
 					success: function(json){
 						logger.info("doRenew result=" + $.toJSON(json));
 						//完成后提示用户
-						bc.msg.info(json.msg);
+						//bc.msg.info(json.msg);
+						var str = json.msg.split(" ")[2];
+						str = "<a id='chakan' href=#>"+str+"</a>";
+						str = json.msg.split(" ")[0]+" "+json.msg.split(" ")[1]+" "+str+" "+json.msg.split(" ")[3];
+						var $a = bc.msg.alert(str);
+						$a.find('#chakan').click(function(){
+							bc.page.newWin({
+								url: bc.root + "/bc-business/contract4Labour/open?id="+json.id,
+								name: "查看劳动合同",
+								mid:  "viewcontract4Labour"
+							})
+							$a.dialog("close");
+						});
+
 						$page.data("data-status","saved");
 						$page.dialog("close");
 					}
@@ -249,7 +262,20 @@ bc.contract4LabourForm = {
 					success: function(json){
 						logger.info("doResign result=" + $.toJSON(json));
 						//完成后提示用户
-						bc.msg.info(json.msg);
+						//bc.msg.info(json.msg);
+						var str = json.msg.split(" ")[2];
+						str = "<a id='chakan' href=#>"+str+"</a>";
+						str = json.msg.split(" ")[0]+" "+json.msg.split(" ")[1]+" "+str+" "+json.msg.split(" ")[3];
+						var $a = bc.msg.alert(str);
+						$a.find('#chakan').click(function(){
+							bc.page.newWin({
+								url: bc.root + "/bc-business/contract4Labour/open?id="+json.id,
+								name: "查看劳动合同",
+								mid:  "viewcontract4Labour"
+							})
+							$a.dialog("close");
+						});
+
 						$page.data("data-status","saved");
 						$page.dialog("close");
 					}
@@ -279,7 +305,20 @@ bc.contract4LabourForm = {
 					success: function(json){
 						logger.info("doChangeCar result=" + $.toJSON(json));
 						//完成后提示用户
-						bc.msg.info(json.msg);
+						//bc.msg.info(json.msg);
+						var str = json.msg.split(" ")[2];
+						str = "<a id='chakan' href=#>"+str+"</a>";
+						str = json.msg.split(" ")[0]+" "+json.msg.split(" ")[1]+" "+str+" "+json.msg.split(" ")[3];
+						var $a = bc.msg.alert(str);
+						$a.find('#chakan').click(function(){
+							bc.page.newWin({
+								url: bc.root + "/bc-business/contract4Labour/open?id="+json.id,
+								name: "查看劳动合同",
+								mid:  "viewcontract4Labour"
+							})
+							$a.dialog("close");
+						});
+
 						$page.data("data-status","saved");
 						$page.dialog("close");
 					}
