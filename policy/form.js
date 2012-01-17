@@ -93,12 +93,6 @@ bc.policyForm = {
 						cell.setAttribute("class","middle");
 						cell.innerHTML=buildInput("coverage",selectInsuranceTypes[i].coverage);//插入保额
 						
-						//cell=newRow.insertCell(2);
-						//cell.style.padding="0";
-						//cell.style.textAlign="left";
-						//cell.setAttribute("class","middle");
-						//cell.innerHTML=buildInput("premium",selectInsuranceTypes[i].premium);//插入保费
-						
 						cell=newRow.insertCell(2);
 						cell.style.padding="0";
 						cell.style.textAlign="left";
@@ -219,6 +213,21 @@ bc.policyForm = {
 
 	},
 
+	/** 注销 **/
+	doLogout : function(){
+		var $page=$(this);
+		alert("确定注销保单？");
+		bc.ajax({
+			url:bc.root + "/bc-business/policy4CarOperate/doLogout",
+			dataType: "json",
+			data: {id: $page.find(":input[name='e.id']").val()},
+			success: function(json){
+				//完成后提示用户
+				bc.msg.info(json.msg);
+				$page.dialog("close");
+			}
+		});
+	},
 
 		
 };
