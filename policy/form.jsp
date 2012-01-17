@@ -38,7 +38,7 @@
 											<tr>
 												<!-- 责任险合计 -->
 												<td class="label"> <s:text name="policy.liabilityAmount"/>:</td>
-											    <td class="value"><s:textfield name="e.liabilityAmount" cssClass="ui-widget-content"  value="%{getText('bs.format.numberRMB',{e.liabilityAmount})}"  /></td>
+											    <td class="value"><s:textfield name="e.liabilityAmount" cssClass="ui-widget-content"  value="%{getText('bs.format.numberRMB',{e.liabilityAmount})}" data-validate="money"/></td>
 											     <!-- 停保日期 -->
 				                                 <s:if test="%{e.status==2}">
 											     <td class="label"><s:text name="policy.stopDate"/>:</td>
@@ -97,7 +97,7 @@
 											<tr>
 												<!-- 商业险合计 -->
 												<td class="label"><s:text name="policy.commerialAmount"/>:</td>
-											    <td class="value"><s:textfield name="e.commerialAmount" cssClass="ui-widget-content" value="%{getText('bs.format.numberRMB',{e.commerialAmount})}" /></td>
+											    <td class="value"><s:textfield name="e.commerialAmount" cssClass="ui-widget-content" value="%{getText('bs.format.numberRMB',{e.commerialAmount})}" data-validate="money"/></td>
 											    <td class="label"></td>
 												<td class="value">
 													<s:checkbox name="e.ownrisk" cssStyle="width:1em;" />
@@ -182,7 +182,7 @@
 											          <tr>
 											          <!-- 强制险合计 -->
 														<td class="label"> <s:text name="policy.greenslipAmount"/>:</td>
-											    		<td class="value"><s:textfield name="e.greenslipAmount" cssClass="ui-widget-content" value="%{getText('bs.format.numberRMB',{e.greenslipAmount})}"/></td>
+											    		<td class="value"><s:textfield name="e.greenslipAmount" cssClass="ui-widget-content" value="%{getText('bs.format.numberRMB',{e.greenslipAmount})}" data-validate="money"/></td>
 											          </tr>
 						        		        </table>
 						    		        </fieldset>
