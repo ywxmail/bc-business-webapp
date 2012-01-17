@@ -301,7 +301,7 @@ bc.contract4LabourForm = {
 				bc.ajax({
 					url: bc.root + "/bc-business/contract4LabourOperate/doChangeCar",
 					dataType: "json",
-					data: {newCarId: car.id,id: $page.find(":input[name='e.id']").val()},
+					data: {newCarId: car.id,newCarPlate: car.plate,id: $page.find(":input[name='e.id']").val()},
 					success: function(json){
 						logger.info("doChangeCar result=" + $.toJSON(json));
 						//完成后提示用户
