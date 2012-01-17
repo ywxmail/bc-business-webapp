@@ -3,6 +3,13 @@ bc.business = {};
 bc.business.MoveTypeList = {
 		select: function(){
 			var $page = $(this);
+			var extras=$page.data("extras");
+			var carManId;
+			var carId;
+			if(typeof extras == "object"){
+				carManId=extras.carManId;
+				carId=extras.carId;
+			}
 			var url=bc.root +"/bc-business/selectMoveType";
 			var option = jQuery.extend({
 				url: url,
@@ -10,6 +17,13 @@ bc.business.MoveTypeList = {
 				mid: "MoveType",
 				afterClose: function(MoveType){
 					var url=bc.root +"/bc-business/carByDriverHistory/create?moveType="+MoveType.id;
+					if(carManId){
+						url+="&carManId=" + carManId;
+					}
+					if(carId){
+						url+="&carId=" + carId;
+					}
+
 					var option = jQuery.extend({
 						url: url,
 						name:"迁移记录",

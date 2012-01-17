@@ -18,7 +18,7 @@
 					</s:if><s:else>
 					    <td class="value relative"><s:textfield name="e.driver.name" data-validate="required" cssClass="ui-widget-content" />
 					        <ul class="inputIcons">
-                               <li id="selectDriver" class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></li>
+                               <li id="driverName" class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></li>
                                <li class="clearSelect inputIcon ui-icon ui-icon-circle-close" data-cfg="e.driver.name" title='<s:text name="title.click2clear"/>'></li>
                             </ul>
 					    </td>
@@ -47,7 +47,7 @@
 						          <table class="formFields" cellspacing="2" cellpadding="0">
 						              <tr><td class="label" style="height:19px">*<s:text name="carByDriverHistory.oldCar"/>:</td>
 						                   <td class="value relative" style="position:relative;display: block;"><s:textfield name="e.fromCar.name" value="%{e.fromCar.plateType+e.fromCar.plateNo }"
-					                        data-validate="required" cssClass="ui-widget-content" readonly="true" />
+					                        data-validate="required" cssClass="ui-widget-content"  />
 					                           <ul class="inputIcons">
                                                    <li id="selectOldCar" class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></li>
                                                    <li class="clearSelect inputIcon ui-icon ui-icon-circle-close" data-cfg="e.fromCar.name" title='<s:text name="title.click2clear"/>'></li>

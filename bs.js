@@ -185,6 +185,7 @@ bs.selectCar = function(option) {
  *			birthDate： [birthDate],			-- 出生日期
  *			age： [age],						-- 年龄
  * 			icId: [icId]					-- 司机IC卡的id
+ *          classes:[classes]               --营运班次
  * 		}
  * 	}
  */
