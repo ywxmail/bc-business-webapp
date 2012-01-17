@@ -75,9 +75,9 @@ bc.contract4ChargerForm = {
 			});
 		});
 		
-		if($form.find(":input[name='isExistContract']").val()=="true"){
-			bc.msg.alert("所选车辆已配置了相应的经济合同，不能重复配置，请您编辑原来的经济合同！");
-		};
+//		if($form.find(":input[name='isExistContract']").val()=="true"){
+//			bc.msg.alert("所选车辆已配置了相应的经济合同，不能重复配置，请您编辑原来的经济合同！");
+//		};
 		
 		/* 选择车辆车牌*/
 		$form.find("#selectCarPlate").click(function() {
@@ -85,17 +85,20 @@ bc.contract4ChargerForm = {
 			bs.selectCar({
 				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
 				onOk : function(car) {
-					var url = bc.root + "/bc-business/contract4Charger/isExistContract?carId="+car.id;
-					$.ajax({url: url,dataType:"json",success: function (json){
-						if(json.isExistContract){
-							bc.msg.alert("所选车辆已配置了相应的经济合同，不能重复配置，请您编辑原来的经济合同！");
-							$form.find(":input[name='e.ext_str1']").val('');
-							$form.find(":input[name='carId']").val('');
-						}else{
-							$form.find(":input[name='e.ext_str1']").val(car.plate);
-							$form.find(":input[name='carId']").val(car.id);
-						}
-					}});
+					$form.find(":input[name='e.ext_str1']").val(car.plate);
+					$form.find(":input[name='carId']").val(car.id); 
+					
+//					var url = bc.root + "/bc-business/contract4Charger/isExistContract?carId="+car.id;
+//					$.ajax({url: url,dataType:"json",success: function (json){
+//						if(json.isExistContract){
+//							bc.msg.alert("所选车辆已配置了相应的经济合同，不能重复配置，请您编辑原来的经济合同！");
+//							$form.find(":input[name='e.ext_str1']").val('');
+//							$form.find(":input[name='carId']").val('');
+//						}else{
+//							$form.find(":input[name='e.ext_str1']").val(car.plate);
+//							$form.find(":input[name='carId']").val(car.id);
+//						}
+//					}});
 				}
 			});
 		});
@@ -165,7 +168,6 @@ bc.contract4ChargerForm = {
 			});
 		});
 		
-
 	},
 	
 	/** 续约处理 */
@@ -189,7 +191,123 @@ bc.contract4ChargerForm = {
 					success: function(json){
 						logger.info("doRenew result=" + $.toJSON(json));
 						//完成后提示用户
-						bc.msg.info(json.msg);
+						//bc.msg.info(json.msg);
+						var str = json.msg.split(" ")[2];
+						str = "<a id='chakan' href=#>"+str+"</a>";
+						str = json.msg.split(" ")[0]+" "+json.msg.split(" ")[1]+" "+str+" "+json.msg.split(" ")[3];
+						var $a = bc.msg.alert(str);
+						$a.find('#chakan').click(function(){
+							bc.page.newWin({
+								url: bc.root + "/bc-business/contract4Charger/open?id="+json.id,
+								name: "查看经济合同",
+								mid:  "viewcontract4Charger"
+							})
+							$a.dialog("close");
+						});
+
+						$page.data("data-status","saved");
+						$page.dialog("close");
+					}
+				});
+			}
+		});
+	},
+	
+	/** 过户处理 */
+	doChangeCharger : function($page) {
+		var $page = $(this);
+		// 让用户输入新的合同期限
+		bc.page.newWin({
+			name:"经济合同过户",
+			mid: "selectchangeChargerContract4Charger",
+			url: bc.root + "/bc-business/selectDateAndCharger/select",
+			data: {addDay:1,startDate: $page.find(":input[name='e.endDate']").val(),title:"过户操作",carId: $page.find(":input[name='carId']").val()},
+			afterClose: function(status){
+				logger.info("status=" + $.toJSON(status));
+				if(!status) return;
+				
+				//执行过户处理
+				bc.ajax({
+					url: bc.root + "/bc-business/contract4ChargerOperate/doChangeCharger",
+					dataType: "json",
+					data: {
+						newStartDate: status.startDate,
+						newEndDate: status.endDate,
+						id: $page.find(":input[name='e.id']").val(),
+						carId: status.carId,
+						takebackOrigin: status.takebackOrigin,
+						assignChargerIds : status.assignChargerIds,
+						assignChargerNames : status.assignChargerNames
+					},
+					success: function(json){
+						logger.info("doRenew result=" + $.toJSON(json));
+						//完成后提示用户
+						//bc.msg.info(json.msg);
+						var str = json.msg.split(" ")[2];
+						str = "<a id='chakan' href=#>"+str+"</a>";
+						str = json.msg.split(" ")[0]+" "+json.msg.split(" ")[1]+" "+str+" "+json.msg.split(" ")[3];
+						var $a = bc.msg.alert(str);
+						$a.find('#chakan').click(function(){
+							bc.page.newWin({
+								url: bc.root + "/bc-business/contract4Charger/open?id="+json.id,
+								name: "查看经济合同",
+								mid:  "viewcontract4Charger"
+							})
+							$a.dialog("close");
+						});
+
+						$page.data("data-status","saved");
+						$page.dialog("close");
+					}
+				});
+			}
+		});
+	},
+	
+	
+	/** 重发包处理 */
+	doChangeCharger2 : function($page) {
+		var $page = $(this);
+		// 让用户输入新的合同期限
+		bc.page.newWin({
+			name:"经济合同重发包",
+			mid: "selectchangeChargerContract4Charger",
+			url: bc.root + "/bc-business/selectDateAndCharger/select",
+			data: {addDay:1,startDate: $page.find(":input[name='e.endDate']").val(),title:"重发包操作",carId: $page.find(":input[name='carId']").val()},
+			afterClose: function(status){
+				logger.info("status=" + $.toJSON(status));
+				if(!status) return;
+				
+				//执行过户处理
+				bc.ajax({
+					url: bc.root + "/bc-business/contract4ChargerOperate/doChangeCharger2",
+					dataType: "json",
+					data: {
+						newStartDate: status.startDate,
+						newEndDate: status.endDate,
+						id: $page.find(":input[name='e.id']").val(),
+						carId: status.carId,
+						takebackOrigin: status.takebackOrigin,
+						assignChargerIds : status.assignChargerIds,
+						assignChargerNames : status.assignChargerNames
+					},
+					success: function(json){
+						logger.info("doRenew result=" + $.toJSON(json));
+						//完成后提示用户
+						//bc.msg.info(json.msg);
+						var str = json.msg.split(" ")[2];
+						str = "<a id='chakan' href=#>"+str+"</a>";
+						str = json.msg.split(" ")[0]+" "+json.msg.split(" ")[1]+" "+str+" "+json.msg.split(" ")[3];
+						var $a = bc.msg.alert(str);
+						$a.find('#chakan').click(function(){
+							bc.page.newWin({
+								url: bc.root + "/bc-business/contract4Charger/open?id="+json.id,
+								name: "查看经济合同",
+								mid:  "viewcontract4Charger"
+							})
+							$a.dialog("close");
+						});
+
 						$page.data("data-status","saved");
 						$page.dialog("close");
 					}
@@ -212,7 +330,7 @@ bc.contract4ChargerForm = {
 			$page.find(":input[name=assignChargerIds]").val(ids.join(","));
 			$page.find(":input[name=assignChargerNames]").val(names.join(","));
 		}else{
-			bc.msg.slide("最少选择一个责任人！");
+			bc.msg.alert("最少选择一个责任人！");
 			return false;
 		}
 		//调用标准的方法执行保存

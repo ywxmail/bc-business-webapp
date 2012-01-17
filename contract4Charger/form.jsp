@@ -31,7 +31,7 @@
 					<tr>
 						<td class="label">*<s:text name="contract4Charger.signType"/>:</td>
 						<td class="value ">
-							<s:select name="e.signType" list="signTypeList" listKey="value" listValue="value"  data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" ></s:select>
+							<s:select name="e.signType" list="signTypeList" listKey="value" listValue="value"  data-validate="required" headerKey="" headerValue="" cssClass="ui-widget-content" ></s:select>
 						</td>
 						<td class="label">*<s:text name="contract.deadline"/>:</td>
 						<td class="value">
@@ -95,10 +95,12 @@
 						<td class="value "><s:textfield name="e.wordNo" cssClass="ui-widget-content" /></td>
 					</tr>
 					<tr>
+						<td class="label" ><s:text name="contract4Charger.contractVersionNo"/>:</td>
+						<td class="value">
+							<s:select name="e.contractVersionNo" list="contractVersionNoList" listKey="key" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
+						</td>
 						<td></td>
-						<td></td>
-						<td></td>
-						<td colspan="6" class="label" style="text-align: right;">
+						<td class="label" style="text-align: right;">
 							<s:checkbox name="e.logout" cssStyle="width:1em;" />
 							<s:text name="contract4Charger.logout"/>
 							<s:checkbox name="e.takebackOrigin" cssStyle="width:1em;"/>

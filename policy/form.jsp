@@ -43,9 +43,10 @@
 												    	<s:textfield  cssClass="ui-widget-content" value="******" />
 												    </s:if>
 												    <s:else>
-											    		<s:textfield name="e.liabilityAmount" cssClass="ui-widget-content"  value="%{getText('bs.format.numberRMB',{e.liabilityAmount})}"  />
+											    		<s:textfield name="e.liabilityAmount" cssClass="ui-widget-content"  value="%{getText('bs.format.numberRMB',{e.liabilityAmount})}" data-validate="money" />
 											    	</s:else>
 											    </td>
+
 											     <!-- 停保日期 -->
 				                                 <s:if test="%{e.status==2}">
 											     <td class="label"><s:text name="policy.stopDate"/>:</td>
@@ -109,7 +110,7 @@
 												    	<s:textfield  cssClass="ui-widget-content" value="******" />
 												    </s:if>
 												    <s:else>
-												    	<s:textfield name="e.commerialAmount" cssClass="ui-widget-content" value="%{getText('bs.format.numberRMB',{e.commerialAmount})}" />
+												    	<s:textfield name="e.commerialAmount" cssClass="ui-widget-content" value="%{getText('bs.format.numberRMB',{e.commerialAmount})}" data-validate="money" />
 												    </s:else>
 											    </td>
 											    <td class="label"></td>
@@ -201,9 +202,10 @@
 												    			<s:textfield  cssClass="ui-widget-content" value="******" />
 												    		</s:if>
 												    		<s:else>
-												    			<s:textfield name="e.greenslipAmount" cssClass="ui-widget-content" value="%{getText('bs.format.numberRMB',{e.greenslipAmount})}"   />
+												    			<s:textfield name="e.greenslipAmount" cssClass="ui-widget-content" value="%{getText('bs.format.numberRMB',{e.greenslipAmount})}"  data-validate="money" />
 												    		</s:else>
 											    		</td>
+
 											          </tr>
 						        		        </table>
 						    		        </fieldset>
