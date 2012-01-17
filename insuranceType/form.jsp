@@ -15,8 +15,7 @@
 					</tr>
 					<tr>
 						<td class="label"><s:text name="insuranceType.coverage"/>:</td>
-						<td class="value"><s:textfield name="e.coverage"cssClass="ui-widget-content" data-validate="number"
-						    value="%{getText('bs.format.number',{e.coverage})}"/></td>
+						<td class="value"><s:textfield name="e.coverage"cssClass="ui-widget-content" /></td>
 					</tr>
 					<tr>
 						<td class="label"><s:text name="insuranceType.statuses"/>:</td>

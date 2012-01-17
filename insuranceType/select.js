@@ -31,7 +31,6 @@ bs.insuranceTypeSelectDialog = {
 					id: $(this).attr("data-id"),//险种id
 					name:name,
 					coverage:coverage,
-					premium:premium,
 					description:description
 				});
 				
