@@ -316,6 +316,37 @@ bc.contract4ChargerForm = {
 		});
 	},
 	
+	
+	/** 注销处理 */
+	doLogout : function($page) {
+		var $page = $(this);
+		// 让用户输入离职日期，默认为当前时间
+		bc.page.newWin({
+			name:"经济合同注销处理",
+			mid: "resignContract4Charger",
+			url: bc.root + "/bc/common/selectDate",
+			data: {title:"请输入合同的注销日期"},
+			afterClose: function(status){
+				logger.info("status=" + $.toJSON(status));
+				if(!status) return;
+				
+				//执行注销处理
+				bc.ajax({
+					url: bc.root + "/bc-business/contract4ChargerOperate/doLogout",
+					dataType: "json",
+					data: {logoutDate: status,id: $page.find(":input[name='e.id']").val()},
+					success: function(json){
+						logger.info("doLogout result=" + $.toJSON(json));
+						//完成后提示用户
+						bc.msg.info(json.msg);
+						$page.data("data-status","saved");
+						$page.dialog("close");
+					}
+				});
+			}
+		});
+	},
+	
 	//保存的处理
 	save:function(){
 		$page = $(this);

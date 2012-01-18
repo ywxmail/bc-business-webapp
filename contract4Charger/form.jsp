@@ -101,8 +101,6 @@
 						</td>
 						<td></td>
 						<td class="label" style="text-align: right;">
-							<s:checkbox name="e.logout" cssStyle="width:1em;" />
-							<s:text name="contract4Charger.logout"/>
 							<s:checkbox name="e.takebackOrigin" cssStyle="width:1em;"/>
 							<s:text name="contract4Charger.takebackOrigin"/>
 							<s:checkbox name="e.includeCost" cssStyle="width:1em;" />
@@ -116,8 +114,11 @@
 								<s:if test="%{e.author.name != null}">
 								，登记：<s:property value="e.author.name" />(<s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>)
 								</s:if>
-								<s:if test="%{e.modifier != null}">
+								<s:if test="%{e.modifier != null && e.status == 0}">
 								，最后修改：<s:property value="e.modifier.name" />(<s:date name="e.modifiedDate" format="yyyy-MM-dd HH:mm:ss"/>)
+								</s:if>
+								<s:if test="%{e.logoutId != null && e.status == 1}">
+								，注销人：<s:property value="e.logoutId.name" />(<s:date name="e.logoutDate" format="yyyy-MM-dd HH:mm:ss"/>)
 								</s:if>
 							</div>
 						</td>
@@ -185,6 +186,7 @@
 		</div>
 		<s:hidden name="e.id" />
 		<s:hidden name="e.author.id" />
+		<s:hidden name="e.logoutId.id" />
 		<s:hidden name="e.uid"/>
 		<s:hidden name="e.type"/>
 		<s:hidden name="carId" />
@@ -205,6 +207,7 @@
 		<s:hidden name="e.changerId2" />
 		<s:hidden name="e.changerName2" />
 		 -->
+		<input type="hidden" name="e.logoutDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.logoutDate" />'/>
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 	</s:form>
 </div>
