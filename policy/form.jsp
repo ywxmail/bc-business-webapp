@@ -47,7 +47,7 @@
 											    	</s:else>
 											    </td>
 
-											     <!-- 停保日期 -->
+											     <!-- 停保日期 
 				                                 <s:if test="%{e.status==2}">
 											     <td class="label"><s:text name="policy.stopDate"/>:</td>
 						                         <td class="value" style="position:relative;display: block;"><input type="text" name="e.stopDate" 
@@ -55,7 +55,7 @@
 					                              value='<s:date format="yyyy-MM-dd" name="e.stopDate" />'/>
 					                              <span class="selectButton verticalMiddle ui-icon ui-icon-calendar"></span>
 				                                 </td>
-				                                 </s:if>
+				                                 </s:if> -->
 											</tr>
 								        </table>
 								   </fieldset>
