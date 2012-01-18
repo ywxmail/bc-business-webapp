@@ -128,10 +128,10 @@
 							<tr>
 								<td class="value" colspan="4">
 								     <div id="greenslipFieldset" style='<s:if test="%{e.greenslip==true}">
-										  visibility: visible;
+										  dispaly: block;
 									      </s:if>
 									      <s:else>
-										  visibility: hidden;
+										    display: none;
 									      </s:else>
 									      '>
 									        <fieldset>
