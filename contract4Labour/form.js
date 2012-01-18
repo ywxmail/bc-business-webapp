@@ -231,6 +231,7 @@ bc.contract4LabourForm = {
 								mid:  "viewcontract4Labour"
 							})
 							$a.dialog("close");
+							return false;
 						});
 
 						$page.data("data-status","saved");
@@ -265,6 +266,7 @@ bc.contract4LabourForm = {
 						bc.msg.info(json.msg);
 						$page.data("data-status","saved");
 						$page.dialog("close");
+						return false;
 					}
 				});
 			}
@@ -304,6 +306,7 @@ bc.contract4LabourForm = {
 								mid:  "viewcontract4Labour"
 							})
 							$a.dialog("close");
+							return false;
 						});
 
 						$page.data("data-status","saved");
