@@ -182,7 +182,7 @@
 							<td colspan="4">
 								<fieldset class="ui-widget-content" style="padding:0;">
 					          		<legend style="margin:10px;">补充信息</legend>
-					          		<table class="formFields" cellspacing="2" cellpadding="0">
+					          		<table class="formFields" style="padding-bottom: 10px;" cellspacing="2" cellpadding="0">
 										<tr class="widthMarker">
 											<td style="width: 80px;">&nbsp;</td>
 											<td style="width: 295px;">&nbsp;</td>
