@@ -4,9 +4,7 @@
     data-saveUrl='<s:url value="/bc-business/carByDriverHistory/save" />'
 	data-js='<s:url value="/bc/libs/select.js" />,<s:url value="/bc-business/carByDriverHistory/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js" />'
 	data-initMethod='bc.business.carByDriverHistoryForm.init'
-	data-option='{
-		"buttons":[{"text":"<s:text name="label.save"/>","action":"save"}],
-		"width":725,"minWidth":320,"minHeight":200,"modal":true}' style="overflow-y:auto;">
+	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="carByDriverHistoryForm" theme="simple">
 		<div class="formFields ui-widget-content" >
 			<table class="formFields" cellspacing="2" cellpadding="0"  >
@@ -16,7 +14,7 @@
 						<td class="value"><s:textfield name="moveTypeValue"  value="%{moveTypeValueList[e.moveType]}" readonly="true" cssClass="ui-widget-content ui-state-disabled"/></td>
 						<td class="label">*<s:text name="carByDriverHistory.moveDate"/>:</td>
 						<td class="value" style="position:relative;display: block;"><input type="text" name="e.moveDate" 
-						data-validate="date"class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
+						data-validate='{required:true,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
 					    value='<s:date format="yyyy-MM-dd" name="e.moveDate" />'/>
 					    <span class="selectButton verticalMiddle ui-icon ui-icon-calendar"></span>
 				        </td>
@@ -77,6 +75,7 @@
 		</div>
 		<s:hidden name="e.id" />
 		<s:hidden name="e.driver.id" />
+		<s:hidden id="header" value="%{e.fromCar.plateType+e.fromCar.plateNo }"/>
 		<s:hidden name="e.moveType" />
 		<s:hidden name="e.author.id" />
 		<s:hidden name="e.modifier.id"/>

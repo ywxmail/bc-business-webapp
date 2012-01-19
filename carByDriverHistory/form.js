@@ -115,7 +115,23 @@ bc.business.carByDriverHistoryForm = {
 				}
 			});
 		});	
-	}
+	},
+	/** 维护处理 */
+	doMaintenance : function() {
+		var $page = $(this);
+		bc.msg.confirm("是否对"+ $page.find("#header").val() + "的迁移记录进行维护？若不是修改录入时的错误信息，请新建迁移记录以保证信息的准确性",function(){
+			// 关闭当前窗口
+			$page.dialog("close");
+			// 重新打开可编辑表单
+			bc.page.newWin({
+				name: "维护" + $page.find("#header").val() + "的迁移记录",
+				mid: "carByDriverHistory" + $page.find(":input[name='e.id']").val(),
+				url: bc.root + "/bc-business/carByDriverHistory/edit",
+				data: {id: $page.find(":input[name='e.id']").val()}
+			});
+		});
+
+	},
 };
 
 
