@@ -1,6 +1,10 @@
 bc.selectCert = {
 	init : function() {
 		var $page = $(this);
+		//绑定双击事件
+		$page.find("select").dblclick(function(){
+			bc.selectCert.clickOk.call($page[0]);
+		});
 	},
 	clickOk : function(option) {
 		var $page = $(this);

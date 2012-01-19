@@ -9,23 +9,51 @@ bc.policyForm = {
 		//是否购买强制险
 		$form.find(":checkbox[name='e.greenslip']").change(function() {
 			if(this.checked){
-				$form.find('#greenslipFieldset').css("visibility","visible");
-				$form.find('#greenslipSameDateFieldset').css("visibility","visible");
+				$form.find('#greenslipFieldset').css("display","block");
+				$form.find('#greenslipSameDateFieldset').css("display","block");
 				$form.find(":checkbox[name='e.greenslipSameDate']")[0].checked = false;
 			}else{
-				$form.find('#greenslipFieldset').css("visibility","hidden");
-				$form.find('#greenslipSameDateFieldset').css("visibility","hidden");
+				$form.find('#greenslipFieldset').css("display","none");
+				$form.find('#greenslipSameDateFieldset').css("display","none");
 				$form.find(":checkbox[name='e.greenslipSameDate']")[0].checked = false;
+				$form.find('#greenslipSameDateFieldset').css("visibility","visible");
+				//没选中购买强制险时其值变为空
+				$form.find(":input[name='e.greenslipNo']").val('');
+				$form.find("select[name='e.greenslipCompany']").val('');
+				$form.find(":input[name='e.greenslipStartDate']").val('');
+				$form.find(":input[name='e.greenslipEndDate']").val('');
+				$form.find(":input[name='e.greenslipAmount']").val('');
 			}
 		});
+
 		// 强制险是否与商业险同期
 		$form.find(":checkbox[name='e.greenslipSameDate']").change(function() {
 			if(this.checked){
 				$form.find('#greenslipSameDateFieldset').css("visibility","hidden");
+				$form.find(":input[name='e.greenslipStartDate']").val($form.find(":input[name='e.commerialStartDate']").val());
+				$form.find(":input[name='e.greenslipEndDate']").val($form.find(":input[name='e.commerialEndDate']").val());
 			}else{
 				$form.find('#greenslipSameDateFieldset').css("visibility","visible");
+				$form.find(":input[name='e.greenslipStartDate']").val('');
+				$form.find(":input[name='e.greenslipEndDate']").val('');
 			}
 		});
+		//如果商业险的开始时间的值发生改变，则根据条件改变强制险的值
+		$form.find(":input[name='e.commerialStartDate']").change(function() {		
+			if($form.find(":checkbox[name='e.greenslip']")[0].checked){;
+				if($form.find(":checkbox[name='e.greenslipSameDate']")[0].checked){
+					$form.find(":input[name='e.greenslipStartDate']").val($form.find(":input[name='e.commerialStartDate']").val());
+				}
+			}
+		});
+		$form.find(":input[name='e.commerialEndDate']").change(function() {
+			if($form.find(":checkbox[name='e.greenslip']")[0].checked){
+				if($form.find(":checkbox[name='e.greenslipSameDate']")[0].checked){
+					$form.find(":input[name='e.greenslipEndDate']").val($form.find(":input[name='e.commerialEndDate']").val());
+				}
+			}
+		});
+		
 		//如果选中强制险是否与商业险同期选择框则将强制险的保险期限隐藏
 		if($form.find(":checkbox[name='e.greenslipSameDate']")[0].checked==true){
 			$form.find('#greenslipSameDateFieldset').css("visibility","hidden");
@@ -92,12 +120,6 @@ bc.policyForm = {
 						cell.style.textAlign="left";
 						cell.setAttribute("class","middle");
 						cell.innerHTML=buildInput("coverage",selectInsuranceTypes[i].coverage);//插入保额
-						
-						//cell=newRow.insertCell(2);
-						//cell.style.padding="0";
-						//cell.style.textAlign="left";
-						//cell.setAttribute("class","middle");
-						//cell.innerHTML=buildInput("premium",selectInsuranceTypes[i].premium);//插入保费
 						
 						cell=newRow.insertCell(2);
 						cell.style.padding="0";
@@ -195,6 +217,7 @@ bc.policyForm = {
 					success: function(json){
 						//完成后提示用户
 						bc.msg.info(json.msg);
+						$page.data("data-status","saved");
 						$page.dialog("close");
 					}
 				});
@@ -219,6 +242,23 @@ bc.policyForm = {
 
 	},
 
+	/** 注销 **/
+	doLogout : function(){
+		var $page=$(this);
+		bc.msg.confirm("是否对保单进行注销？",function(){
+			bc.ajax({
+				url:bc.root + "/bc-business/policy4CarOperate/doLogout",
+				dataType: "json",
+				data: {id: $page.find(":input[name='e.id']").val()},
+				success: function(json){
+					//完成后提示用户
+					bc.msg.info(json.msg);
+					$page.data("data-status","saved");
+					$page.dialog("close");
+				}
+			});
+		});
+	},
 
 		
 };

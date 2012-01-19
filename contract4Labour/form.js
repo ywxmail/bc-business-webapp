@@ -219,7 +219,21 @@ bc.contract4LabourForm = {
 					success: function(json){
 						logger.info("doRenew result=" + $.toJSON(json));
 						//完成后提示用户
-						bc.msg.info(json.msg);
+						//bc.msg.info(json.msg);
+						var str = json.msg.split(" ")[2];
+						str = "<a id='chakan' href=#>"+str+"</a>";
+						str = json.msg.split(" ")[0]+" "+json.msg.split(" ")[1]+" "+str+" "+json.msg.split(" ")[3];
+						var $a = bc.msg.alert(str);
+						$a.find('#chakan').click(function(){
+							bc.page.newWin({
+								url: bc.root + "/bc-business/contract4Labour/open?id="+json.id,
+								name: "查看劳动合同",
+								mid:  "viewcontract4Labour"
+							})
+							$a.dialog("close");
+							return false;
+						});
+
 						$page.data("data-status","saved");
 						$page.dialog("close");
 					}
@@ -252,6 +266,7 @@ bc.contract4LabourForm = {
 						bc.msg.info(json.msg);
 						$page.data("data-status","saved");
 						$page.dialog("close");
+						return false;
 					}
 				});
 			}
@@ -275,11 +290,25 @@ bc.contract4LabourForm = {
 				bc.ajax({
 					url: bc.root + "/bc-business/contract4LabourOperate/doChangeCar",
 					dataType: "json",
-					data: {newCarId: car.id,id: $page.find(":input[name='e.id']").val()},
+					data: {newCarId: car.id,newCarPlate: car.plate,id: $page.find(":input[name='e.id']").val()},
 					success: function(json){
 						logger.info("doChangeCar result=" + $.toJSON(json));
 						//完成后提示用户
-						bc.msg.info(json.msg);
+						//bc.msg.info(json.msg);
+						var str = json.msg.split(" ")[2];
+						str = "<a id='chakan' href=#>"+str+"</a>";
+						str = json.msg.split(" ")[0]+" "+json.msg.split(" ")[1]+" "+str+" "+json.msg.split(" ")[3];
+						var $a = bc.msg.alert(str);
+						$a.find('#chakan').click(function(){
+							bc.page.newWin({
+								url: bc.root + "/bc-business/contract4Labour/open?id="+json.id,
+								name: "查看劳动合同",
+								mid:  "viewcontract4Labour"
+							})
+							$a.dialog("close");
+							return false;
+						});
+
 						$page.data("data-status","saved");
 						$page.dialog("close");
 					}
