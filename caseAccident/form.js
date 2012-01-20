@@ -166,48 +166,180 @@ bc.caseAccidentForm = {
 				}
 			});
 		});
+		
+		//损失情况
+		$form.find('#ShowGroups1').css("display","none");		
+		//绑定点击按钮内容展出事件
+		$form.find('#ShowGroups1').click(function(){
+			$form.find('#Groups1').css("display","block");
+			$(this).css("display","none");
+			$form.find('#HiddenGroups1').css("display","block");
+		});
+		//绑定点击按钮内容隐藏事件
+		$form.find('#HiddenGroups1').click(function(){
+			$form.find('#Groups1').css("display","none");
+			$(this).css("display","none");
+			$form.find('#ShowGroups1').css("display","block");
+		});
+		
+		//理赔情况
+		$form.find('#ShowGroups2').css("display","none");		
+		//绑定点击按钮内容展出事件
+		$form.find('#ShowGroups2').click(function(){
+			$form.find('#Groups2').css("display","block");
+			$(this).css("display","none");
+			$form.find('#HiddenGroups2').css("display","block");
+		});
+		//绑定点击按钮内容隐藏事件
+		$form.find('#HiddenGroups2').click(function(){
+			$form.find('#Groups2').css("display","none");
+			$(this).css("display","none");
+			$form.find('#ShowGroups2').css("display","block");
+		});
+		
+		//事故截图
+		$form.find('#ShowGroups3').css("display","none");		
+		//绑定点击按钮内容展出事件
+		$form.find('#ShowGroups3').click(function(){
+			$form.find('#Groups3').css("display","block");
+			$(this).css("display","none");
+			$form.find('#HiddenGroups3').css("display","block");
+		});
+		//绑定点击按钮内容隐藏事件
+		$form.find('#HiddenGroups3').click(function(){
+			$form.find('#Groups3').css("display","none");
+			$(this).css("display","none");
+			$form.find('#ShowGroups3').css("display","block");
+		});
+		
+		
 		// 绑定是否送保事件
 		$form.find(":checkbox[name='e.deliver']").change(function() {
 			if(this.checked){
-				$form.find('#deliverDate2Title').css("visibility","visible");
-				$form.find('#deliverDate2Value').css("visibility","visible");
-				$form.find('#deliverMoneyTitle').css("visibility","visible");
-				$form.find('#deliverMoneyValue').css("visibility","visible");
+				$form.find('#deliver').css("display","block");
 			}else{
-				$form.find('#deliverDate2Title').css("visibility","hidden");
-				$form.find('#deliverDate2Value').css("visibility","hidden");
-				$form.find('#deliverMoneyTitle').css("visibility","hidden");
-				$form.find('#deliverMoneyValue').css("visibility","hidden");
+				$form.find('#deliver').css("display","none");
 			}
 		});
 		
 		// 绑定是否保险公司是否赔款事件
 		$form.find(":checkbox[name='e.claim']").change(function() {
 			if(this.checked){
-				$form.find('#claimDateTitle').css("visibility","visible");
-				$form.find('#claimDateValue').css("visibility","visible");
-				$form.find('#claimCodeTitle').css("visibility","visible");
-				$form.find('#claimCodeValue').css("visibility","visible");
-				$form.find('#claimNo1Title').css("visibility","visible");
-				$form.find('#claimNo1Value').css("visibility","visible");
+				$form.find('#claim').css("display","block");
 			}else{
-				$form.find('#claimDateTitle').css("visibility","hidden");
-				$form.find('#claimDateValue').css("visibility","hidden");
-				$form.find('#claimCodeTitle').css("visibility","hidden");
-				$form.find('#claimCodeValue').css("visibility","hidden");
-				$form.find('#claimNo1Title').css("visibility","hidden");
-				$form.find('#claimNo1Value').css("visibility","hidden");
+				$form.find('#claim').css("display","none");
 			}
 		});
 		
 		// 绑定签领日期事件
 		$form.find(":checkbox[name='e.pay']").change(function() {
 			if(this.checked){
-				$form.find('#pay').css("visibility","visible");
+				$form.find('#pay').css("display","block");
 			}else{
-				$form.find('#pay').css("visibility","hidden");
+				$form.find('#pay').css("display","none");
+			}
+		})
+		
+		// 绑定是否送保事件 二次送保
+		$form.find(":checkbox[name='e.deliverTwo']").change(function() {
+			if(this.checked){
+				$form.find('#deliverTwo').css("display","block");
+			}else{
+				$form.find('#deliverTwo').css("display","none");
 			}
 		});
+		
+		// 绑定是否保险公司是否赔款事件 二次送保
+		$form.find(":checkbox[name='e.claimTwo']").change(function() {
+			if(this.checked){
+				$form.find('#claimTwo').css("display","block");
+			}else{
+				$form.find('#claimTwo').css("display","none");
+			}
+		});
+		
+		// 绑定签领日期事件 二次送保
+		$form.find(":checkbox[name='e.payTwo']").change(function() {
+			if(this.checked){
+				$form.find('#payTwo').css("display","block");
+			}else{
+				$form.find('#payTwo').css("display","none");
+			}
+		});
+		
+		
+		
+		//绑定送保 隐藏保险公司赔付和受款司机内容
+		$form.find(":checkbox[name='e.deliver']").change(function(){
+			if($(this)[0].checked==false){
+				$form.find(":checkbox[name='e.claim']")[0].checked=false;
+				$form.find(":checkbox[name='e.pay']")[0].checked=false;
+				$form.find(":checkbox[name='e.deliverSecond']")[0].checked=false;
+				$form.find(":checkbox[name='e.deliverTwo']")[0].checked=false;
+				$form.find(":checkbox[name='e.claimTwo']")[0].checked=false;
+				$form.find(":checkbox[name='e.payTwo']")[0].checked=false;
+				$form.find('#claim').css("display","none");
+				$form.find('#pay').css("display","none");
+				$form.find("#idSecondDeliver").css("display","none");
+				$form.find('#deliverTwo').css("display","none");
+				$form.find('#claimTwo').css("display","none");
+				$form.find('#payTwo').css("display","none");
+			}
+		});
+		
+		//绑定保险公司赔付 隐藏受款司机内容
+		$form.find(":checkbox[name='e.claim']").change(function(){
+			if($(this)[0].checked==false){
+				$form.find(":checkbox[name='e.pay']")[0].checked=false;
+				$form.find('#pay').css("display","none");
+			}
+		});
+		
+		//初始化是根据二次送保的状态是否显示其内容
+		if($form.find(":checkbox[name='e.deliverSecond']")[0].checked==false){
+			$form.find("#idSecondDeliver").css("display","none");
+		}else{
+			$form.find("#idSecondDeliver").css("display","block");
+		}
+		
+		//绑定二次送保按钮  显示或隐藏二次送保的内容
+		$form.find(":checkbox[name='e.deliverSecond']").change(function(){
+			if($(this)[0].checked==false){
+				$form.find("#idSecondDeliver").css("display","none");
+				$form.find(":checkbox[name='e.deliverTwo']")[0].checked=false;
+				$form.find(":checkbox[name='e.claimTwo']")[0].checked=false;
+				$form.find(":checkbox[name='e.payTwo']")[0].checked=false;
+				$form.find('#deliverTwo').css("display","none");
+				$form.find('#claimTwo').css("display","none");
+				$form.find('#payTwo').css("display","none");
+			}else if($(this)[0].checked==true){
+				$form.find("#idSecondDeliver").css("display","block");
+				
+			}
+			
+		});
+		//绑定送保 隐藏保险公司赔付和受款司机内容  （二次送保）
+		$form.find(":checkbox[name='e.deliverTwo']").change(function(){
+			if($(this)[0].checked==false){
+				$form.find(":checkbox[name='e.claimTwo']")[0].checked=false;
+				$form.find(":checkbox[name='e.payTwo']")[0].checked=false;
+				$form.find('#claimTwo').css("display","none");
+				$form.find('#payTwo').css("display","none");
+			}
+		});
+		
+		
+		//绑定保险公司赔付 隐藏受款司机内容（二次送保）
+		$form.find(":checkbox[name='e.claimTwo']").change(function(){
+			if($(this)[0].checked==false){
+				$form.find(":checkbox[name='e.payTwo']")[0].checked=false;
+				$form.find('#payTwo').css("display","none");
+			}
+		});
+		
+		
+		
+		
 	},
 	closefile : function(){
 		var $form = $(this);

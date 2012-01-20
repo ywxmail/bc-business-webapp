@@ -6,8 +6,7 @@
 	data-initMethod='bc.caseAccidentForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="caseAccidentForm" theme="simple">
-		<div class="formFields ui-widget-content" style="width:800px;">
-			<table class="formFields" cellspacing="2" cellpadding="0">
+			<table class="formTable2 ui-widget-content" cellspacing="2" cellpadding="0" style="width:800px;">
 				<tbody>
 					<tr>
 						<td style="height: 1px;"></td>
@@ -83,9 +82,13 @@
 					</tr>
 					<tr>
 						<td class="label"><s:text name="runcase.driverArea"/>:</td>
-						<td class="value"><s:select list="#{0:'',1:'本市',2:'本省',3:'外省'}" listKey="key" listValue="value"    headerValue="" name="e.driverArea" cssClass="ui-widget-content"/></td>
+						<td class="value">
+								<s:select list="#{0:'',1:'本市',2:'本省',3:'外省'}" listKey="key" listValue="value"  cssStyle="width:8em;"  headerValue="" name="e.driverArea" cssClass="ui-widget-content"/>
+								&nbsp;&nbsp;司机<s:text name="runcase.origin"/>:
+								<s:textfield name="e.origin" cssStyle="width:8em;"  cssClass="ui-widget-content"/>
+						</td>
 						<td class="label" ><s:text name="runcase.receiverName2"/>:</td>
-						<td class="value relative"><s:textfield name="e.receiverName" cssClass="ui-widget-content"/>
+						<td class="value relative"><s:textfield name="e.receiverName"  />
 						<ul class="inputIcons">
 							 <li id="selectReceiver" class=" inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></li>
 						</ul>
@@ -94,7 +97,9 @@
 					<tr>
 					    <td class="label"><s:text name="runcase.driverClasses"/></td>
 						<td class="value">
-						<s:select name="e.driverClasses" list="#{0:'',1:'正班',2:'副班',3:'顶班'}" listKey="key" listValue="value"   data-validate="required" cssClass="ui-widget-content"/>
+								<s:select name="e.driverClasses" list="#{0:'',1:'正班',2:'副班',3:'顶班'}" listKey="key" listValue="value" cssStyle="width:8em;"  data-validate="required" cssClass="ui-widget-content"/>
+								&nbsp;&nbsp;<s:text name="runcase.driverType"/>:
+								<s:select name="e.driverType" list="#{0:'',1:'车主',2:'司机',3:'非编'}" listKey="key" listValue="value" cssStyle="width:8em;" cssClass="ui-widget-content"/>
 						</td>
 						<td class="label"><s:text name="runcase.principal" />:</td>
 						<td class="value relative"><s:textfield name="e.chargerName" cssClass="ui-widget-content"/>
@@ -104,12 +109,529 @@
 						</td>					
 					</tr>
 					<tr>
-						<td class="label" ><s:text name="runcase.driverType"/>:</td>
-						<td class="value" ><s:select name="e.driverType" list="#{0:'',1:'车主',2:'司机',3:'非编'}" listKey="key" listValue="value" cssClass="ui-widget-content"/>
+						<td class="topLabel" ><s:text name="runcase.jingguo"/>:</td>
+						<td class="value" colspan="3" ><s:textarea name="e.description" rows="5" cssClass="ui-widget-content noresize"/>
 						</td>
 					</tr>
-					<tr>
-						<td class="label" colspan="4">
+					
+				</tbody>
+			</table>
+			
+			<!-- 损失情况 -->
+			<div  class="formTable2 ui-widget-content"  style="width:800px;">
+				<div class="ui-widget-header title" style="position:relative;">
+						<span class="text" >损失情况:</span>
+						<span id="ShowGroups1" class="verticalMiddle ui-icon ui-icon-carat-1-s" title='<s:text name="runcase.title.click2ShowGroups"/>'></span>
+						<span id="HiddenGroups1" class="verticalMiddle ui-icon ui-icon-carat-1-n" title='<s:text name="runcase.title.click2HiddenGroups"/>'></span>
+				</div>
+				<div id="Groups1">
+					<fieldset style="margin: 6px;" class="ui-corner-all ui-widget-content">
+					<legend>自车</legend>
+						<table class="formFields ui-widget-content" cellspacing="2" cellpadding="0">
+							<tbody>
+								<tr style="line-height: 1px;">
+									<td style="width: 100px;">&nbsp;</td>
+									<td style="width: 260px;">&nbsp;</td>
+									<td style="width: 100px;">&nbsp;</td>
+									<td >&nbsp;</td>
+								</tr>
+								<tr>
+									<td class="label"><s:checkbox name="e.innerFix" cssStyle="width:1em;" /><s:text name="runcase.innerFix"/></td>
+									<td class="value">
+											<s:text name="runcase.fixCost" />(元):<s:textfield name="e.fixCost" cssClass="ui-widget-content" cssStyle="width:184px;" />
+									</td>
+									<td class="label"><s:text name="runcase.claimAmount" />(元):</td>
+									<td class="value"><s:textfield name="e.claimAmount" cssClass="ui-widget-content"  /></td>
+								</tr>
+								<tr>
+									<td class="label"><s:text name="runcase.trailerCost" />(元):</td>
+									<td class="value"><s:textfield name="e.carmanCost" cssClass="ui-widget-content" cssStyle="width:250px;" /></td>
+									<td class="label"><s:text name="runcase.carWounding" />(元):</td>
+									<td class="value"><s:textfield name="e.carWounding" cssClass="ui-widget-content" /></td>
+								</tr>
+								<tr>
+									<td class="label"><s:text name="runcase.carHurt" />:</td>
+									<td class="value"><s:textfield name="e.carHurt" cssClass="ui-widget-content" cssStyle="width:250px;" /></td>
+									<td class="label"></td>
+									<td class="value"></td>
+								</tr>
+							</tbody>
+						</table>
+					</fieldset>
+					<fieldset style="margin: 6px;" class="ui-corner-all ui-widget-content">
+					<legend>第三者</legend>
+						<table class="formFields ui-widget-content" cellspacing="2" cellpadding="0">
+							<tbody>
+								<tr style="line-height: 1px;">
+									<td style="width: 100px;">&nbsp;</td>
+									<td style="width: 260px;">&nbsp;</td>
+									<td style="width: 100px;">&nbsp;</td>
+									<td >&nbsp;</td>
+								</tr>
+									<tr>
+									<td class="label"><s:text name="runcase.thirdLoss" />(元):</td>
+									<td class="value"><s:textfield name="e.thirdLoss" cssClass="ui-widget-content" cssStyle="width:250px;" /></td>
+									<td class="label"><s:text name="runcase.trailerCost" />(元):</td>
+									<td class="value"><s:textfield name="e.thirdCost" cssClass="ui-widget-content"  /></td>
+								</tr>
+								<tr>
+									<td class="label"><s:text name="runcase.third.hurt" />(元):</td>
+									<td class="value"><s:textfield name="e.thirdWounding" cssClass="ui-widget-content" cssStyle="width:250px;" /></td>
+									<td class="label"><s:text name="runcase.third.hurt" />(元):</td>
+									<td class="value"><s:textfield name="e.thirdWounding" cssClass="ui-widget-content"  /></td>
+								</tr>
+								<tr>
+									<td class="label"><s:text name="runcase.medicalFee" />(元):</td>
+									<td class="value"><s:textfield name="e.medicalFee" cssClass="ui-widget-content" cssStyle="width:250px;" /></td>
+									<td class="label"></td>
+									<td class="value"></td>
+								</tr>
+							</tbody>
+						</table>
+					</fieldset>	
+					<table  class="formFields ui-widget-content" cellspacing="2" cellpadding="0" style="width:780px;">
+							<tbody>
+								<tr style="line-height: 1px;">
+									<td style="width: 90px;">&nbsp;</td>
+									<td style="width: 90px;">&nbsp;</td>
+									<td style="width: 90px;">&nbsp;</td>
+									<td style="width: 90px;">&nbsp;</td>
+									<td style="width: 100px;">&nbsp;</td>
+									<td >&nbsp;</td>
+								</tr>
+								<tr>
+									<td class="label"><s:text name="runcase.hurtCount"/>:</td>
+									<td class="value"><s:textfield name="e.hurtCount" cssClass="ui-widget-content"/></td>
+									<td class="label"><s:text name="runcase.deadCount"/>:</td>
+									<td class="value"><s:textfield name="e.deadCount" cssClass="ui-widget-content"/></td>
+									<td class="label"><s:text name="runcase.agreementPayment"/>(元):</td>
+									<td class="value"><s:textfield name="e.agreementPayment" cssClass="ui-widget-content"/></td>
+								</tr>
+								<tr>
+									<td class="label"><s:checkbox name="e.rob" cssStyle="width:1em;" /><s:text name="runcase.rob"/></td>
+									<td class="label"><s:text name="runcase.actualLoss"/>:</td>
+									<td class="value" colspan="2" ><s:textfield name="e.actualLoss" cssClass="ui-widget-content"/></td>
+								</tr>
+								<tr>
+									<td class="topLabel"><s:text name="runcase.insuranceInfo"/>:</td>
+									<td class="value" colspan="5"><s:textarea name="e.costDetail"  rows="5" cssClass="ui-widget-content noresize"/></td>
+								</tr>
+							</tbody>
+					</table>
+				</div>
+			</div>
+			
+			<!-- 理赔情况 -->
+			<div  class="formTable2 ui-widget-content"  style="width:800px;">
+				<div class="ui-widget-header title" style="position:relative;">
+						<span class="text" >理赔情况:</span>
+						<span id="ShowGroups2" class="verticalMiddle ui-icon ui-icon-carat-1-s" title='<s:text name="runcase.title.click2ShowGroups"/>'></span>
+						<span id="HiddenGroups2" class="verticalMiddle ui-icon ui-icon-carat-1-n" title='<s:text name="runcase.title.click2HiddenGroups"/>'></span>
+				</div>
+				<div id="Groups2">
+					<fieldset style="margin: 6px;" class="ui-corner-all ui-widget-content">
+					<legend>送保信息</legend>
+						<table class="formFields ui-widget-content" cellspacing="3" cellpadding="0">
+							<tbody>
+								<tr style="line-height: 1px;">
+									<td style="width: 110px;">&nbsp;</td>
+									<td style="width: 100px;">&nbsp;</td>
+									<td style="width: 160px;">&nbsp;</td>
+									<td style="width: 100px;">&nbsp;</td>
+									<td style="width: 140px;">&nbsp;</td>
+									<td >&nbsp;</td>
+								</tr>
+								<tr>
+									<td class="label"><s:checkbox name="e.deliver" cssStyle="width:1em;" /><s:text name="runcase.deliver3"/></td>
+									<td></td>
+									<td class="label"><samp id="deliver" style='<s:if test="%{e.deliver==true}">
+										  display:block;
+									      </s:if>
+									      <s:else>
+										 display:none;
+									      </s:else>
+									      '>
+									<s:checkbox name="e.claim" cssStyle="width:1em;" /><s:text name="runcase.claim"/>
+									</samp>
+									</td>
+									<td></td>
+									<td class="label"><samp id="claim" style='<s:if test="%{e.claim==true}">
+										 display:block;
+									     </s:if>
+									     <s:else>
+										display:none;
+									     </s:else>
+									     '>
+									<s:checkbox name="e.pay" cssStyle="width:1em;" /><s:text name="runcase.pay"/>
+									</samp>
+									</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td class="label"><samp id="deliver" style='<s:if test="%{e.deliver==true}">
+										  display:block;
+									      </s:if>
+									      <s:else>
+										 display:none;
+									      </s:else>
+									      '>
+									      &nbsp;&nbsp;<s:text name="runcase.deliverDate2"/>:
+								       </samp></td>
+									<td class="value" ><samp id="deliver" style='<s:if test="%{e.deliver==true}">
+										 display:block;
+									     </s:if>
+									     <s:else>
+										display:none;
+									     </s:else>
+									    '>
+									     <input type="text" name="e.deliverDate" data-validate='{"type": "date"}'
+											value='<s:date format="yyyy-MM-dd" name="e.deliverDate" />'
+											class="bc-date" data-cfg='{changeYear:true}' /></samp></td>
+									<td class="label"><samp id="claim" style='<s:if test="%{e.claim==true}">
+										display:block;
+									    </s:if>
+									    <s:else>
+										display:none;
+									    </s:else>
+									    '>
+									   &nbsp;&nbsp;<s:text name="runcase.claimDate"/>:
+								     </samp></td>
+									<td class="value"> <samp id="claim" style='<s:if test="%{e.claim==true}">
+										 display:block;
+									     </s:if>
+									     <s:else>
+										display:none;
+									     </s:else>
+									     '>
+									     <input type="text" name="e.claimDate" data-validate='{"type": "date"}'
+									    value='<s:date format="yyyy-MM-dd" name="e.claimDate" />'
+									    class="bc-date" data-cfg='{changeYear:true}' /></samp></td>
+									<td class="label"  ><samp id="pay" style='<s:if test="%{e.pay==true}">
+										 display:block;
+									     </s:if>
+									     <s:else>
+										 display:none;
+									     </s:else>
+									     '>
+									<s:text name="runcase.driverName"/>: </samp></td>
+									<td class="value">
+									<samp id="pay" style='<s:if test="%{e.pay==true}">
+										 display:block;
+									     </s:if>
+									     <s:else>
+										 display:none;
+									     </s:else>
+									     '>
+									<s:select name="e.payDriver" list="#{0:'',1:'车主',2:'司机',3:'非编'}" listKey="key" listValue="value" cssClass="ui-widget-content"/>
+									</samp>
+									</td>								
+								</tr>
+								<tr>
+									<td class="label"> <samp id="deliver" style='<s:if test="%{e.deliver==true}">
+										display:block;
+									    </s:if>
+									    <s:else>
+										display:none;
+									    </s:else>
+									    '>
+									    <s:text name="runcase.deliverMoney"/>(元):
+								     </samp></td>
+									<td class="value"><samp id="deliver" style='<s:if test="%{e.deliver==true}">
+										 display:block;
+									     </s:if>
+									     <s:else>
+										 display:none;
+									     </s:else>
+									     '>
+									     <s:textfield name="e.deliverMoney"  cssClass="ui-widget-content"/>
+								     </samp></td>
+									<td class="label"><samp id="claim" style='<s:if test="%{e.claim==true}">
+										display:block;
+									    </s:if>
+									    <s:else>
+										display:none;
+									    </s:else>
+									    '>
+									    <s:text name="runcase.claimMoney"/>(元):
+								     </samp></td>
+									<td class="value"> <samp id="claim" style='<s:if test="%{e.claim==true}">
+										 display:block;
+									     </s:if>
+									     <s:else>
+										 display:none;
+									     </s:else>
+									     '>
+									     <s:textfield name="e.claimMoney"  cssClass="ui-widget-content"/>
+								     </samp></td>
+									<td class="label"><samp id="pay" style='<s:if test="%{e.pay==true}">
+										  display:block;
+									      </s:if>
+									      <s:else>
+										  display:none;
+									      </s:else>
+									      '>
+									      <s:text name="runcase.payDate"/>:
+								      </samp></td>
+									<td class="value"><samp id="pay" style='<s:if test="%{e.pay==true}">
+										 display:block;
+									     </s:if>
+									     <s:else>
+										 display:none;
+									     </s:else>
+									    '>
+									     <input type="text" name="e.payDate" data-validate='{"type": "date"}'
+									    value='<s:date format="yyyy-MM-dd" name="e.payDate" />'
+									    class="bc-date" data-cfg='{changeYear:true}' /></samp></td>
+								</tr>
+								<tr>
+									<td class="label"> 
+									<samp id="deliver" style='<s:if test="%{e.deliver==true}">
+										  display:block;
+									      </s:if>
+									      <s:else>
+										  display:none;
+									      </s:else>
+									      '>
+									       使用<s:text name="runcase.deliver3Two"/>:
+								       </samp> 
+									 </td>
+									<td class="value"><samp id="deliver" style='width:auto;<s:if test="%{e.deliver==true}" >
+										  display:block;
+									      </s:if>
+									      <s:else>
+										  display:none;
+									      </s:else>
+									      '>
+									        <s:checkbox name="e.deliverSecond" style='width:auto;' />
+								       </samp></td>
+									<td></td>
+									<td></td>
+									<td class="label"><samp id="pay" style='<s:if test="%{e.pay==true}">
+										display:block;
+									    </s:if>
+									    <s:else>
+										display:none;
+									    </s:else>
+									    '>
+									    <s:text name="runcase.payMoney"/>(元):
+								     </samp></td>
+									<td class="value"><samp id="pay" style='<s:if test="%{e.pay==true}">
+										 display:block;
+									     </s:if>
+									     <s:else>
+										 display:none;
+									     </s:else>
+									     '>
+									     <s:textfield name="e.payMoney"  cssClass="ui-widget-content"/>
+								     </samp></td>
+								</tr>
+							</tbody>
+						</table>
+					</fieldset>	
+					
+					<fieldset id="idSecondDeliver" style="margin: 6px;" class="ui-corner-all ui-widget-content">
+					<legend>二次送保</legend>
+						<table class="formFields ui-widget-content" cellspacing="3" cellpadding="0">
+							<tbody>
+								<tr style="line-height: 1px;">
+									<td style="width: 110px;">&nbsp;</td>
+									<td style="width: 100px;">&nbsp;</td>
+									<td style="width: 160px;">&nbsp;</td>
+									<td style="width: 100px;">&nbsp;</td>
+									<td style="width: 140px;">&nbsp;</td>
+									<td >&nbsp;</td>
+								</tr>
+								<tr>
+									<td class="label"><s:checkbox name="e.deliverTwo" cssStyle="width:1em;" /><s:text name="runcase.deliver3"/></td>
+									<td></td>
+									<td class="label"><samp id="deliverTwo" style='<s:if test="%{e.deliverTwo==true}">
+										  display:block;
+									      </s:if>
+									      <s:else>
+										  display:none;
+									      </s:else>
+									      '>
+										<s:checkbox name="e.claimTwo" cssStyle="width:1em;" /><s:text name="runcase.claim"/></samp></td>
+									<td></td>
+									<td class="label"><samp id="claimTwo" style='<s:if test="%{e.claimTwo==true}">
+										 display:block;
+									     </s:if>
+									     <s:else>
+										 display:none;
+									     </s:else>
+									     '>
+									     <s:checkbox name="e.payTwo" cssStyle="width:1em;" /><s:text name="runcase.pay"/></samp></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td class="label"><samp id="deliverTwo" style='<s:if test="%{e.deliverTwo==true}">
+										  display:block;
+									      </s:if>
+									      <s:else>
+										  display:none;
+									      </s:else>
+									      '>
+									      &nbsp;&nbsp;<s:text name="runcase.deliverDate2"/>:
+								       </samp></td>
+									<td class="value" ><samp id="deliverTwo" style='<s:if test="%{e.deliverTwo==true}">
+										 display:block;
+									     </s:if>
+									     <s:else>
+										 display:none;
+									     </s:else>
+									    '>
+									     <input type="text" name="e.deliverTwoDate" data-validate='{"type": "date"}'
+											value='<s:date format="yyyy-MM-dd" name="e.deliverTwoDate" />'
+											class="bc-date" data-cfg='{changeYear:true}' /></samp></td>
+									<td class="label"><samp id="claimTwo" style='<s:if test="%{e.claimTwo==true}">
+										display:block;
+									    </s:if>
+									    <s:else>
+										display:none;
+									    </s:else>
+									    '>
+									   &nbsp;&nbsp;<s:text name="runcase.claimDate"/>:
+								     </samp></td>
+									<td class="value"> <samp id="claimTwo" style='<s:if test="%{e.claimTwo==true}">
+										 display:block;
+									     </s:if>
+									     <s:else>
+										 display:none;
+									     </s:else>
+									     '>
+									     <input type="text" name="e.claimDateTwo" data-validate='{"type": "date"}'
+									    value='<s:date format="yyyy-MM-dd" name="e.claimDateTwo" />'
+									    class="bc-date" data-cfg='{changeYear:true}' /></samp></td>
+									<td class="label"  ><samp id="payTwo" style='<s:if test="%{e.payTwo==true}">
+										 display:block;
+									     </s:if>
+									     <s:else>
+										 display:none;
+									     </s:else>
+									     '>
+									<s:text name="runcase.driverName"/>: </samp></td>
+									<td class="value">
+									<samp id="payTwo" style='<s:if test="%{e.payTwo==true}">
+										 display:block;
+									     </s:if>
+									     <s:else>
+										 display:none;
+									     </s:else>
+									     '>
+									<s:select name="e.payDriverTwo" list="#{0:'',1:'车主',2:'司机',3:'非编'}" listKey="key" listValue="value" cssClass="ui-widget-content"/>
+									</samp>
+									</td>								
+								</tr>
+								<tr>
+									<td class="label"> <samp id="deliverTwo" style='<s:if test="%{e.deliverTwo==true}">
+										display:block;
+									    </s:if>
+									    <s:else>
+										display:none;
+									    </s:else>
+									    '>
+									    <s:text name="runcase.deliverMoney"/>(元):
+								     </samp></td>
+									<td class="value"><samp id="deliverTwo" style='<s:if test="%{e.deliverTwo==true}">
+										 display:block;
+									     </s:if>
+									     <s:else>
+										 display:none;
+									     </s:else>
+									     '>
+									     <s:textfield name="e.deliverMoneyTwo"  cssClass="ui-widget-content"/>
+								     </samp></td>
+									<td class="label"><samp id="claimTwo" style='<s:if test="%{e.claimTwo==true}">
+										display:block;
+									    </s:if>
+									    <s:else>
+										display:none;
+									    </s:else>
+									    '>
+									    <s:text name="runcase.claimMoney"/>(元):
+								     </samp></td>
+									<td class="value"> <samp id="claimTwo" style='<s:if test="%{e.claimTwo==true}">
+										 display:block;
+									     </s:if>
+									     <s:else>
+										 display:none;
+									     </s:else>
+									     '>
+									     <s:textfield name="e.claimMoneyTwo"  cssClass="ui-widget-content"/>
+								     </samp></td>
+									<td class="label"><samp id="payTwo" style='<s:if test="%{e.payTwo==true}">
+										  display:block;
+									      </s:if>
+									      <s:else>
+										  display:none;
+									      </s:else>
+									      '>
+									      <s:text name="runcase.payDate"/>:
+								      </samp></td>
+									<td class="value"><samp id="payTwo" style='<s:if test="%{e.payTwo==true}">
+										 display:block;
+									     </s:if>
+									     <s:else>
+										 display:none;
+									     </s:else>
+									    '>
+									     <input type="text" name="e.payDateTwo" data-validate='{"type": "date"}'
+									    value='<s:date format="yyyy-MM-dd" name="e.payDateTwo" />'
+									    class="bc-date" data-cfg='{changeYear:true}' /></samp></td>
+								</tr>
+								<tr>
+									<td class="label"> </td>
+									<td class="value"></td>
+									<td></td>
+									<td></td>
+									<td class="label"><samp id="payTwo" style='<s:if test="%{e.payTwo==true}">
+										display:block;
+									    </s:if>
+									    <s:else>
+										display:none;
+									    </s:else>
+									    '>
+									    <s:text name="runcase.payMoney"/>(元):
+								     </samp></td>
+									<td class="value"><samp id="payTwo" style='<s:if test="%{e.payTwo==true}">
+										 display:block;
+									     </s:if>
+									     <s:else>
+										 display:none;
+									     </s:else>
+									     '>
+									     <s:textfield name="e.payMoneyTwo"  cssClass="ui-widget-content"/>
+								     </samp></td>
+								</tr>
+							</tbody>
+						</table>
+					</fieldset>	
+				</div>
+			</div>
+			
+			<!-- 事故截图 -->
+			<div  class="formTable2 ui-widget-content"  style="width:800px;">
+				<div class="ui-widget-header title" style="position:relative;">
+						<span class="text" >事故截图:</span>
+						<span id="ShowGroups3" class="verticalMiddle ui-icon ui-icon-carat-1-s" title='<s:text name="runcase.title.click2ShowGroups"/>'></span>
+						<span id="HiddenGroups3" class="verticalMiddle ui-icon ui-icon-carat-1-n" title='<s:text name="runcase.title.click2HiddenGroups"/>'></span>
+				</div>
+				<div id="Groups3">
+						 <s:property value="%{attachsUI}" escapeHtml="false"/>
+				</div>
+			</div>
+			
+			<!-- 状态 -->
+			<table class="formFields ui-widget-content" cellspacing="2" cellpadding="0" style="width:800px;" >
+				<tbody>
+				<tr>
+					<td style="height: 1px;"></td>
+					<td style="width: 350px;">&nbsp;</td>
+					<td style="width: 60px;">&nbsp;</td>
+					<td style="width: 350px;">&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="label" colspan="4">
 							<div class="formTopInfo">
 								状态：<s:property value="%{statusesValue[e.status]}" /> ,
 								<s:if test="%{e.closerId != null}">
@@ -120,306 +642,12 @@
 								  最后修改：<s:property value="e.modifier.name" />(<s:date name="e.modifiedDate" format="yyyy-MM-dd HH:mm:ss"/>)
 								</s:if>
 							</div>
-						</td>
-					</tr>
+					</td>
+				</tr>
 				</tbody>
-			</table>
-		</div>
-		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:230}"
-			style="height:230px;width:800px;overflow: hidden;">
-	        <div class="tabsContainer">
-           	 	<div class="slideContainer">
-                <ul class="tabs ui-helper-reset">
-				    <li class="tab ui-widget-content first active"><a href="#otherFormFields1" class="ui-state-default ui-state-active">事故经过</a></li>
-					<li class="tab ui-widget-content"><a href="#otherFormFields2" class="ui-state-default">损伤情况</a></li>
-					<li class="tab ui-widget-content"><a href="#otherFormFields3" class="ui-state-default">理赔情况</a></li>
-					<li class="tab ui-widget-content"><a href="#otherFormFields4" class="ui-state-default">事故现场图</a></li>
-                </ul>
-            	</div>
-	        </div>
-	        <div class="contentContainer ui-helper-reset ui-widget-content">
-	        	<div id="otherFormFields1" class="content active" style="width:800px;height:600px">
-					<table class="formFields" cellspacing="2" cellpadding="0" >
-						<tbody>
-							<tr>
-								<td class="value" colspan="4" ><s:textarea name="e.description" cssStyle="width:59.7em" rows="10" cssClass="ui-widget-content"/></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<div id="otherFormFields2" class="content" style="width:800px;">
-					<table class="formFields" cellspacing="2" cellpadding="0" >
-						<tbody>
-							<tr style="height: 1px;line-height: 1px;">
-								<td style="width: 80px;">&nbsp;</td>
-								<td style="width: 350px;">&nbsp;</td>
-								<td style="width: 80px;">&nbsp;</td>
-								<td style="width: 350px;">&nbsp;</td>
-							</tr>
-							<tr>
-							   <td class="label"><s:text name="runcase.casualties"/>:</td>
-						       <td class="value "><s:textfield name="e.casualties"   cssStyle="width:20em;" cssClass="ui-widget-content"/></td>
-						       <td class="label"><s:text name="runcase.costDetail"/>:</td>
-						       <td class="value"></td>
-							</tr>
-							<tr>
-							   <td class="label"><s:text name="runcase.carHurt"/>:</td>
-						       <td class="value "><s:textfield name="e.carHurt"   cssStyle="width:20em;" cssClass="ui-widget-content"/></td>
-						       <td class="value " colspan="2" rowspan="5"><s:textarea name="e.costDetail" cssStyle="width:29.4em" rows="7" cssClass="ui-widget-content"/></td>	
-							</tr>
-							<tr>
-							   <td class="label"><s:text name="runcase.thirdParty"/>:</td>
-						       <td class="value "><s:textfield name="e.thirdParty" cssStyle="width:16em;" cssClass="ui-widget-content"/>
-						       <s:checkbox name="e.rob" cssStyle="width:1em;" /><s:text name="runcase.rob"/></td>
-							</tr>
-							<tr>
-							  <td class="label"><s:text name="runcase.hurtCount" />:</td>
-						<td>
-							<s:textfield name="e.hurtCount" cssStyle="width:7em;" cssClass="ui-widget-content"/>&nbsp;&nbsp;<s:text name="runcase.deadCount" /><s:textfield name="e.deadCount"   cssStyle="width:7em;" cssClass="ui-widget-content"/>
-						</td>
-							</tr>
-							<tr>
-							   <td class="label"><s:text name="runcase.actualLoss"/>:</td>
-						       <td class="value "><s:textfield name="e.actualLoss"  cssStyle="width:18em;" cssClass="ui-widget-content"/>元</td>
-							</tr>
-							<tr>
-							<td class="value "></td>	
-						<td>
-							<s:checkbox name="e.innerFix" cssStyle="width:1em;" /><s:text name="runcase.innerFix"/>&nbsp;&nbsp;<s:text name="runcase.fixCost" /><s:textfield name="e.fixCost" cssClass="ui-widget-content"/>元
-						</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<div id="otherFormFields3" class="content" style="width:800px;">
-					<table class="formFields" cellspacing="2" cellpadding="0" ">
-						<tbody>
-							<tr style="height: 1px;line-height: 1px;">
-								  <td style="width: 80px;">&nbsp;</td>
-								  <td style="width: 350px;">&nbsp;</td>
-								  <td style="width: 80px;">&nbsp;</td>
-								  <td style="width: 350px;">&nbsp;</td>
-							</tr>
-							 <tr>
-								   <td class="label">*<s:text name="runcase.insuranceCompany"/>:</td>
-							       <td class="value "><s:select  list="companyList" listKey="value" listValue="value"  headerKey="" headerValue=""  name="e.insuranceCompany"
-							       cssStyle="width:20em;" cssClass="ui-widget-content"/></td>
-							       <td class="label" style="width:700px">
-							       <s:checkbox name="e.deliver" cssStyle="width:1em;" /><s:text name="runcase.deliver3"/>
-							       <s:checkbox name="e.claim" cssStyle="width:1em;" /><s:text name="runcase.claim"/>
-							       <s:checkbox name="e.pay" cssStyle="width:1em;" /><s:text name="runcase.pay"/></td>
-							</tr>
-							<tr>
-								  <td class="label" style="text-align:left;" colspan="4">
-								        <samp id="deliverDate2Title" style='<s:if test="%{e.deliver==true}">
-										  visibility: visible;
-									      </s:if>
-									      <s:else>
-										  visibility: hidden;
-									      </s:else>
-									      '>
-									      &nbsp;&nbsp;<s:text name="runcase.deliverDate2"/>:
-								       </samp>
-								       <samp id="deliverDate2Value" style='width:80px;<s:if test="%{e.deliver==true}">
-										 visibility: visible;
-									     </s:if>
-									     <s:else>
-										 visibility: hidden;
-									     </s:else>
-									    '>
-									     <input type="text" name="e.deliverDate" data-validate='{"type": "datetime"}'
-											value='<s:date format="yyyy-MM-dd HH:mm" name="e.deliverDate" />'
-											class="bc-datetime" data-cfg='{changeYear:true}' style="width:80px;z-index: 10000;"/>
-								     </samp>
-								     <samp id="deliverMoneyTitle" style='width:80px;<s:if test="%{e.deliver==true}">
-										visibility: visible;
-									    </s:if>
-									    <s:else>
-										visibility: hidden;
-									    </s:else>
-									    '>
-									    <s:text name="runcase.deliverMoney"/>:
-								     </samp>
-								     <samp id="deliverMoneyValue" style="<s:if test="%{e.deliver==true}">
-										 visibility: visible;
-									     </s:if>
-									     <s:else>
-										 visibility: hidden;
-									     </s:else>
-									     ">
-									     <s:textfield name="e.deliverMoney" style="width:80px " cssClass="ui-widget-content"/>
-								     </samp>
-								     <samp id="pay" style='<s:if test="%{e.pay==true}">
-										  visibility: visible;
-									      </s:if>
-									      <s:else>
-										  visibility: hidden;
-									      </s:else>
-									      '>
-									      <s:text name="runcase.payDate"/>:
-								      </samp>
-								       <samp id="pay" style='width:80px;<s:if test="%{e.pay==true}">
-										 visibility: visible;
-									     </s:if>
-									     <s:else>
-										 visibility: hidden;
-									     </s:else>
-									    '>
-									     <input type="text" name="e.payDate" data-validate='{"type": "date"}'
-									    value='<s:date format="yyyy-MM-dd" name="e.deliverDate" />'
-									    class="bc-date" data-cfg='{changeYear:true}' style="width:80px "/>
-								     </samp>
-								     <samp id="pay" style='width:80px;<s:if test="%{e.pay==true}">
-										visibility: visible;
-									    </s:if>
-									    <s:else>
-										visibility: hidden;
-									    </s:else>
-									    '>
-									    <s:text name="runcase.payMoney"/>:
-								     </samp>
-								     <samp id="pay" style="<s:if test="%{e.pay==true}">
-										 visibility: visible;
-									     </s:if>
-									     <s:else>
-										 visibility: hidden;
-									     </s:else>
-									     ">
-									     <s:textfield name="e.payMoney" style="width:80px" cssClass="ui-widget-content"/>
-								     </samp>
-								   </td>
-						    </tr>
-						    <tr>     
-						           <td class="label" style="text-align:left;"colspan="4"  >
-								     <samp id="claimDateTitle" style='width:160px;<s:if test="%{e.claim==true}">
-										visibility: visible;
-									    </s:if>
-									    <s:else>
-										visibility: hidden;
-									    </s:else>
-									    '>
-									   &nbsp;&nbsp;<s:text name="runcase.claimDate"/>:
-								     </samp>
-								     <samp id="claimDateValue" style="<s:if test="%{e.claim==true}">
-										 visibility: visible;
-									     </s:if>
-									     <s:else>
-										 visibility: hidden;
-									     </s:else>
-									     ">
-									     <input type="text" name="e.claimDate" data-validate='{"type": "date"}'
-									    value='<s:date format="yyyy-MM-dd" name="e.claimDate" />'
-									    class="bc-date" data-cfg='{changeYear:true}' style="width:80px "/>
-								     </samp>
-								     <samp id="claimCodeTitle" style='width:80px;<s:if test="%{e.claim==true}">
-										visibility: visible;
-									    </s:if>
-									    <s:else>
-										visibility: hidden;
-									    </s:else>
-									    '>
-									    <s:text name="runcase.claimCode"/>:
-								     </samp>
-								     <samp id="claimCodeValue" style="<s:if test="%{e.claim==true}">
-										 visibility: visible;
-									     </s:if>
-									     <s:else>
-										 visibility: hidden;
-									     </s:else>
-									     ">
-									     <s:textfield name="e.claimCode" style="width:100px" cssClass="ui-widget-content"/>
-								     </samp>
-								     <samp id="pay" style='width:80px;<s:if test="%{e.pay==true}">
-										visibility: visible;
-									    </s:if>
-									    <s:else>
-										visibility: hidden;
-									    </s:else>
-									    '>
-									    <s:text name="runcase.payCode"/>:
-								     </samp>
-								     <samp id="pay" style="<s:if test="%{e.pay==true}">
-										 visibility: visible;
-									     </s:if>
-									     <s:else>
-										 visibility: hidden;
-									     </s:else>
-									     ">
-									     <s:textfield name="e.payCode" style="width:80px" cssClass="ui-widget-content"/>
-								     </samp>
-								     </tr>
-								     <tr>     
-						              <td class="label" style="text-align:left;"colspan="4"  >
-								      <samp id="claimNo1Title" style='width:80px;<s:if test="%{e.claim==true}">
-										visibility: visible;
-									    </s:if>
-									    <s:else>
-										visibility: hidden;
-									    </s:else>
-									    '>
-									    &nbsp;&nbsp;<s:text name="runcase.claimNo2"/>:
-								     </samp>
-								     <samp id="claimNo1Value" style="<s:if test="%{e.claim==true}">
-										 visibility: visible;
-									     </s:if>
-									     <s:else>
-										 visibility: hidden;
-									     </s:else>
-									     ">
-									     <s:textfield name="e.claimNo2" style="width:100px" cssClass="ui-widget-content"/>
-								     </samp>
-								     <samp id="claimNo1Title" style='width:80px;<s:if test="%{e.claim==true}">
-										visibility: visible;
-									    </s:if>
-									    <s:else>
-										visibility: hidden;
-									    </s:else>
-									    '>
-									    <s:text name="runcase.claimMoney"/>:
-								     </samp>
-								     <samp id="claimNo1Value" style="<s:if test="%{e.claim==true}">
-										 visibility: visible;
-									     </s:if>
-									     <s:else>
-										 visibility: hidden;
-									     </s:else>
-									     ">
-									     <s:textfield name="e.claimMoney" style="width:80px" cssClass="ui-widget-content"/>
-								     </samp>
-								     <samp id="claimNo1Title" style='width:80px;<s:if test="%{e.claim==true}">
-										visibility: visible;
-									    </s:if>
-									    <s:else>
-										visibility: hidden;
-									    </s:else>
-									    '>
-									    <s:text name="runcase.claimNo1"/>:
-								     </samp>
-								     <samp id="claimNo1Value" style="<s:if test="%{e.claim==true}">
-										 visibility: visible;
-									     </s:if>
-									     <s:else>
-										 visibility: hidden;
-									     </s:else>
-									     ">
-									     <s:textfield name="e.claimNo1" style="width:100px" cssClass="ui-widget-content"/>
-								     </samp>
-								   </td>
-						    </tr>
-							<tr>
-							     <td class="label"><s:text name="runcase.insuranceInfo"/>:</td>
-							</tr>
-							<tr>
-								 <td class="value" colspan="4"><s:textarea name="e.costDetail" cssStyle="width:59.4em" rows="5" cssClass="ui-widget-content"/></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-	            <div id="otherFormFields4" class="content" style="width:800px;">
-	                    <s:property value="%{attachsUI}" escapeHtml="false"/>
-	        </div>
-	      </div>
-		</div>
+			</table>		
+	     
+	     
 		<s:hidden name="e.uid" />
 		<s:hidden name="e.id" />
 		<s:hidden name="e.author.id" />
