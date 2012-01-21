@@ -55,7 +55,7 @@
 						<td class="label">*<s:text name="runcase.receiveDate2"/>:</td>
 						<td class="value">
 							<input type="text" name="e.receiveDate" data-validate='{"type":"datetime","required":true}'
-							value='<s:date format="yyyy-MM-dd HH:mm" name="e.receiveDate" />'
+							value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.receiveDate" />'
 							class="bc-datetime" data-cfg='{showSecond:true,timeFormat:"hh:mm:ss"}'/>
 						</td>
 					</tr>
@@ -202,9 +202,9 @@
 								</tr>
 								<tr>
 									<td class="label"><s:text name="runcase.hurtCount"/>:</td>
-									<td class="value"><s:textfield name="e.hurtCount" cssClass="ui-widget-content"/></td>
+									<td class="value"><s:textfield name="e.hurtCount" cssClass="ui-widget-content"  data-validate="number"/></td>
 									<td class="label"><s:text name="runcase.deadCount"/>:</td>
-									<td class="value"><s:textfield name="e.deadCount" cssClass="ui-widget-content"/></td>
+									<td class="value"><s:textfield name="e.deadCount" cssClass="ui-widget-content" data-validate="number"/></td>
 									<td class="label"><s:text name="runcase.agreementPayment"/>(元):</td>
 									<td class="value"><s:textfield name="e.agreementPayment" cssClass="ui-widget-content"
 																   value="%{getText('bs.format.numberRMB',{e.agreementPayment})}"  data-validate="money" /></td>
@@ -483,8 +483,8 @@
 										 display:none;
 									     </s:else>
 									    '>
-									     <input type="text" name="e.deliverTwoDate" data-validate='{"type": "date"}'
-											value='<s:date format="yyyy-MM-dd" name="e.deliverTwoDate" />'
+									     <input type="text" name="e.deliverDateTwo" data-validate='{"type": "date"}'
+											value='<s:date format="yyyy-MM-dd" name="e.deliverDateTwo" />'
 											class="bc-date"  /></samp></td>
 									<td class="label"><samp id="claimTwo" style='<s:if test="%{e.claimTwo==true}">
 										display:block;
@@ -513,6 +513,7 @@
 								        		<li class="selectCarMan inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>' 
 								        		data-cfg='e.payDriverIdTwo=id,carManInfo=name|text'></li>
 								      	</ul>
+								      
 									</samp>
 									</td>								
 								</tr>
