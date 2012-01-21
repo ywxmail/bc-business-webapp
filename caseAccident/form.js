@@ -17,7 +17,7 @@ bc.caseAccidentForm = {
 					if(car){
 						$form.find(":input[name='e.carId']").val(car.id);
 						$form.find(":input[name='e.carPlate']").val(car.name);
-						$form.find(":input[name='e.motorcadeId']").val(car.motorcadeId);
+						$form.find("select[name='e.motorcadeId']").val(car.motorcadeId);
 					}
 				}
 			},option);
@@ -41,6 +41,7 @@ bc.caseAccidentForm = {
 						$form.find(":input[name='e.driverCert']").val(carMan.cert4FWZG);
 						$form.find(":input[name='e.driverArea']").val(carMan.region);
 						$form.find(":input[name='e.driverClasses']").val(carMan.drivingStatus);
+						$form.find(":input[name='e.origin']").val(carMan.origin);
 					}
 				}
 			},option);
@@ -54,7 +55,7 @@ bc.caseAccidentForm = {
 		};
 		
 		//绑定车队事件
-		$form.find(":input[name='e.motorcadeId']").change(function(){
+		$form.find("select[name='e.motorcadeId']").change(function(){
 			var $select = $(this);
 			var name = $select.find("option:selected").text();
 			$form.find(":hidden[name='e.motorcadeName']").val(name);
@@ -68,7 +69,8 @@ bc.caseAccidentForm = {
 				onOk : function(car) {
 					$form.find(":input[name='e.carId']").val(car.id);
 					$form.find(":input[name='e.carPlate']").val(car.plate);
-					
+					$form.find("select[name='e.motorcadeId']").val(car.motorcadeId);
+					$form.find(":input[name='e.motorcadeName']").val(car.motorcadeName);
 					//按照司机信息更新表单相应的域
 					function updateFieldsFromDriver(driver){
 						$form.find(":input[name='e.driverId']").val(driver.id);
@@ -76,6 +78,7 @@ bc.caseAccidentForm = {
 						$form.find(":input[name='e.driverCert']").val(driver.cert4FWZG);
 						$form.find(":input[name='e.driverArea']").val(driver.region);
 						$form.find(":input[name='e.driverClasses']").val(driver.drivingStatus);
+						$form.find(":input[name='e.origin']").val(driver.origin);
 					};
 					
 					//根据选择的车辆信息获取相应的营运司机信息
@@ -91,6 +94,7 @@ bc.caseAccidentForm = {
 								$form.find(":input[name='e.driverCert']").val("");
 								$form.find(":input[name='e.driverArea']").val("");
 								$form.find(":input[name='e.driverClasses']").val("");
+								$form.find(":input[name='e.origin']").val("");
 								bc.msg.alert("该车辆还没有被任何司机驾驶！");
 							}
 							if(drivers.length == 1){//单个司机直接填写

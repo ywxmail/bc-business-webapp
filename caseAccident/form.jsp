@@ -38,7 +38,7 @@
 						<td class="value" >
 							<input type="text" name="e.happenDate" data-validate='{"type":"datetime","required":true}'
 							value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.happenDate" />'
-							class="bc-datetime" data-cfg='{changeYear:true,showSecond:true,timeFormat:"hh:mm:ss"}'/>
+							class="bc-datetime" data-cfg='{showSecond:true,timeFormat:"hh:mm:ss"}'/>
 						</td>
 					</tr>
 					<tr>
@@ -56,7 +56,7 @@
 						<td class="value">
 							<input type="text" name="e.receiveDate" data-validate='{"type":"datetime","required":true}'
 							value='<s:date format="yyyy-MM-dd HH:mm" name="e.receiveDate" />'
-							class="bc-datetime" data-cfg='{changeYear:true}'/>
+							class="bc-datetime" data-cfg='{showSecond:true,timeFormat:"hh:mm:ss"}'/>
 						</td>
 					</tr>
 					<tr>
@@ -71,11 +71,11 @@
 						<s:if test="%{carManId != null || carId !=null}">
 						<td class="label"><s:text name="runcase.driverName"/>:</td>
 						<td class="value"><s:textfield name="e.driverName" cssStyle="width:8em;" readonly="true" cssClass="ui-state-disabled ui-widget-content" />
-						&nbsp;&nbsp;<s:text name="runcase.driverCert" />:<s:textfield name="e.driverCert"  data-validate="required" cssStyle="width:10em;" cssClass="ui-state-disabled ui-widget-content"/></td>
+						&nbsp;&nbsp;<s:text name="runcase.driverCert" />:<s:textfield name="e.driverCert" readonly="true" data-validate="required" cssStyle="width:10em;" cssClass="ui-state-disabled ui-widget-content"/></td>
 					    </s:if><s:else>
 					    <td class="label"><s:text name="runcase.driverName"/>:</td>
 						<td class="value"><s:textfield name="e.driverName" cssStyle="width:8em;"  readonly="true" cssClass="ui-state-disabled ui-widget-content"/>
-						&nbsp;&nbsp;<s:text name="runcase.driverCert" />:<s:textfield name="e.driverCert"  data-validate="required" cssStyle="width:10em;" cssClass="ui-state-disabled ui-widget-content"/></td>
+						&nbsp;&nbsp;<s:text name="runcase.driverCert" />:<s:textfield name="e.driverCert" readonly="true" data-validate="required" cssStyle="width:10em;" cssClass="ui-state-disabled ui-widget-content"/></td>
 					     </s:else>
 						<td class="label"><s:text name="runcase.department"/>:</td>
 						<td class="value "><s:select name="e.department" list="departmentList" listKey="value" listValue="value"  headerKey="" headerValue=""  cssClass="ui-widget-content"/>
@@ -138,16 +138,20 @@
 								<tr>
 									<td class="label"><s:checkbox name="e.innerFix" cssStyle="width:1em;" /><s:text name="runcase.innerFix"/></td>
 									<td class="value">
-											<s:text name="runcase.fixCost" />(元):<s:textfield name="e.fixCost" cssClass="ui-widget-content" cssStyle="width:184px;" />
+											<s:text name="runcase.fixCost" />(元):<s:textfield name="e.fixCost" cssClass="ui-widget-content" cssStyle="width:184px;"
+												    value="%{getText('bs.format.numberRMB',{e.fixCost})}"  data-validate="money"  />
 									</td>
 									<td class="label"><s:text name="runcase.claimAmount" />(元):</td>
-									<td class="value"><s:textfield name="e.claimAmount" cssClass="ui-widget-content"  /></td>
+									<td class="value"><s:textfield name="e.claimAmount" cssClass="ui-widget-content"  
+																   value="%{getText('bs.format.numberRMB',{e.claimAmount})}"  data-validate="money" /></td>
 								</tr>
 								<tr>
 									<td class="label"><s:text name="runcase.trailerCost" />(元):</td>
-									<td class="value"><s:textfield name="e.carmanCost" cssClass="ui-widget-content" cssStyle="width:250px;" /></td>
+									<td class="value"><s:textfield name="e.carmanCost" cssClass="ui-widget-content" cssStyle="width:250px;" 
+																   value="%{getText('bs.format.numberRMB',{e.carmanCost})}"  data-validate="money" /></td>
 									<td class="label"><s:text name="runcase.carWounding" />(元):</td>
-									<td class="value"><s:textfield name="e.carWounding" cssClass="ui-widget-content" /></td>
+									<td class="value"><s:textfield name="e.carWounding" cssClass="ui-widget-content" 
+																   value="%{getText('bs.format.numberRMB',{e.carWounding})}"  data-validate="money" /></td>
 								</tr>
 								<tr>
 									<td class="label"><s:text name="runcase.carHurt" />:</td>
@@ -170,21 +174,18 @@
 								</tr>
 									<tr>
 									<td class="label"><s:text name="runcase.thirdLoss" />(元):</td>
-									<td class="value"><s:textfield name="e.thirdLoss" cssClass="ui-widget-content" cssStyle="width:250px;" /></td>
+									<td class="value"><s:textfield name="e.thirdLoss" cssClass="ui-widget-content" cssStyle="width:250px;"
+																   value="%{getText('bs.format.numberRMB',{e.thirdLoss})}"  data-validate="money"  /></td>
 									<td class="label"><s:text name="runcase.trailerCost" />(元):</td>
 									<td class="value"><s:textfield name="e.thirdCost" cssClass="ui-widget-content"  /></td>
 								</tr>
 								<tr>
 									<td class="label"><s:text name="runcase.third.hurt" />(元):</td>
-									<td class="value"><s:textfield name="e.thirdWounding" cssClass="ui-widget-content" cssStyle="width:250px;" /></td>
-									<td class="label"><s:text name="runcase.third.hurt" />(元):</td>
-									<td class="value"><s:textfield name="e.thirdWounding" cssClass="ui-widget-content"  /></td>
-								</tr>
-								<tr>
+									<td class="value"><s:textfield name="e.thirdWounding" cssClass="ui-widget-content" cssStyle="width:250px;" 
+																   value="%{getText('bs.format.numberRMB',{e.thirdWounding})}"  data-validate="money" /></td>
 									<td class="label"><s:text name="runcase.medicalFee" />(元):</td>
-									<td class="value"><s:textfield name="e.medicalFee" cssClass="ui-widget-content" cssStyle="width:250px;" /></td>
-									<td class="label"></td>
-									<td class="value"></td>
+									<td class="value"><s:textfield name="e.medicalFee" cssClass="ui-widget-content" cssStyle="width:250px;"
+																   value="%{getText('bs.format.numberRMB',{e.medicalFee})}"  data-validate="money"  /></td>
 								</tr>
 							</tbody>
 						</table>
@@ -205,7 +206,8 @@
 									<td class="label"><s:text name="runcase.deadCount"/>:</td>
 									<td class="value"><s:textfield name="e.deadCount" cssClass="ui-widget-content"/></td>
 									<td class="label"><s:text name="runcase.agreementPayment"/>(元):</td>
-									<td class="value"><s:textfield name="e.agreementPayment" cssClass="ui-widget-content"/></td>
+									<td class="value"><s:textfield name="e.agreementPayment" cssClass="ui-widget-content"
+																   value="%{getText('bs.format.numberRMB',{e.agreementPayment})}"  data-validate="money" /></td>
 								</tr>
 								<tr>
 									<td class="label"><s:checkbox name="e.rob" cssStyle="width:1em;" /><s:text name="runcase.rob"/></td>
@@ -286,7 +288,7 @@
 									    '>
 									     <input type="text" name="e.deliverDate" data-validate='{"type": "date"}'
 											value='<s:date format="yyyy-MM-dd" name="e.deliverDate" />'
-											class="bc-date" data-cfg='{changeYear:true}' /></samp></td>
+											class="bc-date"  /></samp></td>
 									<td class="label"><samp id="claim" style='<s:if test="%{e.claim==true}">
 										display:block;
 									    </s:if>
@@ -305,7 +307,7 @@
 									     '>
 									     <input type="text" name="e.claimDate" data-validate='{"type": "date"}'
 									    value='<s:date format="yyyy-MM-dd" name="e.claimDate" />'
-									    class="bc-date" data-cfg='{changeYear:true}' /></samp></td>
+									    class="bc-date"  /></samp></td>
 									<td class="label"  ><samp id="pay" style='<s:if test="%{e.pay==true}">
 										 display:block;
 									     </s:if>
@@ -314,16 +316,17 @@
 									     </s:else>
 									     '>
 									<s:text name="runcase.driverName"/>: </samp></td>
-									<td class="value">
-									<samp id="pay" style='<s:if test="%{e.pay==true}">
-										 display:block;
-									     </s:if>
-									     <s:else>
-										 display:none;
-									     </s:else>
-									     '>
-									<s:select name="e.payDriver" list="#{0:'',1:'车主',2:'司机',3:'非编'}" listKey="key" listValue="value" cssClass="ui-widget-content"/>
-									</samp>
+									<td class="value relative">
+									<samp id="pay" style='<s:if test="%{e.pay==true}">display:block;</s:if><s:else> display:none; </s:else>'>
+								    	 <div class="input ui-widget-content"  >
+								     			<span class="link showCarMan" data-cfg='<s:property value="e.payDriverId"/>' id="carManInfo" >
+								     			<s:property value="%{e.payDriver}" /></span>
+								      	</div>
+								      	<ul class="inputIcons">
+								        		<li class="selectCarMan inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>' 
+								        		data-cfg='e.payDriverId=id,carManInfo=name|text'></li>
+								      	</ul>
+										</samp>	
 									</td>								
 								</tr>
 								<tr>
@@ -343,7 +346,7 @@
 										 display:none;
 									     </s:else>
 									     '>
-									     <s:textfield name="e.deliverMoney"  cssClass="ui-widget-content"/>
+									     <s:textfield name="e.deliverMoney"  cssClass="ui-widget-content" value="%{getText('bs.format.numberRMB',{e.deliverMoney})}"  data-validate="money" />
 								     </samp></td>
 									<td class="label"><samp id="claim" style='<s:if test="%{e.claim==true}">
 										display:block;
@@ -361,7 +364,7 @@
 										 display:none;
 									     </s:else>
 									     '>
-									     <s:textfield name="e.claimMoney"  cssClass="ui-widget-content"/>
+									     <s:textfield name="e.claimMoney"  cssClass="ui-widget-content"  value="%{getText('bs.format.numberRMB',{e.claimMoney})}"  data-validate="money" />
 								     </samp></td>
 									<td class="label"><samp id="pay" style='<s:if test="%{e.pay==true}">
 										  display:block;
@@ -381,7 +384,7 @@
 									    '>
 									     <input type="text" name="e.payDate" data-validate='{"type": "date"}'
 									    value='<s:date format="yyyy-MM-dd" name="e.payDate" />'
-									    class="bc-date" data-cfg='{changeYear:true}' /></samp></td>
+									    class="bc-date"  /></samp></td>
 								</tr>
 								<tr>
 									<td class="label"> 
@@ -422,7 +425,7 @@
 										 display:none;
 									     </s:else>
 									     '>
-									     <s:textfield name="e.payMoney"  cssClass="ui-widget-content"/>
+									     <s:textfield name="e.payMoney"  cssClass="ui-widget-content"  value="%{getText('bs.format.numberRMB',{e.payMoney})}"  data-validate="money" />
 								     </samp></td>
 								</tr>
 							</tbody>
@@ -482,7 +485,7 @@
 									    '>
 									     <input type="text" name="e.deliverTwoDate" data-validate='{"type": "date"}'
 											value='<s:date format="yyyy-MM-dd" name="e.deliverTwoDate" />'
-											class="bc-date" data-cfg='{changeYear:true}' /></samp></td>
+											class="bc-date"  /></samp></td>
 									<td class="label"><samp id="claimTwo" style='<s:if test="%{e.claimTwo==true}">
 										display:block;
 									    </s:if>
@@ -492,33 +495,24 @@
 									    '>
 									   &nbsp;&nbsp;<s:text name="runcase.claimDate"/>:
 								     </samp></td>
-									<td class="value"> <samp id="claimTwo" style='<s:if test="%{e.claimTwo==true}">
-										 display:block;
-									     </s:if>
-									     <s:else>
-										 display:none;
-									     </s:else>
-									     '>
+									<td class="value"> <samp id="claimTwo" style='<s:if test="%{e.claimTwo==true}"> display:block; </s:if> <s:else> display:none;</s:else>'>
 									     <input type="text" name="e.claimDateTwo" data-validate='{"type": "date"}'
-									    value='<s:date format="yyyy-MM-dd" name="e.claimDateTwo" />'
-									    class="bc-date" data-cfg='{changeYear:true}' /></samp></td>
-									<td class="label"  ><samp id="payTwo" style='<s:if test="%{e.payTwo==true}">
-										 display:block;
-									     </s:if>
-									     <s:else>
-										 display:none;
-									     </s:else>
-									     '>
-									<s:text name="runcase.driverName"/>: </samp></td>
-									<td class="value">
-									<samp id="payTwo" style='<s:if test="%{e.payTwo==true}">
-										 display:block;
-									     </s:if>
-									     <s:else>
-										 display:none;
-									     </s:else>
-									     '>
-									<s:select name="e.payDriverTwo" list="#{0:'',1:'车主',2:'司机',3:'非编'}" listKey="key" listValue="value" cssClass="ui-widget-content"/>
+									    		value='<s:date format="yyyy-MM-dd" name="e.claimDateTwo" />'
+									   			 class="bc-date" /></samp>
+									   			 </td>
+									<td class="label"  ><samp id="payTwo" style='<s:if test="%{e.payTwo==true}"> display:block;</s:if><s:else> display:none; </s:else> '>
+											<s:text name="runcase.driverName"/>: </samp>
+											</td>
+									<td class="value relative">
+									<samp id="payTwo" style='<s:if test="%{e.payTwo==true}"> display:block;</s:if><s:else> display:none;</s:else>'>
+										<div class="input ui-widget-content" >
+								     			<span class="link showCarMan" data-cfg='<s:property value="e.payDriverIdTwo"/>' id="carManInfo" >
+								     			<s:property value="%{e.payDriverTwo}" /></span>
+								      	</div>
+								      	<ul class="inputIcons">
+								        		<li class="selectCarMan inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>' 
+								        		data-cfg='e.payDriverIdTwo=id,carManInfo=name|text'></li>
+								      	</ul>
 									</samp>
 									</td>								
 								</tr>
@@ -539,7 +533,7 @@
 										 display:none;
 									     </s:else>
 									     '>
-									     <s:textfield name="e.deliverMoneyTwo"  cssClass="ui-widget-content"/>
+									     <s:textfield name="e.deliverMoneyTwo"  cssClass="ui-widget-content" value="%{getText('bs.format.numberRMB',{e.deliverMoneyTwo})}"  data-validate="money" />
 								     </samp></td>
 									<td class="label"><samp id="claimTwo" style='<s:if test="%{e.claimTwo==true}">
 										display:block;
@@ -557,7 +551,7 @@
 										 display:none;
 									     </s:else>
 									     '>
-									     <s:textfield name="e.claimMoneyTwo"  cssClass="ui-widget-content"/>
+									     <s:textfield name="e.claimMoneyTwo"  cssClass="ui-widget-content" value="%{getText('bs.format.numberRMB',{e.claimMoneyTwo})}"  data-validate="money" />
 								     </samp></td>
 									<td class="label"><samp id="payTwo" style='<s:if test="%{e.payTwo==true}">
 										  display:block;
@@ -577,7 +571,7 @@
 									    '>
 									     <input type="text" name="e.payDateTwo" data-validate='{"type": "date"}'
 									    value='<s:date format="yyyy-MM-dd" name="e.payDateTwo" />'
-									    class="bc-date" data-cfg='{changeYear:true}' /></samp></td>
+									    class="bc-date"  /></samp></td>
 								</tr>
 								<tr>
 									<td class="label"> </td>
@@ -600,7 +594,7 @@
 										 display:none;
 									     </s:else>
 									     '>
-									     <s:textfield name="e.payMoneyTwo"  cssClass="ui-widget-content"/>
+									     <s:textfield name="e.payMoneyTwo"  cssClass="ui-widget-content" value="%{getText('bs.format.numberRMB',{e.payMoneyTwo})}"  data-validate="money" />
 								     </samp></td>
 								</tr>
 							</tbody>
@@ -665,6 +659,8 @@
 		<s:hidden name="isNullCarMan" />
 		<s:hidden name="isNullCar" />
 		<s:hidden name="e.motorcadeName" />
+		<s:hidden name="e.payDriverId" />
+		<s:hidden name="e.payDriverIdTwo" />
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 		
 	</s:form>
