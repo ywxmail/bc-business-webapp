@@ -34,7 +34,7 @@
 					      <div class="input ui-widget-content" data-validate="required" ><span class="link showCarMan" data-cfg='<s:property value="e.driver.id"/>' id="carManInfo" ><s:property value="%{e.driver.name}" /></span>
 					      </div>
 					      <ul class="inputIcons">
-					        <li class="selectCarMan inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>' data-cfg='e.driver.id=id,carManInfo=name|text,carManInfo=id|attr'></li>
+					        <li class="selectCarMan inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>' data-cfg='e.driver.id=id,carManInfo=name|text'></li>
 					      </ul>
                         </td>
 
