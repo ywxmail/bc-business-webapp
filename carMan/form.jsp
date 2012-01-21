@@ -128,15 +128,18 @@
 						<tr>
 							<td class="label"><s:text name="carMan.cert4DrivingDeadline"/>:</td>
 							<td class="value">
-								<div style="position : relative; display: inline-block">
-													&nbsp;从<input type="text" name="e.cert4DrivingStartDate"  data-validate='{"type":"date","required":false}' 
+								<div class="bc-dateContainer">
+													&nbsp;从<input type="text" name="e.cert4DrivingStartDate" 
+													<s:if test="e.isNew()">
+													data-cfg='{addYear:5}'</s:if>
+													  data-validate='{"type":"date","required":false}' 
 														value='<s:date format="yyyy-MM-dd" name="e.cert4DrivingStartDate" />' 
 														style="width: 8em;" class="bc-date ui-widget-content" />
 														<ul class="inputIcons" style="right : 0px;">
 															<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.cert4DrivingStartDate' ></li>
 														</ul>
 												</div>
-					        	<div style="position : relative; display: inline-block">
+					        	<div class="bc-dateContainer">
 													&nbsp;到<input type="text" name="e.cert4DrivingEndDate"  data-validate='{"type":"date","required":false}'
 														value='<s:date format="yyyy-MM-dd" name="e.cert4DrivingEndDate" />'
 														style="width: 8em;" class="bc-date ui-widget-content" />

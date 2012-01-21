@@ -30,14 +30,14 @@ bc.carManForm = {
 			}
 		});
 		
-		//新建时，输入驾驶证起效日期后，驾驶证过期日期自动为起效日期加6年
-		$form.find(":input[name='e.cert4DrivingStartDate']").change(function(){
-			if($form.find(":input[name='e.id']").val()==''){
-				$form.find(":input[name='e.cert4DrivingEndDate']").val(
-							Date.addYear($form.find(":input[name='e.cert4DrivingStartDate']").val(),5)
-						);
-			}
-		});
+//		//新建时，输入驾驶证起效日期后，驾驶证过期日期自动为起效日期加6年
+//		$form.find(":input[name='e.cert4DrivingStartDate']").change(function(){
+//			if($form.find(":input[name='e.id']").val()==''){
+//				$form.find(":input[name='e.cert4DrivingEndDate']").val(
+//							Date.addYear($form.find(":input[name='e.cert4DrivingStartDate']").val(),5)
+//						);
+//			}
+//		});
 		
 		//绑定图片的修改
 		$form.find("#portrait").click(function(){
