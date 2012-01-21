@@ -6,12 +6,12 @@
 		<li class="condition">
 			<div class="label">所属分公司</div>
 			<div class="value">
-				<input type="text" name="unitName" class="ui-widget-content" readonly="readonly">
-				<input type="hidden" name="m.unit_id" data-condition='{"type":"long","ql":"m.unit_id=?"}'>
+				<input type="text" class="bc-select ui-widget-content" readonly="readonly"
+					data-maxHeight="150px"
+					data-source='<s:property value="units"/>'>
+				<input type="hidden" data-condition='{"type":"long","ql":"m.unit_id=?"}'>
 				<ul class="inputIcons">
-					<li class="selectUnit inputIcon ui-icon ui-icon-plus"
-						data-cfg='unitName=name,m.unit_id=id'
-						title='<s:text name="title.click2select"/>'></li>
+					<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
 					<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
 				</ul>
 			</div>
@@ -19,12 +19,12 @@
 		<li class="condition">
 			<div class="label">所属车队</div>
 			<div class="value">
-				<input type="text" name="motorcadeName" class="ui-widget-content" readonly="readonly">
-				<input type="hidden" name="c.motorcade_id" data-condition='{"type":"long","ql":"c.motorcade_id=?"}'>
+				<input type="text" class="bc-select ui-widget-content" readonly="readonly"
+					data-maxHeight="150px"
+					data-source='<s:property value="motorcades"/>'>
+				<input type="hidden" data-condition='{"type":"long","ql":"c.motorcade_id=?"}'>
 				<ul class="inputIcons">
-					<li class="selectMotorcade inputIcon ui-icon ui-icon-plus"
-						data-cfg='motorcadeName=name,c.motorcade_id=id'
-						title='<s:text name="title.click2select"/>'></li>
+					<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
 					<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
 				</ul>
 			</div>
@@ -41,7 +41,7 @@
 					</ul>
 				</div>～<div class="bc-dateContainer">
 					<input type="text" class="bc-date ui-widget-content" data-validate="date" style="width:9em;"
-						data-condition='{"type":"endDate","ql":"dateField2<=?"}'>
+						data-condition='{"type":"endDate","ql":"c.register_date<=?"}'>
 					<ul class="inputIcons">
 						<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
 						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
