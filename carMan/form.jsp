@@ -47,7 +47,7 @@
 						<tr>
 							<td class="label"><s:text name="carMan.type"/>:</td>
 							<td class="value"><!--<s:checkboxlist name="e.type" list="#{'0':'司机','1':'责任人','2':'司机和责任人'}" cssStyle="width:auto;"/>-->
-							   <s:radio name="e.type" list="#{'0':'司机','1':'责任人','2':'司机责任人','3':'非编'}" cssStyle="width:auto;"/></td>
+							   <s:select name="e.type" list="#{'0':'司机','1':'责任人','2':'司机责任人','3':'非编'}" listKey="key" listValue="value" cssClass="ui-widget-content" headerValue="" /></td>
 							<td class="label"><s:text name="carMan.region"/>:</td>
 							<td class="value"><s:select list="#{0:'',1:'本市',2:'本省',3:'外省'}" listKey="key" listValue="value" cssClass="ui-widget-content" headerValue="" name="e.region"></s:select></td>
 						</tr>
@@ -86,83 +86,93 @@
 						</tr>
 						<tr>
 							<td class="label"><s:text name="carMan.address"/>:</td>
-							<td class="value" colspan="3"><s:textfield name="e.address" cssClass="ui-widget-content"/></td>
+							<td class="value" colspan="3"><s:textfield name="e.address"  cssClass="ui-widget-content"/></td>
 						</tr>
 						<tr>
 							<td class="label"><s:text name="carMan.address1"/>:</td>
 							<td class="value" colspan="3"><s:textfield name="e.address1" cssClass="ui-widget-content"/></td>
 						</tr>
 						<tr>
-							<td class="label"><s:text name="carMan.model"/>:</td>
-							<td class="value"><s:select list="carManModelList" listKey="value" listValue="value" headerKey="" headerValue="" name="e.model"  cssClass="ui-widget-content"></s:select></td>
-							<td class="label"><s:text name="carMan.cert4DrivingFirstDate"/>:</td>
-							<td colspan="2" class="value relative"><input type="text" name="e.cert4DrivingFirstDate" 
-						    	data-validate='{required:false,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
-					         	value='<s:date format="yyyy-MM-dd" name="e.cert4DrivingFirstDate" />'/>
-					        	<span class="selectButton verticalMiddle ui-icon ui-icon-calendar"></span>
-				            </td>
-						</tr>
-						<tr>
-							<!--<td class="label"><s:text name="carMan.orderNo"/>:</td>
-							<td class="value"><s:textfield name="e.orderNo" cssClass="ui-widget-content"/></td>-->
-							<td class="label"><s:text name="carMan.accessCerts"/>:</td>
-							<td class="value"><s:textfield name="e.accessCerts" cssClass="ui-widget-content"/></td>
-							<td class="label"><s:text name="carMan.cert4DrivingStartDate"/>:</td>
-							<td colspan="2" class="value relative"><input type="text" name="e.cert4DrivingStartDate" 
-						    	data-validate='{required:false,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
-					         	value='<s:date format="yyyy-MM-dd" name="e.cert4DrivingStartDate" />'/>
-					        	<span class="selectButton verticalMiddle ui-icon ui-icon-calendar"></span>
-				            </td>
+							
 							
 						</tr>
 						<tr>
 				            <td class="label"><s:text name="carMan.cert4FWZG"/>:</td>
-							<td class="value"><s:textfield name="e.cert4FWZG" cssClass="ui-widget-content"/></td>
-							<td class="label"><s:text name="carMan.cert4DrivingEndDate"/>:</td>
-							<td colspan="2" class="value relative"><input type="text" name="e.cert4DrivingEndDate" 
-						     	data-validate='{required:false,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
-					         	value='<s:date format="yyyy-MM-dd" name="e.cert4DrivingEndDate" />'/>
-					         	<span class="selectButton verticalMiddle ui-icon ui-icon-calendar"></span>
-				            </td>
-							
-							
-						</tr>
-						<tr>
-							
-				            <td class="label"><s:text name="carMan.cert4Driving"/>:</td>
-							<td class="value"><s:textfield name="e.cert4Driving" cssClass="ui-widget-content"/></td>
-							<td class="label"><s:text name="carMan.extFZJG"/>:</td>
-							<td class="value" colspan="2"><s:textfield name="e.oldUnitName" cssClass="ui-widget-content"/></td>
-						</tr>
-						<tr>
+							<td class="value"><s:textfield name="e.cert4FWZG" cssClass="ui-widget-content" cssStyle="width:8em;"/>
+								<s:text name="carMan.level"/>:
+								<s:select list="carManLevelList" listKey="value" listValue="value" headerKey="" headerValue="" name="e.level" cssStyle="width:8em;" cssClass="ui-widget-content"/>
+							</td>
 							<td class="label"><s:text name="carMan.cert4CYZG"/>:</td>
-							<td class="value"><s:textfield name="e.cert4CYZG" cssClass="ui-widget-content"/></td>
-							<td class="label"><s:text name="carMan.cert4DrivingArchive"/>:</td>
-							<td class="value" colspan="2"><s:textfield name="e.cert4DrivingArchive" cssClass="ui-widget-content"/></td>
-							
-							
+							<td class="value" colspan="2"><s:textfield name="e.cert4CYZG" cssClass="ui-widget-content"/></td>
 						</tr>
 						<tr>
 							<td class="label"><s:text name="carMan.cert4Indentity"/>:</td>
 							<td class="value"><s:textfield name="e.cert4Indentity" cssClass="ui-widget-content"/></td>
-							<td class="label"><s:text name="carMan.level"/>:</td>
-							<td class="value" colspan="2"><s:select list="carManLevelList" listKey="value" listValue="value" headerKey="" headerValue="" name="e.level"  cssClass="ui-widget-content"></s:select></td>
+							<td class="label"><s:text name="carMan.model"/>:</td>
+							<td class="value" colspan="2">
+								<!--<s:select list="carManModelList" listKey="value" listValue="value" headerKey="" headerValue="" name="e.model"  cssClass="ui-widget-content"/>-->
+								<s:textfield name="e.model" cssClass="ui-widget-content"/>
+							</td>
 						</tr>
 						<tr>
+				            <td class="label"><s:text name="carMan.cert4Driving"/>:</td>
+							<td class="value"><s:textfield name="e.cert4Driving" cssClass="ui-widget-content"/></td>
+							<td class="label"><s:text name="carMan.cert4DrivingArchive"/>:</td>
+							<td class="value" colspan="2"><s:textfield name="e.cert4DrivingArchive" cssClass="ui-widget-content"/></td>
+							<!--<td class="label"><s:text name="carMan.extFZJG"/>:</td>
+							<td class="value" colspan="2"><s:textfield name="e.oldUnitName" cssClass="ui-widget-content"/></td>-->
+						</tr>
+						<tr>
+							
+						</tr>
+						<tr>
+							<td class="label"><s:text name="carMan.cert4DrivingDeadline"/>:</td>
+							<td class="value">
+								<div style="position : relative; display: inline-block">
+													&nbsp;从<input type="text" name="e.cert4DrivingStartDate"  data-validate='{"type":"date","required":false}' 
+														value='<s:date format="yyyy-MM-dd" name="e.cert4DrivingStartDate" />' 
+														style="width: 8em;" class="bc-date ui-widget-content" />
+														<ul class="inputIcons" style="right : 0px;">
+															<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.cert4DrivingStartDate' ></li>
+														</ul>
+												</div>
+					        	<div style="position : relative; display: inline-block">
+													&nbsp;到<input type="text" name="e.cert4DrivingEndDate"  data-validate='{"type":"date","required":false}'
+														value='<s:date format="yyyy-MM-dd" name="e.cert4DrivingEndDate" />'
+														style="width: 8em;" class="bc-date ui-widget-content" />
+														<ul class="inputIcons" style="right : 0px;">
+															<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.cert4DrivingEndDate' ></li>
+														</ul>
+												</div>
+				            </td>
+				            <td class="label"><s:text name="carMan.cert4DrivingFirstDate"/>:</td>
+							<td class="value relative" colspan="2">
+								<input type="text" name="e.cert4DrivingFirstDate" 
+							    		data-validate='{required:false,type:"date"}'class="bc-date ui-widget-content" 
+							    		title='<s:text name="title.click2selectDate"/>'
+						         		value='<s:date format="yyyy-MM-dd" name="e.cert4DrivingFirstDate" />'/>
+						        	<span class="selectButton verticalMiddle ui-icon ui-icon-calendar"></span>
+				            </td>
+						</tr>
+						<tr>
+							<td class="label"><s:text name="carMan.accessCerts"/>:</td>
+							<td class="value"><s:textfield name="e.accessCerts" cssClass="ui-widget-content"/></td>
+						</tr>
+						<tr>
+							<td class="label"><s:text name="carMan.gz"/>:</td>
+							<td class="value"><s:radio name="e.gz" list="#{'true':'是','false':'否'}"   value="e.gz" cssStyle="width:auto;"/></td>
 							<td class="label"><s:text name="carMan.status"/>:</td>
 						    <td class="value"><s:radio name="e.status" list="#{'0':'在案','1':'注销'}" cssStyle="width:auto;"/></td>
-						    <td class="label"><s:text name="carMan.gz"/>:</td>
-							<td class="value"><s:radio name="e.gz" list="#{'true':'是','false':'否'}" value="e.gz" cssStyle="width:auto;"/></td>
 						</tr>
-						<tr>
-							<!--<td class="label"><s:text name="carMan.drivingStatus"/>:</td>
+						<!--<tr>
+							<td class="label"><s:text name="carMan.drivingStatus"/>:</td>
 							<td class="value"><s:select list="#{0:'',1:'正班',2:'副班',3:'顶班'}" listKey="key" listValue="value" headerKey="" name="e.drivingStatus" style="width:208px" cssClass="ui-widget-content"></s:select></td>
 							<td class="label"><s:text name="carMan.extZRR"/>:</td>
-							<td class="value" colspan="2"><s:textfield name="e.extZRR" cssClass="ui-widget-content"/></td>-->
-						</tr>
+							<td class="value" colspan="2"><s:textfield name="e.extZRR" cssClass="ui-widget-content"/></td>
+						</tr>-->
 						<tr>
 							<td class="topLabel"><s:text name="carMan.description"/>:</td>
-							<td class="value" colspan="4"><s:textarea name="e.description"  rows="3" cssClass="ui-widget-content"/></td>
+							<td class="value" colspan="4"><s:textarea name="e.description"  rows="3" cssClass="ui-widget-content noresize"/></td>
 						</tr>
 						<tr>
 							<td class="label" colspan="5">
