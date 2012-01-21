@@ -22,7 +22,7 @@
 						<td class="value" style="position:relative;display: block;">
 							<input type="text" name="e.happenDate" data-validate='{"type":"datetime","required":true}'
 							value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.happenDate" />'
-							class="bc-datetime ui-widget-content" data-cfg='{changeYear:true}'/>
+							class="bc-datetime ui-widget-content" data-cfg='{showSecond:true,timeFormat:"hh:mm:ss"}'/>
 							<ul class="inputIcons">
 								<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.happenDate' ></li>
 							</ul>
