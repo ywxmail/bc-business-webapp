@@ -42,7 +42,7 @@ bc.contract4ChargerForm = {
 								bc.page.newWin({
 									url: bc.root + "/bc-business/carMan/edit?id="+charger.id,
 									name: "查看责任人信息",
-									mid:  "viewCharger"
+									mid:  "viewCharger"+charger.id
 								})
 							});
 						}
@@ -59,7 +59,7 @@ bc.contract4ChargerForm = {
 				bc.page.newWin({
 					url: bc.root + "/bc-business/carMan/edit?id="+$(obj).parent().attr('data-id'),
 					name: "查看责任人信息",
-					mid:  "viewCharger"
+					mid:  "viewCharger"+$(obj).parent().attr('data-id')
 				})
 			});
 		});
