@@ -129,8 +129,6 @@
 										<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.scrapDate'></li>
 									</ul>
 								</td>
-								<td class="label" ><s:text name="car.vehicleRegisterCode"/>:</td>
-								<td class="value" ><s:textfield name="e.vehicleRegisterCode"  cssClass="ui-widget-content"/></td>
 							</tr>					
 							<tr>
 								<td class="label" colspan="4">
@@ -173,6 +171,8 @@
 								<tr>
 									<td class="label" ><s:text name="car.certNo3"/>:</td>
 									<td class="value" ><s:textfield name="e.certNo3"  cssClass="ui-widget-content"/></td>
+									<td class="label" ><s:text name="car.registerNo"/>:</td>
+									<td class="value" ><s:textfield name="e.registerNo"  cssClass="ui-widget-content"/></td>
 								</tr>
 							</tbody>
 						</table>
