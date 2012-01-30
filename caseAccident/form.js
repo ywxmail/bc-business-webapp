@@ -2,8 +2,13 @@ if(!window['bs'])window['bs']={};
 bc.caseAccidentForm = {
 	init : function(option,readonly) {
 		var $form = $(this);
-		// 初始化多页签
-        $form.find('#formTabs').bctabs(bc.page.defaultBcTabsOption);
+		
+        //初始化是根据二次送保的状态是否显示其内容
+		if($form.find(":checkbox[name='e.deliverSecond']")[0].checked==false){
+			$form.find("#idSecondDeliver").css("display","none");
+		}else{
+			$form.find("#idSecondDeliver").css("display","block");
+		}
 		
 		if(readonly) return;
 		if($form.find(":input[name='isMoreCar']").val()=="true"){
@@ -299,12 +304,7 @@ bc.caseAccidentForm = {
 			}
 		});
 		
-		//初始化是根据二次送保的状态是否显示其内容
-		if($form.find(":checkbox[name='e.deliverSecond']")[0].checked==false){
-			$form.find("#idSecondDeliver").css("display","none");
-		}else{
-			$form.find("#idSecondDeliver").css("display","block");
-		}
+		
 		
 		//绑定二次送保按钮  显示或隐藏二次送保的内容
 		$form.find(":checkbox[name='e.deliverSecond']").change(function(){
