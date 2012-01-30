@@ -184,42 +184,44 @@
 									<td class="value"><s:textfield name="e.thirdWounding" cssClass="ui-widget-content" cssStyle="width:250px;" 
 																   value="%{getText('bs.format.numberRMB',{e.thirdWounding})}"  data-validate="money" /></td>
 									<td class="label"><s:text name="runcase.medicalFee" />(元):</td>
-									<td class="value"><s:textfield name="e.medicalFee" cssClass="ui-widget-content" cssStyle="width:250px;"
+									<td class="value"><s:textfield name="e.medicalFee" cssClass="ui-widget-content" 
 																   value="%{getText('bs.format.numberRMB',{e.medicalFee})}"  data-validate="money"  /></td>
 								</tr>
 							</tbody>
 						</table>
-					</fieldset>	
-					<table  class="formFields ui-widget-content" cellspacing="2" cellpadding="0" style="width:780px;">
-							<tbody>
-								<tr style="line-height: 1px;">
-									<td style="width: 90px;">&nbsp;</td>
-									<td style="width: 90px;">&nbsp;</td>
-									<td style="width: 90px;">&nbsp;</td>
-									<td style="width: 90px;">&nbsp;</td>
+					</fieldset>
+					<fieldset style="margin: 6px;" class="ui-corner-all ui-widget-content">
+						<legend>总体损失</legend>	
+						<table  class="formFields ui-widget-content" cellspacing="2" cellpadding="0">
+								<tbody>
+									<tr style="line-height: 1px;">
+									<td style="width: 100px;">&nbsp;</td>
+									<td style="width: 260px;">&nbsp;</td>
 									<td style="width: 100px;">&nbsp;</td>
 									<td >&nbsp;</td>
 								</tr>
-								<tr>
-									<td class="label"><s:text name="runcase.hurtCount"/>:</td>
-									<td class="value"><s:textfield name="e.hurtCount" cssClass="ui-widget-content"  data-validate="number"/></td>
-									<td class="label"><s:text name="runcase.deadCount"/>:</td>
-									<td class="value"><s:textfield name="e.deadCount" cssClass="ui-widget-content" data-validate="number"/></td>
-									<td class="label"><s:text name="runcase.agreementPayment"/>(元):</td>
-									<td class="value"><s:textfield name="e.agreementPayment" cssClass="ui-widget-content"
-																   value="%{getText('bs.format.numberRMB',{e.agreementPayment})}"  data-validate="money" /></td>
-								</tr>
-								<tr>
-									<td class="label"><s:checkbox name="e.rob" cssStyle="width:1em;" /><s:text name="runcase.rob"/></td>
-									<td class="label"><s:text name="runcase.actualLoss"/>:</td>
-									<td class="value" colspan="2" ><s:textfield name="e.actualLoss" cssClass="ui-widget-content"/></td>
-								</tr>
-								<tr>
-									<td class="topLabel"><s:text name="runcase.insuranceInfo"/>:</td>
-									<td class="value" colspan="5"><s:textarea name="e.costDetail"  rows="5" cssClass="ui-widget-content noresize"/></td>
-								</tr>
-							</tbody>
-					</table>
+									<tr>
+										<td class="label"><s:text name="runcase.hurtCount"/>:</td>
+										<td class="value"><s:textfield name="e.hurtCount" cssClass="ui-widget-content" cssStyle="width:85px;" data-validate="number"/>
+										<s:text name="runcase.deadCount"/>:
+										<s:textfield name="e.deadCount" cssClass="ui-widget-content" cssStyle="width:85px;" data-validate="number"/></td>
+										<td class="label"><s:text name="runcase.agreementPayment"/>(元):</td>
+										<td class="value"><s:textfield name="e.agreementPayment" cssClass="ui-widget-content"
+																	   value="%{getText('bs.format.numberRMB',{e.agreementPayment})}"  data-validate="money" /></td>
+									</tr>
+									<tr>
+										<td class="label"><s:checkbox name="e.rob" cssStyle="width:1em;" /><s:text name="runcase.rob"/></td>
+										<td class="value"></td>
+										<td class="label"><s:text name="runcase.actualLoss"/>(元):</td>
+										<td class="value"><s:textfield name="e.actualLoss" cssClass="ui-widget-content"/></td>
+									</tr>
+									<tr>
+										<td class="topLabel"><s:text name="runcase.costDetail"/>:</td>
+										<td class="value" colspan="3"><s:textarea name="e.costDetail"  rows="3" cssClass="ui-widget-content noresize"/></td>
+									</tr>
+								</tbody>
+						</table>
+					</fieldset>
 				</div>
 			</div>
 			
@@ -324,7 +326,7 @@
 								      	</div>
 								      	<ul class="inputIcons">
 								        		<li class="selectCarMan inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>' 
-								        		data-cfg='e.payDriverId=id,carManInfo=name|text'></li>
+								        		data-cfg='e.payDriverId=id,e.payDriver=name,carManInfo=name|text'></li>
 								      	</ul>
 										</samp>	
 									</td>								
@@ -511,7 +513,7 @@
 								      	</div>
 								      	<ul class="inputIcons">
 								        		<li class="selectCarMan inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>' 
-								        		data-cfg='e.payDriverIdTwo=id,carManInfo=name|text'></li>
+								        		data-cfg='e.payDriverIdTwo=id,e.payDriverTwo=name,carManInfo=name|text'></li>
 								      	</ul>
 								      
 									</samp>
@@ -601,6 +603,16 @@
 							</tbody>
 						</table>
 					</fieldset>	
+					<fieldset style="margin: 6px;" class="ui-corner-all ui-widget-content">
+						<legend>相关保单</legend>
+								<table class="formFields ui-widget-content" cellspacing="2" cellpadding="0">
+								<tbody>
+									<tr>
+										<td class="value" ><pre><s:property value="e.insuranceInfo" /></pre></td>
+									</tr>
+								</tbody>
+						</table>
+					</fieldset>
 				</div>
 			</div>
 			
@@ -661,7 +673,9 @@
 		<s:hidden name="isNullCar" />
 		<s:hidden name="e.motorcadeName" />
 		<s:hidden name="e.payDriverId" />
+		<s:hidden name="e.payDriver" />
 		<s:hidden name="e.payDriverIdTwo" />
+		<s:hidden name="e.payDriverTwo" />
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 		
 	</s:form>
