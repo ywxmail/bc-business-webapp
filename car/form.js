@@ -63,5 +63,26 @@ bc.carForm = {
 			});
 		});
 		
+		//绑定自动生成原车号按钮
+		$form.find("#selectOriginNo").click(function(){
+			if($form.find(":input[name='e.code']").val() == ""){
+				bc.msg.alert("请先填写自编号!");
+				return;
+			}
+			var url = bc.root + "/bc-business/car/autoSetOriginNo";
+			$.ajax({
+				url: url,
+				dataType:"json",
+				data: {code : $form.find(":input[name='e.code']").val()},
+				success: function (json){
+					$form.find(":input[name='e.originNo']").val(json.plateNo);
+					if($form.find(":input[name='e.originNo']").val() != ""){
+						bc.msg.slide("自动原车号获取成功!");
+					}else{
+						bc.msg.slide("没有找到相应的原车号!");
+					}
+				}
+			});
+		});
 	}
 };

@@ -117,7 +117,12 @@
 									</ul>
 								</td>
 								<td class="label" ><s:text name="car.originNo"/>:</td>
-								<td class="value" ><s:textfield name="e.originNo" cssClass="ui-widget-content"/></td>
+								<td class="value relative" >
+									<s:textfield name="e.originNo" cssClass="ui-widget-content"/>
+									<ul class="inputIcons">
+										<li class="inputIcon ui-icon ui-icon-lightbulb" title='<s:text name="car.title.click2selectoriginNo"/>' id="selectOriginNo">
+									</ul>
+								</td>
 							</tr>
 							<tr>
 								<td class="label" >*<s:text name="car.scrapDate"/>:</td>
