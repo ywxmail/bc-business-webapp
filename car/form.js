@@ -29,5 +29,39 @@ bc.carForm = {
 			});
 		});
 		
+		//绑定选择厂牌编号自动选择相应域
+		$form.find("#carModels").change(function(){
+			if($form.find("#carModels").val() == null || $form.find("#carModels").val() == ""){
+				return;
+			}
+			var url = bc.root + "/bc-business/car/carModelInfo";
+			$.ajax({
+				url: url,
+				dataType:"json",
+				data: {factoryModel : $form.find("#carModels").val()},
+				success: function (json){
+					$form.find(":input[name='e.factoryType']").val(json.factoryType);
+					$form.find(":input[name='e.engineType']").val(json.engineType);
+					$form.find(":input[name='e.fuelType']").val(json.fuelType);
+					$form.find(":input[name='e.displacement']").val(json.displacement);
+					$form.find(":input[name='e.power']").val(json.power);
+					$form.find(":input[name='e.turnType']").val(json.turnType);
+					$form.find(":input[name='e.tireCount']").val(json.tireCount);
+					$form.find(":input[name='e.tireFrontDistance']").val(json.tireFrontDistance);
+					$form.find(":input[name='e.tireBehindDistance']").val(json.tireBehindDistance);
+					$form.find(":input[name='e.tireStandard']").val(json.tireStandard);
+					$form.find(":input[name='e.axisDistance']").val(json.axisDistance);
+					$form.find(":input[name='e.axisCount']").val(json.axisCount);
+					$form.find(":input[name='e.pieceCount']").val(json.pieceCount);
+					$form.find(":input[name='e.dimLen']").val(json.dimLen);
+					$form.find(":input[name='e.dimWidth']").val(json.dimWidth);
+					$form.find(":input[name='e.dimHeight']").val(json.dimHeight);
+					$form.find(":input[name='e.totalWeight']").val(json.totalWeight);
+					$form.find(":input[name='e.accessWeight']").val(json.accessWeight);
+					$form.find(":input[name='e.accessCount']").val(json.accessCount);
+				}
+			});
+		});
+		
 	}
 };

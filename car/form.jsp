@@ -217,7 +217,7 @@
 								<tr>
 									<td class="label" ><s:text name="car.factoryModel"/>:</td>
 									<!-- <td class="value" ><s:textfield name="e.factoryModel" cssClass="ui-widget-content"/> -->
-									<td class="value" ><s:select name="e.factoryModel" list="#{1:SVW7182QQD,2:test}" headerKey="" headerValue="SVW7182QQD" cssClass="ui-widget-content"></s:select></td>
+									<td class="value" ><s:select name="e.factoryModel" id="carModels" list="carModelList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select></td>
 									<td class="label" ><s:text name="car.factoryType"/>:</td>
 									<td class="value" >
 										<s:select name="e.factoryType" list="factoryTypeList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
