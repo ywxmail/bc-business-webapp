@@ -339,25 +339,76 @@ bc.caseAccidentForm = {
 				$form.find(":checkbox[name='e.payTwo']")[0].checked=false;
 				$form.find('#payTwo').css("display","none");
 			}
-		});
-		
-		
-		
+		});	
 		
 	},
+	//结案 
 	closefile : function(){
 		var $form = $(this);
-		bc.msg.confirm("确定要结案吗？",function(){
-			$form.find(":input[name='isClosed']").val("1");
-			//调用标准的方法执行保存
-			bc.page.save.call($form,{callback:function(){
-				$form.dialog("close");
-				//显示结案成功提示信息
-				bc.msg.slide("结案成功");
-				
-				//返回false，禁止默认的“保存成功”提示信息的显示
-				return false;
-			}});
-		});
+		if(	$form.find(":checkbox[name='e.deliverSecond']")[0].checked==false){
+			//首次送保信息未填写好时，弹出相应的提示性信息
+			if($form.find(":checkbox[name='e.deliver']")[0].checked==false||
+					$form.find(":checkbox[name='e.claim']")[0].checked==false||
+					$form.find(":checkbox[name='e.pay']")[0].checked==false
+			){
+				bc.msg.confirm("送保相关的信息未完成，确定要结案吗？",function(){
+					$form.find(":input[name='isClosed']").val("1");
+					//调用标准的方法执行保存
+					bc.page.save.call($form,{callback:function(){
+						$form.dialog("close");
+						//显示结案成功提示信息
+						bc.msg.slide("结案成功");
+						
+						//返回false，禁止默认的“保存成功”提示信息的显示
+						return false;
+					}});
+				});
+			}else{
+				bc.msg.confirm("确定要结案吗？",function(){
+					$form.find(":input[name='isClosed']").val("1");
+					//调用标准的方法执行保存
+					bc.page.save.call($form,{callback:function(){
+						$form.dialog("close");
+						//显示结案成功提示信息
+						bc.msg.slide("结案成功");
+						
+						//返回false，禁止默认的“保存成功”提示信息的显示
+						return false;
+					}});
+				});
+			}
+		}else{
+			if($form.find(":checkbox[name='e.deliver']")[0].checked==false||
+					$form.find(":checkbox[name='e.claim']")[0].checked==false||
+					$form.find(":checkbox[name='e.pay']")[0].checked==false||
+					$form.find(":checkbox[name='e.deliverTwo']")[0].checked==false||
+					$form.find(":checkbox[name='e.claimTwo']")[0].checked==false||
+					$form.find(":checkbox[name='e.payTwo']")[0].checked==false
+			){
+				bc.msg.confirm("送保或二次送保相关的信息未完成，确定要结案吗？",function(){
+					$form.find(":input[name='isClosed']").val("1");
+					//调用标准的方法执行保存
+					bc.page.save.call($form,{callback:function(){
+						$form.dialog("close");
+						//显示结案成功提示信息
+						bc.msg.slide("结案成功");
+						//返回false，禁止默认的“保存成功”提示信息的显示
+						return false;
+					}});
+				});
+			}else{
+				bc.msg.confirm("确定要结案吗？",function(){
+					$form.find(":input[name='isClosed']").val("1");
+					//调用标准的方法执行保存
+					bc.page.save.call($form,{callback:function(){
+						$form.dialog("close");
+						//显示结案成功提示信息
+						bc.msg.slide("结案成功");
+						//返回false，禁止默认的“保存成功”提示信息的显示
+						return false;
+					}});
+				});
+			}
+		}
 	}
 };
