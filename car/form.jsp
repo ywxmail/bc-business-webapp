@@ -83,7 +83,7 @@
 								<td class="value relative">
 									<input type="text" name="e.registerDate" data-validate='{"type":"date","required":true}'
 									value='<s:date format="yyyy-MM-dd" name="e.registerDate" />'
-									class="bc-date ui-widget-content" data-cfg='{changeYear:true}' />
+									class="bc-date ui-widget-content" data-cfg='{changeYear:true,addYear: "5|e.scrapDate"}' />
 									<ul class="inputIcons">
 										<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.registerDate'></li>
 									</ul>
