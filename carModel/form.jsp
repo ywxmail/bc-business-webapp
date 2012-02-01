@@ -16,19 +16,19 @@
 						<td style="width: 220px;">&nbsp;</td>
 					</tr>
 					<tr>
-						<td class="label" ><s:text name="carModel.factoryModel"/>:</td>
+						<td class="label" >*<s:text name="carModel.factoryModel"/>:</td>
 						<td class="value" colspan="3"><s:textfield name="e.factoryModel" data-validate="required" cssClass="ui-widget-content"/></td>
 					</tr>
 					<tr>
-						<td class="label" ><s:text name="carModel.factoryType"/>:</td>
+						<td class="label" >*<s:text name="carModel.factoryType"/>:</td>
 						<td class="value" >
 							<s:select name="e.factoryType" list="factoryTypeList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content" data-validate="required"></s:select>
 						</td>
-						<td class="label" ><s:text name="carModel.engineType"/>:</td>
+						<td class="label" >*<s:text name="carModel.engineType"/>:</td>
 						<td class="value" ><s:textfield name="e.engineType" cssClass="ui-widget-content"/></td>
 					</tr>
 					<tr>
-						<td class="label" ><s:text name="carModel.fuelType"/>:</td>
+						<td class="label" >*<s:text name="carModel.fuelType"/>:</td>
 						<td class="value" >
 							<s:select name="e.fuelType" list="fuelTypeList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content" data-validate="required"></s:select>
 						</td>
@@ -79,6 +79,10 @@
 						<td class="value" ><s:textfield name="e.accessWeight" data-validate='{"type" : "digits"}' cssClass="ui-widget-content"/></td>
 						<td class="label" ><s:text name="carModel.accessCount"/>:</td>
 						<td class="value" ><s:textfield name="e.accessCount" data-validate='{"type" : "digits"}' cssClass="ui-widget-content"/></td>
+					</tr>
+					<tr>
+						<td class="label" ><s:text name="carModel.order" />:</td>
+						<td class="value" ><s:textfield name="e.order" data-validate='{"type" : "digits"}' cssClass="ui-widget-content"/></td>
 					</tr>
 					<tr>
 						<td class="label" colspan="4">
