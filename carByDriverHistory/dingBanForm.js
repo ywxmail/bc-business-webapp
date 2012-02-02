@@ -148,7 +148,7 @@ bc.business.shiftworkByDriverForm = {
 			var shiftworkCars = "";
 			for(var i=0;i<selectEl.length;i++){
 				if(i>0) shiftworkCars +=";";
-				shiftworkCars+=selectEl.options[i].value+","+selectEl.options[i].text;
+				shiftworkCars+=selectEl.options[i].text+","+selectEl.options[i].value;
 			}
 			$form.find(":input[name='e.shiftwork']").val(shiftworkCars);
 		}
