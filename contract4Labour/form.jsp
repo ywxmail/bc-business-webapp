@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div title='<s:text name="contract4Labour.title"/> - v<s:property value="e.verMajor" />.<s:property value="e.verMinor" />' data-type='form' class="bc-page"
 	data-saveUrl='<s:url value="/bc-business/contract4Labour/save" />'
-	data-js='<s:url value="/bc-business/contract4Labour/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js" />,<s:url value="/ui-libs/xheditor/1.1.7/xheditor-zh-cn.min.js?ts=0" />'
+	data-js='js:editor,js:bc_identity,<s:url value="/bc-business/bs.js" />,<s:url value="/bc-business/contract4Labour/form.js" />'
 	data-initMethod='bc.contract4LabourForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:hidden;">
 	<s:form name="contract4LabourForm" theme="simple">

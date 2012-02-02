@@ -83,7 +83,7 @@
 								<td class="value relative">
 									<input type="text" name="e.registerDate" data-validate='{"type":"date","required":true}'
 									value='<s:date format="yyyy-MM-dd" name="e.registerDate" />'
-									class="bc-date ui-widget-content" data-cfg='{changeYear:true}' />
+									class="bc-date ui-widget-content" data-cfg='{changeYear:true,addYear: "5|e.scrapDate"}' />
 									<ul class="inputIcons">
 										<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.registerDate'></li>
 									</ul>
@@ -117,7 +117,12 @@
 									</ul>
 								</td>
 								<td class="label" ><s:text name="car.originNo"/>:</td>
-								<td class="value" ><s:textfield name="e.originNo" cssClass="ui-widget-content"/></td>
+								<td class="value relative" >
+									<s:textfield name="e.originNo" cssClass="ui-widget-content"/>
+									<ul class="inputIcons">
+										<li class="inputIcon ui-icon ui-icon-lightbulb" title='<s:text name="car.title.click2selectoriginNo"/>' id="selectOriginNo">
+									</ul>
+								</td>
 							</tr>
 							<tr>
 								<td class="label" >*<s:text name="car.scrapDate"/>:</td>
@@ -217,7 +222,7 @@
 								<tr>
 									<td class="label" ><s:text name="car.factoryModel"/>:</td>
 									<!-- <td class="value" ><s:textfield name="e.factoryModel" cssClass="ui-widget-content"/> -->
-									<td class="value" ><s:select name="e.factoryModel" list="#{1:SVW7182QQD,2:test}" headerKey="" headerValue="SVW7182QQD" cssClass="ui-widget-content"></s:select></td>
+									<td class="value" ><s:select name="e.factoryModel" id="carModels" list="carModelList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select></td>
 									<td class="label" ><s:text name="car.factoryType"/>:</td>
 									<td class="value" >
 										<s:select name="e.factoryType" list="factoryTypeList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
