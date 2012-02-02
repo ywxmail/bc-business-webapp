@@ -12,7 +12,7 @@
 					<tr>
 						<td class="label">*<s:text name="carByDriverHistory.driver"/>:</td>
 					<s:if test="%{carManId != null}">
-						<td class="value"><s:textfield name="e.driver.name" readonly="true"  data-validate="required" cssClass="ui-widget-content ui-state-disabled" /></td>
+						<td class="value"><s:textfield name="e.driver.name" readonly="true"  data-validate="required" cssClass="ui-widget-content" /></td>
 					</s:if><s:else>
 					    <td class="value relative"><s:textfield name="e.driver.name"  data-validate="required" cssClass="ui-widget-content" />
 					        <ul class="inputIcons">
@@ -22,7 +22,7 @@
 					    </td>
 					</s:else>
 						<td class="label"><s:text name="carByDriverHistory.moveType"/>:</td>
-						<td class="value"><s:textfield name="moveTypeValue"  value="%{moveTypeValueList[e.moveType]}" readonly="true" cssClass="ui-widget-content ui-state-disabled"/></td>
+						<td class="value"><s:textfield name="moveTypeValue"  value="%{moveTypeValueList[e.moveType]}" readonly="true" cssClass="ui-widget-content"/></td>
 					</tr>
 					<tr>
 					  <td class="label">*<s:text name="carByDriverHistory.moveDate"/>:</td>
@@ -62,7 +62,7 @@
 						                 headerKey="" headerValue="" cssClass="ui-widget-content"></s:select></td>
 					                  </tr>
 						              <tr><td class="label"><s:text name="carByDriverHistory.newDriverState"/>:</td>
-						                 <td class="value" ><s:select name="e.toClasses" list="#{0:'',1:'正班',2:'副班',3:'顶班'}" 
+						                 <td class="value" ><s:select name="e.toClasses" list="#{0:'',1:'正班',2:'副班'}" 
 							              listKey="key" listValue="value" data-validate="required" cssClass="ui-widget-content"/></td>
 							              <td class="label" style="height:19px"><s:text name="carByDriverHistory.toUnit"/>:</td>
 						                  <td class="value"><s:textfield name="e.toUnit" cssClass="ui-widget-content"/></td>

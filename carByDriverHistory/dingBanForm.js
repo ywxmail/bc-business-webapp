@@ -4,19 +4,7 @@ bc.business.shiftworkByDriverForm = {
 		init : function() {
 			var $form = $(this);
 			
-			// 选择车辆
-			$form.find("#selectCar").click(function() {
-				var selecteds = $form.find(":input[name='e.car.id']").val();
-				bs.selectCar({
-					selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
-					onOk : function(car) {
-						$form.find(":input[name='e.car.id']").val(car.id);
-						$form.find(":input[name='plate']").val(car.plate);
-					}
-				});
-			});
 			// 添加顶班车辆
-			
 			var $select = $form.find(":input[name='plates']");
 			var selectEl = $select[0];
 			$form.find("#addCar").click(function() {
@@ -36,9 +24,10 @@ bc.business.shiftworkByDriverForm = {
 								selectEl.options[selectEl.length] = new Option(carPlate, carId);
 								selectEl.options[selectEl.length-1].selected = true;
 							}
-							//selectEl.options[selectEl.length] = new Option(carPlate, carId);
 						}
-						//$form.find(":input[name='e.driver.id']").val(carId);
+						
+						//将顶班车辆变成字符串
+						bc.business.shiftworkByDriverForm.shiftworkCars2String(selectEl,$form);
 					}
 				});
 			});
@@ -50,11 +39,18 @@ bc.business.shiftworkByDriverForm = {
 					bc.msg.slide("车辆列表为空！无法执行操作！");
 				}else{
 	               if(selectedindex !=-1){
-	            	   selectEl.options[selectedindex]=null;
-	                           }else{
+	            	   //selectEl.options[selectedindex]=null;
+	            	   for (var i=selectEl.options.length-1; i>=0; i--) {
+	            	        if (selectEl.options[i].selected){
+	            	        	selectEl.options.remove(i);
+	            	            }
+	            	          }
+	                        }else{
 	                        	   bc.msg.slide("请选择车辆！");  
 	                           }
 				}
+				//将顶班车辆变成字符串
+				bc.business.shiftworkByDriverForm.shiftworkCars2String(selectEl,$form);
 
 			});
 			//向上移动所选中的车辆
@@ -77,7 +73,10 @@ bc.business.shiftworkByDriverForm = {
 				  }else{
 					bc.msg.slide("请选择车辆！");
 				  }
-			   }	
+			   }
+				
+				//将顶班车辆变成字符串
+				bc.business.shiftworkByDriverForm.shiftworkCars2String(selectEl,$form);
 			});
 			
 			//向上移动所选中的车辆
@@ -100,7 +99,10 @@ bc.business.shiftworkByDriverForm = {
 				  }else{
 					bc.msg.slide("请选择车辆！");
 				  }
-			   }	
+			   }
+				
+				//将顶班车辆变成字符串
+				bc.business.shiftworkByDriverForm.shiftworkCars2String(selectEl,$form);
 			});
 			// 选择司机
 			$form.find("#selectDriver").click(function() {
@@ -114,12 +116,12 @@ bc.business.shiftworkByDriverForm = {
 				});
 			});
 			// 选择顶班司机
-			$form.find("#selectShiftworkDriver").click(function() {
+			$form.find("#driverName").click(function() {
 				bs.selectDriver({
 					//selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
 					onOk : function(driver) {
-						$form.find(":input[name='driverId']").val(driver.id);
-						$form.find(":input[name='driverName']").val(driver.name);
+						$form.find(":input[name='e.driver.id']").val(driver.id);
+						$form.find(":input[name='e.driver.name']").val(driver.name);
 					}
 				});
 			});
@@ -137,6 +139,18 @@ bc.business.shiftworkByDriverForm = {
 					return true;
 			}
 			return false;
+		},
+		
+		/**
+		 * 将顶班车辆变成字符串
+		 */
+		shiftworkCars2String:function(selectEl,$form){
+			var shiftworkCars = "";
+			for(var i=0;i<selectEl.length;i++){
+				if(i>0) shiftworkCars +=";";
+				shiftworkCars+=selectEl.options[i].text+","+selectEl.options[i].value;
+			}
+			$form.find(":input[name='e.shiftwork']").val(shiftworkCars);
 		}
 };
 
