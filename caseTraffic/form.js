@@ -72,6 +72,9 @@ bc.caseTrafficForm = {
 						$form.find(":input[name='e.driverId']").val(driver.id);
 						$form.find(":input[name='e.driverName']").val(driver.name);
 						$form.find(":input[name='e.driverCert']").val(driver.cert4FWZG);
+						$form.find(":input[name='e.motorcadeId']").val(car.motorcadeId);
+						var motorcadeName = $form.find(":input[name='e.motorcadeId']").find("option:selected").text();
+						$form.find(":hidden[name='e.motorcadeName']").val(motorcadeName);
 					};
 					
 					//根据选择的车辆信息获取相应的营运司机信息

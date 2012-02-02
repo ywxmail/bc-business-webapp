@@ -77,7 +77,7 @@ bc.carForm = {
 				success: function (json){
 					$form.find(":input[name='e.originNo']").val(json.plateNo);
 					if($form.find(":input[name='e.originNo']").val() != ""){
-						bc.msg.slide("自动原车号获取成功!");
+						bc.msg.slide("自动获取原车号成功!");
 					}else{
 						bc.msg.slide("没有找到相应的原车号!");
 					}

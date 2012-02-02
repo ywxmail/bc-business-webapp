@@ -52,10 +52,10 @@
 						</td>
 					</tr>
 					<tr>
-						<td class="label">*<s:text name="runcase.driverName" />:</td>
+						<td class="label"><s:text name="runcase.driverName" />:</td>
 						<td>
 							<span style="position:relative;">
-								<s:textfield name="e.driverName" cssStyle="width:5em;" data-validate="required" cssClass="ui-widget-content "/>
+								<s:textfield name="e.driverName" cssStyle="width:5em;" cssClass="ui-widget-content "/>
 								<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectDriverName"></span>
 							</span>
 							&nbsp;&nbsp;

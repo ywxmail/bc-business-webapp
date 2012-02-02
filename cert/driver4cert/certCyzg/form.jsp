@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div title='<s:text name="cert.select.cyzg"/>' data-type='form' class="bc-page"
 	data-saveUrl='<s:url value="/bc-business/certCyzg/save" />'
-	data-js='<s:url value="/bc-business/cert/driver4cert/certCyzg/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js" />,<s:url value="/ui-libs/xheditor/1.1.7/xheditor-zh-cn.min.js?ts=0" />'
+	data-js='js:editor,js:bc_identity,<s:url value="/bc-business/bs.js" />,<s:url value="/bc-business/cert/driver4cert/certCyzg/form.js" />'
 	data-initMethod='bc.certCyzgForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="certCyzgForm" theme="simple">
