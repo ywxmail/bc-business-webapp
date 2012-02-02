@@ -9,9 +9,19 @@
 		<div class="formFields ui-widget-content" >
 			<table class="formFields" cellspacing="2" cellpadding="0"  >
 				<tbody>
+				   <tr>
+					    <td class="label" >*<s:text name="carByDriverHistory.car"/>:</td>
+						<td class="value relative" style="position:relative;display: block;"><s:textfield name="e.fromCar.name" value="%{e.fromCar.plateType+e.fromCar.plateNo }"
+					            data-validate="required" cssClass="ui-widget-content" readonly="true"/>
+					                  <ul class="inputIcons">
+                                            <li id="selectOldCar" class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></li>
+                                            <li class="clearSelect inputIcon ui-icon ui-icon-circle-close" data-cfg="e.fromCar.name" title='<s:text name="title.click2clear"/>'></li>
+                                      </ul>
+                        </td>
+                        <td class="label"><s:text name="carByDriverHistory.moveType"/>:</td>
+						<td class="value"><s:textfield name="moveTypeValue"  value="%{moveTypeValueList[e.moveType]}" readonly="true" cssClass="ui-widget-content"/></td>
+					</tr>
 					<tr>
-						<td class="label"><s:text name="carByDriverHistory.moveType"/>:</td>
-						<td class="value"><s:textfield name="moveTypeValue"  value="%{moveTypeValueList[e.moveType]}" readonly="true" cssClass="ui-widget-content ui-state-disabled"/></td>
 						<td class="label">*<s:text name="carByDriverHistory.moveDate"/>:</td>
 						<td class="value" style="position:relative;display: block;"><input type="text" name="e.moveDate" 
 						data-validate='{required:true,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
@@ -19,16 +29,7 @@
 					    <span class="selectButton verticalMiddle ui-icon ui-icon-calendar"></span>
 				        </td>
 					</tr>
-					<tr>
-					     <td class="label" >*<s:text name="carByDriverHistory.oldCar"/>:</td>
-						  <td class="value relative" style="position:relative;display: block;"><s:textfield name="e.fromCar.name" value="%{e.fromCar.plateType+e.fromCar.plateNo }"
-					            data-validate="required" cssClass="ui-widget-content" readonly="true"/>
-					                  <ul class="inputIcons">
-                                            <li id="selectOldCar" class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></li>
-                                            <li class="clearSelect inputIcon ui-icon ui-icon-circle-close" data-cfg="e.fromCar.name" title='<s:text name="title.click2clear"/>'></li>
-                                      </ul>
-                        </td>
-					</tr>
+					
 					<tr>
 						<td class="label" colspan="4" style="text-align:left;">
 						    <fieldset style="width:680px">

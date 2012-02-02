@@ -17,9 +17,11 @@
 						<td class="value"><s:textfield name="e.driver.name" readonly="true" cssClass="ui-state-disabled" /></td>
 					</s:if><s:else>
 					    <td class="label">*<s:text name="shiftworkByDriver.driver"/>:</td>
-						<td class="value" style="position:relative;display: block;"><s:textfield name="driverName" 
-					    data-validate="required" cssClass="ui-widget-content" />
-					    <span id="selectShiftworkDriver" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></span>
+						<td class="value relative"><s:textfield name="e.driver.name"  data-validate="required" cssClass="ui-widget-content" />
+					        <ul class="inputIcons">
+                               <li id="driverName" class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></li>
+                               <li class="clearSelect inputIcon ui-icon ui-icon-circle-close" data-cfg="e.driver.name" title='<s:text name="title.click2clear"/>'></li>
+                            </ul>
 					    </td>
 					</s:else>
 					</tr>
@@ -42,10 +44,15 @@
 					    <td class="value">
 						    <table style="width:100%;">
 							    <tr>
-								   <!--   <td ><s:textarea name="plates" value="%{e.car.plateType+e.car.plateNo }" readonly="true" rows="6" cssClass="ui-widget-content"/></td>-->
-								    <td><s:select name="e.shiftwork" list="cars" listKey="key" listValue="value" theme="simple" size="10" cssStyle="width:100%;height:90%;" cssClass="ui-widget-content"/></td>
-								    <td style="width:40px;text-align: center;vertical-align: middle;"><input type="button" id="addCar" value="+" style="width:30px;height:40px;"/><br><input id="removeCar" type="button" value="-" style="width:30px;height:40px;"/><br>
-									    <input type="button" id="upCar" value="↑" style="width:30px;height:40px;"/><br><input type="button" id="downCar" value="↓" style="width:30px;height:40px;"/></td>
+								    <td><s:select name="plates" list="cars" listKey="key" listValue="value" theme="simple" size="10" 
+								     	multiple="true" cssStyle="width:100%;height:90%;" cssClass="ui-widget-content"/>
+							     	</td>
+								    <td style="width:40px;text-align: center;vertical-align: middle;"><input type="button" id="addCar" 
+								    	value="+" style="width:30px;height:40px;"/><br><input id="removeCar" type="button" value="-" 
+								    	style="width:30px;height:40px;"/><br>
+									    <input type="button" id="upCar" value="↑" style="width:30px;height:40px;"/><br><input 
+									    type="button" id="downCar" value="↓" style="width:30px;height:40px;"/>
+									</td>
 							    </tr>
 						    </table>
 					    <td>
@@ -55,7 +62,7 @@
 						<td class="value">
 						<div style="position : relative; display: inline-block">
 							&nbsp;从<input type="text" name="e.moveDate" 
-                            data-validate='{required:true,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
+                            data-validate='{required:true,type:"date"}' class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
                                value='<s:date format="yyyy-MM-dd" name="e.moveDate" />' style="width: 9em;"/>
                                <ul class="inputIcons" style="right : 0px;">
 								<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.commerialStartDate' ></li>
@@ -63,7 +70,7 @@
 						</div>
 						<div style="position : relative; display: inline-block">
 							&nbsp;到<input type="text" name="e.endDate" 
-                            data-validate='{required:true,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
+                            data-validate='{required:true,type:"date"}' class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
                                value='<s:date format="yyyy-MM-dd" name="e.endDate" />' style="width: 10em;"/>
                                <ul class="inputIcons" style="right : 0px;">
 								<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.commerialEndDate' ></li>
@@ -97,6 +104,7 @@
 		<s:hidden name="e.toMotorcadeId"/>
 		<s:hidden name="e.fromCar.id"/>
 		<s:hidden name="e.toCar.id"/>
+		<s:hidden name="e.shiftwork" />
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 	</s:form>
 </div>
