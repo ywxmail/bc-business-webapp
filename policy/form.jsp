@@ -14,8 +14,8 @@
 								    	<legend>责任险</legend>
 								        <table class="formFields" cellspacing="2" cellpadding="0">
 											<tr class="widthMarker">
-								                <td style="width: 100px;">&nbsp;</td>
-								                <td style="width: 260px;">&nbsp;</td>
+								                <td style="width: 120px;">&nbsp;</td>
+								                <td style="width: 220px;">&nbsp;</td>
 								                <td style="width: 80px;">&nbsp;</td>
 								                <td >&nbsp;</td>
 							                </tr>
@@ -67,8 +67,8 @@
 						          		<legend>商业险</legend>
 						          		<table class="formFields" cellspacing="2" cellpadding="0" >
 											<tr class="widthMarker">
-								                <td style="width: 100px;">&nbsp;</td>
-								                <td style="width: 260px;">&nbsp;</td>
+								                <td style="width: 120px;">&nbsp;</td>
+								                <td style="width: 220px;">&nbsp;</td>
 								                <td style="width: 80px;">&nbsp;</td>
 								                <td >&nbsp;</td>
 							                </tr>
@@ -81,7 +81,7 @@
 											<tr>
 											    <td class="label">*<s:text name="policy.Company"/>:</td>
 							                    <td class="value "><s:select  list="companyList" listKey="value" listValue="value"  headerKey="" headerValue=""  name="e.commerialCompany"  data-validate="required" 
-							                         cssStyle="width:20em;" cssClass="ui-widget-content"/></td>
+							                         cssStyle="width:17em;" cssClass="ui-widget-content"/></td>
 							                    <td class="label">*<s:text name="policy.insurelDeadline"/>:</td>
 												<td class="value">
 												<div style="position : relative; display: inline-block">
@@ -138,8 +138,8 @@
 						          		        <legend>强制险</legend>
 						          		         <table class="formFields" cellspacing="2" cellpadding="0">
 													<tr class="widthMarker">
-										                <td style="width: 100px;">&nbsp;</td>
-										                <td style="width: 260px;">&nbsp;</td>
+										                <td style="width: 120px;">&nbsp;</td>
+										                <td style="width: 220px;">&nbsp;</td>
 										                <td style="width: 80px;">&nbsp;</td>
 										                <td >&nbsp;</td>
 									                </tr>
@@ -155,7 +155,7 @@
 											        <tr>
 											             <td class="label"><s:text name="policy.Company"/>:</td>
 							                             <td class="value" ><s:select  list="companyList" listKey="value" listValue="value"  headerKey="" headerValue=""  name="e.greenslipCompany"  
-							                               cssStyle="width:20em;" cssClass="ui-widget-content"/></td>
+							                               cssStyle="width:17em;" cssClass="ui-widget-content"/></td>
 											             <td class="label">
 								                               <samp id="greenslipSameDateFieldset" style='<s:if test="%{e.greenslipSameDate==false || e.greenslip==true}">
 										                         visibility: visible;
