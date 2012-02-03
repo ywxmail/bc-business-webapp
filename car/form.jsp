@@ -41,8 +41,8 @@
 		        <div id="otherFormFields" class="content active">
 					<table class="formFields" cellspacing="2" cellpadding="0">
 						<tbody>
-							<tr style="line-height: 1px;">
-								<td >&nbsp;</td>
+							<tr class="widthMarker">
+								<td>&nbsp;</td>
 								<td style="width: 200px;">&nbsp;</td>
 								<td style="width: 100px;">&nbsp;</td>
 								<td style="width: 200px;">&nbsp;</td>
@@ -155,7 +155,7 @@
 						<legend>票号证号</legend>
 						<table class="formFields" cellspacing="2" cellpadding="0" >
 							<tbody>
-								<tr style="line-height: 1px;">
+								<tr class="widthMarker">
 									<td >&nbsp;</td>
 									<td style="width: 200px;">&nbsp;</td>
 									<td style="width: 100px;">&nbsp;</td>
@@ -187,7 +187,7 @@
 						<legend>计价器</legend>
 						<table class="formFields" cellspacing="2" cellpadding="0" >
 							<tbody>
-								<tr style="line-height: 1px;">
+								<tr class="widthMarker">
 									<td >&nbsp;</td>
 									<td style="width: 200px;">&nbsp;</td>
 									<td style="width: 100px;">&nbsp;</td>
@@ -213,7 +213,7 @@
 						<legend>硬件参数</legend>
 						<table class="formFields" cellspacing="2" cellpadding="0" >
 							<tbody>
-								<tr style="line-height: 1px;">
+								<tr class="widthMarker">
 									<td >&nbsp;</td>
 									<td style="width: 200px;">&nbsp;</td>
 									<td style="width: 100px;">&nbsp;</td>
@@ -296,7 +296,7 @@
 						<legend>其它</legend>
 						<table class="formFields" cellspacing="2" cellpadding="0" >
 							<tbody>
-								<tr style="line-height: 1px;">
+								<tr class="widthMarker">
 									<td style="width: 97.8px;">&nbsp;</td>
 									<td style="width: 200px;">&nbsp;</td>
 									<td style="width: 200px;">&nbsp;</td>
