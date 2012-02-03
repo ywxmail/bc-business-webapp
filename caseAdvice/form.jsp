@@ -27,7 +27,7 @@
 							    	<legend>投诉信息</legend>
 							    	<table class="formFields" cellspacing="2" cellpadding="0">
 										<tr class="widthMarker">
-											<td style="width: 85px;">&nbsp;</td>
+											<td style="width: 90px;">&nbsp;</td>
 											<td style="width: 295px;">&nbsp;</td>
 											<td style="width: 85px;">&nbsp;</td>
 											<td>&nbsp;</td>
@@ -84,7 +84,7 @@
 											<td class="topLabel">
 												<s:text name="runcase.detail"/>:
 											</td>
-											<td class="value" colspan="3"><s:textarea name="e.detail" cssStyle="width:50.8em;" rows="4" cssClass="ui-widget-content"/></td>
+											<td class="value" colspan="3"><s:textarea name="e.detail" rows="4" cssClass="ui-widget-content"/></td>
 										</tr>
 							    	</table>
 							    </fieldset>
@@ -112,10 +112,10 @@
 							    	<legend>被投诉方信息</legend>
 							        <table class="formFields" cellspacing="2" cellpadding="0" style="height:100px; width: 100%;">
 										<tr class="widthMarker">
+											<td style="width: 95px;"></td>
+											<td style="width: 200px;"></td>
+											<td style="width: 200px;"></td>
 											<td >&nbsp;</td>
-											<td style="width: 200px;"></td>
-											<td style="width: 85px;"></td>
-											<td style="width: 200px;"></td>
 										</tr>
 										<tr>
 							               	<td class="label"><s:text name="runcase.carPlate"/>:</td>
@@ -157,10 +157,10 @@
 					          		<legend>投诉人信息</legend>
 					          		<table class="formFields" cellspacing="2" cellpadding="0" style="height:100px;width: 100%;">
 							          	<tr class="widthMarker">
+											<td style="width: 95px;"></td>
+											<td style="width: 200px;"></td>
+											<td style="width: 200px;"></td>
 											<td >&nbsp;</td>
-											<td style="width: 200px;"></td>
-											<td style="width: 85px;"></td>
-											<td style="width: 200px;"></td>
 										</tr>
 							          	<tr>
 							          		<td class="label">*<s:text name="runcase.advisorName" />:</td>
@@ -193,7 +193,7 @@
 					          		<legend style="margin:10px;">补充信息</legend>
 					          		<table class="formFields" style="padding-bottom: 10px;" cellspacing="2" cellpadding="0">
 										<tr class="widthMarker">
-											<td style="width: 85px;">&nbsp;</td>
+											<td style="width: 95px;">&nbsp;</td>
 											<td style="width: 295px;">&nbsp;</td>
 											<td style="width: 95px;">&nbsp;</td>
 											<td>&nbsp;</td>

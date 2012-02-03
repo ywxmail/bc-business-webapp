@@ -9,6 +9,10 @@
 		<div class="formFields ui-widget-content" >
 			<table class="formFields" cellspacing="2" cellpadding="0" style="height:350px ">
 				<tbody>
+				    <tr class="widthMarker">
+		                <td style="width:100px;">&nbsp;</td>
+		                <td >&nbsp;</td>
+	                </tr>
 					<tr>
 					<s:if test="%{carManId != null}">
 						<td class="label"><s:text name="shiftworkByDriver.driver"/>:</td>
@@ -62,7 +66,7 @@
 								&nbsp;从<input type="text" name="e.moveDate" 
 								  data-validate='{"type":"date","required":false}' 
 									value='<s:date format="yyyy-MM-dd" name="e.moveDate" />' 
-									style="width: 10em;" class="bc-date ui-widget-content" />
+									style="width: 9em;" class="bc-date ui-widget-content" />
 									<ul class="inputIcons" style="right : 0px;">
 										<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.moveDate' ></li>
 									</ul>
@@ -70,7 +74,7 @@
 				        	<div class="bc-dateContainer">
 								&nbsp;到<input type="text" name="e.endDate"  data-validate='{"type":"date","required":false}'
 									value='<s:date format="yyyy-MM-dd" name="e.endDate" />'
-									style="width: 10em;" class="bc-date ui-widget-content" />
+									style="width: 9em;" class="bc-date ui-widget-content" />
 									<ul class="inputIcons" style="right : 0px;">
 										<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.endDate' ></li>
 									</ul>
