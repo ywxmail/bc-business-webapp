@@ -61,21 +61,27 @@
 							<td class="label"><s:text name="carMan.origin"/>:</td>
 							<td class="value"><s:textfield name="e.origin" cssClass="ui-widget-content"/></td>
 							<td class="label"><s:text name="carMan.birthdate"/>:</td>
-							<td class="value" style="position:relative;display: block;"><input type="text" name="e.birthdate" 
-								data-validate='{required:false,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
-						    	value='<s:date format="yyyy-MM-dd" name="e.birthdate" />'/>
-						    	<span class="selectButton verticalMiddle ui-icon ui-icon-calendar"></span>
-					        </td>
+					        <td class="value relative">
+								<input type="text" name="e.birthdate" data-validate='{"type":"date","required":false}'
+								value='<s:date format="yyyy-MM-dd" name="e.birthdate" />'
+								class="bc-date ui-widget-content" data-cfg='{changeYear:true,addYear: "5|e.scrapDate"}' />
+								<ul class="inputIcons">
+									<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.birthdate'></li>
+								</ul>
+							</td>
 						</tr>
 						<tr>
 							<td class="label"><s:text name="carMan.phone"/>:</td>
 							<td class="value"><s:textfield name="e.phone" data-validate='{required:false,type:"phone"}' cssClass="ui-widget-content"/></td>
 							<td class="label"><s:text name="carMan.workDate"/>:</td>
-							<td class="value" style="position:relative;display: block;"><input type="text" name="e.workDate" 
-								data-validate='{required:false,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
-						    	value='<s:date format="yyyy-MM-dd" name="e.workDate" />'/>
-						    	<span class="selectButton verticalMiddle ui-icon ui-icon-calendar"></span>
-					        </td>
+					        <td class="value relative">
+								<input type="text" name="e.workDate" data-validate='{"type":"date","required":false}'
+								value='<s:date format="yyyy-MM-dd" name="e.workDate" />'
+								class="bc-date ui-widget-content" data-cfg='{changeYear:true,addYear: "5|e.scrapDate"}' />
+								<ul class="inputIcons">
+									<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.workDate'></li>
+								</ul>
+							</td>
 						</tr>
 						<tr>
 							<td class="label"><s:text name="carMan.phone1"/>:</td>
@@ -148,13 +154,14 @@
 												</div>
 				            </td>
 				            <td class="label"><s:text name="carMan.cert4DrivingFirstDate"/>:</td>
-							<td class="value relative" colspan="2">
-								<input type="text" name="e.cert4DrivingFirstDate" 
-							    		data-validate='{required:false,type:"date"}'class="bc-date ui-widget-content" 
-							    		title='<s:text name="title.click2selectDate"/>'
-						         		value='<s:date format="yyyy-MM-dd" name="e.cert4DrivingFirstDate" />'/>
-						        	<span class="selectButton verticalMiddle ui-icon ui-icon-calendar"></span>
-				            </td>
+				             <td class="value relative"  colspan="2">
+								<input type="text" name="e.cert4DrivingFirstDate" data-validate='{"type":"date","required":false}'
+								value='<s:date format="yyyy-MM-dd" name="e.cert4DrivingFirstDate" />'
+								class="bc-date ui-widget-content" data-cfg='{changeYear:true,addYear: "5|e.scrapDate"}' />
+								<ul class="inputIcons">
+									<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.cert4DrivingFirstDate'></li>
+								</ul>
+							</td>
 						</tr>
 						<tr>
 							<td class="label"><s:text name="carMan.accessCerts"/>:</td>
