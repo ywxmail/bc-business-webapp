@@ -26,11 +26,14 @@
 					</tr>
 					<tr>
 					  <td class="label">*<s:text name="carByDriverHistory.moveDate"/>:</td>
-						<td class="value" style="position:relative;display: block;"><input type="text" name="e.moveDate" 
-						data-validate='{required:true,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
-					    value='<s:date format="yyyy-MM-dd" name="e.moveDate" />'/>
-					    <span class="selectButton verticalMiddle ui-icon ui-icon-calendar"></span>
-				        </td>
+						<td class="value relative">
+							<input type="text" name="e.moveDate" data-validate='{"type":"date","required":true}'
+							value='<s:date format="yyyy-MM-dd" name="e.moveDate" />'
+							class="bc-date ui-widget-content" data-cfg='{changeYear:true,addYear: "5|e.scrapDate"}' />
+							<ul class="inputIcons">
+								<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.moveDate'></li>
+							</ul>
+						</td>
 					</tr>
 					<tr>
 						<td class="label" colspan="4" style="text-align:left;">
@@ -74,11 +77,14 @@
 					</tr>
 					<tr>
 					  <td class="label">*<s:text name="carByDriverHistory.handPapersDate"/>:</td>
-						<td class="value" style="position:relative;display: block;"><input type="text" name="e.handPapersDate" 
-						data-validate="date"class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
-					    value='<s:date format="yyyy-MM-dd" name="e.handPapersDate" />'/>
-					    <span class="selectButton verticalMiddle ui-icon ui-icon-calendar"></span>
-				        </td>
+						<td class="value relative">
+							<input type="text" name="e.handPapersDate" data-validate='{"type":"date","required":true}'
+							value='<s:date format="yyyy-MM-dd" name="e.handPapersDate" />'
+							class="bc-date ui-widget-content" data-cfg='{changeYear:true,addYear: "5|e.scrapDate"}' />
+							<ul class="inputIcons">
+								<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.handPapersDate'></li>
+							</ul>
+						</td>
 				        <td class="label"><s:text name="carByDriverHistory.cancelId"/>:</td>
 						<td class="value"><s:textfield name="e.cancelId" cssClass="ui-widget-content"/></td>
 					</tr>

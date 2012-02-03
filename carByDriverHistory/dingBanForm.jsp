@@ -2,19 +2,21 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div title='<s:text name="shiftworkByDriver.title"/>' data-type='form' class="bc-page"
 	data-saveUrl='<s:url value="/bc-business/shiftworkByDriver/save" />'
-	data-js='<s:url value="/bc-business/carByDriverHistory/dingBanForm.js" />,<s:url value="/bc-business/bs.js" />'
+	data-js='<s:url value="/bc-business/carByDriverHistory/dingBanForm.js" />,<s:url value="/bc-business/bs.js" />,<s:url value="/bc-business/carByDriverHistory/form.js" />'
 	data-initMethod='bc.business.shiftworkByDriverForm.init'
-	data-option='{
-		"buttons":[{"text":"<s:text name="label.save"/>","action":"save"}],
-		"width":400,"minWidth":320,"minHeight":400,"modal":false}' style="overflow-y:auto;">
+	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="carByDriverForm" theme="simple" >
 		<div class="formFields ui-widget-content" >
 			<table class="formFields" cellspacing="2" cellpadding="0" style="height:350px ">
 				<tbody>
+				    <tr class="widthMarker">
+		                <td style="width:100px;">&nbsp;</td>
+		                <td >&nbsp;</td>
+	                </tr>
 					<tr>
 					<s:if test="%{carManId != null}">
 						<td class="label"><s:text name="shiftworkByDriver.driver"/>:</td>
-						<td class="value"><s:textfield name="e.driver.name" readonly="true" cssClass="ui-state-disabled" /></td>
+						<td class="value"><s:textfield name="e.driver.name" readonly="true" /></td>
 					</s:if><s:else>
 					    <td class="label">*<s:text name="shiftworkByDriver.driver"/>:</td>
 						<td class="value relative"><s:textfield name="e.driver.name"  data-validate="required" cssClass="ui-widget-content" />
@@ -60,23 +62,24 @@
 					<tr>
 						<td class="label">*<s:text name="shiftworkByDriver.dbhtq"/>:</td>
 						<td class="value">
-						<div style="position : relative; display: inline-block">
-							&nbsp;从<input type="text" name="e.moveDate" 
-                            data-validate='{required:true,type:"date"}' class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
-                               value='<s:date format="yyyy-MM-dd" name="e.moveDate" />' style="width: 9em;"/>
-                               <ul class="inputIcons" style="right : 0px;">
-								<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.commerialStartDate' ></li>
-						    </ul>
-						</div>
-						<div style="position : relative; display: inline-block">
-							&nbsp;到<input type="text" name="e.endDate" 
-                            data-validate='{required:true,type:"date"}' class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
-                               value='<s:date format="yyyy-MM-dd" name="e.endDate" />' style="width: 10em;"/>
-                               <ul class="inputIcons" style="right : 0px;">
-								<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.commerialEndDate' ></li>
-						    </ul>
-						</div>
-						</td>
+							<div class="bc-dateContainer">
+								&nbsp;从<input type="text" name="e.moveDate" 
+								  data-validate='{"type":"date","required":false}' 
+									value='<s:date format="yyyy-MM-dd" name="e.moveDate" />' 
+									style="width: 9em;" class="bc-date ui-widget-content" />
+									<ul class="inputIcons" style="right : 0px;">
+										<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.moveDate' ></li>
+									</ul>
+							</div>
+				        	<div class="bc-dateContainer">
+								&nbsp;到<input type="text" name="e.endDate"  data-validate='{"type":"date","required":false}'
+									value='<s:date format="yyyy-MM-dd" name="e.endDate" />'
+									style="width: 9em;" class="bc-date ui-widget-content" />
+									<ul class="inputIcons" style="right : 0px;">
+										<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.endDate' ></li>
+									</ul>
+							</div>
+				       </td>
 					</tr>
 					<tr>
 						<td class="topLabel" ><s:text name="carByDriverHistory.description"/>:</td>
@@ -98,6 +101,7 @@
 		<s:hidden name="e.id" />
 		<s:hidden name="e.moveType" />
 		<s:hidden name="e.driver.id" />
+		<s:hidden id="header" value="%{e.driver.name}"/>
 		<s:hidden name="e.author.id" />
 		<s:hidden name="e.modifier.id"/>
 		<s:hidden name="e.fromMotorcadedId"/>

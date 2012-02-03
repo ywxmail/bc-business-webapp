@@ -11,9 +11,9 @@
 				<tbody>
 					<tr class="widthMarker">
 						<td></td>
-						<td style="width: 200px;">&nbsp;</td>
-						<td style="width: 80px;">&nbsp;</td>
-						<td style="width: 200px;">&nbsp;</td>
+						<td style="width: 350px;">&nbsp;</td>
+						<td style="width: 100px;">&nbsp;</td>
+						<td style="width: 350px;">&nbsp;</td>
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="runcase.subject"/>:</td>
@@ -59,10 +59,12 @@
 					<tr>
 						<td class="label">*<s:text name="runcase.driverName" />:</td>
 						<td>
-							<span style="position:relative;">
+							<div style="position:relative;display: inline-block" >
 								<s:textfield name="e.driverName" cssStyle="width:5em;" data-validate="required" cssClass="ui-widget-content "/>
-								<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectDriverName"></span>
-							</span>
+								<ul class="inputIcons">
+						 			<li class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectDriverName">
+						 		</ul>
+							</div>
 							&nbsp;&nbsp;
 							<s:text name="runcase.driverCert" /><s:textfield name="e.driverCert" data-validate="required" cssClass="ui-widget-content"/>
 						</td>
@@ -92,7 +94,7 @@
 						<td class="value "><s:textfield name="e.code" data-validate="required" readonly="true" cssClass="ui-widget-content"/></td>					
 					</tr>
 					<tr>
-						<td class="label"><s:text name="runcase.extent"/></td>
+						<td class="label"><s:text name="runcase.extent"/>:</td>
 						<td class="value">
 						<s:select name="e.extent" list="degreeList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
 						</td>
@@ -167,10 +169,10 @@
 	        	<div id="otherFormFields1" class="content active" style="width:800px;">
 					<table class="formFields" cellspacing="2" cellpadding="0" >
 						<tbody>
-							<tr style="line-height: 1px;">
+							<tr class="widthMarker">
 								<td></td>
 								<td style="width: 350px;">&nbsp;</td>
-								<td style="width: 90px;">&nbsp;</td>
+								<td style="width: 100px;">&nbsp;</td>
 								<td style="width: 350px;">&nbsp;</td>
 							</tr>
 							<tr>
@@ -182,7 +184,7 @@
 							</tr>
 							<tr>
 								<td class="label"><s:text name="runcase.detain"/>:</td>
-								<td class="value" colspan="3"><s:textfield name="e.detain	" cssStyle="width:53.7em;" cssClass="ui-widget-content"/></td>
+								<td class="value" colspan="3"><s:textfield name="e.detain" cssClass="ui-widget-content"/></td>
 							</tr>
 							<tr>
 								<td class="label"><s:text name="runcase.confiscateCertNo" />:</td>
@@ -219,7 +221,7 @@
 								<td style="width: 350px;">&nbsp;</td>
 							</tr>
 							<tr>
-								<td class="value" colspan="4"><s:textarea name="e.description" cssStyle="width:59.7em; text-align:left" rows="4" cssClass="ui-widget-content"/></td>
+								<td class="value" colspan="4"><s:textarea name="e.description" cssStyle="text-align:left" rows="4" cssClass="ui-widget-content"/></td>
 								<td></td>
 								<td></td>
 								<td></td>

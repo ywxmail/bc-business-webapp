@@ -26,11 +26,14 @@
 					</tr>
 					<tr>
 					  <td class="label">*<s:text name="carByDriverHistory.moveDate"/>:</td>
-						<td class="value" style="position:relative;display: block;"><input type="text" name="e.moveDate" 
-						data-validate='{required:true,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
-					    value='<s:date format="yyyy-MM-dd" name="e.moveDate" />'/>
-					    <span class="selectButton verticalMiddle ui-icon ui-icon-calendar"></span>
-				        </td>
+						<td class="value relative">
+							<input type="text" name="e.moveDate" data-validate='{"type":"date","required":true}'
+							value='<s:date format="yyyy-MM-dd" name="e.moveDate" />'
+							class="bc-date ui-widget-content" data-cfg='{changeYear:true,addYear: "5|e.scrapDate"}' />
+							<ul class="inputIcons">
+								<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.moveDate'></li>
+							</ul>
+						</td>
 					</tr>
 					<tr>
 					<td class="value" colspan="4" >
@@ -62,7 +65,7 @@
 						                 headerKey="" headerValue="" cssClass="ui-widget-content"></s:select></td>
 					                  </tr>
 						              <tr><td class="label"><s:text name="carByDriverHistory.newDriverState"/>:</td>
-						                 <td class="value" ><s:select name="e.toClasses" list="#{0:'',1:'正班',2:'副班',3:'顶班'}" 
+						                 <td class="value" ><s:select name="e.toClasses" list="#{0:'',1:'正班',2:'副班'}" 
 							              listKey="key" listValue="value" data-validate="required" cssClass="ui-widget-content"/></td>
 							         </tr>
 						        </table>
