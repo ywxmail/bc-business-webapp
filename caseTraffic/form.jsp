@@ -54,12 +54,14 @@
 					<tr>
 						<td class="label"><s:text name="runcase.driverName" />:</td>
 						<td>
-							<span style="position:relative;">
+							<div style="position:relative;display: inline-block" >
 								<s:textfield name="e.driverName" cssStyle="width:5em;" cssClass="ui-widget-content "/>
-								<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectDriverName"></span>
-							</span>
+								<ul class="inputIcons">
+						 			<li class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectDriverName">
+						 		</ul>
+							</div>
 							&nbsp;&nbsp;
-							<s:text name="runcase.driverCert" /><s:textfield name="e.driverCert" data-validate="required" cssClass="ui-widget-content"/>
+							<s:text name="runcase.driverCert" /><s:textfield name="e.driverCert" cssStyle="width:6em;"  data-validate="required" cssClass="ui-widget-content"/>
 						</td>
 						<td class="label" ><s:text name="runcase.duty"/>:</td>
 						<td class="value" >
