@@ -39,8 +39,8 @@
 						<div style="position : relative; display: block">
 							<input type="text" name="e.happenDate" data-validate='{"type":"datetime","required":true}'
 							value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.happenDate" />'
-							class="bc-datetime" data-cfg='{showSecond:true,timeFormat:"hh:mm:ss"}'/>
-							<ul class="inputIcons" style="right : 0px;">
+							class="bc-datetime ui-widget-content" data-cfg='{showSecond:true,timeFormat:"hh:mm:ss"}'/>
+							<ul class="inputIcons" style="right : 4px;">
 								<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.happenDate' ></li>
 							</ul>
 						</div>
@@ -62,8 +62,8 @@
 						<div style="position : relative; display: block">
 							<input type="text" name="e.receiveDate" data-validate='{"type":"datetime","required":true}'
 							value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.receiveDate" />'
-							class="bc-datetime" data-cfg='{showSecond:true,timeFormat:"hh:mm:ss"}'/>
-							<ul class="inputIcons" style="right : 0px;">
+							class="bc-datetime ui-widget-content" data-cfg='{showSecond:true,timeFormat:"hh:mm:ss"}'/>
+							<ul class="inputIcons" style="right : 4px;">
 								<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.receiveDate' ></li>
 							</ul>
 						</div>
@@ -98,7 +98,7 @@
 								<s:textfield name="e.origin" cssStyle="width:8em;"  cssClass="ui-widget-content"/>
 						</td>
 						<td class="label" ><s:text name="runcase.receiverName2"/>:</td>
-						<td class="value relative"><s:textfield name="e.receiverName"  />
+						<td class="value relative"><s:textfield name="e.receiverName" cssClass="ui-widget-content" />
 						<ul class="inputIcons">
 							 <li id="selectReceiver" class=" inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></li>
 						</ul>
@@ -140,15 +140,15 @@
 						<table class="formFields ui-widget-content" cellspacing="2" cellpadding="0">
 							<tbody>
 								<tr style="line-height: 1px;">
-									<td style="width: 100px;">&nbsp;</td>
-									<td style="width: 260px;">&nbsp;</td>
+									<td style="width: 110px;">&nbsp;</td>
+									<td style="width: 250px;">&nbsp;</td>
 									<td style="width: 100px;">&nbsp;</td>
 									<td >&nbsp;</td>
 								</tr>
 								<tr>
 									<td class="label"><s:checkbox name="e.innerFix" cssStyle="width:1em;" /><s:text name="runcase.innerFix"/></td>
 									<td class="value">
-											<s:text name="runcase.fixCost" />(元):<s:textfield name="e.fixCost" cssClass="ui-widget-content" cssStyle="width:184px;"
+											<s:text name="runcase.fixCost" />(元):<s:textfield name="e.fixCost" cssClass="ui-widget-content" cssStyle="width:170px;"
 												    value="%{getText('bs.format.numberRMB',{e.fixCost})}"  data-validate="money"  />
 									</td>
 									<td class="label"><s:text name="runcase.claimAmount" />(元):</td>
@@ -177,8 +177,8 @@
 						<table class="formFields ui-widget-content" cellspacing="2" cellpadding="0">
 							<tbody>
 								<tr style="line-height: 1px;">
-									<td style="width: 100px;">&nbsp;</td>
-									<td style="width: 260px;">&nbsp;</td>
+									<td style="width: 110px;">&nbsp;</td>
+									<td style="width: 250px;">&nbsp;</td>
 									<td style="width: 100px;">&nbsp;</td>
 									<td >&nbsp;</td>
 								</tr>
@@ -205,16 +205,16 @@
 						<table  class="formFields ui-widget-content" cellspacing="2" cellpadding="0">
 								<tbody>
 									<tr style="line-height: 1px;">
-									<td style="width: 100px;">&nbsp;</td>
-									<td style="width: 260px;">&nbsp;</td>
+									<td style="width: 110px;">&nbsp;</td>
+									<td style="width: 250px;">&nbsp;</td>
 									<td style="width: 100px;">&nbsp;</td>
 									<td >&nbsp;</td>
 								</tr>
 									<tr>
 										<td class="label"><s:text name="runcase.hurtCount"/>:</td>
-										<td class="value"><s:textfield name="e.hurtCount" cssClass="ui-widget-content" cssStyle="width:85px;" data-validate="number"/>
+										<td class="value"><s:textfield name="e.hurtCount" cssClass="ui-widget-content" cssStyle="width:80px;" data-validate="number"/>
 										<s:text name="runcase.deadCount"/>:
-										<s:textfield name="e.deadCount" cssClass="ui-widget-content" cssStyle="width:85px;" data-validate="number"/></td>
+										<s:textfield name="e.deadCount" cssClass="ui-widget-content" cssStyle="width:80px;" data-validate="number"/></td>
 										<td class="label"><s:text name="runcase.agreementPayment"/>(元):</td>
 										<td class="value"><s:textfield name="e.agreementPayment" cssClass="ui-widget-content"
 																	   value="%{getText('bs.format.numberRMB',{e.agreementPayment})}"  data-validate="money" /></td>
@@ -306,7 +306,7 @@
 									    	<div style="position : relative; display: block">
 											    <input type="text" name="e.deliverDate" data-validate='{"type": "date"}'
 													value='<s:date format="yyyy-MM-dd" name="e.deliverDate" />'
-													class="bc-date"  />
+													class="bc-date ui-widget-content"  />
 												<ul class="inputIcons" style="right : 0px;">
 													<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.deliverDate' ></li>
 												</ul>
@@ -335,7 +335,7 @@
 										     <div style="position : relative; display: block">
 											     <input type="text" name="e.claimDate" data-validate='{"type": "date"}'
 											    	value='<s:date format="yyyy-MM-dd" name="e.claimDate" />'
-											    	class="bc-date"  />
+											    	class="bc-date ui-widget-content"  />
 											    <ul class="inputIcons" style="right : 0px;">
 													<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.claimDate' ></li>
 												</ul>
@@ -442,7 +442,7 @@
 										    <div style="position : relative; display: block">
 										     	<input type="text" name="e.payDate" data-validate='{"type": "date"}'
 												    value='<s:date format="yyyy-MM-dd" name="e.payDate" />'
-												    class="bc-date"  />
+												    class="bc-date ui-widget-content"  />
 											    <ul class="inputIcons" style="right : 0px;">
 													<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.payDate' ></li>
 												</ul>
@@ -568,7 +568,7 @@
 											    <div style="position : relative; display: block">
 												     <input type="text" name="e.deliverDateTwo" data-validate='{"type": "date"}'
 														value='<s:date format="yyyy-MM-dd" name="e.deliverDateTwo" />'
-														class="bc-date"  />
+														class="bc-date ui-widget-content"  />
 													<ul class="inputIcons" style="right : 0px;">
 														<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.deliverDateTwo' ></li>
 												    </ul>
@@ -597,7 +597,7 @@
 												<div style="position : relative; display: block">
 											     	<input type="text" name="e.claimDateTwo" data-validate='{"type": "date"}'
 											    		value='<s:date format="yyyy-MM-dd" name="e.claimDateTwo" />'
-											   			 class="bc-date" />
+											   			 class="bc-date ui-widget-content" />
 										   			 <ul class="inputIcons" style="right : 0px;">
 														<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.claimDateTwo' ></li>
 												    </ul>
@@ -703,7 +703,7 @@
 										    <div style="position : relative; display: inline-block">
 											   	  <input type="text" name="e.payDateTwo" data-validate='{"type": "date"}'
 												    value='<s:date format="yyyy-MM-dd" name="e.payDateTwo" />'
-												    class="bc-date"  />
+												    class="bc-date ui-widget-content"  />
 												  <ul class="inputIcons" style="right : 0px;">
 														<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.payDateTwo' ></li>
 												  </ul>
