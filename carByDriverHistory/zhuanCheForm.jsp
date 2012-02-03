@@ -51,7 +51,7 @@
 						                 headerKey="" headerValue="" cssClass="ui-widget-content"></s:select></td>
 						              </tr>
 						              <tr><td class="label"><s:text name="carByDriverHistory.oldDriverState"/>:</td>
-						                 <td class="value" ><s:select name="e.fromClasses" list="#{0:'',1:'正班',2:'副班',3:'顶班'}" 
+						                 <td class="value" ><s:select name="e.fromClasses" list="#{0:'',1:'正班',2:'副班'}" 
 							              listKey="key" listValue="value" data-validate="required" cssClass="ui-widget-content"/></td>
 							          </tr>
 						          </table>
@@ -75,7 +75,7 @@
 						                 headerKey="" headerValue="" cssClass="ui-widget-content"></s:select></td>
 						              </tr>
 						              <tr><td class="label"><s:text name="carByDriverHistory.newDriverState"/>:</td>
-						                 <td class="value" ><s:select name="e.toClasses" list="#{0:'',1:'正班',2:'副班',3:'顶班'}" 
+						                 <td class="value" ><s:select name="e.toClasses" list="#{0:'',1:'正班',2:'副班'}" 
 							              listKey="key" listValue="value" data-validate="required" cssClass="ui-widget-content"/></td>
 							         </tr>
 						        </table>
