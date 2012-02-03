@@ -11,9 +11,9 @@
 				<tbody>
 					<tr class="widthMarker">
 						<td></td>
-						<td style="width: 200px;">&nbsp;</td>
-						<td style="width: 80px;">&nbsp;</td>
-						<td style="width: 200px;">&nbsp;</td>
+						<td style="width: 350px;">&nbsp;</td>
+						<td style="width: 100px;">&nbsp;</td>
+						<td style="width: 350px;">&nbsp;</td>
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="runcase.subject"/>:</td>
@@ -92,7 +92,7 @@
 						<td class="value "><s:textfield name="e.code" data-validate="required" readonly="true" cssClass="ui-widget-content"/></td>					
 					</tr>
 					<tr>
-						<td class="label"><s:text name="runcase.extent"/></td>
+						<td class="label"><s:text name="runcase.extent"/>:</td>
 						<td class="value">
 						<s:select name="e.extent" list="degreeList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
 						</td>
@@ -167,10 +167,10 @@
 	        	<div id="otherFormFields1" class="content active" style="width:800px;">
 					<table class="formFields" cellspacing="2" cellpadding="0" >
 						<tbody>
-							<tr style="line-height: 1px;">
+							<tr class="widthMarker">
 								<td></td>
 								<td style="width: 350px;">&nbsp;</td>
-								<td style="width: 90px;">&nbsp;</td>
+								<td style="width: 100px;">&nbsp;</td>
 								<td style="width: 350px;">&nbsp;</td>
 							</tr>
 							<tr>
@@ -219,7 +219,7 @@
 								<td style="width: 350px;">&nbsp;</td>
 							</tr>
 							<tr>
-								<td class="value" colspan="4"><s:textarea name="e.description" cssStyle="width:59.7em; text-align:left" rows="4" cssClass="ui-widget-content"/></td>
+								<td class="value" colspan="4"><s:textarea name="e.description" cssStyle="text-align:left" rows="4" cssClass="ui-widget-content"/></td>
 								<td></td>
 								<td></td>
 								<td></td>
