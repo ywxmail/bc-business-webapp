@@ -29,7 +29,7 @@ bs.jiaoWeiADVICEView = {
 			return;
 		}
 		//同步前先确认
-		bc.msg.confirm("确定要执行同步处理吗？",function(){
+		bc.msg.confirm("确定要执行同步处理吗？(交委的网络同步可能比较耗时，请耐心等候！)",function(){
 			bs.jiaoWeiADVICEView.syncing = true;
 			jQuery.ajax({
 				url: bc.root + "/bc-business/jiaoWeiADVICEs/sync", 
