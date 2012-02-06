@@ -8,19 +8,14 @@
 	<s:form name="policyForm" theme="simple">			
 					<table class="formFields" cellspacing="2" cellpadding="0">
 						<tbody>
-							<tr>
-								<td class="value" colspan="4">
-								    <fieldset>
-								    	<legend>责任险</legend>
-								        <table class="formFields" cellspacing="2" cellpadding="0">
-											<tr class="widthMarker">
-								                <td style="width: 120px;">&nbsp;</td>
+							<tr class="widthMarker">
+								                <td style="width: 100px;">&nbsp;</td>
 								                <td style="width: 220px;">&nbsp;</td>
-								                <td style="width: 80px;">&nbsp;</td>
+								                <td style="width: 120px;">&nbsp;</td>
 								                <td >&nbsp;</td>
-							                </tr>
-											<tr>
-												<td class="label">*<s:text name="policy.carId"/>:</td>
+							 </tr>
+							 <tr>
+							 	<td class="label">*<s:text name="policy.carId"/>:</td>
 												<s:if test="%{carId != null}">
 						                          <td class="value "><s:textfield name="plate" value="%{e.car.plateType+'.'+e.car.plateNo }" readonly="true" cssClass="ui-state-disabled"/></td>
 					                            </s:if><s:else>
@@ -32,77 +27,26 @@
 												      </ul>
 					                                </td>
 												</s:else>
-												<td class="label">*<s:text name="policy.liabilityNo"/>:</td>
-												<td class="value"><s:textfield name="e.liabilityNo" cssClass="ui-widget-content" data-validate="required"/></td>
-											</tr>
-											<tr>
-												<!-- 责任险合计 -->
-												<td class="label"> <s:text name="policy.liabilityAmount"/>:</td>
-											    <td class="value">
-											    	<s:if test="e.liabilityAmount==-1" >
-												    	<s:textfield  cssClass="ui-widget-content" value="******" />
-												    </s:if>
-												    <s:else>
-											    		<s:textfield name="e.liabilityAmount" cssClass="ui-widget-content"  value="%{getText('bs.format.numberRMB',{e.liabilityAmount})}" data-validate="money" />
-											    	</s:else>
-											    </td>
-
-											     <!-- 停保日期 
-				                                 <s:if test="%{e.status==2}">
-											     <td class="label"><s:text name="policy.stopDate"/>:</td>
-						                         <td class="value" style="position:relative;display: block;"><input type="text" name="e.stopDate" 
-						                          data-validate='{required:false,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
-					                              value='<s:date format="yyyy-MM-dd" name="e.stopDate" />'/>
-					                              <span class="selectButton verticalMiddle ui-icon ui-icon-calendar"></span>
-				                                 </td>
-				                                 </s:if> -->
-											</tr>
-								        </table>
-								   </fieldset>
+							 	<td class="label">*<s:text name="policy.assured"/>:</td>
+								<td class="value">
+											<s:select list="#{'0':'广州市宝城汽车出租有限公司','1':'广州市广发出租汽车有限公司'}" listKey="value" listValue="value" 
+											 name="e.assured" cssClass="ui-widget-content" data-validate="required" style="width: 260px;" />
 								</td>
-							</tr>
-							<tr>
+							 </tr>
+							 <tr>
 								<td class="value" colspan="4">
 									<fieldset>
 						          		<legend>商业险</legend>
 						          		<table class="formFields" cellspacing="2" cellpadding="0" >
 											<tr class="widthMarker">
-								                <td style="width: 120px;">&nbsp;</td>
-								                <td style="width: 220px;">&nbsp;</td>
 								                <td style="width: 80px;">&nbsp;</td>
+								                <td style="width: 220px;">&nbsp;</td>
+								                <td style="width: 120px;">&nbsp;</td>
 								                <td >&nbsp;</td>
 							                </tr>
 											<tr>
 											    <td class="label">*<s:text name="policy.commerialNo"/>:</td>
 												<td class="value"><s:textfield name="e.commerialNo" cssClass="ui-widget-content" data-validate="required"/></td>
-												<td class="label">*<s:text name="policy.assured"/>:</td>
-												<td class="value"><s:textfield name="e.assured" cssClass="ui-widget-content" data-validate="required"/></td>
-											</tr>
-											<tr>
-											    <td class="label">*<s:text name="policy.Company"/>:</td>
-							                    <td class="value "><s:select  list="companyList" listKey="value" listValue="value"  headerKey="" headerValue=""  name="e.commerialCompany"  data-validate="required" 
-							                         cssStyle="width:17em;" cssClass="ui-widget-content"/></td>
-							                    <td class="label">*<s:text name="policy.insurelDeadline"/>:</td>
-												<td class="value">
-												<div style="position : relative; display: inline-block">
-													&nbsp;从<input type="text" name="e.commerialStartDate" 
-						                            data-validate='{required:true,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
-					                                value='<s:date format="yyyy-MM-dd" name="e.commerialStartDate" />' style="width: 7em;"/>
-					                                <ul class="inputIcons" style="right : 0px;">
-														<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.commerialStartDate' ></li>
-												    </ul>
-												</div>
-												<div style="position : relative; display: inline-block">
-													&nbsp;到<input type="text" name="e.commerialEndDate" 
-						                            data-validate='{required:true,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
-					                                value='<s:date format="yyyy-MM-dd" name="e.commerialEndDate" />' style="width: 7em;"/>
-					                                <ul class="inputIcons" style="right : 0px;">
-														<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.commerialEndDate' ></li>
-												    </ul>
-												</div>
-												</td>
-											</tr>
-											<tr>
 												<!-- 商业险合计 -->
 												<td class="label"><s:text name="policy.commerialAmount"/>:</td>
 											    <td class="value">
@@ -113,6 +57,32 @@
 												    	<s:textfield name="e.commerialAmount" cssClass="ui-widget-content" value="%{getText('bs.format.numberRMB',{e.commerialAmount})}" data-validate="money" />
 												    </s:else>
 											    </td>
+											</tr>
+											<tr>
+											    <td class="label">*<s:text name="policy.Company"/>:</td>
+							                    <td class="value "><s:select  list="companyList" listKey="value" listValue="value"  headerKey="" headerValue=""  name="e.commerialCompany"  data-validate="required" 
+							                         cssStyle="width:17em;" cssClass="ui-widget-content"/></td>
+							                    <td class="label">*<s:text name="policy.insurelDeadline"/>:</td>
+							                    <td class="value" >
+												<div style="position : relative; display: inline-block">
+													&nbsp;从<input type="text" name="e.commerialStartDate" 
+						                            data-validate='{required:true,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
+					                                value='<s:date format="yyyy-MM-dd" name="e.commerialStartDate" />' style="width: 103px;"/>
+					                                <ul class="inputIcons" style="right : 0px;">
+														<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.commerialStartDate' ></li>
+												    </ul>
+												</div>
+												<div style="position : relative; display: inline-block">
+													&nbsp;到<input type="text" name="e.commerialEndDate" 
+						                            data-validate='{required:true,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
+					                                value='<s:date format="yyyy-MM-dd" name="e.commerialEndDate" />' style="width: 103px;"/>
+					                                <ul class="inputIcons" style="right : 0px;">
+														<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.commerialEndDate' ></li>
+												    </ul>
+												</div>
+												</td>
+											</tr>
+											<tr>
 											    <td class="label"></td>
 												<td class="value">
 													<s:checkbox name="e.ownrisk" cssStyle="width:1em;" />
@@ -127,6 +97,35 @@
 							</tr>
 							<tr>
 								<td class="value" colspan="4">
+								    <fieldset>
+								    	<legend>责任险</legend>
+								        <table class="formFields" cellspacing="2" cellpadding="0">
+											<tr class="widthMarker">
+								                <td style="width: 80px;">&nbsp;</td>
+								                <td style="width: 220px;">&nbsp;</td>
+								                <td style="width: 120px;">&nbsp;</td>
+								                <td >&nbsp;</td>
+							                </tr>
+											<tr>
+												<td class="label">*<s:text name="policy.liabilityNo"/>:</td>
+												<td class="value"><s:textfield name="e.liabilityNo" cssClass="ui-widget-content" data-validate="required"/></td>
+												<!-- 责任险合计 -->
+												<td class="label"> <s:text name="policy.liabilityAmount"/>:</td>
+											    <td class="value">
+											    	<s:if test="e.liabilityAmount==-1" >
+												    	<s:textfield  cssClass="ui-widget-content" value="******" />
+												    </s:if>
+												    <s:else>
+											    		<s:textfield name="e.liabilityAmount" cssClass="ui-widget-content"  value="%{getText('bs.format.numberRMB',{e.liabilityAmount})}" data-validate="money" />
+											    	</s:else>
+											    </td>
+											</tr>
+								        </table>
+								   </fieldset>
+								</td>
+							</tr>
+							<tr>
+								<td class="value" colspan="4">
 								     <div id="greenslipFieldset" style='<s:if test="%{e.greenslip==true}">
 										  dispaly: block;
 									      </s:if>
@@ -138,25 +137,30 @@
 						          		        <legend>强制险</legend>
 						          		         <table class="formFields" cellspacing="2" cellpadding="0">
 													<tr class="widthMarker">
-										                <td style="width: 120px;">&nbsp;</td>
-										                <td style="width: 220px;">&nbsp;</td>
 										                <td style="width: 80px;">&nbsp;</td>
+										                <td style="width: 220px;">&nbsp;</td>
+										                <td style="width: 120px;">&nbsp;</td>
 										                <td >&nbsp;</td>
 									                </tr>
 											         <tr>
-											             <td class="label"><s:text name="policy.greenslipNo"/>:</td>
-												         <td class="value"><s:textfield name="e.greenslipNo" cssClass="ui-widget-content"/></td>
-							                             <td class="label"></td>
-												         <td class="value">
-													       <s:checkbox name="e.greenslipSameDate" cssStyle="width:1em;" />
-													       <s:text name="policy.greenslipSameDate"/>
-												         </td>
+											            <td class="label"><s:text name="policy.greenslipNo"/>:</td>
+												        <td class="value"><s:textfield name="e.greenslipNo" cssClass="ui-widget-content"/></td>
+							                          	<!-- 强制险合计 -->
+														<td class="label"> <s:text name="policy.greenslipAmount"/>:</td>
+											    		<td class="value">
+												    		<s:if test="e.greenslipAmount==-1" >
+												    			<s:textfield  cssClass="ui-widget-content" value="******" />
+												    		</s:if>
+												    		<s:else>
+												    			<s:textfield name="e.greenslipAmount" cssClass="ui-widget-content" value="%{getText('bs.format.numberRMB',{e.greenslipAmount})}"  data-validate="money" />
+												    		</s:else>
+											    		</td>
 											        </tr>
 											        <tr>
 											             <td class="label"><s:text name="policy.Company"/>:</td>
 							                             <td class="value" ><s:select  list="companyList" listKey="value" listValue="value"  headerKey="" headerValue=""  name="e.greenslipCompany"  
 							                               cssStyle="width:17em;" cssClass="ui-widget-content"/></td>
-											             <td class="label">
+							                                <td class="label">
 								                               <samp id="greenslipSameDateFieldset" style='<s:if test="%{e.greenslipSameDate==false || e.greenslip==true}">
 										                         visibility: visible;
 									                            </s:if>
@@ -178,7 +182,7 @@
 									                            <div style="position : relative; display: inline-block">
 													               &nbsp;从<input type="text" name="e.greenslipStartDate" 
 										                            data-validate='{required:false,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
-									                                value='<s:date format="yyyy-MM-dd" name="e.greenslipStartDate" />' style="width: 7em;"/>
+									                                value='<s:date format="yyyy-MM-dd" name="e.greenslipStartDate" />' style="width: 103px;"/>
 									                                <ul class="inputIcons" style="right : 0px;">
 																		<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.greenslipStartDate' ></li>
 																    </ul>
@@ -186,7 +190,7 @@
 												                 <div style="position : relative; display: inline-block">
 													               &nbsp;到<input type="text" name="e.greenslipEndDate" 
 										                            data-validate='{required:false,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
-									                                value='<s:date format="yyyy-MM-dd" name="e.greenslipEndDate" />' style="width: 7em;"/>
+									                                value='<s:date format="yyyy-MM-dd" name="e.greenslipEndDate" />' style="width: 103px;"/>
 									                                <ul class="inputIcons" style="right : 0px;">
 																		<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.greenslipEndDate' ></li>
 																    </ul>
@@ -195,17 +199,12 @@
 								                           </td>
 											          </tr>
 											          <tr>
-											          <!-- 强制险合计 -->
-														<td class="label"> <s:text name="policy.greenslipAmount"/>:</td>
-											    		<td class="value">
-												    		<s:if test="e.greenslipAmount==-1" >
-												    			<s:textfield  cssClass="ui-widget-content" value="******" />
-												    		</s:if>
-												    		<s:else>
-												    			<s:textfield name="e.greenslipAmount" cssClass="ui-widget-content" value="%{getText('bs.format.numberRMB',{e.greenslipAmount})}"  data-validate="money" />
-												    		</s:else>
-											    		</td>
-
+														<td class="label"></td>
+												         <td class="value">
+													       <s:checkbox name="e.greenslipSameDate" cssStyle="width:1em;" />
+													       <s:text name="policy.greenslipSameDate"/>
+												         </td>
+												        
 											          </tr>
 						        		        </table>
 						    		        </fieldset>
@@ -239,8 +238,6 @@
 							<ul class="inputIcons">
 								<li id="selectInsuranceType" class="inputIcon ui-icon ui-icon-circle-plus"
 									title='<s:text name="title.click2selectInsuranceType"/>'></li>
-								<!--<li id="selectTemplate" class="inputIcon ui-icon ui-icon-circle-check"
-									title='<s:text name="title.click2selectTemplate"/>'></li>-->
 								<li id="deleteInsuranceType" class="inputIcon ui-icon ui-icon-circle-close"
 									title='<s:text name="title.click2deleteInsuranceType"/>'></li>
 							</ul>
@@ -266,6 +263,13 @@
 								</td>
 							</tr>
 							</s:iterator>
+						</table>
+						<table class="table" cellspacing="0" cellpadding="0" style="width: 100%">
+								<tr>
+								<td  style="width: 250px;height: 20px;"></td>
+								<td style="width: 105px;"></td>
+								<td ></td>
+							</tr>
 						</table>
 						</div>
 					</div>

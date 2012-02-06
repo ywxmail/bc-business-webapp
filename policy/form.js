@@ -2,8 +2,6 @@ if(!window['bs'])window['bs']={};
 bc.policyForm = {
 	init : function(option,readonly) {
 		var $form=$(this);
-		/* 初始化多页签*/
-		$form.find('#formTabs').bctabs(bc.page.defaultBcTabsOption);
 		//只读状态就不需要执行其它初始化，直接返回
 		if(readonly) return;
 		//是否购买强制险
@@ -127,6 +125,7 @@ bc.policyForm = {
 						cell.setAttribute("class","middle");
 						cell.innerHTML=buildInput("description",selectInsuranceTypes[i].description);//插入备注
 					}
+					
 				}
 			});
 		});
