@@ -9,6 +9,12 @@
 		<div class="formFields ui-widget-content" >
 			<table class="formFields" cellspacing="2" cellpadding="0"  >
 				<tbody>
+					<tr class="widthMarker">
+		                <td style="width: 96px;">&nbsp;</td>
+		                <td style="width: 220px;">&nbsp;</td>
+		                <td style="width: 80px;">&nbsp;</td>
+		                <td >&nbsp;</td>
+	                </tr>
 					<tr>
 						<td class="label">*<s:text name="carByDriverHistory.driver"/>:</td>
 					<s:if test="%{carManId != null}">
@@ -40,7 +46,13 @@
 						    <fieldset style="width:680px">
 						          <legend>迁自</legend>
 						          <table class="formFields" cellspacing="2" cellpadding="0" >
-						              <tr><td class="label" style="height:19px">*<s:text name="carByDriverHistory.oldCar"/>:</td>
+						          	<tr class="widthMarker">
+						                <td style="width: 80px;">&nbsp;</td>
+						                <td style="width: 220px;">&nbsp;</td>
+						                <td style="width: 80px;">&nbsp;</td>
+						                <td >&nbsp;</td>
+	               					 </tr>
+						             <tr><td class="label" style="height:19px">*<s:text name="carByDriverHistory.oldCar"/>:</td>
 						                   <td class="value relative" style="position:relative;display: block;"><s:textfield name="e.fromCar.name" value="%{e.fromCar.plateType+e.fromCar.plateNo }"
 					                        data-validate="required" cssClass="ui-widget-content" readonly="true" />
 					                           <ul class="inputIcons">

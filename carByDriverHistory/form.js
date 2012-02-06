@@ -14,6 +14,7 @@ bc.business.carByDriverHistoryForm = {
 					$form.find(":input[name='e.toCar.id']").val(car.id);
 					$form.find(":input[name='e.toCar.name']").val(car.plate);
 					$form.find(":input[name='e.toMotorcadeId']").val(car.motorcadeId);
+					$form.find(":input[name='e.toUnit']").val(car.old_unit_name);
 					 var $select = $form.find(":input[name='e.toMotorcadeId']");
 					 var selectEl = $select[0];
 					if(bc.select.isExist(selectEl, car.motorcadeId)){
