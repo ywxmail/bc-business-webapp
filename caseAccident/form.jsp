@@ -6,13 +6,13 @@
 	data-initMethod='bc.caseAccidentForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="caseAccidentForm" theme="simple">
-			<table class="formTable2 ui-widget-content" cellspacing="2" cellpadding="0" style="width:800px;">
+			<table class="formFields" cellspacing="2" cellpadding="0" style="width:800px;">
 				<tbody>
-					<tr>
-						<td style="height: 1px;"></td>
-						<td style="width: 350px;">&nbsp;</td>
+					<tr class="widthMarker">
+						<td style="width: 60px;"></td>
+						<td style="width: 320px;">&nbsp;</td>
 						<td style="width: 60px;">&nbsp;</td>
-						<td style="width: 350px;">&nbsp;</td>
+						<td >&nbsp;</td>
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="runcase.caseNo3"/>:</td>

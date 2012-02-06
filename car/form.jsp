@@ -188,9 +188,9 @@
 						<table class="formFields" cellspacing="2" cellpadding="0" >
 							<tbody>
 								<tr class="widthMarker">
-									<td >&nbsp;</td>
+									<td>&nbsp;</td>
 									<td style="width: 200px;">&nbsp;</td>
-									<td style="width: 100px;">&nbsp;</td>
+									<td style="width: 95px;">&nbsp;</td>
 									<td style="width: 200px;">&nbsp;</td>
 								</tr>
 								<tr>
@@ -198,12 +198,12 @@
 									<td class="value" >
 										<s:select name="e.taximeterFactory" list="taximeterFactoryTypeList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
 									</td>
-									<td class="label" ><s:text name="car.taximeterType"/>:</td>
-									<td class="value" ><s:textfield name="e.taximeterType" cssClass="ui-widget-content"/></td>
-								</tr>
-								<tr>
 									<td class="label" ><s:text name="car.taximeterNo" />:</td>
 									<td class="value" ><s:textfield name="e.taximeterNo"  cssClass="ui-widget-content"/></td>
+								</tr>
+								<tr>
+									<td class="label" ><s:text name="car.taximeterType"/>:</td>
+									<td class="value" ><s:textfield name="e.taximeterType" cssClass="ui-widget-content"/></td>
 								</tr>
 							</tbody>
 						</table>
