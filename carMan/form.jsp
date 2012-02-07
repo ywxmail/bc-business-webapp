@@ -12,7 +12,7 @@
                 <ul class="tabs ui-helper-reset">
 					<s:if test="!e.isNew()">
 				    <li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">司机信息</a></li>
-					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/carByDriverHistorys/paging?carManId=%{e.id}" />' class="ui-state-default">迁移历史</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/carByDriverHistorys/list?carManId=%{e.id}" />' class="ui-state-default">迁移记录</a></li>
 					<!--<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/carByDrivers/list?carManId=%{e.id}"/>' class="ui-state-default">营运车辆</a></li>-->
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contracts/list?driverId=%{e.id}" />' class="ui-state-default">合同</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/driver4cert/list?carManId=%{e.id}" />' class="ui-state-default">证件</a></li>
@@ -55,7 +55,7 @@
 							<td class="value"><s:textfield name="e.name" cssStyle="width:8em;" data-validate="required" cssClass="ui-widget-content"/><s:radio name="e.sex" list="#{'1':'男','2':'女'}" 
 								value="e.sex" cssStyle="width:auto;"/></td>
 							<td class="label"><s:text name="carMan.houseType"/>:</td>
-							<td class="value"><s:select list="carManHouseTypeList" listKey="value" listValue="value" headerKey="" headerValue="" name="e.houseType" cssClass="ui-widget-content"></s:select></td>
+							<td class="value"><s:textfield name="e.houseType" readonly="true" cssClass="ui-widget-content"/></td>
 						</tr>
 						<tr>
 							<td class="label"><s:text name="carMan.origin"/>:</td>

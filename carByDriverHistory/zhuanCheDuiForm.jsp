@@ -9,13 +9,19 @@
 		<div class="formFields ui-widget-content" >
 			<table class="formFields" cellspacing="2" cellpadding="0"  >
 				<tbody>
+					<tr class="widthMarker">
+		                <td style="width: 96px;">&nbsp;</td>
+		                <td style="width: 220px;">&nbsp;</td>
+		                <td style="width: 80px;">&nbsp;</td>
+		                <td >&nbsp;</td>
+	                </tr>
 				   <tr>
 					    <td class="label" >*<s:text name="carByDriverHistory.car"/>:</td>
-						<td class="value relative" style="position:relative;display: block;"><s:textfield name="e.fromCar.name" value="%{e.fromCar.plateType+e.fromCar.plateNo }"
+						<td class="value relative" style="position:relative;display: block;"><s:textfield name="fromCarPlate" value="%{e.fromCar.plateType+e.fromCar.plateNo }"
 					            data-validate="required" cssClass="ui-widget-content" readonly="true"/>
 					                  <ul class="inputIcons">
                                             <li id="selectOldCar" class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></li>
-                                            <li class="clearSelect inputIcon ui-icon ui-icon-circle-close" data-cfg="e.fromCar.name" title='<s:text name="title.click2clear"/>'></li>
+                                            <li class="clearSelect inputIcon ui-icon ui-icon-circle-close" data-cfg="fromCarPlate" title='<s:text name="title.click2clear"/>'></li>
                                       </ul>
                         </td>
                         <td class="label"><s:text name="carByDriverHistory.moveType"/>:</td>
@@ -26,7 +32,7 @@
 						<td class="value relative">
 							<input type="text" name="e.moveDate" data-validate='{"type":"date","required":true}'
 							value='<s:date format="yyyy-MM-dd" name="e.moveDate" />'
-							class="bc-date ui-widget-content" data-cfg='{changeYear:true,addYear: "5|e.scrapDate"}' />
+							class="bc-date ui-widget-content" />
 							<ul class="inputIcons">
 								<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.moveDate'></li>
 							</ul>
@@ -35,15 +41,23 @@
 					
 					<tr>
 						<td class="label" colspan="4" style="text-align:left;">
-						    <fieldset style="width:680px">
+						    <fieldset style="width:680px" class="ui-corner-all ui-widget-content">
 						          <legend>迁自</legend>
 						          <table class="formFields" cellspacing="2" cellpadding="0" >
+										<tr class="widthMarker">
+							                <td style="width: 80px;">&nbsp;</td>
+							                <td style="width: 220px;">&nbsp;</td>
+							                <td style="width: 80px;">&nbsp;</td>
+							                <td >&nbsp;</td>
+						                </tr>
 						              <tr>
 						                  <td class="label"><s:text name="carByDriverHistory.oldMotorcade"/>:</td>
 						                  <td class="value" >
 							              <s:select name="e.fromMotorcadeId" list="motorcadeList" listKey="key" listValue="value" 
 		 					              value="e.fromMotorcadeId" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
 						                  </td>
+							              <td class="label"><s:text name="carByDriverHistory.unit"/>:</td>
+						                  <td class="value"><s:textfield name="e.fromUnit" cssClass="ui-widget-content"/></td>
 						            </tr>
 						          </table>
 						   </fieldset>
@@ -51,7 +65,7 @@
 					</tr>
 					<tr>
 					<td class="value" colspan="4" >
-						    <fieldset style="width:680px" >
+						    <fieldset style="width:680px" class="ui-corner-all ui-widget-content">
 						          <legend>迁往</legend>
 						          <table class="formFields" cellspacing="2" cellpadding="0" style="text-align:left;">
 						              <tr><td class="label" style="width:20px"><s:text name="carByDriverHistory.newMotorcade"/>:</td>
@@ -59,6 +73,10 @@
 							           <s:select name="e.toMotorcadeId" list="motorcadeList" listKey="key" listValue="value" 
 							           value="e.toMotorcadeId" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
 						               </td>
+										<td class="label" >*<s:text name="carByDriverHistory.unit"/>:</td>
+										<td class="value" >
+											<s:select name="e.toUnit" list="oldUnitList" listKey="value" listValue="value"  data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content"></s:select>
+										</td>
 						              </tr>
 						        </table>
 						    </fieldset>
@@ -83,7 +101,6 @@
 		<s:hidden name="e.moveType" />
 		<s:hidden name="e.author.id" />
 		<s:hidden name="e.modifier.id"/>
-		<s:hidden name="e.fromMotorcadedId"/>
 		<s:hidden name="e.fromCar.id"/>
 		<s:hidden name="e.toCar.id"/>
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>

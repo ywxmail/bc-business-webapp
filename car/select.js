@@ -19,6 +19,7 @@ bs.carSelectDialog = {
 			data.id = $tds.attr("data-id");
 			var $tr = $grid.find(">.data>.right tr.ui-state-focus");
 			data.plate = $tr.find("td:eq(0)").text();
+			data.oldUnitName = $tr.find("td:last(0)").text();
 			var p = data.plate.split(".");
 			data.plateType = p[0];
 			data.plateNo = p[1];
@@ -29,13 +30,15 @@ bs.carSelectDialog = {
 			$tds.each(function(i){
 				var $tr = $($trs.get(i));
 				var plate = $tr.find("td:eq(0)").text();
+				var old_unit_name = $tr.find("td:last(0)").text();
 				var p = plate.split(".");
 				logger.info("--" + $.toJSON($tr.data("hidden")));
 				data.push($.extend({
 					id: $(this).attr("data-id"),
 					plate:plate,
 					plateType:p[0],
-					plateNo:p[1]
+					plateNo:p[1],
+					oldUnitName:old_unit_name
 				},$tr.data("hidden")));
 			});
 		}
