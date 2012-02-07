@@ -14,8 +14,17 @@
 						<td class="value "><s:textfield name="e.name" cssClass="ui-widget-content" data-validate="required"/></td>
 					</tr>
 					<tr>
+						<td class="label"><s:text name="insuranceType.type"/>:</td>
+						<td><s:radio name="e.type" list="#{'0':'险种','1':'模板'}" cssStyle="width:auto;"/></td>
+					</tr>
+					<tr id="coverageId">
 						<td class="label"><s:text name="insuranceType.coverage"/>:</td>
 						<td class="value"><s:textfield name="e.coverage"cssClass="ui-widget-content" /></td>
+					</tr>
+					<tr id="pidId" >
+					    <td class="label"><s:text name="insuranceType.pname"/>:</td>
+						<td class="value"><s:select name="e.pid" list="templateList" listKey="key" listValue="value" 
+											headerKey="" headerValue="" cssClass="ui-widget-content" /></td>
 					</tr>
 					<tr>
 						<td class="label"><s:text name="insuranceType.statuses"/>:</td>
