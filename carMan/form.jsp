@@ -55,7 +55,7 @@
 							<td class="value"><s:textfield name="e.name" cssStyle="width:8em;" data-validate="required" cssClass="ui-widget-content"/><s:radio name="e.sex" list="#{'1':'男','2':'女'}" 
 								value="e.sex" cssStyle="width:auto;"/></td>
 							<td class="label"><s:text name="carMan.houseType"/>:</td>
-							<td class="value"><s:select list="carManHouseTypeList" listKey="value" listValue="value" headerKey="" headerValue="" name="e.houseType" cssClass="ui-widget-content"></s:select></td>
+							<td class="value"><s:textfield name="e.houseType" readonly="true" cssClass="ui-widget-content"/></td>
 						</tr>
 						<tr>
 							<td class="label"><s:text name="carMan.origin"/>:</td>
