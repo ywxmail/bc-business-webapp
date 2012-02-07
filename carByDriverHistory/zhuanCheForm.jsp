@@ -35,7 +35,7 @@
 						<td class="value relative">
 							<input type="text" name="e.moveDate" data-validate='{"type":"date","required":true}'
 							value='<s:date format="yyyy-MM-dd" name="e.moveDate" />'
-							class="bc-date ui-widget-content" data-cfg='{changeYear:true,addYear: "5|e.scrapDate"}' />
+							class="bc-date ui-widget-content" />
 							<ul class="inputIcons">
 								<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.moveDate'></li>
 							</ul>
@@ -43,58 +43,68 @@
 					</tr>
 					<tr>
 						<td class="label" colspan="2" style="text-align:left;">
-						    <fieldset style="width:325px">
+						    <fieldset style="width:325px" class="ui-corner-all ui-widget-content">
 						          <legend>迁自</legend>
 						          <table class="formFields" cellspacing="2" cellpadding="0" style="height:100px">
 					          		<tr class="widthMarker">
 						                <td style="width: 92px;">&nbsp;</td>
 						                <td >&nbsp;</td>
 	                				</tr>
-						            <tr><td class="label" >*<s:text name="carByDriverHistory.oldCar"/>:</td>
-						                   <td class="value relative" style="position:relative;display: block;"><s:textfield name="e.fromCar.name" value="%{e.fromCar.plateType+e.fromCar.plateNo }"
+						            <tr><td class="label" >*<s:text name="carByDriverHistory.car"/>:</td>
+						                   <td class="value relative" style="position:relative;display: block;"><s:textfield name="fromCarPlate" value="%{e.fromCar.plateType+e.fromCar.plateNo }"
 					                        data-validate="required" cssClass="ui-widget-content" readonly="true" />
 					                           <ul class="inputIcons">
                                                    <li id="selectOldCar" class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></li>
-                                                   <li class="clearSelect inputIcon ui-icon ui-icon-circle-close" data-cfg="e.fromCar.name" title='<s:text name="title.click2clear"/>'></li>
+                                                   <li class="clearSelect inputIcon ui-icon ui-icon-circle-close" data-cfg="fromCarPlate" title='<s:text name="title.click2clear"/>'></li>
                                                </ul>
                                             </td>
 					                  </tr>
-						              <tr><td class="label"><s:text name="carByDriverHistory.oldMotorcade"/>:</td>
+   							          <tr>
+							             <td class="label"><s:text name="carByDriverHistory.unit"/>:</td>
+						                 <td class="value"><s:textfield name="e.fromUnit" cssClass="ui-widget-content"/></td>
+							          </tr>
+						              <tr><td class="label"><s:text name="carByDriverHistory.motorcade"/>:</td>
 						                 <td class="value"> <s:select name="e.fromMotorcadeId" list="motorcadeList" listKey="key" listValue="value" value="e.fromMotorcadeId" 
 						                 headerKey="" headerValue="" cssClass="ui-widget-content"></s:select></td>
 						              </tr>
-						              <tr><td class="label"><s:text name="carByDriverHistory.oldDriverState"/>:</td>
+						              <tr><td class="label"><s:text name="carByDriverHistory.classes"/>:</td>
 						                 <td class="value" ><s:select name="e.fromClasses" list="#{0:'',1:'正班',2:'副班'}" 
-							              listKey="key" listValue="value" data-validate="required" cssClass="ui-widget-content"/></td>
+							              listKey="key" listValue="value" data-validate="required" cssClass="ui-widget-content"/>
+							             </td>
 							          </tr>
 						          </table>
 						   </fieldset>
 						</td>
 						<td class="value" colspan="2" >
-						    <fieldset >
+						    <fieldset class="ui-corner-all ui-widget-content">
 						          <legend>迁往</legend>
 						          <table class="formFields" cellspacing="2" cellpadding="0" style="height:100px" >
 						          	<tr class="widthMarker">
 						                <td style="width: 80px;">&nbsp;</td>
    						                <td >&nbsp;</td>
 	               					</tr>
-						               <tr><td class="label">*<s:text name="carByDriverHistory.newCar"/>:</td>
-						                   <td class="value relative" style="position:relative;display: block;"><s:textfield name="e.toCar.name" value="%{e.toCar.plateType+e.toCar.plateNo }"
+						               <tr><td class="label">*<s:text name="carByDriverHistory.car"/>:</td>
+						                   <td class="value relative" style="position:relative;display: block;"><s:textfield name="toCarPlate" value="%{e.toCar.plateType+e.toCar.plateNo }"
 					                        data-validate="required" cssClass="ui-widget-content" readonly="true" />
 					                           <ul class="inputIcons">
                                                    <li id="selectNewCar" class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></li>
-                                                   <li class="clearSelect inputIcon ui-icon ui-icon-circle-close" data-cfg="e.toCar.name" title='<s:text name="title.click2clear"/>'></li>
+                                                   <li class="clearSelect inputIcon ui-icon ui-icon-circle-close" data-cfg="toCarPlate" title='<s:text name="title.click2clear"/>'></li>
                                                </ul>
                                             </td>
 					                  </tr>
-						              <tr><td class="label"><s:text name="carByDriverHistory.newMotorcade"/>:</td>
+							           <tr>
+							             <td class="label"><s:text name="carByDriverHistory.unit"/>:</td>
+						                 <td class="value"><s:textfield name="e.toUnit" cssClass="ui-widget-content"/></td>
+							           </tr>
+						              <tr><td class="label"><s:text name="carByDriverHistory.motorcade"/>:</td>
 						                 <td class="value"> <s:select name="e.toMotorcadeId" list="motorcadeList" listKey="key" listValue="value" value="e.toMotorcadeId" 
 						                 headerKey="" headerValue="" cssClass="ui-widget-content"></s:select></td>
 						              </tr>
-						              <tr><td class="label"><s:text name="carByDriverHistory.newDriverState"/>:</td>
+						              <tr><td class="label"><s:text name="carByDriverHistory.classes"/>:</td>
 						                 <td class="value" ><s:select name="e.toClasses" list="#{0:'',1:'正班',2:'副班'}" 
-							              listKey="key" listValue="value" data-validate="required" cssClass="ui-widget-content"/></td>
-							         </tr>
+							              listKey="key" listValue="value" data-validate="required" cssClass="ui-widget-content"/>
+							             </td>
+							           </tr>
 						        </table>
 						    </fieldset>
 						</td>

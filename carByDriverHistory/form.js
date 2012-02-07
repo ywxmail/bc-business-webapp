@@ -12,9 +12,9 @@ bc.business.carByDriverHistoryForm = {
 				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
 				onOk : function(car) {
 					$form.find(":input[name='e.toCar.id']").val(car.id);
-					$form.find(":input[name='e.toCar.name']").val(car.plate);
+					$form.find(":input[name='toCarPlate']").val(car.plate);
 					$form.find(":input[name='e.toMotorcadeId']").val(car.motorcadeId);
-					$form.find(":input[name='e.toUnit']").val(car.old_unit_name);
+					$form.find(":input[name='e.toUnit']").val(car.oldUnitName);
 					 var $select = $form.find(":input[name='e.toMotorcadeId']");
 					 var selectEl = $select[0];
 					if(bc.select.isExist(selectEl, car.motorcadeId)){
@@ -33,8 +33,9 @@ bc.business.carByDriverHistoryForm = {
 				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
 				onOk : function(car) {
 					$form.find(":input[name='e.fromCar.id']").val(car.id);
-					$form.find(":input[name='e.fromCar.name']").val(car.plate);
+					$form.find(":input[name='fromCarPlate']").val(car.plate);
 					$form.find(":input[name='e.fromMotorcadeId']").val(car.motorcadeId);
+					$form.find(":input[name='e.fromUnit']").val(car.oldUnitName);
 					 var $select = $form.find(":input[name='e.fromMotorcadeId']");
 					 var selectEl = $select[0];
 					if(bc.select.isExist(selectEl, car.motorcadeId)){
@@ -108,9 +109,10 @@ bc.business.carByDriverHistoryForm = {
 						url: url,
 						success: function(json){
 							$form.find(":input[name='e.fromCar.id']").val(json.fromCarId);
-							$form.find(":input[name='e.fromCar.name']").val(json.plate);
+							$form.find(":input[name='fromCarPlate']").val(json.plate);
 							$form.find(":input[name='e.fromMotorcadeId']").val(json.fromMotorcadeId);
-							$form.find(":input[name='e.fromClasses']").val(json.fromclasses);	
+							$form.find(":input[name='e.fromClasses']").val(json.fromclasses);
+							$form.find(":input[name='e.fromUnit']").val(json.fromUnit);
 						}
 					});
 				}

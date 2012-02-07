@@ -9,17 +9,19 @@
 	}' >
 	<div style="margin:4px;">
 	<s:if test="%{carManId != null}">
-		<s:select list="#{5:getText('carByDriverHistory.moveType.xinruzhi'),0:getText('carByDriverHistory.moveType.cheliangdaocheliang')
-		     ,4:getText('carByDriverHistory.moveType.jiaohuiweizhuxiao'),2:getText('carByDriverHistory.moveType.zhuxiaoweiyouquxiang')
-	         ,1:getText('carByDriverHistory.moveType.gongsidaogongsiyizhuxiao'),3:getText('carByDriverHistory.moveType.youwaigongsiqianhui')
+		<s:select list="#{5:getText('carByDriverHistory.moveType.xinruzhi'),4:getText('carByDriverHistory.moveType.jiaohuiweizhuxiao')
+		     ,0:getText('carByDriverHistory.moveType.cheliangdaocheliang'),8:getText('carByDriverHistory.moveType.jiaohuizhuanche')
+		     ,2:getText('carByDriverHistory.moveType.zhuxiaoweiyouquxiang'),1:getText('carByDriverHistory.moveType.gongsidaogongsiyizhuxiao')
+		     ,3:getText('carByDriverHistory.moveType.youwaigongsiqianhui')
 	         }" theme="simple"
 		size="10" cssStyle="width:100%;height:100%;" value="selected" cssClass="ui-widget-content"
 		multiple="%{multiple}"></s:select>
 	</s:if><s:else>
-	<s:select list="#{5:getText('carByDriverHistory.moveType.xinruzhi'),0:getText('carByDriverHistory.moveType.cheliangdaocheliang')
-		     ,4:getText('carByDriverHistory.moveType.jiaohuiweizhuxiao'),2:getText('carByDriverHistory.moveType.zhuxiaoweiyouquxiang')
-	         ,1:getText('carByDriverHistory.moveType.gongsidaogongsiyizhuxiao'),3:getText('carByDriverHistory.moveType.youwaigongsiqianhui')
-	         ,6:getText('carByDriverHistory.moveType.cheduidaochedui')}" theme="simple"
+	<s:select list="#{5:getText('carByDriverHistory.moveType.xinruzhi'),4:getText('carByDriverHistory.moveType.jiaohuiweizhuxiao')
+		     ,0:getText('carByDriverHistory.moveType.cheliangdaocheliang'),8:getText('carByDriverHistory.moveType.jiaohuizhuanche')
+		     ,2:getText('carByDriverHistory.moveType.zhuxiaoweiyouquxiang'),1:getText('carByDriverHistory.moveType.gongsidaogongsiyizhuxiao')
+		     ,3:getText('carByDriverHistory.moveType.youwaigongsiqianhui'),6:getText('carByDriverHistory.moveType.cheduidaochedui')
+		     }" theme="simple"
 		size="10" cssStyle="width:100%;height:100%;" value="selected" cssClass="ui-widget-content"
 		multiple="%{multiple}"></s:select>
 	</s:else>
