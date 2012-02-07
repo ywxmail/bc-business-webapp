@@ -37,7 +37,28 @@
 			</div>
 		</li>
 		<li class="condition">
-			<div class="label">保险期限(开始日期)</div>
+			<div class="label">车辆登记日期</div>
+			<div class="value">
+				<div class="bc-dateContainer">
+					<input type="text" class="bc-date ui-widget-content" data-validate="date" style="width:9em;"
+						data-condition='{"type":"startDate","ql":"c.register_date>=?"}'>
+					<ul class="inputIcons">
+						<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
+						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
+					</ul>
+				</div>～<div class="bc-dateContainer">
+					<input type="text" class="bc-date ui-widget-content" data-validate="date" style="width:9em;"
+						data-condition='{"type":"endDate","ql":"c.register_date<=?"}'>
+					<ul class="inputIcons">
+						<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
+						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</li>
+		<li class="condition">
+			<div class="label">保险期限(开始日期，含商业险和强制险)</div>
 			<div class="value">
 				<div class="bc-dateContainer">
 					<input type="text" class="bc-date ui-widget-content" data-validate="date" style="width:9em;"
@@ -58,7 +79,7 @@
 			<div class="clear"></div>
 		</li>
 		<li class="condition">
-			<div class="label">保险期限(结束日期)</div>
+			<div class="label">保险期限(结束日期，含商业险和强制险)</div>
 			<div class="value">
 				<div class="bc-dateContainer">
 					<input type="text" class="bc-date ui-widget-content" data-validate="date" style="width:9em;"
