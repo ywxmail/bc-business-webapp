@@ -85,13 +85,8 @@
 									<s:select name="e.businessType" list="businessTypeList" listKey="value" listValue="value"  data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content"></s:select>
 								</td>
 								<td class="label">*<s:text name="contract4Charger.paymentDate"/>:</td>
-								<td class="value" style="position:relative;display: block;">
-									<input type="text" name="e.paymentDate" data-validate='{"type":"date"}'
-									value='<s:date format="yyyy-MM-dd" name="e.paymentDate" />'
-									class="bc-date ui-widget-content"/>
-									<ul class="inputIcons">
-										<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.paymentDate' ></li>
-									</ul>
+								<td class="value">
+									<s:select name="e.paymentDate" list="paymentDates" listKey="key" listValue="value" />
 								</td>
 								<!-- 经办人
 									<td class="label">*<s:text name="contract.transactor"/>:</td>
