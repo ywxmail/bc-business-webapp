@@ -61,16 +61,15 @@
 								<td class="value" ><s:textfield name="e.code" data-validate="required" cssClass="ui-widget-content"/></td>
 							</tr>
 							<tr>
-								
-									<td class="label" >*<s:text name="car.unit"/>:</td>
+								<td class="label" >*<s:text name="car.company2"/>:</td>
 								<s:if test="e.isNew()">
 									<td class="value" >
-										<s:select name="e.oldUnitName" list="oldUnitList" listKey="value" listValue="value"  data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content"></s:select>
+										<s:select name="e.company" list="companyList" listKey="value" listValue="value" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content"></s:select>
 									</td>
 								</s:if>
 								<s:else>
 									<td class="value" >
-										<s:select name="e.oldUnitName" list="oldUnitList" listKey="value" listValue="value"  data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" disabled="true"></s:select>
+										<s:select name="e.company" list="companyList" listKey="value" listValue="value" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" disabled="true"></s:select>
 									</td>
 								</s:else>
 								<td class="label" >*<s:text name="car.engineNo"/>:</td>
@@ -80,17 +79,17 @@
 								<td class="label" >*<s:text name="car.motorcade"/>:</td>
 								<s:if test="e.isNew()">
 									<td class="value" >
-										<s:select name="e.motorcade.id" list="motorcadeList" listKey="key" listValue="value" value="e.motorcade.id" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}"  cssClass="ui-widget-content"></s:select>
+										<s:select name="e.motorcade.id" list="motorcadeList" listKey="key" listValue="value" value="e.motorcade.id" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content"></s:select>
 									</td>
 								</s:if>
 								<s:else>
 									<td class="value" >
-										<s:select name="e.motorcade.id" list="motorcadeList" listKey="key" listValue="value" value="e.motorcade.id" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}"  cssClass="ui-widget-content" disabled="true"></s:select>
+										<s:select name="e.motorcade.id" list="motorcadeList" listKey="key" listValue="value" value="e.motorcade.id" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" disabled="true"></s:select>
 									</td>
 								</s:else>
 								<td class="label" >*<s:text name="car.businessType"/>:</td>
 								<td class="value" >
-									<s:select name="e.businessType" list="businessTypeList" listKey="value" listValue="value"  data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content"></s:select>
+									<s:select name="e.businessType" list="businessTypeList" listKey="value" listValue="value" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content"></s:select>
 								</td>
 							</tr>
 							<tr>
