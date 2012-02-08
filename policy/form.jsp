@@ -20,17 +20,18 @@
 						                          <td class="value "><s:textfield name="plate" value="%{e.car.plateType+'.'+e.car.plateNo }" readonly="true" cssClass="ui-state-disabled"/></td>
 					                            </s:if><s:else>
 					                               <td class="value relative">
-												      <div class="input ui-widget-content" data-validate="required" ><span class="link showCar" data-cfg='<s:property value="e.car.id" />' id="carInfo" ><s:property value="%{e.car.plateType+'.'+e.car.plateNo }" /></span>
+												      <div class="input ui-widget-content" data-validate="required" ><span class="link showCar" 
+												      	   data-cfg='<s:property value="e.car.id" />' id="carInfo" ><s:property value="%{e.car.plateType+'.'+e.car.plateNo }" /></span>
 												      </div>
 												      <ul class="inputIcons">
-												        <li class="selectCar inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>' data-cfg='e.car.id=id,carInfo=plate|text,carInfo=id|attr'></li>
+												        <li class="selectCar inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>' 
+												        	data-cfg='{"mapping":"e.car.id=id,carInfo=plate|text,carInfo=id|attr","callback":"bc.policyForm.antoWriteAssured"}'></li>
 												      </ul>
 					                                </td>
 												</s:else>
 							 	<td class="label">*<s:text name="policy.assured"/>:</td>
 								<td class="value">
-											<s:select list="#{'0':'广州市宝城汽车出租有限公司','1':'广州市广发出租汽车有限公司'}" listKey="value" listValue="value" 
-											 name="e.assured" cssClass="ui-widget-content" data-validate="required" style="width: 260px;" />
+											<s:textfield name="e.assured" cssClass="ui-widget-content" data-validate="required" />
 								</td>
 							 </tr>
 							 <tr>
@@ -273,9 +274,9 @@
 						</table>
 						</div>
 					</div>
-				
+				 
 		<s:hidden name="e.id"/>
-		<s:hidden name="e.car.id" data-validate="required"/>
+		<s:hidden name="e.car.id"/>
 		<s:hidden name="e.author.id"/>
 		<s:hidden name="e.uid"/>
 		<s:hidden name="e.status"/>
