@@ -437,6 +437,14 @@ $document.delegate(".selectCar",{
 						}
 					}
 				}
+				
+				// 自定义函数处理特殊情况
+				if(cfg.callback){
+					if(typeof cfg.callback == "string")
+						cfg.callback = bc.getNested(cfg.callback);
+					if(typeof cfg.callback == "function")
+						cfg.callback.call($this,car);
+				}
 			}
 		});
 	}
