@@ -192,7 +192,10 @@ bc.contract4LabourForm = {
 				name: "维护" + $page.find(":input[name='e.ext_str2']").val() + "的劳动合同",
 				mid: "contract4Labour" + $page.find(":input[name='e.id']").val(),
 				url: bc.root + "/bc-business/contract4Labour/edit",
-				data: {id: $page.find(":input[name='e.id']").val()}
+				data: {id: $page.find(":input[name='e.id']").val()},
+				afterClose: function(status){
+					if(status) bc.grid.reloadData($page);
+				}
 			});
 		});
 		

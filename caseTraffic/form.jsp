@@ -61,7 +61,7 @@
 						 		</ul>
 							</div>
 							&nbsp;&nbsp;
-							<s:text name="runcase.driverCert" /><s:textfield name="e.driverCert" cssStyle="width:6em;"  data-validate="required" cssClass="ui-widget-content"/>
+							<s:text name="runcase.driverCert" /><s:textfield name="e.driverCert" cssStyle="width:6em;" cssClass="ui-widget-content"/>
 						</td>
 						<td class="label" ><s:text name="runcase.duty"/>:</td>
 						<td class="value" >

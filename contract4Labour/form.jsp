@@ -146,13 +146,13 @@
 												</td>
 											</tr>
 											<tr>
+												<td class="label" >*<s:text name="contract4Labour.houseType"/>:</td>
+												<td class="value" >
+													<s:select name="e.houseType" list="houseTypeList" listKey="value" listValue="value" headerKey="" headerValue="" headerValue="%{getText('label.please.choose')}" data-validate="required" cssClass="ui-widget-content"></s:select>
+												</td>
 												<td class="label"><s:text name="contract4Labour.origin"/>:</td>
 												<td class="value">
 												 	<s:textfield name="e.origin" cssClass="ui-widget-content" />
-												</td>
-												<td class="label" ><s:text name="contract4Labour.houseType"/>:</td>
-												<td class="value" >
-													<s:select name="e.houseType" list="houseTypeList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
 												</td>
 											</tr>
 											<tr>

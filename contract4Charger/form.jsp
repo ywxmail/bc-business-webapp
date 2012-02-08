@@ -84,12 +84,18 @@
 								<td class="value" >
 									<s:select name="e.businessType" list="businessTypeList" listKey="value" listValue="value"  data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content"></s:select>
 								</td>
-								<td class="label">*<s:text name="contract.transactor"/>:</td>
-								<td class="value" style="position:relative;display: block;">
-									<s:textfield name="e.transactorName" data-validate="required" readonly="true"	
-									title='%{getText("contract.select.transactor")}' cssClass="ui-widget-content " />
-									<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectTransactorName" ></span>
+								<td class="label">*<s:text name="contract4Charger.paymentDate"/>:</td>
+								<td class="value">
+									<s:select name="e.paymentDate" list="paymentDates" listKey="key" listValue="value" />
 								</td>
+								<!-- 经办人
+									<td class="label">*<s:text name="contract.transactor"/>:</td>
+									<td class="value" style="position:relative;display: block;">
+										<s:textfield name="e.transactorName" data-validate="required" readonly="true"	
+										title='%{getText("contract.select.transactor")}' cssClass="ui-widget-content " />
+										<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectTransactorName" ></span>
+									</td>
+								 -->
 							</tr>
 							<tr>
 								<td class="label">*<s:text name="contract.car"/>:</td>
@@ -199,6 +205,7 @@
 		<s:hidden name="e.opType"/>
 		<s:hidden name="e.patchNo"/>
 		<s:hidden name="e.transactorId" />
+		<s:hidden name="e.transactorName" />
 		<s:hidden name="isExistContract"/>
 		<!-- 
 		<s:hidden name="e.transactor.id" />

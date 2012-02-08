@@ -164,7 +164,10 @@ bc.contract4ChargerForm = {
 				name: "维护" + $page.find(":input[name='e.ext_str1']").val() + "的经济合同",
 				mid: "contract4Charger" + $page.find(":input[name='e.id']").val(),
 				url: bc.root + "/bc-business/contract4Charger/edit",
-				data: {id: $page.find(":input[name='e.id']").val()}
+				data: {id: $page.find(":input[name='e.id']").val()},
+				afterClose: function(status){
+					if(status) bc.grid.reloadData($page);
+				}
 			});
 		});
 		
