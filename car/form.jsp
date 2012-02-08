@@ -407,12 +407,15 @@
 			</div>
 		</div>
 		<s:hidden name="e.uid" />
-
 		<s:hidden name="e.id" />
 		<s:hidden name="e.author.id" />
 		<s:hidden name="e.driver"/>
 		<s:hidden name="e.charger"/>
 		<s:hidden name="e.originalValue"/>
+		<s:if test="!e.isNew()">
+		<s:hidden name="e.oldUnitName"/>
+		<s:hidden name="e.motorcade.id"/>
+		</s:if>
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 	</s:form>
 </div>
