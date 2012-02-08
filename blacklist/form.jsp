@@ -23,25 +23,25 @@
 					    <span id="selectCar" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></span>
 					    </td>
 					    </s:else>
-					    <td class="label"><s:text name="blacklist.motorcade.name"/>:</td>
-						<td class="value"><s:textfield name="e.car.motorcade.name" readonly="true" data-validate="required" cssClass="ui-widget-content ui-state-disabled" /></td>
+						<td class="label"><s:text name="blacklist.company"/>:</td>
+						<td class="value"><s:textfield name="e.company" readonly="true"  cssClass="ui-widget-content"/></td>
 					</tr>
 					<tr>
 						<td class="label"><s:text name="blacklist.driver"/>:</td>
 					<s:if test="%{carManId != null}">
-						<td class="value"><s:textfield name="e.driver.name" readonly="true"  data-validate="required" cssClass="ui-widget-content ui-state-disabled" /></td>
+						<td class="value"><s:textfield name="e.driver.name" readonly="true"  data-validate="required" cssClass="ui-widget-content" /></td>
 					</s:if><s:else>
-					    <td class="value"><s:textfield name="e.driver.name"  id="driverName" readonly="true" data-validate="required" cssClass="ui-widget-content ui-state-disabled" /></td>
+					    <td class="value"><s:textfield name="e.driver.name" id="driverName" readonly="true" data-validate="required" cssClass="ui-widget-content" /></td>
 					</s:else>
-						<td class="label"><s:text name="blacklist.code"/>:</td>
-						<td class="value"><s:textfield name="e.code" cssClass="ui-widget-content"/></td>
+					    <td class="label"><s:text name="blacklist.motorcade.name"/>:</td>
+						<td class="value"><s:textfield name="e.car.motorcade.name" readonly="true" data-validate="required" cssClass="ui-widget-content" /></td>
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="blacklist.type"/>:</td>
 						<td class="value" ><s:select list="blackTypeList" listKey="value" listValue="value" headerKey="" headerValue="%{getText('label.please.choose')}" name="e.type" style="width:267px" 
 						data-validate="required" cssClass="ui-widget-content"></s:select></td>
-						<td class="label"><s:text name="blacklist.unit"/>:</td>
-						<td class="value"><s:textfield name="e.oldUnitName" readonly="true"  cssClass="ui-widget-content"/></td>
+						<td class="label"><s:text name="blacklist.code"/>:</td>
+						<td class="value"><s:textfield name="e.code" cssClass="ui-widget-content"/></td>
 					</tr>
 					<tr>
 						<td class="label" ><s:text name="blacklist.level"/>:</td>
@@ -49,7 +49,7 @@
 					</tr>
 					<tr>
 						<td class="label" colspan="2" style="text-align:left;">
-						    <fieldset style="width:320px">
+						    <fieldset style="width:320px" class="ui-corner-all ui-widget-content">
 						          <legend>锁定信息</legend>
 						          <table class="formFields" cellspacing="2" cellpadding="0" style="height:200px">
 						              <tr>
@@ -58,13 +58,13 @@
 					                  </tr>
 					                   <tr>
 						                   <td class="label">*<s:text name="blacklist.lockReason"/>:</td>
-						                   <td class="value"  rowspan="10"><s:textarea name="e.lockReason" rows="10" data-validate="required" cssClass="ui-widget-content"/></td>
+						                   <td class="value"  rowspan="10"><s:textarea name="e.lockReason" rows="10" data-validate="required" cssClass="ui-widget-content noresize"/></td>
 					                   </tr>
 						          </table>
 						   </fieldset>
 						</td>
 						<td class="value" colspan="2" >
-						    <fieldset style="width:320px">
+						    <fieldset style="width:320px" class="ui-corner-all ui-widget-content">
 						          <legend>解锁信息</legend>
 						          <table class="formFields" cellspacing="2" cellpadding="0" style="height:200px" >
  						          <s:if test="e.isNew()" >
@@ -82,7 +82,7 @@
 					                   </tr>
 					                   <tr>
 						                    <td class="label">*<s:text name="blacklist.unlockReason"/>:</td>
-						                    <td class="value" rowspan="10" ><s:textarea name="e.unlockReason" rows="10" cssClass="ui-widget-content" data-validate="required"/></td>
+						                    <td class="value" rowspan="10" ><s:textarea name="e.unlockReason" rows="10" cssClass="ui-widget-content noresize" data-validate="required"/></td>
 					                      </tr>
 					                     </s:else>
 						        </table>

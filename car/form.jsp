@@ -61,65 +61,35 @@
 								<td class="value" ><s:textfield name="e.code" data-validate="required" cssClass="ui-widget-content"/></td>
 							</tr>
 							<tr>
-								
-									<td class="label" >*<s:text name="car.unit"/>:</td>
-								<s:if test="e.isNew()">
-									<td class="value" >
-										<s:select name="e.oldUnitName" list="oldUnitList" listKey="value" listValue="value"  data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content"></s:select>
-									</td>
-								</s:if>
-								<s:else>
-									<td class="value" >
-										<s:select name="e.oldUnitName" list="oldUnitList" listKey="value" listValue="value"  data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" disabled="true"></s:select>
-									</td>
-								</s:else>
-								<td class="label" >*<s:text name="car.engineNo"/>:</td>
-								<td class="value" ><s:textfield name="e.engineNo" cssClass="ui-widget-content" data-validate="required"/></td>
+								<td class="label" >*<s:text name="car.company2"/>:</td>
+								<td class="value" >
+									<s:select name="e.company" list="companyList" listKey="value" listValue="value" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" disabled="%{!e.isNew()}"></s:select>
+								</td>
+								<td class="label" >*<s:text name="car.businessType"/>:</td>
+								<td class="value" >
+									<s:select name="e.businessType" list="businessTypeList" listKey="value" listValue="value" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content"></s:select>
+								</td>
 							</tr>
 							<tr>
 								<td class="label" >*<s:text name="car.motorcade"/>:</td>
-								<s:if test="e.isNew()">
-									<td class="value" >
-										<s:select name="e.motorcade.id" list="motorcadeList" listKey="key" listValue="value" value="e.motorcade.id" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}"  cssClass="ui-widget-content"></s:select>
-									</td>
-								</s:if>
-								<s:else>
-									<td class="value" >
-										<s:select name="e.motorcade.id" list="motorcadeList" listKey="key" listValue="value" value="e.motorcade.id" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}"  cssClass="ui-widget-content" disabled="true"></s:select>
-									</td>
-								</s:else>
-								<td class="label" >*<s:text name="car.businessType"/>:</td>
 								<td class="value" >
-									<s:select name="e.businessType" list="businessTypeList" listKey="value" listValue="value"  data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content"></s:select>
+									<s:select name="e.motorcade.id" list="motorcadeList" listKey="key" listValue="value" value="e.motorcade.id" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" disabled="%{!e.isNew()}"></s:select>
 								</td>
+								<td class="label" >*<s:text name="car.vin"/>:</td>
+								<td class="value" ><s:textfield name="e.vin" data-validate="required" cssClass="ui-widget-content"/></td>
 							</tr>
 							<tr>
 								<td class="label" >*<s:text name="car.registerDate"/>:</td>
 								<td class="value relative">
 									<input type="text" name="e.registerDate" data-validate='{"type":"date","required":true}'
 									value='<s:date format="yyyy-MM-dd" name="e.registerDate" />'
-									class="bc-date ui-widget-content" data-cfg='{changeYear:true,addYear: "5|e.scrapDate"}' />
+									class="bc-date ui-widget-content" data-cfg='{changeYear:true}' />
 									<ul class="inputIcons">
 										<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.registerDate'></li>
 									</ul>
 								</td>
-								<td class="label" >*<s:text name="car.vin"/>:</td>
-								<td class="value" ><s:textfield name="e.vin" data-validate="required" cssClass="ui-widget-content"/></td>
-							</tr>
-							<tr>
-								<td class="label" >*<s:text name="car.operateDate"/>:</td>
-								<td class="value relative" >
-									<input type="text" name="e.operateDate" data-validate='{"type":"date","required":true}'
-									value='<s:date format="yyyy-MM-dd" name="e.operateDate" />'
-									class="bc-date ui-widget-content"  data-cfg='{changeYear:true}'/>
-									<ul class="inputIcons">
-										<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.operateDate'></li>
-									</ul>
-								</td>
-								<td class="label" ><s:text name="car.level"/>:</td>
-								<td class="value" >
-									<s:select name="e.level" list="levelTypeList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
-								</td>
+								<td class="label" >*<s:text name="car.engineNo"/>:</td>
+								<td class="value" ><s:textfield name="e.engineNo" cssClass="ui-widget-content" data-validate="required"/></td>
 							</tr>
 							<tr>
 								<td class="label" >*<s:text name="car.factoryDate"/>:</td>
@@ -129,6 +99,21 @@
 									class="bc-date ui-widget-content"  data-cfg='{changeYear:true}'/>
 									<ul class="inputIcons">
 										<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.factoryDate'></li>
+									</ul>
+								</td>
+								<td class="label" ><s:text name="car.level"/>:</td>
+								<td class="value" >
+									<s:select name="e.level" list="levelTypeList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
+								</td>
+							</tr>
+							<tr>
+								<td class="label" >*<s:text name="car.operateDate"/>:</td>
+								<td class="value relative" >
+									<input type="text" name="e.operateDate" data-validate='{"type":"date","required":true}'
+									value='<s:date format="yyyy-MM-dd" name="e.operateDate" />'
+									class="bc-date ui-widget-content"  data-cfg='{changeYear:true<s:if test="e.isNew()">,addYear: "5 0 -5|e.scrapDate"</s:if>}'/>
+									<ul class="inputIcons">
+										<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.operateDate'></li>
 									</ul>
 								</td>
 								<td class="label" ><s:text name="car.originNo"/>:</td>
@@ -177,22 +162,22 @@
 									<td style="width: 200px;">&nbsp;</td>
 								</tr>
 								<tr>
-									<td class="label" ><s:text name="car.certNo1" />:</td>
-									<td class="value" ><s:textfield name="e.certNo1" cssClass="ui-widget-content"/></td>
+									<td class="label" ><s:text name="car.registerNo"/>:</td>
+									<td class="value" ><s:textfield name="e.registerNo"  cssClass="ui-widget-content"/></td>
 									<td class="label" ><s:text name="car.certNo2"/>:</td>
 									<td class="value" ><s:textfield name="e.certNo2" cssClass="ui-widget-content"/></td>
 								</tr>
 								<tr>
+									<td class="label" ><s:text name="car.certNo1" />:</td>
+									<td class="value" ><s:textfield name="e.certNo1" cssClass="ui-widget-content"/></td>
 									<td class="label" ><s:text name="car.invoiceNo1" />:</td>
 									<td class="value" ><s:textfield name="e.invoiceNo1" cssClass="ui-widget-content"/></td>
-									<td class="label" ><s:text name="car.invoiceNo2"/>:</td>
-									<td class="value" ><s:textfield name="e.invoiceNo2" cssClass="ui-widget-content"/></td>
 								</tr>
 								<tr>
+									<td class="label" ><s:text name="car.invoiceNo2"/>:</td>
+									<td class="value" ><s:textfield name="e.invoiceNo2" cssClass="ui-widget-content"/></td>
 									<td class="label" ><s:text name="car.certNo3"/>:</td>
 									<td class="value" ><s:textfield name="e.certNo3"  cssClass="ui-widget-content"/></td>
-									<td class="label" ><s:text name="car.registerNo"/>:</td>
-									<td class="value" ><s:textfield name="e.registerNo"  cssClass="ui-widget-content"/></td>
 								</tr>
 							</tbody>
 						</table>
@@ -413,7 +398,7 @@
 		<s:hidden name="e.charger"/>
 		<s:hidden name="e.originalValue"/>
 		<s:if test="!e.isNew()">
-		<s:hidden name="e.oldUnitName"/>
+		<s:hidden name="e.company"/>
 		<s:hidden name="e.motorcade.id"/>
 		</s:if>
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
