@@ -127,7 +127,8 @@ bs.selectMotorcade = function(option) {
  * @option {Boolean} paging [可选]是否分页，默认true
  * @option {String} status [可选]车辆的状态，默认在案，设为空则代表所有状态
  * @option {Function} onOk 选择完毕后的回调函数，函数第一个参数为选中的车辆信息，
- * 							如果为多选则返回的是数组，每个车辆的格式为{id:[id],name:[name]}
+ * 							如果为多选则返回的是数组，每个车辆的格式为：
+ * 							{id:[id],plate:[plate],plateType:[plateType],plateNo:[plateNo],company:[company]}
  * @option {String} selecteds [可选]已选中车辆的id值，多个值用逗号连接
  */
 bs.selectCar = function(option) {
@@ -168,7 +169,7 @@ bs.selectCar = function(option) {
  * @option {String} carPlate 车牌号，如"粤A.E1P11"，如果指定了carId将忽略该参数
  * @option {Function} success 信息获取成功后的回调函数，函数第一个参数为返回的相关信息，格式为
  * 	{
- * 		car:{id:[id],plate:[plate],status:[status],registerDate:[registerDate]bsType:[bsType]},
+ * 		car:{id:[id],plate:[plate],status:[status],registerDate:[registerDate],company:[company],bsType:[bsType]},
  * 		motorcade:{
  * 			id: [id],						-- 车队id
  * 			name: [name]					-- 车队名称
