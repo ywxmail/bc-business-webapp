@@ -130,7 +130,10 @@ bc.business.carByDriverHistoryForm = {
 				name: "维护" + $page.find("#header").val() + "的迁移记录",
 				mid: "carByDriverHistory" + $page.find(":input[name='e.id']").val(),
 				url: bc.root + "/bc-business/carByDriverHistory/edit",
-				data: {id: $page.find(":input[name='e.id']").val()}
+				data: {id: $page.find(":input[name='e.id']").val()},
+				afterClose: function(status){
+					if(status) bc.grid.reloadData($page);
+				}
 			});
 		});
 

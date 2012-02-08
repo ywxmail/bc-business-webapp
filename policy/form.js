@@ -235,7 +235,10 @@ bc.policyForm = {
 				name: "维护" + $page.find("#carInfo").text() + "的保单",
 				mid: "policy" + $page.find(":input[name='e.id']").val(),
 				url: bc.root + "/bc-business/policy/edit",
-				data: {id: $page.find(":input[name='e.id']").val()}
+				data: {id: $page.find(":input[name='e.id']").val()},
+				afterClose: function(status){
+					if(status) bc.grid.reloadData($page);
+				}
 			});
 		});
 
@@ -258,6 +261,4 @@ bc.policyForm = {
 			});
 		});
 	},
-
-		
 };
