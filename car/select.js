@@ -30,7 +30,7 @@ bs.carSelectDialog = {
 			$tds.each(function(i){
 				var $tr = $($trs.get(i));
 				var plate = $tr.find("td:eq(0)").text();
-				var old_unit_name = $tr.find("td:last(0)").text();
+				var company = $tr.find("td:last(0)").text();
 				var p = plate.split(".");
 				logger.info("--" + $.toJSON($tr.data("hidden")));
 				data.push($.extend({
@@ -38,7 +38,7 @@ bs.carSelectDialog = {
 					plate:plate,
 					plateType:p[0],
 					plateNo:p[1],
-					oldUnitName:old_unit_name
+					company:company
 				},$tr.data("hidden")));
 			});
 		}

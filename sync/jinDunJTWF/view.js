@@ -121,41 +121,67 @@ bs.jinDunJTWFView = {
 		if(ids.length ==0){
 			bc.msg.slide("请先选择要处理的信息！");
 			return;
-		}else if(ids.length >1 ){
-			bc.msg.slide("一次只可以生成一条处理单，请确认您只选择了一条信息！");
-			return;
+		}else if(ids.length == 1){
+			// 检测是否已有生成记录，没有才允许继续生成，避免重复生成
+			jQuery.ajax({
+				url: bc.root + "/bc/syncBase/hadGenerate", 
+				data: {id: ids[0], syncTo: "BS_CASE_BASE"}, 
+				dataType: "json",
+				success: function(json) {
+					// 如果已经生成过就提示用户
+					if(!json.success){
+						bc.msg.confirm("该同步记录已生成过相应的处理单，不可重复生成！ 需要查阅已生成的处理单吗？",function(){
+							bc.page.newWin({
+								url: bc.root + "/bc-business/caseTraffic/edit",
+								mid:  "case4InfractTraffic.editFrom4JinDun",
+								name: "交通违章信息",
+								data: {syncId: ids[0]}
+							})
+						});
+						//alert(json.msg);
+						return;
+					}
+					// 执行生成操作：带参数跳转到交通违法表单
+					bc.page.newWin({
+						url: bc.root + "/bc-business/caseTraffic/createFromJinDun", 
+						mid: "case4InfractTraffic.createFromJinDun",
+						name: "生成交通违法处理单",
+						data: {syncId: ids[0]},
+						afterClose: function(status){
+							if(status)bc.grid.reloadData($page);
+						}
+					});
+				}
+			});
+		}else{
+			
+			// 检测是否已有生成记录，没有才允许继续生成，避免重复生成
+			jQuery.ajax({
+				url: bc.root + "/bc/syncBase/hadGenerate", 
+				data: {id: ids[0], syncTo: "BS_CASE_BASE"}, 
+				dataType: "json",
+				success: function(json) {
+					// 如果已经生成过就提示用户
+					if(!json.success){
+						bc.msg.info("该同步记录已生成过相应的处理单，不可重复生成！");
+						return;
+					}
+					// 执行批量生成操作
+					jQuery.ajax({
+						url: bc.root + "/bc-business/caseTraffic/doPatchSave", 
+						data: {syncIds: ids.join(",")}, 
+						dataType: "json",
+						success: function(json) {
+							bc.msg.slide(json.msg);
+							bc.grid.reloadData($page);
+						}
+					});
+				}
+			});	
+				
+			//bc.msg.slide("一次只可以生成一条处理单，请确认您只选择了一条信息！");
+			//return;
 		}
 		
-		// 检测是否已有生成记录，没有才允许继续生成，避免重复生成
-		jQuery.ajax({
-			url: bc.root + "/bc/syncBase/hadGenerate", 
-			data: {id: ids[0], syncTo: "BS_CASE_BASE"}, 
-			dataType: "json",
-			success: function(json) {
-				// 如果已经生成过就提示用户
-				if(!json.success){
-					bc.msg.confirm("该同步记录已生成过相应的处理单，不可重复生成！ 需要查阅已生成的处理单吗？",function(){
-						bc.page.newWin({
-							url: bc.root + "/bc-business/caseTraffic/edit",
-							mid:  "case4InfractTraffic.editFrom4JinDun",
-							name: "交通违章信息",
-							data: {syncId: ids[0]}
-						})
-					});
-					//alert(json.msg);
-					return;
-				}
-				// 执行生成操作：带参数跳转到交通违法表单
-				bc.page.newWin({
-					url: bc.root + "/bc-business/caseTraffic/createFromJinDun", 
-					mid: "case4InfractTraffic.createFromJinDun",
-					name: "生成交通违法处理单",
-					data: {syncId: ids[0]},
-					afterClose: function(status){
-						if(status)bc.grid.reloadData($page);
-					}
-				});
-			}
-		});
 	}
 };
