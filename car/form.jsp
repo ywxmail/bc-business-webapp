@@ -62,31 +62,17 @@
 							</tr>
 							<tr>
 								<td class="label" >*<s:text name="car.company2"/>:</td>
-								<s:if test="e.isNew()">
-									<td class="value" >
-										<s:select name="e.company" list="companyList" listKey="value" listValue="value" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content"></s:select>
-									</td>
-								</s:if>
-								<s:else>
-									<td class="value" >
-										<s:select name="e.company" list="companyList" listKey="value" listValue="value" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" disabled="true"></s:select>
-									</td>
-								</s:else>
+								<td class="value" >
+									<s:select name="e.company" list="companyList" listKey="value" listValue="value" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" disabled="%{!e.isNew()}"></s:select>
+								</td>
 								<td class="label" >*<s:text name="car.engineNo"/>:</td>
 								<td class="value" ><s:textfield name="e.engineNo" cssClass="ui-widget-content" data-validate="required"/></td>
 							</tr>
 							<tr>
 								<td class="label" >*<s:text name="car.motorcade"/>:</td>
-								<s:if test="e.isNew()">
-									<td class="value" >
-										<s:select name="e.motorcade.id" list="motorcadeList" listKey="key" listValue="value" value="e.motorcade.id" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content"></s:select>
-									</td>
-								</s:if>
-								<s:else>
-									<td class="value" >
-										<s:select name="e.motorcade.id" list="motorcadeList" listKey="key" listValue="value" value="e.motorcade.id" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" disabled="true"></s:select>
-									</td>
-								</s:else>
+								<td class="value" >
+									<s:select name="e.motorcade.id" list="motorcadeList" listKey="key" listValue="value" value="e.motorcade.id" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" disabled="%{!e.isNew()}"></s:select>
+								</td>
 								<td class="label" >*<s:text name="car.businessType"/>:</td>
 								<td class="value" >
 									<s:select name="e.businessType" list="businessTypeList" listKey="value" listValue="value" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content"></s:select>
@@ -412,7 +398,7 @@
 		<s:hidden name="e.charger"/>
 		<s:hidden name="e.originalValue"/>
 		<s:if test="!e.isNew()">
-		<s:hidden name="e.oldUnitName"/>
+		<s:hidden name="e.company"/>
 		<s:hidden name="e.motorcade.id"/>
 		</s:if>
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
