@@ -32,7 +32,7 @@
 					</tr>
 					<tr>
 						<td class="topLabel" ><s:text name="insuranceType.description"/>:</td>
-						<td class="value"><s:textarea name="e.description" rows="5" cssClass="ui-widget-content"/></td>
+						<td class="value"><s:textarea name="e.description" rows="5" cssClass="ui-widget-content noresize"/></td>
 					</tr>
 					<tr>
 						<td class="label" colspan="2" rowspan="2">

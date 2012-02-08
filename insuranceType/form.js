@@ -2,7 +2,6 @@ if(!window['bs'])window['bs']={};
 bs.insuranceTypeForm = {
 	init : function(option,readonly)  {
 		var $form = $(this);
-		
 		//控制选择险种时显示保额
 		if($form.find("input:[name='e.type']:radio:checked").val()==1){
 			$form.find("#pidId").hide();
