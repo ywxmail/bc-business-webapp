@@ -119,6 +119,7 @@ bc.business.blacklistForm = {
 					success: function(info){
 						$form.find(":input[name='e.car.id']").val(info.car.id);
 						$form.find(":input[name='plate']").val(info.car.plate);
+						$form.find(":input[name='e.company']").val(info.car.company);
 						$form.find(":input[name='e.driver.id']").val(info.driver.id);
 						$form.find(":input[name='e.driver.name']").val(info.driver.name);
 						$form.find(":input[name='e.motorcade.id']").val(info.motorcade.id);
