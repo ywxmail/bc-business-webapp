@@ -75,7 +75,7 @@
 						               </td>
 										<td class="label" >*<s:text name="carByDriverHistory.unit"/>:</td>
 										<td class="value" >
-											<s:select name="e.toUnit" list="oldUnitList" listKey="value" listValue="value"  data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content"></s:select>
+											<s:select name="e.toUnit" list="companyList" listKey="value" listValue="value"  data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content"></s:select>
 										</td>
 						              </tr>
 						        </table>
