@@ -61,5 +61,39 @@ bc.carForm = {
 				}
 			});
 		});
+		
+		//绑定失去焦点自编号唯一性检测
+		$(":input[name='e.code']").blur(function(){
+			var $obj = $(this);
+			var url = bc.root + "/bc-business/car/checkCodeIsExist";
+			$.ajax({
+				url: url,
+				dataType:"json",
+				data: {code : $form.find(":input[name='e.code']").val()},
+				success: function (json){
+					if(json.isExist == "true"){ //合同编号存在
+						//组装提示查看信息
+						var str = json.msg.split(" ")[2];
+						str = "<a id='chakan' href=#>"+str+"</a>";
+						str = json.msg.split(" ")[0]+" "+json.msg.split(" ")[1]+" "+str+" "+json.msg.split(" ")[3];
+						var $a = bc.msg.alert(str, null ,function(){
+								$obj.focus();
+							}
+						);
+						$a.find('#chakan').click(function(){
+							bc.page.newWin({
+								url: bc.root + "/bc-business/car/open?id="+json.id,
+								name: "查看车辆",
+								mid:  "editCar",
+								afterClose: function(){
+									$obj.focus();
+								}
+							})
+							$a.dialog("close");
+						});
+					}
+				}
+			});
+		});
 	}
 };

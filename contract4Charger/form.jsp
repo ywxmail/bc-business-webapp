@@ -33,7 +33,36 @@
 							</tr>
 							<tr>
 								<td class="label">*<s:text name="contract.code"/>:</td>
-								<td class="value "><s:textfield name="e.code" data-validate="required" readonly="true"  cssClass="ui-widget-content"/></td>
+								<td class="value "><s:textfield name="e.code" data-validate="required" cssClass="ui-widget-content"/></td>
+								<td class="label">*<s:text name="contract4Charger.signType"/>:</td>
+								<td class="value ">
+									<s:select name="e.signType" list="signTypeList" listKey="value" listValue="value"  data-validate="required" headerKey="" headerValue="" cssClass="ui-widget-content" ></s:select>
+								</td>
+							</tr>
+							<tr>
+								<td class="label">*<s:text name="contract.car"/>:</td>
+								<td class="value relative">
+									<!-- 
+										<s:if test="!e.isNew()">
+											<s:textfield name="ext_str1_temp" value="%{e.ext_str1}" data-validate="required" disabled="true" />
+											<s:hidden name="e.ext_str1" />
+										</s:if>
+									 -->
+									<s:textfield name="e.ext_str1" data-validate="required" readonly="true" cssClass="ui-widget-content" />
+									<s:if test="e.isNew()">
+										<ul class="inputIcons">
+											<li class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="contract.title.click2selectCar"/>' id="selectCarPlate">
+										</ul>
+									</s:if>
+								</td>
+								<td class="label" >*<s:text name="contract4Charger.businessType"/>:</td>
+								<td class="value" >
+									<s:select name="e.businessType" list="businessTypeList" listKey="value" listValue="value"  data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content"></s:select>
+								</td>
+							</tr>
+							<tr>
+								<td class="label"><s:text name="contract.wordNo"/>:</td>
+								<td class="value "><s:textfield name="e.wordNo" cssClass="ui-widget-content" /></td>
 								<td class="label">*<s:text name="contract.signDate"/>:</td>
 								<td class="value" style="position:relative;display: block;">
 									<input type="text" name="e.signDate" data-validate='{"type":"date","required":true}'
@@ -43,11 +72,19 @@
 										<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.signDate' ></li>
 									</ul>
 								</td>
+								<!-- 经办人
+									<td class="label">*<s:text name="contract.transactor"/>:</td>
+									<td class="value" style="position:relative;display: block;">
+										<s:textfield name="e.transactorName" data-validate="required" readonly="true"	
+										title='%{getText("contract.select.transactor")}' cssClass="ui-widget-content " />
+										<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectTransactorName" ></span>
+									</td>
+								 -->
 							</tr>
 							<tr>
-								<td class="label">*<s:text name="contract4Charger.signType"/>:</td>
-								<td class="value ">
-									<s:select name="e.signType" list="signTypeList" listKey="value" listValue="value"  data-validate="required" headerKey="" headerValue="" cssClass="ui-widget-content" ></s:select>
+								<td class="label" ><s:text name="contract4Charger.contractVersionNo"/>:</td>
+								<td class="value">
+									<s:select name="e.contractVersionNo" list="contractVersionNoList" listKey="key" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
 								</td>
 								<td class="label">*<s:text name="contract.deadline"/>:</td>
 								<td class="value">
@@ -80,46 +117,9 @@
 								</td>
 							</tr>
 							<tr>
-								<td class="label" >*<s:text name="contract4Charger.businessType"/>:</td>
-								<td class="value" >
-									<s:select name="e.businessType" list="businessTypeList" listKey="value" listValue="value"  data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content"></s:select>
-								</td>
 								<td class="label">*<s:text name="contract4Charger.paymentDate"/>:</td>
 								<td class="value">
-									<s:select name="e.paymentDate" list="paymentDates" listKey="key" listValue="value" />
-								</td>
-								<!-- 经办人
-									<td class="label">*<s:text name="contract.transactor"/>:</td>
-									<td class="value" style="position:relative;display: block;">
-										<s:textfield name="e.transactorName" data-validate="required" readonly="true"	
-										title='%{getText("contract.select.transactor")}' cssClass="ui-widget-content " />
-										<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectTransactorName" ></span>
-									</td>
-								 -->
-							</tr>
-							<tr>
-								<td class="label">*<s:text name="contract.car"/>:</td>
-								<td class="value relative">
-									<!-- 
-										<s:if test="!e.isNew()">
-											<s:textfield name="ext_str1_temp" value="%{e.ext_str1}" data-validate="required" disabled="true" />
-											<s:hidden name="e.ext_str1" />
-										</s:if>
-									 -->
-									<s:textfield name="e.ext_str1" data-validate="required" readonly="true" cssClass="ui-widget-content" />
-									<s:if test="e.isNew()">
-										<ul class="inputIcons">
-											<li class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="contract.title.click2selectCar"/>' id="selectCarPlate">
-										</ul>
-									</s:if>
-								</td>
-								<td class="label"><s:text name="contract.wordNo"/>:</td>
-								<td class="value "><s:textfield name="e.wordNo" cssClass="ui-widget-content" /></td>
-							</tr>
-							<tr>
-								<td class="label" ><s:text name="contract4Charger.contractVersionNo"/>:</td>
-								<td class="value">
-									<s:select name="e.contractVersionNo" list="contractVersionNoList" listKey="key" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
+									<s:select name="e.paymentDate" list="paymentDates" listKey="key" listValue="value" cssClass="ui-widget-content"/>
 								</td>
 								<td></td>
 								<td class="label" style="text-align: right;">
