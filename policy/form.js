@@ -79,7 +79,7 @@ bc.policyForm = {
 		 * @option {Boolean} isFirst 单元格是列头
 		 */
 		function buildInput(name,value,readonly,isFirst){
-			var s = '<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;';
+			var s = '<input style="width:99%;height:100%;border:none;margin:0;padding:0 0 0 2px;';
 			if(isFirst){
 				s='<span class="ui-icon"></span><input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;'
 				s += 'background:none;';
@@ -105,7 +105,7 @@ bc.policyForm = {
 					for(var i=0;i<selectInsuranceTypes.length;i++){
 						//插入行
 						var newRow=tableEl.insertRow(tableEl.rows.length);
-						newRow.setAttribute("class","ui-state-default row");
+						newRow.setAttribute("class","ui-widget-content row");
 						//插入列
 						var cell=newRow.insertCell(0);
 						cell.style.padding="0";
@@ -129,12 +129,15 @@ bc.policyForm = {
 			});
 		});
 		//添加选中险种
-		$form.find("#buyPlantTables").delegate("tr:gt(0)","click",function(){
-			$(this).toggleClass("ui-state-default ui-state-focus").find("td:eq(0)>span.ui-icon").toggleClass("ui-icon-check");
+		$form.find("#buyPlantTables").delegate("tr.ui-widget-content.row>td.id","click",function(){
+			$(this).parent().toggleClass("ui-state-highlight").find("td:eq(0)>span.ui-icon").toggleClass("ui-icon-check");
+		});
+		$form.find("#buyPlantTables").delegate("tr.ui-widget-content.row input","focus",function(){
+			$(this).closest("tr.row").removeClass("ui-state-highlight").find("td:eq(0)>span.ui-icon").removeClass("ui-icon-check");
 		});
 		//删除表中选中的险种
 		$form.find("#deleteInsuranceType").click(function() {
-			var $trs = $form.find("#buyPlantTables tr.ui-state-focus");
+			var $trs = $form.find("#buyPlantTables tr.ui-state-highlight");
 			if($trs.length == 0){
 				bc.msg.slide("请先选择要删除的险种！");
 				return;

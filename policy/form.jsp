@@ -251,7 +251,7 @@
 								<td class="last">备注</td>
 							</tr>
 							<s:iterator var="b" value="e.buyPlants">
-							<tr class="ui-state-default row" data-id='<s:property value="id"/>'>
+							<tr class="ui-widget-content row" data-id='<s:property value="id"/>'>
 								<td class="id first" style="padding:0;text-align:left;"><span class="ui-icon"></span>
 									<input style="width:90%;height:100%;border:none;margin:0;padding:0 0 0 2px;background:none;" readonly="readonly" type="text" class="ui-widget-content" value='<s:property value="name"/>'/></td>
 								<td class="middle" style="padding:0;text-align:left;">
