@@ -71,7 +71,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td class="label"><s:text name="carMan.phone"/>:</td>
+							<td class="label"><s:text name="carMan.phone1"/>:</td>
 							<td class="value"><s:textfield name="e.phone" data-validate='{required:false,type:"phone"}' cssClass="ui-widget-content"/></td>
 							<td class="label"><s:text name="carMan.workDate"/>:</td>
 					        <td class="value relative">
@@ -84,7 +84,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td class="label"><s:text name="carMan.phone1"/>:</td>
+							<td class="label"><s:text name="carMan.phone2"/>:</td>
 							<td class="value"><s:textfield name="e.phone1" data-validate='{required:false,type:"phone"}' cssClass="ui-widget-content"/></td>
 							<td class="label"><s:text name="carMan.formerUnit"/>:</td>
 							<td class="value"><s:textfield name="e.formerUnit" cssClass="ui-widget-content"/></td>
@@ -105,7 +105,7 @@
 				            <td class="label"><s:text name="carMan.cert4FWZG"/>:</td>
 							<td class="value"><s:textfield name="e.cert4FWZG" cssClass="ui-widget-content" cssStyle="width:8em;"/>
 								<s:text name="carMan.level"/>:
-								<s:select list="carManLevelList" listKey="value" listValue="value" headerKey="" headerValue="" name="e.level" cssStyle="width:8em;" cssClass="ui-widget-content"/>
+								<s:select list="carManLevelList" listKey="value" listValue="value" headerKey="" headerValue="未有等级" name="e.level" cssStyle="width:8em;" cssClass="ui-widget-content"/>
 							</td>
 							<td class="label"><s:text name="carMan.cert4CYZG"/>:</td>
 							<td class="value" colspan="2"><s:textfield name="e.cert4CYZG" cssClass="ui-widget-content"/></td>
@@ -134,24 +134,22 @@
 							<td class="label"><s:text name="carMan.cert4DrivingDeadline"/>:</td>
 							<td class="value">
 								<div class="bc-dateContainer">
-													&nbsp;从<input type="text" name="e.cert4DrivingStartDate" 
-													<s:if test="e.isNew()">
-													data-cfg='{addYear:5}'</s:if>
-													  data-validate='{"type":"date","required":false}' 
-														value='<s:date format="yyyy-MM-dd" name="e.cert4DrivingStartDate" />' 
-														style="width: 8em;" class="bc-date ui-widget-content" />
-														<ul class="inputIcons" style="right : 0px;">
-															<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.cert4DrivingStartDate' ></li>
-														</ul>
-												</div>
+									&nbsp;从<input type="text" name="e.cert4DrivingStartDate" <s:if test="e.isNew()">data-cfg='{"addYear":"6 0 -1"}'</s:if>
+									  data-validate='{"type":"date","required":false}' 
+										value='<s:date format="yyyy-MM-dd" name="e.cert4DrivingStartDate" />' 
+										style="width: 8em;" class="bc-date ui-widget-content" />
+										<ul class="inputIcons" style="right : 0px;">
+											<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.cert4DrivingStartDate' ></li>
+										</ul>
+								</div>
 					        	<div class="bc-dateContainer">
-													&nbsp;到<input type="text" name="e.cert4DrivingEndDate"  data-validate='{"type":"date","required":false}'
-														value='<s:date format="yyyy-MM-dd" name="e.cert4DrivingEndDate" />'
-														style="width: 8em;" class="bc-date ui-widget-content" />
-														<ul class="inputIcons" style="right : 0px;">
-															<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.cert4DrivingEndDate' ></li>
-														</ul>
-												</div>
+									&nbsp;到<input type="text" name="e.cert4DrivingEndDate"  data-validate='{"type":"date","required":false}'
+										value='<s:date format="yyyy-MM-dd" name="e.cert4DrivingEndDate" />'
+										style="width: 8em;" class="bc-date ui-widget-content" />
+										<ul class="inputIcons" style="right : 0px;">
+											<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.cert4DrivingEndDate' ></li>
+										</ul>
+								</div>
 				            </td>
 				            <td class="label"><s:text name="carMan.cert4DrivingFirstDate"/>:</td>
 				             <td class="value relative"  colspan="2">
@@ -173,12 +171,6 @@
 							<td class="label"><s:text name="carMan.status"/>:</td>
 						    <td class="value"><s:radio name="e.status" list="#{'0':'在案','1':'注销'}" cssStyle="width:auto;"/></td>
 						</tr>
-						<!--<tr>
-							<td class="label"><s:text name="carMan.drivingStatus"/>:</td>
-							<td class="value"><s:select list="#{0:'',1:'正班',2:'副班',3:'顶班'}" listKey="key" listValue="value" headerKey="" name="e.drivingStatus" style="width:208px" cssClass="ui-widget-content"></s:select></td>
-							<td class="label"><s:text name="carMan.extZRR"/>:</td>
-							<td class="value" colspan="2"><s:textfield name="e.extZRR" cssClass="ui-widget-content"/></td>
-						</tr>-->
 						<tr>
 							<td class="topLabel"><s:text name="carMan.description"/>:</td>
 							<td class="value" colspan="4"><s:textarea name="e.description"  rows="3" cssClass="ui-widget-content noresize"/></td>

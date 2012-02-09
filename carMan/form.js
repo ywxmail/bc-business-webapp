@@ -8,36 +8,12 @@ bc.carManForm = {
 		
 		if(readonly) return;
 		
-		//绑定选择上级的按钮事件处理
-		$form.find("#selectBelong,:input[name='e.extFZJG']").click(function(){
-			var data = {};
-			var selected = $form.find(":input[name='e.extFZJG']").val();
-			if(selected && selected.length > 0)
-				data.selected = selected;
-			
-			bc.identity.selectUnitOrDepartment({
-				data: data,
-				onOk: function(actor){
-					$form.find(":input[name='e.extFZJG']").val(actor.name);
-				}
-			});
-		});
-		
 		//新建时，输入身份证号，驾驶证号自动跟随其变化
 		$form.find(":input[name='e.cert4Indentity']").keyup(function(){		
 			if($form.find(":input[name='e.id']").val()==''){
 				$form.find(":input[name='e.cert4Driving']").val($form.find(":input[name='e.cert4Indentity']").val());
 			}
 		});
-		
-//		//新建时，输入驾驶证起效日期后，驾驶证过期日期自动为起效日期加6年
-//		$form.find(":input[name='e.cert4DrivingStartDate']").change(function(){
-//			if($form.find(":input[name='e.id']").val()==''){
-//				$form.find(":input[name='e.cert4DrivingEndDate']").val(
-//							Date.addYear($form.find(":input[name='e.cert4DrivingStartDate']").val(),5)
-//						);
-//			}
-//		});
 		
 		//绑定图片的修改
 		$form.find("#portrait").click(function(){
@@ -51,6 +27,5 @@ bc.carManForm = {
 				}
 			});
 		});
-		
 	}
 };

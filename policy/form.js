@@ -58,18 +58,18 @@ bc.policyForm = {
 		}
 		
 		if($form.find(":input[name='e.id']").val()==""){
-		//新建时如果选中商业险公司，强制险公司也跟着选
-		var sgreenslipCompany = $form.find("select[name='e.greenslipCompany']")[0];
-		$form.find("select[name='e.commerialCompany']").change(function() {
-			for(var i=0;i<sgreenslipCompany.options.length;i++){
-				if(sgreenslipCompany.options[i].value == this.value){
-					sgreenslipCompany.options[i].selected = true;
-					break;
+			//新建时如果选中商业险公司，强制险公司也跟着选
+			var sgreenslipCompany = $form.find("select[name='e.greenslipCompany']")[0];
+			$form.find("select[name='e.commerialCompany']").change(function() {
+				for(var i=0;i<sgreenslipCompany.options.length;i++){
+					if(sgreenslipCompany.options[i].value == this.value){
+						sgreenslipCompany.options[i].selected = true;
+						break;
+					}
 				}
-			}
-		});
+			});
 		}
-		
+			
 		var tableEl=$form.find("#buyPlantTables")[0];
 	
 		/**购买险种表格中插入input控件
@@ -125,7 +125,6 @@ bc.policyForm = {
 						cell.setAttribute("class","middle");
 						cell.innerHTML=buildInput("description",selectInsuranceTypes[i].description);//插入备注
 					}
-					
 				}
 			});
 		});
@@ -148,8 +147,21 @@ bc.policyForm = {
 			
 		});
 		
-		
 	},
+	/**自动填写投保人**/
+	antoWriteAssured:function(car){
+		var $page =$(this).closest(".bc-page");
+		var companyName=car["company"];
+		var companyName1="广州市宝城汽车出租有限公司";
+		var companyName2="广州市广发出租汽车有限公司";
+		if(companyName=="宝城"){
+			companyName=companyName1;
+		}else if(companyName=="广发"){
+			companyName=companyName2;
+		}
+		$page.find(":input[name='e.assured']").val(companyName);
+	}
+	,
 	/**保存的处理*/
 	save:function(){
 		$page = $(this);
@@ -161,7 +173,6 @@ bc.policyForm = {
 			var json = {
 				name: $inputs[0].value,
 				coverage: $inputs[1].value,
-				//premium: $inputs[2].value,
 				description: $inputs[2].value
 			};
 			var id = $(this).attr("data-id");
