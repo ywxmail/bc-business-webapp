@@ -63,37 +63,53 @@ bc.carForm = {
 		});
 		
 		//绑定失去焦点自编号唯一性检测
-		$(":input[name='e.code']").blur(function(){
-			var $obj = $(this);
+		var $code = $form.find(":input[name='e.code']");
+		var checkCodeFn = function(){
+			var code = $code.val();
+			if(!code || code.length == 0)
+				return false;
+			
+			var $this = $(this);
 			var url = bc.root + "/bc-business/car/checkCodeIsExist";
+			var continueBind = true;
 			$.ajax({
 				url: url,
 				dataType:"json",
-				data: {code : $form.find(":input[name='e.code']").val()},
+				data: {code: code, excludeId: $form.find(":input[name='e.id']").val()},
 				success: function (json){
-					if(json.isExist == "true"){ //合同编号存在
+					if(json.isExist == "true"){ //自编号已被占用
 						//组装提示查看信息
-						var str = json.msg.split(" ")[2];
-						str = "<a id='chakan' href=#>"+str+"</a>";
-						str = json.msg.split(" ")[0]+" "+json.msg.split(" ")[1]+" "+str+" "+json.msg.split(" ")[3];
-						var $a = bc.msg.alert(str, null ,function(){
-								$obj.focus();
+						var $a = bc.msg.alert(json.msg, null ,function(){
+							if(continueBind){
+								// 重新获取焦点
+								$this.focus();
+								
+								// 再次绑定事件
+								$code.one("blur",checkCodeFn);
 							}
-						);
+						});
 						$a.find('#chakan').click(function(){
+							continueBind = false;
+							$a.dialog("close");
 							bc.page.newWin({
 								url: bc.root + "/bc-business/car/open?id="+json.id,
 								name: "查看车辆",
-								mid:  "editCar",
+								mid:  "car" + json.id,
 								afterClose: function(){
-									$obj.focus();
+									// 重新获取焦点
+									$this.focus();
+									
+									// 再次绑定事件
+									$code.one("blur",checkCodeFn);
+									continueBind = true;
 								}
 							})
-							$a.dialog("close");
+							return false;
 						});
 					}
 				}
 			});
-		});
+		};
+		$code.one("blur",checkCodeFn);
 	}
 };
