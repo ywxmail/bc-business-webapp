@@ -229,24 +229,43 @@
 									</td>
 								</tr>
 								<tr>
+									<td class="label" ><s:text name="car.fuelType"/>:</td>
+									<td class="value" >
+										<s:select name="e.fuelType" list="fuelTypeList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
+									</td>
 									<td class="label" ><s:text name="car.color"/>:</td>
 									<td class="value" >
 										<s:select name="e.color" list="colorTypeList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
 									</td>
-									<td class="label" ><s:text name="car.engineType"/>:</td>
-									<td class="value" ><s:textfield name="e.engineType" cssClass="ui-widget-content"/></td>
 								</tr>
 								<tr>
-									<td class="label" ><s:text name="car.fuelType"/>:</td>
+									<td class="label" ><s:text name="car.engineType"/>:</td>
+									<td class="value" ><s:textfield name="e.engineType" cssClass="ui-widget-content"/></td>
+									<td class="label" ><s:text name="car.displacement"/>/<s:text name="car.power"/>:</td>
+									<td class="value" ><s:textfield name="e.displacement" data-validate='{"type" : "digits"}'  cssStyle="width:5em;" cssClass="ui-widget-content"/>&nbsp;ml&nbsp;&nbsp;<s:textfield name="e.power" value="%{getText('bs.format.number',{e.power})}" data-validate='{"type" : "number"}' cssStyle="width:5em;" cssClass="ui-widget-content"/>&nbsp;kw</td>
+								</tr>
+								<tr>
+									<td class="label" ><s:text name="car.tireDistance" />:</td>
 									<td class="value" >
-										<s:select name="e.fuelType" list="fuelTypeList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
+										<s:textfield name="e.tireFrontDistance"  data-validate='{"type" : "digits"}' cssStyle="width:5em;"  cssClass="ui-widget-content"/>&nbsp;前&nbsp;&nbsp;
+										<s:textfield name="e.tireBehindDistance" data-validate='{"type" : "digits"}' cssStyle="width:5em;"  cssClass="ui-widget-content"/>&nbsp;后
 									</td>
 									<td class="label" ><s:text name="car.turnType"/>:</td>
 									<td class="value" ><s:textfield name="e.turnType" cssClass="ui-widget-content"/></td>
 								</tr>
 								<tr>
-									<td class="label" ><s:text name="car.displacement"/>/<s:text name="car.power"/>:</td>
-									<td class="value" ><s:textfield name="e.displacement" data-validate='{"type" : "digits"}'  cssStyle="width:5em;" cssClass="ui-widget-content"/>&nbsp;ml&nbsp;&nbsp;<s:textfield name="e.power" value="%{getText('bs.format.number',{e.power})}" data-validate='{"type" : "number"}' cssStyle="width:5em;" cssClass="ui-widget-content"/>&nbsp;kw</td>
+									<td class="label" ><s:text name="car.tireStandard" />:</td>
+									<td class="value" ><s:textfield name="e.tireStandard" cssClass="ui-widget-content"/></td>
+									<td class="label" ><s:text name="car.tireCount"/>:</td>
+									<td class="value" ><s:textfield name="e.tireCount" data-validate='{"type" : "digits"}' cssClass="ui-widget-content"/></td>
+								</tr>
+								<tr>
+									<td class="label" ><s:text name="car.axisDistance"/>:</td>
+									<td class="value" ><s:textfield name="e.axisDistance" data-validate='{"type" : "digits"}' cssClass="ui-widget-content"/></td>
+									<td class="label" ><s:text name="car.axisCount" />:</td>
+									<td class="value" ><s:textfield name="e.axisCount" data-validate='{"type" : "digits"}' cssClass="ui-widget-content"/></td>
+								</tr>
+								<tr>
 									<td class="label"  >
 										<s:text name="car.dim" />:
 									</td>
@@ -258,34 +277,15 @@
 										<s:text name="car.dimHeight" />
 										<s:textfield name="e.dimHeight" data-validate='{"type" : "digits"}'   cssStyle="width:3em;" cssClass="ui-widget-content"/>&nbsp;mm
 									</td>
-								</tr>
+									<td class="label" ><s:text name="car.pieceCount"/>:</td>
+									<td class="value" ><s:textfield name="e.pieceCount" data-validate='{"type" : "digits"}'cssClass="ui-widget-content"/></td>
 								<tr>
 									<td class="label" ><s:text name="car.totalWeight"/>:</td>
 									<td class="value" ><s:textfield name="e.totalWeight" data-validate='{"type" : "digits"}' cssClass="ui-widget-content"/></td>
-									<td class="label" ><s:text name="car.pieceCount"/>:</td>
-									<td class="value" ><s:textfield name="e.pieceCount" data-validate='{"type" : "digits"}'cssClass="ui-widget-content"/></td>
-								</tr>
-								<tr>
-									<td class="label" ><s:text name="car.tireStandard" />:</td>
-									<td class="value" ><s:textfield name="e.tireStandard" cssClass="ui-widget-content"/></td>
-									<td class="label" ><s:text name="car.tireCount"/>:</td>
-									<td class="value" ><s:textfield name="e.tireCount" data-validate='{"type" : "digits"}' cssClass="ui-widget-content"/></td>
-								</tr>
-								<tr>
-									<td class="label" ><s:text name="car.tireFrontDistance" />:</td>
-									<td class="value" ><s:textfield name="e.tireFrontDistance"  data-validate='{"type" : "digits"}' cssClass="ui-widget-content"/></td>
-									<td class="label" ><s:text name="car.tireBehindDistance"/>:</td>
-									<td class="value" ><s:textfield name="e.tireBehindDistance" data-validate='{"type" : "digits"}' cssClass="ui-widget-content"/></td>
-								</tr>
-								<tr>
-									<td class="label" ><s:text name="car.axisCount" />:</td>
-									<td class="value" ><s:textfield name="e.axisCount" data-validate='{"type" : "digits"}' cssClass="ui-widget-content"/></td>
-									<td class="label" ><s:text name="car.axisDistance"/>:</td>
-									<td class="value" ><s:textfield name="e.axisDistance" data-validate='{"type" : "digits"}' cssClass="ui-widget-content"/></td>
-								</tr>
-								<tr>
 									<td class="label" ><s:text name="car.accessWeight" />:</td>
 									<td class="value" ><s:textfield name="e.accessWeight" data-validate='{"type" : "digits"}' cssClass="ui-widget-content"/></td>
+								</tr>
+								<tr>
 									<td class="label" ><s:text name="car.accessCount"/>:</td>
 									<td class="value" ><s:textfield name="e.accessCount" data-validate='{"type" : "digits"}' cssClass="ui-widget-content"/></td>
 								</tr>
