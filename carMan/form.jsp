@@ -102,8 +102,8 @@
 							
 						</tr>
 						<tr>
-				            <td class="label"><s:text name="carMan.cert4FWZG"/>:</td>
-							<td class="value"><s:textfield name="e.cert4FWZG" cssClass="ui-widget-content" cssStyle="width:8em;"/>
+				            <td class="label">*<s:text name="carMan.cert4FWZG"/>:</td>
+							<td class="value"><s:textfield name="e.cert4FWZG" cssClass="ui-widget-content" data-validate='{"minLen": 6,"maxLen": 7,"required":true,"type":"string"}' cssStyle="width:8em;"/>
 								<s:text name="carMan.level"/>:
 								<s:select list="carManLevelList" listKey="value" listValue="value" headerKey="" headerValue="未有等级" name="e.level" cssStyle="width:8em;" cssClass="ui-widget-content"/>
 							</td>
@@ -194,7 +194,7 @@
 		<s:hidden name="e.id" />
 		<s:hidden name="e.author.id" />
 		<s:hidden name="e.drivingStatus" />
-		<s:hidden name="e.e.extZRR" />
+		<s:hidden name="e.charger" />
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 		<s:hidden name="e.modifier.id"/>
 		<input type="hidden" name="e.modifiedDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.modifiedDate" />'/>

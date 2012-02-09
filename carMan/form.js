@@ -27,5 +27,27 @@ bc.carManForm = {
 				}
 			});
 		});
+		
+		// 服务资格证唯一性检测
+		var $cert4FWZG = $form.find(":input[name='e.cert4FWZG']");
+		$cert4FWZG.bind("blur",function(){
+			var cert4FWZG = $cert4FWZG.val();
+			if(!cert4FWZG || cert4FWZG.length == 0)
+				return false;
+			
+			var $this = $(this);
+			$.ajax({
+				url: bc.root + "/bc-business/carMan/checkCert4FWZGIsExists",
+				dataType:"json",
+				data: {cert4FWZG: cert4FWZG, excludeId: $form.find(":input[name='e.id']").val()},
+				success: function (json){
+					if(json.isExists == "true"){ // 已被占用
+						bc.msg.alert(json.msg, null ,function(){
+							//$this.focus();// 重新获取焦点
+						});
+					}
+				}
+			});
+		});
 	}
 };
