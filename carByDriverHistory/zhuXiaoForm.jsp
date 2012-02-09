@@ -107,7 +107,6 @@
 		<s:hidden id="header" value="%{e.driver.name}"/>
 		<s:hidden name="e.author.id" />
 		<s:hidden name="e.modifier.id"/>
-		<s:hidden name="e.fromMotorcadedId"/>
 		<s:hidden name="e.toMotorcadeId"/>
 		<s:hidden name="e.fromCar.id"/>
 		<s:hidden name="e.toCar.id"/>
