@@ -121,7 +121,6 @@
 		<s:hidden id="header" value="%{e.driver.name}"/>
 		<s:hidden name="e.author.id" />
 		<s:hidden name="e.modifier.id"/>
-		<s:hidden name="e.fromMotorcadedId"/>
 		<s:hidden name="e.toMotorcadeId"/>
 		<s:hidden name="e.fromCar.id"/>
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>

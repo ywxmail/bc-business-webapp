@@ -95,6 +95,7 @@ bc.carForm = {
 								url: bc.root + "/bc-business/car/open?id="+json.id,
 								name: "查看车辆",
 								mid:  "car" + json.id,
+								modal:true,
 								afterClose: function(){
 									// 重新获取焦点
 									$this.focus();
