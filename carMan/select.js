@@ -5,7 +5,7 @@ bs.carManSelectDialog = {
 		var $page = $(this);
 		
 		// 获取选中的行的id单元格
-		var $tds = $page.find(".bc-grid>.data>.left tr.ui-state-focus>td.id");
+		var $tds = $page.find(".bc-grid>.data>.left tr.ui-state-highlight>td.id");
 		if($tds.length == 0){
 			alert("请先选择！");
 			return false;
@@ -17,12 +17,12 @@ bs.carManSelectDialog = {
 		if($grid.hasClass("singleSelect")){//单选
 			data = {};
 			data.id = $tds.attr("data-id");
-			var $trs = $grid.find(">.data>.right tr.ui-state-focus");
+			var $trs = $grid.find(">.data>.right tr.ui-state-highlight");
 			data.name = $trs.find("td:eq(0)").attr("data-value");
 			data.cert4FWZG = $trs.find("td:eq(1)").attr("data-value");
 		}else{//多选
 			data = [];
-			var $trs = $grid.find(">.data>.right tr.ui-state-focus");
+			var $trs = $grid.find(">.data>.right tr.ui-state-highlight");
 			$tds.each(function(i){
 				data.push({
 					id: $(this).attr("data-id"),

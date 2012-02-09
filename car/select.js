@@ -5,7 +5,7 @@ bs.carSelectDialog = {
 		var $page = $(this);
 		
 		// 获取选中的行的id单元格
-		var $tds = $page.find(".bc-grid>.data>.left tr.ui-state-focus>td.id");
+		var $tds = $page.find(".bc-grid>.data>.left tr.ui-state-highlight>td.id");
 		if($tds.length == 0){
 			alert("请先选择！");
 			return false;
@@ -17,7 +17,7 @@ bs.carSelectDialog = {
 		if($grid.hasClass("singleSelect")){//单选
 			data = {};
 			data.id = $tds.attr("data-id");
-			var $tr = $grid.find(">.data>.right tr.ui-state-focus");
+			var $tr = $grid.find(">.data>.right tr.ui-state-highlight");
 			data.plate = $tr.find("td:eq(0)").text();
 			data.company = $tr.find("td:last(0)").text();
 			var p = data.plate.split(".");
@@ -26,7 +26,7 @@ bs.carSelectDialog = {
 			$.extend(data,$tr.data("hidden"));
 		}else{//多选
 			data = [];
-			var $trs = $grid.find(">.data>.right tr.ui-state-focus");
+			var $trs = $grid.find(">.data>.right tr.ui-state-highlight");
 			$tds.each(function(i){
 				var $tr = $($trs.get(i));
 				var plate = $tr.find("td:eq(0)").text();
