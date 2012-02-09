@@ -77,7 +77,7 @@ bc.carForm = {
 				success: function (json){
 					if(json.isExists == "true"){ // 已被占用
 						bc.msg.alert(json.msg, null ,function(){
-							$this.focus();// 重新获取焦点
+							//$this.focus();// 重新获取焦点
 						});
 					}
 				}
