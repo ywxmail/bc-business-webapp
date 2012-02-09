@@ -62,55 +62,26 @@ bc.carForm = {
 			});
 		});
 		
-		//绑定失去焦点自编号唯一性检测
-		var $code = $form.find(":input[name='e.code']");
-		var checkCodeFn = function(){
-			var code = $code.val();
-			if(!code || code.length == 0)
+		// 车牌号唯一性检测
+		var $plateNo = $form.find(":input[name='e.plateNo']");
+		$plateNo.bind("blur",function(){
+			var plateNo = $plateNo.val();
+			if(!plateNo || plateNo.length == 0)
 				return false;
 			
 			var $this = $(this);
-			var url = bc.root + "/bc-business/car/checkCodeIsExist";
-			var continueBind = true;
 			$.ajax({
-				url: url,
+				url: bc.root + "/bc-business/car/checkPlateIsExists",
 				dataType:"json",
-				data: {code: code, excludeId: $form.find(":input[name='e.id']").val()},
+				data: {plateNo: plateNo, plateType: $form.find(":input[name='e.plateType']").val(), excludeId: $form.find(":input[name='e.id']").val()},
 				success: function (json){
-					if(json.isExist == "true"){ //自编号已被占用
-						//组装提示查看信息
-						var $a = bc.msg.alert(json.msg, null ,function(){
-							if(continueBind){
-								// 重新获取焦点
-								$this.focus();
-								
-								// 再次绑定事件
-								$code.one("blur",checkCodeFn);
-							}
-						});
-						$a.find('#chakan').click(function(){
-							continueBind = false;
-							$a.dialog("close");
-							bc.page.newWin({
-								url: bc.root + "/bc-business/car/open?id="+json.id,
-								name: "查看车辆",
-								mid:  "car" + json.id,
-								modal:true,
-								afterClose: function(){
-									// 重新获取焦点
-									$this.focus();
-									
-									// 再次绑定事件
-									$code.one("blur",checkCodeFn);
-									continueBind = true;
-								}
-							})
-							return false;
+					if(json.isExists == "true"){ // 已被占用
+						bc.msg.alert(json.msg, null ,function(){
+							$this.focus();// 重新获取焦点
 						});
 					}
 				}
 			});
-		};
-		$code.one("blur",checkCodeFn);
+		});
 	}
 };
