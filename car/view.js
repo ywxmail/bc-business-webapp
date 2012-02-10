@@ -6,7 +6,7 @@ bs.carView = {
 			//--金盾网原始查询
 			
 			// 确定选中的行
-			var $trs = $page.find(">.bc-grid>.data>.right tr.ui-state-focus");
+			var $trs = $page.find(">.bc-grid>.data>.right tr.ui-state-highlight");
 			if($trs.length == 0){
 				bc.msg.slide("请先选择车辆信息！");
 				return;
