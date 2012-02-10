@@ -11,30 +11,34 @@
 			</div>
 		</li>
 		<li class="condition">
-			<div class="label">所属分公司</div>
 			<div class="value">
-				<input type="text" class="bc-select ui-widget-content" readonly="readonly"
-					data-maxHeight="150px"
-					data-source='<s:property value="units"/>'>
-				<input type="hidden" data-condition='{"type":"long","ql":"bia.id=?"}'>
-				<ul class="inputIcons">
-					<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
-					<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
-				</ul>
+				<div class="bc-dateContainer">
+					<div class="label">所属分公司</div>
+					<div class="value bc-dateContainer">
+						<input type="text" class="bc-select ui-widget-content" readonly="readonly"
+							data-maxHeight="150px" style="width:9em;"
+							data-source='<s:property value="units"/>'>
+						<input type="hidden" data-condition='{"type":"long","ql":"bia.id=?"}'>
+						<ul class="inputIcons">
+							<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
+							<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
+						</ul>
+					</div>
+				</div><div style="width:12px;display:inline-block;"></div><div class="bc-dateContainer">
+					<div class="label">所属车队</div>
+					<div class="value bc-dateContainer">
+						<input type="text" class="bc-select ui-widget-content" readonly="readonly"
+							data-maxHeight="150px" style="width:9em;"
+							data-source='<s:property value="motorcades"/>'>
+						<input type="hidden" data-condition='{"type":"long","ql":"m.id=?"}'>
+						<ul class="inputIcons">
+							<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
+							<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
+						</ul>
+					</div>
+				</div>
 			</div>
-		</li>
-		<li class="condition">
-			<div class="label">所属车队</div>
-			<div class="value">
-				<input type="text" class="bc-select ui-widget-content" readonly="readonly"
-					data-maxHeight="150px"
-					data-source='<s:property value="motorcades"/>'>
-				<input type="hidden" data-condition='{"type":"long","ql":"m.id=?"}'>
-				<ul class="inputIcons">
-					<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
-					<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
-				</ul>
-			</div>
+			<div class="clear"></div>
 		</li>
 		<li class="condition">
 			<div class="label">车辆登记日期</div>
@@ -46,7 +50,7 @@
 						<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
 						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
 					</ul>
-				</div>～<div class="bc-dateContainer">
+				</div><div style="width:12px;display:inline-block;">～</div><div class="bc-dateContainer">
 					<input type="text" class="bc-date ui-widget-content" data-validate="date" style="width:9em;"
 						data-condition='{"type":"endDate","ql":"c.register_date<=?"}'>
 					<ul class="inputIcons">
@@ -58,18 +62,18 @@
 			<div class="clear"></div>
 		</li>
 		<li class="condition">
-			<div class="label">保险期限(开始日期，含商业险和强制险)</div>
+			<div class="label">商业险期限(开始日期)</div>
 			<div class="value">
 				<div class="bc-dateContainer">
 					<input type="text" class="bc-date ui-widget-content" data-validate="date" style="width:9em;"
-						data-condition='{"type":"startDate","ql":"(p.commerial_start_date>=? or p.greenslip_start_date>=?)"}'>
+						data-condition='{"type":"startDate","ql":"p.commerial_start_date>=?"}'>
 					<ul class="inputIcons">
 						<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
 						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
 					</ul>
 				</div>～<div class="bc-dateContainer">
 					<input type="text" class="bc-date ui-widget-content" data-validate="date" style="width:9em;"
-						data-condition='{"type":"endDate","ql":"(p.commerial_start_date<=? or p.greenslip_start_date<=?)"}'>
+						data-condition='{"type":"endDate","ql":"p.commerial_start_date<=?"}'>
 					<ul class="inputIcons">
 						<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
 						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
@@ -79,18 +83,60 @@
 			<div class="clear"></div>
 		</li>
 		<li class="condition">
-			<div class="label">保险期限(结束日期，含商业险和强制险)</div>
+			<div class="label">商业险期限(结束日期)</div>
 			<div class="value">
 				<div class="bc-dateContainer">
 					<input type="text" class="bc-date ui-widget-content" data-validate="date" style="width:9em;"
-						data-condition='{"type":"startDate","ql":"(p.commerial_end_date>=? or p.greenslip_end_date>=?)"}'>
+						data-condition='{"type":"startDate","ql":"p.commerial_end_date>=?"}'>
 					<ul class="inputIcons">
 						<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
 						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
 					</ul>
 				</div>～<div class="bc-dateContainer">
 					<input type="text" class="bc-date ui-widget-content" data-validate="date" style="width:9em;"
-						data-condition='{"type":"endDate","ql":"(p.commerial_end_date<=? or p.greenslip_end_date<=?)"}'>
+						data-condition='{"type":"endDate","ql":"p.commerial_end_date<=?"}'>
+					<ul class="inputIcons">
+						<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
+						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</li>
+		<li class="condition">
+			<div class="label">强制险期限(开始日期)</div>
+			<div class="value">
+				<div class="bc-dateContainer">
+					<input type="text" class="bc-date ui-widget-content" data-validate="date" style="width:9em;"
+						data-condition='{"type":"startDate","ql":"p.greenslip_start_date>=?"}'>
+					<ul class="inputIcons">
+						<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
+						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
+					</ul>
+				</div>～<div class="bc-dateContainer">
+					<input type="text" class="bc-date ui-widget-content" data-validate="date" style="width:9em;"
+						data-condition='{"type":"endDate","ql":"p.greenslip_start_date<=?"}'>
+					<ul class="inputIcons">
+						<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
+						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</li>
+		<li class="condition">
+			<div class="label">强制险期限(结束日期)</div>
+			<div class="value">
+				<div class="bc-dateContainer">
+					<input type="text" class="bc-date ui-widget-content" data-validate="date" style="width:9em;"
+						data-condition='{"type":"startDate","ql":"p.greenslip_end_date>=?"}'>
+					<ul class="inputIcons">
+						<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
+						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
+					</ul>
+				</div>～<div class="bc-dateContainer">
+					<input type="text" class="bc-date ui-widget-content" data-validate="date" style="width:9em;"
+						data-condition='{"type":"endDate","ql":"p.greenslip_end_date<=?"}'>
 					<ul class="inputIcons">
 						<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
 						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
