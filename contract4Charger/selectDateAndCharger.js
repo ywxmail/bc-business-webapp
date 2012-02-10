@@ -54,9 +54,20 @@ bc.selectDateAndChargerForm = {
 			});
 		});
 		
+		//绑定失去焦点自编号唯一性检测
+		var $code = $page.find(":input[name='code']");
+		$code.bind("blur",function(){
+			var code = $code.val();
+			if(!code || code.length == 0)
+				return false;
+			
+			bc.contract4ChargerForm.checkCode($page,$code);
+		});
+		
 	},
 	clickOk : function(option) {
 		var $page = $(this);
+		
 		//验证用户输入信息的正确性
 		if(!bc.validator.validate($page)){
 			return;
@@ -74,16 +85,16 @@ bc.selectDateAndChargerForm = {
 			assignChargerNames = names.join(",");
 		}else{
 			bc.msg.alert("最少选择一个责任人！");
-			return false;
+			return;
 		}
-		
 		$page.data("data-status",{
 			startDate: $page.find(":input[name='startDate']").val(),
 			endDate: $page.find(":input[name='endDate']").val(),
 			carId: $page.find(":input[name='carId']").val(),
 			takebackOrigin: $page.find(":input[name='takebackOrigin']").val(),
 			assignChargerIds: assignChargerIds,
-			assignChargerNames: assignChargerNames
+			assignChargerNames: assignChargerNames,
+			code : $page.find(":input[name='code']").val()
 		});
 		
 		$page.dialog("close");
