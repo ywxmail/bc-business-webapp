@@ -86,7 +86,9 @@ bc.contract4ChargerForm = {
 				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
 				onOk : function(car) {
 					$form.find(":input[name='e.ext_str1']").val(car.plate);
+					$form.find(":input[name='e.wordNo']").val(car.code); 
 					$form.find(":input[name='carId']").val(car.id); 
+					
 					
 //					var url = bc.root + "/bc-business/contract4Charger/isExistContract?carId="+car.id;
 //					$.ajax({url: url,dataType:"json",success: function (json){
@@ -134,39 +136,48 @@ bc.contract4ChargerForm = {
 		}
 		
 		//绑定失去焦点自编号唯一性检测
-		$(":input[name='e.code']").blur(function(){
-			var $obj = $(this);
-			var url = bc.root + "/bc-business/contract4Charger/checkCodeIsExist";
-			$.ajax({
-				url: url,
-				dataType:"json",
-				data: {code : $form.find(":input[name='e.code']").val()},
-				success: function (json){
-					if(json.isExist == "true"){ //合同编号存在
-						//组装提示查看信息
-						var str = json.msg.split(" ")[2];
-						str = "<a id='chakan' href=#>"+str+"</a>";
-						str = json.msg.split(" ")[0]+" "+json.msg.split(" ")[1]+" "+str+" "+json.msg.split(" ")[3];
-						var $a = bc.msg.alert(str, null ,function(){
-								$obj.focus();
-							}
-						);
-						$a.find('#chakan').click(function(){
-							bc.page.newWin({
-								url: bc.root + "/bc-business/contract4Charger/open?id="+json.id,
-								name: "查看经济合同",
-								mid:  "viewcontract4Charger",
-								afterClose: function(){
-									$obj.focus();
-								}
-							})
-							$a.dialog("close");
-						});
-					}
-				}
-			});
+		var $code = $form.find(":input[name='e.code']");
+		$code.bind("blur",function(){
+			var code = $code.val();
+			if(!code || code.length == 0)
+				return false;
+			
+			bc.contract4ChargerForm.checkCode($form,$code);
 		});
 		
+	},
+	
+	/**
+	 * 绑定失去焦点自编号唯一性检测
+	 */
+	checkCode : function ($form,$code){
+		var url = bc.root + "/bc-business/contract4Charger/checkCodeIsExist";
+		$.ajax({
+			url: url,
+			dataType:"json",
+			data: {code : $code.val(),excludeId: $form.find(":input[name='e.id']").val()},
+			success: function (json){
+				if(json.isExist == "true"){ //合同编号存在
+					//组装提示查看信息
+					var tempAry = json.msg.split(" ");
+					var str = tempAry[2];
+					str = "<a id='chakan' href=#>"+str+"</a>";
+					str = tempAry[0]+" "+tempAry[1]+" "+str+" "+tempAry[3];
+					var $a = bc.msg.alert(str);
+					$a.find('#chakan').click(function(){
+						bc.page.newWin({
+							url: bc.root + "/bc-business/contract4Charger/open?id="+json.id,
+							name: "查看经济合同",
+							mid:  "viewcontract4Charger",
+							afterClose: function(){
+								$code.focus();
+							}
+						})
+						$a.dialog("close");
+					});
+				}
+			}
+		});
 	},
 	
 	/**
@@ -214,8 +225,9 @@ bc.contract4ChargerForm = {
 		bc.page.newWin({
 			name:"经济合同续约",
 			mid: "renewContract4Charger",
-			url: bc.root + "/bc/common/selectDateRange",
-			data: {addDay:1,startDate: $page.find(":input[name='e.endDate']").val(),title:"请输入新的续约期限"},
+			url: bc.root + "/bc-business/selectDateAndCharger/select2",
+			data: {addDay:1,startDate: $page.find(":input[name='e.endDate']").val(),title:"请输入新的续约期限",
+				code: $page.find(":input[name='code']").val()},
 			afterClose: function(status){
 				logger.info("status=" + $.toJSON(status));
 				if(!status) return;
@@ -224,14 +236,15 @@ bc.contract4ChargerForm = {
 				bc.ajax({
 					url: bc.root + "/bc-business/contract4ChargerOperate/doRenew",
 					dataType: "json",
-					data: {newStartDate: status.startDate,newEndDate: status.endDate,id: $page.find(":input[name='e.id']").val()},
+					data: {newStartDate: status.startDate,newEndDate: status.endDate,id: $page.find(":input[name='e.id']").val(),code : status.code},
 					success: function(json){
 						logger.info("doRenew result=" + $.toJSON(json));
 						//完成后提示用户
 						//bc.msg.info(json.msg);
-						var str = json.msg.split(" ")[2];
+						var tempAry = json.msg.split(" ");
+						var str = tempAry[2];
 						str = "<a id='chakan' href=#>"+str+"</a>";
-						str = json.msg.split(" ")[0]+" "+json.msg.split(" ")[1]+" "+str+" "+json.msg.split(" ")[3];
+						str = tempAry[0]+" "+tempAry[1]+" "+str+" "+tempAry[3];
 						var $a = bc.msg.alert(str);
 						$a.find('#chakan').click(function(){
 							bc.page.newWin({
@@ -259,7 +272,9 @@ bc.contract4ChargerForm = {
 			name:"经济合同过户",
 			mid: "selectchangeChargerContract4Charger",
 			url: bc.root + "/bc-business/selectDateAndCharger/select",
-			data: {addDay:1,startDate: $page.find(":input[name='e.endDate']").val(),title:"过户操作",carId: $page.find(":input[name='carId']").val()},
+			data: {addDay:1,startDate: $page.find(":input[name='e.endDate']").val(),
+				title:"过户操作",carId: $page.find(":input[name='carId']").val(),code: $page.find(":input[name='code']").val()
+			},
 			afterClose: function(status){
 				logger.info("status=" + $.toJSON(status));
 				if(!status) return;
@@ -275,15 +290,17 @@ bc.contract4ChargerForm = {
 						carId: status.carId,
 						takebackOrigin: status.takebackOrigin,
 						assignChargerIds : status.assignChargerIds,
-						assignChargerNames : status.assignChargerNames
+						assignChargerNames : status.assignChargerNames,
+						code : status.code
 					},
 					success: function(json){
 						logger.info("doRenew result=" + $.toJSON(json));
 						//完成后提示用户
 						//bc.msg.info(json.msg);
-						var str = json.msg.split(" ")[2];
+						var tempAry = json.msg.split(" ");
+						var str = tempAry[2];
 						str = "<a id='chakan' href=#>"+str+"</a>";
-						str = json.msg.split(" ")[0]+" "+json.msg.split(" ")[1]+" "+str+" "+json.msg.split(" ")[3];
+						str = tempAry[0]+" "+tempAry[1]+" "+str+" "+tempAry[3];
 						var $a = bc.msg.alert(str);
 						$a.find('#chakan').click(function(){
 							bc.page.newWin({
@@ -312,7 +329,9 @@ bc.contract4ChargerForm = {
 			name:"经济合同重发包",
 			mid: "selectchangeChargerContract4Charger",
 			url: bc.root + "/bc-business/selectDateAndCharger/select",
-			data: {addDay:1,startDate: $page.find(":input[name='e.endDate']").val(),title:"重发包操作",carId: $page.find(":input[name='carId']").val()},
+			data: {addDay:1,startDate: $page.find(":input[name='e.endDate']").val(),
+				title:"重发包操作",carId: $page.find(":input[name='carId']").val(),code: $page.find(":input[name='code']").val()
+			},
 			afterClose: function(status){
 				logger.info("status=" + $.toJSON(status));
 				if(!status) return;
@@ -328,15 +347,17 @@ bc.contract4ChargerForm = {
 						carId: status.carId,
 						takebackOrigin: status.takebackOrigin,
 						assignChargerIds : status.assignChargerIds,
-						assignChargerNames : status.assignChargerNames
+						assignChargerNames : status.assignChargerNames,
+						code : status.code
 					},
 					success: function(json){
 						logger.info("doRenew result=" + $.toJSON(json));
 						//完成后提示用户
 						//bc.msg.info(json.msg);
-						var str = json.msg.split(" ")[2];
+						var tempAry = json.msg.split(" ");
+						var str = tempAry[2];
 						str = "<a id='chakan' href=#>"+str+"</a>";
-						str = json.msg.split(" ")[0]+" "+json.msg.split(" ")[1]+" "+str+" "+json.msg.split(" ")[3];
+						str = tempAry[0]+" "+tempAry[1]+" "+str+" "+tempAry[3];
 						var $a = bc.msg.alert(str);
 						$a.find('#chakan').click(function(){
 							bc.page.newWin({
@@ -382,6 +403,7 @@ bc.contract4ChargerForm = {
 	//保存的处理
 	save:function(){
 		$page = $(this);
+		
 		//先将角色的id合并到隐藏域
 		var ids=[];
 		var names=[];
@@ -396,8 +418,15 @@ bc.contract4ChargerForm = {
 			bc.msg.alert("最少选择一个责任人！");
 			return false;
 		}
+		
+		//唯一性检测
+		var option = { callback : function (json){
+				bc.msg.slide(json.msg);
+				return false;
+			}
+		};
 		//调用标准的方法执行保存
-		bc.page.save.call(this);
+		bc.page.save.call(this,option);
 	}
 		
 		
