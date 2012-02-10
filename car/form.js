@@ -69,19 +69,51 @@ bc.carForm = {
 			if(!plateNo || plateNo.length == 0)
 				return false;
 			
-			var $this = $(this);
-			$.ajax({
-				url: bc.root + "/bc-business/car/checkPlateIsExists",
-				dataType:"json",
-				data: {plateNo: plateNo, plateType: $form.find(":input[name='e.plateType']").val(), excludeId: $form.find(":input[name='e.id']").val()},
-				success: function (json){
-					if(json.isExists == "true"){ // 已被占用
-						bc.msg.alert(json.msg, null ,function(){
-							//$this.focus();// 重新获取焦点
-						});
-					}
-				}
-			});
+			bc.carForm.checkPlateNo($form);
 		});
+	},
+	
+	checkPlateNo:function($form){
+		var $plateNo = $form.find(":input[name='e.plateNo']");
+		$.ajax({
+			url: bc.root + "/bc-business/car/checkPlateIsExists",
+			dataType:"json",
+			data: {plateNo: $plateNo.val(), plateType: $form.find(":input[name='e.plateType']").val(), excludeId: $form.find(":input[name='e.id']").val()},
+			success: function (json){
+				if(json.isExists == "true"){ // 已被占用
+					//组装提示查看信息
+					var tempAry = json.msg.split(" ");
+					var str = tempAry[2];
+					str = "<a id='chakan' href=#>"+str+"</a>";
+					str = tempAry[0]+" "+tempAry[1]+" "+str+" "+tempAry[3];
+					var $a = bc.msg.alert(str);
+					$a.find('#chakan').click(function(){
+						bc.page.newWin({
+							url: bc.root + "/bc-business/car/edit?id="+json.id,
+							name: "编辑车辆",
+							mid:  "edit4Car",
+							afterClose: function(){
+								$plateNo.focus();
+							}
+						})
+						$a.dialog("close");
+					});
+				}
+			}
+		});
+	},
+	
+	//保存的处理
+	save:function(){
+		$page = $(this);
+		
+		//唯一性检测
+		var option = { callback : function (json){
+				bc.msg.slide(json.msg);
+				return false;
+			}
+		};
+		//调用标准的方法执行保存
+		bc.page.save.call(this,option);
 	}
 };
