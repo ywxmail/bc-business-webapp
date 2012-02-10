@@ -547,7 +547,7 @@ bs.selectInsuranceType = function(option) {
 	if(option.selecteds)
 		option.data.selecteds = option.selecteds;
 	if(option.multiple === true)
-		option.data.multiple = false;
+		option.data.multiple = true;
 	
 	//弹出选择对话框
 	bc.page.newWin(jQuery.extend({
