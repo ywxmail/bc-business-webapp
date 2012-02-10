@@ -52,7 +52,7 @@
 						</tr>
 						<tr>
 							<td class="label">*<s:text name="carMan.name"/>:</td>
-							<td class="value"><s:textfield name="e.name" cssStyle="width:8em;" data-validate="required" cssClass="ui-widget-content"/><s:radio name="e.sex" list="#{'1':'男','2':'女'}" 
+							<td class="value"><s:textfield name="e.name" cssStyle="width:8em;" data-validate='{"required":true,"type":"string","msg":"必须填写司机的姓名"}' cssClass="ui-widget-content"/><s:radio name="e.sex" list="#{'1':'男','2':'女'}" 
 								value="e.sex" cssStyle="width:auto;"/></td>
 							<td class="label"><s:text name="carMan.houseType"/>:</td>
 							<td class="value"><s:textfield name="e.houseType" readonly="true" cssClass="ui-widget-content"/></td>
@@ -72,7 +72,7 @@
 						</tr>
 						<tr>
 							<td class="label"><s:text name="carMan.phone1"/>:</td>
-							<td class="value"><s:textfield name="e.phone" data-validate='{required:false,type:"phone"}' cssClass="ui-widget-content"/></td>
+							<td class="value"><s:textfield name="e.phone" data-validate='{"required":false,"type":"phone"}' cssClass="ui-widget-content"/></td>
 							<td class="label"><s:text name="carMan.workDate"/>:</td>
 					        <td class="value relative">
 								<input type="text" name="e.workDate" data-validate='{"type":"date","required":false}'
@@ -85,7 +85,7 @@
 						</tr>
 						<tr>
 							<td class="label"><s:text name="carMan.phone2"/>:</td>
-							<td class="value"><s:textfield name="e.phone1" data-validate='{required:false,type:"phone"}' cssClass="ui-widget-content"/></td>
+							<td class="value"><s:textfield name="e.phone1" data-validate='{"required":false,"type":"phone"}' cssClass="ui-widget-content"/></td>
 							<td class="label"><s:text name="carMan.formerUnit"/>:</td>
 							<td class="value"><s:textfield name="e.formerUnit" cssClass="ui-widget-content"/></td>
 						</tr>
@@ -111,8 +111,8 @@
 							<td class="value" colspan="2"><s:textfield name="e.cert4CYZG" cssClass="ui-widget-content"/></td>
 						</tr>
 						<tr>
-							<td class="label"><s:text name="carMan.cert4Indentity"/>:</td>
-							<td class="value"><s:textfield name="e.cert4Indentity" cssClass="ui-widget-content"/></td>
+							<td class="label">*<s:text name="carMan.cert4Indentity"/>:</td>
+							<td class="value"><s:textfield name="e.cert4Indentity" cssClass="ui-widget-content" data-validate='{"required":true,"method":"bc.carManForm.validateIndentity","msg":"必须为15位或18位身份证格式"}'/></td>
 							<td class="label"><s:text name="carMan.model"/>:</td>
 							<td class="value" colspan="2">
 								<!--<s:select list="carManModelList" listKey="value" listValue="value" headerKey="" headerValue="" name="e.model"  cssClass="ui-widget-content"/>-->
