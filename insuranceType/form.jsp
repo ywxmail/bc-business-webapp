@@ -27,6 +27,10 @@
 											headerKey="" headerValue="" cssClass="ui-widget-content" /></td>
 					</tr>
 					<tr>
+						<td class="label"><s:text name="insuranceType.orderNo"/>:</td>
+						<td class="value"><s:textfield name="e.orderNo"cssClass="ui-widget-content" /></td>
+					</tr>
+					<tr>
 						<td class="label"><s:text name="insuranceType.statuses"/>:</td>
 						<td><s:radio name="e.status" list="#{'0':'在案','1':'禁用'}" cssStyle="width:auto;"/></td>
 					</tr>
