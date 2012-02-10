@@ -69,12 +69,11 @@ bc.carForm = {
 			if(!plateNo || plateNo.length == 0)
 				return false;
 			
-			bc.carForm.checkPlateNo($form);
+			bc.carForm.checkPlateNo($form,$plateNo);
 		});
 	},
 	
-	checkPlateNo:function($form){
-		var $plateNo = $form.find(":input[name='e.plateNo']");
+	checkPlateNo:function($form,$plateNo){
 		$.ajax({
 			url: bc.root + "/bc-business/car/checkPlateIsExists",
 			dataType:"json",

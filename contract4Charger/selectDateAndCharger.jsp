@@ -36,9 +36,11 @@
 					data-cfg='endDate'></li>
 			</ul>
 		</div>
+		<!--  合同编号 -->
 		<div>
-			<label for="takebackOrigin" style="margin:4px;">
+			<s:text name="contract.code"/>:<s:textfield name="code" data-validate="required" cssClass="ui-widget-content"/>
 			<s:checkbox id="takebackOrigin" name="takebackOrigin" cssStyle="margin:2px 0;_margin:0;"/>
+			<label for="takebackOrigin" style="margin:4px;">
 			<span style="margin:0 4px;_margin:0 2px;"><s:text name="contract4Charger.takebackOrigin"/></span>
 			</label>
 		</div>

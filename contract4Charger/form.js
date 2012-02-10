@@ -142,7 +142,7 @@ bc.contract4ChargerForm = {
 			if(!code || code.length == 0)
 				return false;
 			
-			bc.contract4ChargerForm.checkCode($form);
+			bc.contract4ChargerForm.checkCode($form,$code);
 		});
 		
 	},
@@ -150,8 +150,7 @@ bc.contract4ChargerForm = {
 	/**
 	 * 绑定失去焦点自编号唯一性检测
 	 */
-	checkCode : function ($form){
-		var $code = $form.find(":input[name='e.code']");
+	checkCode : function ($form,$code){
 		var url = bc.root + "/bc-business/contract4Charger/checkCodeIsExist";
 		$.ajax({
 			url: url,
@@ -226,8 +225,9 @@ bc.contract4ChargerForm = {
 		bc.page.newWin({
 			name:"经济合同续约",
 			mid: "renewContract4Charger",
-			url: bc.root + "/bc/common/selectDateRange",
-			data: {addDay:1,startDate: $page.find(":input[name='e.endDate']").val(),title:"请输入新的续约期限"},
+			url: bc.root + "/bc-business/selectDateAndCharger/select2",
+			data: {addDay:1,startDate: $page.find(":input[name='e.endDate']").val(),title:"请输入新的续约期限",
+				code: $page.find(":input[name='code']").val()},
 			afterClose: function(status){
 				logger.info("status=" + $.toJSON(status));
 				if(!status) return;
@@ -236,7 +236,7 @@ bc.contract4ChargerForm = {
 				bc.ajax({
 					url: bc.root + "/bc-business/contract4ChargerOperate/doRenew",
 					dataType: "json",
-					data: {newStartDate: status.startDate,newEndDate: status.endDate,id: $page.find(":input[name='e.id']").val()},
+					data: {newStartDate: status.startDate,newEndDate: status.endDate,id: $page.find(":input[name='e.id']").val(),code : status.code},
 					success: function(json){
 						logger.info("doRenew result=" + $.toJSON(json));
 						//完成后提示用户
@@ -244,7 +244,7 @@ bc.contract4ChargerForm = {
 						var tempAry = json.msg.split(" ");
 						var str = tempAry[2];
 						str = "<a id='chakan' href=#>"+str+"</a>";
-						str = tempAry(" ")[0]+" "+tempAry[1]+" "+str+" "+tempAry[3];
+						str = tempAry[0]+" "+tempAry[1]+" "+str+" "+tempAry[3];
 						var $a = bc.msg.alert(str);
 						$a.find('#chakan').click(function(){
 							bc.page.newWin({
@@ -272,7 +272,9 @@ bc.contract4ChargerForm = {
 			name:"经济合同过户",
 			mid: "selectchangeChargerContract4Charger",
 			url: bc.root + "/bc-business/selectDateAndCharger/select",
-			data: {addDay:1,startDate: $page.find(":input[name='e.endDate']").val(),title:"过户操作",carId: $page.find(":input[name='carId']").val()},
+			data: {addDay:1,startDate: $page.find(":input[name='e.endDate']").val(),
+				title:"过户操作",carId: $page.find(":input[name='carId']").val(),code: $page.find(":input[name='code']").val()
+			},
 			afterClose: function(status){
 				logger.info("status=" + $.toJSON(status));
 				if(!status) return;
@@ -288,7 +290,8 @@ bc.contract4ChargerForm = {
 						carId: status.carId,
 						takebackOrigin: status.takebackOrigin,
 						assignChargerIds : status.assignChargerIds,
-						assignChargerNames : status.assignChargerNames
+						assignChargerNames : status.assignChargerNames,
+						code : status.code
 					},
 					success: function(json){
 						logger.info("doRenew result=" + $.toJSON(json));
@@ -326,7 +329,9 @@ bc.contract4ChargerForm = {
 			name:"经济合同重发包",
 			mid: "selectchangeChargerContract4Charger",
 			url: bc.root + "/bc-business/selectDateAndCharger/select",
-			data: {addDay:1,startDate: $page.find(":input[name='e.endDate']").val(),title:"重发包操作",carId: $page.find(":input[name='carId']").val()},
+			data: {addDay:1,startDate: $page.find(":input[name='e.endDate']").val(),
+				title:"重发包操作",carId: $page.find(":input[name='carId']").val(),code: $page.find(":input[name='code']").val()
+			},
 			afterClose: function(status){
 				logger.info("status=" + $.toJSON(status));
 				if(!status) return;
@@ -342,7 +347,8 @@ bc.contract4ChargerForm = {
 						carId: status.carId,
 						takebackOrigin: status.takebackOrigin,
 						assignChargerIds : status.assignChargerIds,
-						assignChargerNames : status.assignChargerNames
+						assignChargerNames : status.assignChargerNames,
+						code : status.code
 					},
 					success: function(json){
 						logger.info("doRenew result=" + $.toJSON(json));
