@@ -142,21 +142,32 @@ bc.contract4ChargerForm = {
 			if(!code || code.length == 0)
 				return false;
 			
-			bc.contract4ChargerForm.checkCode($form,$code);
+			bc.contract4ChargerForm.checkCode($form.find(":input[name='e.id']").val(),$code.val());
 		});
 		
+	},
+	
+	/** 编号的格式验证:上下文为validate对象,格式为CLHT+[yyyy]+[MM]+[两位流水号] */
+	validateCode: function(element, $form){
+		return /^CLHT\d{8}$/.test(element.value);
 	},
 	
 	/**
 	 * 绑定失去焦点自编号唯一性检测
 	 */
-	checkCode : function ($form,$code){
+	checkCode : function (excludeId,code,callback){
 		var url = bc.root + "/bc-business/contract4Charger/checkCodeIsExist";
 		$.ajax({
 			url: url,
 			dataType:"json",
-			data: {code : $code.val(),excludeId: $form.find(":input[name='e.id']").val()},
+			data: {code : code,excludeId: excludeId},
 			success: function (json){
+				// 自定义回调函数
+				if(typeof callback == "function"){
+					return callback.call(this,json);
+				}
+				
+				// 默认的处理
 				if(json.isExist == "true"){ //合同编号存在
 					//组装提示查看信息
 					var tempAry = json.msg.split(" ");
@@ -168,7 +179,7 @@ bc.contract4ChargerForm = {
 						bc.page.newWin({
 							url: bc.root + "/bc-business/contract4Charger/open?id="+json.id,
 							name: "查看经济合同",
-							mid:  "viewcontract4Charger",
+							mid:  "contract4Charger." + json.id,
 							afterClose: function(){
 								$code.focus();
 							}
@@ -226,7 +237,7 @@ bc.contract4ChargerForm = {
 			name:"经济合同续约",
 			mid: "renewContract4Charger",
 			url: bc.root + "/bc-business/selectDateAndCharger/select2",
-			data: {addDay:1,startDate: $page.find(":input[name='e.endDate']").val(),title:"请输入新的续约期限",
+			data: {endDate: $page.find(":input[name='e.endDate']").val(),title:"请输入新的续约期限",
 				code: $page.find(":input[name='code']").val()},
 			afterClose: function(status){
 				logger.info("status=" + $.toJSON(status));
@@ -248,11 +259,12 @@ bc.contract4ChargerForm = {
 						var $a = bc.msg.alert(str);
 						$a.find('#chakan').click(function(){
 							bc.page.newWin({
-								url: bc.root + "/bc-business/contract4Charger/open?id="+json.id,
-								name: "查看经济合同",
-								mid:  "viewcontract4Charger"
+								url: bc.root + "/bc-business/contract4Charger/edit?id="+json.id,
+								name: $page.find(":input[name='e.ext_str1']").val() + "&nbsp;经济合同续约",
+								mid: "contract4Charger." + json.id
 							})
 							$a.dialog("close");
+							return false;
 						});
 
 						$page.data("data-status","saved");
@@ -272,7 +284,7 @@ bc.contract4ChargerForm = {
 			name:"经济合同过户",
 			mid: "selectchangeChargerContract4Charger",
 			url: bc.root + "/bc-business/selectDateAndCharger/select",
-			data: {addDay:1,startDate: $page.find(":input[name='e.endDate']").val(),
+			data: {endDate: $page.find(":input[name='e.endDate']").val(),
 				title:"过户操作",carId: $page.find(":input[name='carId']").val(),code: $page.find(":input[name='code']").val()
 			},
 			afterClose: function(status){
@@ -304,11 +316,12 @@ bc.contract4ChargerForm = {
 						var $a = bc.msg.alert(str);
 						$a.find('#chakan').click(function(){
 							bc.page.newWin({
-								url: bc.root + "/bc-business/contract4Charger/open?id="+json.id,
-								name: "查看经济合同",
-								mid:  "viewcontract4Charger"
+								url: bc.root + "/bc-business/contract4Charger/edit?id="+json.id,
+								name: $page.find(":input[name='e.ext_str1']").val() + "&nbsp;经济合同过户",
+								mid: "contract4Charger." + json.id
 							})
 							$a.dialog("close");
+							return false;
 						});
 
 						$page.data("data-status","saved");
@@ -329,7 +342,7 @@ bc.contract4ChargerForm = {
 			name:"经济合同重发包",
 			mid: "selectchangeChargerContract4Charger",
 			url: bc.root + "/bc-business/selectDateAndCharger/select",
-			data: {addDay:1,startDate: $page.find(":input[name='e.endDate']").val(),
+			data: {endDate: $page.find(":input[name='e.endDate']").val(),
 				title:"重发包操作",carId: $page.find(":input[name='carId']").val(),code: $page.find(":input[name='code']").val()
 			},
 			afterClose: function(status){
@@ -361,11 +374,12 @@ bc.contract4ChargerForm = {
 						var $a = bc.msg.alert(str);
 						$a.find('#chakan').click(function(){
 							bc.page.newWin({
-								url: bc.root + "/bc-business/contract4Charger/open?id="+json.id,
-								name: "查看经济合同",
-								mid:  "viewcontract4Charger"
+								url: bc.root + "/bc-business/contract4Charger/edit?id="+json.id,
+								name: $page.find(":input[name='e.ext_str1']").val() + "&nbsp;经济合同重发包",
+								mid: "contract4Charger." + json.id
 							})
 							$a.dialog("close");
+							return false;
 						});
 
 						$page.data("data-status","saved");
@@ -396,7 +410,6 @@ bc.contract4ChargerForm = {
 					return false;
 				}
 			});
-			
 		});
 	},
 	

@@ -38,7 +38,9 @@
 		</div>
 		<!--  合同编号 -->
 		<div>
-			<s:text name="contract.code"/>:<s:textfield name="code" data-validate="required" cssClass="ui-widget-content"/>
+			<s:text name="contract.code"/>:<s:textfield name="code" data-validate="required" 
+				cssClass="ui-widget-content" 
+				data-validate='{"required":true,"method":"bc.contract4ChargerForm.validateCode","msg":"请输入正确的经济合同编号格式：<br/>CLHT+[4位年份]+[2位月份]+[2位流水号]"}'/>
 			<s:checkbox id="takebackOrigin" name="takebackOrigin" cssStyle="margin:2px 0;_margin:0;"/>
 			<label for="takebackOrigin" style="margin:4px;">
 			<span style="margin:0 4px;_margin:0 2px;"><s:text name="contract4Charger.takebackOrigin"/></span>
