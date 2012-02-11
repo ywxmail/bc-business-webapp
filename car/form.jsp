@@ -51,7 +51,7 @@
 								<td class="label" >*<s:text name="car.plate"/>:</td>
 								<td class="value" >
 									<s:if test="!e.isNew()">
-										<s:textfield name="e.plateType" cssStyle="width:4em;text-align:right;" data-validate="required" cssClass="ui-widget-content"/><s:textfield name="e.plateNo" cssStyle="width:8em;" data-validate='{"minLen": 5,"maxLen": 5,"required":true,"type":"string"}' cssClass="ui-widget-content"/>
+										<s:textfield name="e.plateType" readonly="true" cssStyle="width:4em;text-align:right;" data-validate="required" cssClass="ui-widget-content"/><s:textfield name="e.plateNo" readonly="true" cssStyle="width:8em;" data-validate='{"minLen": 5,"maxLen": 5,"required":true,"type":"string"}' cssClass="ui-widget-content"/>
 									</s:if>
 									<s:else>
 										<s:textfield name="e.plateType" cssStyle="width:4em;text-align:right;" value='%{getText("car.plate.yue.A")}' data-validate="required" cssClass="ui-widget-content"/><s:textfield name="e.plateNo" cssStyle="width:8em;" data-validate='{"minLen": 5,"maxLen": 5,"required":true,"type":"string"}' cssClass="ui-widget-content"/>
