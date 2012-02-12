@@ -395,22 +395,32 @@ bc.contract4ChargerForm = {
 	/** 注销处理 */
 	doLogout : function($page) {
 		var $page = $(this);
-		bc.msg.confirm("确定要注销吗？",function(){		
-			//执行注销处理
-			bc.ajax({
-				url: bc.root + "/bc-business/contract4ChargerOperate/doLogout",
-				dataType: "json",
-				data: {id: $page.find(":input[name='e.id']").val()},
-				success: function(json){
-					logger.info("doLogout result=" + $.toJSON(json));
-					//完成后提示用户
-					bc.msg.info(json.msg);
-					$page.data("data-status","saved");
-					$page.dialog("close");
-					return false;
-				}
-			});
-		});
+		// 让用户输入新的注销日期
+		bc.page.newWin({
+			name: "注销经济合同",
+			mid: "logoutContract4Charger",
+			url: bc.root + "/bc/common/selectDate",
+			data: {time:true,title:"请输入经济合同的注销日期"},
+			afterClose: function(status){
+				logger.info("status=" + $.toJSON(status));
+				if(!status) return;
+				
+				//执行注销处理
+				bc.ajax({
+					url: bc.root + "/bc-business/contract4ChargerOperate/doLogout",
+					dataType: "json",
+					data: {id: $page.find(":input[name='e.id']").val(),logoutDate: status},
+					success: function(json){
+						logger.info("doLogout result=" + $.toJSON(json));
+						//完成后提示用户
+						bc.msg.info(json.msg);
+						$page.data("data-status","saved");
+						$page.dialog("close");
+						return false;
+					}
+				});
+			}
+		});		
 	},
 	
 	//保存的处理
