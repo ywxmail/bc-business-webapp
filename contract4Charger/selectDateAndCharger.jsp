@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<div title='<s:property value="title"/>' data-type='form'
+<div title='过户操作' data-type='form'
 	class="bc-page"
 	data-js='<s:url value="/bc-business/contract4Charger/selectDateAndCharger.js" />'
 	data-initMethod='bc.selectDateAndChargerForm.init'
@@ -9,8 +9,7 @@
 		"width":330,height:250,modal:true
 	}'
 	style="overflow-y: hidden;">
-	<s:form name="selectDateAndChargerForm" theme="simple"
-		cssStyle="">
+	<s:form name="selectDateAndChargerForm" theme="simple">
 		<div class="ui-widget-header" style="border-width:0;padding: 0.25em;">
 			<span style="text">请选择新的合同期限：</span>
 		</div>
@@ -19,7 +18,7 @@
 				data-validate='{"type":"date","required":true}'
 				data-cfg='{"changeYear":true}'
 				value='<s:date format="yyyy-MM-dd" name="startDate" />'
-				style="width: 10em;" class="bc-date ui-widget-content" />
+				style="width: 9em;" class="bc-date ui-widget-content" />
 			<ul class="inputIcons" style="right: 0px;">
 				<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"
 					data-cfg='startDate'></li>
@@ -30,7 +29,7 @@
 				data-validate='{"type":"date","required":true}'
 				data-cfg='{"changeYear":true}'
 				value='<s:date format="yyyy-MM-dd" name="endDate" />'
-				style="width: 10em;" class="bc-date ui-widget-content" />
+				style="width: 9em;" class="bc-date ui-widget-content" />
 			<ul class="inputIcons" style="right: 0px;">
 				<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"
 					data-cfg='endDate'></li>
