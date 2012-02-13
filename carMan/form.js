@@ -52,7 +52,6 @@ bc.carManForm = {
 	},
 	/** 身份证验证方法:上下文为validate对象 */
 	validateIndentity: function(element, $form){
-		//alert("v=" + element.value + ",r=" + /^(\d{3}|(\d{5}\w{1}))$/.test(element.value));
 		return /^(\d{15}|(\d{17}\w{1}))$/.test(element.value);
 	}
 };

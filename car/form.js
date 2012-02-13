@@ -62,15 +62,17 @@ bc.carForm = {
 			});
 		});
 		
-		// 车牌号唯一性检测
-		var $plateNo = $form.find(":input[name='e.plateNo']");
-		$plateNo.bind("blur",function(){
-			var plateNo = $plateNo.val();
-			if(!plateNo || plateNo.length == 0)
-				return false;
-			
-			bc.carForm.checkPlateNo($form,$plateNo);
-		});
+		// 车牌号唯一性检测:新建时
+		if($form.find(":input[name='e.id']").val().length == 0){
+			var $plateNo = $form.find(":input[name='e.plateNo']");
+			$plateNo.bind("blur",function(){
+				var plateNo = $plateNo.val();
+				if(!plateNo || plateNo.length == 0)
+					return false;
+				
+				bc.carForm.checkPlateNo($form,$plateNo);
+			});
+		}
 	},
 	
 	checkPlateNo:function($form,$plateNo){
@@ -104,15 +106,14 @@ bc.carForm = {
 	
 	//保存的处理
 	save:function(){
-		$page = $(this);
-		
-		//唯一性检测
-		var option = { callback : function (json){
-				bc.msg.slide(json.msg);
-				return false;
-			}
-		};
 		//调用标准的方法执行保存
-		bc.page.save.call(this,option);
+		bc.page.save.call(this,{callback: function(json){
+			if(json.success){
+				bc.msg.slide(json.msg);
+			}else{
+				bc.msg.alert(json.msg);
+			}
+			return false;
+		}});
 	}
 };

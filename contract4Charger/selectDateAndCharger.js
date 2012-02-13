@@ -2,12 +2,8 @@ bc.selectDateAndChargerForm = {
 	init : function() {
 		var $page = $(this);
 		
-		//默认就弹出日期选择框
-		var $startDate = $page.find(":input[name='startDate']");
-		if($startDate.val().length > 0)
-			$page.find(":input[name='endDate']").focus();
-		else
-			$startDate.focus();
+		// 聚焦到合同编号框
+		$page.find(":input[name='code']").focus();
 		
 		/* 选择司机责任人*/
 		//需要组装的li
@@ -53,17 +49,6 @@ bc.selectDateAndChargerForm = {
 				}
 			});
 		});
-		
-		//绑定失去焦点自编号唯一性检测
-		var $code = $page.find(":input[name='code']");
-		$code.bind("blur",function(){
-			var code = $code.val();
-			if(!code || code.length == 0)
-				return false;
-			
-			bc.contract4ChargerForm.checkCode($page,$code);
-		});
-		
 	},
 	clickOk : function(option) {
 		var $page = $(this);
@@ -87,16 +72,26 @@ bc.selectDateAndChargerForm = {
 			bc.msg.alert("最少选择一个责任人！");
 			return;
 		}
-		$page.data("data-status",{
-			startDate: $page.find(":input[name='startDate']").val(),
-			endDate: $page.find(":input[name='endDate']").val(),
-			carId: $page.find(":input[name='carId']").val(),
-			takebackOrigin: $page.find(":input[name='takebackOrigin']").val(),
-			assignChargerIds: assignChargerIds,
-			assignChargerNames: assignChargerNames,
-			code : $page.find(":input[name='code']").val()
-		});
 		
-		$page.dialog("close");
+		//检测编号的唯一性
+		var $code = $page.find(":input[name='code']");
+		bc.contract4ChargerForm.checkCode("",$code.val(),function(json){
+			if(json.isExist == "true"){ 
+				//合同编号存在
+				bc.msg.alert("所输入的合同编号已经被占用，请重新输入！");
+			}else{
+				// 返回
+				$page.data("data-status",{
+					startDate: $page.find(":input[name='startDate']").val(),
+					endDate: $page.find(":input[name='endDate']").val(),
+					carId: $page.find(":input[name='carId']").val(),
+					takebackOrigin: $page.find(":input[name='takebackOrigin']").val(),
+					assignChargerIds: assignChargerIds,
+					assignChargerNames: assignChargerNames,
+					code : $code.val()
+				});
+				$page.dialog("close");
+			}
+		});
 	}
 };
