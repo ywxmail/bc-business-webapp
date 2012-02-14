@@ -33,7 +33,7 @@
 							</tr>
 							<tr>
 								<td class="label">*<s:text name="contract.code"/>:</td>
-								<td class="value "><s:textfield name="e.code" data-validate='{"required":true,"method":"bc.contract4ChargerForm.validateCode","msg":"请输入正确的经济合同编号格式：<br/>CLHT+[4位年份]+[2位月份]+[2位流水号]"}' cssClass="ui-widget-content"/></td>
+								<td class="value "><s:textfield name="e.code" data-validate="required" cssClass="ui-widget-content"/></td>
 								<td class="label">*<s:text name="contract4Charger.signType"/>:</td>
 								<td class="value ">
 									<s:select name="e.signType" list="signTypeList" listKey="value" listValue="value"  data-validate="required" headerKey="" headerValue="" cssClass="ui-widget-content" ></s:select>
