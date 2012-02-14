@@ -195,6 +195,8 @@
 		<s:hidden name="e.author.id" />
 		<s:hidden name="e.drivingStatus" />
 		<s:hidden name="e.charger" />
+		<s:hidden name="e.moveType" />
+		<s:hidden name="e.classes" />
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 		<s:hidden name="e.modifier.id"/>
 		<input type="hidden" name="e.modifiedDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.modifiedDate" />'/>
