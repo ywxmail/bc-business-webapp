@@ -16,7 +16,8 @@
 					<li class="tab ui-widget-content"><a href= "#otherFormFields2" class="ui-state-default">注销信息</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/carByDriverHistorys/list?carId=%{e.id}" />' class="ui-state-default">迁移记录</a></li>
 					<!--<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/carByDrivers/list?carId=%{e.id}"/>' class="ui-state-default">营运司机</a></li>-->
-					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contracts/list?carId=%{e.id}" />' class="ui-state-default">合同</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contract4Chargers/list?carId=%{e.id}" />' class="ui-state-default">经济合同</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contract4Labours/list?carId=%{e.id}" />' class="ui-state-default">劳动合同</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/policys/list?carId=%{e.id}" />' class="ui-state-default">保单</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/car4Cert/list?carId=%{e.id}" />' class="ui-state-default">证件</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/blacklists/list?carId=%{e.id}" />' class="ui-state-default">黑名单</a></li>

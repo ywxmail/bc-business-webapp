@@ -12,7 +12,7 @@ bc.caseAdviceForm = {
 		if($form.find(":input[name='isMoreCar']").val()=="true"){
 			var carManId=$form.find(":input[name='carManId']").val();
 			var url=bc.root +"/bc-business/selectMoreCarWithCarMan/selectCars?carManId="+carManId;
-			var option = jQuery.extend({
+			bc.page.newWin({
 				url: url,
 				name: "选择车辆信息",
 				mid: "selectCar",
@@ -25,8 +25,7 @@ bc.caseAdviceForm = {
 						$form.find(":hidden[name='e.motorcadeName']").val(motorcadeName);
 					}
 				}
-			},option);
-			bc.page.newWin(option);
+			});
 		};
 		if($form.find(":input[name='isNullCar']").val()=="true"){
 			bc.msg.alert("该司机还没有驾驶任何车辆！");	
@@ -34,7 +33,7 @@ bc.caseAdviceForm = {
 		if($form.find(":input[name='isMoreCarMan']").val()=="true"){
 			var carId=$form.find(":input[name='carId']").val();
 			var url=bc.root +"/bc-business/selectMoreCarManWithCar/selectCarMans?carId="+carId;
-			var option = jQuery.extend({
+			bc.page.newWin({
 				url: url,
 				name: "选择司机信息",
 				mid: "selectCarMan",
@@ -45,8 +44,7 @@ bc.caseAdviceForm = {
 						$form.find(":input[name='e.driverCert']").val(carMan.cert4FWZG);
 					}
 				}
-			},option);
-			bc.page.newWin(option);
+			});
 		};
 		if($form.find(":input[name='isNullCarMan']").val()=="true"){
 			bc.msg.alert("该车辆还没有被任何司机驾驶！");	
