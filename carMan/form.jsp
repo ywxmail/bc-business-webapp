@@ -33,8 +33,8 @@
 	        </div>
 	        <div class="contentContainer ui-helper-reset ui-widget-content noBottomBoder">
 	        <div id="otherFormFields" class="content active">
-	        <div style="width:740px">
-				<table class="formFields" cellspacing="2" cellpadding="0">
+				<table class="formFields" cellspacing="2" cellpadding="0" style="width:740px">
+					</tbody>
 					    <tr class="widthMarker">
 							<td style="width: 100px;">&nbsp;</td>
 							<td style="width: 260px;">&nbsp;</td>
@@ -189,7 +189,6 @@
 						</tr>
 					</tbody>
 				</table>
-			 </div>
 			</div>
 			</div>
 		</div>

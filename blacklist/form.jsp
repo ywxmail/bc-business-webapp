@@ -6,9 +6,14 @@
 	data-initMethod='bc.business.blacklistForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="blacklistForm" theme="simple">
-		<div class="formFields ui-widget-content" >
-			<table class="formFields" cellspacing="2" cellpadding="0"  >
+			<table class="formFields ui-widget-content" cellspacing="2" cellpadding="0" style="width:640px">
 				<tbody>
+					<tr class="widthMarker">
+						<td style="width: 100px;">&nbsp;</td>
+						<td style="width: 240px;">&nbsp;</td>
+						<td style="width: 100px;">&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
 					<tr>
 						<td class="label">*<s:text name="blacklist.subject"/>:</td>
 						<td class="value " colspan="3"><s:textfield name="e.subject"  data-validate="required" cssClass="ui-widget-content"/></td>
@@ -49,9 +54,13 @@
 					</tr>
 					<tr>
 						<td class="label" colspan="2" style="text-align:left;">
-						    <fieldset style="width:320px" class="ui-corner-all ui-widget-content">
+						    <fieldset style="width:320px" class="ui-widget-content">
 						          <legend>锁定信息</legend>
 						          <table class="formFields" cellspacing="2" cellpadding="0" style="height:200px">
+									<tr class="widthMarker">
+										<td style="width: 80px;">&nbsp;</td>
+										<td>&nbsp;</td>
+									</tr>
 						              <tr>
 					                      <td class="label"><s:text name="blacklist.locker.name"/>:</td>
 					                      <td><s:property value="e.locker.name" />(<s:date name="e.lockDate" format="yyyy-MM-dd HH:mm:ss"/>)</td>
@@ -64,7 +73,7 @@
 						   </fieldset>
 						</td>
 						<td class="value" colspan="2" >
-						    <fieldset style="width:320px" class="ui-corner-all ui-widget-content">
+						    <fieldset style="width:320px" class="ui-widget-content">
 						          <legend>解锁信息</legend>
 						          <table class="formFields" cellspacing="2" cellpadding="0" style="height:200px" >
  						          <s:if test="e.isNew()" >
@@ -89,20 +98,23 @@
 						    </fieldset>
 						</td>
 					</tr>
+					<tr>
+						<td class="label" colspan="4">
+							<div class="formTopInfo">
+							        <s:if test="%{e.isNew()}">
+							               状态：新建
+							        </s:if><s:else>
+							               状态：<s:property value="%{statusesValue[e.status]}" /> ,
+							        </s:else>
+									登记：<s:property value="e.author.name" />(<s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>)
+									<s:if test="%{e.modifier != null}">
+									最后修改：<s:property value="e.modifier.name" />(<s:date name="e.modifiedDate" format="yyyy-MM-dd HH:mm:ss"/>)
+									</s:if>
+						   </div>
+						</td>
+					</tr>
 				</tbody>
 			</table>
-			<div class="formTopInfo">
-			        <s:if test="%{e.isNew()}">
-			               状态：新建
-			        </s:if><s:else>
-			               状态：<s:property value="%{statusesValue[e.status]}" /> ,
-			               </s:else>
-					登记：<s:property value="e.author.name" />(<s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>)
-					<s:if test="%{e.modifier != null}">
-					最后修改：<s:property value="e.modifier.name" />(<s:date name="e.modifiedDate" format="yyyy-MM-dd HH:mm:ss"/>)
-					</s:if>
-		   </div>
-		</div>
 		<s:hidden name="e.id" />
 		<s:hidden name="e.locker.id" />
 		<s:hidden name="e.unlocker.id" />

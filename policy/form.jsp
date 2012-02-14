@@ -5,12 +5,13 @@
 	data-js='<s:url value="/bc-business/policy/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js" />,<s:url value="/ui-libs/xheditor/1.1.7/xheditor-zh-cn.min.js?ts=0" />'
 	data-initMethod='bc.policyForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
-	<s:form name="policyForm" theme="simple">			
+	<s:form name="policyForm" theme="simple">	
+		<div style="width:710px">		
 					<table class="formFields" cellspacing="2" cellpadding="0">
 						<tbody>
 							<tr class="widthMarker">
 								                <td style="width: 100px;">&nbsp;</td>
-								                <td style="width: 220px;">&nbsp;</td>
+								                <td style="width: 240px;">&nbsp;</td>
 								                <td style="width: 120px;">&nbsp;</td>
 								                <td >&nbsp;</td>
 							 </tr>
@@ -36,12 +37,12 @@
 							 </tr>
 							 <tr>
 								<td class="value" colspan="4">
-									<fieldset>
+									<fieldset class="ui-widget-content">
 						          		<legend>商业险</legend>
 						          		<table class="formFields" cellspacing="2" cellpadding="0" >
 											<tr class="widthMarker">
 								                <td style="width: 80px;">&nbsp;</td>
-								                <td style="width: 220px;">&nbsp;</td>
+								                <td style="width: 240px;">&nbsp;</td>
 								                <td style="width: 120px;">&nbsp;</td>
 								                <td >&nbsp;</td>
 							                </tr>
@@ -98,12 +99,12 @@
 							</tr>
 							<tr>
 								<td class="value" colspan="4">
-								    <fieldset>
+								    <fieldset class="ui-widget-content">
 								    	<legend>责任险</legend>
 								        <table class="formFields" cellspacing="2" cellpadding="0">
 											<tr class="widthMarker">
 								                <td style="width: 80px;">&nbsp;</td>
-								                <td style="width: 220px;">&nbsp;</td>
+								                <td style="width: 240px;">&nbsp;</td>
 								                <td style="width: 120px;">&nbsp;</td>
 								                <td >&nbsp;</td>
 							                </tr>
@@ -134,12 +135,12 @@
 										    display: none;
 									      </s:else>
 									      '>
-									        <fieldset>
+									        <fieldset class="ui-widget-content">
 						          		        <legend>强制险</legend>
 						          		         <table class="formFields" cellspacing="2" cellpadding="0">
 													<tr class="widthMarker">
 										                <td style="width: 80px;">&nbsp;</td>
-										                <td style="width: 220px;">&nbsp;</td>
+										                <td style="width: 240px;">&nbsp;</td>
 										                <td style="width: 120px;">&nbsp;</td>
 										                <td >&nbsp;</td>
 									                </tr>
@@ -234,7 +235,7 @@
 					
 					<!-- 购买的险种 -->
 					<div class="ui-widget-content" style="border-left-width:0;border-right-width:0;">
-						<div class="ui-state-active title" style="position:relative;">
+						<div class="ui-widget-header title" style="position:relative;">
 							<span class="text"><s:text name="policy.insuranceType"/>：</span>
 							<ul class="inputIcons">
 								<li id="selectInsuranceType" class="inputIcon ui-icon ui-icon-circle-plus"
@@ -274,6 +275,7 @@
 						</table>
 						</div>
 					</div>
+				</div>
 				 
 		<s:hidden name="e.id"/>
 		<s:hidden name="e.car.id"/>
