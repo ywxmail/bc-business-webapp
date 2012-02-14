@@ -250,14 +250,14 @@
 											<tr>
 												<td class="label"><s:text name="contract4Labour.certPay"/>:</td>
 												<td class="value" colspan="3">
-													<s:checkbox name="e.iQMA" cssStyle="width:1em;" />
-													<s:text name="contract4Labour.iQMA"/>
+													<s:checkbox name="e.iqama" cssStyle="width:1em;" />
+													<s:text name="contract4Labour.iqama"/>
 													<s:checkbox name="e.accountBook" cssStyle="width:1em;"/>
 													<s:text name="contract4Labour.accountBook"/>
 													<s:checkbox name="e.identityCards" cssStyle="width:1em;"/>
 													<s:text name="contract4Labour.identityCards"/>
-													<s:checkbox name="e.fPC" cssStyle="width:1em;"/>
-													<s:text name="contract4Labour.fPC"/>
+													<s:checkbox name="e.fpc" cssStyle="width:1em;"/>
+													<s:text name="contract4Labour.fpc"/>
 													<s:checkbox name="e.unemployed" cssStyle="width:1em;"/>
 													<s:text name="contract4Labour.unemployed"/>
 													<s:checkbox name="e.healthForm" cssStyle="width:1em;"/>
