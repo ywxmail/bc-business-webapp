@@ -5,7 +5,7 @@
 	data-js='<s:url value="/bc-business/car/form.js" />,<s:url value="/bc/identity/identity.js" />'
 	data-initMethod='bc.carForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:hidden;">
-	<s:form name="carForm" theme="simple">
+	<s:form name="carForm" theme="simple" cssClass="bc-form" >
 		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:400}"
 		 style="overflow: hidden;">
 			<div class="tabsContainer">
@@ -37,9 +37,10 @@
                 </ul>
             	</div>
 	        </div>
-	        <div class="contentContainer ui-helper-reset ui-widget-content">
+	        <div class="contentContainer ui-helper-reset ui-widget-content noBottomBoder">
 <!--------------------------------------------------------------------------   基本资料     --------------------------------------------------------------------------------------------->
 		        <div id="otherFormFields" class="content active">
+		        <div style="width:680px">
 					<table class="formFields" cellspacing="2" cellpadding="0">
 						<tbody>
 							<tr class="widthMarker">
@@ -152,9 +153,9 @@
 						</tbody>
 					</table>
 <!--------------------------------------------------------------------------   票号证号     --------------------------------------------------------------------------------------------->
-					<fieldset style="margin: 6px;" class="ui-corner-all ui-widget-content">
+					<fieldset style="margin: 6px;padding:0px;" class="ui-corner-all ui-widget-content">
 						<legend>票号证号</legend>
-						<table class="formFields" cellspacing="2" cellpadding="0" >
+						<table class="formFields" cellspacing="2" cellpadding="0">
 							<tbody>
 								<tr class="widthMarker">
 									<td >&nbsp;</td>
@@ -319,7 +320,9 @@
 						</table>
 					</fieldset>
 				</div>
+				</div>
 				<div id="otherFormFields2" class="content">
+				<div style="width:680px">
 					<fieldset style="margin: 6px;" class="ui-corner-all ui-widget-content">
 						<legend>
 							<s:checkbox name="e.logout" cssStyle="width:1em;" />
@@ -390,6 +393,7 @@
 						</table>
 					</fieldset>
 				</div>
+			</div>
 			</div>
 		</div>
 		<s:hidden name="e.uid" />
