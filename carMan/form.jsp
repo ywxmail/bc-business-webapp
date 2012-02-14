@@ -33,12 +33,13 @@
 	        </div>
 	        <div class="contentContainer ui-helper-reset ui-widget-content noBottomBoder">
 	        <div id="otherFormFields" class="content active">
+	        <div style="width:740px">
 				<table class="formFields" cellspacing="2" cellpadding="0">
 					    <tr class="widthMarker">
 							<td style="width: 100px;">&nbsp;</td>
-							<td style="width: 240px;">&nbsp;</td>
+							<td style="width: 260px;">&nbsp;</td>
 							<td style="width: 110px;">&nbsp;</td>
-							<td style="width: 120px;">&nbsp;</td>
+							<td style="">&nbsp;</td>
 							<td rowspan="10" style="text-align:center;vertical-align: top;width:110px;" title='点击更改照片'>
 								<img id="portrait" style="width:110px;height:140px;cursor: pointer;" title='<s:text name="image.click2change"/>'
 									src='<s:url value="/bc/image/download?ptype=portrait"><s:param name='puid' value='e.uid'/><s:param name='ts' value='ts'/></s:url>'/>
@@ -188,6 +189,7 @@
 						</tr>
 					</tbody>
 				</table>
+			 </div>
 			</div>
 			</div>
 		</div>
