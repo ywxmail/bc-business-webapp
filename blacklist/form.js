@@ -156,6 +156,12 @@ bc.business.blacklistForm = {
 		//表单验证
 		if(!bc.validator.validate($form))
 			return;
+		//解锁原因必填验证
+		if($form.find(":input[name='e.unlockReason']").val()==""){
+			bc.msg.alert("请填写解锁信息");
+			return;
+		}
+		
 		bc.msg.confirm("请确定信息是否准确！一但执行解锁功能将无法进行修改，是否继续执行？",function(){
 			//status=1为解锁状态
 			$form.find(":input[name='e.status']").val("1");

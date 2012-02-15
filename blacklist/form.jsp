@@ -66,8 +66,8 @@
 					                      <td><s:property value="e.locker.name" />(<s:date name="e.lockDate" format="yyyy-MM-dd HH:mm:ss"/>)</td>
 					                  </tr>
 					                   <tr>
-						                   <td class="label">*<s:text name="blacklist.lockReason"/>:</td>
-						                   <td class="value"  rowspan="10"><s:textarea name="e.lockReason" rows="10" data-validate="required" cssClass="ui-widget-content noresize"/></td>
+						                   <td class="label"><s:text name="blacklist.lockReason"/>:</td>
+						                   <td class="value"  rowspan="10"><s:textarea name="e.lockReason" rows="10" cssClass="ui-widget-content noresize"/></td>
 					                   </tr>
 						          </table>
 						   </fieldset>
@@ -76,7 +76,7 @@
 						    <fieldset style="width:320px" class="ui-widget-content">
 						          <legend>解锁信息</legend>
 						          <table class="formFields" cellspacing="2" cellpadding="0" style="height:200px" >
- 						          <s:if test="e.isNew()" >
+ 						          <s:if test="e.status!=1" >
  						          <tr>
 					                        <td class="label" style="height:19px"></td>
 					                     </tr>
