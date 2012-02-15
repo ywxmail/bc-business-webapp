@@ -3,8 +3,7 @@ bc.carManForm = {
 		var $form = $(this);
 		
 		// 初始化多页签
-		//$form.find('#formTabs').tabs(bc.page.defaultTabsOption);
-		$form.find('#formTabs').bctabs(bc.page.defaultBcTabsOption);
+		//$form.find('#formTabs').bctabs(bc.page.defaultBcTabsOption);
 		
 		if(readonly) return;
 		

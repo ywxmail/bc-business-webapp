@@ -5,7 +5,7 @@
 	data-js='<s:url value="/bc-business/car/form.js" />,<s:url value="/bc/identity/identity.js" />'
 	data-initMethod='bc.carForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:hidden;">
-	<s:form name="carForm" theme="simple">
+	<s:form name="carForm" theme="simple" cssClass="bc-form" >
 		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:400}"
 		 style="overflow: hidden;">
 			<div class="tabsContainer">
@@ -16,7 +16,8 @@
 					<li class="tab ui-widget-content"><a href= "#otherFormFields2" class="ui-state-default">注销信息</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/carByDriverHistorys/list?carId=%{e.id}" />' class="ui-state-default">迁移记录</a></li>
 					<!--<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/carByDrivers/list?carId=%{e.id}"/>' class="ui-state-default">营运司机</a></li>-->
-					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contracts/list?carId=%{e.id}" />' class="ui-state-default">合同</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contract4Chargers/list?carId=%{e.id}" />' class="ui-state-default">经济合同</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contract4Labours/list?carId=%{e.id}" />' class="ui-state-default">劳动合同</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/policys/list?carId=%{e.id}" />' class="ui-state-default">保单</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/car4Cert/list?carId=%{e.id}" />' class="ui-state-default">证件</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/blacklists/list?carId=%{e.id}" />' class="ui-state-default">黑名单</a></li>
@@ -36,25 +37,26 @@
                 </ul>
             	</div>
 	        </div>
-	        <div class="contentContainer ui-helper-reset ui-widget-content">
+	        <div class="contentContainer ui-helper-reset ui-widget-content noBottomBoder">
 <!--------------------------------------------------------------------------   基本资料     --------------------------------------------------------------------------------------------->
 		        <div id="otherFormFields" class="content active">
+		        <div style="width:742px">
 					<table class="formFields" cellspacing="2" cellpadding="0">
 						<tbody>
 							<tr class="widthMarker">
-								<td>&nbsp;</td>
-								<td style="width: 200px;">&nbsp;</td>
-								<td style="width: 100px;">&nbsp;</td>
-								<td style="width: 200px;">&nbsp;</td>
+									<td style="width: 115px;">&nbsp;</td>
+									<td style="width: 240px;">&nbsp;</td>
+									<td style="width: 120px;">&nbsp;</td>
+									<td>&nbsp;</td>
 							</tr>
 							<tr>
 								<td class="label" >*<s:text name="car.plate"/>:</td>
 								<td class="value" >
 									<s:if test="!e.isNew()">
-										<s:textfield name="e.plateType" readonly="true" cssStyle="width:4em;text-align:right;" data-validate="required" cssClass="ui-widget-content"/><s:textfield name="e.plateNo" readonly="true" cssStyle="width:8em;" data-validate='{"minLen": 5,"maxLen": 5,"required":true,"type":"string"}' cssClass="ui-widget-content"/>
+										<s:textfield name="e.plateType" readonly="true" cssStyle="width:30px;text-align:right;border-right-width:0;" data-validate="required" cssClass="ui-widget-content"/><s:textfield name="e.plateNo" readonly="true" cssStyle="width:203px;" data-validate='{"minLen": 5,"maxLen": 5,"required":true,"type":"string"}' cssClass="ui-widget-content"/>
 									</s:if>
 									<s:else>
-										<s:textfield name="e.plateType" cssStyle="width:4em;text-align:right;" value='%{getText("car.plate.yue.A")}' data-validate="required" cssClass="ui-widget-content"/><s:textfield name="e.plateNo" cssStyle="width:8em;" data-validate='{"minLen": 5,"maxLen": 5,"required":true,"type":"string"}' cssClass="ui-widget-content"/>
+										<s:textfield name="e.plateType" cssStyle="width:30px;text-align:right;border-right-width:0;" value='%{getText("car.plate.yue.A")}' data-validate="required" cssClass="ui-widget-content"/><s:textfield name="e.plateNo" cssStyle="width:203px;" data-validate='{"minLen": 5,"maxLen": 5,"required":true,"type":"string"}' cssClass="ui-widget-content"/>
 									</s:else>
 								</td>
 								<td class="label" >*<s:text name="car.code"/>:</td>
@@ -151,15 +153,15 @@
 						</tbody>
 					</table>
 <!--------------------------------------------------------------------------   票号证号     --------------------------------------------------------------------------------------------->
-					<fieldset style="margin: 6px;" class="ui-corner-all ui-widget-content">
+					<fieldset style="margin: 6px;" class="ui-widget-content">
 						<legend>票号证号</legend>
-						<table class="formFields" cellspacing="2" cellpadding="0" >
+						<table class="formFields" cellspacing="2" cellpadding="0">
 							<tbody>
 								<tr class="widthMarker">
-									<td >&nbsp;</td>
-									<td style="width: 200px;">&nbsp;</td>
 									<td style="width: 100px;">&nbsp;</td>
-									<td style="width: 200px;">&nbsp;</td>
+									<td style="width: 240px;">&nbsp;</td>
+									<td style="width: 120px;">&nbsp;</td>
+									<td>&nbsp;</td>
 								</tr>
 								<tr>
 									<td class="label" ><s:text name="car.registerNo"/>:</td>
@@ -170,54 +172,56 @@
 								<tr>
 									<td class="label" ><s:text name="car.certNo1" />:</td>
 									<td class="value" ><s:textfield name="e.certNo1" cssClass="ui-widget-content"/></td>
-									<td class="label" ><s:text name="car.invoiceNo1" />:</td>
-									<td class="value" ><s:textfield name="e.invoiceNo1" cssClass="ui-widget-content"/></td>
-								</tr>
-								<tr>
 									<td class="label" ><s:text name="car.invoiceNo2"/>:</td>
 									<td class="value" ><s:textfield name="e.invoiceNo2" cssClass="ui-widget-content"/></td>
-									<td class="label" ><s:text name="car.certNo3"/>:</td>
-									<td class="value" ><s:textfield name="e.certNo3"  cssClass="ui-widget-content"/></td>
+								</tr>
+								<tr>
+									<td class="label" ><s:text name="car.invoiceNo1" />:</td>
+									<td class="value" ><s:textfield name="e.invoiceNo1" cssClass="ui-widget-content"/></td>
+									<td class="label" ><s:text name="car.certNo4"/>:</td>
+									<td class="value" ><s:textfield name="e.certNo4"  cssClass="ui-widget-content"/></td>
 								</tr>
 							</tbody>
 						</table>
 					</fieldset>
 <!--------------------------------------------------------------------------   计价器      --------------------------------------------------------------------------------------------->
-					<fieldset style="margin: 6px;" class="ui-corner-all ui-widget-content">
+					<fieldset style="margin: 6px;" class="ui-widget-content">
 						<legend>计价器</legend>
 						<table class="formFields" cellspacing="2" cellpadding="0" >
 							<tbody>
 								<tr class="widthMarker">
+									<td style="width: 100px;">&nbsp;</td>
+									<td style="width: 240px;">&nbsp;</td>
+									<td style="width: 120px;">&nbsp;</td>
 									<td>&nbsp;</td>
-									<td style="width: 200px;">&nbsp;</td>
-									<td style="width: 95px;">&nbsp;</td>
-									<td style="width: 200px;">&nbsp;</td>
 								</tr>
 								<tr>
 									<td class="label" ><s:text name="car.taximeterFactory" />:</td>
 									<td class="value" >
 										<s:select name="e.taximeterFactory" list="taximeterFactoryTypeList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
 									</td>
-									<td class="label" ><s:text name="car.taximeterNo" />:</td>
-									<td class="value" ><s:textfield name="e.taximeterNo"  cssClass="ui-widget-content"/></td>
+									<td class="label" ><s:text name="car.certNo3"/>:</td>
+									<td class="value" ><s:textfield name="e.certNo3"  cssClass="ui-widget-content"/></td>
 								</tr>
 								<tr>
 									<td class="label" ><s:text name="car.taximeterType"/>:</td>
 									<td class="value" ><s:textfield name="e.taximeterType" cssClass="ui-widget-content"/></td>
+									<td class="label" ><s:text name="car.taximeterNo" />:</td>
+									<td class="value" ><s:textfield name="e.taximeterNo"  cssClass="ui-widget-content"/></td>
 								</tr>
 							</tbody>
 						</table>
 					</fieldset>
 <!--------------------------------------------------------------------------   硬件参数       --------------------------------------------------------------------------------------------->
-					<fieldset style="margin: 6px;" class="ui-corner-all ui-widget-content">
+					<fieldset style="margin: 6px;" class="ui-widget-content">
 						<legend>硬件参数</legend>
 						<table class="formFields" cellspacing="2" cellpadding="0" >
 							<tbody>
 								<tr class="widthMarker">
-									<td >&nbsp;</td>
-									<td style="width: 200px;">&nbsp;</td>
 									<td style="width: 100px;">&nbsp;</td>
-									<td style="width: 200px;">&nbsp;</td>
+									<td style="width: 240px;">&nbsp;</td>
+									<td style="width: 120px;">&nbsp;</td>
+									<td>&nbsp;</td>
 								</tr>
 								<tr>
 									<td class="label" ><s:text name="car.factoryModel"/>:</td>
@@ -292,34 +296,34 @@
 							</tbody>
 						</table>
 					</fieldset>
-					<fieldset style="margin: 6px;" class="ui-corner-all ui-widget-content">
+					<fieldset style="margin: 6px;" class="ui-widget-content">
 						<legend>其它</legend>
 						<table class="formFields" cellspacing="2" cellpadding="0" >
 							<tbody>
 								<tr class="widthMarker">
-									<td style="width: 97.8px;">&nbsp;</td>
-									<td style="width: 200px;">&nbsp;</td>
-									<td style="width: 200px;">&nbsp;</td>
-									<td >&nbsp;</td>
+									<td style="width: 40px;">&nbsp;</td>
+									<td>&nbsp;</td>
 								</tr>
 								<tr>
-									<td class="topLabel" ><s:text name="car.desc1"/>:</td>
-									<td class="value" colspan="3"><s:textarea name="e.desc1" rows="3" cssClass="ui-widget-content noresize"/></td>
+									<td class="topLabel"  style="width: 40px;min-width: 40px;"><s:text name="car.desc1"/>:</td>
+									<td class="value"><s:textarea name="e.desc1" rows="3" cssClass="ui-widget-content noresize" cssStyle="width: 99.5%;"/></td>
 								</tr>
 								<tr>
-								    <td class="topLabel"><s:text name="car.desc2"/>:</td>
-									<td class="value" colspan="3"><s:textarea name="e.desc2" rows="3" cssClass="ui-widget-content noresize"/></td>
+								    <td class="topLabel" style="width: 40px;min-width: 40px;"><s:text name="car.desc2"/>:</td>
+									<td class="value"><s:textarea name="e.desc2" rows="3" cssClass="ui-widget-content noresize" cssStyle="width: 99.5%;"/></td>
 								</tr>
 								<tr>
-									<td class="topLabel" ><s:text name="car.desc3"/>:</td>
-									<td class="value" colspan="3"><s:textarea name="e.desc3" rows="3" cssClass="ui-widget-content noresize"/></td>
+									<td class="topLabel"  style="width: 40px;min-width: 40px;"><s:text name="car.desc3"/>:</td>
+									<td class="value"><s:textarea name="e.desc3" rows="3" cssClass="ui-widget-content noresize" cssStyle="width: 99.5%;"/></td>
 								</tr>
 							</tbody>
 						</table>
 					</fieldset>
 				</div>
+				</div>
 				<div id="otherFormFields2" class="content">
-					<fieldset style="margin: 6px;" class="ui-corner-all ui-widget-content">
+				<div style="width:742px">
+					<fieldset style="margin: 6px;" class="ui-widget-content">
 						<legend>
 							<s:checkbox name="e.logout" cssStyle="width:1em;" />
 							<s:text name="car.logout"/>
@@ -327,10 +331,10 @@
 						<table class="formFields" cellspacing="2" cellpadding="0">
 							<tbody>
 								<tr class="widthMarker">
-									<td>&nbsp;</td>
-									<td style="width: 240px;">&nbsp;</td>
 									<td style="width: 100px;">&nbsp;</td>
 									<td style="width: 240px;">&nbsp;</td>
+									<td style="width: 120px;">&nbsp;</td>
+									<td>&nbsp;</td>
 								</tr>
 								<tr>
 									<td class="label" ><s:text name="car.returnDate"/>:</td>
@@ -360,7 +364,7 @@
 							</tbody>
 						</table>
 					</fieldset>
-					<fieldset style="margin: 6px;" class="ui-corner-all ui-widget-content">
+					<fieldset style="margin: 6px;" class="ui-widget-content">
 						<legend>
 							<s:checkbox name="e.verify" cssStyle="width:1em;" />
 							<s:text name="car.verify"/>
@@ -368,10 +372,10 @@
 						<table class="formFields" cellspacing="2" cellpadding="0">
 							<tbody>
 								<tr class="widthMarker">
-									<td>&nbsp;</td>
-									<td style="width: 240px;">&nbsp;</td>
 									<td style="width: 100px;">&nbsp;</td>
 									<td style="width: 240px;">&nbsp;</td>
+									<td style="width: 120px;">&nbsp;</td>
+									<td>&nbsp;</td>
 								</tr>
 								<tr>
 									<td class="label" ><s:text name="car.verifyDate"/>:</td>
@@ -389,6 +393,7 @@
 						</table>
 					</fieldset>
 				</div>
+			</div>
 			</div>
 		</div>
 		<s:hidden name="e.uid" />

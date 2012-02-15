@@ -5,8 +5,8 @@
 	data-js='<s:url value="/bc-business/carMan/form.js" />,<s:url value="/bc/identity/identity.js" />'
 	data-initMethod='bc.carManForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:hidden;">
-	<s:form name="carManForm" theme="simple">
-		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:470}" style="width:775px;">
+	<s:form name="carManForm" theme="simple" cssClass="bc-form" >
+		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:430}">
 	        <div class="tabsContainer">
            	 	<div class="slideContainer">
                 <ul class="tabs ui-helper-reset">
@@ -14,7 +14,8 @@
 				    <li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">司机信息</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/carByDriverHistorys/list?carManId=%{e.id}" />' class="ui-state-default">迁移记录</a></li>
 					<!--<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/carByDrivers/list?carManId=%{e.id}"/>' class="ui-state-default">营运车辆</a></li>-->
-					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contracts/list?driverId=%{e.id}" />' class="ui-state-default">合同</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contract4Chargers/list?driverId=%{e.id}" />' class="ui-state-default">经济合同</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contract4Labours/list?driverId=%{e.id}" />' class="ui-state-default">劳动合同</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/driver4cert/list?carManId=%{e.id}" />' class="ui-state-default">证件</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/blacklists/list?carManId=%{e.id}" />' class="ui-state-default">黑名单</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseTraffics/list?carManId=%{e.id}" />' class="ui-state-default">交通违章</a></li>
@@ -30,14 +31,15 @@
                 </ul>
             	</div>
 	        </div>
-	        <div class="contentContainer ui-helper-reset ui-widget-content">
+	        <div class="contentContainer ui-helper-reset ui-widget-content noBottomBoder">
 	        <div id="otherFormFields" class="content active">
-				<table class="formFields" cellspacing="2" cellpadding="0">
+				<table class="formFields" cellspacing="2" cellpadding="0" style="width:740px">
+					</tbody>
 					    <tr class="widthMarker">
 							<td style="width: 100px;">&nbsp;</td>
-							<td style="width: 240px;">&nbsp;</td>
+							<td style="width: 260px;">&nbsp;</td>
 							<td style="width: 110px;">&nbsp;</td>
-							<td style="width: 120px;">&nbsp;</td>
+							<td style="">&nbsp;</td>
 							<td rowspan="10" style="text-align:center;vertical-align: top;width:110px;" title='点击更改照片'>
 								<img id="portrait" style="width:110px;height:140px;cursor: pointer;" title='<s:text name="image.click2change"/>'
 									src='<s:url value="/bc/image/download?ptype=portrait"><s:param name='puid' value='e.uid'/><s:param name='ts' value='ts'/></s:url>'/>
@@ -195,6 +197,8 @@
 		<s:hidden name="e.author.id" />
 		<s:hidden name="e.drivingStatus" />
 		<s:hidden name="e.charger" />
+		<s:hidden name="e.moveType" />
+		<s:hidden name="e.classes" />
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 		<s:hidden name="e.modifier.id"/>
 		<input type="hidden" name="e.modifiedDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.modifiedDate" />'/>

@@ -10,7 +10,7 @@ bc.caseTrafficForm = {
 		if($form.find(":input[name='isMoreCar']").val()=="true"){
 			var carManId=$form.find(":input[name='carManId']").val();
 			var url=bc.root +"/bc-business/selectMoreCarWithCarMan/selectCars?carManId="+carManId;
-			var option = jQuery.extend({
+			bc.page.newWin({
 				url: url,
 				name: "选择车辆信息",
 				mid: "selectCar",
@@ -23,8 +23,7 @@ bc.caseTrafficForm = {
 						$form.find(":hidden[name='e.motorcadeName']").val(motorcadeName);
 					}
 				}
-			},option);
-			bc.page.newWin(option);
+			});
 		};
 		if($form.find(":input[name='isNullCar']").val()=="true"){
 			bc.msg.alert("该司机还没有驾驶任何车辆！");	
@@ -32,7 +31,7 @@ bc.caseTrafficForm = {
 		if($form.find(":input[name='isMoreCarMan']").val()=="true"){
 			var carId=$form.find(":input[name='carId']").val();
 			var url=bc.root +"/bc-business/selectMoreCarManWithCar/selectCarMans?carId="+carId;
-			var option = jQuery.extend({
+			bc.page.newWin({
 				url: url,
 				name: "选择司机信息",
 				mid: "selectCarMan",
@@ -43,8 +42,7 @@ bc.caseTrafficForm = {
 						$form.find(":input[name='e.driverCert']").val(carMan.cert4FWZG);
 					}
 				}
-			},option);
-			bc.page.newWin(option);
+			});
 		}
 		
 		if($form.find(":input[name='isNullCarMan']").val()=="true"){
@@ -126,6 +124,7 @@ bc.caseTrafficForm = {
 								var driversEl = html.find("#drivers").dblclick(onSelectDriver)[0];
 								
 								//弹出对话框让用户选择司机
+								alert("jjj");
 								html.dialog({
 									id: "selectTrafficDriver",
 									title: "所选车辆有多个营运司机，请选择当事司机",
