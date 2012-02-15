@@ -31,7 +31,7 @@
                 </ul>
             	</div>
 	        </div>
-	        <div class="contentContainer ui-helper-reset ui-widget-content noBottomBoder">
+	        <div class="contentContainer ui-helper-reset ui-widget-content noBottomBorder">
 	        <div id="otherFormFields" class="content active">
 				<table class="formFields" cellspacing="2" cellpadding="0" style="width:740px">
 					</tbody>
