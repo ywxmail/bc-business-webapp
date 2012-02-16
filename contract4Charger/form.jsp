@@ -33,7 +33,14 @@
 							</tr>
 							<tr>
 								<td class="label">*<s:text name="contract.code"/>:</td>
-								<td class="value "><s:textfield name="e.code" data-validate="required" cssClass="ui-widget-content"/></td>
+								<td class="value ">
+									<s:if test="e.isNew()"><!-- 新建 -->
+										<s:textfield name="e.code" data-validate="required" cssClass="ui-widget-content"/>
+									</s:if>
+									<s:else>
+										<s:textfield name="e.code" data-validate="required" cssClass="ui-widget-content" readonly="true"/>
+									</s:else>
+								</td>
 								<td class="label">*<s:text name="contract4Charger.signType"/>:</td>
 								<td class="value ">
 									<s:select name="e.signType" list="signTypeList" listKey="value" listValue="value"  data-validate="required" headerKey="" headerValue="" cssClass="ui-widget-content" ></s:select>
