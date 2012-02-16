@@ -4,7 +4,7 @@
 	data-saveUrl='<s:url value="/bc-business/car/save" />'
 	data-js='<s:url value="/bc-business/car/form.js" />,<s:url value="/bc/identity/identity.js" />'
 	data-initMethod='bc.carForm.init'
-	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:hidden;">
+	data-option='<s:property value="%{formPageOption}"/>' style="overflow:hidden;">
 	<s:form name="carForm" theme="simple" cssClass="bc-form" >
 		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:400}"
 		 style="overflow: hidden;">
@@ -37,8 +37,8 @@
                 </ul>
             	</div>
 	        </div>
-	        <div class="contentContainer ui-helper-reset ui-widget-content noBottomBoder">
-<!--------------------------------------------------------------------------   基本资料     --------------------------------------------------------------------------------------------->
+	        <div class="contentContainer ui-helper-reset ui-widget-content noBottomBorder">
+<!--------------------------------   基本资料     -------------------------------->
 		        <div id="otherFormFields" class="content active">
 		        <div style="width:742px">
 					<table class="formFields" cellspacing="2" cellpadding="0">
@@ -53,10 +53,10 @@
 								<td class="label" >*<s:text name="car.plate"/>:</td>
 								<td class="value" >
 									<s:if test="!e.isNew()">
-										<s:textfield name="e.plateType" readonly="true" cssStyle="width:30px;text-align:right;border-right-width:0;" data-validate="required" cssClass="ui-widget-content"/><s:textfield name="e.plateNo" readonly="true" cssStyle="width:203px;" data-validate='{"minLen": 5,"maxLen": 5,"required":true,"type":"string"}' cssClass="ui-widget-content"/>
+										<s:textfield name="e.plateType" readonly="true" cssStyle="width:30px;text-align:right;border-right-width:0;" data-validate="required" cssClass="ui-widget-content"/><s:textfield name="e.plateNo" readonly="true" cssStyle="width:203px;" data-validate='{"minLen": 5,"maxLen": 5,"required":true,"type":"string",msg:"必须填写正确格式的5位车牌号，如J1B23"}' cssClass="ui-widget-content"/>
 									</s:if>
 									<s:else>
-										<s:textfield name="e.plateType" cssStyle="width:30px;text-align:right;border-right-width:0;" value='%{getText("car.plate.yue.A")}' data-validate="required" cssClass="ui-widget-content"/><s:textfield name="e.plateNo" cssStyle="width:203px;" data-validate='{"minLen": 5,"maxLen": 5,"required":true,"type":"string"}' cssClass="ui-widget-content"/>
+										<s:textfield name="e.plateType" cssStyle="width:30px;text-align:right;border-right-width:0;" value='%{getText("car.plate.yue.A")}' data-validate="required" cssClass="ui-widget-content"/><s:textfield name="e.plateNo" cssStyle="width:203px;" data-validate='{"minLen": 5,"maxLen": 5,"required":true,"type":"string",msg:"必须填写正确格式的5位车牌号，如J1B23"}' cssClass="ui-widget-content"/>
 									</s:else>
 								</td>
 								<td class="label" >*<s:text name="car.code"/>:</td>
@@ -78,7 +78,23 @@
 									<s:select name="e.motorcade.id" list="motorcadeList" listKey="key" listValue="value" value="e.motorcade.id" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" disabled="%{!e.isNew()}"></s:select>
 								</td>
 								<td class="label" >*<s:text name="car.vin"/>:</td>
-								<td class="value" ><s:textfield name="e.vin" data-validate="required" cssClass="ui-widget-content"/></td>
+								<td class="value relative" >
+								<s:if test="isReadonly()">
+									<s:textfield name="e.vin" cssClass="ui-widget-content"/>
+								</s:if>
+								<s:else>
+									<div class="bc-relativeContainer">
+										<input type="text" name="vinPrefix" value='<s:property value="vinPrefix"/>' style="width:110px;text-align:right;padding-right:18px;" 
+											data-validate='{"minLen": 11,"maxLen": 11,"required":true,"type":"string",msg:"必须填写正确的11位车架号前缀，如LSVT91338BN"}' class="bc-select ui-widget-content"
+											data-maxHeight="150px"
+											data-source='<s:property value="vinPrefixes"/>'/>
+										<ul class="inputIcons">
+											<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
+										</ul>
+									</div><s:textfield name="vinSuffix" cssStyle="width:121px;border-left-width:0;" 
+											data-validate='{"minLen": 6,"maxLen": 6,"required":true,"type":"string",msg:"必须填写正确的6位车架号后缀，如123456"}' cssClass="ui-widget-content"/>
+								</s:else>
+								</td>
 							</tr>
 							<tr>
 								<td class="label" >*<s:text name="car.registerDate"/>:</td>
@@ -152,7 +168,7 @@
 							</tr>
 						</tbody>
 					</table>
-<!--------------------------------------------------------------------------   票号证号     --------------------------------------------------------------------------------------------->
+<!--------------------------------   票号证号     -------------------------------->
 					<fieldset style="margin: 6px;" class="ui-widget-content">
 						<legend>票号证号</legend>
 						<table class="formFields" cellspacing="2" cellpadding="0">
@@ -184,7 +200,7 @@
 							</tbody>
 						</table>
 					</fieldset>
-<!--------------------------------------------------------------------------   计价器      --------------------------------------------------------------------------------------------->
+<!--------------------------------   计价器     -------------------------------->
 					<fieldset style="margin: 6px;" class="ui-widget-content">
 						<legend>计价器</legend>
 						<table class="formFields" cellspacing="2" cellpadding="0" >
@@ -212,7 +228,7 @@
 							</tbody>
 						</table>
 					</fieldset>
-<!--------------------------------------------------------------------------   硬件参数       --------------------------------------------------------------------------------------------->
+<!--------------------------------   硬件参数     -------------------------------->
 					<fieldset style="margin: 6px;" class="ui-widget-content">
 						<legend>硬件参数</legend>
 						<table class="formFields" cellspacing="2" cellpadding="0" >
