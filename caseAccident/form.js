@@ -26,6 +26,7 @@ bc.caseAccidentForm = {
 						$form.find(":input[name='e.carId']").val(car.id);
 						$form.find(":input[name='e.carPlate']").val(car.name);
 						$form.find("select[name='e.motorcadeId']").val(car.motorcadeId);
+						
 					}
 				}
 			},option);
@@ -78,6 +79,7 @@ bc.caseAccidentForm = {
 					$form.find(":input[name='e.carPlate']").val(car.plate);
 					$form.find("select[name='e.motorcadeId']").val(car.motorcadeId);
 					$form.find(":input[name='e.motorcadeName']").val(car.motorcadeName);
+					$form.find(":input[name='e.company']").val(car.company);
 					//按照司机信息更新表单相应的域
 					function updateFieldsFromDriver(driver){
 						$form.find(":input[name='e.driverId']").val(driver.id);
