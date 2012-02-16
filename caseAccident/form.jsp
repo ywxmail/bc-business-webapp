@@ -6,7 +6,7 @@
 	data-initMethod='bc.caseAccidentForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="caseAccidentForm" theme="simple">
-			<table class="formFields" cellspacing="2" cellpadding="0" style="width:800px;">
+			<table class="formTable2 ui-widget-content" cellspacing="2" cellpadding="0" style="width:800px;">
 				<tbody>
 					<tr class="widthMarker">
 						<td style="width: 60px;"></td>
@@ -17,105 +17,143 @@
 					<tr>
 						<td class="label">*<s:text name="runcase.caseNo3"/>:</td>
 						<td class="value "><s:textfield name="e.code"  data-validate="required" cssClass="ui-widget-content"/></td>
+						<td class="label">*<s:text name="runcase.receiveDate2"/>:</td>
+						<td class="value">
+							<div style="position : relative; display: block">
+								<input type="text" name="e.receiveDate" data-validate='{"type":"datetime","required":true}'
+								value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.receiveDate" />'
+								class="bc-datetime ui-widget-content" data-cfg='{showSecond:true,timeFormat:"hh:mm:ss"}'/>
+								<ul class="inputIcons" style="right : 4px;">
+									<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.receiveDate' ></li>
+								</ul>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="label" >*<s:text name="runcase.happenDate"/>:</td>
+						<td class="value" >
+							<div style="position : relative; display: block">
+								<input type="text" name="e.happenDate" data-validate='{"type":"datetime","required":true}'
+										value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.happenDate" />'
+										class="bc-datetime ui-widget-content" 
+										data-cfg='{showSecond:true,timeFormat:"hh:mm:ss"}'/>
+								<ul class="inputIcons" style="right : 4px;">
+									<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.happenDate' ></li>
+								</ul>
+							</div>
+						</td>
 						<td class="label">*<s:text name="runcase.address"/>:</td>
 						<td class="value "><s:textfield name="e.address" data-validate="required" cssClass="ui-widget-content"/></td>
 					</tr>
-					
 					<tr>
-						<td class="label" ><s:text name="runcase.sort"/>:</td>
-						<td class="value" >
-							<s:select name="e.sort" list="sortList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
-						</td>
-						<td class="label"><s:text name="runcase.weather"/>:</td>
-						<td class="value "><s:textfield name="e.weather" cssClass="ui-widget-content"/></td>
-					</tr>
-					<tr>
-						<td class="label"><s:text name="runcase.duty"/></td>
-						<td class="value">
-						<s:select name="e.duty" list="dutyList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
-						</td>
-						<td class="label" >*<s:text name="runcase.happenDate"/>:</td>
-						<td class="value" >
-						<div style="position : relative; display: block">
-							<input type="text" name="e.happenDate" data-validate='{"type":"datetime","required":true}'
-							value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.happenDate" />'
-							class="bc-datetime ui-widget-content" data-cfg='{showSecond:true,timeFormat:"hh:mm:ss"}'/>
-							<ul class="inputIcons" style="right : 4px;">
-								<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.happenDate' ></li>
-							</ul>
-						</div>
-						</td>
-					</tr>
-					<tr>
-					<s:if test="%{carManId != null || carId !=null }">
-						<td class="label">*<s:text name="runcase.carPlate"/>:</td>
-						<td class="value"><s:textfield name="e.carPlate"  readonly="true" cssClass="ui-state-disabled ui-widget-content" /></td>
-					    </s:if><s:else>
-					    <td class="label">*<s:text name="runcase.carPlate"/>:</td>
-						<td class="value" style="position:relative;display: block;"><s:textfield name="e.carPlate" 
-					    data-validate="required" cssClass="ui-widget-content" readonly="true"/>
-					    <span id="selectCar" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></span>
-					    </td>
+						<s:if test="%{carManId != null || carId !=null }">
+							<td class="label">*<s:text name="runcase.carPlate"/>:</td>
+							<td class="value">
+								<s:textfield name="e.carPlate"  readonly="true" cssClass="ui-state-disabled ui-widget-content"
+										cssStyle="width:8em;" />
+								<div style="width:26px;display:inline-block;"></div>
+								<s:text name="runcase.motorcadeName"/>:
+								<s:select name="e.motorcadeId" list="motorcadeList" listKey="key" cssStyle="width:8em;"
+										listValue="value" value="e.motorcadeId" headerKey="" headerValue="" cssClass="ui-widget-content"/>
+							</td>
+					    </s:if>
+					    <s:else>
+						    <td class="label">*<s:text name="runcase.carPlate"/>:</td>
+							<td class="value">
+								<div style="position : relative; display: inline-block">
+									<s:textfield name="e.carPlate" 
+									    data-validate="required" cssClass="ui-widget-content" readonly="true" cssStyle="width:8em;"/>
+									    <span id="selectCar" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" 
+									    	title='<s:text name="title.click2select"/>'>
+									    </span>
+								</div>
+								<div style="width:26px;display:inline-block;"></div>
+								<s:text name="runcase.motorcadeName"/>:
+								<s:select name="e.motorcadeId" list="motorcadeList" listKey="key" cssStyle="width:8em;"
+										listValue="value" value="e.motorcadeId" headerKey="" headerValue="" cssClass="ui-widget-content"/>
+						    </td>
 					    </s:else>
-						<td class="label">*<s:text name="runcase.receiveDate2"/>:</td>
+					    <td class="label">公司:</td>
 						<td class="value">
-						<div style="position : relative; display: block">
-							<input type="text" name="e.receiveDate" data-validate='{"type":"datetime","required":true}'
-							value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.receiveDate" />'
-							class="bc-datetime ui-widget-content" data-cfg='{showSecond:true,timeFormat:"hh:mm:ss"}'/>
-							<ul class="inputIcons" style="right : 4px;">
-								<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.receiveDate' ></li>
-							</ul>
-						</div>
+								<s:textfield name="" value="" cssClass="ui-widget-content" cssStyle="width:8em;"/>
+								<div style="width:24px;display:inline-block;"></div>
+								<s:text name="runcase.weather"/>:
+								<s:textfield name="e.weather" cssClass="ui-widget-content" cssStyle="width:8em;"/>
 						</td>
-					</tr>
-					<tr>
-					    <td class="label" ><s:text name="runcase.motorcadeName"/>:</td>
-						<td class="value" >
-							<s:select name="e.motorcadeId" list="motorcadeList" listKey="key" listValue="value" value="e.motorcadeId" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
-						</td>
-						<td class="label" ><s:text name="runcase.receiveCode"/>:</td>
-						<td class="value "><s:textfield name="e.receiveCode" cssClass="ui-widget-content"/></td>
 					</tr>
 					<tr>
 						<s:if test="%{carManId != null || carId !=null}">
 						<td class="label"><s:text name="runcase.driverName"/>:</td>
-						<td class="value"><s:textfield name="e.driverName" cssStyle="width:8em;" readonly="true" cssClass="ui-state-disabled ui-widget-content" />
-						&nbsp;&nbsp;<s:text name="runcase.driverCert" />:<s:textfield name="e.driverCert" readonly="true" data-validate="required" cssStyle="width:10em;" cssClass="ui-state-disabled ui-widget-content"/></td>
+						<td class="value">
+									<s:textfield name="e.driverName" cssStyle="width:8em;" readonly="true" cssClass="ui-widget-content" />
+									<div style="width:0px;display:inline-block;"></div>
+									<s:text name="runcase.driverCertNo" />:
+									<s:textfield name="e.driverCert" readonly="true" data-validate="required" 
+											cssStyle="width:8em;" cssClass="ui-widget-content"/></td>
 					    </s:if><s:else>
 					    <td class="label"><s:text name="runcase.driverName"/>:</td>
-						<td class="value"><s:textfield name="e.driverName" cssStyle="width:8em;"  readonly="true" cssClass="ui-state-disabled ui-widget-content"/>
-						&nbsp;&nbsp;<s:text name="runcase.driverCert" />:<s:textfield name="e.driverCert" readonly="true" data-validate="required" cssStyle="width:10em;" cssClass="ui-state-disabled ui-widget-content"/></td>
+						<td class="value">
+									<s:textfield name="e.driverName" cssStyle="width:8em;"  readonly="true" cssClass="ui-widget-content"/>
+									<div style="width:0px;display:inline-block;"></div>
+									<s:text name="runcase.driverCertNo" />:
+									<s:textfield name="e.driverCert" readonly="true" data-validate="required" 
+											cssStyle="width:8em;" cssClass="ui-widget-content"/></td>
 					     </s:else>
-						<td class="label"><s:text name="runcase.department"/>:</td>
-						<td class="value "><s:select name="e.department" list="departmentList" listKey="value" listValue="value"  headerKey="" headerValue=""  cssClass="ui-widget-content"/>
+					  	<td class="label">*<s:text name="runcase.accident.sort"/>:</td>
+						<td class="value">
+								<s:select name="e.sort" list="sortList" listKey="value" cssStyle="width:8em;"
+									listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content" data-validate="required" />
+								<div style="width:0px;display:inline-block;"></div>
+								<s:text name="runcase.department"/>:
+								<s:select name="e.department" list="departmentList" listKey="value" cssStyle="width:8em;"
+								listValue="value"  headerKey="" headerValue=""  cssClass="ui-widget-content"/>
+						</td>
 					</tr>
 					<tr>
 						<td class="label"><s:text name="runcase.driverArea"/>:</td>
 						<td class="value">
-								<s:select list="#{0:'',1:'本市',2:'本省',3:'外省'}" listKey="key" listValue="value"  cssStyle="width:8em;"  headerValue="" name="e.driverArea" cssClass="ui-widget-content"/>
-								&nbsp;&nbsp;司机<s:text name="runcase.origin"/>:
+								<s:select list="#{0:'',1:'本市',2:'本省',3:'外省'}" listKey="key" listValue="value"  cssStyle="width:8em;"  
+										headerValue="" name="e.driverArea" cssClass="ui-widget-content"/>
+								<div style="width:2px;display:inline-block;"></div>
+								司机<s:text name="runcase.origin"/>:
 								<s:textfield name="e.origin" cssStyle="width:8em;"  cssClass="ui-widget-content"/>
 						</td>
-						<td class="label" ><s:text name="runcase.receiverName2"/>:</td>
-						<td class="value relative"><s:textfield name="e.receiverName" cssClass="ui-widget-content" />
-						<ul class="inputIcons">
-							 <li id="selectReceiver" class=" inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></li>
-						</ul>
+						<td class="label" ><s:text name="runcase.duty"/>:</td>
+						<td class="value" >
+							<s:select name="e.duty" cssStyle="width:8em;" list="dutyList" listKey="value" 
+									listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"/>
+							<div style="width:0px;display:inline-block;"></div>
+							<s:text name="runcase.receiveCodeNo"/>:	
+							<s:textfield name="e.receiveCode" cssClass="ui-widget-content" cssStyle="width:8em;"/>
 						</td>
+						
 					</tr>
 					<tr>
-					    <td class="label"><s:text name="runcase.driverClasses"/></td>
+					    <td class="label"><s:text name="runcase.driverClasses"/>:</td>
 						<td class="value">
-								<s:select name="e.driverClasses" list="#{0:'',1:'正班',2:'副班',3:'顶班'}" listKey="key" listValue="value" cssStyle="width:8em;"  data-validate="required" cssClass="ui-widget-content"/>
-								&nbsp;&nbsp;<s:text name="runcase.driverType"/>:
-								<s:select name="e.driverType" list="#{0:'',1:'车主',2:'司机',3:'非编'}" listKey="key" listValue="value" cssStyle="width:8em;" cssClass="ui-widget-content"/>
+								<s:select name="e.driverClasses" list="#{0:'',1:'正班',2:'副班',3:'顶班'}" listKey="key" 
+										listValue="value" cssStyle="width:8em;" cssClass="ui-widget-content"/>
+								<div style="width:2px;display:inline-block;"></div>
+								<s:text name="runcase.driverType"/>:
+								<s:select name="e.driverType" list="#{0:'',1:'车主',2:'司机',3:'非编'}" listKey="key" 
+										listValue="value" cssStyle="width:8em;" cssClass="ui-widget-content"/>
 						</td>
-						<td class="label"><s:text name="runcase.principal" />:</td>
-						<td class="value relative"><s:textfield name="e.chargerName" cssClass="ui-widget-content"/>
-						<ul class="inputIcons">
-							 <li id="selectPrincipal" class=" inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></li>
-						</ul>
+						<td class="label" ><s:text name="runcase.receiverName2"/>:</td>
+						<td class="value">
+							<div style="position : relative; display: inline-block">
+									<s:textfield name="e.receiverName" cssClass="ui-widget-content" cssStyle="width:8em;"/>
+									<ul class="inputIcons">
+										 <li id="selectReceiver" class=" inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></li>
+									</ul>
+							</div>
+							<div style="width:12px;display:inline-block;"></div>
+							<div style="position : relative; display: inline-block">
+									<s:text name="runcase.principal" />:
+									<s:textfield name="e.chargerName" cssClass="ui-widget-content" cssStyle="width:8em;"/>
+									<ul class="inputIcons">
+										 <li id="selectPrincipal" class=" inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></li>
+									</ul>
+							</div>
 						</td>					
 					</tr>
 					<tr>
@@ -123,7 +161,26 @@
 						<td class="value" colspan="3" ><s:textarea name="e.description" rows="5" cssClass="ui-widget-content noresize"/>
 						</td>
 					</tr>
-					
+					<!-- 相关保单-->
+					<tr>
+						<td class="topLabel" >
+							<div>
+								<s:text name="runcase.insuranceInfo"/>:
+							</div>
+							<div style="position : relative;">
+								<ul class="inputIcons" style="top:5px;">
+											<li class="inputIcon ui-icon ui-icon-lightbulb"
+											 title='<s:text name="runcase.accident.loadPolicyTips"/>' id="loadPolicy">
+								</ul>	
+							</div>	
+						</td>
+						<td id="buildPolicyTable" class="value" colspan="3" >
+							<textarea rows="3" Class="ui-widget-content noresize"></textarea>
+						</td>
+					</tr>
+					<tr style="line-height: 5px;">
+						<td>&nbsp;</td>
+					</tr>
 				</tbody>
 			</table>
 			
@@ -135,7 +192,7 @@
 						<span id="HiddenGroups1" class="verticalMiddle ui-icon ui-icon-carat-1-n" title='<s:text name="runcase.title.click2HiddenGroups"/>'></span>
 				</div>
 				<div id="Groups1">
-					<fieldset style="margin: 6px;" class="ui-corner-all ui-widget-content">
+					<fieldset style="margin: 6px;" class="ui-widget-content">
 					<legend>自车</legend>
 						<table class="formFields ui-widget-content" cellspacing="2" cellpadding="0">
 							<tbody>
@@ -172,7 +229,7 @@
 							</tbody>
 						</table>
 					</fieldset>
-					<fieldset style="margin: 6px;" class="ui-corner-all ui-widget-content">
+					<fieldset style="margin: 6px;" class="ui-widget-content">
 					<legend>第三者</legend>
 						<table class="formFields ui-widget-content" cellspacing="2" cellpadding="0">
 							<tbody>
@@ -200,7 +257,7 @@
 							</tbody>
 						</table>
 					</fieldset>
-					<fieldset style="margin: 6px;" class="ui-corner-all ui-widget-content">
+					<fieldset style="margin: 6px;" class="ui-widget-content">
 						<legend>总体损失</legend>	
 						<table  class="formFields ui-widget-content" cellspacing="2" cellpadding="0">
 								<tbody>
@@ -243,7 +300,7 @@
 						<span id="HiddenGroups2" class="verticalMiddle ui-icon ui-icon-carat-1-n" title='<s:text name="runcase.title.click2HiddenGroups"/>'></span>
 				</div>
 				<div id="Groups2">
-					<fieldset style="margin: 6px;" class="ui-corner-all ui-widget-content">
+					<fieldset style="margin: 6px;" class="ui-widget-content">
 					<legend>送保信息</legend>
 						<table class="formFields ui-widget-content" cellspacing="3" cellpadding="0">
 							<tbody>
@@ -503,7 +560,7 @@
 						</table>
 					</fieldset>	
 					
-					<fieldset id="idSecondDeliver" style="margin: 6px;" class="ui-corner-all ui-widget-content">
+					<fieldset id="idSecondDeliver" style="margin: 6px;" class="ui-widget-content">
 					<legend>二次送保</legend>
 						<table class="formFields ui-widget-content" cellspacing="3" cellpadding="0">
 							<tbody>
@@ -743,16 +800,6 @@
 							</tbody>
 						</table>
 					</fieldset>	
-					<fieldset style="margin: 6px;" class="ui-corner-all ui-widget-content">
-						<legend>相关保单</legend>
-						<table class="formFields ui-widget-content" cellspacing="2" cellpadding="0">
-								<tbody>
-									<tr>
-										<td class="value" ><pre><s:property value="e.insuranceInfo" /></pre></td>
-									</tr>
-								</tbody>
-						</table>
-					</fieldset>
 				</div>
 			</div>
 			
