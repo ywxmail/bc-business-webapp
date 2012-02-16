@@ -11,8 +11,8 @@
 						<tbody>
 							<tr class="widthMarker">
 								                <td style="width: 100px;">&nbsp;</td>
-								                <td style="width: 240px;">&nbsp;</td>
-								                <td style="width: 120px;">&nbsp;</td>
+								                <td style="width: 220px;">&nbsp;</td>
+								                <td style="width: 110px;">&nbsp;</td>
 								                <td >&nbsp;</td>
 							 </tr>
 							 <tr>
@@ -42,7 +42,7 @@
 						          		<table class="formFields" cellspacing="2" cellpadding="0" >
 											<tr class="widthMarker">
 								                <td style="width: 80px;">&nbsp;</td>
-								                <td style="width: 240px;">&nbsp;</td>
+								                <td style="width: 220px;">&nbsp;</td>
 								                <td style="width: 120px;">&nbsp;</td>
 								                <td >&nbsp;</td>
 							                </tr>
@@ -63,7 +63,7 @@
 											<tr>
 											    <td class="label">*<s:text name="policy.Company"/>:</td>
 							                    <td class="value "><s:select  list="companyList" listKey="value" listValue="value"  headerKey="" headerValue=""  name="e.commerialCompany"  data-validate="required" 
-							                         cssStyle="width:17em;" cssClass="ui-widget-content"/></td>
+							                         cssStyle="width:15em;" cssClass="ui-widget-content"/></td>
 							                    <td class="label">*<s:text name="policy.insurelDeadline"/>:</td>
 							                    <td class="value" >
 												<div style="position : relative; display: inline-block">
@@ -104,7 +104,7 @@
 								        <table class="formFields" cellspacing="2" cellpadding="0">
 											<tr class="widthMarker">
 								                <td style="width: 80px;">&nbsp;</td>
-								                <td style="width: 240px;">&nbsp;</td>
+								                <td style="width: 220px;">&nbsp;</td>
 								                <td style="width: 120px;">&nbsp;</td>
 								                <td >&nbsp;</td>
 							                </tr>
@@ -140,7 +140,7 @@
 						          		         <table class="formFields" cellspacing="2" cellpadding="0">
 													<tr class="widthMarker">
 										                <td style="width: 80px;">&nbsp;</td>
-										                <td style="width: 240px;">&nbsp;</td>
+										                <td style="width: 220px;">&nbsp;</td>
 										                <td style="width: 120px;">&nbsp;</td>
 										                <td >&nbsp;</td>
 									                </tr>
@@ -161,7 +161,7 @@
 											        <tr>
 											             <td class="label"><s:text name="policy.Company"/>:</td>
 							                             <td class="value" ><s:select  list="companyList" listKey="value" listValue="value"  headerKey="" headerValue=""  name="e.greenslipCompany"  
-							                               cssStyle="width:17em;" cssClass="ui-widget-content"/></td>
+							                               cssStyle="width:15em;" cssClass="ui-widget-content"/></td>
 							                                <td class="label">
 								                               <samp id="greenslipSameDateFieldset" style='<s:if test="%{e.greenslipSameDate==false || e.greenslip==true}">
 										                         visibility: visible;
