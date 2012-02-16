@@ -105,9 +105,9 @@
 						</tr>
 						<tr>
 				            <td class="label">*<s:text name="carMan.cert4FWZG"/>:</td>
-							<td class="value"><s:textfield name="e.cert4FWZG" cssClass="ui-widget-content" data-validate='{"minLen": 6,"maxLen": 7,"required":true,"type":"string"}' cssStyle="width:8em;"/>
+							<td class="value"><s:textfield name="e.cert4FWZG" cssClass="ui-widget-content" data-validate='{"minLen": 6,"maxLen": 7,"required":true,"type":"string"}' cssStyle="width:7.5em;"/>
 								<s:text name="carMan.level"/>:
-								<s:select list="carManLevelList" listKey="value" listValue="value" headerKey="" headerValue="未有等级" name="e.level" cssStyle="width:8em;" cssClass="ui-widget-content"/>
+								<s:select list="carManLevelList" listKey="value" listValue="value" headerKey="" headerValue="未有等级" name="e.level" cssStyle="width:7.5em;" cssClass="ui-widget-content"/>
 							</td>
 							<td class="label"><s:text name="carMan.cert4CYZG"/>:</td>
 							<td class="value" colspan="2"><s:textfield name="e.cert4CYZG" cssClass="ui-widget-content"/></td>
@@ -139,7 +139,7 @@
 									&nbsp;从<input type="text" name="e.cert4DrivingStartDate" <s:if test="e.isNew()">data-cfg='{"addYear":"6 0 -1"}'</s:if>
 									  data-validate='{"type":"date","required":false}' 
 										value='<s:date format="yyyy-MM-dd" name="e.cert4DrivingStartDate" />' 
-										style="width: 8em;" class="bc-date ui-widget-content" />
+										style="width:7.5em;" class="bc-date ui-widget-content" />
 										<ul class="inputIcons" style="right : 0px;">
 											<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.cert4DrivingStartDate' ></li>
 										</ul>
@@ -147,13 +147,13 @@
 					        	<div class="bc-dateContainer">
 									&nbsp;到<input type="text" name="e.cert4DrivingEndDate"  data-validate='{"type":"date","required":false}'
 										value='<s:date format="yyyy-MM-dd" name="e.cert4DrivingEndDate" />'
-										style="width: 8em;" class="bc-date ui-widget-content" />
+										style="width:7.5em;" class="bc-date ui-widget-content" />
 										<ul class="inputIcons" style="right : 0px;">
 											<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.cert4DrivingEndDate' ></li>
 										</ul>
 								</div>
 				            </td>
-				            <td class="label"><s:text name="carMan.cert4DrivingFirstDate"/>:</td>
+				            <td class="label" style="width: 120px"><s:text name="carMan.cert4DrivingFirstDate"/>:</td>
 				             <td class="value relative"  colspan="2">
 								<input type="text" name="e.cert4DrivingFirstDate" data-validate='{"type":"date","required":false}'
 								value='<s:date format="yyyy-MM-dd" name="e.cert4DrivingFirstDate" />'
