@@ -82,7 +82,22 @@
 						          <legend>迁往</legend>
 						          <table class="formFields" cellspacing="2" cellpadding="0" >
 							          <tr><td class="label" style="height:19px"><s:text name="carByDriverHistory.toUnit"/>:</td>
-						                  <td class="value"><s:textfield name="e.toUnit" cssClass="ui-widget-content"/></td>
+						                  <td class="value relative">
+											<s:if test="isReadonly()">
+												<s:textfield name="e.toUnit" cssClass="ui-widget-content"/>
+											</s:if>
+											<s:else>
+												<div class="bc-relativeContainer">
+													<input type="text" name="e.toUnit" value='<s:property value="e.toUnit"/>' style="width:197px;text-align:left;padding-right:18px;" 
+														class="bc-select ui-widget-content"
+														data-maxHeight="150px"
+														data-source='<s:property value="companyNames"/>'/>
+													<ul class="inputIcons">
+														<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
+													</ul>
+												</div>
+											</s:else>
+				                  		  </td>
 						              </tr>
 						        </table>
 						    </fieldset>

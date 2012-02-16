@@ -51,7 +51,22 @@
 							                <td >&nbsp;</td>
 						               </tr>
 							          <tr><td class="label" style="height:19px"><s:text name="carByDriverHistory.fromUnit"/>:</td>
-						                  <td class="value"><s:textfield name="e.fromUnit" cssClass="ui-widget-content"/></td>
+						                  <td class="value relative">
+											<s:if test="isReadonly()">
+												<s:textfield name="e.fromUnit" cssClass="ui-widget-content"/>
+											</s:if>
+											<s:else>
+												<div class="bc-relativeContainer">
+													<input type="text" name="e.fromUnit" value='<s:property value="e.fromUnit"/>' style="width:197px;text-align:left;padding-right:18px;" 
+														class="bc-select ui-widget-content"
+														data-maxHeight="150px"
+														data-source='<s:property value="companyNames"/>'/>
+													<ul class="inputIcons">
+														<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
+													</ul>
+												</div>
+											</s:else>
+				                  		  </td>
 						              </tr>
 						        </table>
 						    </fieldset>
@@ -84,8 +99,8 @@
 						                    <td class="value"> <s:select name="e.toMotorcadeId" list="motorcadeList" listKey="key" listValue="value" value="e.toMotorcadeId" 
 						                        headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
 					                        </td>
-						              		<td class="label"><s:text name="carByDriverHistory.classes"/>:</td>
-						                 	<td class="value" ><s:select name="e.toClasses" list="#{0:'',1:'正班',2:'副班'}" 
+						              		<td class="label">*<s:text name="carByDriverHistory.classes"/>:</td>
+						                 	<td class="value"><s:select name="e.toClasses" list="#{'':'---请选择---',1:'正班',2:'副班'}" 
 							              		listKey="key" listValue="value" data-validate="required" cssClass="ui-widget-content"/>
 						              		</td>
 							         </tr>
