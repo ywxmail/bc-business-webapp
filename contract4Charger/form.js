@@ -444,7 +444,11 @@ bc.contract4ChargerForm = {
 		
 		//唯一性检测
 		var option = { callback : function (json){
-				bc.msg.slide(json.msg);
+				if(json.success){
+					bc.msg.slide(json.msg);
+				}else{
+					bc.msg.alert(json.msg);
+				}
 				return false;
 			}
 		};
