@@ -52,5 +52,31 @@ bc.carManForm = {
 	/** 身份证验证方法:上下文为validate对象 */
 	validateIndentity: function(element, $form){
 		return /^(\d{15}|(\d{17}\w{1}))$/.test(element.value);
+	},
+	
+	//第 一次保存时重新打开表单
+	save : function() {
+		var $form = $(this);
+		// 
+		var isNew = $form.find(":input[name='e.id']").val()=="";
+			
+		//调用标准的方法执行保存
+		bc.page.save.call($form,{callback:function(json){
+			if(!isNew) return;
+			
+			// 关闭当前窗口
+			$form.dialog("close");
+			
+			// 重新打开可编辑表单
+			bc.page.newWin({
+				name: $form.find(":input[name='e.name']").val(),
+				mid: "carMan" + json.id,
+				url: bc.root + "/bc-business/carMan/edit",
+				data: {id: json.id},
+				afterClose: function(status){
+					if(status) bc.grid.reloadData($form);
+				}
+			});
+		}});
 	}
 };

@@ -9,8 +9,11 @@ bc.caseAccidentForm = {
 		}else{
 			$form.find("#idSecondDeliver").css("display","block");
 		}
+		//初始化时显示相关保单
+		bc.caseAccidentForm.accAddPolicyInfo($form);
 		
 		if(readonly) return;
+		
 		if($form.find(":input[name='isMoreCar']").val()=="true"){
 			var carManId=$form.find(":input[name='carManId']").val();
 			var url=bc.root +"/bc-business/selectMoreCarWithCarMan/selectCars?carManId="+carManId;
@@ -23,6 +26,7 @@ bc.caseAccidentForm = {
 						$form.find(":input[name='e.carId']").val(car.id);
 						$form.find(":input[name='e.carPlate']").val(car.name);
 						$form.find("select[name='e.motorcadeId']").val(car.motorcadeId);
+						
 					}
 				}
 			},option);
@@ -30,7 +34,6 @@ bc.caseAccidentForm = {
 		};
 		if($form.find(":input[name='isNullCar']").val()=="true"){
 			bc.msg.alert("该司机还没有驾驶任何车辆！");
-			
 		};
 		if($form.find(":input[name='isMoreCarMan']").val()=="true"){
 			var carId=$form.find(":input[name='carId']").val();
@@ -66,7 +69,7 @@ bc.caseAccidentForm = {
 			$form.find(":hidden[name='e.motorcadeName']").val(name);
 		});
 		
-		// 选择车辆车牌
+		//------------绑定选择车辆按钮事件开始-------------------
 		$form.find("#selectCar").click(function() {
 			var selecteds = $form.find(":input[name='e.carPlate']").val();
 			bs.selectCar({
@@ -76,6 +79,7 @@ bc.caseAccidentForm = {
 					$form.find(":input[name='e.carPlate']").val(car.plate);
 					$form.find("select[name='e.motorcadeId']").val(car.motorcadeId);
 					$form.find(":input[name='e.motorcadeName']").val(car.motorcadeName);
+					$form.find(":input[name='e.company']").val(car.company);
 					//按照司机信息更新表单相应的域
 					function updateFieldsFromDriver(driver){
 						$form.find(":input[name='e.driverId']").val(driver.id);
@@ -85,6 +89,9 @@ bc.caseAccidentForm = {
 						$form.find(":input[name='e.driverClasses']").val(driver.drivingStatus);
 						$form.find(":input[name='e.origin']").val(driver.origin);
 					};
+					
+					//添加车辆相关保单信息开始
+					bc.caseAccidentForm.accAddPolicyInfo($form);
 					
 					//根据选择的车辆信息获取相应的营运司机信息
 					var url=bc.root +"/bc-business/caseAccident/selectCarMansInfo?carId="+car.id;
@@ -150,6 +157,7 @@ bc.caseAccidentForm = {
 				}
 			});
 		});
+		//------------绑定选择车辆按钮事件结束-------------------
 		
 		// 负责人
 		$form.find("#selectPrincipal").click(function() {
@@ -304,8 +312,6 @@ bc.caseAccidentForm = {
 			}
 		});
 		
-		
-		
 		//绑定二次送保按钮  显示或隐藏二次送保的内容
 		$form.find(":checkbox[name='e.deliverSecond']").change(function(){
 			if($(this)[0].checked==false){
@@ -339,8 +345,12 @@ bc.caseAccidentForm = {
 				$form.find(":checkbox[name='e.payTwo']")[0].checked=false;
 				$form.find('#payTwo').css("display","none");
 			}
-		});	
+		});
 		
+		//绑定按钮点击获取相关保单
+		$form.find("#loadPolicy").click(function(){
+			bc.caseAccidentForm.accAddPolicyInfo($form);
+		});
 	},
 	//结案 
 	closefile : function(){
@@ -410,5 +420,138 @@ bc.caseAccidentForm = {
 				});
 			}
 		}
+	},
+	//添加车辆相关保单信息
+	accAddPolicyInfo: function($form){
+		var happenTime=$form.find(":input[name='e.happenDate']").val();
+		var carId=$form.find(":input[name='e.carId']").val();
+		if(carId!='' && happenTime!=''){
+			var urlLoadPolicy=bc.root +"/bc-business/caseAccident/loadPolicyInfo?carId="+carId;
+				urlLoadPolicy+="&happenTime=";
+				urlLoadPolicy+=happenTime;
+				$.ajax({
+					url: urlLoadPolicy,
+					dataType : "json",
+					success : function(policies) {
+						logger.info("policies.length=" + policies.length);
+						if(policies.length==0){
+							var $bpTable=$form.find("#buildPolicyTable");
+							$bpTable.children().replaceWith('');
+							$bpTable.html('<textarea rows="3" Class="ui-widget-content noresize"/>');
+						}
+						if(policies.length==1){
+							var ct="";
+							ct=bc.caseAccidentForm.accBuildPolicyInfo(policies[0]);
+							var $bpTable=$form.find("#buildPolicyTable");
+							$bpTable.children().replaceWith('');
+							$bpTable.html(ct);
+						}else if(policies.length>1){
+							for(var i=0; i<policies.length; i++){
+								var ct="";
+								ct+='<div>';
+									ct+='保单';
+									var j=i+1;
+									ct+=j;
+								ct+='</div>';
+								var policy=policies[i];
+								ct+=bc.caseAccidentForm.accBuildPolicyInfo(policy);
+								if(i==0){
+									var $bpTable=$form.find("#buildPolicyTable");
+									$bpTable.children().replaceWith('');
+									$bpTable.html(ct);
+								}else{
+									$form.find("#buildPolicyTable").append(ct);
+								}
+							}
+						}
+					}
+				});
+		}
+	},
+	//生成构建相关保单的字符串
+	accBuildPolicyInfo: function(policy){
+			var ct='<table class="ui-widget-content" cellspacing="3" cellpadding="0" style="width:700px;">';
+			ct+='<tbody>';
+				ct+='<tr style="line-height: 1px;">';
+					ct+='<td style="width: 80px;">&nbsp;</td>';
+					ct+='<td style="width: 180px;">&nbsp;</td>';
+					ct+='<td style="width: 80px;">&nbsp;</td>';
+					ct+='<td style="width: 200px;">&nbsp;</td>';
+					ct+='<td style="width: 80px;">&nbsp;</td>';
+					ct+='<td >&nbsp;</td>';
+				ct+='</tr>';
+				ct+='<tr>';
+					ct+='<td class="label">商业险号:</td>';
+					ct+='<td class="value">';
+					ct+=policy.commerialNo;
+					ct+='</td>';
+					ct+='<td class="label">期限:</td>';
+					ct+='<td class="value">';
+					ct=ct+policy.commerialStartDate+'至'+policy.commerialEndDate;
+					ct+='</td>';
+					ct+='<td class="label">险司:</td>';
+					ct+='<td class="value">';
+					ct+=policy.commerialCompany;
+					ct+='</td>';
+				ct+='</tr>';
+				ct+='<tr>';
+					ct+='<td class="label">强制险号:</td>';
+					ct+='<td class="value">';
+					ct+=policy.greenslipNo;
+					ct+='</td>';
+					ct+='<td class="label">期限:</td>';
+					ct+='<td class="value">';
+					ct=ct+policy.greenslipStartDate+'至'+policy.greenslipEndDate;
+					ct+='</td>';
+					ct+='<td class="label">险司:</td>';
+					ct+='<td class="value">';
+					ct+=policy.greenslipCompany;
+					ct+='</td>';
+				ct+='</tr>';
+				ct+='<tr>';
+					ct+='<td class="label">责任险号:</td>';
+					ct+='<td class="value">';
+					ct+=policy.liabilityNo;
+					ct+='</td>';
+				ct+='</tr>';
+		//险种 
+		ct+='<tr>';
+			ct+='<td class="topLabel">购买险种:</td>';
+			ct+='</td>';
+			ct+='<td class="value" colspan="5">';
+				ct+='<table  cellspacing="3" cellpadding="0" >';
+					ct+='<tbody>';
+						ct+='<tr style="line-height: 1px;">';
+							ct+='<td style="width: 100px;">&nbsp;</td>';
+							ct+='<td style="width: 100px;">&nbsp;</td>';
+							ct+='<td >&nbsp;</td>';
+						ct+='</tr>';
+						ct+='<tr>';
+							ct+='<td class="value" >险种名称</td>';
+							ct+='<td class="value" >保额</td>';
+							ct+='<td class="value" >描述</td>';
+						ct+='</tr>';
+						var buyPlants=policy.buyPlant;
+						for(var i=0;i<buyPlants.length;i++){
+							ct+='<tr>';
+								ct+='<td class="value">';
+								ct+=buyPlants[i].name;
+								ct+='</td>';
+								ct+='<td class="value">';
+								ct+=buyPlants[i].coverage;
+								ct+='</td>';
+								ct+='<td class="value">';
+								ct+=buyPlants[i].description;
+								ct+='</td>';
+							ct+='</tr>';
+						}
+					ct+='</tbody>';
+				ct+='</tadble>';
+			ct+='</td>';
+		ct+='</tr>';
+		
+			ct+='</tbody>';
+		ct+='</table>';
+		return ct;
 	}
 };

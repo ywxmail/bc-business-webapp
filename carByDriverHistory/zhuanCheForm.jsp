@@ -100,8 +100,8 @@
 						                 <td class="value"> <s:select name="e.toMotorcadeId" list="motorcadeList" listKey="key" listValue="value" value="e.toMotorcadeId" 
 						                 headerKey="" headerValue="" cssClass="ui-widget-content"></s:select></td>
 						              </tr>
-						              <tr><td class="label"><s:text name="carByDriverHistory.classes"/>:</td>
-						                 <td class="value" ><s:select name="e.toClasses" list="#{0:'',1:'正班',2:'副班'}" 
+						              <tr><td class="label">*<s:text name="carByDriverHistory.classes"/>:</td>
+						                 <td class="value"><s:select name="e.toClasses" list="#{'':'---请选择---',1:'正班',2:'副班'}" 
 							              listKey="key" listValue="value" data-validate="required" cssClass="ui-widget-content"/>
 							             </td>
 							           </tr>
