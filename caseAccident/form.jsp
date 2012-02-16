@@ -73,9 +73,9 @@
 										listValue="value" value="e.motorcadeId" headerKey="" headerValue="" cssClass="ui-widget-content"/>
 						    </td>
 					    </s:else>
-					    <td class="label">公司:</td>
+					    <td class="label"><s:text name="runcase.company"/>:</td>
 						<td class="value">
-								<s:textfield name="" value="" cssClass="ui-widget-content" cssStyle="width:8em;"/>
+								<s:textfield name="e.company"  cssClass="ui-widget-content" cssStyle="width:8em;"/>
 								<div style="width:24px;display:inline-block;"></div>
 								<s:text name="runcase.weather"/>:
 								<s:textfield name="e.weather" cssClass="ui-widget-content" cssStyle="width:8em;"/>
