@@ -21,7 +21,8 @@
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseTraffics/list?carManId=%{e.id}" />' class="ui-state-default">交通违章</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseBusinesss/list?carManId=%{e.id}" />' class="ui-state-default">营运违章</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseAccidents/list?carManId=%{e.id}" />' class="ui-state-default">事故理赔</a></li>
-					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseAdvices/list?carManId=%{e.id}" />' class="ui-state-default">投诉</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseAdvices/list?carManId=%{e.id}&type=2" />' class="ui-state-default">客管投诉</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseAdvices/list?carManId=%{e.id}&type=6" />' class="ui-state-default">公司投诉</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/casePraises/list?carManId=%{e.id}" />' class="ui-state-default">表扬</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">安全学习</a></li>
 					</s:if>
