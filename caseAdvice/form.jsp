@@ -18,14 +18,14 @@
 				<tbody>
 					<tr>
 						<td colspan="4">
-						    <fieldset class="ui-widget-content">
+							<fieldset class="ui-widget-content">
 						    	<legend>投诉信息</legend>
 						    	<table class="formFields" cellspacing="2" cellpadding="0">
 									<tr class="widthMarker">
-										<td style="width: 90px;">&nbsp;</td>
-										<td style="width: 295px;">&nbsp;</td>
-										<td style="width: 85px;">&nbsp;</td>
 										<td>&nbsp;</td>
+										<td style="width: 270px;">&nbsp;</td>
+										<td style="width: 85px;">&nbsp;</td>
+										<td style="width: 270px;">&nbsp;</td>
 									</tr>
 						    		<tr>
 						    			<td class="label">*<s:text name="runcase.subject2"/>
@@ -33,8 +33,8 @@
 											<div style="position : relative; display: block">
 												<s:textfield name="e.subject" data-validate="required" cssClass="ui-widget-content"/>
 												<ul class="inputIcons">
-											 		<li class="inputIcon ui-icon ui-icon-circle-plus" id="selectSubject">
-											 	</ul>
+										 			<li class="inputIcon ui-icon ui-icon-circle-plus" id="selectSubject">
+										 		</ul>
 										 	</div>
 										</td>
 										<td class="label">*<s:text name="runcase.happenDate"/>:</td>
@@ -50,9 +50,26 @@
 										</td>
 						    		</tr>
 						    		<tr>
+						    			<td class="label">*<s:text name="runcase.advisorName" />:</td>
+										<td class="value">
+											<s:textfield name="e.advisorName" cssStyle="width:8em;" data-validate="required" cssClass="ui-widget-content"/>
+											 <s:radio name="e.advisorSex" list="#{'1':'男','2':'女'}" 
+											value="e.sex" cssStyle="width:auto;"/>
+											<s:text name="runcase.advisorAge" />:<s:textfield name="e.advisorAge" cssStyle="width:2.5em;" cssClass="ui-widget-content"/>
+										</td>
+										<td class="label">*<s:text name="runcase.advisorPhone" />:</td>
+					                	<td class="value">
+											<s:textfield name="e.advisorPhone" data-validate='{"type":"number" ,"required":true}' cssClass="ui-widget-content"/>
+										</td>
+									</tr>
+									<tr>
+					               		<td class="label"><s:text name="runcase.advisorCert" />:</td>
+					                	<td class="value">
+											<s:textfield name="e.advisorCert" cssClass="ui-widget-content"/>
+										</td>
 						    			<td class="label" ><s:text name="runcase.source"/>:</td>
 										<td class="value" >
-											<s:textfield name="e.from" cssClass="ui-widget-content" cssStyle="width: 15em" />(<s:property value="sourceStr"/>)
+											<s:textfield name="e.from" cssClass="ui-widget-content" cssStyle="width: 13em" />(<s:property value="sourceStr"/>)
 										</td>
 									</tr>
 									<tr>
@@ -87,10 +104,10 @@
 						    	<legend>被投诉方信息</legend>
 						        <table class="formFields" cellspacing="2" cellpadding="0" style="height:100px; width: 100%;">
 									<tr class="widthMarker">
-										<td style="width: 95px;"></td>
-										<td style="width: 200px;"></td>
-										<td style="width: 200px;"></td>
-										<td >&nbsp;</td>
+										<td>&nbsp;</td>
+										<td style="width: 270px;">&nbsp;</td>
+										<td style="width: 85px;">&nbsp;</td>
+										<td style="width: 270px;">&nbsp;</td>
 									</tr>
 									<tr>
 						               	<td class="label"><s:text name="runcase.carPlate"/>:</td>
@@ -109,7 +126,7 @@
 					               		<td class="label"><s:text name="runcase.driverName"/>:</td>
 										<td class="value" colspan="3">
 											<div style="position:relative;display: inline-block" >
-												<s:textfield name="e.driverName" cssStyle="width:8em;" readonly="true" cssClass="ui-widget-content "/>
+												<s:textfield name="e.driverName" cssStyle="width:8em;" readonly="true" cssClass="ui-widget-content"/>
 												<ul class="inputIcons">
 										 			<li class="inputIcon ui-icon ui-icon-circle-plus" id="selectDriverName">
 										 		</ul>
@@ -127,40 +144,6 @@
 						        </table>
 						   </fieldset>
 						</td>
-						<td colspan="2">
-							<fieldset class="ui-widget-content" style="height: 115px;">
-				          		<legend>投诉人信息</legend>
-				          		<table class="formFields" cellspacing="2" cellpadding="0" style="height:100px;width: 100%;">
-						          	<tr class="widthMarker">
-										<td style="width: 95px;"></td>
-										<td style="width: 200px;"></td>
-										<td style="width: 200px;"></td>
-										<td >&nbsp;</td>
-									</tr>
-						          	<tr>
-						          		<td class="label">*<s:text name="runcase.advisorName" />:</td>
-										<td class="value" colspan="3">
-											<s:textfield name="e.advisorName" cssStyle="width:8em;" data-validate="required" cssClass="ui-widget-content"/>
-											 <s:radio name="e.advisorSex" list="#{'1':'男','2':'女'}" 
-											value="e.sex" cssStyle="width:auto;"/>
-											<s:text name="runcase.advisorAge" />:<s:textfield name="e.advisorAge" cssStyle="width:2.5em;" cssClass="ui-widget-content"/>
-										</td>
-					                </tr>
-					                <tr>
-					                	<td class="label">*<s:text name="runcase.advisorPhone" />:</td>
-					                	<td class="value" colspan="3">
-											<s:textfield name="e.advisorPhone" data-validate='{"type":"number" ,"required":true}' cssClass="ui-widget-content"/>
-										</td>
-					                </tr>
-					                <tr>
-					               		<td class="label"><s:text name="runcase.advisorCert" />:</td>
-					                	<td class="value" colspan="3">
-											<s:textfield name="e.advisorCert" cssClass="ui-widget-content"/>
-										</td>
-					                </tr>
-				        		</table>
-				    		</fieldset>
-				    	</td>
 					</tr>
 					<tr>
 						<td colspan="4">
