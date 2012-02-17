@@ -550,7 +550,7 @@ bc.caseAccidentForm = {
 					ct+='<tbody>';
 						ct+='<tr style="line-height: 1px;">';
 							ct+='<td style="width: 100px;">&nbsp;</td>';
-							ct+='<td style="width: 100px;">&nbsp;</td>';
+							ct+='<td style="width: 160px;">&nbsp;</td>';
 							ct+='<td >&nbsp;</td>';
 						ct+='</tr>';
 						ct+='<tr>';
