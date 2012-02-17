@@ -24,7 +24,8 @@
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseTraffics/list?carId=%{e.id}" />' class="ui-state-default">交通违章</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseBusinesss/list?carId=%{e.id}" />' class="ui-state-default">营运违章</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseAccidents/list?carId=%{e.id}" />' class="ui-state-default">事故理赔</a></li>
-					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseAdvices/list?carId=%{e.id}" />' class="ui-state-default">投诉</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseAdvices/list?carId=%{e.id}&type=2" />' class="ui-state-default">客管投诉</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseAdvices/list?carId=%{e.id}&type=6" />' class="ui-state-default">公司投诉</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/casePraises/list?carId=%{e.id}" />' class="ui-state-default">表扬</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">附属设施</a></li>
 					<!-- <li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">费用</a></li> -->
@@ -216,12 +217,20 @@
 									<td class="value" >
 										<s:select name="e.taximeterFactory" list="taximeterFactoryTypeList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
 									</td>
-									<td class="label" ><s:text name="car.certNo3"/>:</td>
-									<td class="value" ><s:textfield name="e.certNo3"  cssClass="ui-widget-content"/></td>
+									<td class="label" ><s:text name="car.taximeterType"/>:</td>
+									<td class="value relative">
+										<input type="text" name="e.taximeterType" value='<s:property value="e.taximeterType"/>'
+											data-validate="required" class="bc-select ui-widget-content"
+											data-maxHeight="150px"
+											data-source='<s:property value="taximeterTypes"/>'/>
+										<ul class="inputIcons">
+											<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
+										</ul>
+									</td>
 								</tr>
 								<tr>
-									<td class="label" ><s:text name="car.taximeterType"/>:</td>
-									<td class="value" ><s:textfield name="e.taximeterType" cssClass="ui-widget-content"/></td>
+									<td class="label" ><s:text name="car.certNo3"/>:</td>
+									<td class="value" ><s:textfield name="e.certNo3"  cssClass="ui-widget-content"/></td>
 									<td class="label" ><s:text name="car.taximeterNo" />:</td>
 									<td class="value" ><s:textfield name="e.taximeterNo"  cssClass="ui-widget-content"/></td>
 								</tr>

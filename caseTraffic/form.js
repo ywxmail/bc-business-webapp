@@ -124,7 +124,6 @@ bc.caseTrafficForm = {
 								var driversEl = html.find("#drivers").dblclick(onSelectDriver)[0];
 								
 								//弹出对话框让用户选择司机
-								alert("jjj");
 								html.dialog({
 									id: "selectTrafficDriver",
 									title: "所选车辆有多个营运司机，请选择当事司机",
