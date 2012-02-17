@@ -12,11 +12,12 @@
 			</div>
 		</li>
 		<li class="condition">
-			<div class="label">驾驶状态分类</div>
+			<div class="label">驾驶状态</div>
 			<div class="value" data-condition='{"type":"int","key":"m.classes"}' >
 				<label><input type="checkbox" name="checkboxField1" value="1"><span>正班</span></label>
 				<label><input type="checkbox" name="checkboxField1" value="2"><span>副班</span></label>
-				<label><input type="checkbox" name="checkboxField1" value="4"><span>主挂</span></label>
+				<label><input type="checkbox" name="checkboxField1" value="3"><span>顶班</span></label>
+				<label><input type="checkbox" name="checkboxField1" value="0"><span>无</span></label>
 			</div>
 		</li>
 		<li class="condition">

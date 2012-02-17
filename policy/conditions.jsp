@@ -5,7 +5,7 @@
 	<ul class="conditions" style="min-width:19.3em;">
 		<li class="condition">
 			<div class="label">所属公司</div>
-			<div class="value" data-condition='{"type":"string","key":"c.company"}' >
+			<div class="value checkboxes" data-condition='{"type":"string","key":"c.company"}' >
 				<label><input type="checkbox" name="checkboxField1" value="宝城"><span>宝城</span></label>
 				<label><input type="checkbox" name="checkboxField1" value="广发"><span>广发</span></label>
 			</div>
@@ -137,6 +137,36 @@
 				</div>～<div class="bc-dateContainer">
 					<input type="text" class="bc-date ui-widget-content" data-validate="date" style="width:9em;"
 						data-condition='{"type":"endDate","ql":"p.greenslip_end_date<=?"}'>
+					<ul class="inputIcons">
+						<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
+						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</li>
+		<li class="condition">
+			<div class="label">商业险或强制险期限（结束日期）</div>
+			<div class="value multi"
+				data-condition='{
+					"type": "multi",
+					"ql": "((p.commerial_end_date>=?0 and p.commerial_end_date<=?1) or (p.greenslip_end_date>=?0 and p.greenslip_end_date<=?1))",
+					"ql10": "(p.commerial_end_date>=? or p.greenslip_end_date>=?)",
+					"ql01": "(p.commerial_end_date<=? or p.greenslip_end_date<=?)"
+				}'>
+				<div class="bc-dateContainer">
+					<input type="text" class="bc-date ui-widget-content value" 
+						data-validate="date" style="width:9em;"
+						data-value="startDate"
+					>
+					<ul class="inputIcons">
+						<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
+						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
+					</ul>
+				</div>～<div class="bc-dateContainer">
+					<input type="text" class="bc-date ui-widget-content value" 
+						data-validate="date"  style="width:9em;"
+						data-value="endDate">
 					<ul class="inputIcons">
 						<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
 						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
