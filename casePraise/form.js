@@ -65,6 +65,9 @@ bc.casePraiseForm = {
 				onOk : function(car) {
 					$form.find(":input[name='e.carId']").val(car.id);
 					$form.find(":input[name='e.carPlate']").val(car.plate);
+					$form.find(":input[name='e.motorcadeId']").val(car.motorcadeId);
+					$form.find(":input[name='e.motorcadeName']").val(car.motorcadeName);
+
 					
 					//按照司机信息更新表单相应的域
 					function updateFieldsFromDriver(driver){

@@ -105,10 +105,24 @@
 									listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content" data-validate="required" />
 								<div style="width:0px;display:inline-block;"></div>
 								<s:text name="runcase.department"/>:
-								<s:select name="e.department" list="departmentList" listKey="value" cssStyle="width:8em;"
-								listValue="value"  headerKey="" headerValue=""  cssClass="ui-widget-content"/>
+								<s:if test="isReadonly()">
+									<s:textfield name="e.department" cssClass="ui-widget-content" cssStyle="width:8em;"/>
+								</s:if>
+								<s:else>
+									<div class="bc-relativeContainer" style="position : relative; display: inline-block">
+										<input type="text" name="e.department" value='<s:property value="e.department"/>' style="width:8em;" 
+											data-validate='{"maxLen": 50,"type":"string"}' class="bc-select ui-widget-content"
+											data-maxHeight="150px"
+											data-source='<s:property value="departmentList"/>'/>
+										<ul class="inputIcons">
+											<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
+										</ul>
+									</div>
+								</s:else>
 						</td>
 					</tr>
+					
+					
 					<tr>
 						<td class="label"><s:text name="runcase.driverArea"/>:</td>
 						<td class="value">
@@ -135,7 +149,7 @@
 										listValue="value" cssStyle="width:8em;" cssClass="ui-widget-content"/>
 								<div style="width:2px;display:inline-block;"></div>
 								<s:text name="runcase.driverType"/>:
-								<s:select name="e.driverType" list="#{0:'',1:'车主',2:'司机',3:'非编'}" listKey="key" 
+								<s:select name="e.driverType" list="#{0:'',1:'司机',2:'车主',3:'非编'}" listKey="key" 
 										listValue="value" cssStyle="width:8em;" cssClass="ui-widget-content"/>
 						</td>
 						<td class="label" ><s:text name="runcase.receiverName2"/>:</td>
@@ -204,8 +218,10 @@
 								</tr>
 								<tr>
 									<td class="label"><s:checkbox name="e.innerFix" cssStyle="width:1em;" /><s:text name="runcase.innerFix"/></td>
-									<td class="value">
-											<s:text name="runcase.fixCost" />(元):<s:textfield name="e.fixCost" cssClass="ui-widget-content" cssStyle="width:170px;"
+									<td class="value" >
+											<div style="width:2px;display:inline-block;"></div>
+											<span id="fixCostText"><s:text name="runcase.fixCost" />(元):</span>
+											<s:textfield name="e.fixCost" cssClass="ui-widget-content" cssStyle="width:130px;"
 												    value="%{getText('bs.format.numberRMB',{e.fixCost})}"  data-validate="money"  />
 									</td>
 									<td class="label"><s:text name="runcase.claimAmount" />(元):</td>

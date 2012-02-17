@@ -11,8 +11,25 @@ bc.caseAccidentForm = {
 		}
 		//初始化时显示相关保单
 		bc.caseAccidentForm.accAddPolicyInfo($form);
+		//根据厂修状态是否显示维修费
+		if($form.find(":input[name='e.innerFix']")[0].checked==false){
+			$form.find("#fixCostText").hide();
+			$form.find(":input[name='e.fixCost']").hide();
+		}
 		
 		if(readonly) return;
+		//绑定厂修按钮事件
+		$form.find(":input[name='e.innerFix']").change(function(){
+			var check=$form.find(":input[name='e.innerFix']")[0].checked;
+			if(check){
+				$form.find("#fixCostText").show();
+				$form.find(":input[name='e.fixCost']").show();
+			}else{
+				$form.find("#fixCostText").hide();
+				$form.find(":input[name='e.fixCost']").hide();
+				$form.find(":input[name='e.fixCost']").val('');
+			}
+		});
 		
 		if($form.find(":input[name='isMoreCar']").val()=="true"){
 			var carManId=$form.find(":input[name='carManId']").val();
@@ -88,6 +105,16 @@ bc.caseAccidentForm = {
 						$form.find(":input[name='e.driverArea']").val(driver.region);
 						$form.find(":input[name='e.driverClasses']").val(driver.drivingStatus);
 						$form.find(":input[name='e.origin']").val(driver.origin);
+						//司机类型 0:'',1:'司机',2:'车主',3:'非编'
+						if(driver.type==0){
+							$form.find("select[name='e.driverType']").val(1);
+						//carman类型是责任人或者（司机和责任人）都为车主
+						}else if(driver.type==1||driver.type==2){
+							$form.find("select[name='e.driverType']").val(2);
+						}else if(driver.type==3){
+							$form.find("select[name='e.driverType']").val(driver.type);
+						}
+						
 					};
 					
 					//添加车辆相关保单信息开始

@@ -88,6 +88,7 @@ bc.contract4ChargerForm = {
 					$form.find(":input[name='e.ext_str1']").val(car.plate);
 					$form.find(":input[name='e.wordNo']").val(car.code); 
 					$form.find(":input[name='carId']").val(car.id); 
+					$form.find(":input[name='e.businessType']").val(car.bsType); 
 					
 					
 //					var url = bc.root + "/bc-business/contract4Charger/isExistContract?carId="+car.id;
