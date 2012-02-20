@@ -5,6 +5,7 @@ bc.business.carByDriverHistoryForm = {
 		var $form = $(this);
 		
 		if(readonly) return;
+		
 		// 选择迁往车辆
 		$form.find("#selectNewCar").click(function() {
 			var selecteds = $form.find(":input[name='e.toCar.id']").val();
@@ -90,7 +91,7 @@ bc.business.carByDriverHistoryForm = {
 			});
 		});
 
-	},
+	}
 };
 
 
