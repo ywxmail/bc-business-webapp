@@ -15,7 +15,9 @@ bc.carManForm = {
 		});
 		//点击身份证input的灯泡自动生成籍贯、区域、生日
 		$form.find("#autoLoadCarManIdentityInfo").click(function(){
-			if(!bc.validator.validate($form.find(":input[name='e.cert4Indentity']").parent()));
+			if(!bc.validator.validate($form.find(":input[name='e.cert4Indentity']").parent())){
+				return;
+			}
 			var identityId=$form.find(":input[name='e.cert4Indentity']").val();
 			var url=bc.root + "/bc-business/carMan/autoLoadCarManIdentityInfo?identityId="+identityId;
 			$.ajax({
