@@ -17,6 +17,52 @@ bc.caseAccidentForm = {
 			$form.find(":input[name='e.fixCost']").hide();
 		}
 		
+		//损失情况
+		$form.find('#ShowGroups1').css("display","none");		
+		//绑定点击按钮内容展出事件
+		$form.find('#ShowGroups1').click(function(){
+			$form.find('#Groups1').css("display","block");
+			$(this).css("display","none");
+			$form.find('#HiddenGroups1').css("display","block");
+		});
+		//绑定点击按钮内容隐藏事件
+		$form.find('#HiddenGroups1').click(function(){
+			$form.find('#Groups1').css("display","none");
+			$(this).css("display","none");
+			$form.find('#ShowGroups1').css("display","block");
+		});
+		
+		//理赔情况
+		$form.find('#ShowGroups2').css("display","none");		
+		//绑定点击按钮内容展出事件
+		$form.find('#ShowGroups2').click(function(){
+			$form.find('#Groups2').css("display","block");
+			$(this).css("display","none");
+			$form.find('#HiddenGroups2').css("display","block");
+		});
+		//绑定点击按钮内容隐藏事件
+		$form.find('#HiddenGroups2').click(function(){
+			$form.find('#Groups2').css("display","none");
+			$(this).css("display","none");
+			$form.find('#ShowGroups2').css("display","block");
+		});
+		
+		//事故截图
+		$form.find('#ShowGroups3').css("display","none");		
+		//绑定点击按钮内容展出事件
+		$form.find('#ShowGroups3').click(function(){
+			$form.find('#Groups3').css("display","block");
+			$(this).css("display","none");
+			$form.find('#HiddenGroups3').css("display","block");
+		});
+		//绑定点击按钮内容隐藏事件
+		$form.find('#HiddenGroups3').click(function(){
+			$form.find('#Groups3').css("display","none");
+			$(this).css("display","none");
+			$form.find('#ShowGroups3').css("display","block");
+		});
+		
+		
 		if(readonly) return;
 		//绑定厂修按钮事件
 		$form.find(":input[name='e.innerFix']").change(function(){
@@ -211,50 +257,7 @@ bc.caseAccidentForm = {
 			});
 		});
 		
-		//损失情况
-		$form.find('#ShowGroups1').css("display","none");		
-		//绑定点击按钮内容展出事件
-		$form.find('#ShowGroups1').click(function(){
-			$form.find('#Groups1').css("display","block");
-			$(this).css("display","none");
-			$form.find('#HiddenGroups1').css("display","block");
-		});
-		//绑定点击按钮内容隐藏事件
-		$form.find('#HiddenGroups1').click(function(){
-			$form.find('#Groups1').css("display","none");
-			$(this).css("display","none");
-			$form.find('#ShowGroups1').css("display","block");
-		});
-		
-		//理赔情况
-		$form.find('#ShowGroups2').css("display","none");		
-		//绑定点击按钮内容展出事件
-		$form.find('#ShowGroups2').click(function(){
-			$form.find('#Groups2').css("display","block");
-			$(this).css("display","none");
-			$form.find('#HiddenGroups2').css("display","block");
-		});
-		//绑定点击按钮内容隐藏事件
-		$form.find('#HiddenGroups2').click(function(){
-			$form.find('#Groups2').css("display","none");
-			$(this).css("display","none");
-			$form.find('#ShowGroups2').css("display","block");
-		});
-		
-		//事故截图
-		$form.find('#ShowGroups3').css("display","none");		
-		//绑定点击按钮内容展出事件
-		$form.find('#ShowGroups3').click(function(){
-			$form.find('#Groups3').css("display","block");
-			$(this).css("display","none");
-			$form.find('#HiddenGroups3').css("display","block");
-		});
-		//绑定点击按钮内容隐藏事件
-		$form.find('#HiddenGroups3').click(function(){
-			$form.find('#Groups3').css("display","none");
-			$(this).css("display","none");
-			$form.find('#ShowGroups3').css("display","block");
-		});
+	
 		
 		
 		// 绑定是否送保事件
@@ -310,8 +313,6 @@ bc.caseAccidentForm = {
 				$form.find('#payTwo').css("display","none");
 			}
 		});
-		
-		
 		
 		//绑定送保 隐藏保险公司赔付和受款司机内容
 		$form.find(":checkbox[name='e.deliver']").change(function(){
