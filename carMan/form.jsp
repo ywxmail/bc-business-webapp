@@ -101,10 +101,6 @@
 							<td class="value" colspan="3"><s:textfield name="e.address1" cssClass="ui-widget-content"/></td>
 						</tr>
 						<tr>
-							
-							
-						</tr>
-						<tr>
 				            <td class="label">*<s:text name="carMan.cert4FWZG"/>:</td>
 							<td class="value"><s:textfield name="e.cert4FWZG" cssClass="ui-widget-content" data-validate='{"minLen": 6,"maxLen": 7,"required":true,"type":"string"}' cssStyle="width:7.5em;"/>
 								<s:text name="carMan.level"/>:
@@ -114,11 +110,18 @@
 							<td class="value" colspan="2"><s:textfield name="e.cert4CYZG" cssClass="ui-widget-content"/></td>
 						</tr>
 						<tr>
+							<!-- 身份证 -->
 							<td class="label">*<s:text name="carMan.cert4Indentity"/>:</td>
-							<td class="value"><s:textfield name="e.cert4Indentity" cssClass="ui-widget-content" data-validate='{"required":true,"method":"bc.carManForm.validateIndentity","msg":"必须为15位或18位身份证格式"}'/></td>
+							<td class="value relative">
+								<s:textfield name="e.cert4Indentity" cssClass="ui-widget-content" 
+									data-validate='{"required":true,"method":"bc.carManForm.validateIndentity","msg":"必须为15位或18位身份证格式"}'/>
+								<ul class="inputIcons" >
+									<li class="inputIcon ui-icon ui-icon-lightbulb"
+									 title='<s:text name="carMan.autoLoadCarManIdentityInfoTips"/>' id="autoLoadCarManIdentityInfo">
+								</ul>	
+							</td>
 							<td class="label"><s:text name="carMan.model"/>:</td>
 							<td class="value" colspan="2">
-								<!--<s:select list="carManModelList" listKey="value" listValue="value" headerKey="" headerValue="" name="e.model"  cssClass="ui-widget-content"/>-->
 								<s:textfield name="e.model" cssClass="ui-widget-content"/>
 							</td>
 						</tr>
@@ -127,11 +130,6 @@
 							<td class="value"><s:textfield name="e.cert4Driving" cssClass="ui-widget-content"/></td>
 							<td class="label"><s:text name="carMan.cert4DrivingArchive"/>:</td>
 							<td class="value" colspan="2"><s:textfield name="e.cert4DrivingArchive" cssClass="ui-widget-content"/></td>
-							<!--<td class="label"><s:text name="carMan.extFZJG"/>:</td>
-							<td class="value" colspan="2"><s:textfield name="e.oldUnitName" cssClass="ui-widget-content"/></td>-->
-						</tr>
-						<tr>
-							
 						</tr>
 						<tr>
 							<td class="label"><s:text name="carMan.cert4DrivingDeadline"/>:</td>
