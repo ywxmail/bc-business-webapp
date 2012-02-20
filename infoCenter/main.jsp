@@ -8,90 +8,112 @@
 	style="overflow: hidden;">
 
 	<!-- 左侧导航区 -->
-	<div class="left">
-		<table class="leftLayout ui-widget-content" cellspacing="0" cellpadding="0">
-			<tr class="fixHeight" style="height:60px">
-				<td><div class="header ui-widget-header" style="border-top-width: 0;">分公司</div>
-					<div class="content">
-						<input type="text" id="unitName" class="bc-select ui-widget-content"
-							data-source='<s:property value="units"/>'> 
-						<input type="hidden" id="unitId">
-						<ul class="inputIcons">
-							<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s"
-								title='<s:text name="title.click2select"/>'></li>
-							<li class="clearSelect inputIcon ui-icon ui-icon-close"
-								title='<s:text name="title.click2clear"/>'></li>
-						</ul>
-					</div>
-				</td>
-			</tr>
-			<tr class="fixHeight" style="height:60px">
-				<td><div class="header ui-widget-header">车队</div>
-					<div class="content">
-						<input type="text" id="motorcadeName" class="bc-select ui-widget-content"
-							data-maxHeight="250px"
-							data-source='<s:property value="motorcades"/>'> 
-						<input type="hidden" id="motorcadeId">
-						<ul class="inputIcons">
-							<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s"
-								title='<s:text name="title.click2select"/>'></li>
-							<li class="clearSelect inputIcon ui-icon ui-icon-close"
-								title='<s:text name="title.click2clear"/>'></li>
-						</ul>
-					</div>
-				</td>
-			</tr>
-			<tr class="autoHeight">
-				<td>
-					<div class="resultsContainer" style="height:auto">
-						<div class="header ui-widget-header">车辆</div>
-						<ul id="results" class="content results">
-							<li class=""><span>[1111]粤A.XXXX1</span></li>
-							<li class=""><span>[1111]粤A.XXXX2</span></li>
-							<li class=""><span>[1111]粤A.XXXX3</span></li>
-							<li class="active ui-state-highlight"><span>[1111]粤A.XXXX4</span></li>
-							<li class=""><span>[1111]粤A.XXXX5</span></li>
-							<li class=""><span>[1111]粤A.XXXX6</span></li>
-							<li class=""><span>[1111]粤A.XXXX7</span></li>
-							<li class=""><span>[1111]粤A.XXXX8</span></li>
-							<li class=""><span>[1111]粤A.XXXX9</span></li>
-						</ul>
-					</div>
-				</td>
-			</tr>
-			<tr class="fixHeight" style="height:124px">
-				<td><div class="header ui-widget-header">查找</div>
-					<div class="content">
-						<div class="content">
-							<input type="text" id="searchTypeLabel" class="bc-select ui-widget-content"
-								data-source='<s:property value="searchTypes"/>'
-								value="车牌" readonly="readonly"> 
-							<input type="hidden" id="searchTypeValue">
-							<ul class="inputIcons">
-								<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s"
-									title='<s:text name="title.click2select"/>'></li>
-							</ul>
-						</div>
-						<div class="content">
-							<input type="text" id="searchText" class="ui-widget-content"> 
-						</div>
-						<div class="content">
-							<button type="button" id="searchBtn" class="bc-button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary"
-								data-click="bs.infoCenter.doSearch">
-								<span class="ui-button-icon-primary ui-icon ui-icon-search"></span>
-								<span class="ui-button-text">查询</span>
-							</button>
-							<div class="hexiao"><label><input type="checkbox"/><span>核销</span></label></div>
-						</div>
-					</div>
-				</td>
-			</tr>
-		</table>
+	<div id="left" class="left ui-widget-content">
+		<div class="block">
+			<div class="header ui-widget-header" style="border-top-width: 0;">查找</div>
+			<div class="content" style="padding: 0;">
+				<div class="content">
+					<input type="text" id="searchTypeLabel" class="bc-select ui-widget-content"
+						data-source='<s:property value="searchTypes"/>'
+						value="车牌" readonly="readonly"> 
+					<input type="hidden" id="searchTypeValue">
+					<ul class="inputIcons">
+						<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s"
+							title='<s:text name="title.click2select"/>'></li>
+					</ul>
+				</div>
+				<div class="content">
+					<input type="text" id="searchText" class="ui-widget-content"> 
+				</div>
+				<div class="content">
+					<button type="button" id="searchBtn" class="bc-button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary"
+						data-click="bs.infoCenter.doSearch">
+						<span class="ui-button-icon-primary ui-icon ui-icon-search"></span>
+						<span class="ui-button-text">查询</span>
+					</button>
+					<div class="hexiao"><label><input type="checkbox"/><span>核销</span></label></div>
+				</div>
+			</div>
+		</div>
+		<div class="block">
+			<div class="header ui-widget-header">分公司</div>
+			<div class="content">
+				<input type="text" id="unitName" class="bc-select ui-widget-content"
+					data-source='<s:property value="units"/>'> 
+				<input type="hidden" id="unitId">
+				<ul class="inputIcons">
+					<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s"
+						title='<s:text name="title.click2select"/>'></li>
+					<li class="clearSelect inputIcon ui-icon ui-icon-close"
+						title='<s:text name="title.click2clear"/>'></li>
+				</ul>
+			</div>
+		</div>
+		<div class="block">
+			<div class="header ui-widget-header">车队</div>
+			<div class="content">
+				<input type="text" id="motorcadeName" class="bc-select ui-widget-content"
+					data-maxHeight="250px"
+					data-source='<s:property value="motorcades"/>'> 
+				<input type="hidden" id="motorcadeId">
+				<ul class="inputIcons">
+					<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s"
+						title='<s:text name="title.click2select"/>'></li>
+					<li class="clearSelect inputIcon ui-icon ui-icon-close"
+						title='<s:text name="title.click2clear"/>'></li>
+				</ul>
+			</div>
+		</div>
+		<div id="last" class="block header ui-widget-header">车辆</div>
+		<ul id="results" class="content results">
+			<li class=""><span>[1111]粤A.XXXX1</span></li>
+			<li class=""><span>[1111]粤A.XXXX2</span></li>
+			<li class=""><span>[1111]粤A.XXXX3</span></li>
+			<li class="active ui-state-highlight"><span>[1111]粤A.XXXX4</span></li>
+			<li class=""><span>[1111]粤A.XXXX5</span></li>
+			<li class=""><span>[1111]粤A.XXXX6</span></li>
+			<li class=""><span>[1111]粤A.XXXX7</span></li>
+			<li class=""><span>[1111]粤A.XXXX8</span></li>
+		</ul>
 	</div>
 
 	<!-- 中间分隔区 -->
-	<div class="splitter"><div class="ui-icon ui-icon-grip-dotted-vertical"></div></div>
+	<div class="splitter ui-widget-content"><div class="ui-icon ui-icon-grip-dotted-vertical"></div></div>
 
 	<!-- 右侧信息区 -->
-	<div class="right">c</div>
+	<div class="right ui-widget-content">
+		<div class="block main">
+			<div class="header ui-widget-header" style="border-top-width: 0;">粤A.XXXX4</div>
+			<div class="content" style="padding: 0 2px;">
+				<table cellspacing="2" cellpadding="0" style="width:100%;">
+					<tr class="widthMarker">
+						<td style="width: 60px;">&nbsp;</td>
+						<td style="width: 180px;">&nbsp;</td>
+						<td style="width: 100px;">&nbsp;</td>
+						<td style="width: 180px;">&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td class="label">自编号:</td>
+						<td class="value"><input type="text" name="main.code" class="ui-widget-content" value="LSVJN133442233596"/></td>
+						<td class="label">营运性质:</td>
+						<td class="value"><input type="text" name="main.businessType" class="ui-widget-content"/></td>
+						<td rowspan="3"><textarea name="main.desc" class="ui-widget-content noresize" style="width:98%;height:100%;">AA</textarea></td>
+					</tr>
+					<tr>
+						<td class="label">所属公司:</td>
+						<td class="value"><input type="text" name="main.company" class="ui-widget-content"/></td>
+						<td class="label">有效合同期限:</td>
+						<td class="value"><input type="text" name="main.businessType" class="ui-widget-content" value="2007-08-14~2012-12-19"/></td>
+					</tr>
+					<tr>
+						<td class="label">车队:</td>
+						<td class="value"><input type="text" name="main.motorcade" class="ui-widget-content"/></td>
+						<td class="label"><div class="little">行驶证登记日期</div>:</td>
+						<td class="value"><input type="text" name="main.registeDate" class="ui-widget-content"/></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
 </div>

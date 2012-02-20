@@ -21,6 +21,15 @@ bs.infoCenter = {
 			}
 		});
 		
+		// 定位左侧最下面的元素的top位置
+		var sh = 0;
+		var $left = $page.find("#left");
+		$left.children(".block").each(function(){
+			sh += $(this).outerHeight(true);
+		});
+		logger.info("sh=" + sh);
+		$left.children(".results").css("top",sh);
+		
 	},
 	
 	/** 执行查询处理 */

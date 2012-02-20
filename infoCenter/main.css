@@ -14,19 +14,22 @@
 	position: absolute;
 	bottom: 0;
 	top: 0;
-	height: 100%;
+}
+
+.bc-page.ic .block {
+	position: relative;
 }
 
 .bc-page.ic>.left {
 	width: 200px;
+	width: 202px\9; /*ie6-8*/
 	left: 0;
-	background-color: #c6c
 }
 
 .bc-page.ic>.splitter {
+	border: 0;
 	width: 6px;
-	left: 200px;
-	background-color: #ccc
+	left: 202px;
 }
 
 .bc-page.ic>.splitter .ui-icon {
@@ -39,26 +42,31 @@
 }
 
 .bc-page.ic>.right {
-	left: 206px;
+	left: 207px;
 	right: 0;
-	background-color: #cc6;
 }
 /** ==总体布局结束== */
 
 /** ==公共样式开始== */
-.bc-page.ic .header,.bc-page.ic .content {
+.bc-page.ic .header {
 	position: relative;
-	border-width: 1px 0 0 0;
+	border-left-width: 0;
+	border-right-width: 0;
+}
+
+.bc-page.ic .content {
+	position: relative;
+	border-width: 0;
 }
 
 .bc-page.ic .header {
 	margin: 0;
-	padding: 4px;
+	padding: 2px 4px;
 }
 
 .bc-page.ic .content {
 	margin: 0;
-	padding: 2px;
+	padding: 4px;
 }
 
 .bc-page.ic .content input[type="text"] {
@@ -69,38 +77,6 @@
 /** ==公共样式结束== */
 
 /** ==左侧内部布局开始== */
-.bc-page.ic>.left>table.leftLayout {
-	width: 100%;
-	height: 100%;
-	margin: 0;
-	padding: 0;
-	table-layout: fixed;
-	border-collapse: collapse;
-	overflow: hidden;
-}
-
-.bc-page.ic>.left>table.leftLayout tr {
-	overflow: hidden;
-}
-
-.bc-page.ic>.left>table.leftLayout td {
-	text-align: left;
-	vertical-align: top;
-	overflow: hidden;
-}
-
-.bc-page.ic>.left>table.leftLayout tr.fixHeight {
-	height: 1em;
-}
-
-.bc-page.ic>.left>table.leftLayout tr.autoHeight td{
-	overflow: hidden;
-}
-
-.bc-page.ic>.left>table.leftLayout tr.autoHeight .resultsContainer{
-	overflow: auto;
-}
-
 .bc-page.ic>.left .hexiao {
 	position: absolute;
 	bottom: 0;
@@ -108,21 +84,40 @@
 	margin: 4px 4px;
 }
 
-.bc-page.ic>.left ul.results {
+.bc-page.ic>.left>ul.results {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	top: 265px;
+	overflow: auto;
+	width: 100%;
 	padding: 0;
 	margin: 0;
 	list-style: none;
 }
 
-.bc-page.ic>.left ul.results>li {
-	padding: 4px;
+.bc-page.ic>.left>ul.results>li {
+	padding: 2px 8px;
 	margin: 0;
 	border: 0;
 	cursor: default;
 }
 
-.bc-page.ic>.left ul.results>li.active {
+.bc-page.ic>.left>ul.results>li.active {
 	border-width: 1px 0;
 }
 
 /** ==左侧内部布局结束== */
+
+/** ==右侧内部布局开始== */
+.bc-page.ic>.right>.main {
+	padding:0;
+}
+.bc-page.ic>.right>.main td {
+	vertical-align: top;
+}
+.bc-page.ic>.right>.main td.label {
+	min-width: 20px;;
+	width: 60px;
+}
+/** ==右侧内部布局结束== */
