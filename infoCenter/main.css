@@ -1,0 +1,123 @@
+/** 
+ * 车辆查询页面的样式控制 
+ *
+ * @author rongjihuang@gmail.com
+ * @date 2012-02-20
+*/
+
+/** ==总体布局开始== */
+.bc-page.ic {
+	
+}
+
+.bc-page.ic>* {
+	position: absolute;
+	bottom: 0;
+	top: 0;
+}
+
+.bc-page.ic .block {
+	position: relative;
+}
+
+.bc-page.ic>.left {
+	width: 200px;
+	width: 202px\9; /*ie6-8*/
+	left: 0;
+}
+
+.bc-page.ic>.splitter {
+	border: 0;
+	width: 6px;
+	left: 202px;
+}
+
+.bc-page.ic>.splitter .ui-icon {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -8px;
+	margin-left: -8px;
+	cursor: e-resize;
+}
+
+.bc-page.ic>.right {
+	left: 207px;
+	right: 0;
+}
+/** ==总体布局结束== */
+
+/** ==公共样式开始== */
+.bc-page.ic .header {
+	position: relative;
+	border-left-width: 0;
+	border-right-width: 0;
+}
+
+.bc-page.ic .content {
+	position: relative;
+	border-width: 0;
+}
+
+.bc-page.ic .header {
+	margin: 0;
+	padding: 2px 4px;
+}
+
+.bc-page.ic .content {
+	margin: 0;
+	padding: 4px;
+}
+
+.bc-page.ic .content input[type="text"] {
+	margin: 0;
+	width: 99%;
+	width: 98% \9; /**ie6-8*/
+}
+/** ==公共样式结束== */
+
+/** ==左侧内部布局开始== */
+.bc-page.ic>.left .hexiao {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	margin: 4px 4px;
+}
+
+.bc-page.ic>.left>ul.results {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	top: 265px;
+	overflow: auto;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.bc-page.ic>.left>ul.results>li {
+	padding: 2px 8px;
+	margin: 0;
+	border: 0;
+	cursor: default;
+}
+
+.bc-page.ic>.left>ul.results>li.active {
+	border-width: 1px 0;
+}
+
+/** ==左侧内部布局结束== */
+
+/** ==右侧内部布局开始== */
+.bc-page.ic>.right>.main {
+	padding:0;
+}
+.bc-page.ic>.right>.main td {
+	vertical-align: top;
+}
+.bc-page.ic>.right>.main td.label {
+	min-width: 20px;;
+	width: 60px;
+}
+/** ==右侧内部布局结束== */
