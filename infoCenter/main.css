@@ -77,6 +77,15 @@
 	width: 99%;
 	width: 98% \9; /**ie6-8*/
 }
+
+.bc-page.ic span.wasteTime {
+	opacity: 0.6;
+	filter: alpha(opacity =         60);
+	font-style: italic;
+	font-weight: normal;
+	font-size: 50%;
+}
+
 /** ==公共样式结束== */
 
 /** ==左侧内部布局开始== */
@@ -104,10 +113,45 @@
 	margin: 0;
 	border: 0;
 	cursor: default;
+	font-weight: normal;
+}
+
+.bc-page.ic>.left>ul.results>li.empty,.bc-page.ic>.left>ul.results>li.busy
+	{
+	text-align: center;
+	opacity: 0.6;
+	filter: alpha(opacity =         60);
+	font-style: italic;
+}
+
+.bc-page.ic>.left>ul.results>li.busy>span.busy {
+	display: inline-block;
+	width: 32px;
+	height: 32px;
+	background:
+		url("../../bc/libs/themes/default/images/loader/loader02_32x32.gif")
+		no-repeat;
+	padding: 0;
+	margin: 8px 0 0 0;
+}
+
+.bc-page.ic>.left>ul.results>li.busy>span.text {
+	display: block;
+	padding: 0;
+	margin: 0;
 }
 
 .bc-page.ic>.left>ul.results>li.active {
 	border-width: 1px 0;
+}
+
+.bc-page.ic>.left>ul.results .code {
+	display: inline-block;
+	width: 2.5em;
+}
+
+.bc-page.ic>.left>ul.results .plate {
+	
 }
 
 /** ==左侧内部布局结束== */
@@ -115,6 +159,35 @@
 /** ==右侧内部布局开始== */
 .bc-page.ic>.right>.main {
 	padding: 0;
+}
+
+.bc-page.ic>.right>.main>#carHeader.loading>#loading {
+	width: 16px;
+	height: 16px;
+	background:
+		url("../../bc/libs/themes/default/images/loader/loader01_16x16.gif")
+		no-repeat;
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	left: 4px;
+	margin-top: -8px;
+}
+
+.bc-page.ic>.right>.main>#carHeader.loading>#carTitle {
+	margin-left: 22px;
+}
+
+.bc-page.ic>.right>.main>#carHeader.loading>#wasteTime {
+	display: none;
+}
+
+.bc-page.ic>.right>.main>#carHeader #seeMore {
+	width: auto;
+	text-decoration: underline;
+	font-weight: normal;
+	font-size: 60%;
+	margin-right: 10px;
 }
 
 .bc-page.ic>.right table.contentTable {
@@ -131,10 +204,38 @@
 	border-spacing: 0;
 	padding: 0;
 	margin: 0;
+	border-collapse: collapse;
 }
 
 .bc-page.ic>.right table.contentTable0 td {
 	padding: 2px;
+	background: none;
+}
+
+.bc-page.ic>.right>.message.empty>.content {
+	display: none;
+}
+
+.bc-page.ic>.right>.message td.first {
+	border-left-width: 0;
+}
+
+.bc-page.ic>.right>.message td.last {
+	border-right-width: 0;
+}
+
+.bc-page.ic>.right>.message tr {
+	border-width: 0;
+	font-weight: normal;
+}
+
+.bc-page.ic>.right>.message tr.first>td {
+	border-top-width: 0;
+	text-align: center;
+}
+
+.bc-page.ic>.right>.message tr.last>td {
+	border-bottom-width: 0;
 }
 
 .bc-page.ic>.right>.main td {
