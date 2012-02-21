@@ -16,7 +16,7 @@
 					<input type="text" id="searchTypeLabel" class="bc-select ui-widget-content"
 						data-source='<s:property value="searchTypes"/>'
 						value="车牌" readonly="readonly"> 
-					<input type="hidden" id="searchTypeValue">
+					<input type="hidden" id="searchTypeValue" value="plate">
 					<ul class="inputIcons">
 						<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s"
 							title='<s:text name="title.click2select"/>'></li>

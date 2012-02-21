@@ -48,36 +48,28 @@ bs.infoCenter = {
 		logger.info("sh=" + sh);
 		$left.children(".results").css("top", sh);
 
+		//搜索框回车执行搜索
+		$left.find("#searchText").keyup(function(e) {
+			var $this = $(this);
+			if(e.which == 13){//按下回车键
+				bs.infoCenter.doSearch.call($page);
+			}else{
+				return false;
+			}
+		});
 	},
 
-	/** 执行模糊查询处理 */
-	doSearch : function() {
-		var $page = $(this);
-		logger.info("bs.infoCenter.doSearch");
-	},
-
-	/** 选择分公司或车队后的回调处理 */
-	doSearchByUnitAndMotorcade : function() {
-		var $left = $(this).closest("#left");
-		var unitId = $left.find("#unitId").val();
-		var motorcadeId = $left.find("#motorcadeId").val();
-		logger.info("unitId=" + unitId + ",motorcadeId=" + motorcadeId);
-		
-		if(unitId.length == 0 && motorcadeId.length == 0){//清空处理
-			$left.find("#count").text(" (0)");
-			$left.find("#results").html('<li class="empty">(无匹配项)</li>');
-			return false;
-		}
-		
+	/** 获取车辆列表信息并显示 */
+	findCars : function($left,url,data) {
 		// 显示正在查询动画
 		var startTime = new Date().getTime();
 		$left.find("#count").text(" (0)");
 		$left.find("#results").html('<li class="empty busy"><span class="busy"></span><span class="text">正在查询...</span></li>');
-
-		// 获取车辆信息
+		
+		// 执行查询
 		bc.ajax({
-			url : bc.root + "/bc-business/infoCenter/findCarsByUnitAndMotorcade",
-			data : {unitId : unitId,motorcadeId : motorcadeId},
+			url : url,
+			data : data,
 			dataType : "json",
 			success : function(cars) {
 				$left.find("#count").html(" (" + cars.length +"台)<span class='wasteTime'> " + bc.getWasteTime(startTime) + "</span>");
@@ -93,11 +85,55 @@ bs.infoCenter = {
 				// 显示返回的车辆列表信息
 				var lis = [];
 				for(var i=0;i<cars.length;i++){
-					lis.push('<li data-id="'+cars[i].id+'" title=["'+cars[i].code+"]"+cars[i].plate+'">[<span class="code ellipsis">'+cars[i].code+'</span>]<span class="plate">'+cars[i].plate+'</span></li>');
+					lis.push('<li data-id="'+cars[i].id+'"'
+						+' title="['+cars[i].code+']'+cars[i].plate
+						+(cars[i].status == 1 ? ' - 此车已注销" class="ui-state-disabled"' : '"')
+						+' data-json=\'' + $.toJSON(cars[i]) + '\''
+						+'>[<span class="code ellipsis">'+cars[i].code
+						+'</span>]<span class="plate">'+cars[i].plate+'</span></li>');
 				}
 				$results.empty().append(lis.join(""));
 			}
 		});
+	},
+
+	/** 执行模糊查询处理 */
+	doSearch : function() {
+		var $left = $(this).find("#left")
+		
+		// 检测查询条件
+		var searchType = $left.find("#searchTypeValue").val();
+		var searchText = $left.find("#searchText").val();
+		logger.info("bs.infoCenter.doSearch:searchType=" + searchType + ",searchText=" + searchText);
+		if($.trim(searchText) == ""){
+			bc.msg.slide("查询条件不能为空");
+			$left.find("#searchText").focus();
+			return;
+		}
+		
+		// 执行查询
+		bs.infoCenter.findCars($left
+			,bc.root + "/bc-business/infoCenter/findCarsBySearchText"
+			,{searchType : searchType,searchText : searchText});
+	},
+
+	/** 选择分公司或车队后的回调处理 */
+	doSearchByUnitAndMotorcade : function() {
+		var $left = $(this).closest("#left");
+		var unitId = $left.find("#unitId").val();
+		var motorcadeId = $left.find("#motorcadeId").val();
+		logger.info("unitId=" + unitId + ",motorcadeId=" + motorcadeId);
+		
+		if(unitId.length == 0 && motorcadeId.length == 0){//清空处理
+			$left.find("#count").text(" (0)");
+			$left.find("#results").html('<li class="empty">(无匹配项)</li>');
+			return false;
+		}
+		
+		// 执行查询
+		bs.infoCenter.findCars($left
+			,bc.root + "/bc-business/infoCenter/findCarsByUnitAndMotorcade"
+			,{unitId : unitId,motorcadeId : motorcadeId});
 	},
 	
 	/** 显示车辆的详细信息
