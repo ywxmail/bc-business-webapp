@@ -124,9 +124,10 @@
 								</td>
 							</tr>
 							<tr>
-								<td class="label">*<s:text name="contract4Charger.paymentDate"/>:</td>
+								<td class="label"><s:text name="contract4Charger.paymentDate"/>:</td>
 								<td class="value">
-									<s:select name="e.paymentDate" list="paymentDates" listKey="key" listValue="value" cssClass="ui-widget-content"/>
+									<s:select name="e.paymentDate" list="paymentDates" listKey="key" listValue="value" headerKey="" headerValue=""
+									 cssClass="ui-widget-content"/>
 								</td>
 								<td></td>
 								<td class="label" style="text-align: right;">
