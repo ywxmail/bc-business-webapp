@@ -6,6 +6,13 @@ bc.caseAdviceForm = {
 		// 初始化多页签
 		$form.find('#formTabs').bctabs(bc.page.defaultBcTabsOption);
 		
+		//初始化点击隐藏按钮
+		bc.caseAdviceForm.foldingDiv($form,"showGroups1","div1");
+		bc.caseAdviceForm.foldingDiv($form,"showGroups2","div2");
+		bc.caseAdviceForm.foldingDiv($form,"showGroups3","div3");
+		bc.caseAdviceForm.foldingDiv($form,"showGroups4","div4");
+		
+		//只读权限控制
 		if(readonly) return;
 		
 		
@@ -23,6 +30,7 @@ bc.caseAdviceForm = {
 						$form.find(":input[name='e.motorcadeId']").val(car.motorcadeId);
 						var motorcadeName = $form.find(":input[name='e.motorcadeId']").find("option:selected").text();
 						$form.find(":hidden[name='e.motorcadeName']").val(motorcadeName);
+						$form.find(":input[name='e.company']").val(car.company);
 					}
 				}
 			});
@@ -42,6 +50,9 @@ bc.caseAdviceForm = {
 						$form.find(":input[name='e.driverId']").val(carMan.id);
 						$form.find(":input[name='e.driverName']").val(carMan.name);
 						$form.find(":input[name='e.driverCert']").val(carMan.cert4FWZG);
+						$form.find(":input[name='origin']").val(carMan.origin);
+						$form.find(":input[name='birthDate']").val(carMan.birthDate);
+						$form.find(":input[name='workDate']").val(carMan.workDate);
 					}
 				}
 			});
@@ -67,12 +78,31 @@ bc.caseAdviceForm = {
 					$form.find(":input[name='e.carPlate']").val(car.plate);
 					$form.find(":input[name='e.motorcadeId']").val(car.motorcadeId);
 					$form.find(":input[name='e.motorcadeName']").val(car.motorcadeName);
+					$form.find(":input[name='e.company']").val(car.company);
+					$form.find(":hidden[name='e.charger']").val(car.charger);
+					$form.find(":input[name='businessType']").val(car.bsType);
+					
+					var str = car.charger;
+					if(str != null && str.length > 0){
+						var strAry = str.split(";");
+						var tempStr = "";
+						for(var i=0;i<strAry.length;i++){
+							tempStr += strAry[i].split(",")[0];
+							if((i+1) < strAry.length)
+								tempStr += ",";
+						}
+						$form.find(":input[name='chargers']").val(tempStr);
+					}
+					
 					
 					//按照司机信息更新表单相应的域
 					function updateFieldsFromDriver(driver){
 						$form.find(":input[name='e.driverId']").val(driver.id);
 						$form.find(":input[name='e.driverName']").val(driver.name);
 						$form.find(":input[name='e.driverCert']").val(driver.cert4FWZG);
+						$form.find(":input[name='origin']").val(driver.origin);
+						$form.find(":input[name='birthDate']").val(driver.birthDate);
+						$form.find(":input[name='workDate']").val(driver.workDate);
 					};
 					
 					//根据选择的车辆信息获取相应的营运司机信息
@@ -180,40 +210,106 @@ bc.caseAdviceForm = {
 		
 		
 		// 责任人
-		$form.find("#selectChargerName").click(function() {
+		$form.find("#selectCharger").click(function() {
 			var selecteds = $form.find(":input[name='e.chargerName']").val();
 			bs.selectCharger({
 				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
-				onOk : function(carMan) {
-					$form.find(":input[name='e.chargerId']").val(carMan.id);
-					$form.find(":input[name='e.chargerName']").val(carMan.name);
+				multiple : true,
+				onOk : function(chargers) {
+					var chargerName = $form.find(":input[name='chargers']").val();
+					var chargerIdAndName = $form.find(":hidden[name='e.charger']").val();
+					$.each(chargers,function(i,charger){
+						var chargerStr = $form.find(":hidden[name='e.charger']").val();
+						if(chargerStr.indexOf(charger.id) > 0){//已存在
+							logger.info("duplicate select: id=" + charger.id + ",name=" + charger.name);
+						}else{
+							if($form.find(":input[name='chargers']").val().length>0){//之前存在责任人的话先加逗号
+								chargerName = chargerName+",";
+							}
+							chargerName += charger.name;
+							if((i+1) < chargers.length){ //最后一位不加分号
+								chargerName = chargerName+",";
+							}
+							var tempStr = charger.name+","+charger.id+";";
+							chargerIdAndName += tempStr;
+						}
+					});
+					$form.find(":input[name='chargers']").val(chargerName);
+					$form.find(":hidden[name='e.charger']").val(chargerIdAndName);
 				}
 			});
 		});
 		
 		// 经办人
-		$form.find("#selectReceiverName").click(function(){
+		$form.find("#selectTransactorName").click(function(){
 			bc.identity.selectUser({
 				history: false,
-				selecteds: $form.find(":input[name='e.receiverName']").val(),
+				selecteds: $form.find(":input[name='e.transactorName']").val(),
 				onOk : function(user) {
-					$form.find(":input[name='e.receiverId']").val(user.id);
-					$form.find(":input[name='e.receiverName']").val(user.name);
+					$form.find(":input[name='e.transactorId']").val(user.id);
+					$form.find(":input[name='e.transactorName']").val(user.name);
 				}
 			});
 		});
 		
+		// 分公司负责人id
+		$form.find("#selectBranchChargerName").click(function(){
+			bc.identity.selectUser({
+				history: false,
+				selecteds: $form.find(":input[name='e.branchChargerName']").val(),
+				onOk : function(user) {
+					$form.find(":input[name='e.branchChargerId']").val(user.id);
+					$form.find(":input[name='e.branchChargerName']").val(user.name);
+				}
+			});
+		});
+		
+		// 公司审批人姓名
+		$form.find("#selectCompanyApprovalName").click(function(){
+			bc.identity.selectUser({
+				history: false,
+				selecteds: $form.find(":input[name='e.companyApprovalName']").val(),
+				onOk : function(user) {
+					$form.find(":input[name='e.companyApprovalId']").val(user.id);
+					$form.find(":input[name='e.companyApprovalName']").val(user.name);
+				}
+			});
+		});
+		
+//		// 核准人
+//		$form.find("#selectHandlerName").click(function(){
+//			bc.identity.selectUser({
+//				history: false,
+//				selecteds: $form.find(":input[name='e.handlerName']").val(),
+//				onOk : function(user) {
+//					$form.find(":input[name='e.handlerId']").val(user.id);
+//					$form.find(":input[name='e.handlerName']").val(user.name);
+//				}
+//			});
+//		});
+		
 
 	},
 	
+	//绑定点击按钮内容展出事件
+	foldingDiv : function (context,spanId,divId){
+		var $form = context;
+		var flip = 1;
+		$form.find('#'+spanId).click(function(){
+			$(this).toggleClass("ui-icon-carat-1-s ui-icon-carat-1-n");
+			$form.find('#'+divId).toggle( flip++ % 2 == 0 );
+		});
+	},
+	
+	//结案
 	closefile : function(){
 		var $form = $(this);
 		if($form.find(":input[name='e.carPlate']").val().length < 1
 			|| $form.find(":input[name='e.driverId']").val().length < 1	
 			|| $form.find(":input[name='e.motorcadeId']").val().length < 1
-			|| $form.find(":input[name='e.receiverName']").val().length < 1
+			|| $form.find(":input[name='e.transactorName']").val().length < 1
 			){
-			alert('请确认司机,车辆,车队,经办人信息是否填写完整!!');
+			bc.msg.alert('请确认司机,车辆,车队,经办人信息是否填写完整!!');
 			return;
 		}
 		if(!bc.validator.validate($form))
@@ -231,8 +327,93 @@ bc.caseAdviceForm = {
 		});
 	},
 	
+	//维护按钮
+	doMaintenance : function(){
+		var $page = $(this);
+		// 关闭当前窗口
+		bc.msg.confirm("确定维护此投诉信息？",function(){
+			$page.dialog("close");
+//			var option = { callback : function (){
+//					$page.find('#maintenance').hide();
+//					$page.find('#bcSaveDlgButton').show();
+//				}
+//			};
+			// 重新打开可编辑表单
+			bc.page.newWin({
+				name: "维护" + $page.find(":input[name='e.carPlate']").val() + "的投诉信息",
+				mid: "caseAdvice" + $page.find(":input[name='e.id']").val(),
+				url: bc.root + "/bc-business/caseAdvice/edit",
+				data: {id: $page.find(":input[name='e.id']").val()},
+				afterClose: function(status){
+					if(status) bc.grid.reloadData($page);
+				},
+			});
+		});
+	},
+	
+	//核准按钮
+	doManage : function(){
+		var $page = $(this);
+		bc.page.newWin({
+			name:"投诉核准",
+			mid: "managecaseAdvice",
+			url: bc.root + "/bc-business/selectDateAndHandler/select",
+			data: {title:"核准操作"},
+			afterClose: function(status){
+				logger.info("status=" + $.toJSON(status));
+				if(!status) return;
+				
+				//执行续签处理
+				bc.ajax({
+					url: bc.root + "/bc-business/caseAdviceOperate/doManage",
+					dataType: "json",
+					data: {
+						handlerId: status.handlerId,
+						handlerName: status.handlerName,
+						handleDate : status.handleDate,
+						handleOpinion : status.handleOpinion,
+						id: $page.find(":input[name='e.id']").val()
+					},
+					success: function(json){
+						logger.info("doManage result=" + $.toJSON(json));
+						//完成后提示用户
+						//bc.msg.info(json.msg);
+						var str = json.msg.split(" ")[2];
+						str = "<a id='chakan' href=#>"+str+"</a>";
+						str = json.msg.split(" ")[0]+" "+json.msg.split(" ")[1]+" "+str+" "+json.msg.split(" ")[3];
+						var $a = bc.msg.alert(str);
+						$a.find('#chakan').click(function(){
+							bc.page.newWin({
+								url: bc.root + "/bc-business/caseAdvice/open?id="+json.id,
+								name: "查看投诉信息",
+								mid:  "viewcaseAdvice"
+							})
+							$a.dialog("close");
+							return false;
+						});
+
+						$page.data("data-status","saved");
+						$page.dialog("close");
+					}
+				});
+			}
+		});
+	},
+	
+	//生成通知单
+	doGenNotice : function(){
+		var $page = $(this);
+		bc.msg.alert('功能正在开发中!');
+	},
+	
+	//生成表格
+	doGenForm : function(){
+		var $page = $(this);
+		bc.msg.alert('功能正在开发中!');
+	},
+	
 	//保存的处理
-	save:function(){
+	save : function(){
 		var $form = $(this);
 		$form.find(":input[name='e.status']").val("0");
 		$form.data("data-status","saved");

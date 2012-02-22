@@ -153,6 +153,18 @@
 										<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.scrapDate'></li>
 									</ul>
 								</td>
+								<td class="label" ><s:text name="car.tv.screen"/>:</td>
+								<td class="value" >
+									<div class="bc-relativeContainer">
+										<input type="text" name="e.carTvScreen" value='<s:property value="e.carTvScreen"/>' style="width:250px;"
+											data-validate='{"type":"string"}' class="bc-select ui-widget-content"
+											data-maxHeight="150px"
+											data-source='<s:property value="carTvScreenList"/>'/>
+										<ul class="inputIcons">
+											<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
+										</ul>
+									</div>
+								</td>
 							</tr>					
 							<tr>
 								<td class="label" colspan="4">
@@ -321,6 +333,104 @@
 							</tbody>
 						</table>
 					</fieldset>
+<!--------------------------------   LPG     -------------------------------->
+					<fieldset style="margin: 6px;" class="ui-widget-content">
+						<legend>LPG</legend>
+						<table class="formFields" cellspacing="2" cellpadding="0" >
+							<tbody>
+								<tr class="widthMarker">
+									<td style="width: 100px;">&nbsp;</td>
+									<td style="width: 240px;">&nbsp;</td>
+									<td style="width: 140px;">&nbsp;</td>
+									<td>&nbsp;</td>
+								</tr>
+								<!-- car.lpg.name				=专用装置供应商
+									car.lpg.model				=专用装置品牌型号
+									car.lpg.gpmodel				=钢瓶品牌型号
+									car.lpg.gpid				=钢瓶编号
+									car.lpg.gpdate				=钢瓶出厂日期
+									car.lpg.jcfmodel			=集成阀品牌型号
+									car.lpg.qhqmodel			=汽化器品牌型号
+									car.lpg.psqmodel			=混合/喷射器品牌型号
+									car.lpg.refit.factory		=改装厂
+									car.lpg.refit.date			=改装出厂日期
+									car.lpg.insuranceid			=LPG保单号
+									car.lpg.insurance.startdate	=LPG保单开始日期
+									car.lpg.insurance.enddate	=LPG保单结束日期 -->	
+								<tr>
+									<td class="label" ><s:text name="car.lpg.name"/>:</td>
+									<!--<td class="value" ><s:textfield name="e.lpgName" cssClass="ui-widget-content"/></td>-->
+									<td class="value" ><s:select name="e.lpgName" id="carLPGs" list="carLPGList" 
+										listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select></td>
+									<td class="label" ><s:text name="car.lpg.model"/>:</td>
+									<td class="value" ><s:textfield name="e.lpgModel" cssClass="ui-widget-content"/></td>
+								</tr>
+								<tr>
+									<td class="label" ><s:text name="car.lpg.gpmodel"/>:</td>
+									<td class="value" ><s:textfield name="e.lpgGpModel" cssClass="ui-widget-content"/></td>
+									<td class="label" ><s:text name="car.lpg.gpid"/>:</td>
+									<td class="value" ><s:textfield name="e.lpgGpId" cssClass="ui-widget-content"/></td>
+								</tr>	
+								<tr>
+									<td class="label" ><s:text name="car.lpg.gpdate"/>:</td>
+									<td class="value relative" >
+										<input type="text" name="e.lpgGpDate" data-validate='{"type":"date"}'
+											value='<s:date format="yyyy-MM-dd" name="e.lpgGpDate" />'
+											class="bc-date ui-widget-content" />
+										<ul class="inputIcons">
+											<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.lpgGpDate'></li>
+										</ul>
+									</td>
+									<td class="label" ><s:text name="car.lpg.jcfmodel"/>:</td>
+									<td class="value" ><s:textfield name="e.lpgJcfModel" cssClass="ui-widget-content"/></td>
+								</tr>	
+								<tr>
+									<td class="label" ><s:text name="car.lpg.qhqmodel"/>:</td>
+									<td class="value" ><s:textfield name="e.lpgQhqModel" cssClass="ui-widget-content"/></td>
+									<td class="label" ><s:text name="car.lpg.psqmodel"/>:</td>
+									<td class="value" ><s:textfield name="e.lpgPsqModel" cssClass="ui-widget-content"/></td>
+								</tr>	
+								<tr>
+									<td class="label" ><s:text name="car.lpg.insuranceid"/>:</td>
+									<td class="value" ><s:textfield name="e.lpgInsuranceId" cssClass="ui-widget-content"/></td>
+									<td class="label" ><s:text name="car.lpg.refit.factory"/>:</td>
+									<td class="value" ><s:textfield name="e.lpgRefitFactory" cssClass="ui-widget-content"/></td>
+									
+								</tr>	
+								<tr>
+									<td class="label" ><s:text name="car.lpg.insurance.date"/>:</td>
+									<td class="value" >
+										<div style="position : relative; display: inline-block">
+											&nbsp;从<input type="text" name="e.lpgInsuranceStartDate" 
+				                            data-validate='{type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
+			                                value='<s:date format="yyyy-MM-dd" name="e.lpgInsuranceStartDate" />' style="width: 90px;"/>
+			                                <ul class="inputIcons" style="right : 0px;">
+												<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.lpgInsuranceStartDate' ></li>
+										    </ul>
+										</div>
+										<div style="position : relative; display: inline-block">
+											&nbsp;到<input type="text" name="e.lpgInsuranceEndDate" 
+				                            data-validate='{type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
+			                                value='<s:date format="yyyy-MM-dd" name="e.lpgInsuranceEndDate" />' style="width: 90px;"/>
+			                                <ul class="inputIcons" style="right : 0px;">
+												<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.lpgInsuranceEndDate' ></li>
+										    </ul>
+										</div>
+									</td>
+									<td class="label" ><s:text name="car.lpg.refit.date"/>:</td>
+									<td class="value relative" >
+										<input type="text" name="e.lpgRefitDate" data-validate='{"type":"date"}'
+											value='<s:date format="yyyy-MM-dd" name="e.lpgRefitDate" />'
+											class="bc-date ui-widget-content" />
+										<ul class="inputIcons">
+											<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.lpgRefitDate'></li>
+										</ul>
+									</td>
+								</tr>						
+							</tbody>
+						</table>
+					</fieldset>
+<!--------------------------------   其他    -------------------------------->
 					<fieldset style="margin: 6px;" class="ui-widget-content">
 						<legend>其它</legend>
 						<table class="formFields" cellspacing="2" cellpadding="0" >
