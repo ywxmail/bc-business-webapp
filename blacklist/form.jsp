@@ -36,7 +36,9 @@
 					<s:if test="%{carManId != null}">
 						<td class="value"><s:textfield name="e.driver.name" readonly="true"  data-validate="required" cssClass="ui-widget-content" /></td>
 					</s:if><s:else>
-					    <td class="value"><s:textfield name="e.driver.name" id="driverName" readonly="true" data-validate="required" cssClass="ui-widget-content" /></td>
+					    <td class="value" style="position:relative;display: block;">
+					    <s:textfield name="e.driver.name"  readonly="true" data-validate="required" cssClass="ui-widget-content" />
+						<span id="selectCarMan" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></span></td>
 					</s:else>
 					    <td class="label"><s:text name="blacklist.motorcade.name"/>:</td>
 						<td class="value"><s:textfield name="e.car.motorcade.name" readonly="true" data-validate="required" cssClass="ui-widget-content" /></td>
