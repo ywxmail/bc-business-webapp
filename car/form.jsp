@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<div title='<s:text name="car.title"/>' data-type='form' class="bc-page"
+<div title='<s:property value="pageTitle"/>' data-type='form' class="bc-page"
 	data-saveUrl='<s:url value="/bc-business/car/save" />'
 	data-js='<s:url value="/bc-business/car/form.js" />,<s:url value="/bc/identity/identity.js" />'
 	data-initMethod='bc.carForm.init'
