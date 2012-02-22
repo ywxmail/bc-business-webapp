@@ -92,6 +92,7 @@
 	bottom: 0;
 	right: 0;
 	margin: 4px 4px;
+	display: none;
 }
 
 .bc-page.ic>.left>ul.results {
@@ -276,6 +277,7 @@ td.aright {
 	font-weight: normal;
 	font-size: 60%;
 	margin-right: 10px;
+	display: none;
 }
 
 /** ==右侧内部布局结束== */

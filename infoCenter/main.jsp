@@ -212,7 +212,7 @@
 							<td class="middle aright ui-widget-content" style="width: 40px">电话:</td>
 							<td class="last aleft ui-widget-content" style="width: 190px">13611112222,13611112222</td>
 							<td class="middle aright ui-widget-content" style="width: 40px">状态:</td>
-							<td class="last aleft ui-widget-content">新入职 (2011-01-01)</td>
+							<td class="last aleft ui-widget-content">新入职 (2012-01-01)</td>
 						</tr>
 						<tr class="detail">
 							<td colspan="6" style="padding:0;">
@@ -222,14 +222,14 @@
 											src="/bs/bc/image/download?ptype=portrait&amp;puid=carMan.uid.4&ts=1329753139367"></td>
 										<td class="label" style="width: 80px;">身份证号码:</td>
 										<td class="value" style="width: 250px;"><input type="text" name="man.identity" class="ui-widget-content" 
-											value="440000201201012222"/></td>
+											value=""/></td>
 										<td rowspan="6" style="position: relative;"><textarea name="main.desc" class="ui-widget-content noresize" 
-											style="position:absolute;left:0;right:0;bottom:-2px;top:-2px;" readonly="readonly">AA</textarea></td>
+											style="position:absolute;left:0;right:0;bottom:-2px;top:-2px;" readonly="readonly"></textarea></td>
 									</tr>
 									<tr>
 										<td class="label">身份证地址:</td>
 										<td class="value"><input type="text" name="man.address1" class="ui-widget-content" readonly="readonly"
-											value="河南省扶沟县练寺镇董王村"/></td>
+											value=""/></td>
 									</tr>
 									<tr>
 										<td class="label">暂住地址:</td>

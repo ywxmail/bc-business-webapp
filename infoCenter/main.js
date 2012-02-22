@@ -34,7 +34,7 @@ bs.infoCenter = {
 				bc.page.newWin({
 					name: $main.find("#carTitle").text(),
 					mid: "car" + bs.infoCenter.currentCarId,
-					url: bc.root + "/bc-business/car/open",
+					url: bc.root + "/bc-business/car/edit",
 					data: {id: bs.infoCenter.currentCarId}
 				});
 			}
@@ -53,7 +53,23 @@ bs.infoCenter = {
 		});
 
 		// 提醒信息列表的样式控制
-		$page.find("table#messages").delegate("tr:not(.header)",{
+		$page.find("#msgsBody").delegate("tr:not(.header)",{
+			mouseover : function() {
+				$(this).addClass("ui-state-hover");
+			},
+			mouseout : function() {
+				$(this).removeClass("ui-state-hover");
+			},
+			click : function() {
+				var $this = $(this);
+				$this.toggleClass("ui-state-highlight", true).siblings(
+						".ui-state-highlight").toggleClass(
+						"ui-state-highlight", false);
+			}
+		});
+
+		// 司机信息列表的样式控制
+		$page.find("#mansBody").delegate("tr.header",{
 			mouseover : function() {
 				$(this).addClass("ui-state-hover");
 			},
@@ -81,6 +97,20 @@ bs.infoCenter = {
 		$left.find("#searchText").keyup(function(e) {
 			if(e.which == 13){//按下回车键
 				bs.infoCenter.doSearch.call($page);
+			}
+		});
+
+		// 点击司机图片打开
+		$page.find("#mansBody").delegate("img",{
+			click : function() {
+				var $this = $(this);
+				bc.page.newWin({
+					name: $this.attr("data-name"),
+					mid: "carman" + $this.attr("data-id"),
+					url: bc.root + "/bc-business/carMan/edit",
+					data: {id: $this.attr("data-id")}
+				});
+				return false;
 			}
 		});
 	},
@@ -256,7 +286,7 @@ bs.infoCenter = {
 						trs.push('<tr class="detail"><td colspan="6" style="padding:0;">'
 							+'<table class="contentTable" cellspacing="2" cellpadding="0" style="height: auto;">'
 							+'<tr>'
-							+'<td rowspan="6" style="width: 87px;"><img style="width:86.4px;height:110px;cursor: pointer;" '
+							+'<td rowspan="6" style="width: 87px;"><img style="width:86.4px;height:110px;cursor: pointer;" data-id="' + man.id + '" data-name="' + man.name + '"'
 							+'src="'+bc.root+'/bc/image/download?ptype=portrait&puid=' + man.uid + '&ts=' + ts + '"></td>'
 							
 							+'<td class="label" style="width: 80px;">身份证号码:</td>'
