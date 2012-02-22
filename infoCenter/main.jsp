@@ -85,38 +85,42 @@
 
 	<!-- 右侧信息区 -->
 	<div id="right" class="right ui-widget-content">
-		<div class="block main">
-			<div id="carHeader" class="header ui-widget-header" style="border-top-width: 0;"><span id='loading'></span><span id='carTitle'>粤A.XXXX4</span><span id='wasteTime' class='wasteTime'></span>
+		<div id="main" class="block main">
+			<div id="carHeader" class="header ui-widget-header" style="border-top-width: 0;"><span id='loading'></span><span id='carTitle'>车辆信息</span><span id='wasteTime' class='wasteTime'></span>
 				<ul class="inputIcons">
 					<li id="seeMore" class="inputIcon" title='点击打开车辆详细信息表单'>更多</li>
-					<li id="toggleShow" class="inputIcon ui-icon ui-icon-triangle-1-s" title='点击折叠/展开'></li>
+					<li class="toggleShow inputIcon ui-icon ui-icon-triangle-1-s" title='点击折叠'></li>
 				</ul>
 			</div>
-			<div class="content" style="padding:0;">
+			<div id="carContent" class="content" style="padding:0;">
 				<table class="contentTable" cellspacing="2" cellpadding="0">
 					<tr>
 						<td class="label" style="width: 65px;">自编号:</td>
-						<td class="value" style="width: 180px;"><input type="text" name="main.code" class="ui-widget-content" value="LSVJN133442233596" readonly="readonly"/></td>
+						<td class="value" style="width: 180px;"><input type="text" name="main.code" class="ui-widget-content" value="" readonly="readonly"/></td>
 						<td class="label" style="width: 100px;">营运性质:</td>
 						<td class="value" style="width: 180px;"><input type="text" name="main.businessType" class="ui-widget-content" readonly="readonly"/></td>
 						<td rowspan="9" style="position: relative;"><textarea name="main.desc" class="ui-widget-content noresize" 
-							style="position:absolute;left:0;right:0;bottom:-2px;top:-2px;" readonly="readonly">AA</textarea></td>
+							style="position:absolute;left:0;right:0;bottom:-2px;top:-2px;" readonly="readonly"></textarea></td>
 					</tr>
 					<tr>
 						<td class="label">所属公司:</td>
 						<td class="value"><input type="text" name="main.company" class="ui-widget-content" readonly="readonly"/></td>
 						<td class="label">有效合同期限:</td>
-						<td class="value"><input type="text" name="main.businessType" class="ui-widget-content" value="2007-08-14~2012-12-19" readonly="readonly"/></td>
+						<td class="value"><input type="text" name="main.contract4ChargerDate" class="ui-widget-content" value="" readonly="readonly"/></td>
 					</tr>
 					<tr>
 						<td class="label">分公司:</td>
-						<td class="value"><input type="text" name="main.unit" class="ui-widget-content" readonly="readonly"/></td>
+						<td class="value"><input type="text" name="main.unitName" class="ui-widget-content" readonly="readonly"/></td>
 						<td class="label">缴费日:</td>
-						<td class="value"><input type="text" name="main.paymentDate" class="ui-widget-content" readonly="readonly"/></td>
+						<td class="value">
+							<input type="text" name="main.paymentDate" class="ui-widget-content" readonly="readonly" style="width:3.5em" value=""/>
+							<input type="checkbox" name="main.includeCost" class="ui-widget-content" disabled="disabled" style="width:auto;margin:0 2px 0 8px;" />含检审
+							<input type="checkbox" name="main.zb" class="ui-widget-content" disabled="disabled" style="width:auto;margin:0 2px 0 8px;"/>ZB
+						</td>
 					</tr>
 					<tr>
 						<td class="label">车队:</td>
-						<td class="value"><input type="text" name="main.motorcade" class="ui-widget-content" readonly="readonly"/></td>
+						<td class="value"><input type="text" name="main.motorcadeName" class="ui-widget-content" readonly="readonly"/></td>
 						<td class="label"><div class="little">行驶证登记日期</div>:</td>
 						<td class="value"><input type="text" name="main.registeDate" class="ui-widget-content" readonly="readonly"/></td>
 					</tr>
@@ -153,31 +157,35 @@
 				</table>
 			</div>
 		</div>
-		<div id="messages" class="block message">
-			<div class="header ui-widget-header">提醒信息</div>
+		<div id="messages" class="block message empty">
+			<div class="header ui-widget-header"><span>提醒信息</span></div>
 			<div class="content" style="padding:0;">
-				<table class="contentTable0" cellspacing="0" cellpadding="0">
-					<tbody>
-						<tr class="ui-widget-content first row header">
-							<td class="first ui-widget-content" style="width: 50px">类别</td>
-							<td class="middle ui-widget-content" style="width: 150px">关系人</td>
+				<table class="contentTable0" cellspacing="0" cellpadding="0" style="width:auto;">
+					<tbody id="msgsBody" >
+						<tr class="first header">
+							<td class="first ui-widget-content" style="min-width: 50px">类别</td>
+							<td class="middle ui-widget-content" style="min-width: 85px">限制项目</td>
+							<td class="middle ui-widget-content" style="min-width: 50px">关系人</td>
 							<td class="middle ui-widget-content" >内容</td>
-							<td class="last ui-widget-content" style="width: 85px">相关日期</td>
+							<td class="last ui-widget-content" style="min-width: 85px">相关日期</td>
 						</tr>
-						<tr class="ui-widget-content middle row odd">
+						<tr class="middle odd">
 							<td class="first ui-widget-content">黑名单</td>
+							<td class="middle ui-widget-content">停办一切业务</td>
 							<td class="middle ui-widget-content">【司机姓名】</td>
 							<td class="middle ui-widget-content">不可退押金;JN245司机杨龙江迁出，未交回2份副班合同</td>
 							<td class="last ui-widget-content">2011-01-01</td>
 						</tr>
-						<tr class="ui-widget-content middle row even">
+						<tr class="middle even">
 							<td class="first ui-widget-content">黑名单</td>
+							<td class="middle ui-widget-content">停办一切业务</td>
 							<td class="middle ui-widget-content">【司机姓名】</td>
 							<td class="middle ui-widget-content">不可退押金;JN245司机杨龙江迁出</td>
 							<td class="last ui-widget-content">2011-01-01</td>
 						</tr>
-						<tr class="ui-widget-content last row odd">
+						<tr class="last odd">
 							<td class="first ui-widget-content">黑名单</td>
+							<td class="middle ui-widget-content">停办一切业务</td>
 							<td class="middle ui-widget-content">【司机姓名】</td>
 							<td class="middle ui-widget-content">不可退押金;JN245司机杨龙江迁出</td>
 							<td class="last ui-widget-content">2011-01-01</td>
@@ -186,12 +194,19 @@
 				</table>
 			</div>
 		</div>
-		<div id="mans" class="block mans">
-			<div class="header ui-widget-header">联系信息</div>
+		<div id="mans" class="block mans empty">
+			<div id="mansHeader" class="header ui-widget-header" style="border-top-width: 0;"><span>联系信息</span>
+				<ul class="inputIcons">
+					<li id="includeLogout" class="inputIcon">
+						<label><input type="checkbox" name="main.includeCost" class="ui-widget-content" style="width:auto;margin:2px 2px 0 8px;" /><span style="margin:0;" >包含注销司机</span></label>
+					</li>
+					<li class="toggleShow inputIcon ui-icon ui-icon-triangle-1-s" title='点击折叠'></li>
+				</ul>
+			</div>
 			<div class="content ui-widget-content" style="padding:0;">
 				<table class="title contentTable0" cellspacing="0" cellpadding="0">
-					<tbody>
-						<tr class="ui-widget-content row header">
+					<tbody id="mansBody">
+						<tr class="top header first">
 							<td class="first aright ui-widget-content" style="width: 90px">司机和责任人:</td>
 							<td class="middle aleft ui-widget-content" style="width: 80px">张三(男)</td>
 							<td class="middle aright ui-widget-content" style="width: 40px">电话:</td>
@@ -199,47 +214,47 @@
 							<td class="middle aright ui-widget-content" style="width: 40px">状态:</td>
 							<td class="last aleft ui-widget-content">新入职 (2011-01-01)</td>
 						</tr>
-					</tbody>
-				</table>
-				<table class="detail contentTable" cellspacing="2" cellpadding="0" style="height: auto;display: none">
-					<tr>
-						<td rowspan="6" style="width: 87px;"><img id="portrait" style="width:86.4px;height:110px;cursor: pointer;" 
-							src="/bs/bc/image/download?ptype=portrait&amp;puid=carMan.uid.4&ts=1329753139367"></td>
-						<td class="label" style="width: 80px;">身份证号码:</td>
-						<td class="value" style="width: 359px;"><input type="text" name="man.identity" class="ui-widget-content" 
-							value="440000201201012222"/></td>
-						<td rowspan="6" style="position: relative;"><textarea name="main.desc" class="ui-widget-content noresize" 
-							style="position:absolute;left:0;right:0;bottom:-2px;top:-2px;" readonly="readonly">AA</textarea></td>
-					</tr>
-					<tr>
-						<td class="label">身份证地址:</td>
-						<td class="value"><input type="text" name="man.address1" class="ui-widget-content" readonly="readonly"
-							value="河南省扶沟县练寺镇董王村"/></td>
-					</tr>
-					<tr>
-						<td class="label">暂住地址:</td>
-						<td class="value"><input type="text" name="man.address2" class="ui-widget-content" readonly="readonly"/></td>
-					</tr>
-					<tr>
-						<td class="label">籍贯:</td>
-						<td class="value"><input type="text" name="man.region" class="ui-widget-content" readonly="readonly"/></td>
-					</tr>
-					<tr>
-						<td class="label">资格证号:</td>
-						<td class="value"><input type="text" name="man.cert4fwzg" class="ui-widget-content" readonly="readonly"/></td>
-					</tr>
-				</table>
-			</div>
-			<div class="content ui-widget-content" style="padding:0;">
-				<table class="title contentTable0" cellspacing="0" cellpadding="0">
-					<tbody>
-						<tr class="ui-state-default row header">
-							<td class="first aright" style="width: 90px">司机:</td>
-							<td class="middle aleft" style="width: 80px">张三(男)</td>
-							<td class="middle aright" style="width: 40px">电话:</td>
-							<td class="last aleft" style="width: 190px">13611112222,13611112222</td>
-							<td class="middle aright" style="width: 40px">状态:</td>
-							<td class="last aleft">新入职 (2011-01-01)</td>
+						<tr class="detail">
+							<td colspan="6" style="padding:0;">
+								<table class="contentTable" cellspacing="2" cellpadding="0" style="height: auto;">
+									<tr>
+										<td rowspan="6" style="width: 87px;"><img id="portrait" style="width:86.4px;height:110px;cursor: pointer;" 
+											src="/bs/bc/image/download?ptype=portrait&amp;puid=carMan.uid.4&ts=1329753139367"></td>
+										<td class="label" style="width: 80px;">身份证号码:</td>
+										<td class="value" style="width: 250px;"><input type="text" name="man.identity" class="ui-widget-content" 
+											value="440000201201012222"/></td>
+										<td rowspan="6" style="position: relative;"><textarea name="main.desc" class="ui-widget-content noresize" 
+											style="position:absolute;left:0;right:0;bottom:-2px;top:-2px;" readonly="readonly">AA</textarea></td>
+									</tr>
+									<tr>
+										<td class="label">身份证地址:</td>
+										<td class="value"><input type="text" name="man.address1" class="ui-widget-content" readonly="readonly"
+											value="河南省扶沟县练寺镇董王村"/></td>
+									</tr>
+									<tr>
+										<td class="label">暂住地址:</td>
+										<td class="value"><input type="text" name="man.address2" class="ui-widget-content" readonly="readonly"/></td>
+									</tr>
+									<tr>
+										<td class="label">籍贯:</td>
+										<td class="value"><input type="text" name="man.region" class="ui-widget-content" readonly="readonly"/></td>
+									</tr>
+									<tr>
+										<td class="label">资格证号:</td>
+										<td class="value"><input type="text" name="man.cert4fwzg" class="ui-widget-content" 
+											readonly="readonly" style="width:86px"/>&nbsp;&nbsp;户口性质:&nbsp;<input 
+											type="text" name="man.houseType" class="ui-widget-content" readonly="readonly" style="width:86px"/></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr class="top header ui-state-disabled">
+							<td class="first aright ui-widget-content" style="width: 90px">司机和责任人:</td>
+							<td class="middle aleft ui-widget-content" style="width: 80px">张三(男)</td>
+							<td class="middle aright ui-widget-content" style="width: 40px">电话:</td>
+							<td class="last aleft ui-widget-content" style="width: 190px">13611112222,13611112222</td>
+							<td class="middle aright ui-widget-content" style="width: 40px">状态:</td>
+							<td class="last aleft ui-widget-content">新入职 (2011-01-01)</td>
 						</tr>
 					</tbody>
 				</table>

@@ -54,20 +54,18 @@
 	position: relative;
 	border-left-width: 0;
 	border-right-width: 0;
+	margin: 0;
+	padding: 2px 4px;
+}
+
+.bc-page.ic tr.ui-widget-content {
+	border-width: 0;
 }
 
 .bc-page.ic .content {
 	position: relative;
 	border-width: 0;
 	font-weight: normal;
-}
-
-.bc-page.ic .header {
-	margin: 0;
-	padding: 2px 4px;
-}
-
-.bc-page.ic .content {
 	margin: 0;
 	padding: 4px;
 }
@@ -208,33 +206,36 @@
 }
 
 .bc-page.ic>.right table.contentTable0 td {
-	padding: 2px;
+	padding: 0;
 	background: none;
 }
 
-.bc-page.ic>.right>.message.empty>.content {
+.bc-page.ic>.right>.block.empty>.content {
 	display: none;
 }
 
-.bc-page.ic>.right>.message td.first {
+.bc-page.ic>.right .content td.first {
 	border-left-width: 0;
 }
 
-.bc-page.ic>.right>.message td.last {
-	border-right-width: 0;
+.bc-page.ic>.right .content td.last {
+	/*border-right-width: 0;*/
 }
 
-.bc-page.ic>.right>.message tr {
+.bc-page.ic>.right .content tr {
 	border-width: 0;
 	font-weight: normal;
 }
 
-.bc-page.ic>.right>.message tr.first>td {
+.bc-page.ic>.right .content tr.first>td {
 	border-top-width: 0;
+}
+
+.bc-page.ic>.right>.message .content tr.first>td {
 	text-align: center;
 }
 
-.bc-page.ic>.right>.message tr.last>td {
+.bc-page.ic>.right .content tr.last>td {
 	border-bottom-width: 0;
 }
 
@@ -249,10 +250,14 @@
 
 td.aleft {
 	text-align: left;
+	border-left-width: 0;
+	border-right-width: 0;
 }
 
 td.aright {
 	text-align: right;
+	border-left-width: 0;
+	border-right-width: 0;
 }
 
 .bc-page.ic>.right>.mans>.content {
@@ -261,6 +266,16 @@ td.aright {
 
 .bc-page.ic>.right>.mans>.content>.title {
 	border-width: 0;
+}
+.bc-page.ic>.right>.mans>.content tr.first {
+	text-align: 
+}
+
+.bc-page.ic>.right>.mans>#mansHeader #includeLogout {
+	width: auto;
+	font-weight: normal;
+	font-size: 60%;
+	margin-right: 10px;
 }
 
 /** ==右侧内部布局结束== */

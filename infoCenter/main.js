@@ -1,7 +1,9 @@
 bc.namespace("bs");
 bs.infoCenter = {
+	ts: new Date().getTime(),
 	init : function(option, readonly) {
 		var $page = $(this);
+		bs.infoCenter.currentCarId = null;
 
 		// 默认聚焦到查询输入框
 		$page.find("input#searchText").focus();
@@ -20,6 +22,33 @@ bs.infoCenter = {
 						".ui-state-highlight").toggleClass(
 						"ui-state-highlight", false);
 				bs.infoCenter.showCar.call($this,$this.attr("data-id"));
+			}
+		});
+		
+		// 车辆信息：点击更多按钮打开车辆表单
+		var $main = $page.find("#main");
+		$main.find("#seeMore").click(function(){
+			if(!bs.infoCenter.currentCarId){
+				bc.msg.slide("请先选择相应的车辆！");
+			}else{
+				bc.page.newWin({
+					name: $main.find("#carTitle").text(),
+					mid: "car" + bs.infoCenter.currentCarId,
+					url: bc.root + "/bc-business/car/open",
+					data: {id: bs.infoCenter.currentCarId}
+				});
+			}
+			return false;
+		});
+		// 车辆信息、联系信息：点击折叠展开
+		$page.find(".toggleShow").click(function(){
+			var $this = $(this).toggleClass("ui-icon-triangle-1-s ui-icon-triangle-1-n");
+			if($this.hasClass("ui-icon-triangle-1-s")){
+				$this.closest(".header").next().show();
+				$this.attr("title","点击折叠");
+			}else{
+				$this.closest(".header").next().hide();
+				$this.attr("title","点击展开");
 			}
 		});
 
@@ -45,16 +74,13 @@ bs.infoCenter = {
 		$left.children(".block").each(function() {
 			sh += $(this).outerHeight(true);
 		});
-		logger.info("sh=" + sh);
+		logger.debug("sh=" + sh);
 		$left.children(".results").css("top", sh);
 
 		//搜索框回车执行搜索
 		$left.find("#searchText").keyup(function(e) {
-			var $this = $(this);
 			if(e.which == 13){//按下回车键
 				bs.infoCenter.doSearch.call($page);
-			}else{
-				return false;
 			}
 		});
 	},
@@ -155,9 +181,11 @@ bs.infoCenter = {
 		
 		// 清空内容
 		$right.find("input[type='text'],textarea").val("");
+		$right.find("input[type='checkbox']").each(function(){this.checked = false;});
 		var $messages = $right.find("#messages").addClass("empty");
-		$messages.find("tr:not(.header)").remove();
-		$right.find("#mans>.content").remove();
+		$messages.find("#msgsBody > tr:not(.header)").remove();
+		var $mans = $right.find("#mans").addClass("empty");
+		$mans.find("#mansBody").empty();
 
 		// 获取车辆详细信息
 		bc.ajax({
@@ -182,13 +210,88 @@ bs.infoCenter = {
 				$carTitle.next().text(" (" + bc.getWasteTime(startTime) + ")");
 				
 				// 显示车辆信息
+				var $main = $right.children("#main");
+				for(var key in json.car){
+					$main.find(":input[name='main." + key + "']").val(json.car[key]);
+				}
+				if(json.car.includeCost) $main.find(":input[name='main.includeCost']")[0].checked = true;
+				if(json.car.zb) $main.find(":input[name='main.zb']")[0].checked = true;
+
 				
 				// 显示提醒信息
-				//$messages.removeClass("empty");
+				var msgs = json.messages;
+				if(msgs.length > 0){
+					$messages.removeClass("empty");
+					var trs = [];
+					for(var i=0;i<msgs.length;i++){
+						trs.push('<tr class="ui-widget-content middle row'+(i%2 == 0 ? " odd" : " even") +'">'
+							+'<td class="first ui-widget-content">' + msgs[i].module + '</td>'
+							+'<td class="middle ui-widget-content">' + msgs[i].limit + '</td>'
+							+'<td class="middle ui-widget-content">' + msgs[i].link + '</td>'
+							+'<td class="middle ui-widget-content">' + msgs[i].subject + '</td>'
+							+'<td class="last ui-widget-content">' + msgs[i].date + '</td>'
+							+'</tr>');
+					}
+					$messages.find("#msgsBody").append(trs.join(""));
+				}
 				
 				// 显示司机信息
+				var mans = json.mans;
+				if(mans.length > 0){
+					$mans.removeClass("empty");
+					var trs = [],man,ts = bs.infoCenter.ts; 
+					for(var i=0;i<mans.length;i++){
+						man = mans[i];
+						// 抬头行
+						trs.push('<tr class="top header'+(i==0 ? " first" : "") + (man.status!=0 ? " ui-state-disabled" : "") + '">'
+							+'<td class="first aright ui-widget-content" style="width: 90px">' + man.type + ':</td>'
+							+'<td class="middle aleft ui-widget-content" style="width: 80px">' + man.name + '(' + man.sex + ')' + '</td>'
+							+'<td class="middle aright ui-widget-content" style="width: 40px">电话:</td>'
+							+'<td class="last aleft ui-widget-content" style="width: 190px">' + man.phones + '</td>'
+							+'<td class="middle aright ui-widget-content" style="width: 40px">状态:</td>'
+							+'<td class="last aleft ui-widget-content">' + (man.classes.length > 0 ? man.classes + "，" : "") + man.moveType + '(' + man.moveDate + ')' + '</td>'
+							+'</tr>');
+						
+						// 司机详细资料
+						trs.push('<tr class="detail"><td colspan="6" style="padding:0;">'
+							+'<table class="contentTable" cellspacing="2" cellpadding="0" style="height: auto;">'
+							+'<tr>'
+							+'<td rowspan="6" style="width: 87px;"><img style="width:86.4px;height:110px;cursor: pointer;" '
+							+'src="'+bc.root+'/bc/image/download?ptype=portrait&puid=' + man.uid + '&ts=' + ts + '"></td>'
+							
+							+'<td class="label" style="width: 80px;">身份证号码:</td>'
+							+'<td class="value" style="width: 250px;"><input type="text" class="ui-widget-content" readonly="readonly" value="' + man.identity + '"/></td>'
+							
+							+'<td rowspan="6" style="position: relative;"><textarea class="ui-widget-content noresize"' 
+							+'style="position:absolute;left:0;right:0;bottom:-2px;top:-2px;" readonly="readonly">' + man.desc + '</textarea></td>'
+							+'</tr>'
+							
+							+'<tr>'
+							+'<td class="label">身份证地址:</td>'
+							+'<td class="value"><input type="text" class="ui-widget-content" readonly="readonly" value="' + man.address1 + '"/></td>'
+							+'</tr>'
+							
+							+'<tr>'
+							+'<td class="label">暂住地址:</td>'
+							+'<td class="value"><input type="text" class="ui-widget-content" readonly="readonly" value="' + man.address2 + '"/></td>'
+							+'</tr>'
+							
+							+'<tr>'
+							+'<td class="label">籍贯:</td>'
+							+'<td class="value"><input type="text" class="ui-widget-content" readonly="readonly" value="' + man.origin + '"/></td>'
+							+'</tr>'
+							
+							+'<tr>'
+							+'<td class="label">资格证号:</td>'
+							+'<td class="value"><input type="text" class="ui-widget-content" readonly="readonly" style="width:86px" value="' + man.cert4fwzg + '"/>'
+							+'&nbsp;&nbsp;户口性质:&nbsp;<input type="text" class="ui-widget-content" readonly="readonly" style="width:86px" value="' + man.houseType + '"/></td>'
+							+'</tr>'
+							+'</table></td></tr>');
+					}
+					$mans.find("#mansBody").append(trs.join(""));
+				}
 			}
 		});
 	},
-	currentCarId:0
+	currentCarId: null
 };
