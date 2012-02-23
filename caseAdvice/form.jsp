@@ -101,9 +101,6 @@
 				<s:if test="%{e.closerName != null && e.closeDate && e.status == 1}">
 					结案人:<s:property value="e.closerName" />(<s:date name="e.closeDate" format="yyyy-MM-dd HH:mm:ss"/>),
 				</s:if>
-				<s:if test="%{e.type == 6}">
-				处理状态：<s:property value="%{handlestatusesValue[e.handleStatus]}" />，
-				</s:if>
 				<s:if test="%{e.author.name != null}">
 				登记：<s:property value="e.author.name" />(<s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>)
 				</s:if>
@@ -156,10 +153,18 @@
 								value="e.sex" cssStyle="width:auto;"/>
 								<s:text name="runcase.advisorAge" />:<s:textfield name="e.advisorAge" cssStyle="width:2.5em;" cssClass="ui-widget-content"/>
 							</td>
-							<td class="label"><s:text name="runcase.receiveCode" />:</td>
-							<td class="value">
-								<s:textfield name="e.receiveCode" cssClass="ui-widget-content"/>
-							</td>
+							<s:if test="type == 2"><!-- 客管投诉 -->
+								<td class="label">*<s:text name="runcase.receiveCode" />:</td> 
+								<td class="value">
+									<s:textfield name="e.receiveCode" data-validate="required" cssClass="ui-widget-content"/>
+								</td>
+							</s:if>
+							<s:else><!-- 公司投诉 -->
+								<td class="label"><s:text name="runcase.company.receiveCode" />:</td>
+								<td class="value">
+									<s:textfield name="e.receiveCode" cssClass="ui-widget-content"/>
+								</td>
+							</s:else>
 						</tr>
 						<tr>
 							<td class="label">*<s:text name="runcase.advisorPhone" />:</td>
