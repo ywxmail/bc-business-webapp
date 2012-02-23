@@ -168,7 +168,7 @@ bc.caseBusinessForm = {
 		// 接案人
 		$form.find("#selectReceiverName").click(function(){
 			bc.identity.selectUser({
-				history: false,
+				history: true,
 				selecteds: $form.find(":input[name='e.receiverName']").val(),
 				onOk : function(user) {
 					$form.find(":input[name='e.receiverId']").val(user.id);
