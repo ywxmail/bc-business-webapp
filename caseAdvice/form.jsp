@@ -160,10 +160,18 @@
 								</td>
 							</s:if>
 							<s:else><!-- 公司投诉 -->
-								<td class="label"><s:text name="runcase.company.receiveCode" />:</td>
-								<td class="value">
-									<s:textfield name="e.receiveCode" cssClass="ui-widget-content"/>
-								</td>
+								<s:if test="%{e.id != null && e.id < 10000000}"> <!-- 旧数据 -->
+									<td class="label"><s:text name="runcase.company.receiveCode" />:</td>
+									<td class="value">
+										<s:textfield name="e.receiveCode" cssClass="ui-widget-content"/>
+									</td>
+								</s:if>
+								<s:else><!-- 新数据 -->
+									<td class="label">*<s:text name="runcase.company.receiveCode" />:</td>
+									<td class="value">
+										<s:textfield name="e.receiveCode" cssClass="ui-widget-content" data-validate="required"/>
+									</td>
+								</s:else>
 							</s:else>
 						</tr>
 						<tr>
