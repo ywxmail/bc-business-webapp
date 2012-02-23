@@ -309,7 +309,7 @@ bc.caseAdviceForm = {
 			|| $form.find(":input[name='e.motorcadeId']").val().length < 1
 			|| $form.find(":input[name='e.transactorName']").val().length < 1
 			){
-			bc.msg.alert('请确认司机,车辆,车队,经办人信息是否填写完整!!');
+			bc.msg.alert('请确认司机,车辆,车队,分公司经办人信息是否填写完整!!');
 			return;
 		}
 		if(!bc.validator.validate($form))
