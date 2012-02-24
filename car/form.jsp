@@ -236,13 +236,18 @@
 									</td>
 									<td class="label" ><s:text name="car.taximeterType"/>:</td>
 									<td class="value relative">
-										<input type="text" name="e.taximeterType" value='<s:property value="e.taximeterType"/>'
-											data-validate="required" class="bc-select ui-widget-content"
-											data-maxHeight="150px"
-											data-source='<s:property value="taximeterTypes"/>'/>
-										<ul class="inputIcons">
-											<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
-										</ul>
+										<s:if test="isReadonly()">
+											<s:textfield name="e.taximeterType" cssClass="ui-widget-content" />
+										</s:if>
+										<s:else>
+											<input type="text" name="e.taximeterType" value='<s:property value="e.taximeterType"/>'
+												class="bc-select ui-widget-content"
+												data-maxHeight="150px"
+												data-source='<s:property value="taximeterTypes"/>'/>
+											<ul class="inputIcons">
+												<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
+											</ul>
+										</s:else>
 									</td>
 								</tr>
 								<tr>
