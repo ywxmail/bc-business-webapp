@@ -51,6 +51,14 @@
 							</td>
 						</tr>
 						<tr>
+							<td class="label"><s:text name="runcase.registerDate"/>:</td>
+							<td class="value"><input type="text" name="registerDate" value='<s:date format="yyyy-MM-dd" name="registerDate"/>'
+							 class="ui-widget-content" readonly="readonly"/></td>
+							<td class="label"><s:text name="runcase.scrapDate"/>:</td>
+							<td class="value"><input type="text" name="scrapDate" value='<s:date format="yyyy-MM-dd" name="scrapDate"/>'
+							 class="ui-widget-content" readonly="readonly"/></td>
+						</tr>
+						<tr>
 							<td class="label"><s:text name="runcase.chargers"/>:</td>
 							<td class="value relative">
 								<s:textfield name="chargers" cssClass="ui-widget-content" readonly="true"/>

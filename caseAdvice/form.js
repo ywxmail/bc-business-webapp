@@ -31,6 +31,8 @@ bc.caseAdviceForm = {
 						var motorcadeName = $form.find(":input[name='e.motorcadeId']").find("option:selected").text();
 						$form.find(":hidden[name='e.motorcadeName']").val(motorcadeName);
 						$form.find(":input[name='e.company']").val(car.company);
+						$form.find(":input[name='registerDate']").val(car.registerDate);
+						$form.find(":input[name='scrapDate']").val(car.scrapDate);
 					}
 				}
 			});
@@ -81,6 +83,8 @@ bc.caseAdviceForm = {
 					$form.find(":input[name='e.company']").val(car.company);
 					$form.find(":hidden[name='e.charger']").val(car.charger);
 					$form.find(":input[name='businessType']").val(car.bsType);
+					$form.find(":input[name='registerDate']").val(car.registerDate);
+					$form.find(":input[name='scrapDate']").val(car.scrapDate);
 					
 					var str = car.charger;
 					if(str != null && str.length > 0){
