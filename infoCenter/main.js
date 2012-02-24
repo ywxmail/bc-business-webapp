@@ -60,11 +60,34 @@ bs.infoCenter = {
 			mouseout : function() {
 				$(this).removeClass("ui-state-hover");
 			},
+			/** 单击高亮 */
 			click : function() {
 				var $this = $(this);
 				$this.toggleClass("ui-state-highlight", true).siblings(
 						".ui-state-highlight").toggleClass(
 						"ui-state-highlight", false);
+			},
+			/** 双击打开查看 */
+			dblclick : function() {
+				var $this = $(this);
+				var type = $this.attr("data-type");
+				var id = $this.attr("data-id");
+				var plate = $this.attr("data-plate");
+				var url = bc.root;
+				if(type == "黑名单"){
+					url += "/bc-business/blacklist/open";
+				}else{
+					bc.msg.alert("该信息不支持打开查看！");
+					return false;
+				}
+				
+				// 打开
+				bc.page.newWin({
+					name: type + " " + plate,
+					mid: type + id,
+					url: url,
+					data: {id:id}
+				});
 			}
 		});
 
@@ -202,12 +225,13 @@ bs.infoCenter = {
 		bs.infoCenter.currentCarId = carId;// 记录当前正在处理的车辆id，避免重复点击的请求
 		
 		var $li = $(this);
+		var lj = $li.data("json");
 		var $right = $li.closest("#left").siblings("#right");
 		
 		// 显示正在查询动画
 		var startTime = new Date().getTime();
 		var $carHeader = $right.find("#carHeader").addClass("loading");
-		var $carTitle = $carHeader.find("#carTitle").html('正在查询...');
+		var $carTitle = $carHeader.find("#carTitle").html('正在查询' + lj.plate + '...');
 		
 		// 清空内容
 		$right.find("input[type='text'],textarea").val("");
@@ -223,11 +247,12 @@ bs.infoCenter = {
 			data : {carId : carId},
 			dataType : "json",
 			success : function(json) {
-				if(json.id != bs.infoCenter.currentCarId)
-					return;
-				
 				// 关闭加载动画
 				$carHeader.removeClass("loading");
+				
+				// 显示车牌及查询时间
+				$carTitle.text(lj.plate + ($li.hasClass("ui-state-disabled") ? " - 此车已注销，交车日期为 " + lj.returnDate : ""));
+				$carTitle.next().text(" (" + bc.getWasteTime(startTime) + ")");
 				
 				// 失败就提示
 				if(!json.success){
@@ -235,9 +260,8 @@ bs.infoCenter = {
 					return;
 				}
 				
-				// 显示车牌及查询时间
-				$carTitle.text($li.children(".plate").text());
-				$carTitle.next().text(" (" + bc.getWasteTime(startTime) + ")");
+				if(json.id != bs.infoCenter.currentCarId)
+					return;
 				
 				// 显示车辆信息
 				var $main = $right.children("#main");
@@ -254,7 +278,8 @@ bs.infoCenter = {
 					$messages.removeClass("empty");
 					var trs = [];
 					for(var i=0;i<msgs.length;i++){
-						trs.push('<tr class="ui-widget-content middle row'+(i%2 == 0 ? " odd" : " even") +'">'
+						trs.push('<tr class="ui-widget-content middle row'+(i%2 == 0 ? " odd" : " even") 
+								+'" data-plate="' + lj.plate +'" data-type="' + msgs[i].module + '" data-id="' + msgs[i].id + '">'
 							+'<td class="first ui-widget-content">' + msgs[i].module + '</td>'
 							+'<td class="middle ui-widget-content">' + msgs[i].limit + '</td>'
 							+'<td class="middle ui-widget-content">' + msgs[i].link + '</td>'

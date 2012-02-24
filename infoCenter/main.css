@@ -226,6 +226,7 @@
 .bc-page.ic>.right .content tr {
 	border-width: 0;
 	font-weight: normal;
+	cursor: default;
 }
 
 .bc-page.ic>.right .content tr.first>td {
