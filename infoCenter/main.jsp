@@ -151,7 +151,7 @@
 					<tr>
 						<td class="label">车辆颜色:</td>
 						<td class="value"><input type="text" name="main.color" class="ui-widget-content" readonly="readonly"/></td>
-						<td class="label">电视广告屏:</td>
+						<td class="label">车载电视屏:</td>
 						<td class="value"><input type="text" name="main.tv" class="ui-widget-content" readonly="readonly"/></td>
 					</tr>
 				</table>
