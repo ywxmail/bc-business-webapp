@@ -697,12 +697,12 @@
 												</s:else>
 												'>
 												<div class="input ui-widget-content" >
-										     			<span class="link showCarMan" data-cfg='<s:property value="e.payDriverIdTwo"/>' id="carManInfo" >
+										     			<span class="link showCarMan" data-cfg='<s:property value="e.payDriverIdTwo"/>' id="carManInfo2" >
 										     			<s:property value="%{e.payDriverTwo}" /></span>
 										      	</div>
 										      	<ul class="inputIcons">
 										        		<li class="selectCarMan inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>' 
-										        		data-cfg='e.payDriverIdTwo=id,e.payDriverTwo=name,carManInfo=name|text'></li>
+										        		data-cfg='e.payDriverIdTwo=id,e.payDriverTwo=name,carManInfo2=name|text'></li>
 										      	</ul>
 										</samp>
 									</td>								
