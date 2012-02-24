@@ -573,34 +573,18 @@ bc.caseAccidentForm = {
 			ct+='<td class="topLabel">购买险种:</td>';
 			ct+='</td>';
 			ct+='<td class="value" colspan="5">';
-				ct+='<table  cellspacing="3" cellpadding="0" >';
-					ct+='<tbody>';
-						ct+='<tr style="line-height: 1px;">';
-							ct+='<td style="width: 100px;">&nbsp;</td>';
-							ct+='<td style="width: 160px;">&nbsp;</td>';
-							ct+='<td >&nbsp;</td>';
-						ct+='</tr>';
-						ct+='<tr>';
-							ct+='<td class="value" >险种名称</td>';
-							ct+='<td class="value" >保额</td>';
-							ct+='<td class="value" >描述</td>';
-						ct+='</tr>';
-						var buyPlants=policy.buyPlant;
-						for(var i=0;i<buyPlants.length;i++){
-							ct+='<tr>';
-								ct+='<td class="value">';
-								ct+=buyPlants[i].name;
-								ct+='</td>';
-								ct+='<td class="value">';
-								ct+=buyPlants[i].coverage;
-								ct+='</td>';
-								ct+='<td class="value">';
-								ct+=buyPlants[i].description;
-								ct+='</td>';
-							ct+='</tr>';
+				var buyPlants=policy.buyPlant;
+				for(var i=0;i<buyPlants.length;i++){
+						ct+='['
+						ct+=buyPlants[i].name;
+						ct+=':';
+						ct+=buyPlants[i].coverage;
+						if(buyPlants[i].description){
+							ct+=':';
+							ct+=buyPlants[i].description;
 						}
-					ct+='</tbody>';
-				ct+='</tadble>';
+						ct+='] ';
+				}
 			ct+='</td>';
 		ct+='</tr>';
 		
