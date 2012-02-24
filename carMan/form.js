@@ -13,6 +13,25 @@ bc.carManForm = {
 				$form.find(":input[name='e.cert4Driving']").val($form.find(":input[name='e.cert4Indentity']").val());
 			}
 		});
+		//点击身份证input的灯泡自动生成籍贯、区域、生日
+		$form.find("#autoLoadCarManIdentityInfo").click(function(){
+			if(!bc.validator.validate($form.find(":input[name='e.cert4Indentity']").parent())){
+				return;
+			}
+			var identityId=$form.find(":input[name='e.cert4Indentity']").val();
+			var url=bc.root + "/bc-business/carMan/autoLoadCarManIdentityInfo?identityId="+identityId;
+			$.ajax({
+				url:url,
+				dataType:"json",
+				success:function(json){
+					$form.find(":input[name='e.origin']").val(json.origin);
+					$form.find("select[name='e.region']").val(json.area);
+					$form.find(":input[name='e.birthdate']").val(json.birthday);
+				}
+			});
+			
+			
+		});
 		
 		//绑定图片的修改
 		$form.find("#portrait").click(function(){

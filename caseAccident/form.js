@@ -17,6 +17,52 @@ bc.caseAccidentForm = {
 			$form.find(":input[name='e.fixCost']").hide();
 		}
 		
+		//损失情况
+		$form.find('#ShowGroups1').css("display","none");		
+		//绑定点击按钮内容展出事件
+		$form.find('#ShowGroups1').click(function(){
+			$form.find('#Groups1').css("display","block");
+			$(this).css("display","none");
+			$form.find('#HiddenGroups1').css("display","block");
+		});
+		//绑定点击按钮内容隐藏事件
+		$form.find('#HiddenGroups1').click(function(){
+			$form.find('#Groups1').css("display","none");
+			$(this).css("display","none");
+			$form.find('#ShowGroups1').css("display","block");
+		});
+		
+		//理赔情况
+		$form.find('#ShowGroups2').css("display","none");		
+		//绑定点击按钮内容展出事件
+		$form.find('#ShowGroups2').click(function(){
+			$form.find('#Groups2').css("display","block");
+			$(this).css("display","none");
+			$form.find('#HiddenGroups2').css("display","block");
+		});
+		//绑定点击按钮内容隐藏事件
+		$form.find('#HiddenGroups2').click(function(){
+			$form.find('#Groups2').css("display","none");
+			$(this).css("display","none");
+			$form.find('#ShowGroups2').css("display","block");
+		});
+		
+		//事故截图
+		$form.find('#ShowGroups3').css("display","none");		
+		//绑定点击按钮内容展出事件
+		$form.find('#ShowGroups3').click(function(){
+			$form.find('#Groups3').css("display","block");
+			$(this).css("display","none");
+			$form.find('#HiddenGroups3').css("display","block");
+		});
+		//绑定点击按钮内容隐藏事件
+		$form.find('#HiddenGroups3').click(function(){
+			$form.find('#Groups3').css("display","none");
+			$(this).css("display","none");
+			$form.find('#ShowGroups3').css("display","block");
+		});
+		
+		
 		if(readonly) return;
 		//绑定厂修按钮事件
 		$form.find(":input[name='e.innerFix']").change(function(){
@@ -211,50 +257,7 @@ bc.caseAccidentForm = {
 			});
 		});
 		
-		//损失情况
-		$form.find('#ShowGroups1').css("display","none");		
-		//绑定点击按钮内容展出事件
-		$form.find('#ShowGroups1').click(function(){
-			$form.find('#Groups1').css("display","block");
-			$(this).css("display","none");
-			$form.find('#HiddenGroups1').css("display","block");
-		});
-		//绑定点击按钮内容隐藏事件
-		$form.find('#HiddenGroups1').click(function(){
-			$form.find('#Groups1').css("display","none");
-			$(this).css("display","none");
-			$form.find('#ShowGroups1').css("display","block");
-		});
-		
-		//理赔情况
-		$form.find('#ShowGroups2').css("display","none");		
-		//绑定点击按钮内容展出事件
-		$form.find('#ShowGroups2').click(function(){
-			$form.find('#Groups2').css("display","block");
-			$(this).css("display","none");
-			$form.find('#HiddenGroups2').css("display","block");
-		});
-		//绑定点击按钮内容隐藏事件
-		$form.find('#HiddenGroups2').click(function(){
-			$form.find('#Groups2').css("display","none");
-			$(this).css("display","none");
-			$form.find('#ShowGroups2').css("display","block");
-		});
-		
-		//事故截图
-		$form.find('#ShowGroups3').css("display","none");		
-		//绑定点击按钮内容展出事件
-		$form.find('#ShowGroups3').click(function(){
-			$form.find('#Groups3').css("display","block");
-			$(this).css("display","none");
-			$form.find('#HiddenGroups3').css("display","block");
-		});
-		//绑定点击按钮内容隐藏事件
-		$form.find('#HiddenGroups3').click(function(){
-			$form.find('#Groups3').css("display","none");
-			$(this).css("display","none");
-			$form.find('#ShowGroups3').css("display","block");
-		});
+	
 		
 		
 		// 绑定是否送保事件
@@ -310,8 +313,6 @@ bc.caseAccidentForm = {
 				$form.find('#payTwo').css("display","none");
 			}
 		});
-		
-		
 		
 		//绑定送保 隐藏保险公司赔付和受款司机内容
 		$form.find(":checkbox[name='e.deliver']").change(function(){
@@ -447,7 +448,33 @@ bc.caseAccidentForm = {
 				});
 			}
 		}
-	},
+	},//保存时触发相关事件
+	save: function(){
+		$page=$(this);
+		logger.info("save");
+		if(($page.find(":checkbox[name='e.pay']")[0].checked==true
+				&&$page.find(":checkbox[name='e.deliverSecond']")[0].checked==false)
+				||($page.find(":checkbox[name='e.pay']")[0].checked==true
+						&&$page.find(":checkbox[name='e.payTwo']")[0].checked==true)
+				){
+				logger.info("save2");
+				bc.msg.confirm("你好，已勾选受款司机，确定要结案吗？",function(){
+					$page.find(":input[name='isClosed']").val("1");
+					//调用标准的方法执行保存
+					bc.page.save.call($page,{callback:function(){
+						$page.dialog("close");
+						//显示结案成功提示信息
+						bc.msg.slide("结案成功");
+						//返回false，禁止默认的“保存成功”提示信息的显示
+						return false;
+					}});
+				});
+		}else{
+			//调用标准的方法执行保存
+			bc.page.save.call(this);
+		}
+	}
+	,
 	//添加车辆相关保单信息
 	accAddPolicyInfo: function($form){
 		var happenTime=$form.find(":input[name='e.happenDate']").val();
@@ -550,7 +577,7 @@ bc.caseAccidentForm = {
 					ct+='<tbody>';
 						ct+='<tr style="line-height: 1px;">';
 							ct+='<td style="width: 100px;">&nbsp;</td>';
-							ct+='<td style="width: 100px;">&nbsp;</td>';
+							ct+='<td style="width: 160px;">&nbsp;</td>';
 							ct+='<td >&nbsp;</td>';
 						ct+='</tr>';
 						ct+='<tr>';

@@ -18,10 +18,11 @@ bs.carSelectDialog = {
 			data = {};
 			data.id = $tds.attr("data-id");
 			var $tr = $grid.find(">.data>.right tr.ui-state-highlight");
-			data.code = $tr.find("td:eq(0)").text();
-			data.plate = $tr.find("td:eq(1)").text();
-			data.bsType = $tr.find("td:eq(4)").text();
-			data.company = $tr.find("td:last(0)").text();
+			data.code = $tr.find("td:eq(0)").attr("data-value");
+			data.plate = $tr.find("td:eq(1)").attr("data-value");
+			data.bsType = $tr.find("td:eq(4)").attr("data-value");
+			data.charger = $tr.find("td:eq(5)").attr("data-value");
+			data.company = $tr.find("td:last(0)").attr("data-value");
 			var p = data.plate.split(".");
 			data.plateType = p[0];
 			data.plateNo = p[1];
@@ -31,10 +32,11 @@ bs.carSelectDialog = {
 			var $trs = $grid.find(">.data>.right tr.ui-state-highlight");
 			$tds.each(function(i){
 				var $tr = $($trs.get(i));
-				var code = $tr.find("td:eq(0)").text();
-				var plate = $tr.find("td:eq(1)").text();
-				var bsType = $tr.find("td:eq(4)").text();
-				var company = $tr.find("td:last(1)").text();
+				var code = $tr.find("td:eq(0)").attr("data-value");
+				var plate = $tr.find("td:eq(1)").attr("data-value");
+				var bsType = $tr.find("td:eq(4)").attr("data-value");
+				var charger = $tr.find("td:eq(5)").attr("data-value");
+				var company = $tr.find("td:last(0)").attr("data-value");
 				var p = plate.split(".");
 				logger.info("--" + $.toJSON($tr.data("hidden")));
 				data.push($.extend({
@@ -44,6 +46,7 @@ bs.carSelectDialog = {
 					plateType:p[0],
 					plateNo:p[1],
 					bsType:bsType,
+					charger:charger,
 					company:company
 				},$tr.data("hidden")));
 			});

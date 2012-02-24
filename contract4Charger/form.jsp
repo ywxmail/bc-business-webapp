@@ -6,7 +6,7 @@
 	data-initMethod='bc.contract4ChargerForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="contract4ChargerForm" theme="simple">
-		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:300}"
+		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset"
 			style="height:300px;width:710px;overflow: hidden;">
 			<div class="tabsContainer">
            	 	<div class="slideContainer">
@@ -124,9 +124,10 @@
 								</td>
 							</tr>
 							<tr>
-								<td class="label">*<s:text name="contract4Charger.paymentDate"/>:</td>
+								<td class="label"><s:text name="contract4Charger.paymentDate"/>:</td>
 								<td class="value">
-									<s:select name="e.paymentDate" list="paymentDates" listKey="key" listValue="value" cssClass="ui-widget-content"/>
+									<s:select name="e.paymentDate" list="paymentDates" listKey="key" listValue="value" headerKey="" headerValue=""
+									 cssClass="ui-widget-content"/>
 								</td>
 								<td></td>
 								<td class="label" style="text-align: right;">

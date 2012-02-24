@@ -1,0 +1,283 @@
+/** 
+ * 车辆查询页面的样式控制 
+ *
+ * @author rongjihuang@gmail.com
+ * @date 2012-02-20
+*/
+
+/** ==总体布局开始== */
+.bc-page.ic {
+	
+}
+
+.bc-page.ic>* {
+	position: absolute;
+	bottom: 0;
+	top: 0;
+}
+
+.bc-page.ic .block {
+	position: relative;
+}
+
+.bc-page.ic>.left {
+	width: 150px;
+	width: 152px\9; /*ie6-8*/
+	left: 0;
+}
+
+.bc-page.ic>.splitter {
+	border-left-width: 0;
+	border-right-width: 0;
+	width: 6px;
+	left: 152px;
+}
+
+.bc-page.ic>.splitter .ui-icon {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -8px;
+	margin-left: -8px;
+	cursor: e-resize;
+}
+
+.bc-page.ic>.right {
+	left: 157px;
+	right: 0;
+	overflow: auto;
+}
+/** ==总体布局结束== */
+
+/** ==公共样式开始== */
+.bc-page.ic .header {
+	position: relative;
+	border-left-width: 0;
+	border-right-width: 0;
+	margin: 0;
+	padding: 2px 4px;
+}
+
+.bc-page.ic tr.ui-widget-content {
+	border-width: 0;
+}
+
+.bc-page.ic .content {
+	position: relative;
+	border-width: 0;
+	font-weight: normal;
+	margin: 0;
+	padding: 4px;
+}
+
+.bc-page.ic .content input[type="text"] {
+	margin: 0;
+	width: 99%;
+	width: 98% \9; /**ie6-8*/
+}
+
+.bc-page.ic span.wasteTime {
+	opacity: 0.6;
+	filter: alpha(opacity =         60);
+	font-style: italic;
+	font-weight: normal;
+	font-size: 50%;
+}
+
+/** ==公共样式结束== */
+
+/** ==左侧内部布局开始== */
+.bc-page.ic>.left .hexiao {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	margin: 4px 4px;
+	display: none;
+}
+
+.bc-page.ic>.left>ul.results {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	top: 265px;
+	overflow: auto;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.bc-page.ic>.left>ul.results>li {
+	padding: 2px 8px;
+	margin: 0;
+	border: 0;
+	cursor: default;
+	font-weight: normal;
+}
+
+.bc-page.ic>.left>ul.results>li.empty,.bc-page.ic>.left>ul.results>li.busy
+	{
+	text-align: center;
+	opacity: 0.6;
+	filter: alpha(opacity =         60);
+	font-style: italic;
+}
+
+.bc-page.ic>.left>ul.results>li.busy>span.busy {
+	display: inline-block;
+	width: 32px;
+	height: 32px;
+	background:
+		url("../../bc/libs/themes/default/images/loader/loader02_32x32.gif")
+		no-repeat;
+	padding: 0;
+	margin: 8px 0 0 0;
+}
+
+.bc-page.ic>.left>ul.results>li.busy>span.text {
+	display: block;
+	padding: 0;
+	margin: 0;
+}
+
+.bc-page.ic>.left>ul.results>li.active {
+	border-width: 1px 0;
+}
+
+.bc-page.ic>.left>ul.results .code {
+	display: inline-block;
+	width: 2.5em;
+}
+
+.bc-page.ic>.left>ul.results .plate {
+	
+}
+
+/** ==左侧内部布局结束== */
+
+/** ==右侧内部布局开始== */
+.bc-page.ic>.right>.main {
+	padding: 0;
+}
+
+.bc-page.ic>.right>.main>#carHeader.loading>#loading {
+	width: 16px;
+	height: 16px;
+	background:
+		url("../../bc/libs/themes/default/images/loader/loader01_16x16.gif")
+		no-repeat;
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	left: 4px;
+	margin-top: -8px;
+}
+
+.bc-page.ic>.right>.main>#carHeader.loading>#carTitle {
+	margin-left: 22px;
+}
+
+.bc-page.ic>.right>.main>#carHeader.loading>#wasteTime {
+	display: none;
+}
+
+.bc-page.ic>.right>.main>#carHeader #seeMore {
+	width: auto;
+	text-decoration: underline;
+	font-weight: normal;
+	font-size: 60%;
+	margin-right: 10px;
+}
+
+.bc-page.ic>.right table.contentTable {
+	table-layout: fixed;
+	width: 100%;
+	border-spacing: 2px;
+	padding: 0;
+	margin: 2px 0;
+}
+
+.bc-page.ic>.right table.contentTable0 {
+	table-layout: fixed;
+	width: 100%;
+	border-spacing: 0;
+	padding: 0;
+	margin: 0;
+	border-collapse: collapse;
+}
+
+.bc-page.ic>.right table.contentTable0 td {
+	padding: 0;
+	background: none;
+}
+
+.bc-page.ic>.right>.block.empty>.content {
+	display: none;
+}
+
+.bc-page.ic>.right .content td.first {
+	border-left-width: 0;
+}
+
+.bc-page.ic>.right .content td.last {
+	/*border-right-width: 0;*/
+}
+
+.bc-page.ic>.right .content tr {
+	border-width: 0;
+	font-weight: normal;
+}
+
+.bc-page.ic>.right .content tr.first>td {
+	border-top-width: 0;
+}
+
+.bc-page.ic>.right>.message .content tr.first>td {
+	text-align: center;
+}
+
+.bc-page.ic>.right .content tr.last>td {
+	border-bottom-width: 0;
+}
+
+.bc-page.ic>.right>.main td {
+	vertical-align: top;
+}
+
+.bc-page.ic>.right>.main td.label {
+	min-width: 20px;;
+	width: 60px;
+}
+
+td.aleft {
+	text-align: left;
+	border-left-width: 0;
+	border-right-width: 0;
+}
+
+td.aright {
+	text-align: right;
+	border-left-width: 0;
+	border-right-width: 0;
+}
+
+.bc-page.ic>.right>.mans>.content {
+	border-width: 0 0 1px 0;
+}
+
+.bc-page.ic>.right>.mans>.content>.title {
+	border-width: 0;
+}
+.bc-page.ic>.right>.mans>.content tr.first {
+	text-align: 
+}
+
+.bc-page.ic>.right>.mans>#mansHeader #includeLogout {
+	width: auto;
+	font-weight: normal;
+	font-size: 60%;
+	margin-right: 10px;
+	display: none;
+}
+
+/** ==右侧内部布局结束== */

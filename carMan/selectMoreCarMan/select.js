@@ -18,7 +18,8 @@ bs.selectMoreCarMan = {
 		var item=[];
 		//单选
 		var item={id: select.value.split(",")[0],cert4FWZG:select.value.split(",")[1],region:select.value.split(",")[2],
-				drivingStatus:select.value.split(",")[3],name: select.options[select.selectedIndex].text};
+				origin:select.value.split(",")[3],birthDate:select.value.split(",")[4],workDate:select.value.split(",")[5],
+				drivingStatus:select.value.split(",")[6],name: select.options[select.selectedIndex].text};
 		$page.data("data-status",item);
 		$page.dialog("close");
 	}

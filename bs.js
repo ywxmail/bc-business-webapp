@@ -37,6 +37,8 @@ bs.selectCarMan = function(option) {
 		option.data.excludes = option.excludes;
 	if(option.multiple === true)
 		option.data.multiple = true;
+	if(option.status)
+		option.data.status = option.status;
 	
 	//弹出选择对话框
 	bc.page.newWin(jQuery.extend({
@@ -63,7 +65,8 @@ bs.selectDriver = function(option) {
 	return bs.selectCarMan(jQuery.extend({
 		mid: 'selectDriver',
 		title: '选择司机信息',
-		types: '0,2'
+		types: '0,2',
+		status: '0,1'
 	},option));
 };
 

@@ -64,15 +64,29 @@ bc.caseTrafficForm = {
 				onOk : function(car) {
 					$form.find(":input[name='e.carId']").val(car.id);
 					$form.find(":input[name='e.carPlate']").val(car.plate);
+					$form.find(":input[name='e.motorcadeId']").val(car.motorcadeId);
+					var motorcadeName = $form.find(":input[name='e.motorcadeId']").find("option:selected").text();
+					$form.find(":hidden[name='e.motorcadeName']").val(motorcadeName);
+					$form.find(":hidden[name='e.charger']").val(car.charger);
+					
+					var str = car.charger;
+					if(str != null && str.length > 0){
+						var strAry = str.split(";");
+						var tempStr = "";
+						for(var i=0;i<strAry.length;i++){
+							tempStr += strAry[i].split(",")[0];
+							if((i+1) < strAry.length)
+								tempStr += ",";
+						}
+						$form.find(":input[name='chargers']").val(tempStr);
+					}
 					
 					//按照司机信息更新表单相应的域
 					function updateFieldsFromDriver(driver){
 						$form.find(":input[name='e.driverId']").val(driver.id);
 						$form.find(":input[name='e.driverName']").val(driver.name);
 						$form.find(":input[name='e.driverCert']").val(driver.cert4FWZG);
-						$form.find(":input[name='e.motorcadeId']").val(car.motorcadeId);
-						var motorcadeName = $form.find(":input[name='e.motorcadeId']").find("option:selected").text();
-						$form.find(":hidden[name='e.motorcadeName']").val(motorcadeName);
+						
 					};
 					
 					//根据选择的车辆信息获取相应的营运司机信息
@@ -157,9 +171,28 @@ bc.caseTrafficForm = {
 			var selecteds = $form.find(":input[name='e.chargerName']").val();
 			bs.selectCharger({
 				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
-				onOk : function(carMan) {
-					$form.find(":input[name='e.chargerId']").val(carMan.id);
-					$form.find(":input[name='e.chargerName']").val(carMan.name);
+				multiple : true,
+				onOk : function(chargers) {
+					var chargerName = $form.find(":input[name='chargers']").val();
+					var chargerIdAndName = $form.find(":hidden[name='e.charger']").val();
+					$.each(chargers,function(i,charger){
+						var chargerStr = $form.find(":hidden[name='e.charger']").val();
+						if(chargerStr.indexOf(charger.id) > 0){//已存在
+							logger.info("duplicate select: id=" + charger.id + ",name=" + charger.name);
+						}else{
+							if($form.find(":input[name='chargers']").val().length>0){//之前存在责任人的话先加逗号
+								chargerName = chargerName+",";
+							}
+							chargerName += charger.name;
+							if((i+1) < chargers.length){ //最后一位不加分号
+								chargerName = chargerName+",";
+							}
+							var tempStr = charger.name+","+charger.id+";";
+							chargerIdAndName += tempStr;
+						}
+					});
+					$form.find(":input[name='chargers']").val(chargerName);
+					$form.find(":hidden[name='e.charger']").val(chargerIdAndName);
 				}
 			});
 		});
@@ -209,6 +242,8 @@ bc.caseTrafficForm = {
 		var $form = $(this);
 		$form.find(":input[name='e.status']").val("0");
 		$form.data("data-status","saved");
+		alert($form.find(":input[name='e.charger']").val());
+		return;
 		//调用标准的方法执行保存
 		bc.page.save.call($form);
 	}
