@@ -19,7 +19,7 @@ bs.carSelectDialog = {
 			data.id = $tds.attr("data-id");
 			var $tr = $grid.find(">.data>.right tr.ui-state-highlight");
 			data.code = $tr.find("td:eq(0)").attr("data-value");
-			data.plate = $tr.find("td:eq(1)").attr("data-value");
+			data.plate = $tr.find("td:eq(1)").text();
 			data.bsType = $tr.find("td:eq(4)").attr("data-value");
 			data.charger = $tr.find("td:eq(5)").attr("data-value");
 			data.company = $tr.find("td:last(0)").attr("data-value");
@@ -33,7 +33,7 @@ bs.carSelectDialog = {
 			$tds.each(function(i){
 				var $tr = $($trs.get(i));
 				var code = $tr.find("td:eq(0)").attr("data-value");
-				var plate = $tr.find("td:eq(1)").attr("data-value");
+				var plate = $tr.find("td:eq(1)").text();
 				var bsType = $tr.find("td:eq(4)").attr("data-value");
 				var charger = $tr.find("td:eq(5)").attr("data-value");
 				var company = $tr.find("td:last(0)").attr("data-value");
