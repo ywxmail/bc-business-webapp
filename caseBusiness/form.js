@@ -196,6 +196,12 @@ bc.caseBusinessForm = {
 		});
 	},
 	
+	//生成通知单
+	doGenNotice : function(){
+		var $page = $(this);
+		bc.msg.alert('功能正在开发中!');
+	},
+	
 	//保存的处理
 	save:function(){
 		var $form = $(this);

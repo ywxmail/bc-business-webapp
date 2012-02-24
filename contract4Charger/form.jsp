@@ -6,7 +6,7 @@
 	data-initMethod='bc.contract4ChargerForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="contract4ChargerForm" theme="simple">
-		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:300}"
+		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset"
 			style="height:300px;width:710px;overflow: hidden;">
 			<div class="tabsContainer">
            	 	<div class="slideContainer">
