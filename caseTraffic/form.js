@@ -215,7 +215,7 @@ bc.caseTrafficForm = {
 				$form.find('#tdValue2').css("visibility","visible");
 			}else{
 				$form.find('#tdTitle2').css("visibility","hidden");
-				$fsorm.find('#tdValue2').css("visibility","hidden");
+				$form.find('#tdValue2').css("visibility","hidden");
 			}
 		});
 	},

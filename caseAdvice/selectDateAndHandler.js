@@ -4,7 +4,7 @@ bc.selectDateAndHandlerForm = {
 		// 核准人
 		$form.find("#selectHandlerName").click(function(){
 			bc.identity.selectUser({
-				history: false,
+				history: true,
 				selecteds: $form.find(":input[name='handlerName']").val(),
 				onOk : function(user) {
 					$form.find(":input[name='handlerId']").val(user.id);
