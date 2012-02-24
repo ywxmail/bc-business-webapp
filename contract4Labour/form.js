@@ -41,17 +41,36 @@ bc.contract4LabourForm = {
 			bs.findInfoByCar({
 				carId: carId,
 				success: function(info){
-					$page.find(":input[name='driverId']").val(info.driver.id);
-					$page.find(":input[name='e.ext_str2']").val(info.driver.name);
-					$page.find(":input[name='e.certNo']").val(info.driver.cert4FWZG);
-					$page.find(":input[name='e.certIdentity']").val(info.driver.cert4IDENTITY);
-					$page.find(":input[name='e.age']").val(info.driver.age);
-					$page.find(":input[name='e.birthDate']").val(info.driver.birthDate);
-					$page.find(":input[name='e.houseType']").val(info.driver.houseType);
-					$page.find(":input[name='e.origin']").val(info.driver.origin);
-					if(info.driver.sex == 2){
-						$page.find(":radio[name='e.sex']")[1].checked = true;
-					}
+					var url = bc.root + "/bc-business/contract4Labour/isExistContract?driverId="+info.driver.id;
+					$.ajax({url: url,dataType:"json",success: function (json){
+						if(json.isExistContract){
+							bc.msg.alert("所选司机已配置了相应的劳动合同，不能重复配置，请您编辑原来的劳动合同！");
+							$page.find(":input[name='e.ext_str1']").val('');
+							$page.find(":input[name='carId']").val('');
+							$page.find(":input[name='e.registerDate']").val('');
+							$page.find(":input[name='e.bsType']").val('');
+							$page.find(":input[name='driverId']").val('');
+							$page.find(":input[name='e.ext_str2']").val('');
+							$page.find(":input[name='e.certNo']").val('');
+							$page.find(":input[name='e.certIdentity']").val('');
+							$page.find(":input[name='e.age']").val('');
+							$page.find(":input[name='e.birthDate']").val('');
+							$page.find(":input[name='e.houseType']").val('');
+							$page.find(":input[name='e.origin']").val('');
+						}else{
+							$page.find(":input[name='driverId']").val(info.driver.id);
+							$page.find(":input[name='e.ext_str2']").val(info.driver.name);
+							$page.find(":input[name='e.certNo']").val(info.driver.cert4FWZG);
+							$page.find(":input[name='e.certIdentity']").val(info.driver.cert4IDENTITY);
+							$page.find(":input[name='e.age']").val(info.driver.age);
+							$page.find(":input[name='e.birthDate']").val(info.driver.birthDate);
+							$page.find(":input[name='e.houseType']").val(info.driver.houseType);
+							$page.find(":input[name='e.origin']").val(info.driver.origin);
+							if(info.driver.sex == 2){
+								$page.find(":radio[name='e.sex']")[1].checked = true;
+							}
+						}
+					}});
 				}
 			});
 		};

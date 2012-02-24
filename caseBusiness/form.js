@@ -23,6 +23,7 @@ bc.caseBusinessForm = {
 						$form.find(":input[name='e.motorcadeId']").val(car.motorcadeId);
 						var motorcadeName = $form.find(":input[name='e.motorcadeId']").find("option:selected").text();
 						$form.find(":hidden[name='e.motorcadeName']").val(motorcadeName);
+						$form.find(":input[name='e.company']").val(car.company);
 					}
 				}
 			});
@@ -42,6 +43,9 @@ bc.caseBusinessForm = {
 						$form.find(":input[name='e.driverId']").val(carMan.id);
 						$form.find(":input[name='e.driverName']").val(carMan.name);
 						$form.find(":input[name='e.driverCert']").val(carMan.cert4FWZG);
+						$form.find(":input[name='origin']").val(carMan.origin);
+						$form.find(":input[name='birthDate']").val(carMan.birthDate);
+						$form.find(":input[name='workDate']").val(carMan.workDate);
 					}
 				}
 			});
@@ -67,12 +71,32 @@ bc.caseBusinessForm = {
 					$form.find(":input[name='e.carPlate']").val(car.plate);
 					$form.find(":input[name='e.motorcadeId']").val(car.motorcadeId);
 					$form.find(":input[name='e.motorcadeName']").val(car.motorcadeName);
+					$form.find(":input[name='e.company']").val(car.company);
+					$form.find(":hidden[name='e.charger']").val(car.charger);
+					$form.find(":input[name='businessType']").val(car.bsType);
+					
+					var str = car.charger;
+					if(str != null && str.length > 0){
+						var strAry = str.split(";");
+						var tempStr = "";
+						for(var i=0;i<strAry.length;i++){
+							tempStr += strAry[i].split(",")[0];
+							if((i+1) < strAry.length)
+								tempStr += ",";
+						}
+						$form.find(":input[name='chargers']").val(tempStr);
+					}
 					
 					//按照司机信息更新表单相应的域
 					function updateFieldsFromDriver(driver){
 						$form.find(":input[name='e.driverId']").val(driver.id);
 						$form.find(":input[name='e.driverName']").val(driver.name);
 						$form.find(":input[name='e.driverCert']").val(driver.cert4FWZG);
+						$form.find(":input[name='origin']").val(driver.origin);
+						$form.find(":input[name='birthDate']").val(driver.birthDate);
+						$form.find(":input[name='workDate']").val(driver.workDate);
+
+
 					};
 					
 					//根据选择的车辆信息获取相应的营运司机信息
@@ -152,15 +176,32 @@ bc.caseBusinessForm = {
 					
 		});
 		
-		
-		// 责任人
 		$form.find("#selectChargerName").click(function() {
 			var selecteds = $form.find(":input[name='e.chargerName']").val();
 			bs.selectCharger({
 				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
-				onOk : function(carMan) {
-					$form.find(":input[name='e.chargerId']").val(carMan.id);
-					$form.find(":input[name='e.chargerName']").val(carMan.name);
+				multiple : true,
+				onOk : function(chargers) {
+					var chargerName = $form.find(":input[name='chargers']").val();
+					var chargerIdAndName = $form.find(":hidden[name='e.charger']").val();
+					$.each(chargers,function(i,charger){
+						var chargerStr = $form.find(":hidden[name='e.charger']").val();
+						if(chargerStr.indexOf(charger.id) > 0){//已存在
+							logger.info("duplicate select: id=" + charger.id + ",name=" + charger.name);
+						}else{
+							if($form.find(":input[name='chargers']").val().length>0){//之前存在责任人的话先加逗号
+								chargerName = chargerName+",";
+							}
+							chargerName += charger.name;
+							if((i+1) < chargers.length){ //最后一位不加分号
+								chargerName = chargerName+",";
+							}
+							var tempStr = charger.name+","+charger.id+";";
+							chargerIdAndName += tempStr;
+						}
+					});
+					$form.find(":input[name='chargers']").val(chargerName);
+					$form.find(":hidden[name='e.charger']").val(chargerIdAndName);
 				}
 			});
 		});
@@ -179,20 +220,50 @@ bc.caseBusinessForm = {
 
 	},
 	
-	closefile : function(){
-		var $form = $(this);
-		if(!bc.validator.validate($form))
-			return;
-		bc.msg.confirm("确定要结案吗？",function(){
-			$form.find(":input[name='e.status']").val("1");
-			$form.data("data-status","saved");
-			var option = { callback : function (){
-					$form.dialog("close");
-					bc.msg.slide("结案成功");
-				}
-			};
-			//调用标准的方法执行保存
-			bc.page.save.call($form,option);
+//	closefile : function(){
+//		var $form = $(this);
+//		if(!bc.validator.validate($form))
+//			return;
+//		bc.msg.confirm("确定要结案吗？",function(){
+//			$form.find(":input[name='e.status']").val("1");
+//			$form.data("data-status","saved");
+//			var option = { callback : function (){
+//					$form.dialog("close");
+//					bc.msg.slide("结案成功");
+//				}
+//			};
+//			//调用标准的方法执行保存
+//			bc.page.save.call($form,option);
+//		});
+//	},
+	
+	doCloseFile : function (){
+		var $page = $(this);
+		// 让用户输入结案日期，默认为当前时间
+		bc.page.newWin({
+			name:"营运违章的结案处理",
+			mid: "doCloseFileCase4business",
+			url: bc.root + "/bc/common/selectDate",
+			data: {title:"请输入结案日期"},
+			afterClose: function(status){
+				logger.info("status=" + $.toJSON(status));
+				if(!status) return;
+				
+				//执行结案处理
+				bc.ajax({
+					url: bc.root + "/bc-business/casebusinessOperate/doCloseFile",
+					dataType: "json",
+					data: {closeDate: status,id: $page.find(":input[name='e.id']").val()},
+					success: function(json){
+						logger.info("doCloseFile result=" + $.toJSON(json));
+						//完成后提示用户
+						bc.msg.info(json.msg);
+						$page.data("data-status","saved");
+						$page.dialog("close");
+						return false;
+					}
+				});
+			}
 		});
 	},
 	

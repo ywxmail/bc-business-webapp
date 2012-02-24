@@ -13,7 +13,7 @@
 	data-initMethod='bc.caseAdviceForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="caseAdviceForm" theme="simple">
-		<div class="formTable2 ui-widget-content" style="width:670px;">
+		<div class="formTable2 ui-widget-content" style="width:710px;">
 			<div class="ui-widget-header title" style="position:relative;">
 				<span class="text" >车辆司机信息:</span>
 				<span id="showGroups1" class="verticalMiddle ui-icon ui-icon-carat-1-s" title='<s:text name="runcase.title.click2ShowGroups"/>'></span>
@@ -22,10 +22,10 @@
 				<table class="formFields" cellspacing="2" cellpadding="0">
 					<tbody>
 						<tr class="widthMarker">
-							<td>&nbsp;</td>
-							<td style="width: 250px;">&nbsp;</td>
-							<td style="width: 85px;">&nbsp;</td>
-							<td style="width: 250px;">&nbsp;</td>
+							<td style="width: 100px;">&nbsp;</td>
+							<td style="width: 260px;">&nbsp;</td>
+							<td style="width: 90px;">&nbsp;</td>
+							<td style="width: 260px;">&nbsp;</td>
 						</tr>
 						<tr>
 			               	<td class="label"><s:text name="runcase.carPlate"/>:</td>
@@ -95,10 +95,10 @@
 				</table>
 			</div>
 		</div>
-		<div style="width:670px;">
+		<div style="width:710px;">
 			<div class="formTopInfo">
 				状态：<s:property value="%{statusesValue[e.status]}" />，
-				<s:if test="%{e.closerName != null && e.closeDate && e.status == 1}">
+				<s:if test="%{e.closerName != null && e.status == 1}">
 					结案人:<s:property value="e.closerName" />(<s:date name="e.closeDate" format="yyyy-MM-dd HH:mm:ss"/>),
 				</s:if>
 				<s:if test="%{e.author.name != null}">
@@ -109,7 +109,7 @@
 				</s:if>
 			</div>
 		</div>
-		<div class="formTable2 ui-widget-content" style="width:670px;">
+		<div class="formTable2 ui-widget-content" style="width:710px;">
 			<div class="ui-widget-header title" style="position:relative;">
 				<span class="text" >投诉信息:</span>
 				<span id="showGroups2" class="verticalMiddle ui-icon ui-icon-carat-1-s" title='<s:text name="runcase.title.click2ShowGroups"/>'></span>
@@ -118,10 +118,10 @@
 				<table class="formFields" cellspacing="2" cellpadding="0">
 					<tbody>
 						<tr class="widthMarker">
-							<td>&nbsp;</td>
-							<td style="width: 250px;">&nbsp;</td>
-							<td style="width: 85px;">&nbsp;</td>
-							<td style="width: 250px;">&nbsp;</td>
+							<td style="width: 100px;">&nbsp;</td>
+							<td style="width: 260px;">&nbsp;</td>
+							<td style="width: 90px;">&nbsp;</td>
+							<td style="width: 260px;">&nbsp;</td>
 						</tr>
 						<tr>
 			    			<td class="label">*<s:text name="runcase.subject2"/>:</td>
@@ -151,7 +151,7 @@
 								<s:textfield name="e.advisorName" cssStyle="width:8em;" data-validate="required" cssClass="ui-widget-content"/>
 								 <s:radio name="e.advisorSex" list="#{'1':'男','2':'女'}" 
 								value="e.sex" cssStyle="width:auto;"/>
-								<s:text name="runcase.advisorAge" />:<s:textfield name="e.advisorAge" cssStyle="width:2.5em;" cssClass="ui-widget-content"/>
+								<s:text name="runcase.advisorAge" />:<s:textfield name="e.advisorAge" cssStyle="width:2em;" cssClass="ui-widget-content"/>
 							</td>
 							<s:if test="type == 2"><!-- 客管投诉 -->
 								<td class="label">*<s:text name="runcase.receiveCode" />:</td> 
@@ -216,8 +216,8 @@
 					      		<table style="width:100%;" cellspacing="0" cellpadding="0">
 									<tr>
 										<td style="width: 20px;">从</td>
-										<td style="width: 255px;"><s:textfield name="e.pathFrom" cssStyle="width:87%;" cssClass="ui-widget-content"/></td>
-										<td style="width: 61px;text-align: right;">到&nbsp;</td>
+										<td style="width: 255px;"><s:textfield name="e.pathFrom" cssStyle="width:91%;" cssClass="ui-widget-content"/></td>
+										<td style="width: 76px;text-align: right;">到&nbsp;</td>
 										<td><s:textfield name="e.pathTo" cssStyle="width:98%;" cssClass="ui-widget-content"/></td>
 									</tr>
 								</table>
@@ -253,7 +253,7 @@
 				</table>
 			</div>
 		</div>
-		<div class="formTable2 ui-widget-content" style="width:670px;">
+		<div class="formTable2 ui-widget-content" style="width:710px;">
 			<div class="ui-widget-header title" style="position:relative;">
 				<span class="text" >处理信息:</span>
 				<span id="showGroups3" class="verticalMiddle ui-icon ui-icon-carat-1-s" title='<s:text name="runcase.title.click2ShowGroups"/>'></span>
@@ -262,10 +262,10 @@
 				<table class="formFields" cellspacing="2" cellpadding="0">
 					<tbody>
 						<tr class="widthMarker">
-							<td>&nbsp;</td>
-							<td style="width: 250px;">&nbsp;</td>
-							<td style="width: 85px;">&nbsp;</td>
-							<td style="width: 250px;">&nbsp;</td>
+							<td style="width: 100px;">&nbsp;</td>
+							<td style="width: 260px;">&nbsp;</td>
+							<td style="width: 90px;">&nbsp;</td>
+							<td style="width: 260px;">&nbsp;</td>
 						</tr>
 						<tr>
 							<td class="label"><s:text name="runcase.extent"/>:</td>
@@ -359,7 +359,7 @@
 			</div>
 		</div>
 		<s:if test="%{e.type == 6 && e.handleStatus == 1}">
-			<div class="formTable2 ui-widget-content" style="width:670px;">
+			<div class="formTable2 ui-widget-content" style="width:710px;">
 				<div class="ui-widget-header title" style="position:relative;">
 					<span class="text" >核准信息:</span>
 					<span id="showGroups4" class="verticalMiddle ui-icon ui-icon-carat-1-s" title='<s:text name="runcase.title.click2ShowGroups"/>'></span>
@@ -368,10 +368,10 @@
 					<table class="formFields" cellspacing="2" cellpadding="0">
 						<tbody>
 							<tr class="widthMarker">
-								<td>&nbsp;</td>
-								<td style="width: 250px;">&nbsp;</td>
-								<td style="width: 85px;">&nbsp;</td>
-								<td style="width: 250px;">&nbsp;</td>
+								<td style="width: 100px;">&nbsp;</td>
+								<td style="width: 260px;">&nbsp;</td>
+								<td style="width: 90px;">&nbsp;</td>
+								<td style="width: 260px;">&nbsp;</td>
 							</tr>
 							<tr>
 								<td class="label"><s:text name="runcase.handlerName"/>:</td>
