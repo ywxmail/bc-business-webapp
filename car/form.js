@@ -40,26 +40,6 @@ bc.carForm = {
 			});
 		});
 		
-		//绑定选择LPG名称自动填相应域
-		$form.find("#carLPGs").change(function(){
-			if($form.find("#carLPGs").val() == null || $form.find("#carLPGs").val() == ""){
-				return;
-			}
-			var url = bc.root + "/bc-business/car/carLPGInfo";
-			$.ajax({
-				url: url,
-				dataType:"json",
-				data: {lpgName : $form.find("#carLPGs").val()},
-				success: function (json){
-					$form.find(":input[name='e.lpgModel']").val(json.lpgModel);
-					$form.find(":input[name='e.lpgGpModel']").val(json.lpgGpModel);
-					$form.find(":input[name='e.lpgJcfModel']").val(json.lpgJcfModel);
-					$form.find(":input[name='e.lpgQhqModel']").val(json.lpgQhqModel);
-					$form.find(":input[name='e.lpgPsqModel']").val(json.lpgPsqModel);
-				}
-			});
-		});
-		
 		//绑定自动生成原车号按钮
 		$form.find("#selectOriginNo").click(function(){
 			if($form.find(":input[name='e.code']").val() == ""){
@@ -135,5 +115,26 @@ bc.carForm = {
 			}
 			return false;
 		}});
+	},
+	//自动加载LPG配置参数
+	autoLoadLpgInfo:function(){
+		logger.info("into carLPGS2");
+		var $form =$(this).closest(".bc-page");
+		if($form.find("#carLPGs").val() == null || $form.find("#carLPGs").val() == ""){
+			return;
+		}
+		var url = bc.root + "/bc-business/car/carLPGInfo";
+		$.ajax({
+			url: url,
+			dataType:"json",
+			data: {lpgName : $form.find("#carLPGs").val()},
+			success: function (json){
+				$form.find(":input[name='e.lpgModel']").val(json.lpgModel);
+				$form.find(":input[name='e.lpgGpModel']").val(json.lpgGpModel);
+				$form.find(":input[name='e.lpgJcfModel']").val(json.lpgJcfModel);
+				$form.find(":input[name='e.lpgQhqModel']").val(json.lpgQhqModel);
+				$form.find(":input[name='e.lpgPsqModel']").val(json.lpgPsqModel);
+			}
+		});
 	}
 };

@@ -155,15 +155,20 @@
 								</td>
 								<td class="label" ><s:text name="car.tv.screen"/>:</td>
 								<td class="value" >
-									<div class="bc-relativeContainer">
-										<input type="text" name="e.carTvScreen" value='<s:property value="e.carTvScreen"/>' style="width:250px;"
-											data-validate='{"type":"string"}' class="bc-select ui-widget-content"
-											data-maxHeight="150px"
-											data-source='<s:property value="carTvScreenList"/>'/>
-										<ul class="inputIcons">
-											<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
-										</ul>
-									</div>
+									<s:if test="isReadonly()">
+										<s:textfield name="e.carTvScreen" cssClass="ui-widget-content" cssStyle="width:250px;"/>
+									</s:if>
+									<s:else>
+										<div class="bc-relativeContainer">
+											<input type="text" name="e.carTvScreen" value='<s:property value="e.carTvScreen"/>' style="width:250px;"
+												data-validate='{"type":"string"}' class="bc-select ui-widget-content"
+												data-maxHeight="150px"
+												data-source='<s:property value="carTvScreenList"/>'/>
+											<ul class="inputIcons">
+												<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
+											</ul>
+										</div>
+									</s:else>
 								</td>
 							</tr>					
 							<tr>
@@ -359,9 +364,22 @@
 									car.lpg.insurance.enddate	=LPG保单结束日期 -->	
 								<tr>
 									<td class="label" ><s:text name="car.lpg.name"/>:</td>
-									<!--<td class="value" ><s:textfield name="e.lpgName" cssClass="ui-widget-content"/></td>-->
-									<td class="value" ><s:select name="e.lpgName" id="carLPGs" list="carLPGList" 
-										listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select></td>
+									<td class="value" >
+										<s:if test="isReadonly()">
+											<s:textfield name="e.lpgName" cssClass="ui-widget-content" cssStyle="width:235px;"/>
+										</s:if>
+										<s:else>
+											<div class="bc-relativeContainer" style="position : relative; display: inline-block">
+												<input type="text" id="carLPGs" name="e.lpgName" value='<s:property value="e.lpgName"/>' style="width:235px;" 
+													data-validate='{"maxLen": 50,"type":"string"}' class="bc-select ui-widget-content"
+													data-maxHeight="150px" data-cfg='{"callback":"bc.carForm.autoLoadLpgInfo"}'
+													data-source='<s:property value="carLPGList"/>'/>
+												<ul class="inputIcons">
+													<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
+												</ul>
+											</div>
+										</s:else>
+									</td>
 									<td class="label" ><s:text name="car.lpg.model"/>:</td>
 									<td class="value" ><s:textfield name="e.lpgModel" cssClass="ui-widget-content"/></td>
 								</tr>
