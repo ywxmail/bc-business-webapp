@@ -201,7 +201,7 @@
 						<td class="label" colspan="4">
 							<div class="formTopInfo">
 								状态：<s:property value="%{statusesValue[e.status]}" />，
-								<s:if test="%{e.closerName != null && e.closeDate && e.status == 1}">
+								<s:if test="%{e.closerName != null && e.status == 1}">
 									结案人:<s:property value="e.closerName" />(<s:date name="e.closeDate" format="yyyy-MM-dd HH:mm:ss"/>),
 								</s:if>
 								<s:if test="%{e.author.name != null}">
