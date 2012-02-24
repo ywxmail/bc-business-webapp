@@ -4,7 +4,7 @@
 <form class="bc-conditionsForm draggable ui-widget-content ui-state-highlight">
 	<ul class="conditions" style="min-width:19.3em;">
 		<li class="condition">
-			<div class="label">事发日期</div>
+			<div class="label">违章日期</div>
 			<div class="value">
 				<div class="bc-dateContainer">
 					<input type="text" class="bc-date ui-widget-content" data-validate="date" style="width:9em;"

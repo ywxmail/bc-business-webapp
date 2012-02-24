@@ -243,7 +243,7 @@ bc.caseAdviceForm = {
 		// 经办人
 		$form.find("#selectTransactorName").click(function(){
 			bc.identity.selectUser({
-				history: false,
+				history: true,
 				selecteds: $form.find(":input[name='e.transactorName']").val(),
 				onOk : function(user) {
 					$form.find(":input[name='e.transactorId']").val(user.id);
@@ -255,7 +255,7 @@ bc.caseAdviceForm = {
 		// 分公司负责人id
 		$form.find("#selectBranchChargerName").click(function(){
 			bc.identity.selectUser({
-				history: false,
+				history: true,
 				selecteds: $form.find(":input[name='e.branchChargerName']").val(),
 				onOk : function(user) {
 					$form.find(":input[name='e.branchChargerId']").val(user.id);
@@ -267,7 +267,7 @@ bc.caseAdviceForm = {
 		// 公司审批人姓名
 		$form.find("#selectCompanyApprovalName").click(function(){
 			bc.identity.selectUser({
-				history: false,
+				history: true,
 				selecteds: $form.find(":input[name='e.companyApprovalName']").val(),
 				onOk : function(user) {
 					$form.find(":input[name='e.companyApprovalId']").val(user.id);
@@ -309,7 +309,7 @@ bc.caseAdviceForm = {
 			|| $form.find(":input[name='e.motorcadeId']").val().length < 1
 			|| $form.find(":input[name='e.transactorName']").val().length < 1
 			){
-			bc.msg.alert('请确认司机,车辆,车队,经办人信息是否填写完整!!');
+			bc.msg.alert('请确认司机,车辆,车队,分公司经办人信息是否填写完整!!');
 			return;
 		}
 		if(!bc.validator.validate($form))
@@ -406,11 +406,11 @@ bc.caseAdviceForm = {
 		bc.msg.alert('功能正在开发中!');
 	},
 	
-	//生成表格
-	doGenForm : function(){
-		var $page = $(this);
-		bc.msg.alert('功能正在开发中!');
-	},
+//	//生成表格
+//	doGenForm : function(){
+//		var $page = $(this);
+//		bc.msg.alert('功能正在开发中!');
+//	},
 	
 	//保存的处理
 	save : function(){

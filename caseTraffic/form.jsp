@@ -71,8 +71,11 @@
 					<tr>
 						<td class="label"><s:text name="runcase.chargerName"/>:</td>
 						<td class="value" style="position:relative;display: block;">
-							<s:textfield name="e.chargerName" cssClass="ui-widget-content" />
-							<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectChargerName"></span>
+							<s:textfield name="chargers" readonly="true" cssClass="ui-widget-content" />
+							<ul class="inputIcons">
+								<li id="selectChargerName" class="inputIcon ui-icon ui-icon-circle-plus" title='点击选择责任人'></li>
+								<li class="clearSelect inputIcon ui-icon ui-icon-circle-close" data-cfg="chargers,e.charger" title='点击清除责任人'></li>
+							</ul>
 						</td>
 						<td class="label"><s:text name="runcase.sort"/>:</td>
 						<td class="value" >
@@ -219,7 +222,6 @@
 		<s:hidden name="e.motorcadeName" />
 		<s:hidden name="e.carId" />
 		<s:hidden name="e.driverId" />
-		<s:hidden name="e.chargerId" />
 		<s:hidden name="e.closerId" />
 		<s:hidden name="e.closerName" />
 		<s:hidden name="e.status" />
@@ -234,6 +236,7 @@
 		<s:hidden name="isSync" />
 		<s:hidden name="syncId" />
 		<s:hidden name="e.source"/>
+		<s:hidden name="e.charger"/>
 		<!-- <s:hidden name="isExist" /> -->
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 		

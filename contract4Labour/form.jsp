@@ -4,10 +4,10 @@
 	data-saveUrl='<s:url value="/bc-business/contract4Labour/save" />'
 	data-js='js:editor,js:bc_identity,<s:url value="/bc-business/bs.js" />,<s:url value="/bc-business/contract4Labour/form.js" />'
 	data-initMethod='bc.contract4LabourForm.init'
-	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:hidden;">
+	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="contract4LabourForm" theme="simple">
-		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:365}"
-			style="width:760px;overflow: hidden;">
+		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" 
+			style="width:760px;overflow: auto;">
 			<div class="tabsContainer">
            	 	<div class="slideContainer">
 					<ul class="tabs ui-helper-reset">

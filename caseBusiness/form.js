@@ -168,7 +168,7 @@ bc.caseBusinessForm = {
 		// 接案人
 		$form.find("#selectReceiverName").click(function(){
 			bc.identity.selectUser({
-				history: false,
+				history: true,
 				selecteds: $form.find(":input[name='e.receiverName']").val(),
 				onOk : function(user) {
 					$form.find(":input[name='e.receiverId']").val(user.id);
@@ -194,6 +194,12 @@ bc.caseBusinessForm = {
 			//调用标准的方法执行保存
 			bc.page.save.call($form,option);
 		});
+	},
+	
+	//生成通知单
+	doGenNotice : function(){
+		var $page = $(this);
+		bc.msg.alert('功能正在开发中!');
 	},
 	
 	//保存的处理
