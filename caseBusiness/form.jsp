@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div title='<s:text name="caseBusiness.title"/>' data-type='form' class="bc-page"
 	data-saveUrl='<s:url value="/bc-business/caseBusiness/save" />'
-	data-js='<s:url value="/bc-business/caseBusiness/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js" />'
+	data-js='<s:url value="/bc-business/caseBusiness/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js"/>'
 	data-initMethod='bc.caseBusinessForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="caseBusinessForm" theme="simple">
@@ -42,6 +42,14 @@
 							<td class="value"><s:textfield name="businessType" cssClass="ui-widget-content" readonly="true"/></td>
 						</tr>
 						<tr>
+							<td class="label"><s:text name="runcase.registerDate"/>:</td>
+							<td class="value"><input type="text" name="registerDate" value='<s:date format="yyyy-MM-dd" name="registerDate"/>'
+							 class="ui-widget-content" readonly="readonly"/></td>
+							<td class="label"><s:text name="runcase.scrapDate"/>:</td>
+							<td class="value"><input type="text" name="scrapDate" value='<s:date format="yyyy-MM-dd" name="scrapDate"/>'
+							 class="ui-widget-content" readonly="readonly"/></td>
+						</tr>
+						<tr>
 							<td class="label"><s:text name="runcase.chargers"/>:</td>
 							<td class="value relative">
 								<s:textfield name="chargers" cssClass="ui-widget-content" readonly="true"/>
@@ -74,6 +82,20 @@
 						</tr>
 					</tbody>
 				</table>
+			</div>
+		</div>
+		<div style="width:710px;">
+			<div class="formTopInfo">
+				状态：<s:property value="%{statusesValue[e.status]}" />，
+				<s:if test="%{e.closerName != null && e.status == 1}">
+					结案人:<s:property value="e.closerName" />(<s:date name="e.closeDate" format="yyyy-MM-dd HH:mm:ss"/>),
+				</s:if>
+				<s:if test="%{e.author.name != null}">
+				登记：<s:property value="e.author.name" />(<s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>)
+				</s:if>
+				<s:if test="%{e.modifier != null}">
+				，最后修改：<s:property value="e.modifier.name" />(<s:date name="e.modifiedDate" format="yyyy-MM-dd HH:mm:ss"/>)
+				</s:if>
 			</div>
 		</div>
 		<div class="formFields ui-widget-content" style="width:710px;">
@@ -112,9 +134,9 @@
 							<td class="value "><s:textfield name="e.caseNo" data-validate="required" cssClass="ui-widget-content" /></td>
 						</tr>
 						<tr>
-							<td class="label" ><s:text name="runcase.duty"/>:</td>
-							<td class="value" >
-								<s:select name="e.duty" list="dutyList" listKey="value" listValue="value"  headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
+							<td class="label">*<s:text name="runcase.category"/>:</td>
+							<td class="value">
+								<s:select name="e.category" list="categoryValue" listKey="key" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content" data-validate="required"></s:select>
 							</td>
 							<td class="label" ><s:text name="runcase.sort"/>:</td>
 							<td class="value" >
@@ -122,6 +144,10 @@
 							</td>
 						</tr>
 						<tr>
+							<td class="label" ><s:text name="runcase.duty"/>:</td>
+							<td class="value" >
+								<s:select name="e.duty" list="dutyList" listKey="value" listValue="value"  headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
+							</td>
 							<td class="label"><s:text name="runcase.extent"/>:</td>
 							<td class="value">
 							<s:select name="e.extent" list="degreeList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
@@ -151,6 +177,22 @@
 								<s:textfield name="e.from" cssClass="ui-widget-content" cssStyle="width: 15em" />(<s:property value="sourceStr"/>)
 							</td>
 						</tr>
+						<tr>
+							<td class="topLabel"><s:text name="runcase.description" />:</td>
+							<td class="value" colspan="3"><s:textarea name="e.description" rows="4" cssClass="ui-widget-content noresize"/></td>
+						</tr>
+						<tr>
+							<td class="label"></td>
+							<td class="value" colspan="3">
+								<s:checkbox name="e.deliver" cssStyle="width:1em;" />
+								<s:text name="runcase.deliver2"/>
+								<s:checkbox name="e.seal" cssStyle="width:1em;" />
+								<s:text name="runcase.seal"/>
+								<s:checkbox name="e.stop" cssStyle="width:1em;" />
+								<s:text name="runcase.stop"/>
+							</td>
+						</tr>
+						
 						<!--
 						<tr>
 							<td class="label">
@@ -187,34 +229,24 @@
 				</table>
 			</div>
 		</div>
-		<div style="width:710px;">
-			<div class="formTopInfo">
-				状态：<s:property value="%{statusesValue[e.status]}" />，
-				<s:if test="%{e.closerName != null && e.status == 1}">
-					结案人:<s:property value="e.closerName" />(<s:date name="e.closeDate" format="yyyy-MM-dd HH:mm:ss"/>),
-				</s:if>
-				<s:if test="%{e.author.name != null}">
-				登记：<s:property value="e.author.name" />(<s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>)
-				</s:if>
-				<s:if test="%{e.modifier != null}">
-				，最后修改：<s:property value="e.modifier.name" />(<s:date name="e.modifiedDate" format="yyyy-MM-dd HH:mm:ss"/>)
-				</s:if>
-			</div>
-		</div>
 		<div class="formTable2 ui-widget-content" style="width:710px;">
+			<div class="ui-widget-header title" style="position:relative;">
+				<span class="text" >主管部门处理信息:</span>
+				<span id="showGroups3" class="verticalMiddle ui-icon ui-icon-carat-1-s" title='<s:text name="runcase.title.click2ShowGroups"/>'></span>
+			</div>
 			<div id="div3">
 				<table class="formFields" cellspacing="2" cellpadding="0" >
 					<tbody>
 						<tr class="widthMarker">
 							<td style="width: 100px;">&nbsp;</td>
 							<td style="width: 260px;">&nbsp;</td>
-							<td style="width: 90px;">&nbsp;</td>
+							<td style="width: 100px;">&nbsp;</td>
 							<td style="width: 260px;">&nbsp;</td>
 						</tr>
 						<tr>
-							<td class="label" colspan="2" style="text-align: center">扣<s:textfield name="e.jeom" value="%{getText('bs.format.number',{e.jeom})}" data-validate='{"type":"number"}' cssStyle="width:2.5em;" cssClass="ui-widget-content"/>分,
+							<td class="label" colspan="2" style="text-align: right">扣<s:textfield name="e.jeom" value="%{getText('bs.format.number',{e.jeom})}" data-validate='{"type":"number"}' cssStyle="width:2.5em;" cssClass="ui-widget-content"/>分,
 							罚款<s:textfield name="e.penalty" value="%{getText('bs.format.number',{e.penalty})}" data-validate='{"type":"number","required":true}' cssStyle="width:2.5em;" cssClass="ui-widget-content"/>元,
-							违约金<s:textfield name="e.penalty2" value="%{getText('bs.format.number',{e.penalty2})}" data-validate='{"type":"number","required":true}' cssStyle="width:2.5em;" cssClass="ui-widget-content"/>元.</td>
+							违约金<s:textfield name="e.penalty2" value="%{getText('bs.format.number',{e.penalty2})}" data-validate='{"type":"number","required":true}' cssStyle="width:2.5em;" cssClass="ui-widget-content"/>元.&nbsp;&nbsp;&nbsp;&nbsp;</td>
 							<td class="label"><s:text name="runcase.receipt"/>:</td>
 							<td class="value"><s:textfield name="e.receipt" cssClass="ui-widget-content"/></td>
 						</tr>
@@ -249,64 +281,70 @@
 			</div>
 		</div>
 		<div class="formTable2 ui-widget-content" style="width:710px;">
+			<div class="ui-widget-header title" style="position:relative;">
+				<span class="text" >公司处理信息:</span>
+				<span id="showGroups4" class="verticalMiddle ui-icon ui-icon-carat-1-s" title='<s:text name="runcase.title.click2ShowGroups"/>'></span>
+			</div>
 			<div id="div4">
 				<table class="formFields" cellspacing="2" cellpadding="0" >
 					<tbody>
 						<tr class="widthMarker">
 							<td style="width: 100px;">&nbsp;</td>
 							<td style="width: 260px;">&nbsp;</td>
-							<td style="width: 90px;">&nbsp;</td>
-							<td style="width: 260px;">&nbsp;</td>
-						</tr>
-						<tr>
-							<td class="value" colspan="4"><s:textarea name="e.description" cssStyle="text-align:left" rows="4" cssClass="ui-widget-content"/></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td class="value" colspan="4">
-								<s:checkbox name="e.deliver" cssStyle="width:1em;" />
-								<s:text name="runcase.deliver2"/>
-								<s:checkbox name="e.seal" cssStyle="width:1em;" />
-								<s:text name="runcase.seal"/>
-								<s:checkbox name="e.stop" cssStyle="width:1em;" />
-								<s:text name="runcase.stop"/>
-							</td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-		<div class="formTable2 ui-widget-content" style="width:710px;">
-			<div id="div5">
-				<table class="formFields" cellspacing="2" cellpadding="0" >
-					<tbody>
-						<tr class="widthMarker">
 							<td style="width: 100px;">&nbsp;</td>
 							<td style="width: 260px;">&nbsp;</td>
-							<td style="width: 90px;">&nbsp;</td>
-							<td style="width: 260px;">&nbsp;</td>
+						</tr>
+												<tr>
+							<td class="label"><s:text name="runcase.stopProduction"/>:</td>
+							<td class="value">
+								<s:select name="e.stopProduction" list='#{"1":"一天","2":"二天","3":"三天","4":"四天",
+								"5":"五天"}' cssClass="ui-widget-content" listKey="key" listValue="value"/>
+							</td>
+							<td class="label"><s:text name="runcase.study"/>:</td>
+							<td class="value">
+								<s:select name="e.study" list='#{"1":"一天","2":"二天","3":"三天","4":"四天",
+								"5":"五天"}' cssClass="ui-widget-content" listKey="key" listValue="value"/>
+							</td>
 						</tr>
 						<tr>
-							<td class="value" colspan="4"><s:textarea name="e.comment" cssStyle="text-align:left" rows="4" cssClass="ui-widget-content"/></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td class="label"><s:text name="runcase.transactorName"/>:</td>
+							<td class="value relative">
+								<s:textfield name="e.transactorName" cssClass="ui-widget-content "/>
+								<ul class="inputIcons">
+							 		<li class="inputIcon ui-icon ui-icon-circle-plus" id="selectTransactorName">
+							 	</ul>
+							</td>
+							<td class="label"><s:text name="runcase.branchChargerName"/>:</td>
+							<td class="value relative">
+								<s:textfield name="e.branchChargerName" cssClass="ui-widget-content"/>
+								<ul class="inputIcons">
+							 		<li class="inputIcon ui-icon ui-icon-circle-plus" id="selectBranchChargerName">
+							 	</ul>
+						 	</td>
 						</tr>
 						<tr>
-							<td class="value" colspan="4">
+							<td class="label"><s:text name="runcase.companyApprovalName"/>:</td>
+							<td class="value relative">
+								<s:textfield name="e.companyApprovalName" cssClass="ui-widget-content"/>
+								<ul class="inputIcons">
+							 		<li class="inputIcon ui-icon ui-icon-circle-plus" id="selectCompanyApprovalName">
+							 	</ul>
+							</td>	
+							<td class="label"><s:text name="runcase.driverRating"/>:</td>
+							<td class="value"><s:textfield name="e.driverRating" cssClass="ui-widget-content"/></td>
+						</tr>
+						<tr>
+							<td class="topLabel"><s:text name="runcase.comment" />:</td>
+							<td class="value" colspan="3"><s:textarea name="e.comment" rows="4" cssClass="ui-widget-content noresize"/></td>
+						</tr>
+						<tr>
+							<td class="label"></td>
+							<td class="value" colspan="3">
 								<s:checkbox name="e.invalid" cssStyle="width:1em;" />
 								<s:text name="runcase.invalid"/>
 								<s:checkbox name="e.overdue" cssStyle="width:1em;" />
 								<s:text name="runcase.overdue"/>
 							</td>
-							<td></td>
-							<td></td>
-							<td></td>
 						</tr>
 					</tbody>
 				</table>

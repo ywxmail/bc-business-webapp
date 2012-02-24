@@ -6,6 +6,12 @@ bc.caseBusinessForm = {
 		// 初始化多页签
 		$form.find('#formTabs').bctabs(bc.page.defaultBcTabsOption);
 		
+		//初始化点击隐藏按钮
+		bc.caseBusinessForm.foldingDiv($form,"showGroups1","div1");
+		bc.caseBusinessForm.foldingDiv($form,"showGroups2","div2");
+		bc.caseBusinessForm.foldingDiv($form,"showGroups3","div3");
+		bc.caseBusinessForm.foldingDiv($form,"showGroups4","div4");
+		
 		if(readonly) return;
 		
 		
@@ -24,6 +30,8 @@ bc.caseBusinessForm = {
 						var motorcadeName = $form.find(":input[name='e.motorcadeId']").find("option:selected").text();
 						$form.find(":hidden[name='e.motorcadeName']").val(motorcadeName);
 						$form.find(":input[name='e.company']").val(car.company);
+						$form.find(":input[name='registerDate']").val(car.registerDate);
+						$form.find(":input[name='scrapDate']").val(car.scrapDate);
 					}
 				}
 			});
@@ -74,6 +82,8 @@ bc.caseBusinessForm = {
 					$form.find(":input[name='e.company']").val(car.company);
 					$form.find(":hidden[name='e.charger']").val(car.charger);
 					$form.find(":input[name='businessType']").val(car.bsType);
+					$form.find(":input[name='registerDate']").val(car.registerDate);
+					$form.find(":input[name='scrapDate']").val(car.scrapDate);
 					
 					var str = car.charger;
 					if(str != null && str.length > 0){
@@ -95,8 +105,6 @@ bc.caseBusinessForm = {
 						$form.find(":input[name='origin']").val(driver.origin);
 						$form.find(":input[name='birthDate']").val(driver.birthDate);
 						$form.find(":input[name='workDate']").val(driver.workDate);
-
-
 					};
 					
 					//根据选择的车辆信息获取相应的营运司机信息
@@ -236,6 +244,16 @@ bc.caseBusinessForm = {
 //			bc.page.save.call($form,option);
 //		});
 //	},
+	
+	//绑定点击按钮内容展出事件
+	foldingDiv : function (context,spanId,divId){
+		var $form = context;
+		var flip = 1;
+		$form.find('#'+spanId).click(function(){
+			$(this).toggleClass("ui-icon-carat-1-s ui-icon-carat-1-n");
+			$form.find('#'+divId).toggle( flip++ % 2 == 0 );
+		});
+	},
 	
 	doCloseFile : function (){
 		var $page = $(this);
