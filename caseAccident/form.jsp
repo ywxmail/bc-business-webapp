@@ -73,7 +73,7 @@
 										listValue="value" value="e.motorcadeId" headerKey="" headerValue="" cssClass="ui-widget-content"/>
 						    </td>
 					    </s:else>
-					    <td class="label"><s:text name="runcase.company"/>:</td>
+					    <td class="label"><s:text name="runcase.company2"/>:</td>
 						<td class="value">
 								<s:textfield name="e.company"  cssClass="ui-widget-content" cssStyle="width:8em;"/>
 								<div style="width:24px;display:inline-block;"></div>
