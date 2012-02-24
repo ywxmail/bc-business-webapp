@@ -72,7 +72,7 @@
 									</ul>
 							</div>
 				        	<div class="bc-dateContainer">
-								&nbsp;到<input type="text" name="e.endDate"  data-validate='{"type":"date","required":false}'
+								&nbsp;到<input type="text" name="e.endDate"  data-validate='{"type":"date","required":true}'
 									value='<s:date format="yyyy-MM-dd" name="e.endDate" />'
 									style="width: 9em;" class="bc-date ui-widget-content" />
 									<ul class="inputIcons" style="right : 0px;">

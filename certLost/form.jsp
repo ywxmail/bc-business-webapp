@@ -65,7 +65,7 @@
 							</tr>
 							<tr>
 							    <td class="label"><s:text name="certLost.handlerName"/>:</td>
-								<td class="value" style="position:relative;display: block;"><s:textfield name="e.transactorName" 
+								<td class="value" style="position:relative;display: block;"><s:textfield name="e.transactorName" data-validate="required"
 							     cssClass="ui-widget-content" readonly="true" />
 							    <span id="selectTransactor" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></span>
 							    </td>
@@ -157,7 +157,7 @@
 								</td>
 								<td class="middle" style="padding:0;text-align:left;">
 								<div class="relative">
-									<input type="text" name="replaceDate" data-validate='{"type":"date","required":false}' style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"
+									<input type="text" name="replaceDate" data-validate='{"type":"date","required":true}' style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"
 									value='<s:date format="yyyy-MM-dd" name="replaceDate" />'
 									class="bc-date ui-widget-content" />
 									<ul class="inputIcons">
