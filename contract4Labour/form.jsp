@@ -135,9 +135,9 @@
 													<s:radio name="e.sex" list="#{'1':'男','2':'女'}" 
 													value="e.sex" cssStyle="width:auto;"/>
 												</td>
-												<td class="label"><s:text name="contract4Labour.birthDate"/>:</td>
+												<td class="label">*<s:text name="contract4Labour.birthDate"/>:</td>
 												<td class="value" style="position:relative;display: block;">
-													<input type="text" name="e.birthDate" data-validate='{"type":"date"}'
+													<input type="text" name="e.birthDate" data-validate='{"type":"date","required":true}'
 													value='<s:date format="yyyy-MM-dd" name="e.birthDate" />'
 													class="bc-date ui-widget-content" data-cfg='{changeYear:true}' />
 													<ul class="inputIcons">
@@ -150,9 +150,9 @@
 												<td class="value" >
 													<s:select name="e.houseType" list="houseTypeList" listKey="value" listValue="value" headerKey="" headerValue="" headerValue="%{getText('label.please.choose')}" data-validate="required" cssClass="ui-widget-content"></s:select>
 												</td>
-												<td class="label"><s:text name="contract4Labour.origin"/>:</td>
+												<td class="label">*<s:text name="contract4Labour.origin"/>:</td>
 												<td class="value">
-												 	<s:textfield name="e.origin" cssClass="ui-widget-content" />
+												 	<s:textfield name="e.origin" cssClass="ui-widget-content" data-validate="required"/>
 												</td>
 											</tr>
 											<tr>
@@ -169,6 +169,10 @@
 														<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.leaveDate' ></li>
 													</ul>
 												</td>
+											</tr>
+											<tr>
+												<td class="label"><s:text name="contract4Labour.region"/>:</td>
+												<td class="value"><s:select list="#{0:'',1:'本市',2:'本省',3:'外省'}" listKey="key" listValue="value"  cssClass="ui-widget-content" headerValue="" name="e.region" ></s:select></td>
 											</tr>
 						        		</table>
 						    		</fieldset>
@@ -268,7 +272,7 @@
 											</tr>
 											<tr>
 												<td class="label" style="vertical-align: top;"><s:text name="contract4Labour.remark"/>:</td>
-												<td class="value" colspan="3"><s:textarea name="e.remark" rows="5" cssClass="ui-widget-content" /></td>
+												<td class="value" colspan="3"><s:textarea name="e.remark" rows="5" cssClass="ui-widget-content noresize" /></td>
 											</tr>
 											<tr>
 												<td class="value" colspan="4">
