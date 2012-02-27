@@ -119,7 +119,7 @@
 					<tr>
 					   <td class="label"><s:text name="carByDriverHistory.description"/>:</td>
 					   <td class="value" colspan="4" rowspan="3"><s:textarea name="e.description" rows="4"  
-					       cssClass="ui-widget-content"/></td>
+					       cssClass="ui-widget-content noresize"/></td>
 					</tr>
 				</tbody>
 			</table>
