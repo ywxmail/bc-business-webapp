@@ -170,7 +170,7 @@
 }
 
 .bc-page.ic>.left ul.results .code {
-	display: inline-block;
+	display: inline;
 	width: 2.5em;
 }
 
