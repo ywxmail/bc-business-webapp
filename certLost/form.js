@@ -113,9 +113,9 @@ bc.certLostForm = {
 			cell.style.padding="0";
 			cell.style.textAlign="left";
 			cell.setAttribute("class","middle");
-			cell.innerHTML='<div class="bc-relativeContainer" style="width: 160px;">'
+			cell.innerHTML='<div class="bc-relativeContainer">'
 				+'<input type="text" name="certName" style="width:99%;height:100%;border:none;margin:0;padding:0 0 0 2px;'
-				+'background:none;" class="bc-select ui-widget-content" data-maxheight="150px" '
+				+'background:none;" class="bc-select ui-widget-content" data-validate="required" data-maxheight="150px" '
 				+'data-source='+$form.find(":input[name='certLists']").val()+'>'
 				+'<ul class="inputIcons">'
 				+'	<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title="点击选择"></li>'
@@ -165,7 +165,7 @@ bc.certLostForm = {
 			cell.style.textAlign="left";
 			cell.setAttribute("class","middle");
 			cell.innerHTML='<div class="relative">'
-							+'	<input type="text" name="replaceDate" data-validate=\'{"type":"date","required"true}\''
+							+'	<input type="text" name="replaceDate" data-validate=\'{"type":"date","required":true}\''
 							+'  style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;" class="bc-date ui-widget-content" >'
 							+'	<ul class="inputIcons">'
 							+'		<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>'
