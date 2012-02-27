@@ -204,7 +204,7 @@ bc.contract4LabourForm = {
 	},
 	
 	/** 维护处理 */
-	doMaintenance : function($page) {
+	doMaintenance : function($form) {
 		var $page = $(this);
 		// 关闭当前窗口
 		bc.msg.confirm("确定维护此合同？",function(){
@@ -215,6 +215,7 @@ bc.contract4LabourForm = {
 				mid: "contract4Labour" + $page.find(":input[name='e.id']").val(),
 				url: bc.root + "/bc-business/contract4Labour/edit",
 				data: {id: $page.find(":input[name='e.id']").val()},
+				from: $page.attr("data-mid"),
 				afterClose: function(status){
 					if(status) bc.grid.reloadData($page);
 				}
@@ -224,7 +225,7 @@ bc.contract4LabourForm = {
 	},
 	
 	/** 续约处理 */
-	doRenew : function($page) {
+	doRenew : function($form) {
 		var $page = $(this);
 		// 让用户输入新的合同期限
 		bc.page.newWin({
@@ -248,12 +249,13 @@ bc.contract4LabourForm = {
 						var str = json.msg.split(" ")[2];
 						str = "<a id='chakan' href=#>"+str+"</a>";
 						str = json.msg.split(" ")[0]+" "+json.msg.split(" ")[1]+" "+str+" "+json.msg.split(" ")[3];
-						var $a = bc.msg.alert(str);
+						alert($page.attr("data-mid"));
 						$a.find('#chakan').click(function(){
 							bc.page.newWin({
 								url: bc.root + "/bc-business/contract4Labour/open?id="+json.id,
 								name: "查看劳动合同",
-								mid:  "viewcontract4Labour"
+								mid:  "viewcontract4Labour",
+							   from: $page.attr("data-from")
 							})
 							$a.dialog("close");
 							return false;
@@ -299,7 +301,7 @@ bc.contract4LabourForm = {
 	},
 	
 	/** 转车处理 */
-	doChangeCar : function($page) {
+	doChangeCar : function($form) {
 		var $page = $(this);
 		// 让用户选择新的车辆
 		bs.selectCar({
@@ -328,7 +330,8 @@ bc.contract4LabourForm = {
 							bc.page.newWin({
 								url: bc.root + "/bc-business/contract4Labour/open?id="+json.id,
 								name: "查看劳动合同",
-								mid:  "viewcontract4Labour"
+								mid:  "viewcontract4Labour",
+								from: $page.attr("data-from")
 							})
 							$a.dialog("close");
 							return false;
