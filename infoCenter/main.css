@@ -110,7 +110,7 @@
 .bc-page.ic>.left>ul.results>li {
 	padding: 2px 8px;
 	margin: 0;
-	border: 0;
+	border-width: 0;
 	cursor: default;
 	font-weight: normal;
 }
@@ -145,8 +145,10 @@
 	margin: 0;
 }
 
-.bc-page.ic>.left>ul.results>li.active {
-	border-width: 1px 0;
+.bc-page.ic>.left>ul.results>li.ui-state-highlight {
+	border-width: 1px 0 !important;
+	padding-top: 1px;
+	padding-bottom: 1px;
 }
 
 .bc-page.ic>.left>ul.results .code {
