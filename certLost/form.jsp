@@ -161,7 +161,7 @@
 									value='<s:date format="yyyy-MM-dd" name="replaceDate" />'
 									class="bc-date ui-widget-content" />
 									<ul class="inputIcons">
-										<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='replaceDate'></li>
+										<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
 									</ul>
 								</div>
 								</td>

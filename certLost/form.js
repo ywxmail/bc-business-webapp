@@ -165,10 +165,10 @@ bc.certLostForm = {
 			cell.style.textAlign="left";
 			cell.setAttribute("class","middle");
 			cell.innerHTML='<div class="relative">'
-							+'	<input type="text" name="replaceDate" data-validate="{&quot;type&quot;:&quot;date&quot;,&quot;required&quot;:true}"'
-							+'  style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;" class="bc-date ui-widget-content hasDatepicker" >'
+							+'	<input type="text" name="replaceDate" data-validate=\'{"type":"date","required"true}\''
+							+'  style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;" class="bc-date ui-widget-content" >'
 							+'	<ul class="inputIcons">'
-							+'		<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg=""></li>'
+							+'		<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>'
 							+'	</ul>'
 							+'</div>';//插入补办日期
 			//绑定日期选择
