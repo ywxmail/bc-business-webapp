@@ -95,7 +95,7 @@
 			<div id="carContent" class="content" style="padding:0;">
 				<table class="contentTable" cellspacing="2" cellpadding="0">
 					<tr>
-						<td class="label" style="width: 65px;">自编号:</td>
+						<td class="label" style="width: 70px;">自编号:</td>
 						<td class="value" style="width: 180px;"><input type="text" name="main.code" class="ui-widget-content" value="" readonly="readonly"/></td>
 						<td class="label" style="width: 100px;">营运性质:</td>
 						<td class="value" style="width: 180px;"><input type="text" name="main.businessType" class="ui-widget-content" readonly="readonly"/></td>
