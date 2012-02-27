@@ -163,7 +163,7 @@
 				<table class="contentTable0" cellspacing="0" cellpadding="0" style="width:auto;">
 					<tbody id="msgsBody" >
 						<tr class="first header">
-							<td class="first ui-widget-content" style="min-width: 50px">类别</td>
+							<td class="first ui-widget-content" style="min-width: 55px">类别</td>
 							<td class="middle ui-widget-content" style="min-width: 85px">限制项目</td>
 							<td class="middle ui-widget-content" style="min-width: 50px">关系人</td>
 							<td class="middle ui-widget-content" >内容</td>
@@ -198,15 +198,15 @@
 			<div id="mansHeader" class="header ui-widget-header" style="border-top-width: 0;"><span>联系信息</span>
 				<ul class="inputIcons">
 					<li id="includeLogout" class="inputIcon">
-						<label><input type="checkbox" name="main.includeCost" class="ui-widget-content" style="width:auto;margin:2px 2px 0 8px;" /><span style="margin:0;" >包含注销司机</span></label>
+						<label><input type="checkbox" class="ui-widget-content" style="width:auto;margin:2px 2px 0 8px;" /><span style="margin:0;" >包含注销司机</span><span id="disabledManCount" style="margin:0;" ></span></label>
 					</li>
 					<li class="toggleShow inputIcon ui-icon ui-icon-triangle-1-s" title='点击折叠'></li>
 				</ul>
 			</div>
-			<div class="content ui-widget-content" style="padding:0;">
+			<div class="content ui-widget-content unshowDisabled" style="padding:0;">
 				<table class="title contentTable0" cellspacing="0" cellpadding="0">
 					<tbody id="mansBody">
-						<tr class="top header first">
+						<tr class="active top header first">
 							<td class="first aright ui-widget-content" style="width: 90px">司机和责任人:</td>
 							<td class="middle aleft ui-widget-content" style="width: 80px">张三(男)</td>
 							<td class="middle aright ui-widget-content" style="width: 40px">电话:</td>
@@ -214,7 +214,7 @@
 							<td class="middle aright ui-widget-content" style="width: 40px">状态:</td>
 							<td class="last aleft ui-widget-content">新入职 (2012-01-01)</td>
 						</tr>
-						<tr class="detail">
+						<tr class="active detail">
 							<td colspan="6" style="padding:0;">
 								<table class="contentTable" cellspacing="2" cellpadding="0" style="height: auto;">
 									<tr>
@@ -248,7 +248,7 @@
 								</table>
 							</td>
 						</tr>
-						<tr class="top header ui-state-disabled">
+						<tr class="disabled top header ui-state-disabled">
 							<td class="first aright ui-widget-content" style="width: 90px">司机和责任人:</td>
 							<td class="middle aleft ui-widget-content" style="width: 80px">张三(男)</td>
 							<td class="middle aright ui-widget-content" style="width: 40px">电话:</td>
