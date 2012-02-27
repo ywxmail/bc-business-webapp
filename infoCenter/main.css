@@ -68,7 +68,7 @@
 /** ==总体布局结束== */
 
 /** ==公共样式开始== */
-.bc-page.ic .header {
+.bc-page.ic div.header {
 	position: relative;
 	border-left-width: 0;
 	border-right-width: 0;
@@ -316,3 +316,24 @@ td.aright {
 }
 
 /** ==右侧内部布局结束== */
+
+td.desc-webkit{
+	position: relative;
+}
+
+td.desc-webkit textarea {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: -2px;
+	top: -2px;
+}
+td.desc{
+}
+
+td.desc textarea {
+	width:98%;
+	height:15em;
+	height:8.5em\9;;/*ie6-8*/
+	overflow: auto;
+}

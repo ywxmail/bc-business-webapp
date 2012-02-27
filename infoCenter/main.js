@@ -122,6 +122,24 @@ bs.infoCenter = {
 			$(this).closest("#mansHeader").next().toggleClass("showDisabled unshowDisabled");
 		});
 
+		// 点击司机图片打开
+		$page.find("#mansBody").delegate("img",{
+			click : function() {
+				var $this = $(this);
+				bc.page.newWin({
+					name: $this.attr("data-name"),
+					mid: "carman" + $this.attr("data-id"),
+					url: bc.root + "/bc-business/carMan/edit",
+					data: {id: $this.attr("data-id")}
+				});
+				return false;
+			}
+		});
+		
+		// 非webkit浏览器的特殊处理
+		if(!$.browser.safari)
+			$page.find("#specalTD").toggleClass("desc-webkit desc");
+
 		// 定位左侧最下面的元素的top位置
 		var sh = 0;
 		var $left = $page.find("#left");
@@ -135,20 +153,6 @@ bs.infoCenter = {
 		$left.find("#searchText").keyup(function(e) {
 			if(e.which == 13){//按下回车键
 				bs.infoCenter.doSearch.call($page);
-			}
-		});
-
-		// 点击司机图片打开
-		$page.find("#mansBody").delegate("img",{
-			click : function() {
-				var $this = $(this);
-				bc.page.newWin({
-					name: $this.attr("data-name"),
-					mid: "carman" + $this.attr("data-id"),
-					url: bc.root + "/bc-business/carMan/edit",
-					data: {id: $this.attr("data-id")}
-				});
-				return false;
 			}
 		});
 	},
@@ -337,8 +341,8 @@ bs.infoCenter = {
 							+'<td class="label" style="width: 6em;">身份证号码:</td>'
 							+'<td class="value" style="width: 20em;"><input type="text" class="ui-widget-content" readonly="readonly" value="' + man.identity + '"/></td>'
 							
-							+'<td rowspan="6" style="position: relative;"><textarea class="ui-widget-content noresize"' 
-							+'style="position:absolute;left:0;right:0;bottom:-2px;top:-2px;" readonly="readonly">' + man.desc + '</textarea></td>'
+							+'<td rowspan="6" class="desc' + ($.browser.safari ? "-webkit" : "") + '"><textarea class="ui-widget-content noresize"' 
+							+' readonly="readonly" style="height:8.5em;">' + man.desc + '</textarea></td>'
 							+'</tr>'
 							
 							+'<tr>'

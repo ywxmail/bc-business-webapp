@@ -102,8 +102,7 @@
 						<td class="value" style="width: 13.5em;"><input type="text" name="main.code" class="ui-widget-content" value="" readonly="readonly"/></td>
 						<td class="label" style="width: 7em;">营运性质:</td>
 						<td class="value" style="width: 13.5em;"><input type="text" name="main.businessType" class="ui-widget-content" readonly="readonly"/></td>
-						<td rowspan="9" style="position: relative;"><textarea name="main.desc" class="ui-widget-content noresize" 
-							style="position:absolute;left:0;right:0;bottom:-2px;top:-2px;" readonly="readonly"></textarea></td>
+						<td rowspan="9" id="specalTD" class="desc-webkit"><textarea name="main.desc" class="ui-widget-content noresize" readonly="readonly"></textarea></td>
 					</tr>
 					<tr>
 						<td class="label">所属公司:</td>
@@ -124,7 +123,7 @@
 					<tr>
 						<td class="label">车队:</td>
 						<td class="value"><input type="text" name="main.motorcadeName" class="ui-widget-content" readonly="readonly"/></td>
-						<td class="label"><div class="little">行驶证登记日期</div>:</td>
+						<td class="label"><div class="little" style="text-align: right;">行驶证登记日期:</div></td>
 						<td class="value"><input type="text" name="main.registeDate" class="ui-widget-content" readonly="readonly"/></td>
 					</tr>
 					<tr>
