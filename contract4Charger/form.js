@@ -211,7 +211,7 @@ bc.contract4ChargerForm = {
 	},
 	
 	/** 维护处理 */
-	doMaintenance : function($page) {
+	doMaintenance : function($form) {
 		var $page = $(this);
 		// 关闭当前窗口
 		bc.msg.confirm("确定维护此合同？",function(){
@@ -222,6 +222,7 @@ bc.contract4ChargerForm = {
 				mid: "contract4Charger" + $page.find(":input[name='e.id']").val(),
 				url: bc.root + "/bc-business/contract4Charger/edit",
 				data: {id: $page.find(":input[name='e.id']").val()},
+				from: $page.attr("data-mid"),
 				afterClose: function(status){
 					if(status) bc.grid.reloadData($page);
 				}
@@ -231,7 +232,7 @@ bc.contract4ChargerForm = {
 	},
 	
 	/** 续约处理 */
-	doRenew : function($page) {
+	doRenew : function($form) {
 		var $page = $(this);
 		// 让用户输入新的合同期限
 		bc.page.newWin({
@@ -262,7 +263,8 @@ bc.contract4ChargerForm = {
 							bc.page.newWin({
 								url: bc.root + "/bc-business/contract4Charger/edit?id="+json.id,
 								name: $page.find(":input[name='e.ext_str1']").val() + "&nbsp;经济合同续约",
-								mid: "contract4Charger." + json.id
+								mid: "contract4Charger." + json.id,
+								 from: $page.attr("data-from")
 							})
 							$a.dialog("close");
 							return false;
@@ -278,7 +280,7 @@ bc.contract4ChargerForm = {
 	},
 	
 	/** 过户处理 */
-	doChangeCharger : function($page) {
+	doChangeCharger : function($form) {
 		var $page = $(this);
 		// 让用户输入新的合同期限
 		bc.page.newWin({
@@ -319,7 +321,8 @@ bc.contract4ChargerForm = {
 							bc.page.newWin({
 								url: bc.root + "/bc-business/contract4Charger/edit?id="+json.id,
 								name: $page.find(":input[name='e.ext_str1']").val() + "&nbsp;经济合同过户",
-								mid: "contract4Charger." + json.id
+								mid: "contract4Charger." + json.id,
+								 from: $page.attr("data-from")
 							})
 							$a.dialog("close");
 							return false;
@@ -336,7 +339,7 @@ bc.contract4ChargerForm = {
 	
 	
 	/** 重发包处理 */
-	doChangeCharger2 : function($page) {
+	doChangeCharger2 : function($form) {
 		var $page = $(this);
 		// 让用户输入新的合同期限
 		bc.page.newWin({
@@ -377,7 +380,8 @@ bc.contract4ChargerForm = {
 							bc.page.newWin({
 								url: bc.root + "/bc-business/contract4Charger/edit?id="+json.id,
 								name: $page.find(":input[name='e.ext_str1']").val() + "&nbsp;经济合同重发包",
-								mid: "contract4Charger." + json.id
+								mid: "contract4Charger." + json.id,
+								from: $page.attr("data-from")
 							})
 							$a.dialog("close");
 							return false;
@@ -394,7 +398,7 @@ bc.contract4ChargerForm = {
 	
 	
 	/** 注销处理 */
-	doLogout : function($page) {
+	doLogout : function($form) {
 		var $page = $(this);
 		// 让用户输入新的注销日期
 		bc.page.newWin({

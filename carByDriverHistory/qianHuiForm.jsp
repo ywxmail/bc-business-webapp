@@ -111,7 +111,7 @@
 					<tr>
 					   <td class="label"><s:text name="carByDriverHistory.description"/>:</td>
 					   <td class="value" colspan="4" rowspan="3"><s:textarea name="e.description" rows="4"  
-					       cssClass="ui-widget-content"/></td></tr>
+					       cssClass="ui-widget-content noresize"/></td></tr>
 				</tbody>
 			</table>
 			<div class="formTopInfo">

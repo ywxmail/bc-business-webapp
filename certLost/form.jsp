@@ -44,22 +44,22 @@
 								<s:if test="%{carManId != null || carId !=null}">
 								<td class="value">
 									<div style="position:relative;display: inline-block">
-								 		<s:textfield name="e.driver.name" data-validate="required" readonly="true" cssStyle="width:8em;" cssClass="ui-widget-content " />
+								 		<s:textfield name="e.driver.name" data-validate="required" readonly="true" cssStyle="width:7.5em;" cssClass="ui-widget-content " />
 										<ul class="inputIcons">
 									 		<li class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="contract.title.click2selectCarMan"/>' id="selectDriverName">
 									 	</ul>
 								 </div>
-								<s:text name="certLost.certFWZG"/>:<s:textfield name="e.driver.cert4FWZG" cssStyle="width:7em;" cssClass="ui-widget-content" />
+								<s:text name="certLost.certFWZG"/>:<s:textfield name="e.driver.cert4FWZG" cssStyle="width:6.5em;" cssClass="ui-widget-content" />
 								</td>
 							    </s:if><s:else>
 								<td class="value">
 									<div style="position:relative;display: inline-block">
-								 		<s:textfield name="e.driver.name" data-validate="required" readonly="true" cssStyle="width:7em;" cssClass="ui-widget-content " />
+								 		<s:textfield name="e.driver.name" data-validate="required" readonly="true" cssStyle="width:5.5em;" cssClass="ui-widget-content " />
 										<ul class="inputIcons">
 									 		<li class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="contract.title.click2selectCarMan"/>' id="selectDriverName">
 									 	</ul>
 								 </div>
-								<s:text name="certLost.certFWZG"/>:<s:textfield name="e.driver.cert4FWZG" cssStyle="width:7em;" cssClass="ui-widget-content" />
+								<s:text name="certLost.certFWZG"/>:<s:textfield name="e.driver.cert4FWZG" cssStyle="width:5.5em;" cssClass="ui-widget-content" />
 								</td>
 							     </s:else>
 							</tr>
