@@ -9,11 +9,19 @@
 .bc-page.ic {
 	
 }
+.bc-page.ic .full{
+	position: absolute;
+	bottom: 0;
+	top: 0;
+	left: 0;
+	right: 0;
+}
 
 .bc-page.ic>* {
 	position: absolute;
 	bottom: 0;
 	top: 0;
+	border: 0;
 }
 
 .bc-page.ic .block {
@@ -21,16 +29,22 @@
 }
 
 .bc-page.ic>.left {
-	width: 150px;
-	width: 152px\9; /*ie6-8*/
+	width: 11em;
+	/*width: 162px\9; ie6-8*/
 	left: 0;
 }
 
+.bc-page.ic>.left .full{
+	border-width: 0;
+}
+
 .bc-page.ic>.splitter {
-	border-left-width: 0;
-	border-right-width: 0;
-	width: 6px;
-	left: 152px;
+	width: 0.4em;
+	left: 11em;
+}
+
+.bc-page.ic>.splitter .full{
+	border-width: 0 1px !important;
 }
 
 .bc-page.ic>.splitter .ui-icon {
@@ -38,14 +52,18 @@
 	top: 50%;
 	left: 50%;
 	margin-top: -8px;
-	margin-left: -8px;
+	margin-left: -7px;
 	cursor: default;/* e-resize;*/
 }
 
 .bc-page.ic>.right {
-	left: 157px;
+	left: 11.4em;
 	right: 0;
 	overflow: auto;
+}
+
+.bc-page.ic>.right .full{
+	border-width: 0;
 }
 /** ==总体布局结束== */
 
@@ -95,7 +113,7 @@
 	display: none;
 }
 
-.bc-page.ic>.left>ul.results {
+.bc-page.ic>.left ul.results {
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -107,20 +125,20 @@
 	list-style: none;
 }
 
-.bc-page.ic>.left>ul.results>li {
-	padding: 2px 8px;
+.bc-page.ic>.left ul.results>li {
+	padding: 2px 4px;
 	margin: 0;
 	border-width: 0;
 	cursor: default;
 	font-weight: normal;
 }
 
-.bc-page.ic>.left>ul.results>li.ui-state-disabled {
+.bc-page.ic>.left ul.results>li.ui-state-disabled {
 	opacity: 0.6;
 	filter: alpha(opacity =  60);
 }
 
-.bc-page.ic>.left>ul.results>li.empty,.bc-page.ic>.left>ul.results>li.busy
+.bc-page.ic>.left ul.results>li.empty,.bc-page.ic>.left>ul.results>li.busy
 	{
 	text-align: center;
 	opacity: 0.6;
@@ -128,7 +146,7 @@
 	font-style: italic;
 }
 
-.bc-page.ic>.left>ul.results>li.busy>span.busy {
+.bc-page.ic>.left ul.results>li.busy>span.busy {
 	display: inline-block;
 	width: 32px;
 	height: 32px;
@@ -139,35 +157,35 @@
 	margin: 8px 0 0 0;
 }
 
-.bc-page.ic>.left>ul.results>li.busy>span.text {
+.bc-page.ic>.left ul.results>li.busy>span.text {
 	display: block;
 	padding: 0;
 	margin: 0;
 }
 
-.bc-page.ic>.left>ul.results>li.ui-state-highlight {
+.bc-page.ic>.left ul.results>li.ui-state-highlight {
 	border-width: 1px 0 !important;
 	padding-top: 1px;
 	padding-bottom: 1px;
 }
 
-.bc-page.ic>.left>ul.results .code {
+.bc-page.ic>.left ul.results .code {
 	display: inline-block;
 	width: 2.5em;
 }
 
-.bc-page.ic>.left>ul.results .plate {
+.bc-page.ic>.left ul.results .plate {
 	
 }
 
 /** ==左侧内部布局结束== */
 
 /** ==右侧内部布局开始== */
-.bc-page.ic>.right>.main {
+.bc-page.ic>.right .main {
 	padding: 0;
 }
 
-.bc-page.ic>.right>.main>#carHeader.loading>#loading {
+.bc-page.ic>.right .main>#carHeader.loading>#loading {
 	width: 16px;
 	height: 16px;
 	background:
@@ -180,15 +198,15 @@
 	margin-top: -8px;
 }
 
-.bc-page.ic>.right>.main>#carHeader.loading>#carTitle {
+.bc-page.ic>.right .main>#carHeader.loading>#carTitle {
 	margin-left: 22px;
 }
 
-.bc-page.ic>.right>.main>#carHeader.loading>#wasteTime {
+.bc-page.ic>.right .main>#carHeader.loading>#wasteTime {
 	display: none;
 }
 
-.bc-page.ic>.right>.main>#carHeader #seeMore {
+.bc-page.ic>.right .main>#carHeader #seeMore {
 	width: auto;
 	text-decoration: underline;
 	font-weight: normal;
@@ -218,7 +236,7 @@
 	background: none;
 }
 
-.bc-page.ic>.right>.block.empty>.content {
+.bc-page.ic>.right .block.empty>.content {
 	display: none;
 }
 
@@ -240,7 +258,7 @@
 	border-top-width: 0;
 }
 
-.bc-page.ic>.right>.message .content tr.first>td {
+.bc-page.ic>.right .message .content tr.first>td {
 	text-align: center;
 }
 
@@ -248,11 +266,11 @@
 	border-bottom-width: 0;
 }
 
-.bc-page.ic>.right>.main td {
+.bc-page.ic>.right .main td {
 	vertical-align: top;
 }
 
-.bc-page.ic>.right>.main td.label {
+.bc-page.ic>.right .main td.label {
 	min-width: 20px;;
 	width: 60px;
 }
@@ -269,28 +287,28 @@ td.aright {
 	border-right-width: 0;
 }
 
-.bc-page.ic>.right>.mans>.content {
+.bc-page.ic>.right .mans>.content {
 	border-width: 0 0 1px 0;
 }
 
-.bc-page.ic>.right>.mans>.content.unshowDisabled tr.disabled {
+.bc-page.ic>.right .mans>.content.unshowDisabled tr.disabled {
 	display: none;
 }
 
-.bc-page.ic>.right>.mans>.content.showDisabled tr.disabled {
+.bc-page.ic>.right .mans>.content.showDisabled tr.disabled {
 	display: table-row;
 	opacity: 0.6;
 	filter: alpha(opacity = 60);
 }
 
-.bc-page.ic>.right>.mans>.content>.title {
+.bc-page.ic>.right .mans>.content>.title {
 	border-width: 0;
 }
-.bc-page.ic>.right>.mans>.content tr.first {
+.bc-page.ic>.right .mans>.content tr.first {
 	text-align: 
 }
 
-.bc-page.ic>.right>.mans>#mansHeader #includeLogout {
+.bc-page.ic>.right .mans>#mansHeader #includeLogout {
 	width: auto;
 	font-weight: normal;
 	font-size: 80%;

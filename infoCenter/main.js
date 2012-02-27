@@ -125,11 +125,11 @@ bs.infoCenter = {
 		// 定位左侧最下面的元素的top位置
 		var sh = 0;
 		var $left = $page.find("#left");
-		$left.children(".block").each(function() {
+		$left.find(".block").each(function() {
 			sh += $(this).outerHeight(true);
 		});
 		logger.debug("sh=" + sh);
-		$left.children(".results").css("top", sh);
+		$left.find(".results").css("top", sh);
 
 		//搜索框回车执行搜索
 		$left.find("#searchText").keyup(function(e) {
@@ -280,7 +280,7 @@ bs.infoCenter = {
 					return;
 				
 				// 显示车辆信息
-				var $main = $right.children("#main");
+				var $main = $right.find("#main");
 				for(var key in json.car){
 					$main.find(":input[name='main." + key + "']").val(json.car[key]);
 				}
@@ -319,11 +319,11 @@ bs.infoCenter = {
 						
 						// 抬头行
 						trs.push('<tr class="top header'+(i==0 ? " first" : "") + (man.status!=0 ? " ui-state-disabled disabled" : "") + '">'
-							+'<td class="first aright ui-widget-content" style="width: 90px">' + man.type + ':</td>'
-							+'<td class="middle aleft ui-widget-content" style="width: 80px">' + man.name + '(' + man.sex + ')' + '</td>'
-							+'<td class="middle aright ui-widget-content" style="width: 40px">电话:</td>'
-							+'<td class="last aleft ui-widget-content" style="width: 195px">' + man.phones + '</td>'
-							+'<td class="middle aright ui-widget-content" style="width: 40px">状态:</td>'
+							+'<td class="first aright ui-widget-content" style="width: 7em;">' + man.type + ':</td>'
+							+'<td class="middle aleft ui-widget-content" style="width: 7em;">' + man.name + '(' + man.sex + ')' + '</td>'
+							+'<td class="middle aright ui-widget-content" style="width: 3em;">电话:</td>'
+							+'<td class="last aleft ui-widget-content" style="width: 15em;">' + man.phones + '</td>'
+							+'<td class="middle aright ui-widget-content" style="width: 3em;">状态:</td>'
 							+'<td class="last aleft ui-widget-content">' + (man.classes.length > 0 ? man.classes + "，" : "") + man.moveType + '(' + man.moveDate + ')' + '</td>'
 							+'</tr>');
 						
@@ -331,11 +331,11 @@ bs.infoCenter = {
 						trs.push('<tr class="detail' + (man.status!=0 ? " ui-state-disabled disabled" : "") + '"><td colspan="6" style="padding:0;">'
 							+'<table class="contentTable" cellspacing="2" cellpadding="0" style="height: auto;">'
 							+'<tr>'
-							+'<td rowspan="6" style="width: 87px;"><img style="width:86.4px;height:110px;cursor: pointer;" data-id="' + man.id + '" data-name="' + man.name + '"'
+							+'<td rowspan="6" style="width: 87px;vertical-align: top;"><img style="width:86.4px;height:110px;cursor: pointer;" data-id="' + man.id + '" data-name="' + man.name + '"'
 							+'src="'+bc.root+'/bc/image/download?ptype=portrait&puid=' + man.uid + '&ts=' + ts + '"></td>'
 							
-							+'<td class="label" style="width: 80px;">身份证号码:</td>'
-							+'<td class="value" style="width: 250px;"><input type="text" class="ui-widget-content" readonly="readonly" value="' + man.identity + '"/></td>'
+							+'<td class="label" style="width: 6em;">身份证号码:</td>'
+							+'<td class="value" style="width: 20em;"><input type="text" class="ui-widget-content" readonly="readonly" value="' + man.identity + '"/></td>'
 							
 							+'<td rowspan="6" style="position: relative;"><textarea class="ui-widget-content noresize"' 
 							+'style="position:absolute;left:0;right:0;bottom:-2px;top:-2px;" readonly="readonly">' + man.desc + '</textarea></td>'
@@ -358,8 +358,8 @@ bs.infoCenter = {
 							
 							+'<tr>'
 							+'<td class="label">资格证号:</td>'
-							+'<td class="value"><input type="text" class="ui-widget-content" readonly="readonly" style="width:86px" value="' + man.cert4fwzg + '"/>'
-							+'&nbsp;&nbsp;户口性质:&nbsp;<input type="text" class="ui-widget-content" readonly="readonly" style="width:86px" value="' + man.houseType + '"/></td>'
+							+'<td class="value"><input type="text" class="ui-widget-content" readonly="readonly" style="width:6em" value="' + man.cert4fwzg + '"/>'
+							+'&nbsp;&nbsp;户口性质:&nbsp;<input type="text" class="ui-widget-content" readonly="readonly" style="width:6em" value="' + man.houseType + '"/></td>'
 							+'</tr>'
 							+'</table></td></tr>');
 					}

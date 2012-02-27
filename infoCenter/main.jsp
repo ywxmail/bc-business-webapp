@@ -8,7 +8,8 @@
 	style="overflow: hidden;">
 
 	<!-- 左侧导航区 -->
-	<div id="left" class="left ui-widget-content">
+	<div id="left" class="left">
+	<div class="full ui-widget-content">
 		<div class="block">
 			<div class="header ui-widget-header" style="border-top-width: 0;">查找</div>
 			<div class="content" style="padding: 0;">
@@ -79,12 +80,14 @@
 			 -->
 		</ul>
 	</div>
+	</div>
 
 	<!-- 中间分隔区 -->
-	<div class="splitter ui-widget-content"><div class="ui-icon ui-icon-grip-dotted-vertical"></div></div>
+	<div class="splitter"><div class="full ui-widget-content"><div class="ui-icon ui-icon-grip-dotted-vertical"></div></div></div>
 
 	<!-- 右侧信息区 -->
-	<div id="right" class="right ui-widget-content">
+	<div id="right" class="right">
+	<div class="full ui-widget-content">
 		<div id="main" class="block main">
 			<div id="carHeader" class="header ui-widget-header" style="border-top-width: 0;"><span id='loading'></span><span id='carTitle'>车辆信息</span><span id='wasteTime' class='wasteTime'></span>
 				<ul class="inputIcons">
@@ -95,10 +98,10 @@
 			<div id="carContent" class="content" style="padding:0;">
 				<table class="contentTable" cellspacing="2" cellpadding="0">
 					<tr>
-						<td class="label" style="width: 70px;">自编号:</td>
-						<td class="value" style="width: 180px;"><input type="text" name="main.code" class="ui-widget-content" value="" readonly="readonly"/></td>
-						<td class="label" style="width: 100px;">营运性质:</td>
-						<td class="value" style="width: 180px;"><input type="text" name="main.businessType" class="ui-widget-content" readonly="readonly"/></td>
+						<td class="label" style="width: 5em;">自编号:</td>
+						<td class="value" style="width: 13.5em;"><input type="text" name="main.code" class="ui-widget-content" value="" readonly="readonly"/></td>
+						<td class="label" style="width: 7em;">营运性质:</td>
+						<td class="value" style="width: 13.5em;"><input type="text" name="main.businessType" class="ui-widget-content" readonly="readonly"/></td>
 						<td rowspan="9" style="position: relative;"><textarea name="main.desc" class="ui-widget-content noresize" 
 							style="position:absolute;left:0;right:0;bottom:-2px;top:-2px;" readonly="readonly"></textarea></td>
 					</tr>
@@ -260,5 +263,6 @@
 				</table>
 			</div>
 		</div>
+	</div>
 	</div>
 </div>
