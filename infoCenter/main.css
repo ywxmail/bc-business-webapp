@@ -78,10 +78,10 @@
 
 .bc-page.ic span.wasteTime {
 	opacity: 0.6;
-	filter: alpha(opacity =         60);
+	filter: alpha(opacity = 60);
 	font-style: italic;
 	font-weight: normal;
-	font-size: 50%;
+	font-size: 80%;
 }
 
 /** ==公共样式结束== */
@@ -115,11 +115,16 @@
 	font-weight: normal;
 }
 
+.bc-page.ic>.left>ul.results>li.ui-state-disabled {
+	opacity: 0.6;
+	filter: alpha(opacity =  60);
+}
+
 .bc-page.ic>.left>ul.results>li.empty,.bc-page.ic>.left>ul.results>li.busy
 	{
 	text-align: center;
 	opacity: 0.6;
-	filter: alpha(opacity =         60);
+	filter: alpha(opacity = 60);
 	font-style: italic;
 }
 
@@ -185,7 +190,7 @@
 	width: auto;
 	text-decoration: underline;
 	font-weight: normal;
-	font-size: 60%;
+	font-size: 80%;
 	margin-right: 10px;
 }
 
@@ -207,7 +212,7 @@
 }
 
 .bc-page.ic>.right table.contentTable0 td {
-	padding: 0;
+	padding: 0 2px 0 2px;
 	background: none;
 }
 
@@ -266,6 +271,16 @@ td.aright {
 	border-width: 0 0 1px 0;
 }
 
+.bc-page.ic>.right>.mans>.content.unshowDisabled tr.disabled {
+	display: none;
+}
+
+.bc-page.ic>.right>.mans>.content.showDisabled tr.disabled {
+	display: table-row;
+	opacity: 0.6;
+	filter: alpha(opacity = 60);
+}
+
 .bc-page.ic>.right>.mans>.content>.title {
 	border-width: 0;
 }
@@ -276,9 +291,8 @@ td.aright {
 .bc-page.ic>.right>.mans>#mansHeader #includeLogout {
 	width: auto;
 	font-weight: normal;
-	font-size: 60%;
+	font-size: 80%;
 	margin-right: 10px;
-	display: none;
 }
 
 /** ==右侧内部布局结束== */
