@@ -90,6 +90,7 @@ bc.caseAccidentForm = {
 						$form.find(":input[name='e.carId']").val(car.id);
 						$form.find(":input[name='e.carPlate']").val(car.name);
 						$form.find("select[name='e.motorcadeId']").val(car.motorcadeId);
+						$form.find(":input[name='e.company']").val(car.company);
 					}
 					//显示相关保单
 					bc.caseAccidentForm.accAddPolicyInfo($form);

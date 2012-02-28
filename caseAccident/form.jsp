@@ -49,8 +49,7 @@
 						<s:if test="%{carManId != null || carId !=null }">
 							<td class="label">*<s:text name="runcase.carPlate"/>:</td>
 							<td class="value">
-								<s:textfield name="e.carPlate"  readonly="true" cssClass="ui-state-disabled ui-widget-content"
-										cssStyle="width:8em;" />
+								<s:textfield name="e.carPlate"  readonly="true" cssClass="ui-widget-content"cssStyle="width:8em;" />
 								<div style="width:26px;display:inline-block;"></div>
 								<s:text name="runcase.motorcadeName"/>:
 								<s:select name="e.motorcadeId" list="motorcadeList" listKey="key" cssStyle="width:8em;"
