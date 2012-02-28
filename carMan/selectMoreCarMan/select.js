@@ -14,12 +14,18 @@ bs.selectMoreCarMan = {
 			alert("必须先选择司机信息！");
 			return false;
 		}
-		var item;
+		var selectArray=select.value.split(",");
 		var item=[];
 		//单选
-		var item={id: select.value.split(",")[0],cert4FWZG:select.value.split(",")[1],region:select.value.split(",")[2],
-				origin:select.value.split(",")[3],birthDate:select.value.split(",")[4],workDate:select.value.split(",")[5],
-				drivingStatus:select.value.split(",")[6],name: select.options[select.selectedIndex].text};
+		var item={　　　　id:selectArray[0],
+				cert4FWZG:selectArray[1],
+				   region:selectArray[2],
+				   origin:selectArray[3],
+				birthDate:selectArray[4],
+				 workDate:selectArray[5],
+			drivingStatus:selectArray[6],
+				　　　　type:selectArray[7],
+				　　　　name:select.options[select.selectedIndex].text};
 		$page.data("data-status",item);
 		$page.dialog("close");
 	}

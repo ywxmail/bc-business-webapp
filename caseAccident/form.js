@@ -4,15 +4,16 @@ bc.caseAccidentForm = {
 		var $form = $(this);
 		
         //初始化是根据二次送保的状态是否显示其内容
-		if($form.find(":checkbox[name='e.deliverSecond']")[0].checked==false){
+		if(!$form.find(":checkbox[name='e.deliverSecond']")[0].checked){
 			$form.find("#idSecondDeliver").css("display","none");
 		}else{
 			$form.find("#idSecondDeliver").css("display","block");
 		}
 		//初始化时显示相关保单
 		bc.caseAccidentForm.accAddPolicyInfo($form);
+		
 		//根据厂修状态是否显示维修费
-		if($form.find(":input[name='e.innerFix']")[0].checked==false){
+		if(!$form.find(":input[name='e.innerFix']")[0].checked){
 			$form.find("#fixCostText").hide();
 			$form.find(":input[name='e.fixCost']").hide();
 		}
@@ -62,8 +63,8 @@ bc.caseAccidentForm = {
 			$form.find('#ShowGroups3').css("display","block");
 		});
 		
-		
 		if(readonly) return;
+		
 		//绑定厂修按钮事件
 		$form.find(":input[name='e.innerFix']").change(function(){
 			var check=$form.find(":input[name='e.innerFix']")[0].checked;
@@ -80,7 +81,7 @@ bc.caseAccidentForm = {
 		if($form.find(":input[name='isMoreCar']").val()=="true"){
 			var carManId=$form.find(":input[name='carManId']").val();
 			var url=bc.root +"/bc-business/selectMoreCarWithCarMan/selectCars?carManId="+carManId;
-			var option = jQuery.extend({
+			bc.page.newWin({
 				url: url,
 				name: "选择车辆信息",
 				mid: "selectCar",
@@ -89,34 +90,46 @@ bc.caseAccidentForm = {
 						$form.find(":input[name='e.carId']").val(car.id);
 						$form.find(":input[name='e.carPlate']").val(car.name);
 						$form.find("select[name='e.motorcadeId']").val(car.motorcadeId);
-						
+						$form.find(":input[name='e.company']").val(car.company);
 					}
+					//显示相关保单
+					bc.caseAccidentForm.accAddPolicyInfo($form);
 				}
-			},option);
-			bc.page.newWin(option);
+			});
 		};
 		if($form.find(":input[name='isNullCar']").val()=="true"){
 			bc.msg.alert("该司机还没有驾驶任何车辆！");
 		};
+		
+		//在车辆表单页签中选着新建事故理赔时，触发事件
 		if($form.find(":input[name='isMoreCarMan']").val()=="true"){
 			var carId=$form.find(":input[name='carId']").val();
 			var url=bc.root +"/bc-business/selectMoreCarManWithCar/selectCarMans?carId="+carId;
-			var option = jQuery.extend({
+			bc.page.newWin({
 				url: url,
 				name: "选择司机信息",
 				mid: "selectCarMan",
 				afterClose: function(carMan){
 					if(carMan){
+						//logger.info("carMan=" + $.toJSON(carMan));
 						$form.find(":input[name='e.driverId']").val(carMan.id);
 						$form.find(":input[name='e.driverName']").val(carMan.name);
 						$form.find(":input[name='e.driverCert']").val(carMan.cert4FWZG);
 						$form.find(":input[name='e.driverArea']").val(carMan.region);
-						$form.find(":input[name='e.driverClasses']").val(carMan.drivingStatus);
+						$form.find("select[name='e.driverClasses']").val(carMan.drivingStatus);
 						$form.find(":input[name='e.origin']").val(carMan.origin);
+						//司机类型 0:'',1:'司机',2:'车主',3:'非编'
+						if(carMan.type==0){
+							$form.find("select[name='e.driverType']").val(1);
+						//carman类型是责任人或者（司机和责任人）都为车主
+						}else if(carMan.type==1||carMan.type==2){
+							$form.find("select[name='e.driverType']").val(2);
+						}else if(carMan.type==3){
+							$form.find("select[name='e.driverType']").val(driver.type);
+						}
 					}
 				}
-			},option);
-			bc.page.newWin(option);
+			});
 		};
 		if($form.find(":input[name='isNullCarMan']").val()=="true"){
 			bc.msg.alert("该车辆还没有被任何司机驾驶！");	
@@ -257,9 +270,6 @@ bc.caseAccidentForm = {
 			});
 		});
 		
-	
-		
-		
 		// 绑定是否送保事件
 		$form.find(":checkbox[name='e.deliver']").change(function() {
 			if(this.checked){
@@ -334,7 +344,7 @@ bc.caseAccidentForm = {
 		
 		//绑定保险公司赔付 隐藏受款司机内容
 		$form.find(":checkbox[name='e.claim']").change(function(){
-			if($(this)[0].checked==false){
+			if(!$(this)[0].checked){
 				$form.find(":checkbox[name='e.pay']")[0].checked=false;
 				$form.find('#pay').css("display","none");
 			}
@@ -342,7 +352,7 @@ bc.caseAccidentForm = {
 		
 		//绑定二次送保按钮  显示或隐藏二次送保的内容
 		$form.find(":checkbox[name='e.deliverSecond']").change(function(){
-			if($(this)[0].checked==false){
+			if(!$(this)[0].checked){
 				$form.find("#idSecondDeliver").css("display","none");
 				$form.find(":checkbox[name='e.deliverTwo']")[0].checked=false;
 				$form.find(":checkbox[name='e.claimTwo']")[0].checked=false;
@@ -358,7 +368,7 @@ bc.caseAccidentForm = {
 		});
 		//绑定送保 隐藏保险公司赔付和受款司机内容  （二次送保）
 		$form.find(":checkbox[name='e.deliverTwo']").change(function(){
-			if($(this)[0].checked==false){
+			if(!$(this)[0].checked){
 				$form.find(":checkbox[name='e.claimTwo']")[0].checked=false;
 				$form.find(":checkbox[name='e.payTwo']")[0].checked=false;
 				$form.find('#claimTwo').css("display","none");
@@ -369,7 +379,7 @@ bc.caseAccidentForm = {
 		
 		//绑定保险公司赔付 隐藏受款司机内容（二次送保）
 		$form.find(":checkbox[name='e.claimTwo']").change(function(){
-			if($(this)[0].checked==false){
+			if(!$(this)[0].checked){
 				$form.find(":checkbox[name='e.payTwo']")[0].checked=false;
 				$form.find('#payTwo').css("display","none");
 			}
@@ -452,11 +462,8 @@ bc.caseAccidentForm = {
 	save: function(){
 		$page=$(this);
 		logger.info("save");
-		if(($page.find(":checkbox[name='e.pay']")[0].checked==true
-				&&$page.find(":checkbox[name='e.deliverSecond']")[0].checked==false)
-				||($page.find(":checkbox[name='e.pay']")[0].checked==true
-						&&$page.find(":checkbox[name='e.payTwo']")[0].checked==true)
-				){
+		if(($page.find(":checkbox[name='e.pay']")[0].checked&&$page.find(":checkbox[name='e.deliverSecond']")[0].checked)
+				||($page.find(":checkbox[name='e.pay']")[0].checked&&$page.find(":checkbox[name='e.payTwo']")[0].checked)){
 				logger.info("save2");
 				bc.msg.confirm("你好，已勾选受款司机，确定要结案吗？",function(){
 					$page.find(":input[name='isClosed']").val("1");

@@ -6,7 +6,7 @@
 	data-initMethod='bc.caseTrafficForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="caseTrafficForm" theme="simple">
-		<div class="formFields ui-widget-content" style="width:800px;">
+		<div class="formFields ui-widget-content">
 			<table class="formFields" cellspacing="2" cellpadding="0">
 				<tbody>
 					<tr class="widthMarker">
@@ -17,7 +17,7 @@
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="runcase.subject"/>:</td>
-						<td class="value" colspan="3"><s:textfield name="e.subject" cssStyle="width:51em;" data-validate="required" cssClass="ui-widget-content"/></td>
+						<td class="value" colspan="3"><s:textfield name="e.subject" data-validate="required" cssClass="ui-widget-content"/></td>
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="runcase.address"/>:</td>
@@ -48,7 +48,7 @@
 						</td>
 						<td class="label" ><s:text name="runcase.from"/>:</td>
 						<td class="value" >
-							<s:textfield name="e.from" cssClass="ui-widget-content" cssStyle="width: 15em" />(<s:property value="sourceStr"/>)
+							<s:textfield name="e.from" cssClass="ui-widget-content" cssStyle="width: 10em" />(<s:property value="sourceStr"/>)
 						</td>
 					</tr>
 					<tr>
@@ -150,12 +150,14 @@
 								visibility: hidden;
 							</s:else>
 							">
-							<span style="position:relative;">
+							<div style="position:relative;">
 								<input type="text" name="e.deliverDate" data-validate='{"type": "date"}'
 								value='<s:date format="yyyy-MM-dd" name="e.deliverDate" />'
 								class="bc-date ui-widget-content" data-cfg='{changeYear:true}'/>
-								<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectDeliverDate"></span>
-							</span>
+								<ul class="inputIcons">
+									<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.deliverDate'></li>
+								</ul>
+							</div>
 						</td>
 						<td id="tdTitle2" class="label" style="
 							<s:if test="%{e.signDate != null}">
@@ -175,27 +177,19 @@
 								visibility: hidden;
 							</s:else>
 							">
-							<span style="position:relative;">
+							<div style="position:relative;">
 								<input type="text" name="e.signDate" data-validate='{"type": "datetime"}'
 								value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.signDate" />'
-								class="bc-datetime ui-widget-content" data-cfg='{changeYear:true}'/>
-								<span class="selectButton verticalMiddle ui-icon ui-icon-calendar" id="selectDeliverDate"></span>
-							</span>
+								class="bc-datetime ui-widget-content" data-cfg='{changeYear:true,showSecond:true}'/>
+								<ul class="inputIcons">
+									<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.signDate'></li>
+								</ul>
+							</div>
 						</td>
 					</tr>
 					<tr>
-						<td class="label" >
-							<s:text name="runcase.comment"/>:
-						</td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td class="value" colspan="4"><s:textarea name="e.comment" cssStyle="width:59.7em; text-align:left" rows="4" cssClass="ui-widget-content"/></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td class="topLabel"><s:text name="runcase.comment"/>:</td>
+						<td class="value" colspan="3"><s:textarea name="e.comment" rows="4" cssClass="ui-widget-content noresize"/></td>
 					</tr>
 					<tr>
 						<td class="label" colspan="4">

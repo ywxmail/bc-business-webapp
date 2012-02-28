@@ -14,7 +14,7 @@ bc.selectDateRangeFrom4contractCharger = {
 		
 		//检测编号的唯一性
 		var $code = $page.find(":input[name='code']");
-		bc.contract4ChargerForm.checkCode("",$code.val(),function(json){
+		bc.contract4ChargerForm.checkCode("",$code,function(json){
 			if(json.isExist == "true"){ 
 				//合同编号存在
 				bc.msg.alert("所输入的合同编号已经被占用，请重新输入！");

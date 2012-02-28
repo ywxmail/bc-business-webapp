@@ -298,10 +298,17 @@ bc.caseAdviceForm = {
 	//绑定点击按钮内容展出事件
 	foldingDiv : function (context,spanId,divId){
 		var $form = context;
-		var flip = 1;
+		var flip = 0;
 		$form.find('#'+spanId).click(function(){
 			$(this).toggleClass("ui-icon-carat-1-s ui-icon-carat-1-n");
-			$form.find('#'+divId).toggle( flip++ % 2 == 0 );
+			//$form.find('#'+divId).toggle( flip++ % 2 == 0 );
+			$form.find('#'+divId).toggle('fast',function(){
+				if(flip++ % 2 == 0){
+					$form.find('#'+spanId).attr('title','点击展出内容');
+				}else{
+					$form.find('#'+spanId).attr('title','点击隐藏内容');
+				}
+			});
 		});
 	},
 	
@@ -390,7 +397,8 @@ bc.caseAdviceForm = {
 							bc.page.newWin({
 								url: bc.root + "/bc-business/caseAdvice/open?id="+json.id,
 								name: "查看投诉信息",
-								mid:  "viewcaseAdvice"
+								mid:  "viewcaseAdvice",
+							   from: $page.attr("data-from")
 							})
 							$a.dialog("close");
 							return false;

@@ -8,7 +8,7 @@
 		"width":300,"modal":true
 	}'>
 	<div style="margin:4px;">
-	<s:select name="cars" list="cars" listKey="id+','+motorcade.id+','+motorcade.name" listValue="plateType+'.'+plateNo" theme="simple"
+	<s:select name="cars" list="cars" listKey="id+','+motorcade.id+','+motorcade.name+','+company" listValue="plateType+'.'+plateNo" theme="simple"
 		size="10" cssStyle="width:100%;height:100%;" value="selected"
 		multiple="%{multiple}"></s:select>
 	</div>
