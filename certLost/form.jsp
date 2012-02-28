@@ -41,7 +41,7 @@
 					<s:if test="%{carManId != null || carId !=null}">
 						<td class="value">
 							<div style="position:relative;display: inline-block">
-						 		<s:textfield name="e.driver.name" data-validate="required" readonly="true" cssStyle="width:7.5em;" cssClass="ui-widget-content" />
+						 		<s:textfield name="e.driver.name" readonly="true" cssStyle="width:7.5em;" cssClass="ui-widget-content" />
 								<ul class="inputIcons">
 							 		<li class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="contract.title.click2selectCarMan"/>' id="selectDriverName">
 							 	</ul>
@@ -52,9 +52,9 @@
 				    <s:else>
 						<td class="value">
 							<div style="position:relative;display: inline-block">
-						 		<s:textfield name="e.driver.name" data-validate="required" readonly="true" cssStyle="width:5.5em;" cssClass="ui-widget-content " />
+						 		<s:textfield name="e.driver.name" readonly="true" cssStyle="width:5.5em;" cssClass="ui-widget-content " />
 								<ul class="inputIcons">
-							 		<li class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="contract.title.click2selectCarMan"/>' id="selectDriverName">
+							 		<li class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="certLost.title.click2selectCarMan"/>' id="selectDriverName">
 							 	</ul>
 						 	</div>
 							<s:text name="certLost.certFWZG"/>:<s:textfield name="e.driver.cert4FWZG" cssStyle="width:5.5em;" cssClass="ui-widget-content" />
@@ -99,9 +99,9 @@
 				<span class="text"><s:text name="certLost.certs"/>：</span>
 				<ul class="inputIcons">
 					<li id="addLine" class="inputIcon ui-icon ui-icon-circle-plus"
-						title='<s:text name="title.click2addLine"/>'></li>
+						title='<s:text name="certLost.title.click2addLine"/>'></li>
 					<li id="deleteLine" class="inputIcon ui-icon ui-icon-circle-close"
-						title='<s:text name="title.click2deleteLine"/>'></li>
+						title='<s:text name="certLost.title.click2deleteLine"/>'></li>
 				</ul>
 			</div>
 	    	<div class="bc-grid header">
@@ -151,7 +151,7 @@
 					</td>
 					<td class="middle" style="padding:0;text-align:left;">
 					<div class="relative">
-						<input type="text" name="replaceDate" data-validate='{"type":"date","required":true}' style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"
+						<input type="text" name="replaceDate" data-validate='{"type":"date","required":false}' style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"
 						value='<s:date format="yyyy-MM-dd" name="replaceDate" />'
 						class="bc-date ui-widget-content" />
 						<ul class="inputIcons">
@@ -178,6 +178,10 @@
 					<td class="id first" style="padding:0;text-align:left;"><span class="ui-icon"></span>
 					</td>
 					<td class="middle" style="padding:0;text-align:left;">
+						<s:if test="isReadonly()">
+							<s:textfield name="certName" cssClass="ui-widget-content" cssStyle="width:99%;height:100%;border:none;margin:0;padding:0 0 0 2px;background:none;"/>
+						</s:if>
+						<s:else>
 						<div class="bc-relativeContainer">
 							<input type="text" name="certName" value='<s:property value="certName"/>' style="width:99%;height:100%;border:none;margin:0;padding:0 0 0 2px;background:none;" 
 								class="bc-select ui-widget-content" data-validate="required" 
@@ -187,6 +191,7 @@
 								<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
 							</ul>
 						</div>
+						</s:else>
 					</td>
 					<td class="middle" style="padding:0;text-align:left;">
 						<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" 

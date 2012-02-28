@@ -5,6 +5,20 @@ bc.certLostForm = {
 		//只读状态就不需要执行其它初始化，直接返回
 		if(readonly) return;
 		
+		// 选择申办人
+		$form.find("#selectDriverName").click(function() {
+			var selecteds = $form.find(":input[name='e.driver.id']").val();
+			bs.selectDriver({
+				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
+				onOk : function(driver) {
+					$form.find(":input[name='e.driver.id']").val(driver.id);
+					$form.find(":input[name='e.driver.name']").val(driver.name);
+					$form.find(":input[name='e.driver.cert4FWZG']").val(driver.cert4FWZG);
+				}
+			});
+		});
+
+		
 		//------------绑定选择车辆按钮事件开始-------------------
 		$form.find("#selectCar").click(function() {
 			var selecteds = $form.find(":input[name='e.carPlate']").val();
@@ -165,7 +179,7 @@ bc.certLostForm = {
 			cell.style.textAlign="left";
 			cell.setAttribute("class","middle");
 			cell.innerHTML='<div class="relative">'
-							+'	<input type="text" name="replaceDate" data-validate=\'{"type":"date","required":true}\''
+							+'	<input type="text" name="replaceDate" data-validate=\'{"type":"date","required":false}\''
 							+'  style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;" class="bc-date ui-widget-content" >'
 							+'	<ul class="inputIcons">'
 							+'		<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>'
