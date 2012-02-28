@@ -143,7 +143,7 @@ bc.contract4ChargerForm = {
 			if(!code || code.length == 0)
 				return false;
 			
-			bc.contract4ChargerForm.checkCode($form.find(":input[name='e.id']").val(),$code.val());
+			bc.contract4ChargerForm.checkCode($form.find(":input[name='e.id']").val(),$code,null);
 		});
 		
 	},
@@ -156,12 +156,12 @@ bc.contract4ChargerForm = {
 	/**
 	 * 绑定失去焦点自编号唯一性检测
 	 */
-	checkCode : function (excludeId,code,callback){
+	checkCode : function (excludeId,$code,callback){
 		var url = bc.root + "/bc-business/contract4Charger/checkCodeIsExist";
 		$.ajax({
 			url: url,
 			dataType:"json",
-			data: {code : code,excludeId: excludeId},
+			data: {code : $code.val(),excludeId: excludeId},
 			success: function (json){
 				// 自定义回调函数
 				if(typeof callback == "function"){
@@ -222,7 +222,6 @@ bc.contract4ChargerForm = {
 				mid: "contract4Charger" + $page.find(":input[name='e.id']").val(),
 				url: bc.root + "/bc-business/contract4Charger/edit",
 				data: {id: $page.find(":input[name='e.id']").val()},
-				from: $page.attr("data-mid"),
 				afterClose: function(status){
 					if(status) bc.grid.reloadData($page);
 				}
@@ -264,7 +263,9 @@ bc.contract4ChargerForm = {
 								url: bc.root + "/bc-business/contract4Charger/edit?id="+json.id,
 								name: $page.find(":input[name='e.ext_str1']").val() + "&nbsp;经济合同续约",
 								mid: "contract4Charger." + json.id,
-								 from: $page.attr("data-from")
+								afterClose: function(status){
+									if(status) bc.grid.reloadData($page);
+								}
 							})
 							$a.dialog("close");
 							return false;
@@ -322,7 +323,9 @@ bc.contract4ChargerForm = {
 								url: bc.root + "/bc-business/contract4Charger/edit?id="+json.id,
 								name: $page.find(":input[name='e.ext_str1']").val() + "&nbsp;经济合同过户",
 								mid: "contract4Charger." + json.id,
-								 from: $page.attr("data-from")
+								afterClose: function(status){
+									if(status) bc.grid.reloadData($page);
+								}
 							})
 							$a.dialog("close");
 							return false;

@@ -147,7 +147,10 @@ bs.infoCenter = {
 			sh += $(this).outerHeight(true);
 		});
 		logger.debug("sh=" + sh);
-		$left.find(".results").css("top", sh);
+		var $leftLast = $left.find("#last");
+		sh = $leftLast.position().top + $leftLast.outerHeight(true);
+		logger.debug("sh2=" + sh);
+		$left.find(".results").css("top", sh).show();
 
 		//搜索框回车执行搜索
 		$left.find("#searchText").keyup(function(e) {
@@ -341,8 +344,8 @@ bs.infoCenter = {
 							+'<td class="label" style="width: 6em;">身份证号码:</td>'
 							+'<td class="value" style="width: 20em;"><input type="text" class="ui-widget-content" readonly="readonly" value="' + man.identity + '"/></td>'
 							
-							+'<td rowspan="6" class="desc' + ($.browser.safari ? "-webkit" : "") + '"><textarea class="ui-widget-content noresize"' 
-							+' readonly="readonly" style="height:8.5em;">' + man.desc + '</textarea></td>'
+							+'<td rowspan="6" class="' + ($.browser.safari ? "desc-webkit" : "desc2") + '"><textarea class="ui-widget-content noresize"' 
+							+' readonly="readonly">' + man.desc + '</textarea></td>'
 							+'</tr>'
 							
 							+'<tr>'

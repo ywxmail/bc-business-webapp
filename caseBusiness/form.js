@@ -184,6 +184,7 @@ bc.caseBusinessForm = {
 					
 		});
 		
+		//负责人
 		$form.find("#selectChargerName").click(function() {
 			var selecteds = $form.find(":input[name='e.chargerName']").val();
 			bs.selectCharger({
@@ -224,7 +225,43 @@ bc.caseBusinessForm = {
 					$form.find(":input[name='e.receiverName']").val(user.name);
 				}
 			});
-		})
+		});
+		
+		// 经办人
+		$form.find("#selectTransactorName").click(function(){
+			bc.identity.selectUser({
+				history: true,
+				selecteds: $form.find(":input[name='e.transactorName']").val(),
+				onOk : function(user) {
+					$form.find(":input[name='e.transactorId']").val(user.id);
+					$form.find(":input[name='e.transactorName']").val(user.name);
+				}
+			});
+		});
+		
+		// 分公司负责人id
+		$form.find("#selectBranchChargerName").click(function(){
+			bc.identity.selectUser({
+				history: true,
+				selecteds: $form.find(":input[name='e.branchChargerName']").val(),
+				onOk : function(user) {
+					$form.find(":input[name='e.branchChargerId']").val(user.id);
+					$form.find(":input[name='e.branchChargerName']").val(user.name);
+				}
+			});
+		});
+		
+		// 公司审批人姓名
+		$form.find("#selectCompanyApprovalName").click(function(){
+			bc.identity.selectUser({
+				history: true,
+				selecteds: $form.find(":input[name='e.companyApprovalName']").val(),
+				onOk : function(user) {
+					$form.find(":input[name='e.companyApprovalId']").val(user.id);
+					$form.find(":input[name='e.companyApprovalName']").val(user.name);
+				}
+			});
+		});
 
 	},
 	
@@ -248,10 +285,17 @@ bc.caseBusinessForm = {
 	//绑定点击按钮内容展出事件
 	foldingDiv : function (context,spanId,divId){
 		var $form = context;
-		var flip = 1;
+		var flip = 0;
 		$form.find('#'+spanId).click(function(){
 			$(this).toggleClass("ui-icon-carat-1-s ui-icon-carat-1-n");
-			$form.find('#'+divId).toggle( flip++ % 2 == 0 );
+			//$form.find('#'+divId).toggle( flip++ % 2 == 0 );
+			$form.find('#'+divId).toggle('fast',function(){
+				if(flip++ % 2 == 0){
+					$form.find('#'+spanId).attr('title','点击展出内容');
+				}else{
+					$form.find('#'+spanId).attr('title','点击隐藏内容');
+				}
+			});
 		});
 	},
 	

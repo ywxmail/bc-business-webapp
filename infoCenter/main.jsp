@@ -70,13 +70,7 @@
 			<li class="empty">(无匹配项)</li>
 			<!-- 
 			<li class="">[<span class="code ellipsis"></span>]<span class="plate">粤A.XXXX1</span></li>
-			<li class="">[<span class="code ellipsis">1</span>]<span class="plate">粤A.XXXX1</span></li>
-			<li class="">[<span class="code ellipsis">12</span>]<span class="plate">粤A.XXXX1</span></li>
-			<li class="">[<span class="code ellipsis">123</span>]<span class="plate">粤A.XXXX1</span></li>
 			<li class="active ui-state-highlight">[<span class="code ellipsis">1234</span>]<span class="plate">粤A.XXXX1</span></li>
-			<li class="">[<span class="code ellipsis">12345</span>]<span class="plate">粤A.XXXX1</span></li>
-			<li class="">[<span class="code ellipsis">123456</span>]<span class="plate">粤A.XXXX1</span></li>
-			<li class="" title="[1234567]粤A.XXXX1">[<span class="code ellipsis">1234567</span>]<span class="plate">粤A.XXXX1</span></li>
 			 -->
 		</ul>
 	</div>
@@ -165,12 +159,13 @@
 				<table class="contentTable0" cellspacing="0" cellpadding="0" style="width:auto;">
 					<tbody id="msgsBody" >
 						<tr class="first header">
-							<td class="first ui-widget-content" style="min-width: 55px">类别</td>
-							<td class="middle ui-widget-content" style="min-width: 85px">限制项目</td>
-							<td class="middle ui-widget-content" style="min-width: 50px">关系人</td>
+							<td class="first ui-widget-content" style="min-width: 4em">类别</td>
+							<td class="middle ui-widget-content" style="min-width: 6em">限制项目</td>
+							<td class="middle ui-widget-content" style="min-width: 4em">关系人</td>
 							<td class="middle ui-widget-content" >内容</td>
-							<td class="last ui-widget-content" style="min-width: 85px">相关日期</td>
+							<td class="last ui-widget-content" style="min-width: 6em">相关日期</td>
 						</tr>
+						<!-- 
 						<tr class="middle odd">
 							<td class="first ui-widget-content">黑名单</td>
 							<td class="middle ui-widget-content">停办一切业务</td>
@@ -191,7 +186,7 @@
 							<td class="middle ui-widget-content">【司机姓名】</td>
 							<td class="middle ui-widget-content">不可退押金;JN245司机杨龙江迁出</td>
 							<td class="last ui-widget-content">2011-01-01</td>
-						</tr>
+						</tr> -->
 					</tbody>
 				</table>
 			</div>
@@ -208,22 +203,23 @@
 			<div class="content ui-widget-content unshowDisabled" style="padding:0;">
 				<table class="title contentTable0" cellspacing="0" cellpadding="0">
 					<tbody id="mansBody">
+						<!-- 
 						<tr class="active top header first">
-							<td class="first aright ui-widget-content" style="width: 90px">司机和责任人:</td>
-							<td class="middle aleft ui-widget-content" style="width: 80px">张三(男)</td>
-							<td class="middle aright ui-widget-content" style="width: 40px">电话:</td>
-							<td class="last aleft ui-widget-content" style="width: 190px">13611112222,13611112222</td>
-							<td class="middle aright ui-widget-content" style="width: 40px">状态:</td>
+							<td class="first aright ui-widget-content" style="width: 7em">司机和责任人:</td>
+							<td class="middle aleft ui-widget-content" style="width: 7em">张三(男)</td>
+							<td class="middle aright ui-widget-content" style="width: 3em">电话:</td>
+							<td class="last aleft ui-widget-content" style="width: 15em">13611112222,13611112222</td>
+							<td class="middle aright ui-widget-content" style="width: 3em">状态:</td>
 							<td class="last aleft ui-widget-content">新入职 (2012-01-01)</td>
 						</tr>
 						<tr class="active detail">
 							<td colspan="6" style="padding:0;">
 								<table class="contentTable" cellspacing="2" cellpadding="0" style="height: auto;">
 									<tr>
-										<td rowspan="6" style="width: 87px;"><img id="portrait" style="width:86.4px;height:110px;cursor: pointer;" 
+										<td rowspan="6" style="width: 87px;"><img id="portrait" style="width:86.4px;cursor: pointer;" 
 											src="/bs/bc/image/download?ptype=portrait&amp;puid=carMan.uid.4&ts=1329753139367"></td>
-										<td class="label" style="width: 80px;">身份证号码:</td>
-										<td class="value" style="width: 250px;"><input type="text" name="man.identity" class="ui-widget-content" 
+										<td class="label" style="width: 6em;">身份证号码:</td>
+										<td class="value" style="width: 18em;"><input type="text" name="man.identity" class="ui-widget-content" 
 											value=""/></td>
 										<td rowspan="6" style="position: relative;"><textarea name="main.desc" class="ui-widget-content noresize" 
 											style="position:absolute;left:0;right:0;bottom:-2px;top:-2px;" readonly="readonly"></textarea></td>
@@ -244,20 +240,20 @@
 									<tr>
 										<td class="label">资格证号:</td>
 										<td class="value"><input type="text" name="man.cert4fwzg" class="ui-widget-content" 
-											readonly="readonly" style="width:86px"/>&nbsp;&nbsp;户口性质:&nbsp;<input 
-											type="text" name="man.houseType" class="ui-widget-content" readonly="readonly" style="width:86px"/></td>
+											readonly="readonly" style="width:5em"/>&nbsp;&nbsp;户口性质:&nbsp;<input 
+											type="text" name="man.houseType" class="ui-widget-content" readonly="readonly" style="width:5em"/></td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr class="disabled top header ui-state-disabled">
-							<td class="first aright ui-widget-content" style="width: 90px">司机和责任人:</td>
-							<td class="middle aleft ui-widget-content" style="width: 80px">张三(男)</td>
-							<td class="middle aright ui-widget-content" style="width: 40px">电话:</td>
-							<td class="last aleft ui-widget-content" style="width: 190px">13611112222,13611112222</td>
-							<td class="middle aright ui-widget-content" style="width: 40px">状态:</td>
+							<td class="first aright ui-widget-content" style="width: 7em">司机和责任人:</td>
+							<td class="middle aleft ui-widget-content" style="width: 7em">张三(男)</td>
+							<td class="middle aright ui-widget-content" style="width: 3em">电话:</td>
+							<td class="last aleft ui-widget-content" style="width: 15em">13611112222,13611112222</td>
+							<td class="middle aright ui-widget-content" style="width: 3em">状态:</td>
 							<td class="last aleft ui-widget-content">新入职 (2011-01-01)</td>
-						</tr>
+						</tr> -->
 					</tbody>
 				</table>
 			</div>

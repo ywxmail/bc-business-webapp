@@ -14,11 +14,14 @@ bs.selectMoreCar = {
 			alert("必须先选择车辆信息！");
 			return false;
 		}
-		var item;
+		var selectArray=select.value.split(",");
 		var item=[];
 		//单选
-		var item={id: select.value.split(",")[0],motorcadeId:select.value.split(",")[1],
-				motorcadeName:select.value.split(",")[2],
+		var item={
+				id: selectArray[0],
+				motorcadeId:selectArray[1],
+				motorcadeName:selectArray[2],
+				company:selectArray[3],
 				name: select.options[select.selectedIndex].text};
 		$page.data("data-status",item);
 		$page.dialog("close");

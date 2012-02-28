@@ -328,12 +328,17 @@ td.desc-webkit textarea {
 	bottom: -2px;
 	top: -2px;
 }
-td.desc{
-}
 
 td.desc textarea {
 	width:98%;
 	height:15em;
+	height:16.2em\9;;/*ie6-8*/
+	overflow: auto;
+}
+
+td.desc2 textarea {
+	width:98%;
+	height:8.5em;
 	height:8.5em\9;;/*ie6-8*/
 	overflow: auto;
 }

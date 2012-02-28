@@ -18,7 +18,7 @@
 							 <tr>
 							 	<td class="label">*<s:text name="policy.carId"/>:</td>
 												<s:if test="%{carId != null}">
-						                          <td class="value "><s:textfield name="plate" value="%{e.car.plateType+'.'+e.car.plateNo }" readonly="true" cssClass="ui-state-disabled"/></td>
+						                          <td class="value "><s:textfield name="plate" value="%{e.car.plateType+'.'+e.car.plateNo }" readonly="true" cssClass="ui-widget-content"/></td>
 					                            </s:if><s:else>
 					                               <td class="value relative">
 												      <div class="input ui-widget-content" data-validate="required" ><span class="link showCar" 
