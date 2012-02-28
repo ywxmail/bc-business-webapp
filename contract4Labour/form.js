@@ -215,7 +215,6 @@ bc.contract4LabourForm = {
 				mid: "contract4Labour" + $page.find(":input[name='e.id']").val(),
 				url: bc.root + "/bc-business/contract4Labour/edit",
 				data: {id: $page.find(":input[name='e.id']").val()},
-				from: $page.attr("data-mid"),
 				afterClose: function(status){
 					if(status) bc.grid.reloadData($page);
 				}
@@ -249,7 +248,7 @@ bc.contract4LabourForm = {
 						var str = json.msg.split(" ")[2];
 						str = "<a id='chakan' href=#>"+str+"</a>";
 						str = json.msg.split(" ")[0]+" "+json.msg.split(" ")[1]+" "+str+" "+json.msg.split(" ")[3];
-						alert($page.attr("data-mid"));
+						var $a = bc.msg.alert(str);
 						$a.find('#chakan').click(function(){
 							bc.page.newWin({
 								url: bc.root + "/bc-business/contract4Labour/open?id="+json.id,

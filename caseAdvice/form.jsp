@@ -16,7 +16,7 @@
 		<div class="formTable2 ui-widget-content" style="width:710px;">
 			<div class="ui-widget-header title" style="position:relative;">
 				<span class="text" >车辆司机信息:</span>
-				<span id="showGroups1" class="verticalMiddle ui-icon ui-icon-carat-1-s" title='<s:text name="runcase.title.click2ShowGroups"/>'></span>
+				<span id="showGroups1" class="verticalMiddle ui-icon ui-icon-carat-1-n" title='<s:text name="runcase.title.click2HiddenGroups"/>'></span>
 			</div>
 			<div id="div1">
 				<table class="formFields" cellspacing="2" cellpadding="0">
@@ -120,7 +120,7 @@
 		<div class="formTable2 ui-widget-content" style="width:710px;">
 			<div class="ui-widget-header title" style="position:relative;">
 				<span class="text" >投诉信息:</span>
-				<span id="showGroups2" class="verticalMiddle ui-icon ui-icon-carat-1-s" title='<s:text name="runcase.title.click2ShowGroups"/>'></span>
+				<span id="showGroups2" class="verticalMiddle ui-icon ui-icon-carat-1-n" title='<s:text name="runcase.title.click2HiddenGroups"/>'></span>
 			</div>
 			<div id="div2">
 				<table class="formFields" cellspacing="2" cellpadding="0">
@@ -264,7 +264,7 @@
 		<div class="formTable2 ui-widget-content" style="width:710px;">
 			<div class="ui-widget-header title" style="position:relative;">
 				<span class="text" >处理信息:</span>
-				<span id="showGroups3" class="verticalMiddle ui-icon ui-icon-carat-1-s" title='<s:text name="runcase.title.click2ShowGroups"/>'></span>
+				<span id="showGroups3" class="verticalMiddle ui-icon ui-icon-carat-1-n" title='<s:text name="runcase.title.click2HiddenGroups"/>'></span>
 			</div>
 			<div id="div3" class="content">
 				<table class="formFields" cellspacing="2" cellpadding="0">
@@ -303,12 +303,12 @@
 						<tr>
 							<td class="label"><s:text name="runcase.stopProduction"/>:</td>
 							<td class="value">
-								<s:select name="e.stopProduction" list='#{"1":"一天","2":"二天","3":"三天","4":"四天",
+								<s:select name="e.stopProduction" list='#{"0":"","1":"一天","2":"二天","3":"三天","4":"四天",
 								"5":"五天"}' cssClass="ui-widget-content" listKey="key" listValue="value"/>
 							</td>
 							<td class="label"><s:text name="runcase.study"/>:</td>
 							<td class="value">
-								<s:select name="e.study" list='#{"1":"一天","2":"二天","3":"三天","4":"四天",
+								<s:select name="e.study" list='#{"0":"","1":"一天","2":"二天","3":"三天","4":"四天",
 								"5":"五天"}' cssClass="ui-widget-content" listKey="key" listValue="value"/>
 							</td>
 						</tr>
@@ -370,7 +370,7 @@
 			<div class="formTable2 ui-widget-content" style="width:710px;">
 				<div class="ui-widget-header title" style="position:relative;">
 					<span class="text" >核准信息:</span>
-					<span id="showGroups4" class="verticalMiddle ui-icon ui-icon-carat-1-s" title='<s:text name="runcase.title.click2ShowGroups"/>'></span>
+					<span id="showGroups4" class="verticalMiddle ui-icon ui-icon-carat-1-n" title='<s:text name="runcase.title.click2HiddenGroups"/>'></span>
 				</div>
 				<div id="div4" class="content">
 					<table class="formFields" cellspacing="2" cellpadding="0">
