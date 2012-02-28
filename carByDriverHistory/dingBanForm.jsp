@@ -83,7 +83,7 @@
 					</tr>
 					<tr>
 						<td class="topLabel" ><s:text name="carByDriverHistory.description"/>:</td>
-						<td class="value" rowspan="5"><s:textarea name="e.description" rows="5" cssClass="ui-widget-content noresize"/></td>
+						<td class="value"><s:textarea name="e.description" rows="5" cssClass="ui-widget-content noresize"/></td>
 					</tr>
 					<tr>
 						<td class="label" colspan="2" rowspan="2">
