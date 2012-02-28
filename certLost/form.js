@@ -12,7 +12,7 @@ bc.certLostForm = {
 				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
 				onOk : function(driver) {
 					$form.find(":input[name='e.driver.id']").val(driver.id);
-					$form.find(":input[name='e.driver.name']").val(driver.name);
+					$form.find(":input[name='e.driverNane']").val(driver.name);
 					$form.find(":input[name='e.driver.cert4FWZG']").val(driver.cert4FWZG);
 				}
 			});
@@ -48,14 +48,12 @@ bc.certLostForm = {
 							logger.info("drivers=" + $.toJSON(drivers));
 							if(drivers.length==0){
 								$form.find(":input[name='e.driver.id']").val("");
-								$form.find(":input[name='e.driverName']").val("");
 								$form.find(":input[name='e.driver.cert4FWZG']").val("");
-								$form.find(":input[name='e.driver.name']").val("");
+								$form.find(":input[name='e.driverNane']").val("");
 								bc.msg.alert("该车辆还没有被任何司机驾驶！");
 								//按照司机信息更新表单相应的域
 								function updateFieldsFromDriver(driver){
 									$form.find(":input[name='e.driver.id']").val(driver.id);
-									$form.find(":input[name='e.driver.name']").val(driver.name);
 									$form.find(":input[name='e.driverNane']").val(driver.name);
 									$form.find(":input[name='e.driver.cert4FWZG']").val(driver.cert4FWZG);
 								};

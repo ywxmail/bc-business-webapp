@@ -41,7 +41,7 @@
 					<s:if test="%{carManId != null || carId !=null}">
 						<td class="value">
 							<div style="position:relative;display: inline-block">
-						 		<s:textfield name="e.driver.name" readonly="true" cssStyle="width:7.5em;" cssClass="ui-widget-content" />
+						 		<s:textfield name="e.driverNane" readonly="true" cssStyle="width:7.5em;" cssClass="ui-widget-content" />
 								<ul class="inputIcons">
 							 		<li class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="contract.title.click2selectCarMan"/>' id="selectDriverName">
 							 	</ul>
@@ -52,7 +52,7 @@
 				    <s:else>
 						<td class="value">
 							<div style="position:relative;display: inline-block">
-						 		<s:textfield name="e.driver.name" readonly="true" cssStyle="width:5.5em;" cssClass="ui-widget-content " />
+						 		<s:textfield name="e.driverNane" readonly="true" cssStyle="width:5.5em;" cssClass="ui-widget-content " />
 								<ul class="inputIcons">
 							 		<li class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="certLost.title.click2selectCarMan"/>' id="selectDriverName">
 							 	</ul>
@@ -244,7 +244,6 @@
 		<s:hidden name="e.modifier.id"/>
 		<s:hidden name="certs"/>
 		<s:hidden name="certLists" value="%{certNames}"/>
-		<s:hidden name="e.driverNane"/>
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 	</s:form>
 </div>
