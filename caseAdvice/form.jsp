@@ -428,6 +428,7 @@
 	<s:hidden name="e.type" />
 	<s:hidden name="e.branchChargerId" />
 	<s:hidden name="e.companyApprovalId" />
+	<s:hidden name="e.transactorId" />
 	<s:hidden name="e.charger"/>
 	<s:hidden name="e.handlerId"/>
 	<s:hidden name="e.handleStatus"/>

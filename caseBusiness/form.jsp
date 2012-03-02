@@ -364,6 +364,9 @@
 		<s:hidden name="e.status" />
 		<s:hidden name="e.syncUid" />
 		<s:hidden name="e.syncId" />
+		<s:hidden name="e.transactorId" />
+		<s:hidden name="e.branchChargerId" />
+		<s:hidden name="e.companyApprovalId" />
 		<s:hidden name="isMoreCar" />
 		<s:hidden name="isMoreCarMan" />
 		<s:hidden name="carId" />
