@@ -183,7 +183,58 @@ bc.contract4LabourForm = {
 				getDates.not( this ).datepicker( "option", option, date );
 			}
 		});
+	
+		//绑定点击查询社保号唯一性检测
+		$page.find("#selectInsurCode").bind("click",function(){
+			var $insurCode = $page.find(":input[name='e.insurCode']");
+			var insurCode = $insurCode.val();
+			if(!insurCode || insurCode.length == 0)
+				return false;
+			bc.contract4LabourForm.checkCode($page.find(":input[name='e.id']").val(),$insurCode,null);
+		});
 	},
+	
+	/**
+	 * 查询社保号唯一性检测
+	 */
+	checkCode : function (excludeId,$insurCode,callback){
+		var url = bc.root + "/bc-business/contract4Labour/checkInsurCodeIsExist";
+		$.ajax({
+			url: url,
+			dataType:"json",
+			data: {insurCode : $insurCode.val(),excludeId: excludeId},
+			success: function (json){
+				// 自定义回调函数
+				if(typeof callback == "function"){
+					return callback.call(this,json);
+				}
+				
+				// 默认的处理
+				if(json.isExist == "true"){ //社保编号存在
+					//组装提示查看信息
+					var tempAry = json.msg.split(" ");
+					var str = tempAry[2];
+					str = "<a id='chakan' href=#>"+str+"</a>";
+					str = tempAry[0]+" "+tempAry[1]+" "+str+" "+tempAry[3];
+					var $a = bc.msg.alert(str);
+					$a.find('#chakan').click(function(){
+						bc.page.newWin({
+							url: bc.root + "/bc-business/carMan/edit?id="+json.carManId,
+							name: "查看司机信息",
+							mid:  "contract4Charger." + json.carManId
+//							afterClose: function(){
+//								$$insurCode.focus();
+//							}
+						})
+						$a.dialog("close");
+					});
+				}else{
+					bc.msg.slide("此社保编号没有被占用,可以使用!");
+				}
+			}
+		});
+	},
+
 	
 	/**
 	 * 操作按钮的回调函数
@@ -342,5 +393,22 @@ bc.contract4LabourForm = {
 				});
 			}
 		});
+	},
+	
+	//保存的处理
+	save:function(){
+		$page = $(this);
+		//唯一性检测
+		var option = { callback : function (json){
+				if(json.success){
+					bc.msg.slide(json.msg);
+				}else{
+					bc.msg.alert(json.msg);
+				}
+				return false;
+			}
+		};
+		//调用标准的方法执行保存
+		bc.page.save.call(this,option);
 	}
 };

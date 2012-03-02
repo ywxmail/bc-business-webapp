@@ -52,7 +52,7 @@
 												<div style="position : relative; display: inline-block">
 													&nbsp;从<input type="text" name="e.startDate" readonly="readonly" data-validate='{"type":"date","required":true}' 
 														value='<s:date format="yyyy-MM-dd" name="e.startDate" />' 
-														style="width: 7em;" class="bc-date ui-widget-content" />
+														style="width: 7em;" class="bc-date ui-widget-content"/>
 														<ul class="inputIcons" style="right : 0px;">
 															<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.startDate' ></li>
 														</ul>
@@ -60,7 +60,7 @@
 												<div style="position : relative; display: inline-block">
 													&nbsp;到<input type="text" name="e.endDate" readonly="readonly" data-validate='{"type":"date","required":true}'
 														value='<s:date format="yyyy-MM-dd" name="e.endDate" />'
-														style="width: 7em;" class="bc-date ui-widget-content" />
+														style="width: 7em;" class="bc-date ui-widget-content"/>
 														<ul class="inputIcons" style="right : 0px;">
 															<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.endDate' ></li>
 														</ul>
@@ -100,7 +100,7 @@
 												<td class="value" style="position:relative;display: block;">
 													<input type="text" name="e.registerDate" data-validate='{"type":"date"}'
 													value='<s:date format="yyyy-MM-dd" name="e.registerDate" />'
-													class="bc-date ui-widget-content" data-cfg='{changeYear:true}' />
+													class="bc-date ui-widget-content" data-cfg='{changeYear:true,changeMonth:true}' />
 													<ul class="inputIcons">
 														<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.registerDate'></li>
 													</ul>
@@ -191,7 +191,12 @@
 											</tr>
 											<tr>
 												<td class="label">*<s:text name="contract4Labour.insurCode"/>:</td>
-												<td class="value"><s:textfield name="e.insurCode" data-validate="required" cssClass="ui-widget-content"/></td>
+												<td class="value relative">
+													<s:textfield name="e.insurCode" data-validate="required" cssClass="ui-widget-content"/>
+													<ul class="inputIcons">
+														<li class="inputIcon ui-icon ui-icon-lightbulb" title='<s:text name="点击查询此社保号是否被占用"/>' id="selectInsurCode">
+													</ul>
+												</td>
 												<td class="label">*<s:text name="contract4Labour.joinDate"/>:</td>
 												<td class="value" style="position:relative;display: block;">
 													<input type="text" name="e.joinDate" data-validate='{"type":"date","required":true}'
