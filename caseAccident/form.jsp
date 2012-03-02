@@ -9,9 +9,9 @@
 			<table class="formTable2 ui-widget-content" cellspacing="2" cellpadding="0" style="width:800px;">
 				<tbody>
 					<tr class="widthMarker">
-						<td style="width: 60px;"></td>
+						<td style="width: 80px;"></td>
 						<td style="width: 320px;">&nbsp;</td>
-						<td style="width: 60px;">&nbsp;</td>
+						<td style="width: 80px;">&nbsp;</td>
 						<td >&nbsp;</td>
 					</tr>
 					<tr>
@@ -229,7 +229,7 @@
 								</tr>
 								<tr>
 									<td class="label"><s:text name="runcase.trailerCost" />(元):</td>
-									<td class="value"><s:textfield name="e.carmanCost" cssClass="ui-widget-content" cssStyle="width:250px;" 
+									<td class="value"><s:textfield name="e.carmanCost" cssClass="ui-widget-content"  
 																   value="%{getText('bs.format.numberRMB',{e.carmanCost})}"  data-validate="money" /></td>
 									<td class="label"><s:text name="runcase.carWounding" />(元):</td>
 									<td class="value"><s:textfield name="e.carWounding" cssClass="ui-widget-content" 
@@ -237,7 +237,7 @@
 								</tr>
 								<tr>
 									<td class="label"><s:text name="runcase.carHurt" />:</td>
-									<td class="value"><s:textfield name="e.carHurt" cssClass="ui-widget-content" cssStyle="width:250px;" /></td>
+									<td class="value"><s:textfield name="e.carHurt" cssClass="ui-widget-content"  /></td>
 									<td class="label"></td>
 									<td class="value"></td>
 								</tr>
@@ -256,18 +256,23 @@
 								</tr>
 									<tr>
 									<td class="label"><s:text name="runcase.thirdLoss" />(元):</td>
-									<td class="value"><s:textfield name="e.thirdLoss" cssClass="ui-widget-content" cssStyle="width:250px;"
+									<td class="value"><s:textfield name="e.thirdLoss" cssClass="ui-widget-content" 
 																   value="%{getText('bs.format.numberRMB',{e.thirdLoss})}"  data-validate="money"  /></td>
 									<td class="label"><s:text name="runcase.trailerCost" />(元):</td>
 									<td class="value"><s:textfield name="e.thirdCost" cssClass="ui-widget-content"  /></td>
 								</tr>
 								<tr>
 									<td class="label"><s:text name="runcase.third.hurt" />(元):</td>
-									<td class="value"><s:textfield name="e.thirdWounding" cssClass="ui-widget-content" cssStyle="width:250px;" 
+									<td class="value"><s:textfield name="e.thirdWounding" cssClass="ui-widget-content"  
 																   value="%{getText('bs.format.numberRMB',{e.thirdWounding})}"  data-validate="money" /></td>
 									<td class="label"><s:text name="runcase.medicalFee" />(元):</td>
 									<td class="value"><s:textfield name="e.medicalFee" cssClass="ui-widget-content" 
 																   value="%{getText('bs.format.numberRMB',{e.medicalFee})}"  data-validate="money"  /></td>
+								</tr>
+								<tr>
+									<td class="label"><s:text name="runcase.accident.thirdLossInfo" />:</td>
+									<td class="value"><s:textfield name="e.thirdLossInfo" cssClass="ui-widget-content" /></td>
+							
 								</tr>
 							</tbody>
 						</table>
