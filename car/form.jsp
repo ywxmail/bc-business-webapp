@@ -560,6 +560,7 @@
 		<s:hidden name="e.driver"/>
 		<s:hidden name="e.charger"/>
 		<s:hidden name="e.originalValue"/>
+		<s:hidden name="e.rentNo"/>
 		<s:if test="!e.isNew()">
 		<s:hidden name="e.company"/>
 		<s:hidden name="e.motorcade.id"/>
