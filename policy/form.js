@@ -2,6 +2,12 @@ if(!window['bs'])window['bs']={};
 bc.policyForm = {
 	init : function(option,readonly) {
 		var $form=$(this);
+		
+		//如果选中强制险是否与商业险同期选择框则将强制险的保险期限隐藏
+		if($form.find(":checkbox[name='e.greenslipSameDate']")[0].checked==true){
+			$form.find('#greenslipSameDateFieldset').css("visibility","hidden");
+		}
+		
 		//只读状态就不需要执行其它初始化，直接返回
 		if(readonly) return;
 		//是否购买强制险
@@ -52,10 +58,7 @@ bc.policyForm = {
 			}
 		});
 		
-		//如果选中强制险是否与商业险同期选择框则将强制险的保险期限隐藏
-		if($form.find(":checkbox[name='e.greenslipSameDate']")[0].checked==true){
-			$form.find('#greenslipSameDateFieldset').css("visibility","hidden");
-		}
+		
 		
 		if($form.find(":input[name='e.id']").val()==""){
 			//新建时如果选中商业险公司，强制险公司也跟着选
