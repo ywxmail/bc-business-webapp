@@ -5,29 +5,33 @@ bs.gztaxixhDriverInfo = {
 		var $page = $(this);
 
 		// 回车执行搜索
-		var $v = $page.find("#v").keyup(function(e) {
+		var $value = $page.find("#value").keyup(function(e) {
 			if (e.which == 13) {// 按下回车键
 				bs.gztaxixhDriverInfo.doSearch.call($page);
 			}
+		});
+		$page.find("#info").delegate("span.ui-icon-search","click",function(e) {
+			bs.gztaxixhDriverInfo.doSearch.call($page,$(this).attr("data-index"));
 		});
 		$page.find("#goBtn").click(function(e) {
 			bs.gztaxixhDriverInfo.doSearch.call($page);
 		});
 
 		// 预搜索
-		if ($v.val().length > 0) {
+		if ($value.val().length > 0) {
 			bs.gztaxixhDriverInfo.doSearch.call($page);
 		}
 	},
 
-	doSearch : function() {
+	doSearch : function(index) {
 		if(bs.gztaxixhDriverInfo.searching)
 			return;
 		
+		var startTime = new Date().getTime();
 		var $page = $(this);
-		var v = $page.find("#header #v").val()
-		if(v.length == 0){
-			bc.msg.slide("必须输入服务资格证号！");
+		var value = $page.find("#header #value").val()
+		if(value.length == 0){
+			bc.msg.slide("必须输入要查询的值！");
 			return;
 		}
 		
@@ -38,14 +42,12 @@ bs.gztaxixhDriverInfo = {
 		bs.gztaxixhDriverInfo.searching = true;
 		bc.ajax({
 			url : bc.root + "/bc-business/gztaxixh/findDriverInfo",
-			data : {
-				v : v
-			},
+			data : {value: value,type: $page.find("#header #type").val(),index: index || 0},
 			dataType : "json",
 			success : function(json) {
-				$waste.html("(" + json.waste + ")");
+				$waste.html("(" + bc.getWasteTime(startTime) + ")");
 				if (json.success && !json.msg) {
-					$info.html(json.detail ? json.detail : json.simple);
+					$info.html(json.simple + json.detail);
 				} else {
 					$info.html("<div class='error ui-state-error'>" + json.msg + "</div>");
 				}

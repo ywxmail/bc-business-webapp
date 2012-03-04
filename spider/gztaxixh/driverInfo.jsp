@@ -6,9 +6,10 @@
 	data-initMethod='bs.gztaxixhDriverInfo.init'
 	data-option='<s:property value="pageOption"/>' style="overflow: auto;">
 	<div id="header" class="ui-widget-content">
-		服务资格证：
-		<s:textfield name="v" id="v"/>
-		<input id="goBtn" type="button" value="查询" /><span id="waste"></span>
+		<div>请根据条件选择然后输入你想查询的驾驶员：</div>
+		<div><s:select name="type" list="types" cssClass="ui-widget-content" cssStyle="width:9em;">
+		</s:select><s:textfield name="value" id="value" cssClass="ui-widget-content" cssStyle="width:9em;height: 19px;padding:0"/>
+		<input id="goBtn" type="button" value="确认"/><span id="waste"></span></div>
 	</div>
 	<div id="info" class="ui-widget-content"></div>
 </div>
