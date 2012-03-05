@@ -201,5 +201,10 @@
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 		<s:hidden name="e.modifier.id"/>
 		<input type="hidden" name="e.modifiedDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.modifiedDate" />'/>
+
+		<s:hidden name="e.mainCarId" />
+		<s:hidden name="e.carInFo" />
+		<input type="hidden" name="e.moveDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.moveDate" />'/>
+		<input type="hidden" name="e.shiftworkEndDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.shiftworkEndDate" />'/>
 	</s:form>
 </div>
