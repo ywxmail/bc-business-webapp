@@ -194,6 +194,12 @@ bs.infoCenter = {
 						+'</span>]<span class="plate">'+cars[i].plate+'</span></li>');
 				}
 				$results.empty().append(lis.join(""));
+				
+				// 如果查询结果为1台车就直接显示
+				if(cars.length == 1){
+					var $li = $results.find("li").addClass("ui-state-highlight");
+					bs.infoCenter.showCar.call($li,$li.attr("data-id"));
+				}
 			}
 		});
 	},
