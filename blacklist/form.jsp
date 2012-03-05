@@ -41,7 +41,7 @@
 						<span id="selectCarMan" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></span></td>
 					</s:else>
 					    <td class="label"><s:text name="blacklist.motorcade.name"/>:</td>
-						<td class="value"><s:textfield name="e.car.motorcade.name" readonly="true" data-validate="required" cssClass="ui-widget-content" /></td>
+						<td class="value"><s:textfield name="e.car.motorcade.name" readonly="true" cssClass="ui-widget-content" /></td>
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="blacklist.type"/>:</td>
