@@ -6,10 +6,7 @@ bs.carManView = {
 		
 		// 确定选中的行
 		var $trs = $page.find(">.bc-grid>.data>.right tr.ui-state-highlight");
-		if($trs.length == 0){
-			bc.msg.slide("请先选择司机信息！");
-			return;
-		}else if($trs.length > 1){
+		if($trs.length > 1){
 			bc.msg.slide("一次只能查询一个司机！");
 			return;
 		}
@@ -22,7 +19,7 @@ bs.carManView = {
 			mid: "gztaxixhDriverInfo" + v,
 			name: "出租协会" + (v ? " - " + v : ""),
 			url: bc.root + "/bc-business/gztaxixh/driverInfo",
-			data: {value: v}
+			data: {value: (v ? " - " + v : "")}
 		});
 	}
 };
