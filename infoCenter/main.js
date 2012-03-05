@@ -34,7 +34,7 @@ bs.infoCenter = {
 				bc.page.newWin({
 					name: $main.find("#carTitle").text(),
 					mid: "car" + bs.infoCenter.currentCarId,
-					url: bc.root + "/bc-business/car/edit",
+					url: bc.root + "/bc-business/car/open",
 					data: {id: bs.infoCenter.currentCarId}
 				});
 			}
