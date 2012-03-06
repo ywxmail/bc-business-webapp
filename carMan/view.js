@@ -19,7 +19,7 @@ bs.carManView = {
 			mid: "gztaxixhDriverInfo" + v,
 			name: "出租协会" + (v ? " - " + v : ""),
 			url: bc.root + "/bc-business/gztaxixh/driverInfo",
-			data: {value: (v ? " - " + v : "")}
+			data: {value: (v ? v : "")}
 		});
 	}
 };
