@@ -34,7 +34,7 @@ bs.infoCenter = {
 				bc.page.newWin({
 					name: $main.find("#carTitle").text(),
 					mid: "car" + bs.infoCenter.currentCarId,
-					url: bc.root + "/bc-business/car/edit",
+					url: bc.root + "/bc-business/car/open",
 					data: {id: bs.infoCenter.currentCarId}
 				});
 			}
@@ -194,6 +194,12 @@ bs.infoCenter = {
 						+'</span>]<span class="plate">'+cars[i].plate+'</span></li>');
 				}
 				$results.empty().append(lis.join(""));
+				
+				// 如果查询结果为1台车就直接显示
+				if(cars.length == 1){
+					var $li = $results.find("li").addClass("ui-state-highlight");
+					bs.infoCenter.showCar.call($li,$li.attr("data-id"));
+				}
 			}
 		});
 	},
@@ -318,24 +324,26 @@ bs.infoCenter = {
 				if(mans.length > 0){
 					$mans.removeClass("empty");
 					var trs = [],man,ts = bs.infoCenter.ts; 
-					var disabledManCount = 0;
+					var disabledManCount = 0,isLogoutMan;
 					for(var i=0;i<mans.length;i++){
 						man = mans[i];
+						isLogoutMan = bs.infoCenter.isLogoutMan(man);
 						// 累计注销司机的数量
-						if(man.status!=0) disabledManCount++;
+						if(isLogoutMan) disabledManCount++;
 						
 						// 抬头行
-						trs.push('<tr class="top header'+(i==0 ? " first" : "") + (man.status!=0 ? " ui-state-disabled disabled" : "") + '">'
+						trs.push('<tr class="top header'+(i==0 ? " first" : "") + (isLogoutMan ? " ui-state-disabled disabled" : "") + '">'
 							+'<td class="first aright ui-widget-content" style="width: 7em;">' + man.type + ':</td>'
 							+'<td class="middle aleft ui-widget-content" style="width: 7em;">' + man.name + '(' + man.sex + ')' + '</td>'
 							+'<td class="middle aright ui-widget-content" style="width: 3em;">电话:</td>'
 							+'<td class="last aleft ui-widget-content" style="width: 15em;">' + man.phones + '</td>'
 							+'<td class="middle aright ui-widget-content" style="width: 3em;">状态:</td>'
-							+'<td class="last aleft ui-widget-content">' + (man.classes.length > 0 ? man.classes + "，" : "") + man.moveType + '(' + man.moveDate + ')' + '</td>'
+							+'<td class="last aleft ui-widget-content">' + (man.classesDesc.length > 0 ? man.classesDesc + "," : "")
+							+ (man.moveTypeDesc.length > 0 ? man.moveTypeDesc + '(' + man.moveDate + ')' : "") + '</td>'
 							+'</tr>');
 						
 						// 司机详细资料
-						trs.push('<tr class="detail' + (man.status!=0 ? " ui-state-disabled disabled" : "") + '"><td colspan="6" style="padding:0;">'
+						trs.push('<tr data-json="'+$.toJSON(man)+'" class="detail' + (isLogoutMan ? " ui-state-disabled disabled" : "") + '"><td colspan="6" style="padding:0;">'
 							+'<table class="contentTable" cellspacing="2" cellpadding="0" style="height: auto;">'
 							+'<tr>'
 							+'<td rowspan="6" style="width: 87px;vertical-align: top;"><img style="width:86.4px;height:110px;cursor: pointer;" data-id="' + man.id + '" data-name="' + man.name + '"'
@@ -376,5 +384,9 @@ bs.infoCenter = {
 			}
 		});
 	},
-	currentCarId: null
+	currentCarId: null,
+	isLogoutMan: function(man){
+		// 注销司机 或 迁移类型为1公司到公司(已注销)、2注销未有去向 、4交回未注销 
+		return man.status!=0 || (man.moveType==-1 || man.moveType==1 || man.moveType==2 || man.moveType==4);
+	}
 };
