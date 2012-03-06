@@ -79,7 +79,7 @@ bs.infoCenter = {
 				var plate = $this.attr("data-plate");
 				var url = bc.root;
 				if (type == "黑名单") {
-					url += "/bc-business/blacklist/open";
+					url += "/bc-business/blacklist/edit";
 				} else if (type == "车辆保单") {
 					url += "/bc-business/policy/open";
 				} else if (type == "经济合同") {
