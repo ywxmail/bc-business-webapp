@@ -91,6 +91,14 @@ bc.business.carByDriverHistoryForm = {
 			});
 		});
 
+	},
+	//保存并关闭
+	saveAndClose:function(){
+		var $form = $(this);
+		//调用标准的方法执行保存
+		bc.page.save.call($form,{callback: function(json){
+				$form.dialog("close");
+		}});
 	}
 };
 

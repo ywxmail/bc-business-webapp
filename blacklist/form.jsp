@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div title='<s:text name="blacklist.title"/>' data-type='form' class="bc-page"
 	data-saveUrl='<s:url value="/bc-business/blacklist/save" />'
-	data-js='<s:url value="/bc-business/blacklist/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/carMan/select.js" />,<s:url value="/bc-business/bs.js" />'
+	data-js='<s:url value="/bc/libs/select.js" />,<s:url value="/bc-business/blacklist/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/carMan/select.js" />,<s:url value="/bc-business/bs.js" />'
 	data-initMethod='bc.business.blacklistForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="blacklistForm" theme="simple">
@@ -34,14 +34,14 @@
 					<tr>
 						<td class="label"><s:text name="blacklist.driver"/>:</td>
 					<s:if test="%{carManId != null}">
-						<td class="value"><s:textfield name="e.driver.name" readonly="true"  data-validate="required" cssClass="ui-widget-content" /></td>
+						<td class="value"><s:textfield name="e.driver.name" readonly="true" cssClass="ui-widget-content" /></td>
 					</s:if><s:else>
 					    <td class="value" style="position:relative;display: block;">
-					    <s:textfield name="e.driver.name"  readonly="true" data-validate="required" cssClass="ui-widget-content" />
+					    <s:textfield name="e.driver.name"  readonly="true" cssClass="ui-widget-content" />
 						<span id="selectCarMan" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></span></td>
 					</s:else>
 					    <td class="label"><s:text name="blacklist.motorcade.name"/>:</td>
-						<td class="value"><s:textfield name="e.car.motorcade.name" readonly="true" cssClass="ui-widget-content" /></td>
+						<td class="value"><s:select name="e.motorcade.id" list="motorcadeList" listKey="key" listValue="value" value="e.motorcade.id" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" ></s:select></td>
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="blacklist.type"/>:</td>
@@ -123,7 +123,6 @@
 		<s:hidden name="e.car.id" />
 		<s:hidden name="e.driver.id" />
 		<s:hidden name="e.author.id" />
-		<s:hidden name="e.motorcade.id" />
 		<s:hidden name="e.modifier.id"/>
 		<s:hidden name="e.status"/>
 		<s:hidden name="isNullCarMan" />
