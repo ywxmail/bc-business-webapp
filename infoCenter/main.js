@@ -333,7 +333,7 @@ bs.infoCenter = {
 						
 						// 抬头行
 						trs.push('<tr class="top header'+(i==0 ? " first" : "") + (isLogoutMan ? " ui-state-disabled disabled" : "") + '">'
-							+'<td class="first aright ui-widget-content" style="width: 7em;">' + man.type + ':</td>'
+							+'<td class="first aright ui-widget-content" style="width: 7em;">' + man.typeDesc + ':</td>'
 							+'<td class="middle aleft ui-widget-content" style="width: 7em;">' + man.name + '(' + man.sex + ')' + '</td>'
 							+'<td class="middle aright ui-widget-content" style="width: 3em;">电话:</td>'
 							+'<td class="last aleft ui-widget-content" style="width: 15em;">' + man.phones + '</td>'
@@ -353,7 +353,7 @@ bs.infoCenter = {
 							+'<td class="value" style="width: 20em;"><input type="text" class="ui-widget-content" readonly="readonly" value="' + man.identity + '"/></td>'
 							
 							+'<td rowspan="6" class="' + ($.browser.safari ? "desc-webkit" : "desc2") + '"><textarea class="ui-widget-content noresize"' 
-							+' readonly="readonly">' + man.desc + '</textarea></td>'
+							+' readonly="readonly">' + man.desc + bs.infoCenter.getAutoInfo(man.autoInfo) + '</textarea></td>'
 							+'</tr>'
 							
 							+'<tr>'
@@ -388,5 +388,14 @@ bs.infoCenter = {
 	isLogoutMan: function(man){
 		// 注销司机 或 迁移类型为1公司到公司(已注销)、2注销未有去向 、4交回未注销 
 		return man.status!=0 || (man.moveType==-1 || man.moveType==1 || man.moveType==2 || man.moveType==4);
+	},
+	getAutoInfo: function(autoInfo){
+		if(! autoInfo) return "";
+		
+		return "\r\n==以下为系统自动生成数据=="
+				+"\r\n劳动合同期限：" + autoInfo.startDate + "～" + autoInfo.endDate
+				+"\r\n社保参保日期：" + autoInfo.joinDate
+				+"\r\n社保个人编号：" + autoInfo.insurcode
+				+"\r\n社保参保险种：" + autoInfo.insuranceType;
 	}
 };
