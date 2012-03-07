@@ -136,5 +136,19 @@ bc.carForm = {
 				$form.find(":input[name='e.lpgPsqModel']").val(json.lpgPsqModel);
 			}
 		});
+	},
+	//保存并关闭
+	saveAndClose:function(){
+		var $form = $(this);
+		//调用标准的方法执行保存
+		bc.page.save.call(this,{callback: function(json){
+			if(json.success){
+				bc.msg.slide(json.msg);
+				$form.dialog("close");
+			}else{
+				bc.msg.alert(json.msg);
+			}
+			return false;
+		}});
 	}
 };

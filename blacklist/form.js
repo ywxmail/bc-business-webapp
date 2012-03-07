@@ -71,7 +71,7 @@ bc.business.blacklistForm = {
 		};
 		if($form.find(":input[name='isNullCarMan']").val()=="true"){
 			bc.msg.alert("该车辆还没有被任何司机驾驶！");	
-			//关闭表单
+			
 		};
 		
        // 选择司机
