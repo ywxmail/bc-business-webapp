@@ -486,16 +486,16 @@ bc.contract4ChargerForm = {
 		var option = { callback : function (json){
 				if(json.success){
 					bc.msg.slide(json.msg);
+					$page.dialog("close");
 				}else{
 					bc.msg.alert(json.msg);
 				}
 				return false;
 			}
 		};
-			//调用标准的方法执行保存
-		bc.page.save.call($page,{callback: function(json){
-			$page.dialog("close");
-		}});
+		
+		//调用标准的方法执行保存
+		bc.page.save.call(this,option);
 	}
 		
 		
