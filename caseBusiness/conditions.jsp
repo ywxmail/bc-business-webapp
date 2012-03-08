@@ -4,25 +4,11 @@
 <form class="bc-conditionsForm draggable ui-widget-content ui-state-highlight">
 	<ul class="conditions" style="min-width:19.3em;">
 		<li class="condition">
-			<div class="label">违章日期</div>
-			<div class="value">
-				<div class="bc-dateContainer">
-					<input type="text" class="bc-date ui-widget-content" data-validate="date" style="width:9em;"
-						data-condition='{"type":"startDate","ql":"b.happen_date>=?"}'>
-					<ul class="inputIcons">
-						<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
-						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
-					</ul>
-				</div>～<div class="bc-dateContainer">
-					<input type="text" class="bc-date ui-widget-content" data-validate="date" style="width:9em;"
-						data-condition='{"type":"endDate","ql":"b.happen_date<=?"}'>
-					<ul class="inputIcons">
-						<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
-						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
-					</ul>
-				</div>
+			<div class="label">所属公司</div>
+			<div class="value checkboxes" data-condition='{"type":"string","key":"c.company"}' >
+				<label><input type="checkbox" name="checkboxField1" value="宝城"><span>宝城</span></label>
+				<label><input type="checkbox" name="checkboxField1" value="广发"><span>广发</span></label>
 			</div>
-			<div class="clear"></div>
 		</li>
 		<li class="condition">
 			<div class="label">所属分公司</div>
@@ -49,6 +35,27 @@
 					<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
 				</ul>
 			</div>
+		</li>
+		<li class="condition">
+			<div class="label">违章日期</div>
+			<div class="value">
+				<div class="bc-dateContainer">
+					<input type="text" class="bc-date ui-widget-content" data-validate="date" style="width:9em;"
+						data-condition='{"type":"startDate","ql":"b.happen_date>=?"}'>
+					<ul class="inputIcons">
+						<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
+						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
+					</ul>
+				</div>～<div class="bc-dateContainer">
+					<input type="text" class="bc-date ui-widget-content" data-validate="date" style="width:9em;"
+						data-condition='{"type":"endDate","ql":"b.happen_date<=?"}'>
+					<ul class="inputIcons">
+						<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
+						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clear"></div>
 		</li>
 		<li class="condition">
 			<div class="label">营运性质</div>

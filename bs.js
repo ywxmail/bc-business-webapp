@@ -217,7 +217,7 @@ bs.findInfoByCar = function(option) {
 				option.success.call(json,{
 					car: json.car,
 					motorcade: json.motorcade,
-					dirver: json.drivers[0]
+					driver: json.drivers[0]
 				});
 			}else{
 				//--让用户选择司机后再调用回调函数
