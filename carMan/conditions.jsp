@@ -8,7 +8,10 @@
 			<div class="value checkboxes" data-condition='{"type":"int","key":"m.type_"}' >
 				<label><input type="checkbox" name="checkboxField1" value="0,2"><span>司机</span></label>
 				<label><input type="checkbox" name="checkboxField1" value="1,2"><span>责任人</span></label>
-				<label><input type="checkbox" name="checkboxField1" value="3"><span>非编</span></label>
+				<label><input type="checkbox" name="checkboxField1" value="3"><span>非编</span></label><br>
+				<label><input type="checkbox" name="checkboxField1" value="0"><span>仅司机</span></label>
+				<label><input type="checkbox" name="checkboxField1" value="1"><span>仅责任人</span></label>
+				<label><input type="checkbox" name="checkboxField1" value="2"><span>司机责任人</span></label>
 			</div>
 		</li>
 		<li class="condition">
