@@ -47,10 +47,10 @@
 						          <legend>迁自</legend>
 						          <table class="formFields" cellspacing="2" cellpadding="0" style="height:100px">
 					          		<tr class="widthMarker">
-						                <td style="width: 92px;">&nbsp;</td>
+						                <td style="width: 5em;">&nbsp;</td>
 						                <td >&nbsp;</td>
 	                				</tr>
-						            <tr><td class="label" >*<s:text name="carByDriverHistory.car"/>:</td>
+						            <tr><td class="label" style="min-width: 5em;width: 5em;">*<s:text name="carByDriverHistory.car"/>:</td>
 						                   <td class="value relative" style="position:relative;display: block;"><s:textfield name="fromCarPlate" value="%{e.fromCar.plateType+e.fromCar.plateNo }"
 					                        data-validate="required" cssClass="ui-widget-content" readonly="true" />
 					                           <ul class="inputIcons">
@@ -60,14 +60,14 @@
                                             </td>
 					                  </tr>
    							          <tr>
-							             <td class="label"><s:text name="carByDriverHistory.unit"/>:</td>
+							             <td class="label" style="min-width: 5em;width: 5em;"><s:text name="carByDriverHistory.unit"/>:</td>
 						                 <td class="value"><s:textfield name="e.fromUnit" cssClass="ui-widget-content"/></td>
 							          </tr>
-						              <tr><td class="label"><s:text name="carByDriverHistory.motorcade"/>:</td>
+						              <tr><td class="label" style="min-width: 5em;width: 5em;"><s:text name="carByDriverHistory.motorcade"/>:</td>
 						                 <td class="value"> <s:select name="e.fromMotorcadeId" list="motorcadeList" listKey="key" listValue="value" value="e.fromMotorcadeId" 
 						                 headerKey="" headerValue="" cssClass="ui-widget-content"></s:select></td>
 						              </tr>
-						              <tr><td class="label"><s:text name="carByDriverHistory.classes"/>:</td>
+						              <tr><td class="label" style="min-width: 5em;width: 5em;"><s:text name="carByDriverHistory.classes"/>:</td>
 						                 <td class="value" ><s:select name="e.fromClasses" list="#{0:'',1:'正班',2:'副班',3:'主挂'}" 
 							              listKey="key" listValue="value" data-validate="required" cssClass="ui-widget-content"/>
 							             </td>

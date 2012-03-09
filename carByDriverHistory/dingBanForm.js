@@ -1,8 +1,9 @@
 if (!bc.business)
 bc.business = {};
 bc.business.shiftworkByDriverForm = {
-		init : function() {
+		init : function(option,readonly) {
 			var $form = $(this);
+			if(readonly) return;
 			
 			// 添加顶班车辆
 			var $select = $form.find(":input[name='plates']");
