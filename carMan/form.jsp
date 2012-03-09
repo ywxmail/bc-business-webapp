@@ -194,7 +194,6 @@
 		<s:hidden name="e.uid" />
 		<s:hidden name="e.id" />
 		<s:hidden name="e.author.id" />
-		<s:hidden name="e.drivingStatus" />
 		<s:hidden name="e.charger" />
 		<s:hidden name="e.moveType" />
 		<s:hidden name="e.classes" />
