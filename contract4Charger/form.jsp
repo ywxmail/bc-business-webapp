@@ -34,11 +34,12 @@
 							<tr>
 								<td class="label">*<s:text name="contract.code"/>:</td>
 								<td class="value ">
-									<s:if test="e.isNew()"><!-- 新建 -->
-										<s:textfield name="e.code" data-validate="required" cssClass="ui-widget-content"/>
+									<s:if test="%{e.isNew() || e.code.startsWith('C')}" ><!-- 以字母C开头就进行格式验证 -->
+										<s:textfield name="e.code" cssClass="ui-widget-content" 
+										data-validate='{"required":true,"method":"bc.contract4ChargerForm.validateCode","msg":"请输入正确的经济合同编号格式：<br/>CLHT+[4位年份]+[2位月份]+[2位流水号]"}'/>
 									</s:if>
 									<s:else>
-										<s:textfield name="e.code" data-validate="required" cssClass="ui-widget-content" readonly="true"/>
+										<s:textfield name="e.code" data-validate="required" cssClass="ui-widget-content"/>
 									</s:else>
 								</td>
 								<td class="label">*<s:text name="contract4Charger.signType"/>:</td>

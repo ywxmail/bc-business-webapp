@@ -18,9 +18,9 @@ bs.infoCenter = {
 			},
 			click : function() {
 				var $this = $(this);
-				$this.toggleClass("ui-state-highlight", true).siblings(
-						".ui-state-highlight").toggleClass(
-						"ui-state-highlight", false);
+				$this.toggleClass("ui-state-active", true).siblings(
+						".ui-state-active").toggleClass(
+						"ui-state-active", false);
 				bs.infoCenter.showCar.call($this,$this.attr("data-id"));
 			}
 		});
@@ -63,9 +63,9 @@ bs.infoCenter = {
 			/** 单击高亮 */
 			click : function() {
 				var $this = $(this);
-				$this.toggleClass("ui-state-highlight", true).siblings(
-						".ui-state-highlight").toggleClass(
-						"ui-state-highlight", false);
+				$this.toggleClass("ui-state-active", true).siblings(
+						".ui-state-active").toggleClass(
+						"ui-state-active", false);
 			},
 			/** 双击打开查看 */
 			dblclick : function() {
@@ -79,7 +79,7 @@ bs.infoCenter = {
 				var plate = $this.attr("data-plate");
 				var url = bc.root;
 				if (type == "黑名单") {
-					url += "/bc-business/blacklist/open";
+					url += "/bc-business/blacklist/edit";
 				} else if (type == "车辆保单") {
 					url += "/bc-business/policy/open";
 				} else if (type == "经济合同") {
@@ -102,7 +102,7 @@ bs.infoCenter = {
 		});
 
 		// 司机信息列表的样式控制
-		$page.find("#mansBody").delegate("tr.header",{
+		var $mansBody = $page.find("#mansBody").delegate("tr.header",{
 			mouseover : function() {
 				$(this).addClass("ui-state-hover");
 			},
@@ -111,19 +111,30 @@ bs.infoCenter = {
 			},
 			click : function() {
 				var $this = $(this);
-				$this.toggleClass("ui-state-highlight", true).siblings(
-						".ui-state-highlight").toggleClass(
-						"ui-state-highlight", false);
+				$this.toggleClass("ui-state-active", true).siblings(
+						".ui-state-active").toggleClass(
+						"ui-state-active", false);
 			}
 		});
 
 		// 包含注销司机的控制
-		$page.find("#mans #includeLogout input").change(function() {
+		var loaded = false;
+		bs.infoCenter.includeLogoutEl = $page.find("#mans #includeLogout input").change(function() {
 			$(this).closest("#mansHeader").next().toggleClass("showDisabled unshowDisabled");
-		});
+			
+			// 加载注销司机的图片
+			if(!loaded){
+				loaded = true;
+				$mansBody.find("img.notLoaded").each(function(){
+					var _$this = $(this);
+					_$this.removeClass("notLoaded").attr("src",_$this.attr("data-src"));
+				});
+			}
+		})[0];
+		var loaded = bs.infoCenter.includeLogoutEl.checked;
 
 		// 点击司机图片打开
-		$page.find("#mansBody").delegate("img",{
+		$mansBody.delegate("img",{
 			click : function() {
 				var $this = $(this);
 				bc.page.newWin({
@@ -197,7 +208,7 @@ bs.infoCenter = {
 				
 				// 如果查询结果为1台车就直接显示
 				if(cars.length == 1){
-					var $li = $results.find("li").addClass("ui-state-highlight");
+					var $li = $results.find("li").addClass("ui-state-active");
 					bs.infoCenter.showCar.call($li,$li.attr("data-id"));
 				}
 			}
@@ -247,8 +258,16 @@ bs.infoCenter = {
 	 * 上下文为li元素
 	 */
 	showCar: function(carId){
-		if(carId == bs.infoCenter.currentCarId)
+		// 避免迅速点击多次的重复请求
+		if(bs.infoCenter.processing && carId == bs.infoCenter.currentCarId){
 			return;
+		}else{
+			bs.infoCenter.processing = true;
+			// 指定秒数后重置
+			window.setTimeout(function(){bs.infoCenter.processing = false;}, 2000);
+		}
+		
+		//if(carId == bs.infoCenter.currentCarId) return;
 		logger.info("carId=" + carId + ",preCarId=" + bs.infoCenter.currentCarId);
 		bs.infoCenter.currentCarId = carId;// 记录当前正在处理的车辆id，避免重复点击的请求
 		
@@ -324,7 +343,7 @@ bs.infoCenter = {
 				if(mans.length > 0){
 					$mans.removeClass("empty");
 					var trs = [],man,ts = bs.infoCenter.ts; 
-					var disabledManCount = 0,isLogoutMan;
+					var disabledManCount = 0,isLogoutMan,imgUrl;
 					for(var i=0;i<mans.length;i++){
 						man = mans[i];
 						isLogoutMan = bs.infoCenter.isLogoutMan(man);
@@ -333,12 +352,12 @@ bs.infoCenter = {
 						
 						// 抬头行
 						trs.push('<tr class="top header'+(i==0 ? " first" : "") + (isLogoutMan ? " ui-state-disabled disabled" : "") + '">'
-							+'<td class="first aright ui-widget-content" style="width: 7em;">' + man.type + ':</td>'
+							+'<td class="first aright ui-widget-content" style="width: 7em;">' + man.judgeType + ':</td>'
 							+'<td class="middle aleft ui-widget-content" style="width: 7em;">' + man.name + '(' + man.sex + ')' + '</td>'
 							+'<td class="middle aright ui-widget-content" style="width: 3em;">电话:</td>'
 							+'<td class="last aleft ui-widget-content" style="width: 15em;">' + man.phones + '</td>'
 							+'<td class="middle aright ui-widget-content" style="width: 3em;">状态:</td>'
-							+'<td class="last aleft ui-widget-content">' + (man.classesDesc.length > 0 ? man.classesDesc + "," : "")
+							+'<td class="last aleft ui-widget-content">' + (man.judgeClasses.length > 0 ? man.judgeClasses + "," : "")
 							+ (man.moveTypeDesc.length > 0 ? man.moveTypeDesc + '(' + man.moveDate + ')' : "") + '</td>'
 							+'</tr>');
 						
@@ -346,14 +365,22 @@ bs.infoCenter = {
 						trs.push('<tr data-json="'+$.toJSON(man)+'" class="detail' + (isLogoutMan ? " ui-state-disabled disabled" : "") + '"><td colspan="6" style="padding:0;">'
 							+'<table class="contentTable" cellspacing="2" cellpadding="0" style="height: auto;">'
 							+'<tr>'
-							+'<td rowspan="6" style="width: 87px;vertical-align: top;"><img style="width:86.4px;height:110px;cursor: pointer;" data-id="' + man.id + '" data-name="' + man.name + '"'
-							+'src="'+bc.root+'/bc/image/download?ptype=portrait&puid=' + man.uid + '&ts=' + ts + '"></td>'
-							
+							+'<td rowspan="6" style="width: 87px;vertical-align: top;"><img style="width:86.4px;height:110px;cursor: pointer;" data-id="' + man.id + '" data-name="' + man.name + '" ');
+						
+						// 延时加载注销司机图片的处理
+						imgUrl = bc.root+'/bc-business/cacheImage/download?ptype=portrait&puid=' + man.uid + '&ts=' + ts;
+						if(isLogoutMan && !bs.infoCenter.includeLogoutEl.checked){
+							trs.push('class="notLoaded" data-src="' + imgUrl + '" src="' + bc.root+'/bc-business/infoCenter/notLoaded.png'+ '"');
+						}else{
+							trs.push('src="' + imgUrl + '"');
+						}
+						
+						trs.push('></td>'
 							+'<td class="label" style="width: 6em;">身份证号码:</td>'
 							+'<td class="value" style="width: 20em;"><input type="text" class="ui-widget-content" readonly="readonly" value="' + man.identity + '"/></td>'
 							
 							+'<td rowspan="6" class="' + ($.browser.safari ? "desc-webkit" : "desc2") + '"><textarea class="ui-widget-content noresize"' 
-							+' readonly="readonly">' + man.desc + '</textarea></td>'
+							+' readonly="readonly">' + man.desc + bs.infoCenter.getAutoInfo(man.autoInfo) + '</textarea></td>'
 							+'</tr>'
 							
 							+'<tr>'
@@ -386,7 +413,16 @@ bs.infoCenter = {
 	},
 	currentCarId: null,
 	isLogoutMan: function(man){
-		// 注销司机 或 迁移类型为1公司到公司(已注销)、2注销未有去向 、4交回未注销 
-		return man.status!=0 || (man.moveType==-1 || man.moveType==1 || man.moveType==2 || man.moveType==4);
+		return man.judgeStatus!=0;
+	},
+	getAutoInfo: function(autoInfo){
+		if(! autoInfo) return "";
+		
+		return "\r\n==以下为系统自动生成数据=="
+				+ (autoInfo.status != 0 ? "\r\n劳动合同状态：已注销" : "")
+				+"\r\n劳动合同期限：" + autoInfo.startDate + "～" + autoInfo.endDate
+				+"\r\n社保参保日期：" + autoInfo.joinDate
+				+"\r\n社保个人编号：" + autoInfo.insurcode
+				+"\r\n社保参保险种：" + autoInfo.insuranceType;
 	}
 };

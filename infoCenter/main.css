@@ -163,10 +163,11 @@
 	margin: 0;
 }
 
-.bc-page.ic>.left ul.results>li.ui-state-highlight {
+.bc-page.ic>.left ul.results>li.ui-state-active {
 	border-width: 1px 0 !important;
 	padding-top: 1px;
 	padding-bottom: 1px;
+	font-weight: bold;
 }
 
 .bc-page.ic>.left ul.results .code {

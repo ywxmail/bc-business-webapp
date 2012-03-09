@@ -144,7 +144,7 @@ bs.selectCar = function(option) {
 	
 	// 将一些配置参数放到data参数内(这些参数是提交到服务器的参数)
 	option.data = jQuery.extend({
-		status: '0',
+		status: '0,1',
 		multiple: false
 	},option.data);
 	if(option.selecteds)
