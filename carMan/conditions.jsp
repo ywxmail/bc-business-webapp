@@ -16,7 +16,7 @@
 			<div class="value checkboxes"  data-condition='{"type":"int","key":"m.classes"}' >
 				<label><input type="checkbox" name="checkboxField1" value="1"><span>正班</span></label>
 				<label><input type="checkbox" name="checkboxField1" value="2"><span>副班</span></label>
-				<label><input type="checkbox" name="checkboxField1" value="3"><span>顶班</span></label>
+				<label><input type="checkbox" name="checkboxField1" value="3,4"><span>顶班</span></label>
 				<label><input type="checkbox" name="checkboxField1" value="0"><span>无</span></label>
 			</div>
 		</li>
