@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div title='<s:text name="invoice4Sell.title"/>' data-type='form' class="bc-page"
 	data-saveUrl='<s:url value="/bc-business/invoice4Sell/save" />'
-	data-js='<s:url value="/bc-business/invoice4Sell/form.js" />,<s:url value="/bc-business/bs.js" />'
+	data-js='<s:url value="/bc-business/invoice4Sell/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js" />'
 	data-initMethod='bs.invoice4SellForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="invoice4SellForm" theme="simple">
@@ -28,14 +28,14 @@
 						<td class="label">*<s:text name="invoice.company"/>:</td>
 						<td class="value ">
 							<s:select name="e.company" list="companyList" listKey="value" listValue="value" data-validate="required" 
-								 cssClass="ui-widget-content" disabled="%{!e.isNew()}"/>
+								 cssClass="ui-widget-content" />
 						</td>
 					</tr>
 					<!-- 车辆 		车队 -->
 					<tr>
 						<td class="label">*<s:text name="invoice.carPlate"/>:</td>
 							<s:if test="%{buyerId != null || carId !=null }">
-								<td class="value relative">
+								<td class="value">
 									<s:textfield name="e.carPlate"  readonly="true" cssClass="ui-widget-content" data-validate="required"/>
 								</td>
 						    </s:if>
@@ -57,11 +57,17 @@
 					<tr>
 						<td class="label"><s:text name="invoice4Sell.buyer"/>:</td>
 							<s:if test="%{buyerId != null || carId !=null}">
-							<td class="value">
+								<td class="value">
 										<s:textfield name="e.buyerName"  readonly="true" cssClass="ui-widget-content" data-validate="required" />
-						    </s:if><s:else>
-							<td class="value">
-										<s:textfield name="e.buyerName"  readonly="true" cssClass="ui-widget-content" data-validate="required"/>
+								</td>
+						    </s:if>
+						    <s:else>
+								<td class="value relative">
+									<s:textfield name="e.buyerName"  readonly="true" cssClass="ui-widget-content" data-validate="required"/>
+									<span id="selectBuyer" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" 
+							    		title='<s:text name="title.click2select"/>'>
+							    	</span>
+							    </td>
 						     </s:else>
 					  	<td class="label"><s:text name="invoice4Sell.cashier"/>:</td>
 						<td class="value relative">
@@ -69,17 +75,6 @@
 							<ul class="inputIcons">
 								 <li id="selectCashier" class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></li>
 							</ul>
-						</td>
-					</tr>
-					<tr>
-						<td class="label">*<s:text name="invoice4Sell.payType"/>:</td>
-						<td class="value">
-							<s:select name="e.payType" list="payTypeList" listKey="value" listValue="value" data-validate="required" 
-									 cssClass="ui-widget-content" disabled="%{!e.isNew()}"/>
-						</td>
-						<td class="label"><s:text name="invoice4Sell.bankCode"/>:</td>
-						<td class="value">
-							<s:textfield name="e.bankCode" cssClass="ui-widget-content" data-validate="required" />
 						</td>
 					</tr>
 					<tr>
@@ -233,6 +228,12 @@
 		<s:hidden name="e.carId" />
 		<s:hidden name="e.buyerId" />
 		<s:hidden name="e.cashierId" />
+		<s:hidden name="e.payType" />
+		<s:hidden name="e.bankCode" />
+		<s:hidden name="isMoreCar"/>
+		<s:hidden name="isMoreCarMan"/>
+		<s:hidden name="isNullCar"/>
+		<s:hidden name="isNullCarMan"/>
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 	</s:form>
 </div>
