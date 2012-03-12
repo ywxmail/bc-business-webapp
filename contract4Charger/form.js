@@ -435,6 +435,19 @@ bc.contract4ChargerForm = {
 	save:function(){
 		$page = $(this);
 		
+		var $code = $page.find(":input[name='e.code']");
+		var id = $page.find(":input[name='e.id']").val();
+		
+		if(id.length > 0){//新建id不为空做code格式检测
+			if($code.val().length > 0 && 
+			$code.val().toUpperCase().indexOf("C",0) != 0){//code不为空,并且满足代码验证
+				$code.removeAttr('data-validate');
+			}else if($code.val().length == 0 || $code.val().toUpperCase().indexOf("C",0) == 0){
+				$code.attr('data-validate','{"required":true,"method":"bc.contract4ChargerForm.validateCode",'+
+				'"msg":"请输入正确的经济合同编号格式：<br/>CLHT+[4位年份]+[2位月份]+[2位流水号]"}');
+			}
+		}
+		
 		//先将角色的id合并到隐藏域
 		var ids=[];
 		var names=[];
@@ -460,6 +473,40 @@ bc.contract4ChargerForm = {
 				return false;
 			}
 		};
+		//调用标准的方法执行保存
+		bc.page.save.call(this,option);
+	},
+	//保存并关闭
+	saveAndClose:function(){
+		$page = $(this);
+		
+		//先将角色的id合并到隐藏域
+		var ids=[];
+		var names=[];
+		$page.find("#assignChargers li").each(function(){
+			ids.push($(this).attr("data-id"));
+			names.push($(this).find(".text").text());
+		});
+		if(names != null && names.length > 0){
+			$page.find(":input[name=assignChargerIds]").val(ids.join(","));
+			$page.find(":input[name=assignChargerNames]").val(names.join(","));
+		}else{
+			bc.msg.alert("最少选择一个责任人！");
+			return false;
+		}
+		
+		//唯一性检测
+		var option = { callback : function (json){
+				if(json.success){
+					bc.msg.slide(json.msg);
+					$page.dialog("close");
+				}else{
+					bc.msg.alert(json.msg);
+				}
+				return false;
+			}
+		};
+		
 		//调用标准的方法执行保存
 		bc.page.save.call(this,option);
 	}

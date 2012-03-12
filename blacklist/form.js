@@ -70,9 +70,8 @@ bc.business.blacklistForm = {
 			bc.page.newWin(option);
 		};
 		if($form.find(":input[name='isNullCarMan']").val()=="true"){
-			bc.msg.alert("该车辆还没有被任何司机驾驶！不能创建黑名单！");	
-			//关闭表单
-			$form.dialog("close");
+			bc.msg.alert("该车辆还没有被任何司机驾驶！");	
+			
 		};
 		
        // 选择司机
@@ -112,19 +111,40 @@ bc.business.blacklistForm = {
 		//通过车辆id查询相关信息
 		$form.find("#selectCar").click(function(){
 			bs.selectCar({onOk: function(car){
+				//清空司机字段
+				$form.find(":input[name='e.driver.id']").text("");
+				$form.find(":input[name='e.driver.name']").text("");
 				logger.info("car=" + $.toJSON(car));
 				bs.findInfoByCar({
 					carId: car.id,
 					success: function(info){
+						logger.info("---"+$.toJSON(info));
 						$form.find(":input[name='e.car.id']").val(info.car.id);
 						$form.find(":input[name='plate']").val(info.car.plate);
 						$form.find(":input[name='e.company']").val(info.car.company);
+						if(info.driver){
 						$form.find(":input[name='e.driver.id']").val(info.driver.id);
 						$form.find(":input[name='e.driver.name']").val(info.driver.name);
+						}
 						$form.find(":input[name='e.motorcade.id']").val(info.motorcade.id);
 						$form.find(":input[name='e.car.motorcade.name']").val(info.motorcade.name);
+						//返回车辆信息
+						$form.find(":input[name='e.car.id']").val(car.id);
+						$form.find(":input[name='plate']").val(car.plate);
+						$form.find(":input[name='e.company']").val(car.company);
+						$form.find(":input[name='e.motorcade.id']").val(car.motorcadeId);
+						 var $select = $form.find(":input[name='e.motorcade.id']");
+						 var selectEl = $select[0];
+						if(bc.select.isExist(selectEl, car.motorcadeId)){
+							$select.val(car.motorcadeId);
+						}else{
+							selectEl.options[selectEl.length] = new Option(car.motorcadeName, car.motorcadeId);
+							selectEl.options[selectEl.length-1].selected = true;
+						}
+
 					}
 				});
+				
 			}});
 		});
 		
@@ -135,7 +155,7 @@ bc.business.blacklistForm = {
 		//表单验证
 		if(!bc.validator.validate($form))
 			return;
-		bc.msg.confirm("请确定信息是否准确！一但执行锁定功能将无法进行修改，是否继续执行？",function(){
+		bc.msg.confirm("是否锁定？",function(){
 			//status=0为锁定状态
 			$form.find(":input[name='e.status']").val("0");
 			//调用标准的方法执行保存
