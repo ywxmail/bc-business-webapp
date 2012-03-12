@@ -11,7 +11,27 @@
 			</div>
 		</li>
 		<li class="condition">
-			<div class="label">采购日期</div>
+			<div class="label">发票代码</div>
+			<div class="value">
+				<input type="text" class="ui-widget-content" data-condition='{"type":"string","ql":"b.code=?"}'>
+				<ul class="inputIcons">
+					<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
+				</ul>
+			</div>
+			<div class="clear"></div>
+		</li>
+		<li class="condition">
+			<div class="label">发票编码</div>
+			<div class="value">
+				<input type="text" class="ui-widget-content" data-condition='{"type":"string","ql":"(b.start_no<=? and b.end_no>=?)"}'>
+				<ul class="inputIcons">
+					<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
+				</ul>
+			</div>
+			<div class="clear"></div>
+		</li>
+		<li class="condition">
+			<div class="label">入库日期</div>
 			<div class="value">
 				<div class="bc-dateContainer">
 					<input type="text" class="bc-date ui-widget-content" data-validate="date" style="width:9em;"
