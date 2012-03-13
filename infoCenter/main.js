@@ -423,6 +423,7 @@ bs.infoCenter = {
 				+"\r\n劳动合同期限：" + autoInfo.startDate + "～" + autoInfo.endDate
 				+"\r\n社保参保日期：" + autoInfo.joinDate
 				+"\r\n社保个人编号：" + autoInfo.insurcode
-				+"\r\n社保参保险种：" + autoInfo.insuranceType;
-	}
+				+"\r\n社保参保险种：" + autoInfo.insuranceType
+				+ (autoInfo.remark.length > 0 ? "\r\n劳动合同备注：" + autoInfo.remark : "");
+	}	
 };
