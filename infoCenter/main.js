@@ -146,6 +146,25 @@ bs.infoCenter = {
 				return false;
 			}
 		});
+
+		// 修改司机的联系电话
+		$mansBody.delegate("span.updatePhone","click", function() {
+			var $this = $(this);
+			var driverId = $this.attr("data-did");// 司机id
+			var phone1 = $this.attr("data-phone1");// 电话1
+			var phone2 = $this.attr("data-phone2");// 电话2
+			logger.info("driverId=" + driverId + ",phone1=" + phone1 + ",phone2=" + phone2);
+			bc.page.newWin({
+				name: "修改联系电话",
+				modal: true,
+				mid: "updatePhone" + driverId,
+				url: bc.root + "/bc-business/carMan/updatePhonePage",
+				data: {id: driverId, phone1: phone1, phone2: phone2},
+				afterClose: function(){
+					// TODO 更新界面显示的电话为新的电话信息
+				}
+			});
+		});
 		
 		// 非webkit浏览器的特殊处理
 		if(!$.browser.safari)
@@ -354,7 +373,10 @@ bs.infoCenter = {
 						trs.push('<tr class="top header'+(i==0 ? " first" : "") + (isLogoutMan ? " ui-state-disabled disabled" : "") + '">'
 							+'<td class="first aright ui-widget-content" style="width: 7em;">' + man.judgeType + ':</td>'
 							+'<td class="middle aleft ui-widget-content" style="width: 7em;">' + man.name + '(' + man.sex + ')' + '</td>'
-							+'<td class="middle aright ui-widget-content" style="width: 3em;">电话:</td>'
+							+'<td class="middle aright ui-widget-content" style="width: 4em;">'
+							+'<div class="relative"><span class="ui-icon ui-icon-arrowthick-1-n updatePhone" title="点击修改联系电话信息"'
+							+' data-phone1="' + man.phone1 + '" data-phone2="' + man.phone2 + '" data-did="' + man.id + '"></span>'
+							+'<span class="phoneLabel">电话:</span></div></td>'
 							+'<td class="last aleft ui-widget-content" style="width: 15em;">' + man.phones + '</td>'
 							+'<td class="middle aright ui-widget-content" style="width: 3em;">状态:</td>'
 							+'<td class="last aleft ui-widget-content">' + (man.judgeClasses.length > 0 ? man.judgeClasses + "," : "")
