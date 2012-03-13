@@ -63,8 +63,8 @@
 									 cssClass="ui-widget-content" />
 						</td> 
 						<td class="label">*<s:text name="invoice.count"/>:</td>
-						<td class="value"><s:textfield name="e.count" cssClass="ui-widget-content" 
-							data-validate='{required:true,type:"number"}'  cssStyle="width:120px;"/></td>
+						<td class="value"><s:textfield name="e.count" cssClass="ui-widget-content"  readonly="true"
+							data-validate='{required:true,type:"number"}'  cssStyle="width:120px;"/>(<span id="eachCountName"/>)</td>
 					</tr> 
 					<tr>
 					    <td class="label">*<s:text name="invoice.unit"/>:</td>
@@ -77,8 +77,10 @@
 								value="%{getText('bs.format.numberRMB',{amount})}" cssStyle="width:120px;"/>(元)</td>
 					</tr>
 					<tr>
-						<td></td>
-						<td></td>
+						<td class="label">每<span id="eachCountName"/>数量:</td>
+						<td class="value">
+							<s:textfield name="eachCount" data-validate='number' value="100"
+								 style="width:100px;" class="ui-widget-content"/>(张)</td>
 						<td class="label"><s:text name="invoice.status"/>:</td>
 						<td><s:radio name="e.status" list="#{'0':'正常','1':'作废'}" cssStyle="width:auto;"/></td>
 					</tr>
