@@ -249,7 +249,6 @@ bc.caseAccidentForm = {
 		$form.find("#selectPrincipal").click(function() {
 			var selecteds = $form.find(":input[name='e.chargerName']").val();
 			bc.identity.selectUser({
-				history: false,
 				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
 				onOk : function(user) {
 					$form.find(":input[name='e.chargerId']").val(user.id);
@@ -261,7 +260,6 @@ bc.caseAccidentForm = {
 		//经办人
 		$form.find("#selectReceiver").click(function(){
 			bc.identity.selectUser({
-				history: false,
 				selectdes:$form.find(":input[name='e.receiverId']").val(),
 				onOk : function(user) {
 					$form.find(":input[name='e.receiverId']").val(user.id);
