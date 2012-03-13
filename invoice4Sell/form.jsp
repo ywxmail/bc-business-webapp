@@ -55,7 +55,7 @@
 					</tr>
 					<!-- 购买人	收银员 -->
 					<tr>
-						<td class="label"><s:text name="invoice4Sell.buyer"/>:</td>
+						<td class="label">*<s:text name="invoice4Sell.buyer"/>:</td>
 							<s:if test="%{buyerId != null || carId !=null}">
 								<td class="value">
 										<s:textfield name="e.buyerName"  readonly="true" cssClass="ui-widget-content" data-validate="required" />
@@ -69,7 +69,7 @@
 							    	</span>
 							    </td>
 						     </s:else>
-					  	<td class="label"><s:text name="invoice4Sell.cashier"/>:</td>
+					  	<td class="label">*<s:text name="invoice4Sell.cashier"/>:</td>
 						<td class="value relative">
 							<s:textfield name="cashier" cssClass="ui-widget-content" readonly="true" data-validate="required" />
 							<ul class="inputIcons">
@@ -119,7 +119,7 @@
 						<td class="middle" style="width: 8em;"><s:text name="invoice.startNo"/></td>
 						<td class="middle" style="width: 8em;"><s:text name="invoice.endNo"/></td>
 						<td class="middle" style="width: 5em;"><s:text name="invoice.count"/></td>
-						<td class="middle" style="width: 4em;"><s:text name="invoice4Sell.price"/></td>
+						<td class="middle" style="width: 6em;"><s:text name="invoice4Sell.price"/>(元)</td>
 						<td class="last" style="min-width: 4em;"><s:text name="invoice.amount"/></td>
 					</tr>
 					<!-- 新建时 -->
@@ -127,8 +127,7 @@
 					<tr class="ui-widget-content row" data-id='<s:property value="id"/>'>
 						<td class="id first" style="padding:0;text-align:left;"><span class="ui-icon"></span>
 						</td>
-						<td class="middle" style="padding:0;text-align:left;">
-							<s:select name="reason" list="{'30000(10001~20000)','40000(10001~20000)','50000(10001~20000)','60000(10001~20000)'}" theme="simple" data-validate="required" cssClass="ui-widget-content" 
+							<s:select name="code" list="codeList" theme="simple" data-validate="required" cssClass="ui-widget-content" 
 									cssStyle="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px"/>
 						</td>
 						<td class="middle" style="padding:0;text-align:left;">
