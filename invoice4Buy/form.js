@@ -24,7 +24,7 @@ bs.invoice4BuyForm = {
 		$form.find(":input[name='e.startNo']").blur(function(){
 			bs.invoice4BuyForm.autoCheckStartNoAndEndNo($form);
 		});
-		$form.find(":input[name='eachCount']").blur(function(){
+		$form.find(":input[name='e.eachCount']").blur(function(){
 			bs.invoice4BuyForm.autoCheckStartNoAndEndNo($form);
 		});
 		
@@ -88,8 +88,6 @@ bs.invoice4BuyForm = {
 	doMaintenance : function() {
 		var $page = $(this);
 		bc.msg.confirm("是否对发票采购单进行维护？",function(){
-			//表示表单为编辑状态
-			$page.find(":input[name='idEdit']").val("true");
 			// 关闭当前窗口
 			$page.dialog("close");
 			// 重新打开可编辑表单
@@ -109,7 +107,7 @@ bs.invoice4BuyForm = {
 		var ok=true;
 		var startNo=$.trim($form.find(":input[name='e.startNo']").val());
 		var endNo=$.trim($form.find(":input[name='e.endNo']").val());
-		var eachCount=$.trim($form.find(":input[name='eachCount']").val());
+		var eachCount=$.trim($form.find(":input[name='e.eachCount']").val());
 		if(startNo!=''&&endNo!=''&&eachCount!=''){
 			//是否为数字
 			if(!isNaN(startNo)&&!isNaN(endNo)&&!isNaN(eachCount)){

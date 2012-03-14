@@ -49,12 +49,12 @@
 						<td class="value"><s:textfield name="e.endNo" cssClass="ui-widget-content" data-validate="required" /></td>
 					</tr>
 					<tr>
-					    <td class="label">*<s:text name="invoice4Buy.buyPrice"/>:</td>
+					    <td class="label">*<s:text name="invoice4Buy.buyPrice"/>(元):</td>
 						<td class="value"><s:textfield name="e.buyPrice" cssClass="ui-widget-content" data-validate='{required:true,type:"number"}'
-								value="%{getText('bs.format.numberRMB',{e.buyPrice})}" cssStyle="width:100px;" />(元)</td>
-						<td class="label">*<s:text name="invoice4Buy.sellPrice"/>:</td>
+								value="%{getText('bs.format.numberRMB',{e.buyPrice})}" /></td>
+						<td class="label">*<s:text name="invoice4Buy.sellPrice"/>(元):</td>
 						<td class="value"><s:textfield name="e.sellPrice" cssClass="ui-widget-content" data-validate='{required:true,type:"number"}' 
-								value="%{getText('bs.format.numberRMB',{e.sellPrice})}" cssStyle="width:120px;" />(元)</td>
+								value="%{getText('bs.format.numberRMB',{e.sellPrice})}" /></td>
 					</tr>
 					<tr>
 					    <td class="label">*<s:text name="invoice.type"/>:</td>
@@ -62,25 +62,24 @@
 							<s:select name="e.type" list="typeList" listKey="key" listValue="value" data-validate="required" 
 									 cssClass="ui-widget-content" />
 						</td> 
-						<td class="label">*<s:text name="invoice.count"/>:</td>
+						<td class="label">*<s:text name="invoice.count"/>(<span id="eachCountName"/>):</td>
 						<td class="value"><s:textfield name="e.count" cssClass="ui-widget-content"  readonly="true"
-							data-validate='{required:true,type:"number"}'  cssStyle="width:120px;"/>(<span id="eachCountName"/>)</td>
+							data-validate='{required:true,type:"number"}' /></td>
 					</tr> 
 					<tr>
 					    <td class="label">*<s:text name="invoice.unit"/>:</td>
 						<td class="value">
 							<s:select name="e.unit" list="unitList" listKey="key" listValue="value" data-validate="required" 
 									 cssClass="ui-widget-content" /></td>
-						<td class="label"><s:text name="invoice.amount"/>:</td>
+						<td class="label"><s:text name="invoice.amount"/>(元):</td>
 						<td class="value">
 							<s:textfield name="amount" cssClass="ui-widget-content" readonly="true"
-								value="%{getText('bs.format.numberRMB',{amount})}" cssStyle="width:120px;"/>(元)</td>
+								value="%{getText('bs.format.numberRMB',{amount})}" /></td>
 					</tr>
 					<tr>
-						<td class="label">每<span id="eachCountName"/>数量:</td>
+						<td class="label">*每<span id="eachCountName"/>数量(张):</td>
 						<td class="value">
-							<s:textfield name="eachCount" data-validate='number' value="100"
-								 style="width:100px;" class="ui-widget-content"/>(张)</td>
+							<s:textfield name="e.eachCount" data-validate='number' class="ui-widget-content"/></td>
 						<td class="label"><s:text name="invoice.status"/>:</td>
 						<td><s:radio name="e.status" list="#{'0':'正常','1':'作废'}" cssStyle="width:auto;"/></td>
 					</tr>
