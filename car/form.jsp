@@ -495,7 +495,7 @@
 									<td>&nbsp;</td>
 								</tr>
 								<tr>
-									<td class="label" ><s:text name="car.returnDate"/>:</td>
+									<td class="label" >*<s:text name="car.returnDate"/>:</td>
 									<td class="value relative">
 										<input type="text" name="e.returnDate" data-validate='{"type":"date"}'
 										value='<s:date format="yyyy-MM-dd" name="e.returnDate" />'
