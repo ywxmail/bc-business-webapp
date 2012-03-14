@@ -92,7 +92,12 @@
 					    </s:if><s:else>
 					    <td class="label"><s:text name="runcase.driverName"/>:</td>
 						<td class="value">
-									<s:textfield name="e.driverName" cssStyle="width:8em;"  readonly="true" cssClass="ui-widget-content"/>
+									<div style="position:relative;display: inline-block" >
+										<s:textfield name="e.driverName" cssStyle="width:8em;"  readonly="true" cssClass="ui-widget-content"/>
+										<ul class="inputIcons">
+								 			<li class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectDriverName">
+								 		</ul>
+									</div>
 									<div style="width:0px;display:inline-block;"></div>
 									<s:text name="runcase.driverCertNo" />:
 									<s:textfield name="e.driverCert" readonly="true" data-validate="required" 
@@ -154,7 +159,7 @@
 						<td class="label" ><s:text name="runcase.receiverName2"/>:</td>
 						<td class="value">
 							<div style="position : relative; display: inline-block">
-									<s:textfield name="e.receiverName" cssClass="ui-widget-content" cssStyle="width:8em;"/>
+									<s:textfield name="e.receiverName" cssClass="ui-widget-content" cssStyle="width:8em;" readonly="true"/>
 									<ul class="inputIcons">
 										 <li id="selectReceiver" class=" inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></li>
 									</ul>
@@ -162,7 +167,7 @@
 							<div style="width:12px;display:inline-block;"></div>
 							<div style="position : relative; display: inline-block">
 									<s:text name="runcase.principal" />:
-									<s:textfield name="e.chargerName" cssClass="ui-widget-content" cssStyle="width:8em;"/>
+									<s:textfield name="e.chargerName" cssClass="ui-widget-content" cssStyle="width:8em;" readonly="true"/>
 									<ul class="inputIcons">
 										 <li id="selectPrincipal" class=" inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></li>
 									</ul>

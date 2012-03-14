@@ -244,12 +244,28 @@ bc.caseAccidentForm = {
 			});
 		});
 		//------------绑定选择车辆按钮事件结束-------------------
+		// 选择司机
+		$form.find("#selectDriverName").click(function() {
+			var selecteds = $form.find(":input[name='e.driverName']").val();
+			bs.selectDriver({
+				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
+				onOk : function(carMan) {
+					$form.find(":input[name='e.driverId']").val(carMan.id);
+					$form.find(":input[name='e.driverName']").val(carMan.name);
+					$form.find(":input[name='e.driverCert']").val(carMan.cert4FWZG);
+					$form.find(":input[name='e.driverArea']").val('');
+					$form.find("select[name='e.driverClasses']").val('');
+					$form.find(":input[name='e.origin']").val('');
+					$form.find("select[name='e.driverType']").val('');
+				}
+			});
+					
+		});
 		
 		// 负责人
 		$form.find("#selectPrincipal").click(function() {
 			var selecteds = $form.find(":input[name='e.chargerName']").val();
 			bc.identity.selectUser({
-				history: false,
 				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
 				onOk : function(user) {
 					$form.find(":input[name='e.chargerId']").val(user.id);
@@ -261,7 +277,6 @@ bc.caseAccidentForm = {
 		//经办人
 		$form.find("#selectReceiver").click(function(){
 			bc.identity.selectUser({
-				history: false,
 				selectdes:$form.find(":input[name='e.receiverId']").val(),
 				onOk : function(user) {
 					$form.find(":input[name='e.receiverId']").val(user.id);
