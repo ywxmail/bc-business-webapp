@@ -11,14 +11,14 @@
 				<tbody>
 					<tr class="widthMarker">
 						<td style="width: 100px;"></td>
-						<td style="width: 300px;">&nbsp;</td>
+						<td style="width: 280px;">&nbsp;</td>
 						<td style="width: 100px;">&nbsp;</td>
 						<td >&nbsp;</td>
 					</tr>
 					<tr>
 					    <td class="label">*<s:text name="invoice4Sell.selldate"/>:</td>
 						<td class="value relative">
-							<input type="text" name="e.buyDate" data-validate='{"type":"date","required":true}'
+							<input type="text" name="e.sellDate" data-validate='{"type":"date","required":true}'
 							value='<s:date format="yyyy-MM-dd" name="e.sellDate" />'
 							class="bc-date ui-widget-content" data-cfg='{changeYear:true}' />
 							<ul class="inputIcons">
@@ -28,11 +28,11 @@
 						<td class="label">*<s:text name="invoice.company"/>:</td>
 						<td class="value ">
 							<s:select name="e.company" list="companyList" listKey="value" listValue="value" data-validate="required" 
-								 cssClass="ui-widget-content" />
+								 headerKey="" headerValue="" cssClass="ui-widget-content" />
 						</td>
 					</tr>
 					<!-- 车辆 		车队 -->
-					<tr>
+					 <tr>
 						<td class="label">*<s:text name="invoice.carPlate"/>:</td>
 							<s:if test="%{buyerId != null || carId !=null }">
 								<td class="value">
@@ -49,10 +49,10 @@
 							    </td>
 						    </s:else>
 					    <td class="label">*<s:text name="invoice.motorcade"/>:</td>
-						<td class="value"><s:select name="e.motorcadeId" list="motorcadeList" listKey="key" data-validate="required"
-										listValue="value" value="e.motorcadeId" headerKey="" headerValue="" cssClass="ui-widget-content"/>
+						<td class="value"><s:select name="e.motorcadeId.id" list="motorcadeList" listKey="key" data-validate="required"
+										listValue="value"  headerKey="" headerValue="" cssClass="ui-widget-content"/>
 					    </td>
-					</tr>
+					</tr>  
 					<!-- 购买人	收银员 -->
 					<tr>
 						<td class="label">*<s:text name="invoice4Sell.buyer"/>:</td>
@@ -92,72 +92,81 @@
 							<div class="formTopInfo">
 								登记：<s:property value="e.author.name" />(<s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>)
 								<s:if test="%{e.modifier != null}">
-								<br/>最后修改：<s:property value="e.modifier.name" />(<s:date name="e.modifiedDate" format="yyyy-MM-dd HH:mm:ss"/>)
+								，最后修改：<s:property value="e.modifier.name" />(<s:date name="e.modifiedDate" format="yyyy-MM-dd HH:mm:ss"/>)
 								</s:if>
 							</div>
 						</td>
 					</tr>
 				</tbody>
 			</table>
+			
 			<!-- 销售明细 -->
 			<div class="ui-widget-content" style="border-width:1px 0 0 0;margin-bottom:8px;">
 				<div class="ui-widget-header" style="position:relative;border-width: 0;padding: 0.25em;">
 					<span class="text"><s:text name="invoice4Sell.detail"/>：</span>
 					<ul class="inputIcons">
 						<li id="addLine" class="inputIcon ui-icon ui-icon-circle-plus"
-							title='<s:text name="certLost.title.click2addLine"/>'></li>
+							title='<s:text name="invoice4Sell.title.click2addLine"/>'></li>
 						<li id="deleteLine" class="inputIcon ui-icon ui-icon-circle-close"
-							title='<s:text name="certLost.title.click2deleteLine"/>'></li>
+							title='<s:text name="invoice4Sell.title.click2deleteLine"/>'></li>
 					</ul>
 				</div>
 		    	<div class="bc-grid header">
-				<table class="table" id="certTables" cellspacing="0" cellpadding="0" style="width: 100%;">
+				<table class="table" id="sellDetailTables" cellspacing="0" cellpadding="0" style="width: 100%;">
 					<tr class="ui-state-default header row">
 						<td class="first" style="width: 15px;">&nbsp;</td>
-						<td class="middle" style="width: 16em;"><s:text name="invoice.code"/></td>
-						<td class="middle" style="width: 8em;"><s:text name="invoice.type"/></td>
+						<td class="middle" style="width: 16em;">采购单发票代码</td>
+						<td class="middle" style="width: 6em;"><s:text name="invoice.type"/></td>
 						<td class="middle" style="width: 8em;"><s:text name="invoice.startNo"/></td>
 						<td class="middle" style="width: 8em;"><s:text name="invoice.endNo"/></td>
 						<td class="middle" style="width: 5em;"><s:text name="invoice.count"/></td>
 						<td class="middle" style="width: 6em;"><s:text name="invoice4Sell.price"/>(元)</td>
-						<td class="last" style="min-width: 4em;"><s:text name="invoice.amount"/></td>
+						<td class="last" style="min-width: 4em;"><s:text name="invoice.amount"/>(元)</td>
 					</tr>
 					<!-- 新建时 -->
 					<s:if test="%{e.isNew()}">
 					<tr class="ui-widget-content row" data-id='<s:property value="id"/>'>
 						<td class="id first" style="padding:0;text-align:left;"><span class="ui-icon"></span>
 						</td>
-							<s:select name="code" list="codeList" theme="simple" data-validate="required" cssClass="ui-widget-content" 
+						<!-- 发票代码 -->
+						<td class="middle" style="padding:0;text-align:left;">
+							<s:select name="code" list="codeList" listValue="value" listKey="key" headerValue=" " headerKey=" " 
+								theme="simple" data-validate="required" cssClass="ui-widget-content" 
 									cssStyle="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px"/>
 						</td>
+						<!-- 发票类型 -->
+						<td class="middle" style="padding:0;text-align:left;">
+							<s:select name="type" list="typeList" listValue="value" listKey="key" headerValue=" " headerKey=" " 
+								theme="simple" data-validate="required" cssClass="ui-widget-content" 
+									cssStyle="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px"/>
+						</td>
+						<!-- 开始号 -->
 						<td class="middle" style="padding:0;text-align:left;">
 							<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;" type="text" class="ui-widget-content" 
-								value='<s:property value=""/>' />
+								data-validate="required" value='<s:property value="startNo"/>'/>
 						</td>
+						<!-- 结束号 -->
 						<td class="middle" style="padding:0;text-align:left;">
 							<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;" type="text" class="ui-widget-content" 
-								value='<s:property value=""/>'/>
+								data-validate="required" value='<s:property value="endNo"/>' />
 						</td>
+						<!-- 数量 -->
 						<td class="middle" style="padding:0;text-align:left;">
 							<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;" type="text" class="ui-widget-content" 
-								value='<s:property value=""/>' />
+								data-validate="required" value='<s:property value="count"/>'/>
 						</td>
+						<!-- 单价 -->
 						<td class="middle" style="padding:0;text-align:left;">
 							<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;" type="text" class="ui-widget-content" 
-								value='<s:property value=""/>'/>
+								data-validate="required" value='<s:property value="price"/>'/>
 						</td>
-						<td class="middle" style="padding:0;text-align:left;">
-							<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;" type="text" class="ui-widget-content" 
-								value='<s:property value=""/>' />
-						</td>
+						<!-- 合计 -->
 						<td class="last" style="padding:0;text-align:left;">
 							<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;" type="text" class="ui-widget-content"
-								 value='<s:property value=""/>'/>
+								 value='<s:property value="amount"/>'/>
 						</td>
 					</tr>
 					</s:if>
-					
-					
 					<%-- <s:iterator var="b" value="e.certLostItem">
 					<tr class="ui-widget-content row" data-id='<s:property value="id"/>'>
 						<td class="id first" style="padding:0;text-align:left;"><span class="ui-icon"></span>
@@ -226,13 +235,15 @@
 		<s:hidden name="e.author.id" />
 		<s:hidden name="e.carId" />
 		<s:hidden name="e.buyerId" />
-		<s:hidden name="e.cashierId" />
+		<s:hidden name="e.cashierId.id" />
 		<s:hidden name="e.payType" />
 		<s:hidden name="e.bankCode" />
 		<s:hidden name="isMoreCar"/>
 		<s:hidden name="isMoreCarMan"/>
 		<s:hidden name="isNullCar"/>
 		<s:hidden name="isNullCarMan"/>
+		<!-- 销售明细隐藏信息 -->
+		<s:hidden name="sellDetails"/>
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 	</s:form>
 </div>
