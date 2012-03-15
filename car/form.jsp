@@ -20,6 +20,7 @@
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contract4Labours/list?carId=%{e.id}" />' class="ui-state-default">劳动合同</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/policys/list?carId=%{e.id}" />' class="ui-state-default">保单</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/car4Cert/list?carId=%{e.id}" />' class="ui-state-default">证件</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/certLosts/list?carId=%{e.id}" />' class="ui-state-default">证件遗失</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/blacklists/list?carId=%{e.id}" />' class="ui-state-default">黑名单</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseTraffics/list?carId=%{e.id}" />' class="ui-state-default">交通违章</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseBusinesss/list?carId=%{e.id}" />' class="ui-state-default">营运违章</a></li>
@@ -79,22 +80,8 @@
 									<s:select name="e.motorcade.id" list="motorcadeList" listKey="key" listValue="value" value="e.motorcade.id" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" disabled="%{!e.isNew()}"></s:select>
 								</td>
 								<td class="label" >*<s:text name="car.vin"/>:</td>
-								<td class="value relative" >
-								<s:if test="isReadonly()">
-									<s:textfield name="e.vin" cssClass="ui-widget-content"/>
-								</s:if>
-								<s:else>
-									<div class="bc-relativeContainer">
-										<input type="text" name="vinPrefix" value='<s:property value="vinPrefix"/>' style="width:110px;text-align:right;padding-right:18px;" 
-											data-validate='{"minLen": 11,"maxLen": 11,"required":true,"type":"string",msg:"必须填写正确的11位车架号前缀，如LSVT91338BN"}' class="bc-select ui-widget-content"
-											data-maxHeight="150px"
-											data-source='<s:property value="vinPrefixes"/>'/>
-										<ul class="inputIcons">
-											<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
-										</ul>
-									</div><s:textfield name="vinSuffix" cssStyle="width:121px;border-left-width:0;" 
-											data-validate='{"minLen": 6,"maxLen": 6,"required":true,"type":"string",msg:"必须填写正确的6位车架号后缀，如123456"}' cssClass="ui-widget-content"/>
-								</s:else>
+								<td class="value" >
+									<s:textfield name="e.vin" data-validate="required" cssClass="ui-widget-content"/>
 								</td>
 							</tr>
 							<tr>
