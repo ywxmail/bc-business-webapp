@@ -75,7 +75,7 @@
 						</tr>
 						<tr>
 							<td class="label"><s:text name="carMan.phone1"/>:</td>
-							<td class="value"><s:textfield name="e.phone" data-validate='{"required":false,"type":"phone"}' cssClass="ui-widget-content"/></td>
+							<td class="value"><s:textfield name="e.phone" cssClass="ui-widget-content"/></td>
 							<td class="label"><s:text name="carMan.workDate"/>:</td>
 					        <td class="value relative">
 								<input type="text" name="e.workDate" data-validate='{"type":"date","required":false}'
@@ -88,7 +88,7 @@
 						</tr>
 						<tr>
 							<td class="label"><s:text name="carMan.phone2"/>:</td>
-							<td class="value"><s:textfield name="e.phone1" data-validate='{"required":false,"type":"phone"}' cssClass="ui-widget-content"/></td>
+							<td class="value"><s:textfield name="e.phone1" cssClass="ui-widget-content"/></td>
 							<td class="label"><s:text name="carMan.formerUnit"/>:</td>
 							<!--<td class="value"><s:textfield name="e.formerUnit" cssClass="ui-widget-content"/></td>  -->
 							<td class="value relative">
