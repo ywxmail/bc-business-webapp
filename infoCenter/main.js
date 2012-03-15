@@ -370,7 +370,7 @@ bs.infoCenter = {
 						if(isLogoutMan) disabledManCount++;
 						
 						// 抬头行
-						trs.push('<tr class="top header'+(i==0 ? " first" : "") + (isLogoutMan ? " ui-state-disabled disabled" : "") + '">'
+						trs.push('<tr class="ui-widget-content ui-state-highlight top header'+(i==0 ? " first" : "") + (isLogoutMan ? " ui-state-disabled disabled" : "") + '">'
 							+'<td class="first aright ui-widget-content" style="width: 7em;">' + man.judgeType + ':</td>'
 							+'<td class="middle aleft ui-widget-content" style="width: 7em;">' + man.name + '(' + man.sex + ')' + '</td>'
 							+'<td class="middle aright ui-widget-content" style="width: 4em;">'
@@ -399,31 +399,31 @@ bs.infoCenter = {
 						
 						trs.push('></td>'
 							+'<td class="label" style="width: 6em;">身份证号码:</td>'
-							+'<td class="value" style="width: 20em;"><input type="text" class="ui-widget-content" readonly="readonly" value="' + man.identity + '"/></td>'
+							+'<td class="value" style="width: 20em;"><input type="text" class="ui-widget-content ui-state-default" readonly="readonly" value="' + man.identity + '"/></td>'
 							
-							+'<td rowspan="6" class="' + ($.browser.safari ? "desc-webkit" : "desc2") + '"><textarea class="ui-widget-content noresize"' 
+							+'<td rowspan="6" class="' + ($.browser.safari ? "desc-webkit" : "desc2") + '"><textarea class="ui-widget-content noresize ui-state-default"' 
 							+' readonly="readonly">' + man.desc + bs.infoCenter.getAutoInfo(man.autoInfo) + '</textarea></td>'
 							+'</tr>'
 							
 							+'<tr>'
 							+'<td class="label">身份证地址:</td>'
-							+'<td class="value"><input type="text" class="ui-widget-content" readonly="readonly" value="' + man.address1 + '"/></td>'
+							+'<td class="value"><input type="text" class="ui-widget-content ui-state-default" readonly="readonly" value="' + man.address1 + '"/></td>'
 							+'</tr>'
 							
 							+'<tr>'
 							+'<td class="label">暂住地址:</td>'
-							+'<td class="value"><input type="text" class="ui-widget-content" readonly="readonly" value="' + man.address2 + '"/></td>'
+							+'<td class="value"><input type="text" class="ui-widget-content ui-state-default" readonly="readonly" value="' + man.address2 + '"/></td>'
 							+'</tr>'
 							
 							+'<tr>'
 							+'<td class="label">籍贯:</td>'
-							+'<td class="value"><input type="text" class="ui-widget-content" readonly="readonly" value="' + man.origin + '"/></td>'
+							+'<td class="value"><input type="text" class="ui-widget-content ui-state-default" readonly="readonly" value="' + man.origin + '"/></td>'
 							+'</tr>'
 							
 							+'<tr>'
 							+'<td class="label">资格证号:</td>'
-							+'<td class="value"><input type="text" class="ui-widget-content" readonly="readonly" style="width:6em" value="' + man.cert4fwzg + '"/>'
-							+'&nbsp;&nbsp;户口性质:&nbsp;<input type="text" class="ui-widget-content" readonly="readonly" style="width:6em" value="' + man.houseType + '"/></td>'
+							+'<td class="value"><input type="text" class="ui-widget-content ui-state-default" readonly="readonly" style="width:6em" value="' + man.cert4fwzg + '"/>'
+							+'&nbsp;&nbsp;户口性质:&nbsp;<input type="text" class="ui-widget-content ui-state-default" readonly="readonly" style="width:6em" value="' + man.houseType + '"/></td>'
 							+'</tr>'
 							+'</table></td></tr>');
 					}
