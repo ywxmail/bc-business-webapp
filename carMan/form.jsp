@@ -90,7 +90,23 @@
 							<td class="label"><s:text name="carMan.phone2"/>:</td>
 							<td class="value"><s:textfield name="e.phone1" data-validate='{"required":false,"type":"phone"}' cssClass="ui-widget-content"/></td>
 							<td class="label"><s:text name="carMan.formerUnit"/>:</td>
-							<td class="value"><s:textfield name="e.formerUnit" cssClass="ui-widget-content"/></td>
+							<!--<td class="value"><s:textfield name="e.formerUnit" cssClass="ui-widget-content"/></td>  -->
+							<td class="value relative">
+								<s:if test="isReadonly()">
+									<s:textfield name="e.formerUnit" cssClass="ui-widget-content" />
+								</s:if>
+								<s:else>
+									<div class="bc-relativeContainer">
+										<input type="text" name="e.formerUnit" value='<s:property value="e.formerUnit"/>' style="text-align:left;" 
+											class="bc-select ui-widget-content"
+											data-maxHeight="150px"
+											data-source='<s:property value="companyNames"/>'/>
+										<ul class="inputIcons">
+											<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
+										</ul>
+									</div>
+								</s:else>
+							</td>
 						</tr>
 						<tr>
 							<td class="label"><s:text name="carMan.address"/>:</td>
