@@ -316,6 +316,17 @@ td.aright {
 	margin-right: 10px;
 }
 
+.bc-page.ic>.right .mans .phoneLabel {
+	margin-left:1em;
+}
+.bc-page.ic>.right .mans .updatePhone {
+	display:inline-block;
+	position: absolute;
+	top:50%;
+	margin-top: -8px;
+	cursor: pointer;
+}
+
 /** ==右侧内部布局结束== */
 
 td.desc-webkit{

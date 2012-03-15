@@ -67,12 +67,23 @@ bc.carForm = {
 			var $plateNo = $form.find(":input[name='e.plateNo']");
 			$plateNo.bind("blur",function(){
 				var plateNo = $plateNo.val();
+				//将车牌号强制转为大写
+				$plateNo.val(plateNo.toUpperCase());
 				if(!plateNo || plateNo.length == 0)
 					return false;
 				
 				bc.carForm.checkPlateNo($form,$plateNo);
 			});
 		}
+		
+		//绑定注销按钮操作
+		$form.find(":checkbox[name='e.logout']").change(function(){
+			if(this.checked){
+				$form.find(":input[name='e.returnDate']").attr("data-validate",'{"type":"date","required":true}');
+			}else{
+				$form.find(":input[name='e.returnDate']").attr("data-validate",'{"type":"date"}');
+			}
+		});
 	},
 	
 	checkPlateNo:function($form,$plateNo){
