@@ -10,10 +10,10 @@ bs.invoice4SellForm = {
 		$form.find("#selectCashier").click(function(){
 			bc.identity.selectUser({
 				history: true,
-				selecteds: $form.find(":input[name='cashier']").val(),
+				selecteds: $form.find(":input[name='e.cashierId.name']").val(),
 				onOk : function(user) {
 					$form.find(":input[name='e.cashierId.id']").val(user.id);
-					$form.find(":input[name='cashier']").val(user.name);
+					$form.find(":input[name='e.cashierId.name']").val(user.name);
 				}
 			});
 		});
@@ -129,58 +129,42 @@ bs.invoice4SellForm = {
 						codeRow+='</option>';
 					}
 					codeRow+='</select>';
-						
 					cell.innerHTML=codeRow;
 					
-					$(cell).bind('change', function() {
-						logger.info($(this).val());
-					});
-					//插入发票类型
+					//插入开始号
 					cell=newRow.insertCell(2);
 					cell.style.padding="0";
 					cell.style.textAlign="left";
 					cell.setAttribute("class","middle");
-					cell.innerHTML='<select name="type" class="ui-widget-content" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px"'
-						+'data-validate="required">'
-						+'		<option value=" "></option>'
-						+'		<option value="2">打印票</option>'
-						+'		<option value="1">手撕票</option>'
-						+'</select>';
+					cell.innerHTML='<input name="startNo" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
+						+'type="text" class="ui-widget-content"  data-validate="required">';
 					
-					//插入开始号
+					//插入结束号
 					cell=newRow.insertCell(3);
 					cell.style.padding="0";
 					cell.style.textAlign="left";
 					cell.setAttribute("class","middle");
-					cell.innerHTML='<input name="startNo" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
-						+'type="text" class="ui-widget-content" >';
+					cell.innerHTML='<input name="endNo" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
+						+'type="text" class="ui-widget-content" data-validate="required">';
 					
-					//插入结束号
+					//插入数量
 					cell=newRow.insertCell(4);
 					cell.style.padding="0";
 					cell.style.textAlign="left";
 					cell.setAttribute("class","middle");
-					cell.innerHTML='<input name="endNo" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
-						+'type="text" class="ui-widget-content" >';
+					cell.innerHTML='<input name="count" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
+						+'type="text" class="ui-widget-content" data-validate="required">';
 					
-					//插入数量
+					//插入单价
 					cell=newRow.insertCell(5);
 					cell.style.padding="0";
 					cell.style.textAlign="left";
 					cell.setAttribute("class","middle");
-					cell.innerHTML='<input name="count" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
-						+'type="text" class="ui-widget-content" >';
-					
-					//插入单价
-					cell=newRow.insertCell(6);
-					cell.style.padding="0";
-					cell.style.textAlign="left";
-					cell.setAttribute("class","middle");
 					cell.innerHTML='<input name="price" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
-						+'type="text" class="ui-widget-content" >';
+						+'type="text" class="ui-widget-content" data-validate="required">';
 					
 					//插入合计
-					cell=newRow.insertCell(7);
+					cell=newRow.insertCell(6);
 					cell.style.padding="0";
 					cell.style.textAlign="left";
 					cell.setAttribute("class","middle");
@@ -212,10 +196,7 @@ bs.invoice4SellForm = {
 			
 		});
 		
-		//绑定事件
-		$form.find("select[name='code']").click(function(){
-			logger.info($(this).val());
-		});
+		
 		
 		//绑定选择购买人按钮事件
 		$form.find("#selectBuyer").click(function() {
@@ -231,6 +212,9 @@ bs.invoice4SellForm = {
 	},
 	save : function(){
 		$page = $(this);
+		//表单先验证一次
+		if(!bc.validator.validate($page))
+			return;
 		
 		//先将销售合并到隐藏域
 		var sellDetails=[];
@@ -254,12 +238,31 @@ bs.invoice4SellForm = {
 		$page.find(":input[name='sellDetails']").val($.toJSON(sellDetails));
 		//表单验证
 		$sellDetailTables=$page.find("#sellDetailTables tr");
-		
 		if(!bc.validator.validate($sellDetailTables))
 			return;
 		
-		//调用标准的方法执行保存
-		bc.page.save.call($page);
+		var sellDetailsStr=$page.find(":input[name='sellDetails']").val();
+		if(sellDetailsStr=='[]')
+			bc.msg.alert("你好，销售单至少需要一条发票明细！");
+		
+		//检测销售明细的正确性
+		var sellId=$page.find(":input[name='e.id']").val();
+		var url=bc.root + "/bc-business/invoice4Sell/checkSell4Detail";
+		$.ajax({
+			url:url,
+			data:{sellId:sellId,sellDetailsStr:sellDetailsStr},
+			dataType: "json",
+			success:function(json){		
+				if(json){
+					bc.msg.alert(json.checkResult);
+				}else{
+					//调用标准的方法执行保存
+					bc.page.save.call($page);
+				}		
+			}
+		});
+		
+		
 	},
 	/** 维护 */
 	doMaintenance : function() {
