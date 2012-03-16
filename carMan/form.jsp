@@ -17,6 +17,7 @@
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contract4Chargers/list?driverId=%{e.id}" />' class="ui-state-default">经济合同</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contract4Labours/list?driverId=%{e.id}" />' class="ui-state-default">劳动合同</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/driver4cert/list?carManId=%{e.id}" />' class="ui-state-default">证件</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/certLosts/list?carManId=%{e.id}" />' class="ui-state-default">证件遗失</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/blacklists/list?carManId=%{e.id}" />' class="ui-state-default">黑名单</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseTraffics/list?carManId=%{e.id}" />' class="ui-state-default">交通违章</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseBusinesss/list?carManId=%{e.id}" />' class="ui-state-default">营运违章</a></li>
