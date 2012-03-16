@@ -71,7 +71,7 @@
 						     </s:else>
 					  	<td class="label">*<s:text name="invoice4Sell.cashier"/>:</td>
 						<td class="value relative">
-							<s:textfield name="cashier" cssClass="ui-widget-content" readonly="true" data-validate="required" />
+							<s:textfield name="e.cashierId.name" cssClass="ui-widget-content" readonly="true" data-validate="required" />
 							<ul class="inputIcons">
 								 <li id="selectCashier" class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></li>
 							</ul>
@@ -115,8 +115,7 @@
 				<table class="table" id="sellDetailTables" cellspacing="0" cellpadding="0" style="width: 100%;">
 					<tr class="ui-state-default header row">
 						<td class="first" style="width: 15px;">&nbsp;</td>
-						<td class="middle" style="width: 16em;">采购单发票代码</td>
-						<td class="middle" style="width: 6em;"><s:text name="invoice.type"/></td>
+						<td class="middle" style="width: 22em;">采购单发票代码</td>
 						<td class="middle" style="width: 8em;"><s:text name="invoice.startNo"/></td>
 						<td class="middle" style="width: 8em;"><s:text name="invoice.endNo"/></td>
 						<td class="middle" style="width: 5em;"><s:text name="invoice.count"/></td>
@@ -130,13 +129,7 @@
 						</td>
 						<!-- 发票代码 -->
 						<td class="middle" style="padding:0;text-align:left;">
-							<s:select name="code" list="codeList" listValue="value" listKey="key" headerValue=" " headerKey=" " 
-								theme="simple" data-validate="required" cssClass="ui-widget-content" 
-									cssStyle="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px"/>
-						</td>
-						<!-- 发票类型 -->
-						<td class="middle" style="padding:0;text-align:left;">
-							<s:select name="type" list="typeList" listValue="value" listKey="key" headerValue=" " headerKey=" " 
+							<s:select name="code" list="codeList" listValue="value" listKey="key" headerValue="" headerKey="" 
 								theme="simple" data-validate="required" cssClass="ui-widget-content" 
 									cssStyle="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px"/>
 						</td>
@@ -167,66 +160,43 @@
 						</td>
 					</tr>
 					</s:if>
-					<%-- <s:iterator var="b" value="e.certLostItem">
+					<s:iterator var="b" value="e.invoice4SellDetail">
 					<tr class="ui-widget-content row" data-id='<s:property value="id"/>'>
 						<td class="id first" style="padding:0;text-align:left;"><span class="ui-icon"></span>
 						</td>
+						<!-- 发票代码 -->
 						<td class="middle" style="padding:0;text-align:left;">
-							<s:if test="isReadonly()">
-								<s:textfield name="certName" cssClass="ui-widget-content" cssStyle="width:99%;height:100%;border:none;margin:0;padding:0 0 0 2px;background:none;"/>
-							</s:if>
-							<s:else>
-							<div class="bc-relativeContainer">
-								<input type="text" name="certName" value='<s:property value="certName"/>' style="width:99%;height:100%;border:none;margin:0;padding:0 0 0 2px;background:none;" 
-									class="bc-select ui-widget-content" data-validate="required" 
-									data-maxHeight="150px"
-									data-source='<s:property value="certNames"/>'/>
-								<ul class="inputIcons">
-									<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
-								</ul>
-							</div>
-							</s:else>
+							<s:select name="code" list="codeList" listValue="value" listKey="key"
+								theme="simple" data-validate="required" cssClass="ui-widget-content" 
+									cssStyle="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px"/>
 						</td>
+						<!-- 开始号 -->
 						<td class="middle" style="padding:0;text-align:left;">
 							<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" 
-								value='<s:property value="certNo"/>'/>
+								value='<s:property value="startNo"/>'/>
 						</td>
+						<!-- 结束号 -->
 						<td class="middle" style="padding:0;text-align:left;">	
-							<s:select name="reason" list="{'掉失','被盗','损坏','其它'}" theme="simple" data-validate="required" cssClass="ui-widget-content" 
-										cssStyle="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px"/>
+							<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content"
+								 value='<s:property value="endNo"/>'/>
 						</td>
+						<!-- 数量 -->
 						<td class="middle" style="padding:0;text-align:left;">
-							<s:select name="remains" list="#{'false':'无','true':'有'}" listKey="key" listValue="value" data-validate="required" cssClass="ui-widget-content" 
-										cssStyle="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px"/>
+							<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content"
+								 value='<s:property value="count"/>'/>
 						</td>
+						<!-- 价格 -->
 						<td class="middle" style="padding:0;text-align:left;">
-							<s:select name="replace" list="#{false:'未补办',true:'补办'}" listKey="key" listValue="value" data-validate="required" cssClass="ui-widget-content" 
-										cssStyle="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px"/>
+							<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content"
+								 value='<s:property value="price"/>'/>
 						</td>
-						<td class="middle" style="padding:0;text-align:left;">
-						<div class="relative">
-							<input type="text" name="replaceDate" data-validate='{"type":"date","required":false}' style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"
-							value='<s:date format="yyyy-MM-dd" name="replaceDate" />'
-							class="bc-date ui-widget-content" />
-							<ul class="inputIcons">
-								<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='replaceDate'></li>
-							</ul>
-						</div>
-						</td>
-						<td class="middle" style="padding:0;text-align:left;">
-							<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" 
-								value='<s:property value="newCertNo"/>'/>
-						</td>
-						<td class="middle" style="padding:0;text-align:left;">
-							<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" 
-								value='<s:property value="lostAddress"/>'/>
-						</td>
+						<!-- 合计 -->
 						<td class="last" style="padding:0;text-align:left;">
 							<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content"
-								 value='<s:property value="description"/>'/>
+								 value='<s:property value="count*price"/>'/>
 						</td>
 					</tr>
-					</s:iterator> --%>
+					</s:iterator>
 				</table>
 			</div>
 			</div>
