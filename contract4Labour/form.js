@@ -326,8 +326,8 @@ bc.contract4LabourForm = {
 		bc.page.newWin({
 			name:"劳动合同离职处理",
 			mid: "resignContract4Labour",
-			url: bc.root + "/bc/common/selectDate",
-			data: {title:"请输入司机的离职日期"},
+			url: bc.root + "/bc-business/selectTwoDate/select",
+			data: {title:"离职操作"},
 			afterClose: function(status){
 				logger.info("status=" + $.toJSON(status));
 				if(!status) return;
@@ -336,7 +336,9 @@ bc.contract4LabourForm = {
 				bc.ajax({
 					url: bc.root + "/bc-business/contract4LabourOperate/doResign",
 					dataType: "json",
-					data: {resignDate: status,id: $page.find(":input[name='e.id']").val()},
+					data: {resignDate: status.resignDate,
+						     stopDate: status.stopDate,
+						           id: $page.find(":input[name='e.id']").val()},
 					success: function(json){
 						logger.info("doResign result=" + $.toJSON(json));
 						//完成后提示用户
