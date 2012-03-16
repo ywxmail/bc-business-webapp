@@ -18,7 +18,7 @@
 					<tr>
 					    <td class="label">*<s:text name="invoice4Sell.selldate"/>:</td>
 						<td class="value relative">
-							<input type="text" name="e.sellDate" data-validate='{"type":"date","required":true}'
+							<input type="text" name="e.sellDate" data-validate='{"type":"date","required":true}' 
 							value='<s:date format="yyyy-MM-dd" name="e.sellDate" />'
 							class="bc-date ui-widget-content" data-cfg='{changeYear:true}' />
 							<ul class="inputIcons">
@@ -135,27 +135,28 @@
 						</td>
 						<!-- 开始号 -->
 						<td class="middle" style="padding:0;text-align:left;">
-							<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;" type="text" class="ui-widget-content" 
+							<input id="startNo" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;" type="text" class="ui-widget-content" 
 								data-validate="required" value='<s:property value="startNo"/>'/>
 						</td>
 						<!-- 结束号 -->
 						<td class="middle" style="padding:0;text-align:left;">
-							<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;" type="text" class="ui-widget-content" 
+							<input id="endNo" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;" type="text" class="ui-widget-content" 
 								data-validate="required" value='<s:property value="endNo"/>' />
 						</td>
 						<!-- 数量 -->
 						<td class="middle" style="padding:0;text-align:left;">
-							<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;" type="text" class="ui-widget-content" 
+							<input id="count" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;" type="text" class="ui-widget-content" 
 								data-validate="required" value='<s:property value="count"/>'/>
+							<input id="eachCount" type="hidden"  value='<s:property value="eachCount"/>'/>
 						</td>
 						<!-- 单价 -->
 						<td class="middle" style="padding:0;text-align:left;">
-							<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;" type="text" class="ui-widget-content" 
+							<input id="price" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;" type="text" class="ui-widget-content" 
 								data-validate="required" value='<s:property value="price"/>'/>
 						</td>
 						<!-- 合计 -->
 						<td class="last" style="padding:0;text-align:left;">
-							<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;" type="text" class="ui-widget-content"
+							<input id="amount" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;" type="text" class="ui-widget-content"
 								 value='<s:property value="amount"/>'/>
 						</td>
 					</tr>
@@ -166,33 +167,33 @@
 						</td>
 						<!-- 发票代码 -->
 						<td class="middle" style="padding:0;text-align:left;">
-							<s:select name="code" list="codeList" listValue="value" listKey="key"
+							<s:select name="buyId" list="codeList" listValue="value" listKey="key"
 								theme="simple" data-validate="required" cssClass="ui-widget-content" 
 									cssStyle="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px"/>
 						</td>
 						<!-- 开始号 -->
 						<td class="middle" style="padding:0;text-align:left;">
-							<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" 
+							<input id="startNo" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" 
 								value='<s:property value="startNo"/>'/>
 						</td>
 						<!-- 结束号 -->
 						<td class="middle" style="padding:0;text-align:left;">	
-							<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content"
+							<input id="endNo" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content"
 								 value='<s:property value="endNo"/>'/>
 						</td>
 						<!-- 数量 -->
 						<td class="middle" style="padding:0;text-align:left;">
-							<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content"
+							<input id="count" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content"
 								 value='<s:property value="count"/>'/>
 						</td>
 						<!-- 价格 -->
 						<td class="middle" style="padding:0;text-align:left;">
-							<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content"
+							<input id="price" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content"
 								 value='<s:property value="price"/>'/>
 						</td>
 						<!-- 合计 -->
 						<td class="last" style="padding:0;text-align:left;">
-							<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content"
+							<input id="amount" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content"
 								 value='<s:property value="count*price"/>'/>
 						</td>
 					</tr>

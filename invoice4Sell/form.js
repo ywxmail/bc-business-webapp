@@ -196,8 +196,46 @@ bs.invoice4SellForm = {
 			
 		});
 		
+		//选择采购单预加载单价，每份数量的信息
+		$form.find("select[name='code']").change(function(){
+			var buyId=$(this).select().val();
+			if(buyId!=''){
+				var url=bc.root + "/bc-business/invoice4Sell/findOneInvoice4Buy";
+				$.ajax({
+					url:url,
+					data:{buyId:buyId},
+					dataType:"json",
+					success:function(json){
+						logger.info($.toJSON(json));
+						if(json){
+							$form.find("#startNo").val(json.startNo);
+							$form.find("#endNo").val('');
+							$form.find("#count").val('');
+							$form.find("#eachCount").val(json.eachCount);
+							$form.find("#price").val(json.sellPrice);
+							$form.find("#amount").val('');
+						}
+					}
+				});
+			}
+		});
 		
-		
+		//新建时
+		if($form.find(":input[name='e.id']").val()==''){
+			//失去焦点时，自动填上明细的结束号和合计
+			$form.find("#count").blur(function(){
+				bs.invoice4SellForm.autoCountEndNoAndAmount($form);
+			});
+			
+			//失去焦点时，自动填上明细的结束号和合计
+			$form.find("#startNo").blur(function(){
+				bs.invoice4SellForm.autoCountEndNoAndAmount($form);
+			});
+			//失去焦点时，自动计算合计
+			$form.find("#price").blur(function(){
+				bs.invoice4SellForm.autoCountEndNoAndAmount($form);
+			});
+		}
 		//绑定选择购买人按钮事件
 		$form.find("#selectBuyer").click(function() {
 			var selecteds = $form.find(":input[name='e.buyerId']").val();
@@ -261,8 +299,6 @@ bs.invoice4SellForm = {
 				}		
 			}
 		});
-		
-		
 	},
 	/** 维护 */
 	doMaintenance : function() {
@@ -281,5 +317,52 @@ bs.invoice4SellForm = {
 				}
 			});
 		});
+	},
+	/**
+	 * 将数值四舍五入(保留2位小数)后格式化成金额形式
+	 *
+	 * @param num 数值(Number或者String)
+	 * @return 金额格式的字符串,如'1,234,567.45'
+	 * @type String
+	 */
+	formatNumberToMoney : function(num) {
+	    num = num.toString().replace(/\$|\,/g,'');
+	    if(isNaN(num))
+	    num = "0";
+	    sign = (num == (num = Math.abs(num)));
+	    num = Math.floor(num*100+0.50000000001);
+	    cents = num%100;
+	    num = Math.floor(num/100).toString();
+	    if(cents<10)
+	    cents = "0" + cents;
+	    for (var i = 0; i < Math.floor((num.length-(1+i))/3); i++)
+	    num = num.substring(0,num.length-(4*i+3))+','+
+	    num.substring(num.length-(4*i+3));
+	    return (((sign)?'':'-') + num + '.' + cents);
+	},
+	//自动填上明细的结束号和合计
+	autoCountEndNoAndAmount : function($form){
+		var count=$form.find("#count").val();
+		var startNo=$form.find("#startNo").val();
+		var eachCount=$form.find("#eachCount").val();
+		var price=$form.find("#price").val();
+		//判断数量和开始号是否为数字
+		if(count!=''&&!isNaN(count)&&startNo!=''&&!isNaN(startNo)&&eachCount!=null&&price!=null&&!isNaN(price)){
+			var a=parseInt(count*eachCount-1);
+			var b=parseInt(startNo);
+			//计算结束号
+			var endNo=a+b;
+			if(endNo.toString().length==b.toString().length){
+				$form.find("#endNo").val(endNo); 
+			}else{//当开始号是‘0’开始时，结束号补回前边的0
+				var zoreStr=startNo.substring(0,startNo.length-endNo.toString().length)
+				$form.find("#endNo").val(zoreStr+endNo); 
+			}
+			//计算合计
+			var amount=bs.invoice4SellForm.formatNumberToMoney(count*price);
+			$form.find("#amount").val(amount);
+		}
 	}
+	
+	
 };
