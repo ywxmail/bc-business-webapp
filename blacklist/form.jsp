@@ -29,7 +29,7 @@
 					    </td>
 					    </s:else>
 						<td class="label"><s:text name="blacklist.company"/>:</td>
-						<td class="value"><s:textfield name="e.company" readonly="true"  cssClass="ui-widget-content"/></td>
+						<td class="value"><s:textfield name="e.company" cssClass="ui-widget-content"/></td>
 					</tr>
 					<tr>
 						<td class="label"><s:text name="blacklist.driver"/>:</td>

@@ -80,7 +80,7 @@
 					                     <td class="value"> <s:select name="e.fromMotorcadeId" list="motorcadeList" listKey="key" listValue="value" value="e.fromMotorcadeId" 
 						                    headerKey="" headerValue="" cssClass="ui-widget-content"></s:select></td>
 						              	 <td class="label" style="min-width: 5em;width: 5em;"><s:text name="carByDriverHistory.classes"/>:</td>
-						                 <td class="value" ><s:select name="e.fromClasses" list="#{0:'',1:'正班',2:'副班',3:'主挂',4:'顶班'}" 
+						                 <td class="value" ><s:select name="e.fromClasses" list="classes" headerKey="" headerValue="%{getText('label.please.choose')}"
 							              listKey="key" listValue="value" data-validate="required" cssClass="ui-widget-content"/></td>
 							          </tr>
 						          </table>

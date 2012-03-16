@@ -6,7 +6,7 @@
 	data-initMethod='bc.business.carByDriverHistoryForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="carByDriverHistoryForm" theme="simple">
-			<table class="formFields" cellspacing="2" cellpadding="0"  >
+			<table class="formFields" cellspacing="2" cellpadding="0" style="width: 370px" >
 				<tbody>
 					<tr class="widthMarker">
 		                <td style="width: 80px;">&nbsp;</td>
@@ -27,7 +27,7 @@
 					    </td>
 					</s:else>
 						<td class="label" style="min-width: 5em;width: 5em;"><s:text name="carByDriverHistory.moveType"/>:</td>
-						<td class="value"><s:select name="e.moveType" list="#{4:'交回未注销',2:'注销未有去向'}" 
+						<td class="value"><s:select id="moveType" name="e.moveType" list="#{4:'交回未注销',2:'注销未有去向'}" 
 							              listKey="key" listValue="value" data-validate="required" cssClass="ui-widget-content"/></td>
 						<!--<s:textfield name="moveTypeValue"  value="%{moveTypeValueList[e.moveType]}" readonly="true" cssClass="ui-widget-content"/>-->
 					</tr>
@@ -41,15 +41,21 @@
 								<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.moveDate'></li>
 							</ul>
 						</td>
-				        <!--<td class="label">*<s:text name="carByDriverHistory.handPapersDate"/>:</td>
-				        <td class="value relative">
-							<input type="text" name="e.handPapersDate" data-validate='{"type":"date","required":true}'
+				        <td class="label danhao" style="min-width: 5em;width: 5em;visibility: hidden;"><s:text name="carByDriverHistory.cancelId"/>:</td>
+						<td class="value danhao" style="visibility: hidden;"><s:textfield name="e.cancelId" cssClass="ui-widget-content"/></td>
+					</tr>
+					<tr id="jianzheng" style="display: none;">
+					  <td class="label" style="min-width: 5em;width: 5em;">*<s:text name="carByDriverHistory.handPapersDate"/>:</td>
+						<td class="value relative">
+							<input type="text" name="e.handPapersDate" data-validate='{"type":"date"}'
 							value='<s:date format="yyyy-MM-dd" name="e.handPapersDate" />'
 							class="bc-date ui-widget-content" data-cfg='{changeYear:true,addYear: "5|e.scrapDate"}' />
 							<ul class="inputIcons">
 								<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.handPapersDate'></li>
 							</ul>
-						</td> -->
+						</td>
+						<td class="label">&nbsp;</td>
+						<td class="value">&nbsp;</td>
 					</tr>
 					<tr>
 						<td class="label" colspan="4" style="text-align:left;">
@@ -79,7 +85,7 @@
 						                       headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
 					                      </td>
 						                  <td class="label" style="min-width: 5em;width: 5em;"><s:text name="carByDriverHistory.classes"/>:</td>
-						                  <td class="value" ><s:select name="e.fromClasses" list="#{0:'',1:'正班',2:'副班',3:'主挂',4:'顶班'}" 
+						                  <td class="value" ><s:select name="e.fromClasses" list="classes" headerKey="" headerValue="%{getText('label.please.choose')}" 
 							              listKey="key" listValue="value" data-validate="required" cssClass="ui-widget-content"/></td>
 						              </tr>
 						          </table>
