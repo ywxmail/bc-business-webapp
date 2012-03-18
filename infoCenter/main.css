@@ -222,6 +222,9 @@
 	padding: 0;
 	margin: 0 0;
 }
+.bc-page.ic>.right table.contentTable  .ui-state-default{
+	font-weight: normal;
+}
 
 .bc-page.ic>.right #carContent td.label {
 	border-width: 0;
