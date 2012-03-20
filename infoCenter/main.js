@@ -160,8 +160,12 @@ bs.infoCenter = {
 				mid: "updatePhone" + driverId,
 				url: bc.root + "/bc-business/carMan/updatePhonePage",
 				data: {id: driverId, phone1: phone1, phone2: phone2},
-				afterClose: function(){
+				afterClose: function(json){
 					// TODO 更新界面显示的电话为新的电话信息
+					$this.attr("data-phone1",json.phone1);
+					$this.attr("data-phone2",json.phone2);
+					$this.parent().parent().next().text(json.phone1+","+json.phone2)
+					
 				}
 			});
 		});

@@ -10,6 +10,7 @@ bc.updataCarManPhone = {
 		var phone2 = $form.find(":input[name='phone2']").val();
 		var carManId = $form.find(":input[name='id']").val();
 		var url = bc.root + "/bc-business/carMan/updatePhone";
+		var phone;
 		$.ajax({
 			url: url,
 			dataType:"json",
@@ -17,6 +18,10 @@ bc.updataCarManPhone = {
 			success: function (json){
 				if(json.success){
 					bc.msg.slide(json.msg);
+					// 返回
+					phone = [];
+					phone={phone1 : phone1,phone2 : phone2};
+					$form.data("data-status", phone);
 					$form.dialog("close");
 				}else{
 					bc.msg.alert(json.msg);
