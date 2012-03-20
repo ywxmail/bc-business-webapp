@@ -56,29 +56,36 @@ bs.invoice4BuyForm = {
 				var startNo=$page.find(":input[name='e.startNo']").val();
 				var endNo=$page.find(":input[name='e.endNo']").val();
 				var id4Buy=$page.find(":input[name='e.id']").val();
+				var status=$page.find("input:radio[name='e.status']:checked").val();
 				var url=bc.root + "/bc-business/invoice4Buy/checkSameCode4StartNoAndEndNo";
 				//验证是否可以保存
 				$.ajax({
 					url:url,
 					dataType: "json",
-					data: {code:code,startNo:startNo,endNo:endNo,id4Buy:id4Buy},
+					data: {code:code,startNo:startNo,endNo:endNo,id4Buy:id4Buy,status:status},
 					success: function(json){
+						var str="你好，保存的采购单,";
+						str+="发票代码:";
+						str+=code;
+						str+=",";
+						str+="范围[";
+						str+=startNo;
+						str+="-";
+						str+=endNo;
+						str+="]";
 						if(json.checkResult==0){
 							//调用标准的方法执行保存
 							bc.page.save.call($page);
-						}else{
-							var str="你好，输入的采购单,";
-								str+="发票代码:";
-								str+=code;
-								str+=",";
-								str+="范围[";
-								str+=startNo;
-								str+="-";
-								str+=endNo;
-								str+="]";
-								str+="和系统中相同代码的采购单范围重叠，不能保存！";
+						}else if(json.checkResult==1){
+							str+="和系统中相同代码的采购单范围重叠，不能保存！";
 							bc.msg.confirm(str);
-						}				
+						}else if(json.checkResult==2){
+							str+="，有相应的销售单，且这些销售单号码范围不在这采购单内，不能保存！";
+							bc.msg.confirm(str);
+						}else if(json.checkResult==3){
+							str+="，有相应的销售单，不能作废，若作废此采购单必须先作废相应销售单！";
+							bc.msg.confirm(str);
+						}
 					}
 				});
 			}

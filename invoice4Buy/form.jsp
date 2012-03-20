@@ -79,7 +79,7 @@
 					<tr>
 						<td class="label">*每<span id="eachCountName"/>数量(张):</td>
 						<td class="value">
-							<s:textfield name="e.eachCount" data-validate='number' class="ui-widget-content"/></td>
+							<s:textfield name="e.eachCount" data-validate='number' readonly="true" class="ui-widget-content"/></td>
 						<td class="label"><s:text name="invoice.status"/>:</td>
 						<td><s:radio name="e.status" list="#{'0':'正常','1':'作废'}" cssStyle="width:auto;"/></td>
 					</tr>
@@ -92,7 +92,7 @@
 							<div class="formTopInfo">
 								登记：<s:property value="e.author.name" />(<s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>)
 								<s:if test="%{e.modifier != null}">
-								<br/>最后修改：<s:property value="e.modifier.name" />(<s:date name="e.modifiedDate" format="yyyy-MM-dd HH:mm:ss"/>)
+								 最后修改：<s:property value="e.modifier.name" />(<s:date name="e.modifiedDate" format="yyyy-MM-dd HH:mm:ss"/>)
 								</s:if>
 							</div>
 						</td>
