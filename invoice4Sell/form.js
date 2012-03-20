@@ -209,11 +209,11 @@ bs.invoice4SellForm = {
 						logger.info($.toJSON(json));
 						if(json){
 							$form.find("#startNo").val(json.startNo);
-							$form.find("#endNo").val('');
-							$form.find("#count").val('');
+							$form.find("#endNo").val(json.endNo);
+							$form.find("#count").val(json.count);
 							$form.find("#eachCount").val(json.eachCount);
 							$form.find("#price").val(json.sellPrice);
-							$form.find("#amount").val('');
+							$form.find("#amount").val(json.amount);
 						}
 					}
 				});
@@ -352,7 +352,7 @@ bs.invoice4SellForm = {
 			var b=parseInt(startNo);
 			//计算结束号
 			var endNo=a+b;
-			if(endNo.toString().length==b.toString().length){
+			if(endNo.toString().length>=b.toString().length){
 				$form.find("#endNo").val(endNo); 
 			}else{//当开始号是‘0’开始时，结束号补回前边的0
 				var zoreStr=startNo.substring(0,startNo.length-endNo.toString().length)
