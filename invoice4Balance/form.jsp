@@ -20,7 +20,7 @@
 							value='<s:date  format="yyyy-MM-dd" name="startDate" />'
 							class="bc-date ui-widget-content" data-cfg='{changeYear:true}' />
 							<ul class="inputIcons">
-								<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='startDate'></li>
+								<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
 							</ul>
 						</td>
 					</tr>
@@ -32,7 +32,7 @@
 							value='<s:date  format="yyyy-MM-dd" name="endDate" />'
 							class="bc-date ui-widget-content" data-cfg='{changeYear:true}' />
 							<ul class="inputIcons">
-								<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='endDate'></li>
+								<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" ></li>
 							</ul>
 						</td>
 					</tr>
