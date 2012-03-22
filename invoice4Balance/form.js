@@ -5,6 +5,32 @@ bs.invoice4BalanceForm = {
 		
 		if(readonly) return;
 		
+
+		var startDate=$form.find(":input[name='startDate']").val();
+		var endDate=$form.find(":input[name='endDate']").val();
+		var company=$form.find("select[name='company']").val();
+		var type=$form.find("select[name='type']").val();
+		
+		//logger.info(company+"~"+type);
+		
+		var url=bc.root + "/bc-business/invoice4Balance/select";
+		$.ajax({
+			url:url,
+			data:{startDate:startDate,endDate:endDate,company:company,type:type},
+			dataType:"json",
+			success:function(json){
+				//logger.info($.toJSON(json));
+				var startCount=bs.invoice4BalanceForm.formatNumber(json.startCount);
+				var buyCount=bs.invoice4BalanceForm.formatNumber(json.buyCount);
+				var sellCount=bs.invoice4BalanceForm.formatNumber(json.sellCount);
+				var endCount=bs.invoice4BalanceForm.formatNumber(json.endCount);
+				$form.find(":input[name='startCount']").val(startCount);
+				$form.find(":input[name='buyCount']").val(buyCount);
+				$form.find(":input[name='sellCount']").val(sellCount);
+				$form.find(":input[name='endCount']").val(endCount);
+			}
+		});
+		
 	},
 	select : function(){
 		var $form = $(this);
@@ -15,7 +41,7 @@ bs.invoice4BalanceForm = {
 		var company=$form.find("select[name='company']").val();
 		var type=$form.find("select[name='type']").val();
 		
-		logger.info(company+"~"+type);
+		//logger.info(company+"~"+type);
 		
 		var url=bc.root + "/bc-business/invoice4Balance/select";
 		$.ajax({

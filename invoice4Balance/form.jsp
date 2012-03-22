@@ -5,8 +5,8 @@
 	data-initMethod='bs.invoice4BalanceForm.init'
 	data-option='<s:property value="pageOption"/>'
 	style="overflow: auto;">
-		<div class="formFields ui-widget-content"  >
-			<table class="formFields"  cellpadding="0" style="width:22em;">
+		<s:form name="invoice4BalanceForm" theme="simple">
+			<table class="formFields ui-widget-content"  cellpadding="0" cellpadding="0" style="width:30em;">
 				<tbody>
 					<tr class="widthMarker">
 						<td style="width:7.2em;">&nbsp;</td>
@@ -40,7 +40,7 @@
 					<tr>
 						<td class="label" >公司:</td>
 						<td class="value" >
-							<s:select theme="simple" name="company" list="companyList" listKey="value" listValue="value"
+							<s:select name="company" list="companyList" listKey="value" listValue="value"
 								headerKey="" headerValue="" cssClass="ui-widget-content"  />
 						</td>
 					</tr>
@@ -48,38 +48,48 @@
 					<tr>
 						<td class="label">*发票类型:</td>
 						<td class="value">
-							<s:select theme="simple" name="type" list="typeList" listKey="key" listValue="value" cssClass="ui-widget-content" />
+							<s:select name="type" list="typeList" listKey="key" listValue="value" cssClass="ui-widget-content" />
 						</td>
 					</tr>
 					<!-- 期初数量 -->
 					<tr>
 						<td class="label" >期初数量:</td>
-						<td class="value" ><s:textfield theme="simple" name="startCount" readonly="true" cssClass="ui-widget-content" cssStyle="border-style:none"
+						<td class="value" ><s:textfield  name="startCount" readonly="true" cssClass="ui-widget-content" cssStyle="border-style:none"
 							  />
 						</td>
 					</tr>
 					<!-- 收入数量-->
 					<tr>
 						<td class="label" >收入数量:</td>
-						<td class="value" ><input type="text" name="buyCount" class="ui-widget-content" readonly="readonly" style="border-style:none"
-							value="0"
-						/></td>
+						<td class="value" ><s:textfield  name="buyCount" readonly="true" cssClass="ui-widget-content" cssStyle="border-style:none"
+							  />
+						</td>
 					</tr>
 					<!-- 发出数量 -->
 					<tr>
 						<td class="label" >发出数量:</td>
-						<td class="value" ><input type="text" name="sellCount" class="ui-widget-content" readonly="readonly" style="border-style:none"
-							value="0"
-						/></td>
+						<td class="value" ><s:textfield  name="sellCount" readonly="true" cssClass="ui-widget-content" cssStyle="border-style:none"
+							  />
+						</td>
 					</tr>
 					<!-- 剩余数量 -->
 					<tr>
 						<td class="label" >剩余数量:</td>
-						<td class="value" ><s:textfield theme="simple" name="endCount" readonly="true" cssClass="ui-widget-content" cssStyle="border-style:none" 
+						<td class="value" ><s:textfield  name="endCount" readonly="true" cssClass="ui-widget-content" cssStyle="border-style:none" 
 							  />
+						</td>
+					</tr>
+					<tr>
+						<td class="label" ></td>
+						<td class="value" >
 						</td>
 					</tr>
 				</tbody>
 			</table>
-		</div>
+			<p class="formComment">说明:<br>
+										1.期初数量，起始日期前（不包括当天）的采购总数减去销售总数.<br>
+										2.收入数量，起始日期到终止日期的采购数量。<br>
+										3.发出数量，起始日期到终止日期的销售数量。<br>
+										4.剩余数量，终止日期（包括当天）的采购总数减去销售总数。</p>
+		</s:form>
 </div>
