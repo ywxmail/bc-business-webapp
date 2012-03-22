@@ -266,7 +266,7 @@ bs.invoice4SellForm = {
 				startNo: $inputs[0].value,
 				endNo: $inputs[1].value,
 				count: $inputs[2].value,
-				price: $inputs[3].value
+				price: $inputs[4].value
 			};
 			var id = $(this).attr("data-id");
 			if(id && id.length > 0)
