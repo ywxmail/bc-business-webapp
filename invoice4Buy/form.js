@@ -120,36 +120,41 @@ bs.invoice4BuyForm = {
 			if(!isNaN(startNo)&&!isNaN(endNo)&&!isNaN(eachCount)){
 				//结束号大于开始号
 				if(startNo<endNo){
-					//两数之差除以100得出采购的数量 多分份（卷/本）
-					var count=Math.round((endNo-startNo)/eachCount);
-					$form.find(":input[name='e.count']").val(count);
-					//计算合计
-					var buyPrice=$form.find(":input[name='e.buyPrice']").val();
-					if(buyPrice!=''&&!isNaN(buyPrice)){
-						/**
-						 * 将数值四舍五入(保留2位小数)后格式化成金额形式
-						 *
-						 * @param num 数值(Number或者String)
-						 * @return 金额格式的字符串,如'1,234,567.45'
-						 * @type String
-						 */
-						function formatCurrency(num) {
-						    num = num.toString().replace(/\$|\,/g,'');
-						    if(isNaN(num))
-						    num = "0";
-						    sign = (num == (num = Math.abs(num)));
-						    num = Math.floor(num*100+0.50000000001);
-						    cents = num%100;
-						    num = Math.floor(num/100).toString();
-						    if(cents<10)
-						    cents = "0" + cents;
-						    for (var i = 0; i < Math.floor((num.length-(1+i))/3); i++)
-						    num = num.substring(0,num.length-(4*i+3))+','+
-						    num.substring(num.length-(4*i+3));
-						    return (((sign)?'':'-') + num + '.' + cents);
+					if((endNo-startNo+1)%eachCount==0){
+						//两数之差除以100得出采购的数量 多分份（卷/本）
+						var count=(endNo-startNo+1)/eachCount;
+						$form.find(":input[name='e.count']").val(count);
+						//计算合计
+						var buyPrice=$form.find(":input[name='e.buyPrice']").val();
+						if(buyPrice!=''&&!isNaN(buyPrice)){
+							/**
+							 * 将数值四舍五入(保留2位小数)后格式化成金额形式
+							 *
+							 * @param num 数值(Number或者String)
+							 * @return 金额格式的字符串,如'1,234,567.45'
+							 * @type String
+							 */
+							function formatCurrency(num) {
+							    num = num.toString().replace(/\$|\,/g,'');
+							    if(isNaN(num))
+							    num = "0";
+							    sign = (num == (num = Math.abs(num)));
+							    num = Math.floor(num*100+0.50000000001);
+							    cents = num%100;
+							    num = Math.floor(num/100).toString();
+							    if(cents<10)
+							    cents = "0" + cents;
+							    for (var i = 0; i < Math.floor((num.length-(1+i))/3); i++)
+							    num = num.substring(0,num.length-(4*i+3))+','+
+							    num.substring(num.length-(4*i+3));
+							    return (((sign)?'':'-') + num + '.' + cents);
+							}
+							var amount=formatCurrency(count*buyPrice);
+							$form.find(":input[name='amount']").val(amount);
 						}
-						var amount=formatCurrency(count*buyPrice);
-						$form.find(":input[name='amount']").val(amount);
+					}else{
+						bc.msg.alert("你好，你填写的开始号和结束号之差不能整除每份每份数量，请修正！");
+						return false;
 					}
 				}else if(startNo>endNo){
 					bc.msg.alert("你好，你填写的开始号大于结束号！");
