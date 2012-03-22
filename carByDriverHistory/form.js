@@ -72,6 +72,20 @@ bc.business.carByDriverHistoryForm = {
 				}
 			});
 		});	
+		//交回未注销到注销未有去向的处理
+		$form.find("#moveType").change(function() {
+			//如果选取的值为注销未有去向则显示交证日期和注销单号
+			if($form.find("#moveType").val()==2){
+				$form.find("td.danhao").css("visibility","visible");
+				$form.find("#jianzheng").css("display","table-row");
+				$form.find(":input[name='e.handPapersDate']").attr("data-validate",'{"type":"date","required":true}');
+			}else{
+				$form.find("td.danhao").css("visibility","hidden");
+				$form.find("#jianzheng").css("display","none");
+				$form.find(":input[name='e.handPapersDate']").removeAttr("data-validate",'{"type":"date"}');
+			}
+		});
+
 	},
 	/** 维护处理 */
 	doMaintenance : function() {
@@ -100,6 +114,7 @@ bc.business.carByDriverHistoryForm = {
 				$form.dialog("close");
 		}});
 	}
+
 };
 
 

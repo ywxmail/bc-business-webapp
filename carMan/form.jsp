@@ -17,6 +17,7 @@
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contract4Chargers/list?driverId=%{e.id}" />' class="ui-state-default">经济合同</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contract4Labours/list?driverId=%{e.id}" />' class="ui-state-default">劳动合同</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/driver4cert/list?carManId=%{e.id}" />' class="ui-state-default">证件</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/certLosts/list?carManId=%{e.id}" />' class="ui-state-default">证件遗失</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/blacklists/list?carManId=%{e.id}" />' class="ui-state-default">黑名单</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseTraffics/list?carManId=%{e.id}" />' class="ui-state-default">交通违章</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseBusinesss/list?carManId=%{e.id}" />' class="ui-state-default">营运违章</a></li>
@@ -75,7 +76,7 @@
 						</tr>
 						<tr>
 							<td class="label"><s:text name="carMan.phone1"/>:</td>
-							<td class="value"><s:textfield name="e.phone" data-validate='{"required":false,"type":"phone"}' cssClass="ui-widget-content"/></td>
+							<td class="value"><s:textfield name="e.phone" cssClass="ui-widget-content"/></td>
 							<td class="label"><s:text name="carMan.workDate"/>:</td>
 					        <td class="value relative">
 								<input type="text" name="e.workDate" data-validate='{"type":"date","required":false}'
@@ -88,9 +89,25 @@
 						</tr>
 						<tr>
 							<td class="label"><s:text name="carMan.phone2"/>:</td>
-							<td class="value"><s:textfield name="e.phone1" data-validate='{"required":false,"type":"phone"}' cssClass="ui-widget-content"/></td>
+							<td class="value"><s:textfield name="e.phone1" cssClass="ui-widget-content"/></td>
 							<td class="label"><s:text name="carMan.formerUnit"/>:</td>
-							<td class="value"><s:textfield name="e.formerUnit" cssClass="ui-widget-content"/></td>
+							<!--<td class="value"><s:textfield name="e.formerUnit" cssClass="ui-widget-content"/></td>  -->
+							<td class="value relative">
+								<s:if test="isReadonly()">
+									<s:textfield name="e.formerUnit" cssClass="ui-widget-content" />
+								</s:if>
+								<s:else>
+									<div class="bc-relativeContainer">
+										<input type="text" name="e.formerUnit" value='<s:property value="e.formerUnit"/>' style="text-align:left;" 
+											class="bc-select ui-widget-content"
+											data-maxHeight="150px"
+											data-source='<s:property value="companyNames"/>'/>
+										<ul class="inputIcons">
+											<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
+										</ul>
+									</div>
+								</s:else>
+							</td>
 						</tr>
 						<tr>
 							<td class="label"><s:text name="carMan.address"/>:</td>
@@ -194,7 +211,6 @@
 		<s:hidden name="e.uid" />
 		<s:hidden name="e.id" />
 		<s:hidden name="e.author.id" />
-		<s:hidden name="e.drivingStatus" />
 		<s:hidden name="e.charger" />
 		<s:hidden name="e.moveType" />
 		<s:hidden name="e.classes" />

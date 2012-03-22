@@ -29,7 +29,7 @@
 					    </td>
 					    </s:else>
 						<td class="label"><s:text name="blacklist.company"/>:</td>
-						<td class="value"><s:textfield name="e.company" readonly="true"  cssClass="ui-widget-content"/></td>
+						<td class="value"><s:textfield name="e.company" cssClass="ui-widget-content"/></td>
 					</tr>
 					<tr>
 						<td class="label"><s:text name="blacklist.driver"/>:</td>
@@ -40,8 +40,9 @@
 					    <s:textfield name="e.driver.name"  readonly="true" cssClass="ui-widget-content" />
 						<span id="selectCarMan" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></span></td>
 					</s:else>
-					    <td class="label"><s:text name="blacklist.motorcade.name"/>:</td>
-						<td class="value"><s:select name="e.motorcade.id" list="motorcadeList" listKey="key" listValue="value" value="e.motorcade.id" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" ></s:select></td>
+					    <td class="label">*<s:text name="blacklist.motorcade.name"/>:</td>
+						<td class="value"><s:select name="e.motorcade.id" list="motorcadeList" listKey="key" listValue="value" value="e.motorcade.id" data-validate="required"
+							headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" ></s:select></td>
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="blacklist.type"/>:</td>

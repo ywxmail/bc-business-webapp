@@ -12,7 +12,7 @@
 	<div class="full ui-widget-content">
 		<div class="block">
 			<div class="header ui-widget-header" style="border-top-width: 0;">查找</div>
-			<div class="content" style="padding: 0;">
+			<div class="content ui-state-default" style="padding: 0;">
 				<div class="content">
 					<input type="text" id="searchTypeLabel" class="bc-select ui-widget-content"
 						data-source='<s:property value="searchTypes"/>'
@@ -38,7 +38,7 @@
 		</div>
 		<div class="block">
 			<div class="header ui-widget-header">分公司</div>
-			<div class="content">
+			<div class="content ui-state-default">
 				<input type="text" id="unitName" class="bc-select ui-widget-content"
 					data-source='<s:property value="units"/>' data-cfg='{"callback":"bs.infoCenter.doSearchByUnitAndMotorcade"}'> 
 				<input type="hidden" id="unitId">
@@ -52,7 +52,7 @@
 		</div>
 		<div class="block">
 			<div class="header ui-widget-header">车队</div>
-			<div class="content">
+			<div class="content ui-state-default">
 				<input type="text" id="motorcadeName" class="bc-select ui-widget-content"
 					data-maxHeight="250px"
 					data-source='<s:property value="motorcades"/>' data-cfg='{"callback":"bs.infoCenter.doSearchByUnitAndMotorcade"}'> 
@@ -77,7 +77,7 @@
 	</div>
 
 	<!-- 中间分隔区 -->
-	<div class="splitter"><div class="full ui-widget-content"><div class="ui-icon ui-icon-grip-dotted-vertical"></div></div></div>
+	<div class="splitter"><div class="full ui-widget-content ui-state-default"><div class="ui-icon ui-icon-grip-dotted-vertical"></div></div></div>
 
 	<!-- 右侧信息区 -->
 	<div id="right" class="right">
@@ -89,7 +89,7 @@
 					<li class="toggleShow inputIcon ui-icon ui-icon-triangle-1-s" title='点击折叠'></li>
 				</ul>
 			</div>
-			<div id="carContent" class="content" style="padding:0;">
+			<div id="carContent" class="content ui-state-default" style="padding:0;">
 				<table class="contentTable" cellspacing="2" cellpadding="0">
 					<tr>
 						<td class="label" style="width: 5em;">自编号:</td>
@@ -200,7 +200,7 @@
 					<li class="toggleShow inputIcon ui-icon ui-icon-triangle-1-s" title='点击折叠'></li>
 				</ul>
 			</div>
-			<div class="content ui-widget-content unshowDisabled" style="padding:0;">
+			<div class="content ui-widget-content unshowDisabled ui-state-default" style="padding:0;">
 				<table class="title contentTable0" cellspacing="0" cellpadding="0">
 					<tbody id="mansBody">
 						<!-- 

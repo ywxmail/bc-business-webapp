@@ -163,10 +163,11 @@
 	margin: 0;
 }
 
-.bc-page.ic>.left ul.results>li.ui-state-highlight {
+.bc-page.ic>.left ul.results>li.ui-state-active {
 	border-width: 1px 0 !important;
 	padding-top: 1px;
 	padding-bottom: 1px;
+	font-weight: bold;
 }
 
 .bc-page.ic>.left ul.results .code {
@@ -219,7 +220,14 @@
 	width: 100%;
 	border-spacing: 2px;
 	padding: 0;
-	margin: 2px 0;
+	margin: 0 0;
+}
+.bc-page.ic>.right table.contentTable  .ui-state-default{
+	font-weight: normal;
+}
+
+.bc-page.ic>.right #carContent td.label {
+	border-width: 0;
 }
 
 .bc-page.ic>.right table.contentTable0 {
@@ -231,9 +239,12 @@
 	border-collapse: collapse;
 }
 
+.bc-page.ic>.right table.contentTable0 tr.top{
+	font-weight: bold;
+}
+
 .bc-page.ic>.right table.contentTable0 td {
 	padding: 0 2px 0 2px;
-	background: none;
 }
 
 .bc-page.ic>.right .block.empty>.content {
@@ -315,6 +326,17 @@ td.aright {
 	margin-right: 10px;
 }
 
+.bc-page.ic>.right .mans .phoneLabel {
+	margin-left:1em;
+}
+.bc-page.ic>.right .mans .updatePhone {
+	display:inline-block;
+	position: absolute;
+	top:50%;
+	margin-top: -8px;
+	cursor: pointer;
+}
+
 /** ==右侧内部布局结束== */
 
 td.desc-webkit{
@@ -327,6 +349,7 @@ td.desc-webkit textarea {
 	right: 0;
 	bottom: -2px;
 	top: -2px;
+	background: n
 }
 
 td.desc textarea {

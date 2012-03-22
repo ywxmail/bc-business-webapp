@@ -6,8 +6,8 @@
 	data-initMethod='bc.business.shiftworkByDriverForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="carByDriverForm" theme="simple" >
-		<div class="formFields ui-widget-content" >
-			<table class="formFields" cellspacing="2" cellpadding="0" style="height:350px ">
+		<div class="formFields ui-widget-content" style="width:410px;">
+			<table class="formFields" cellspacing="2" cellpadding="0">
 				<tbody>
 				    <tr class="widthMarker">
 		                <td style="width:100px;">&nbsp;</td>
@@ -16,7 +16,7 @@
 					<tr>
 					<s:if test="%{carManId != null}">
 						<td class="label"><s:text name="shiftworkByDriver.driver"/>:</td>
-						<td class="value"><s:textfield name="e.driver.name" readonly="true" /></td>
+						<td class="value"><s:textfield name="e.driver.name" readonly="true" cssClass="ui-widget-content" /></td>
 					</s:if><s:else>
 					    <td class="label">*<s:text name="shiftworkByDriver.driver"/>:</td>
 						<td class="value relative"><s:textfield name="e.driver.name"  data-validate="required" cssClass="ui-widget-content" />
@@ -44,17 +44,19 @@
 					<tr>
 					    <td class="topLabel"><s:text name="shiftworkByDriver.dingbanche"/>:</td>
 					    <td class="value">
-						    <table style="width:100%;">
+						    <table style="width:100%;" style="margin:0;padding:0;" cellspacing="0" cellpadding="0" >
 							    <tr>
-								    <td><s:select name="plates" list="cars" listKey="key" listValue="value" theme="simple" size="10" 
-								     	multiple="true" cssStyle="width:100%;height:90%;" cssClass="ui-widget-content"/>
+								    <td><s:select name="plates" list="cars" listKey="key" listValue="value" theme="simple"
+								     	multiple="true" cssStyle="width:100%;height:9em;;" cssClass="ui-widget-content" data-validate="required" />
 							     	</td>
+									<s:if test="!isReadonly()">
 								    <td style="width:40px;text-align: center;vertical-align: middle;"><input type="button" id="addCar" 
-								    	value="+" style="width:30px;height:40px;"/><br><input id="removeCar" type="button" value="-" 
-								    	style="width:30px;height:40px;"/><br>
-									    <input type="button" id="upCar" value="↑" style="width:30px;height:40px;"/><br><input 
-									    type="button" id="downCar" value="↓" style="width:30px;height:40px;"/>
+								    	value="+" style="width:2em;height:2em;"/><br><input id="removeCar" type="button" value="-" 
+								    	style="width:2em;height:2em;"/><br>
+									    <input type="button" id="upCar" value="↑" style="width:2em;height:2em;"/><br><input 
+									    type="button" id="downCar" value="↓" style="width:2em;height:2em;"/>
 									</td>
+									</s:if>
 							    </tr>
 						    </table>
 					    <td>
@@ -86,7 +88,7 @@
 						<td class="value"><s:textarea name="e.description" rows="5" cssClass="ui-widget-content noresize"/></td>
 					</tr>
 					<tr>
-						<td class="label" colspan="2" rowspan="2">
+						<td class="label" colspan="2">
 							<div class="formTopInfo">
 								登记：<s:property value="e.author.name" />(<s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>)
 								<s:if test="%{e.modifier != null}">

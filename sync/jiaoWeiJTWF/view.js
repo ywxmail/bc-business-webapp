@@ -28,29 +28,70 @@ bs.jiaoWeiJTWFView = {
 			alert("上次执行的同步操作还在后台进行中，请耐心等待！");
 			return;
 		}
-		//同步前先确认
-		bc.msg.confirm("确定要执行同步处理吗？ (交委的网络同步可能比较耗时，请耐心等候！)",function(){
-			bs.jiaoWeiJTWFView.syncing = true;
-			jQuery.ajax({
-				url: bc.root + "/bc-business/jiaoWeiJTWFs/sync", 
-				data: {dateType: dateType}, 
-				dataType: "json",
-				success: function(json) {
-					bs.jiaoWeiJTWFView.syncing = false;
-					if(json.success){
-						// 显示处理结果
-						bc.msg.slide(json.msg);
-						
-						// 重新加载列表
-						bc.grid.reloadData($page);
-					}else{
-						alert(json.msg);
-					}
+		
+		if(dateType != null && dateType == "customRange"){
+			// 让用户输入同步日期范围
+			bc.page.newWin({
+				name:"同步的日期范围",
+				mid: "customRangeSync",
+				url: bc.root + "/bc/common/selectDateRange",
+				data: {title:"请输入同步日期范围"},
+				afterClose: function(status){
+					logger.info("status=" + $.toJSON(status));
+					if(!status) return;
+					
+					//同步前先确认
+					bc.msg.confirm("确定要执行同步处理吗？ (交委的网络同步可能比较耗时，请耐心等候！)",function(){
+						bs.jiaoWeiJTWFView.syncing = true;
+						jQuery.ajax({
+							url: bc.root + "/bc-business/jiaoWeiJTWFs/sync", 
+							data: {dateType: dateType,
+								customFromDate: status.startDate,
+								customToDate: status.endDate}, 
+								dataType: "json",
+								success: function(json) {
+									bs.jiaoWeiJTWFView.syncing = false;
+									if(json.success){
+										// 显示处理结果
+										bc.msg.slide(json.msg);
+										
+										// 重新加载列表
+										bc.grid.reloadData($page);
+									}else{
+										alert(json.msg);
+									}
+								}
+						});
+						// 显示提示结果
+						bc.msg.slide("正在后台执行同步操作，完成后会提示你！");
+					});
 				}
 			});
-			// 显示提示结果
-			bc.msg.slide("正在后台执行同步操作，完成后会提示你！");
-		});
+		}else{
+			//同步前先确认
+			bc.msg.confirm("确定要执行同步处理吗？ (交委的网络同步可能比较耗时，请耐心等候！)",function(){
+				bs.jiaoWeiJTWFView.syncing = true;
+				jQuery.ajax({
+					url: bc.root + "/bc-business/jiaoWeiJTWFs/sync", 
+					data: {dateType: dateType}, 
+					dataType: "json",
+					success: function(json) {
+						bs.jiaoWeiJTWFView.syncing = false;
+						if(json.success){
+							// 显示处理结果
+							bc.msg.slide(json.msg);
+							
+							// 重新加载列表
+							bc.grid.reloadData($page);
+						}else{
+							alert(json.msg);
+						}
+					}
+				});
+				// 显示提示结果
+				bc.msg.slide("正在后台执行同步操作，完成后会提示你！");
+			});
+		}
 	},
 	/** 标记为的操作 */
 	changeStatus : function($page,toStatus) {
