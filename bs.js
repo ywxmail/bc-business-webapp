@@ -225,7 +225,7 @@ bs.findInfoByCar = function(option) {
 				var html = [];
 				html.push('<div class="bc-page" data-type="dialog">');
 				html.push('<div style="margin: 4px;">');
-				html.push('<select id="drivers" size="10" style="width:100%;height:100%;">');
+				html.push('<select id="drivers" size="10" style="width:100%;height:100%;" multiple='+option.multiple+'>');
 				var drivers = json.drivers;
 				for(var i=0; i<drivers.length; i++){
 					html.push('<option value="' + drivers[i].id + '"');
@@ -246,12 +246,35 @@ bs.findInfoByCar = function(option) {
 						alert("请先选择司机！");
 						return false;
 					}
-					//调用回调函数，返回司机信息
-					option.success.call(json,{
-						car: json.car,
-						motorcade: json.motorcade,
-						driver: drivers[driversEl.selectedIndex]
-					});
+					
+					if(option.multiple==true){
+						var len = driversEl.length;
+						var carMans =[];
+						var o;
+						for(var i=len-1; i>=0; i--){
+							o = driversEl.options[i];
+							if(o.selected){
+								carMans.push({
+									id: o.value,
+									name: o.text,
+									classes: drivers[i].classes
+								});
+							}
+						}
+						//调用回调函数，返回司机信息
+						option.success.call(json,{
+							car: json.car,
+							motorcade: json.motorcade,
+							driver: carMans
+						});
+						}else{
+						//调用回调函数，返回司机信息
+						option.success.call(json,{
+							car: json.car,
+							motorcade: json.motorcade,
+							driver: drivers[driversEl.selectedIndex]
+						});
+					}
 					//销毁对话框
 					html.dialog("destroy").remove();
 				}

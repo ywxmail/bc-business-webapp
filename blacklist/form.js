@@ -1,10 +1,17 @@
 if (!bc.business)
 bc.business = {};
-
 bc.business.blacklistForm = {
 	init : function() {
 		var $form = $(this);
 		
+		//需要组装的li
+		var liTpl = '<li class="horizontal ui-widget-content ui-corner-all ui-state-highlight" data-id="{2}" data-classes="{1}"'+
+		'style="position: relative;margin:0;float: left;padding: 0;">'+
+		'<span class="text"><a href="#">{0}</a></span>'+
+		'<span class="click2remove verticalMiddle ui-icon ui-icon-close" title={3}></span></li>';
+		var ulTpl = '<ul class="horizontal"></ul>';
+		var title = $form.find("#assignDrivers").attr("data-removeTitle");
+
 		//选择锁定人
 		$form.find(":input[name='e.locker.name']").click(function(){
 			bc.identity.selectUser({
@@ -16,7 +23,6 @@ bc.business.blacklistForm = {
 				}
 			});
 		});
-		
 		
 		//选择解锁人
 		$form.find(":input[name='e.unlocker.name']").click(function(){
@@ -54,16 +60,52 @@ bc.business.blacklistForm = {
 		};
 		if($form.find(":input[name='isMoreCarMan']").val()=="true"){
 			var carId=$form.find(":input[name='carId']").val();
-			var url=bc.root +"/bc-business/selectMoreCarManWithCar/selectCarMans?carId="+carId;
+			var url=bc.root +"/bc-business/selectMoreCarManWithCar/selectCarMans";
 			var option = jQuery.extend({
 				url: url,
 				name: "选择司机信息",
+				data:{carId:carId,multiple:true},
 				mid: "selectCarMan",
-				afterClose: function(carMan){
-					if(carMan){
-						$form.find(":input[name='e.driver.id']").val(carMan.id);
-						$form.find(":input[name='e.driver.name']").val(carMan.name);
-						
+				afterClose: function(drivers){
+					if(drivers){
+						var $ul = $form.find("#assignDrivers ul");
+						var $lis = $ul.find("li");
+						var driverName="" ;
+						var driversInfo="" ;
+						$.each(drivers,function(i,driver){
+								var classes ="";
+								if(driver.drivingStatus==1){
+									classes="正班";
+								}else if (driver.drivingStatus==2){
+									classes="副班";
+								}else if(driver.drivingStatus==3 || driver.drivingStatus==4){
+									classes="顶班";
+								}else{
+									classes="无";
+								}
+
+								if(!$ul.size()){//先创建ul元素
+									$ul = $(ulTpl).appendTo($form.find("#assignDrivers"));
+								}
+								//组装并加入对应的值
+								var $liObj = $(liTpl.format(driver.name,classes,driver.id,title)).appendTo($ul);
+								//绑定查看事件
+								$liObj.find("span.text").click(function(){
+									bc.page.newWin({
+										url: bc.root + "/bc-business/carMan/edit?id="+driver.id,
+										name: "查看责任人信息",
+										mid:  "viewDriver"+driver.id
+									})
+								});
+								if(i>0){
+									var tempStr = ";"+driver.name+","+classes+","+driver.id;
+								}else{
+									var tempStr = driver.name+","+classes+","+driver.id;
+								}
+								
+								driversInfo += tempStr;
+						});
+						$form.find(":hidden[name='e.drivers']").val(driversInfo);
 					}
 				}
 			},option);
@@ -73,58 +115,150 @@ bc.business.blacklistForm = {
 			bc.msg.alert("该车辆还没有被任何司机驾驶！");	
 			
 		};
+		//----------------------------------------
+		/* 选择司机责任人*/
 		
-       // 选择司机
-		
-		$form.find("#selectCarMan").click(
-				function() {
-					//var data = {};
-					//var selected = $form.find(":input[name='e.driver.name']").val();
-					//if (selected && selected.length > 0)
-						//data.selected = selected;
-					bs.selectDriver({
-						//data : data,
-						onOk : function(carMan) {
-							$form.find(":input[name='e.driver.id']").val(carMan.id);
-							$form.find(":input[name='e.driver.name']").val(carMan.name);
+		$form.find("#addDrivers").click(function() {
+			var $ul = $form.find("#assignDrivers ul");
+			var $lis = $ul.find("li");
+
+			bs.selectCarMan({
+				multiple : true,
+				onOk : function(drivers) {
+					var driversInfo = $form.find(":hidden[name='e.drivers']").val();
+					//添加司机责任人
+					$.each(drivers,function(i,driver){
+						if($lis.filter("[data-id='" + driver.id + "']").size() > 0){//已存在
+							logger.info("duplicate select: id=" + driver.id + ",name=" + driver.name);
+						}else{//新添加的
+							if(!$ul.size()){//先创建ul元素
+								$ul = $(ulTpl).appendTo($form.find("#assignDrivers"));
+							}
+							if($form.find(":input[name='e.drivers']").val().length>0){//之前存在司机责任人的话先加逗号
+								driversInfo = driversInfo+";";
+							}
+
+							//组装并加入对应的值
+							var $liObj = $(liTpl.format(driver.name,driver.classes,driver.id,title)).appendTo($ul);
+							//绑定查看事件
+							$liObj.find("span.text").click(function(){
+								bc.page.newWin({
+									url: bc.root + "/bc-business/carMan/edit?id="+driver.id,
+									name: "查看责任人信息",
+									mid:  "viewDriver"+driver.id
+								})
+							});
+							if(i>0){
+								var tempStr = ";"+driver.name+","+driver.classes+","+driver.id;
+							}else{
+								var tempStr = driver.name+","+driver.classes+","+driver.id;
+							}
 							
-							//$form.find(":input[name='e.car.unit.name']").val("");
-							//$form.find(":input[name='plate']").val("");
-							//$form.find(":input[name='e.car.motorcade.name']").val("");
-							
-							/*var url=bc.root +"/bc-business/blacklist/carManMess?carManId="+carMan.id;
-							$.ajax({ url: url,dataType:"json", success: update_page});
-							function update_page(json){
-									
-								$form.find(":input[name='e.car.id']").val(json.carId);
-								$form.find(":input[name='e.car.unit.name']").val(json.unitName);
-								$form.find(":input[name='e.unit.id']").val(json.unitId);
-								$form.find(":input[name='plate']").val(json.carPlate);
-								$form.find(":input[name='e.motorcade.id']").val(json.motorcadeId);
-								$form.find(":input[name='e.car.motorcade.name']").val(json.motorcadeName);
-								
-							}*/
+							driversInfo += tempStr;
 						}
 					});
-				});
+					$form.find(":hidden[name='e.drivers']").val(driversInfo);
+				}
+			});
+		});
 		
+		//绑定查看责任人的按钮事件处理
+		var $objs = $form.find('.horizontal').children('span.text');
+		$.each($objs,function(i,obj){
+			//绑定查看
+			$(obj).click(function(){
+				bc.page.newWin({
+					url: bc.root + "/bc-business/carMan/edit?id="+$(obj).parent().attr('data-id'),
+					name: "查看责任人信息",
+					mid:  "viewDriver"+$(obj).parent().attr('data-id')
+				})
+			});
+		});
+		
+//		//只读权限控制
+//		if(readonly) return;
+		
+//		//绑定删除责任人的按钮事件处理
+		$form.find("#assignDrivers").delegate("span.click2remove","click", function(e) {
+			$(this).parent().remove();
+			var driverInfo ="";
+			$li=$form.find(".horizontal>.horizontal");
+			//每删除一个重新组合
+			if($li.length>0){
+				for(var i=0;i<$li.length;i++){
+					var id=$($li[i]).attr("data-id");
+					var classes=$($li[i]).attr("data-classes");
+					var name=$($li[i]).children().children().text();
+					if(i>0){
+						driverInfo +=";"+name+","+classes+","+id;
+					}else{
+						driverInfo =name+","+classes+","+id;
+					}
+				}
+				$form.find(":hidden[name='e.drivers']").val(driverInfo);
+			}
+			//当无司机责任人时就清空
+			if($li.length==0){
+				$form.find(":hidden[name='e.drivers']").val("");
+			}
+		});
+		
+		//---------------------------------------
 		//通过车辆id查询相关信息
 		$form.find("#selectCar").click(function(){
 			bs.selectCar({onOk: function(car){
 				//清空司机字段
-				$form.find(":input[name='e.driver.id']").text("");
-				$form.find(":input[name='e.driver.name']").text("");
+				$form.find("span.click2remove").parent().remove();
+				$form.find(":hidden[name='e.drivers']").val("");
 				logger.info("car=" + $.toJSON(car));
 				bs.findInfoByCar({
 					carId: car.id,
+					multiple: true,
 					success: function(info){
 						logger.info("---"+$.toJSON(info));
 						$form.find(":input[name='e.car.id']").val(info.car.id);
 						$form.find(":input[name='plate']").val(info.car.plate);
 						$form.find(":input[name='e.company']").val(info.car.company);
 						if(info.driver){
-						$form.find(":input[name='e.driver.id']").val(info.driver.id);
-						$form.find(":input[name='e.driver.name']").val(info.driver.name);
+							var drivers=info.driver;
+							var $ul = $form.find("#assignDrivers ul");
+							var $lis = $ul.find("li");
+							var driverName="" ;
+							var driversInfo="" ;
+							$.each(drivers,function(i,driver){
+									var classes ="";
+									if(driver.classes==1){
+										classes="正班";
+									}else if (driver.classes==2){
+										classes="副班";
+									}else if(driver.classes==3 || driver.classes==4){
+										classes="顶班";
+									}else{
+										classes="无";
+									}
+
+									if(!$ul.size()){//先创建ul元素
+										$ul = $(ulTpl).appendTo($form.find("#assignDrivers"));
+									}
+									//组装并加入对应的值
+									var $liObj = $(liTpl.format(driver.name,classes,driver.id,title)).appendTo($ul);
+									//绑定查看事件
+									$liObj.find("span.text").click(function(){
+										bc.page.newWin({
+											url: bc.root + "/bc-business/carMan/edit?id="+driver.id,
+											name: "查看责任人信息",
+											mid:  "viewDriver"+driver.id
+										})
+									});
+									if(i>0){
+										var tempStr = ";"+driver.name+","+classes+","+driver.id;
+									}else{
+										var tempStr = driver.name+","+classes+","+driver.id;
+									}
+									
+									driversInfo += tempStr;
+							});
+							$form.find(":hidden[name='e.drivers']").val(driversInfo);
 						}
 						$form.find(":input[name='e.motorcade.id']").val(info.motorcade.id);
 						$form.find(":input[name='e.car.motorcade.name']").val(info.motorcade.name);
@@ -180,7 +314,6 @@ bc.business.blacklistForm = {
 			bc.msg.alert("请填写解锁信息");
 			return;
 		}
-		
 		bc.msg.confirm("请确定信息是否准确！一但执行解锁功能将无法进行修改，是否继续执行？",function(){
 			//status=1为解锁状态
 			$form.find(":input[name='e.status']").val("1");
@@ -189,12 +322,9 @@ bc.business.blacklistForm = {
 				$form.dialog("close");
 				//显示结案成功提示信息
 				bc.msg.slide("解锁成功");
-				
 				//返回false，禁止默认的“保存成功”提示信息的显示
 				return false;
 			}});
 		});
-		
-		
 	}
 };

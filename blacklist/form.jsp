@@ -33,13 +33,28 @@
 					</tr>
 					<tr>
 						<td class="label"><s:text name="blacklist.driver"/>:</td>
-					<s:if test="%{carManId != null}">
-						<td class="value"><s:textfield name="e.driver.name" readonly="true" cssClass="ui-widget-content" /></td>
-					</s:if><s:else>
-					    <td class="value" style="position:relative;display: block;">
-					    <s:textfield name="e.driver.name"  readonly="true" cssClass="ui-widget-content" />
-						<span id="selectCarMan" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></span></td>
-					</s:else>
+						<td class="value relative">
+							<!--<s:textfield name="drivers" cssClass="ui-widget-content" readonly="true"/>
+							<ul class="inputIcons">
+								<li id="selectdriverName" class="inputIcon ui-icon ui-icon-circle-plus" title='点击选择司机'></li>
+								<li class="clearSelect inputIcon ui-icon ui-icon-circle-close" data-cfg="drivers,e.drivers" title='点击清除司机'></li>
+							</ul>-->
+							<div id="assignDrivers" style="position:relative;margin: 0;padding: 0;" class="input ui-widget-content" 
+								data-removeTitle='<s:text name="title.click2remove" />'>
+								<span id="addDrivers" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" title='<s:text name="contract.title.click2selectCharger"/>'></span>
+								<s:if test="%{driversInfoList != null && !driversInfoList.isEmpty()}">
+									<ul class="horizontal">
+									<s:iterator value="driversInfoList">
+									<li class="horizontal ui-widget-content ui-corner-all ui-state-highlight" style="position: relative;margin:0;float: left;padding: 0;"
+										data-id=<s:property value="['id']" /> data-classes=<s:property value="['classes']" />>
+									<span class="text"><a href="#"><s:property value="['name']" /></a></span>
+									<span class="click2remove verticalMiddle ui-icon ui-icon-close" title='<s:text name="title.click2remove"/>'></span>
+									</li>
+									</s:iterator>
+									</ul>
+								</s:if>	
+							</div>
+						</td>
 					    <td class="label">*<s:text name="blacklist.motorcade.name"/>:</td>
 						<td class="value"><s:select name="e.motorcade.id" list="motorcadeList" listKey="key" listValue="value" value="e.motorcade.id" data-validate="required"
 							headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" ></s:select></td>
@@ -122,7 +137,7 @@
 		<s:hidden name="e.locker.id" />
 		<s:hidden name="e.unlocker.id" />
 		<s:hidden name="e.car.id" />
-		<s:hidden name="e.driver.id" />
+		<s:hidden name="e.drivers" />
 		<s:hidden name="e.author.id" />
 		<s:hidden name="e.modifier.id"/>
 		<s:hidden name="e.status"/>
