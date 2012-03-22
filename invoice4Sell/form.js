@@ -348,11 +348,12 @@ bs.invoice4SellForm = {
 		var price=$form.find("#price").val();
 		//判断数量和开始号是否为数字
 		if(count!=''&&!isNaN(count)&&startNo!=''&&!isNaN(startNo)&&eachCount!=null&&price!=null&&!isNaN(price)){
-			var a=parseInt(count*eachCount-1);
-			var b=parseInt(startNo);
+			var a=parseInt(count*eachCount-1,10);
+			var b=parseInt(startNo,10);	
 			//计算结束号
 			var endNo=a+b;
-			if(endNo.toString().length>=b.toString().length){
+			//logger.info(a+'~'+b+'~'+endNo);
+			if(endNo.toString().length>=startNo.length){
 				$form.find("#endNo").val(endNo); 
 			}else{//当开始号是‘0’开始时，结束号补回前边的0
 				var zoreStr=startNo.substring(0,startNo.length-endNo.toString().length)
