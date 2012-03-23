@@ -60,7 +60,9 @@
 									<li class="horizontal" style="position: relative;margin:0 2px;float: left;padding: 0;"
 										data-id=<s:property value="['id']" /> data-classes=<s:property value="['classes']" />>
 									<span class="text"><a href="#" style="color: #1F1F1F;"><s:property value="['name']" /></a></span>
-									<span class="click2remove verticalMiddle ui-icon ui-icon-close" style="margin: -8px -2px;" title='<s:text name="title.click2remove"/>'></span>
+									<s:if test="!isReadonly()">
+										<span class="click2remove verticalMiddle ui-icon ui-icon-close" style="margin: -8px -2px;" title='<s:text name="title.click2remove"/>'></span>
+									</s:if>
 									</li>
 									</s:iterator>
 									</ul>
