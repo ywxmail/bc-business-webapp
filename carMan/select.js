@@ -20,6 +20,7 @@ bs.carManSelectDialog = {
 			var $trs = $grid.find(">.data>.right tr.ui-state-highlight");
 			data.name = $trs.find("td:eq(0)").attr("data-value");
 			data.cert4FWZG = $trs.find("td:eq(1)").attr("data-value");
+			data.classes = $trs.find("td:eq(3)").text();
 		}else{//多选
 			data = [];
 			var $trs = $grid.find(">.data>.right tr.ui-state-highlight");
@@ -27,7 +28,8 @@ bs.carManSelectDialog = {
 				data.push({
 					id: $(this).attr("data-id"),
 					name:$($trs.get(i)).find("td:eq(0)").attr("data-value"),
-					cert4FWZG:$($trs.get(i)).find("td:eq(1)").attr("data-value")
+					cert4FWZG:$($trs.get(i)).find("td:eq(1)").attr("data-value"),
+					classes:$($trs.get(i)).find("td:eq(3)").text()
 				});
 			});
 		}
