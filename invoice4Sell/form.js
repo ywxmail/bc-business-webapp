@@ -3,6 +3,7 @@ bs.invoice4SellForm = {
 	init : function(option,readonly){
 		var $form = $(this);
 		
+		
 		if(readonly) return;
 		
 		//绑定销售员按钮事件
@@ -209,11 +210,8 @@ bs.invoice4SellForm = {
 						logger.info($.toJSON(json));
 						if(json){
 							$form.find("#startNo").val(json.startNo);
-							$form.find("#endNo").val(json.endNo);
-							$form.find("#count").val(json.count);
 							$form.find("#eachCount").val(json.eachCount);
 							$form.find("#price").val(json.sellPrice);
-							$form.find("#amount").val(json.amount);
 						}
 					}
 				});

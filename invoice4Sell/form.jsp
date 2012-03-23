@@ -16,35 +16,6 @@
 						<td >&nbsp;</td>
 					</tr>
 					<tr>
-						<td class="label">*<s:text name="invoice.company"/>:</td>
-						<td class="value ">
-							<s:select name="e.company" list="companyList" listKey="value" listValue="value" data-validate="required" 
-								 headerKey="" headerValue="" cssClass="ui-widget-content" />
-						</td>
-						<td class="label">*<s:text name="invoice4Sell.selldate"/>:</td>
-						<td class="value relative">
-							<input type="text" name="e.sellDate" data-validate='{"type":"date","required":true}' 
-							value='<s:date format="yyyy-MM-dd" name="e.sellDate" />'
-							class="bc-date ui-widget-content" data-cfg='{changeYear:true}' />
-							<ul class="inputIcons">
-								<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.sellDate'></li>
-							</ul>
-						</td>
-					</tr>
-					<tr>
-					    <td class="label">*<s:text name="invoice.motorcade"/>:</td>
-						<td class="value"><s:select name="e.motorcadeId.id" list="motorcadeList" listKey="key" data-validate="required"
-										listValue="value"  headerKey="" headerValue="" cssClass="ui-widget-content"/>
-					    </td>
-					    <td class="label">*<s:text name="invoice4Sell.cashier"/>:</td>
-						<td class="value relative">
-							<s:textfield name="e.cashierId.name" cssClass="ui-widget-content" readonly="true" data-validate="required" />
-							<ul class="inputIcons">
-								 <li id="selectCashier" class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></li>
-							</ul>
-						</td>
-					</tr>
-					 <tr>
 						<td class="label">*<s:text name="invoice.carPlate"/>:</td>
 							<s:if test="%{buyerId != null || carId !=null }">
 								<td class="value">
@@ -60,8 +31,16 @@
 								    </span>
 							    </td>
 						    </s:else>
-					    
-					</tr>  
+						<td class="label">*<s:text name="invoice4Sell.selldate"/>:</td>
+						<td class="value relative">
+							<input type="text" name="e.sellDate" data-validate='{"type":"date","required":true}' 
+							value='<s:date format="yyyy-MM-dd" name="e.sellDate" />'
+							class="bc-date ui-widget-content" data-cfg='{changeYear:true}' />
+							<ul class="inputIcons">
+								<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.sellDate'></li>
+							</ul>
+						</td>
+					</tr>
 					<tr>
 						<td class="label">*<s:text name="invoice4Sell.buyer"/>:</td>
 							<s:if test="%{buyerId != null || carId !=null}">
@@ -77,6 +56,27 @@
 							    	</span>
 							    </td>
 						     </s:else>
+						<td class="label">*<s:text name="invoice4Sell.cashier"/>:</td>
+						<td class="value relative">
+							<s:textfield name="e.cashierId.name" cssClass="ui-widget-content" readonly="true" data-validate="required" />
+							<ul class="inputIcons">
+								 <li id="selectCashier" class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td class="label">*<s:text name="invoice.company"/>:</td>
+						<td class="value ">
+							<s:select name="e.company" list="companyList" listKey="value" listValue="value" data-validate="required" 
+								 headerKey="" headerValue="" cssClass="ui-widget-content" />
+						</td>
+						
+					</tr>
+					<tr>
+					    <td class="label">*<s:text name="invoice.motorcade"/>:</td>
+						<td class="value"><s:select name="e.motorcadeId.id" list="motorcadeList" listKey="key" data-validate="required"
+										listValue="value"  headerKey="" headerValue="" cssClass="ui-widget-content"/>
+					    </td>
 					  	<td class="label"><s:text name="invoice.status"/>:</td>
 						<td><s:radio name="e.status" list="#{'0':'正常','1':'作废'}" cssStyle="width:auto;"/></td>
 					</tr>
