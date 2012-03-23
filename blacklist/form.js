@@ -70,20 +70,9 @@ bc.business.blacklistForm = {
 					if(drivers){
 						var $ul = $form.find("#assignDrivers ul");
 						var $lis = $ul.find("li");
-						var driverName="" ;
 						var driversInfo="" ;
 						$.each(drivers,function(i,driver){
-								var classes ="";
-								if(driver.drivingStatus==1){
-									classes="正班";
-								}else if (driver.drivingStatus==2){
-									classes="副班";
-								}else if(driver.drivingStatus==3 || driver.drivingStatus==4){
-									classes="顶班";
-								}else{
-									classes="无";
-								}
-
+								var classes = bc.business.blacklistForm.getClassesValue(driver.drivingStatus);
 								if(!$ul.size()){//先创建ul元素
 									$ul = $(ulTpl).appendTo($form.find("#assignDrivers"));
 								}
@@ -219,24 +208,13 @@ bc.business.blacklistForm = {
 						$form.find(":input[name='e.car.id']").val(info.car.id);
 						$form.find(":input[name='plate']").val(info.car.plate);
 						$form.find(":input[name='e.company']").val(info.car.company);
-						if(info.driver){
+						if(info.driver.length>0){
 							var drivers=info.driver;
 							var $ul = $form.find("#assignDrivers ul");
 							var $lis = $ul.find("li");
-							var driverName="" ;
 							var driversInfo="" ;
 							$.each(drivers,function(i,driver){
-									var classes ="";
-									if(driver.classes==1){
-										classes="正班";
-									}else if (driver.classes==2){
-										classes="副班";
-									}else if(driver.classes==3 || driver.classes==4){
-										classes="顶班";
-									}else{
-										classes="无";
-									}
-
+									var classes = bc.business.blacklistForm.getClassesValue(driver.classes);
 									if(!$ul.size()){//先创建ul元素
 										$ul = $(ulTpl).appendTo($form.find("#assignDrivers"));
 									}
@@ -326,5 +304,19 @@ bc.business.blacklistForm = {
 				return false;
 			}});
 		});
+	},
+	//获取班次中文值
+	getClassesValue : function(classes){
+		var classesValue ="";
+		if(classes==1){
+			classesValue="正班";
+		}else if (classes==2){
+			classesValue="副班";
+		}else if(classes==3 || classes==4){
+			classesValue="顶班";
+		}else{
+			classesValue="无";
+		}
+		return classesValue;
 	}
 };

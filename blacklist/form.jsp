@@ -41,7 +41,7 @@
 							</ul>-->
 							<div id="assignDrivers" style="position:relative;margin: 0;padding: 0;" class="input ui-widget-content" 
 								data-removeTitle='<s:text name="title.click2remove" />'>
-								<span id="addDrivers" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" title='<s:text name="contract.title.click2selectCharger"/>'></span>
+								<span id="addDrivers" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" title='<s:text name="blacklist.title.click2selectCarMan"/>'></span>
 								<s:if test="%{driversInfoList != null && !driversInfoList.isEmpty()}">
 									<ul class="horizontal">
 									<s:iterator value="driversInfoList">

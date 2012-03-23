@@ -213,6 +213,20 @@ bs.findInfoByCar = function(option) {
 				});
 
 			}else if(json.drivers.length == 1){
+				if(option.multiple==true){
+					var carMans =[];
+					carMans.push({
+						id: json.drivers[0].id,
+						name: json.drivers[0].name,
+						classes: json.drivers[0].classes
+					});
+					//调用回调函数，返回司机信息
+					option.success.call(json,{
+						car: json.car,
+						motorcade: json.motorcade,
+						driver: carMans
+					});
+					}
 				//直接调用回调函数，返回司机信息
 				option.success.call(json,{
 					car: json.car,
@@ -246,7 +260,7 @@ bs.findInfoByCar = function(option) {
 						alert("请先选择司机！");
 						return false;
 					}
-					
+					//多选时返回的司机信息为数组
 					if(option.multiple==true){
 						var len = driversEl.length;
 						var carMans =[];
