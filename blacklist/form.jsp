@@ -16,17 +16,29 @@
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="blacklist.subject"/>:</td>
-						<td class="value " colspan="3"><s:textfield name="e.subject"  data-validate="required" cssClass="ui-widget-content"/></td>
+						<td class="value " colspan="3"><s:textfield name="e.subject"  data-validate="required" cssClass="ui-widget-content" cssStyle="width:99%"/></td>
 					</tr>
 					<tr>
 					   <td class="label">*<s:text name="blacklist.car.plateNo"/>:</td>
 					<s:if test="%{carManId != null || carId !=null }">
 						<td class="value"><s:textfield name="plate" value="%{e.car.plateType+'.'+e.car.plateNo }" readonly="true" cssClass="ui-widget-content"/></td>
 					    </s:if><s:else>
-						<td class="value" style="position:relative;display: block;"><s:textfield name="plate" value="%{e.car.plateType+'.'+e.car.plateNo }"
+						<!--<td class="value" style="position:relative;display: block;"><s:textfield name="plate" value="%{e.car.plateType+'.'+e.car.plateNo }"
 					    data-validate="required" cssClass="ui-widget-content" readonly="true" />
 					    <span id="selectCar" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></span>
-					    </td>
+					    </td>--> 
+						<td class="value relative">
+							<div class="input ui-widget-content" data-validate="required" ><span class="link showCar" data-cfg='<s:property value="e.car.id" />' id="carInfo" ><s:property value="%{e.car.plateType+'.'+e.car.plateNo }" /></span>
+							</div>
+					    <span id="selectCar" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" style="margin: -8px 5px;" title='<s:text name="title.click2select"/>'></span>
+					    </td> 
+                        <!--<td class="value relative">
+					      <div class="input ui-widget-content" data-validate="required" ><span class="link showCar" data-cfg='<s:property value="e.car.id" />' id="carInfo" ><s:property value="%{e.car.plateType+'.'+e.car.plateNo }" /></span>
+					      </div>
+					      <ul class="inputIcons">
+					        <li class="selectCar inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>' data-cfg='e.car.id=id,carInfo=plate|text,carInfo=id|attr'></li>
+					      </ul>
+                        </td> -->
 					    </s:else>
 						<td class="label"><s:text name="blacklist.company"/>:</td>
 						<td class="value"><s:textfield name="e.company" cssClass="ui-widget-content"/></td>
@@ -41,14 +53,14 @@
 							</ul>-->
 							<div id="assignDrivers" style="position:relative;margin: 0;padding: 0;" class="input ui-widget-content" 
 								data-removeTitle='<s:text name="title.click2remove" />'>
-								<span id="addDrivers" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" title='<s:text name="blacklist.title.click2selectCarMan"/>'></span>
+								<span id="addDrivers" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" style="" title='<s:text name="blacklist.title.click2selectCarMan"/>'></span>
 								<s:if test="%{driversInfoList != null && !driversInfoList.isEmpty()}">
-									<ul class="horizontal">
+									<ul class="horizontal" style="padding: 0;">
 									<s:iterator value="driversInfoList">
-									<li class="horizontal ui-widget-content ui-corner-all ui-state-highlight" style="position: relative;margin:0;float: left;padding: 0;"
+									<li class="horizontal ui-corner-all" style="position: relative;margin:0 2px;float: left;padding: 0;"
 										data-id=<s:property value="['id']" /> data-classes=<s:property value="['classes']" />>
 									<span class="text"><a href="#"><s:property value="['name']" /></a></span>
-									<span class="click2remove verticalMiddle ui-icon ui-icon-close" title='<s:text name="title.click2remove"/>'></span>
+									<span class="click2remove verticalMiddle ui-icon ui-icon-close" style="margin: -8px -2px;" title='<s:text name="title.click2remove"/>'></span>
 									</li>
 									</s:iterator>
 									</ul>
