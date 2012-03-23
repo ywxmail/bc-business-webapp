@@ -5,11 +5,11 @@ bc.business.blacklistForm = {
 		var $form = $(this);
 		
 		//需要组装的li
-		var liTpl = '<li class="horizontal ui-widget-content ui-corner-all ui-state-highlight" data-id="{2}" data-classes="{1}"'+
-		'style="position: relative;margin:0;float: left;padding: 0;">'+
+		var liTpl = '<li class="horizontal ui-state-highlight" data-id="{2}" data-classes="{1}"'+
+		'style="position: relative;margin:0 2px;float: left;padding: 0;border-width: 0;">'+
 		'<span class="text"><a href="#">{0}</a></span>'+
-		'<span class="click2remove verticalMiddle ui-icon ui-icon-close" title={3}></span></li>';
-		var ulTpl = '<ul class="horizontal"></ul>';
+		'<span class="click2remove verticalMiddle ui-icon ui-icon-close" style="margin: -8px -2px;" title={3}></span></li>';
+		var ulTpl = '<ul class="horizontal" style="padding: 0;"></ul>';
 		var title = $form.find("#assignDrivers").attr("data-removeTitle");
 
 		//选择锁定人
@@ -205,10 +205,15 @@ bc.business.blacklistForm = {
 					multiple: true,
 					success: function(info){
 						logger.info("---"+$.toJSON(info));
+						//----车辆超连接
+						$form.find(".link").attr("data-cfg",info.car.id);
+						alert($form.find(".link").length+"$$"+info.car.plate);
+						$form.find(".link").text(info.car.plate);
+						//---
 						$form.find(":input[name='e.car.id']").val(info.car.id);
-						$form.find(":input[name='plate']").val(info.car.plate);
 						$form.find(":input[name='e.company']").val(info.car.company);
-						if(info.driver.length>0){
+						if(info.driver){
+							if(info.driver.length>0){
 							var drivers=info.driver;
 							var $ul = $form.find("#assignDrivers ul");
 							var $lis = $ul.find("li");
@@ -238,11 +243,11 @@ bc.business.blacklistForm = {
 							});
 							$form.find(":hidden[name='e.drivers']").val(driversInfo);
 						}
+					}
 						$form.find(":input[name='e.motorcade.id']").val(info.motorcade.id);
 						$form.find(":input[name='e.car.motorcade.name']").val(info.motorcade.name);
 						//返回车辆信息
 						$form.find(":input[name='e.car.id']").val(car.id);
-						$form.find(":input[name='plate']").val(car.plate);
 						$form.find(":input[name='e.company']").val(car.company);
 						$form.find(":input[name='e.motorcade.id']").val(car.motorcadeId);
 						 var $select = $form.find(":input[name='e.motorcade.id']");
