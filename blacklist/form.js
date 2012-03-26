@@ -207,7 +207,6 @@ bc.business.blacklistForm = {
 						logger.info("---"+$.toJSON(info));
 						//----车辆超连接
 						$form.find(".link").attr("data-cfg",info.car.id);
-						alert($form.find(".link").length+"$$"+info.car.plate);
 						$form.find(".link").text(info.car.plate);
 						//---
 						$form.find(":input[name='e.car.id']").val(info.car.id);
