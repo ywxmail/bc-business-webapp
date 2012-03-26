@@ -41,7 +41,7 @@ bs.invoice4BalanceForm = {
 		var company=$form.find("select[name='company']").val();
 		var type=$form.find("select[name='type']").val();
 		
-		//logger.info(company+"~"+type);
+		logger.info(company+"~"+type);
 		
 		var url=bc.root + "/bc-business/invoice4Balance/select";
 		$.ajax({
