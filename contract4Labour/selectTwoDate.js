@@ -1,7 +1,9 @@
 bc.selectTwoDate4contractLabourForm = {
 	init : function() {
 		var $page = $(this);
-
+		//默认就弹出日期选择框
+		var $resignDate = $page.find(":input[name='resignDate']");
+		$resignDate.focus();
 	},
 	clickOk : function(option) {
 		var $page = $(this);
