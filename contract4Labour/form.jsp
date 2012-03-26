@@ -17,9 +17,12 @@
 						<s:if test="!e.isNew()">
 							<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/injurys/list?contractId=%{e.id}" />' class="ui-state-default">工伤</a></li>
 						</s:if>
-						<s:if test="e.main == 0">
-							<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contract4Labours/list?contractId=%{(e.pid != null)?e.pid:0}&patchNo=%{e.patchNo}"/>' class="ui-state-default">历史版本</a></li>
-						</s:if>
+						<!--  业务更改
+							<s:if test="e.main == 0">
+								<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contract4Labours/list?contractId=%{(e.pid != null)?e.pid:0}&patchNo=%{e.patchNo}"/>' class="ui-state-default">历史版本</a></li>
+							</s:if>
+						-->
+						<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contract4Labours/list?contractId=0&driverId=%{driverId}"/>' class="ui-state-default">历史版本</a></li>
 					</ul>
 				</div>
 			</div>
@@ -97,13 +100,9 @@
 												 	</ul>
 												 </td>
 												<td class="label"><s:text name="contract4Labour.registerDate"/>:</td>
-												<td class="value" style="position:relative;display: block;">
-													<input type="text" name="e.registerDate" data-validate='{"type":"date"}'
-													value='<s:date format="yyyy-MM-dd" name="e.registerDate" />'
-													class="bc-date ui-widget-content" data-cfg='{changeYear:true,changeMonth:true}' />
-													<ul class="inputIcons">
-														<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.registerDate'></li>
-													</ul>
+												<td class="value">
+													<input type="text" name="registerDate" class="ui-widget-content"
+													value='<s:date format="yyyy-MM-dd" name="registerDate" />'  readonly="readonly" />
 												</td>
 											</tr>
 											<tr>
@@ -117,32 +116,26 @@
 														 	</ul>
 													 	</s:if>
 													 	<s:else>
-													 		<s:textfield name="e.ext_str2" data-validate="required" readonly="true" cssStyle="width:6.5em;" cssClass="ui-widget-content " />
+													 		<s:textfield name="e.ext_str2" data-validate="required" readonly="true" cssStyle="width:6.5em;" cssClass="ui-widget-content" />
 													 	</s:else>
 													 </div>
-													<s:text name="contract4Labour.certNo"/>&nbsp;<s:textfield name="e.certNo" data-validate="required" cssStyle="width:6em;" cssClass="ui-widget-content" />
-												</td>
-												<td class="label" >*<s:text name="contract4Labour.bsType"/>:</td>
-												<td class="value" >
-													<s:select name="e.bsType" list="businessTypeList" listKey="value" listValue="value"  data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" ></s:select>
-												</td>
-											</tr>
-											<tr>
-												<td class="label">*<s:text name="contract4Labour.age"/>:</td>
-												<td class="value">
-												 	<s:textfield name="e.age" data-validate="required" cssStyle="width:6.5em;" cssClass="ui-widget-content" />
-													&nbsp;&nbsp;&nbsp;<s:text name="contract4Labour.sex"/>
 													<s:radio name="e.sex" list="#{'1':'男','2':'女'}" 
 													value="e.sex" cssStyle="width:auto;"/>
 												</td>
-												<td class="label">*<s:text name="contract4Labour.birthDate"/>:</td>
+												<td class="label" ><s:text name="contract4Labour.bsType"/>:</td>
+												<td class="value" >
+													<s:textfield name="bsType" readonly="true" cssClass="ui-widget-content " readonly="true" />
+												</td>
+											</tr>
+											<tr>
+												<td class="label"><s:text name="contract4Labour.certNo"/>:</td>
+												<td class="value">
+													<s:textfield name="certNo" data-validate="required" cssClass="ui-widget-content" readonly="true" />
+												</td>
+												<td class="label"><s:text name="contract4Labour.birthDate"/>:</td>
 												<td class="value" style="position:relative;display: block;">
-													<input type="text" name="e.birthDate" data-validate='{"type":"date","required":true}'
-													value='<s:date format="yyyy-MM-dd" name="e.birthDate" />'
-													class="bc-date ui-widget-content" data-cfg='{changeYear:true}' />
-													<ul class="inputIcons">
-														<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.birthDate' ></li>
-													</ul>
+													<input type="text" name="birthDate"value='<s:date format="yyyy-MM-dd" name="birthDate" />'
+													 readonly="readonly" class="ui-widget-content"/>
 												</td>
 											</tr>
 											<tr>
@@ -150,15 +143,15 @@
 												<td class="value" >
 													<s:select name="e.houseType" list="houseTypeList" listKey="value" listValue="value" headerKey="" headerValue="" headerValue="%{getText('label.please.choose')}" data-validate="required" cssClass="ui-widget-content"></s:select>
 												</td>
-												<td class="label">*<s:text name="contract4Labour.origin"/>:</td>
+												<td class="label"><s:text name="contract4Labour.origin"/>:</td>
 												<td class="value">
-												 	<s:textfield name="e.origin" cssClass="ui-widget-content" data-validate="required"/>
+												 	<s:textfield name="origin" cssClass="ui-widget-content" readonly="true"/>
 												</td>
 											</tr>
 											<tr>
 												<td class="label"><s:text name="contract4Labour.certIdentity"/>:</td>
 												<td class="value">
-												 	<s:textfield name="e.certIdentity" cssClass="ui-widget-content" />
+												 	<s:textfield name="certIdentity" cssClass="ui-widget-content" readonly="true"/>
 												</td>
 												<td class="label"><s:text name="contract4Labour.leaveDate"/>:</td>
 												<td class="value" style="position:relative;display: block;">
@@ -172,7 +165,7 @@
 											</tr>
 											<tr>
 												<td class="label"><s:text name="contract4Labour.region"/>:</td>
-												<td class="value"><s:select list="#{0:'',1:'本市',2:'本省',3:'外省'}" listKey="key" listValue="value"  cssClass="ui-widget-content" headerValue="" name="e.region" ></s:select></td>
+												<td class="value"><s:select list="#{0:'',1:'本市',2:'本省',3:'外省'}" listKey="key" listValue="value"  cssClass="ui-widget-content" headerValue="" name="e.region" /></td>
 											</tr>
 						        		</table>
 						    		</fieldset>
@@ -366,5 +359,16 @@
 		<s:hidden name="isNullCarMan"/>
 		<s:hidden name="isExistContract"/>
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
+		
+		<!-- 保留字段 -->
+		<input type="hidden" name="e.registerDate"  value='<s:date format="yyyy-MM-dd" name="e.registerDate" />'/>
+		<input type="hidden" name="e.birthDate"  value='<s:date format="yyyy-MM-dd" name="e.birthDate" />'/>
+		<s:hidden name="e.bsType" />
+		<s:hidden name="e.certNo" />
+		<s:hidden name="e.origin" />
+		<s:hidden name="e.certIdentity" />
+		
+		<s:hidden name="e.age" />
+		
 	</s:form>
 </div>

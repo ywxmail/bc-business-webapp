@@ -47,25 +47,25 @@ bc.contract4LabourForm = {
 							bc.msg.alert("所选司机已配置了相应的劳动合同，不能重复配置，请您编辑原来的劳动合同！");
 							$page.find(":input[name='e.ext_str1']").val('');
 							$page.find(":input[name='carId']").val('');
-							$page.find(":input[name='e.registerDate']").val('');
-							$page.find(":input[name='e.bsType']").val('');
+							$page.find(":input[name='registerDate']").val('');
+							$page.find(":input[name='bsType']").val('');
 							$page.find(":input[name='driverId']").val('');
 							$page.find(":input[name='e.ext_str2']").val('');
-							$page.find(":input[name='e.certNo']").val('');
-							$page.find(":input[name='e.certIdentity']").val('');
-							$page.find(":input[name='e.age']").val('');
-							$page.find(":input[name='e.birthDate']").val('');
+							$page.find(":input[name='certNo']").val('');
+							$page.find(":input[name='certIdentity']").val('');
+							//$page.find(":input[name='e.age']").val('');
+							$page.find(":input[name='birthDate']").val('');
 							$page.find(":input[name='e.houseType']").val('');
-							$page.find(":input[name='e.origin']").val('');
+							$page.find(":input[name='origin']").val('');
 						}else{
 							$page.find(":input[name='driverId']").val(info.driver.id);
 							$page.find(":input[name='e.ext_str2']").val(info.driver.name);
-							$page.find(":input[name='e.certNo']").val(info.driver.cert4FWZG);
-							$page.find(":input[name='e.certIdentity']").val(info.driver.cert4IDENTITY);
-							$page.find(":input[name='e.age']").val(info.driver.age);
-							$page.find(":input[name='e.birthDate']").val(info.driver.birthDate);
+							$page.find(":input[name='certNo']").val(info.driver.cert4FWZG);
+							$page.find(":input[name='certIdentity']").val(info.driver.cert4IDENTITY);
+							//$page.find(":input[name='e.age']").val(info.driver.age);
+							$page.find(":input[name='birthDate']").val(info.driver.birthDate);
 							$page.find(":input[name='e.houseType']").val(info.driver.houseType);
-							$page.find(":input[name='e.origin']").val(info.driver.origin);
+							$page.find(":input[name='origin']").val(info.driver.origin);
 							if(info.driver.sex == 2){
 								$page.find(":radio[name='e.sex']")[1].checked = true;
 							}
@@ -93,27 +93,27 @@ bc.contract4LabourForm = {
 									bc.msg.alert("所选司机已配置了相应的劳动合同，不能重复配置，请您编辑原来的劳动合同！");
 									$page.find(":input[name='e.ext_str1']").val('');
 									$page.find(":input[name='carId']").val('');
-									$page.find(":input[name='e.registerDate']").val('');
+									$page.find(":input[name='registerDate']").val('');
 									$page.find(":input[name='e.bsType']").val('');
 									$page.find(":input[name='driverId']").val('');
 									$page.find(":input[name='e.ext_str2']").val('');
-									$page.find(":input[name='e.certNo']").val('');
-									$page.find(":input[name='e.certIdentity']").val('');
-									$page.find(":input[name='e.age']").val('');
-									$page.find(":input[name='e.birthDate']").val('');
+									$page.find(":input[name='certNo']").val('');
+									$page.find(":input[name='certIdentity']").val('');
+									//$page.find(":input[name='e.age']").val('');
+									$page.find(":input[name='birthDate']").val('');
 									$page.find(":input[name='e.houseType']").val('');
-									$page.find(":input[name='e.origin']").val('');
+									$page.find(":input[name='origin']").val('');
 								}else{//填写司机信息
 									$page.find(":input[name='e.ext_str2']").val(info.driver.name);
-									$page.find(":input[name='e.registerDate']").val(info.car.registerDate);
-									$page.find(":input[name='e.bsType']").val(info.car.bsType);
+									$page.find(":input[name='registerDate']").val(info.car.registerDate);
+									$page.find(":input[name='bsType']").val(info.car.bsType);
 									$page.find(":input[name='driverId']").val(info.driver.id);
-									$page.find(":input[name='e.certNo']").val(info.driver.cert4FWZG);
-									$page.find(":input[name='e.certIdentity']").val(info.driver.cert4IDENTITY);
-									$page.find(":input[name='e.age']").val(info.driver.age);
-									$page.find(":input[name='e.birthDate']").val(info.driver.birthDate);
+									$page.find(":input[name='certNo']").val(info.driver.cert4FWZG);
+									$page.find(":input[name='certIdentity']").val(info.driver.cert4IDENTITY);
+									//$page.find(":input[name='e.age']").val(info.driver.age);
+									$page.find(":input[name='birthDate']").val(info.driver.birthDate);
 									$page.find(":input[name='e.houseType']").val(info.driver.houseType);
-									$page.find(":input[name='e.origin']").val(info.driver.origin);
+									$page.find(":input[name='origin']").val(info.driver.origin);
 									if(info.driver.sex == 2){
 										$page.find(":radio[name='e.sex']")[1].checked = true;
 									}
@@ -142,9 +142,9 @@ bc.contract4LabourForm = {
 					function update_page(json){
 
 						if(json.cert_code != null){
-							$page.find(":input[name='e.certNo']").val(json.cert_code);
+							$page.find(":input[name='certNo']").val(json.cert_code);
 						}else{
-							$page.find(":input[name='e.certNo']").val("");
+							$page.find(":input[name='certNo']").val("");
 						}
 					}
 					
