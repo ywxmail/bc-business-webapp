@@ -4,7 +4,7 @@
 	data-saveUrl='<s:url value="/bc-business/certLost/save" />'
 	data-js='<s:url value="/bc/libs/select.js" />,<s:url value="/bc-business/certLost/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js" />'
 	data-initMethod='bc.certLostForm.init'
-	data-option='<s:property value="%{formPageOption}"/>' style="overflow:auto;">
+	data-option='<s:property value="%{formPageOption}"/>' style="overflow:hidden;">
 	<s:form name="certLostForm" theme="simple">	
 		<table class="formFields" cellspacing="2" cellpadding="0" style="width: 53em">
 			<tbody>
@@ -94,7 +94,7 @@
 			</tbody>
 		</table>
 		<!-- 证件列表 -->
-		<div class="ui-widget-content" style="border-width:1px 0 0 0;margin-bottom:8px;">
+		<div class="ui-widget-content" style="border-width:1px 0 0 0;margin-bottom:8px;width: 100%;">
 			<div class="ui-widget-header" style="position:relative;border-width: 0;padding: 0.25em;">
 				<span class="text"><s:text name="certLost.certs"/>：</span>
 				<ul class="inputIcons">
@@ -104,8 +104,8 @@
 						title='<s:text name="certLost.title.click2deleteLine"/>'></li>
 				</ul>
 			</div>
-	    	<div class="bc-grid header">
-			<table class="table" id="certTables" cellspacing="0" cellpadding="0" style="width: 100%;">
+	    	<div class="bc-grid header" style="overflow-x:scroll;">
+			<table class="table" id="certTables" cellspacing="0" cellpadding="0">
 				<tr class="ui-state-default header row">
 					<td class="first" style="width: 15px;">&nbsp;</td>
 					<td class="middle" style="width: 10em;">证件名称</td>
@@ -116,7 +116,8 @@
 					<td class="middle" style="width: 8em;">补办日期</td>
 					<td class="middle" style="width: 6em;">新证件号码</td>
 					<td class="middle" style="width: 8em;">遗失地点</td>
-					<td class="last" style="min-width: 4em;">备注</td>
+					<td class="middle" style="width: 14em;">报警单位</td>
+					<td class="last" style="width: 12em;">备注</td>
 				</tr>
 				<s:if test="%{e.isNew()}">
 				<tr class="ui-widget-content row" data-id='<s:property value="id"/>'>
@@ -166,6 +167,10 @@
 					<td class="middle" style="padding:0;text-align:left;">
 						<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;" type="text" class="ui-widget-content" 
 							value='<s:property value="lostAddress"/>' />
+					</td>
+					<td class="middle" style="padding:0;text-align:left;">
+						<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;" type="text" class="ui-widget-content" 
+							value='<s:property value="alarmUnit"/>' />
 					</td>
 					<td class="last" style="padding:0;text-align:left;">
 						<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;" type="text" class="ui-widget-content"
@@ -226,6 +231,10 @@
 					<td class="middle" style="padding:0;text-align:left;">
 						<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" 
 							value='<s:property value="lostAddress"/>'/>
+					</td>
+					<td class="middle" style="padding:0;text-align:left;">
+						<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" 
+							value='<s:property value="alarmUnit"/>'/>
 					</td>
 					<td class="last" style="padding:0;text-align:left;">
 						<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content"

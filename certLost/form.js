@@ -199,8 +199,14 @@ bc.certLostForm = {
 			cell.setAttribute("class","middle");
 			cell.innerHTML='<input name="lostAddress" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
 							+'type="text" class="ui-widget-content" >';//插入遗失地点
-			
 			cell=newRow.insertCell(9);
+			cell.style.padding="0";
+			cell.style.textAlign="left";
+			cell.setAttribute("class","middle");
+			cell.innerHTML='<input name="alarmUnit" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
+							+'type="text" class="ui-widget-content" >';//插入报警单位
+			
+			cell=newRow.insertCell(10);
 			cell.style.padding="0";
 			cell.style.textAlign="left";
 			cell.setAttribute("class","middle");
@@ -262,7 +268,8 @@ bc.certLostForm = {
 				replaceDate: $divInput[1].value,
 				newCertNo: $inputs[1].value,
 				lostAddress: $inputs[2].value,
-				description: $inputs[3].value
+				alarmUnit: $inputs[3].value,
+				description: $inputs[4].value
 			};
 			var id = $(this).attr("data-id");
 			if(id && id.length > 0)
