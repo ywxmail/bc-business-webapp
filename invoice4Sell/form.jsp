@@ -6,13 +6,13 @@
 	data-initMethod='bs.invoice4SellForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="invoice4SellForm" theme="simple">
-		<div class="formFields ui-widget-content" >
+		<div class="formFields ui-widget-content"  style="width:750px;">
 			<table class="formFields" cellspacing="2" cellpadding="0">
 				<tbody>
 					<tr class="widthMarker">
-						<td style="width: 100px;"></td>
+						<td style="width: 80px;"></td>
 						<td style="width: 280px;">&nbsp;</td>
-						<td style="width: 100px;">&nbsp;</td>
+						<td style="width: 80px;">&nbsp;</td>
 						<td >&nbsp;</td>
 					</tr>
 					<tr>
@@ -112,7 +112,7 @@
 				<table class="table" id="sellDetailTables" cellspacing="0" cellpadding="0" style="width: 100%;">
 					<tr class="ui-state-default header row">
 						<td class="first" style="width: 15px;">&nbsp;</td>
-						<td class="middle" style="width: 22em;">采购单发票代码</td>
+						<td class="middle" style="width: 18em;">采购单发票代码</td>
 						<td class="middle" style="width: 8em;"><s:text name="invoice.startNo"/></td>
 						<td class="middle" style="width: 8em;"><s:text name="invoice.endNo"/></td>
 						<td class="middle" style="width: 5em;"><s:text name="invoice.count"/></td>
@@ -128,7 +128,9 @@
 						<td class="middle" style="padding:0;text-align:left;">
 							<s:select name="code" list="codeList" listValue="value" listKey="key" headerValue="" headerKey="" 
 								theme="simple" data-validate="required" cssClass="ui-widget-content" 
-									cssStyle="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px"/>
+									cssStyle="width:100%;height:100%;border:none;margin:0;padding:0 10px 0 2px"/>
+							<!-- 销售明细状态 -->
+							<input id="status" type="hidden"  value='<s:property value="status"/>'/>
 						</td>
 						<!-- 开始号 -->
 						<td class="middle" style="padding:0;text-align:left;">
@@ -166,7 +168,9 @@
 						<td class="middle" style="padding:0;text-align:left;">
 							<s:select name="buyId" list="codeList" listValue="value" listKey="key"
 								theme="simple" data-validate="required" cssClass="ui-widget-content" 
-									cssStyle="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px"/>
+									cssStyle="width:100%;height:100%;border:none;margin:0;padding:0 10px 0 2px"/>
+							<!-- 销售明细状态 -->
+							<input id="status" type="hidden"  value='<s:property value="status"/>'/>
 						</td>
 						<!-- 开始号 -->
 						<td class="middle" style="padding:0;text-align:left;">
@@ -207,9 +211,9 @@
 		<s:hidden name="e.payType" />
 		<s:hidden name="e.bankCode" />
 		<s:hidden name="isMoreCar"/>
-		<s:hidden name="isMoreCarMan"/>
+		<s:hidden name="isMoreBuyer"/>
 		<s:hidden name="isNullCar"/>
-		<s:hidden name="isNullCarMan"/>
+		<s:hidden name="isNullBuyer"/>
 		<!-- 销售明细隐藏信息 -->
 		<s:hidden name="sellDetails"/>
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>

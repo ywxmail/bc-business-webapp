@@ -21,6 +21,7 @@ bs.invoice4SellForm = {
 		
 		//预加载一个司机关联多台车的对话框选择
 		if($form.find(":input[name='isMoreCar']").val()=="true"){
+			logger.info("isMoreCar");
 			var driverId=$form.find(":input[name='e.buyerId']").val();
 			var url= bc.root +"/bc-business/selectMoreCarWithCarMan/selectCars?carManId="+driverId;
 			var optionCar = {
@@ -28,9 +29,10 @@ bs.invoice4SellForm = {
 				name: "选择车辆信息",
 				mid: "selectCar",
 				afterClose: function(car){
+					logger.info("info=" + $.toJSON(car));
 					if(car != null){
 						$form.find(":input[name='e.carId']").val(car.id);
-						$form.find(":input[name='e.carPlate']").val(car.plate);
+						$form.find(":input[name='e.carPlate']").val(car.name);
 						$form.find("select[name='e.motorcadeId.id']").val(car.motorcadeId);
 						$form.find("select[name='e.company']").val(car.company);
 					}
@@ -38,12 +40,12 @@ bs.invoice4SellForm = {
 			};
 			bc.page.newWin(optionCar);
 		};
-		if($form.find(":input[name='isNullCar']").val()=="true"){
+		if($form.find(":input[name='isNullCar']").val()=="true"){	
 			bc.msg.alert("此司机没有驾驶任何车辆！");	
 		};
 		
 		//预加载一台车关联多个司机的对话框选择
-		if($form.find(":input[name='isMoreCarMan']").val()=="true"){
+		if($form.find(":input[name='isMoreBuyer']").val()=="true"){	
 			var carId=$form.find(":input[name='e.carId']").val();
 			bs.findInfoByCar({
 				carId: carId,
@@ -60,7 +62,7 @@ bs.invoice4SellForm = {
 				}
 			});
 		};
-		if($form.find(":input[name='isNullCarMan']").val()=="true"){
+		if($form.find(":input[name='isNullBuyer']").val()=="true"){
 			bc.msg.alert("此车辆没有被任何司机驾驶！");	
 		};
 		
@@ -130,6 +132,8 @@ bs.invoice4SellForm = {
 						codeRow+='</option>';
 					}
 					codeRow+='</select>';
+					//状态
+					codeRow+='<input name="status" type="hidden"  />';
 					cell.innerHTML=codeRow;
 					
 					//插入开始号
@@ -154,7 +158,9 @@ bs.invoice4SellForm = {
 					cell.style.textAlign="left";
 					cell.setAttribute("class","middle");
 					cell.innerHTML='<input name="count" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
-						+'type="text" class="ui-widget-content" data-validate="required">';
+						+'type="text" class="ui-widget-content" data-validate="required">'
+					//每份数量
+						+'<input name="eachCount" type="hidden"/>';
 					
 					//插入单价
 					cell=newRow.insertCell(5);
@@ -261,10 +267,11 @@ bs.invoice4SellForm = {
 			var $divInput= $(this).find("td>div>input");
 			var json = {
 				buyId: $selects[0].value,
-				startNo: $inputs[0].value,
-				endNo: $inputs[1].value,
-				count: $inputs[2].value,
-				price: $inputs[4].value
+				status: $inputs[0].value,
+				startNo: $inputs[1].value,
+				endNo: $inputs[2].value,
+				count: $inputs[3].value,
+				price: $inputs[5].value
 			};
 			var id = $(this).attr("data-id");
 			if(id && id.length > 0)
@@ -283,10 +290,11 @@ bs.invoice4SellForm = {
 		
 		//检测销售明细的正确性
 		var sellId=$page.find(":input[name='e.id']").val();
+		var status=$page.find(":radio[name='e.status']:checked").val();
 		var url=bc.root + "/bc-business/invoice4Sell/checkSell4Detail";
 		$.ajax({
 			url:url,
-			data:{sellId:sellId,sellDetailsStr:sellDetailsStr},
+			data:{sellId:sellId,status:status,sellDetailsStr:sellDetailsStr},
 			dataType: "json",
 			success:function(json){		
 				if(json){
