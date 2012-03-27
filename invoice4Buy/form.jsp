@@ -4,17 +4,29 @@
 	data-saveUrl='<s:url value="/bc-business/invoice4Buy/save" />'
 	data-js='<s:url value="/bc-business/invoice4Buy/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js" />'
 	data-initMethod='bs.invoice4BuyForm.init'
-	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
-	<s:form name="invoice4BuyForm" theme="simple">
-		<div class="ui-widget-content" >
-		<s:if test="%{e.id != null}">
-			<fieldset style="margin: 6px;" class="ui-widget-content">
-				<legend>采购显示区</legend>
+	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:hidden;">
+	<s:form name="invoice4BuyForm" theme="simple" >
+		<div class="" style="width:660px;">
+		<s:if test="!e.isNew()">
+		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:400}"
+		 style="overflow: hidden;">
+			<div class="tabsContainer">
+           	 	<div class="slideContainer">
+                <ul class="tabs ui-helper-reset">
+				    <li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">采购明细</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/invoice4Sells/paging?buyId=%{e.id}" />' class="ui-state-default">发票销售</a></li>
+                </ul>
+            	</div>
+	        </div>
+	        <div class="contentContainer ui-helper-reset ui-widget-content noBottomBorder">
+	        <div id="otherFormFields" class="content active">
+					<fieldset style="margin: 6px;" class="ui-widget-content" >
+						<legend>采购显示区</legend>
 		</s:if>
-					<table class="formFields" cellspacing="2" cellpadding="0">
+					<table class="formFields" cellspacing="2" cellpadding="0" >
 						<tbody>
 							<tr class="widthMarker">
-								<td style="width: 100px;"></td>
+								<td style="width: 90px;"></td>
 								<td style="width: 220px;">&nbsp;</td>
 								<td style="width: 100px;">&nbsp;</td>
 								<td >&nbsp;</td>
@@ -66,7 +78,7 @@
 									<s:select name="e.type" list="typeList" listKey="key" listValue="value" data-validate="required" 
 											 cssClass="ui-widget-content" />
 								</td> 
-								<td class="label">*<s:text name="invoice.count"/>(<span id="eachCountName"/>):</td>
+								<td class="label">*<s:text name="invoice4Buy.count"/>(<span id="eachCountName"/>):</td>
 								<td class="value"><s:textfield name="e.count" cssClass="ui-widget-content"  readonly="true"
 									data-validate='{required:true,type:"number"}' /></td>
 							</tr> 
@@ -75,7 +87,7 @@
 								<td class="value">
 									<s:select name="e.unit" list="unitList" listKey="key" listValue="value" data-validate="required" 
 											 cssClass="ui-widget-content" /></td>
-								<td class="label"><s:text name="invoice.amount"/>(元):</td>
+								<td class="label"><s:text name="invoice4Buy.amount"/>(元):</td>
 								<td class="value">
 									<s:textfield name="amount" cssClass="ui-widget-content" readonly="true"
 										value="%{getText('bs.format.numberRMB',{amount})}" /></td>
@@ -83,7 +95,7 @@
 							<tr>
 								<td class="label">*每<span id="eachCountName"/>数量(张):</td>
 								<td class="value">
-									<s:textfield name="e.eachCount" data-validate='number' readonly="true" class="ui-widget-content"/></td>
+									<s:textfield name="e.eachCount" data-validate='number' readonly="true" cssClass="ui-widget-content"/></td>
 								<td class="label"><s:text name="invoice.status"/>:</td>
 								<td><s:radio name="e.status" list="#{'0':'正常','1':'作废'}" cssStyle="width:auto;"/></td>
 							</tr>
@@ -103,29 +115,33 @@
 							</tr>
 						</tbody>
 					</table>
-			<s:if test="%{e.id != null}">
-			</fieldset>
-			<fieldset style="margin: 6px;" class="ui-widget-content">
-				<legend>库存显示区</legend>
-					<table class="formFields" cellspacing="2" cellpadding="0">
+			<s:if test="!e.isNew()">
+					</fieldset>
+					<fieldset style="margin: 6px;" class="ui-widget-content" >
+						<legend>库存显示区</legend>
+						
+					<table class="formFields" cellspacing="2" cellpadding="0" >
 						<tbody>
 							<tr class="widthMarker">
-								<td style="width: 100px;"></td>
-								<td style="width: 150px;">&nbsp;</td>
-								<td style="width: 100px;">&nbsp;</td>
+								<td style="width: 80px;"></td>
 								<td >&nbsp;</td>
 							</tr>
 							<tr>
-								<td class="label" ><s:text name="invoice4Buy.balanceCount"/>:</td>
-								<td class="value" colspan="3" ><s:text name="balanceCount"/></td>
+								<td class="label" ><s:text name="invoice4Buy.balanceCount"/>(<span id="eachCountName"/>):</td>
+								<td class="value" colspan="3" ><s:textfield name="balanceCount" cssClass="ui-widget-content" readonly="true"
+																	cssStyle="border-style:none" /></td>
 							</tr>
 							<tr>
 								<td class="topLabel" ><s:text name="invoice4Buy.balanceNumber"/>:</td>
-								<td class="value" colspan="3"><s:textarea name="balanceNumber" readonly="true" rows="5" cssClass="ui-widget-content noresize"/></td>
+								<td class="value" colspan="3"><s:textarea name="balanceNumber" readonly="true" rows="5" cssClass="ui-widget-content noresize" 
+																	cssStyle="border-style:none" /></td>
 							</tr>
 						</tbody>
 					</table>
-			</fieldset>
+					</fieldset>
+			</div>
+			</div>
+			</div>
 			</s:if>
 		</div>
 		<s:hidden name="e.id" />
