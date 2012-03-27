@@ -15,7 +15,7 @@
 						<li class="tab ui-widget-content"><a href="#contractContents" class="ui-state-default">合同内容</a></li>
 						<li class="tab ui-widget-content"><a href="#contractOldContents" class="ui-state-default">旧合同内容</a></li>
 						<li class="tab ui-widget-content"><a href='#attachment' class="ui-state-default">附件</a></li>
-						<s:if test="e.main == 0">
+						<s:if test="!e.isNew() && e.main == 0">
 							<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contract4Chargers/list?contractId=%{(e.pid != null)?e.pid:0}&patchNo=%{e.patchNo}"/>' class="ui-state-default">历史版本</a></li>
 						</s:if>
 					</ul>
