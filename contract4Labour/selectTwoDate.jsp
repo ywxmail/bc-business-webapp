@@ -6,14 +6,14 @@
 	data-initMethod='bc.selectTwoDate4contractLabourForm.init'
 	data-option='{
 		"buttons":[{"text":"<s:text name="label.ok"/>","click":"bc.selectTwoDate4contractLabourForm.clickOk"}],
-		"width":200,height:195,modal:true
+		"width":250,height:195,modal:true
 	}'
 	style="overflow-y: hidden;">
 	<s:form name="selectTwoDateFrom" theme="simple">
 		<div class="ui-widget-header" style="border-width:0;padding: 0.25em;_margin:2px 0;">
 			<span style="text">请输入离职日期：</span>
 		</div>
-		<div style="position: relative; display: inline-block;margin:2px 0;">
+		<div style="position: relative; display: block;padding: 2px;">
 			<input type="text" name="resignDate"
 				data-validate='{"type":"date","required":true}'
 				data-cfg='{"changeYear":true}'
@@ -28,7 +28,7 @@
 		<div class="ui-widget-header" style="border-width:0;padding: 0.25em;_margin: 2px 0;">
 			<span style="text">请输入停保日期：</span>
 		</div>
-		<div style="position: relative; display: inline-block;margin:2px 0;">
+		<div style="position: relative; display: block;padding: 2px;">
 			<input type="text" name="stopDate"
 				data-validate='{"type":"date","required":true}'
 				data-cfg='{"changeYear":true}'
