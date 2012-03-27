@@ -57,7 +57,7 @@
 			<div class="clear"></div>
 		</li>
 		<li class="condition">
-			<div class="label">发票编码</div>
+			<div class="label">发票编码(查满足开始到结束号范围)</div>
 			<div class="value">
 				<input type="text" class="ui-widget-content" data-condition='{"type":"string","ql":"(d.start_no<=? and d.end_no>=?)"}'>
 				<ul class="inputIcons">
