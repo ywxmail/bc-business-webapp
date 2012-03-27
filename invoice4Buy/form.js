@@ -80,7 +80,7 @@ bs.invoice4BuyForm = {
 							str+="和系统中相同代码的采购单范围重叠，不能保存！";
 							bc.msg.confirm(str);
 						}else if(json.checkResult==2){
-							str+="，有相应的销售单，且这些销售单号码范围不在这采购单内，不能保存！";
+							str+="，有相应的销售单，这采购单号码范围不能比这些销售单号码范围要少！";
 							bc.msg.confirm(str);
 						}else if(json.checkResult==3){
 							str+="，有相应的销售单，不能作废，若作废此采购单必须先作废相应销售单！";
