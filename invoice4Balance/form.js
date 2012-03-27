@@ -9,14 +9,14 @@ bs.invoice4BalanceForm = {
 		var startDate=$form.find(":input[name='startDate']").val();
 		var endDate=$form.find(":input[name='endDate']").val();
 		var company=$form.find("select[name='company']").val();
-		var type=$form.find("select[name='type']").val();
+		//var type=$form.find("select[name='type']").val();
 		
 		//logger.info(company+"~"+type);
 		
 		var url=bc.root + "/bc-business/invoice4Balance/select";
 		$.ajax({
 			url:url,
-			data:{startDate:startDate,endDate:endDate,company:company,type:type},
+			data:{startDate:startDate,endDate:endDate,company:company,type:2},
 			dataType:"json",
 			success:function(json){
 				//logger.info($.toJSON(json));
