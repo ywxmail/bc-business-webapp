@@ -42,8 +42,9 @@ bc.contract4LabourForm = {
 				carId: carId,
 				success: function(info){
 					var url = bc.root + "/bc-business/contract4Labour/isExistContract?driverId="+info.driver.id;
+					var isSupply = $page.find(":hidden[name='isSupply']").val();//true为补录
 					$.ajax({url: url,dataType:"json",success: function (json){
-						if(json.isExistContract){
+						if(json.isExistContract && isSupply == "false"){//非录取状态下检测司机是否存在合同
 							bc.msg.alert("所选司机已配置了相应的劳动合同，不能重复配置，请您编辑原来的劳动合同！");
 							$page.find(":input[name='e.ext_str1']").val('');
 							$page.find(":input[name='carId']").val('');
@@ -81,6 +82,9 @@ bc.contract4LabourForm = {
 		// 选择车辆车牌
 		$page.find("#selectCarPlate").click(function(){
 			bs.selectCar({onOk: function(car){
+				//填写车辆信息
+				$page.find(":input[name='carId']").val(car.id);
+				$page.find(":input[name='e.ext_str1']").val(car.plate);
 				bs.findInfoByCar({
 					carId: car.id,
 					success: function(info){
@@ -88,8 +92,10 @@ bc.contract4LabourForm = {
 						// 根据车辆ID查找关联的司机否存在劳动合同
 						if(info.driver){
 							var url = bc.root + "/bc-business/contract4Labour/isExistContract?driverId="+info.driver.id;
+							var isSupply = $page.find(":hidden[name='isSupply']").val();//true为补录
+							
 							$.ajax({url: url,dataType:"json",success: function (json){
-								if(json.isExistContract){
+								if(json.isExistContract && isSupply == "false"){//非录取状态下检测司机是否存在合同
 									bc.msg.alert("所选司机已配置了相应的劳动合同，不能重复配置，请您编辑原来的劳动合同！");
 									$page.find(":input[name='e.ext_str1']").val('');
 									$page.find(":input[name='carId']").val('');
@@ -120,9 +126,6 @@ bc.contract4LabourForm = {
 								}
 							}});
 						}
-						//填写车辆信息
-						$page.find(":input[name='carId']").val(info.car.id);
-						$page.find(":input[name='e.ext_str1']").val(info.car.plate);
 					}
 				});
 			}});
@@ -140,12 +143,14 @@ bc.contract4LabourForm = {
 					var url = bc.root + "/bc-business/contract4Labour/certInfo?driverId="+carMan.id;
 					$.ajax({ url: url,dataType:"json", success: update_page});
 					function update_page(json){
-
-						if(json.cert_code != null){
-							$page.find(":input[name='certNo']").val(json.cert_code);
-						}else{
-							$page.find(":input[name='certNo']").val("");
+						if(json.sex == 2){
+							$page.find(":radio[name='e.sex']")[1].checked = true;
 						}
+						$page.find(":input[name='certNo']").val(json.cert_fwzg);
+						$page.find(":input[name='certIdentity']").val(json.certIdentity);
+						$page.find(":input[name='birthDate']").val(json.birthDate);
+						$page.find(":input[name='e.houseType']").val(json.house_type);
+						$page.find(":input[name='origin']").val(json.origin);
 					}
 					
 				}
