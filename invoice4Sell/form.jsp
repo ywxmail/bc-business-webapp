@@ -112,12 +112,12 @@
 				<table class="table" id="sellDetailTables" cellspacing="0" cellpadding="0" style="width: 100%;">
 					<tr class="ui-state-default header row">
 						<td class="first" style="width: 15px;">&nbsp;</td>
-						<td class="middle" style="width: 18em;">采购单发票代码</td>
+						<td class="middle" style="width: 18em;">采购单</td>
 						<td class="middle" style="width: 8em;"><s:text name="invoice.startNo"/></td>
 						<td class="middle" style="width: 8em;"><s:text name="invoice.endNo"/></td>
 						<td class="middle" style="width: 5em;"><s:text name="invoice.count"/>(卷)</td>
-						<td class="middle" style="width: 6em;"><s:text name="invoice4Sell.price"/>(元)</td>
-						<td class="last" style="min-width: 4em;"><s:text name="invoice.amount"/>(元)</td>
+						<td class="middle" style="width: 6em;"><s:text name="invoice4Sell.price"/></td>
+						<td class="last" style="min-width: 4em;"><s:text name="invoice4Sell.amount"/></td>
 					</tr>
 					<!-- 新建时 -->
 					<s:if test="%{e.isNew()}">
