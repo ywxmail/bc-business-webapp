@@ -46,7 +46,7 @@ bs.invoice4BalanceForm = {
 		var url=bc.root + "/bc-business/invoice4Balance/select";
 		$.ajax({
 			url:url,
-			data:{startDate:startDate,endDate:endDate,company:company,type:type},
+			data:{startDate:startDate,endDate:endDate,company:company,type:2},
 			dataType:"json",
 			success:function(json){
 				//logger.info($.toJSON(json));
