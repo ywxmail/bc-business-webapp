@@ -17,7 +17,7 @@
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="invoice.carPlate"/>:</td>
-							<s:if test="%{buyerId != null || carId !=null }">
+							<s:if test="%{carId !=null}">
 								<td class="value">
 									<s:textfield name="e.carPlate"  readonly="true" cssClass="ui-widget-content" data-validate="required"/>
 								</td>
@@ -43,7 +43,7 @@
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="invoice4Sell.buyer"/>:</td>
-							<s:if test="%{buyerId != null || carId !=null}">
+							<s:if test="%{buyerId != null}">
 								<td class="value">
 										<s:textfield name="e.buyerName"  readonly="true" cssClass="ui-widget-content" data-validate="required" />
 								</td>
