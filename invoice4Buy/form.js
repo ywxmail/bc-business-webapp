@@ -28,6 +28,38 @@ bs.invoice4BuyForm = {
 			bs.invoice4BuyForm.autoCheckStartNoAndEndNo($form);
 		});
 		
+		//采购数量失去早点触发事件
+		$form.find(":input[name='e.count']").blur(function(){
+			var startNo=$.trim($form.find(":input[name='e.startNo']").val());
+			var eachCount=$.trim($form.find(":input[name='e.eachCount']").val());
+			var count=$.trim($form.find(":input[name='e.count']").val());
+			if(startNo!=''&&count!=0&&count!=''&&eachCount!=''){
+				if(!isNaN(startNo)&&!isNaN(count)&&!isNaN(eachCount)){
+					var int_startNo=parseInt(startNo,10);
+					var int_count=parseInt(count,10);
+					var int_eachCount=parseInt(eachCount,10);
+					var int_endNo=int_startNo+int_count*int_eachCount-1;
+					
+					if(int_endNo.toString().length>=startNo.length){
+						$form.find(":input[name='e.endNo']").val(int_endNo);
+					}else{
+						var zoreStr=startNo.substring(0,startNo.length-int_endNo.toString().length);
+						$form.find(":input[name='e.endNo']").val(zoreStr+int_endNo);
+					}
+					
+					//计算合计
+					var buyPrice=$form.find(":input[name='e.buyPrice']").val();
+					if(buyPrice!=''&&!isNaN(buyPrice)){
+						var amount=bc.formatNumber(int_count*buyPrice,"###,###.00");
+						$form.find(":input[name='amount']").val(amount);
+					}
+				}else{
+					bc.msg.alert("你好，你输入的开始号、采购数量、每份数量不是数值");
+					return false;
+				}
+			}
+		});
+		
 		//当选择打印票时，单位为卷，但选择手撕票时，单位为本
 		$form.find("select[name='e.type']").change(function(){
 			var unit=$form.find("select[name='e.unit']")[0];
@@ -131,7 +163,7 @@ bs.invoice4BuyForm = {
 							$form.find(":input[name='amount']").val(amount);
 						}
 					}else{
-						bc.msg.alert("你好，你填写的开始号和结束号之差不能整除每份每份数量，请修正！");
+						bc.msg.alert("你好，你填写的开始号到结束号数值范围不能整除"+eachCount+"，请修正！");
 						return false;
 					}
 				}else if(startNo>endNo){
