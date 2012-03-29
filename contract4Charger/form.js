@@ -119,7 +119,7 @@ bc.contract4ChargerForm = {
 		});
 		
 		//日期控件设置日期范围
-		if($form.find(":input[name='e.id']").val().length <= 0){ //只能在新建时可以选择开始日期和结束日期
+		//if($form.find(":input[name='e.id']").val().length <= 0){ //只能在新建时可以选择开始日期和结束日期
 			var dates = $form.find(':input[name^="e.startDate"], :input[name^="e.endDate"]').datepicker({
 				changeYear:     true,
 				firstDay: 		7,
@@ -134,7 +134,7 @@ bc.contract4ChargerForm = {
 					dates.not( this ).datepicker( "option", option, date );
 				}
 			});
-		}
+		//}
 		
 		//绑定失去焦点自编号唯一性检测
 		var $code = $form.find(":input[name='e.code']");
@@ -226,179 +226,53 @@ bc.contract4ChargerForm = {
 					if(status) bc.grid.reloadData($page);
 				}
 			});
-		});
-		
+		});		
 	},
 	
 	/** 续约处理 */
 	doRenew : function($form) {
 		var $page = $(this);
-		// 让用户输入新的合同期限
-		bc.page.newWin({
-			name:"经济合同续约",
-			mid: "renewContract4Charger",
-			url: bc.root + "/bc-business/selectDateAndCharger/select2",
-			data: {endDate: $page.find(":input[name='e.endDate']").val(),title:"请输入新的续约期限",
-				code: $page.find(":input[name='code']").val()},
-			afterClose: function(status){
-				logger.info("status=" + $.toJSON(status));
-				if(!status) return;
-				
-				//执行续签处理
-				bc.ajax({
-					url: bc.root + "/bc-business/contract4ChargerOperate/doRenew",
-					dataType: "json",
-					data: {newStartDate: status.startDate,newEndDate: status.endDate,id: $page.find(":input[name='e.id']").val(),code : status.code},
-					success: function(json){
-						logger.info("doRenew result=" + $.toJSON(json));
-						//完成后提示用户
-						//bc.msg.info(json.msg);
-						var tempAry = json.msg.split(" ");
-						var str = tempAry[2];
-						str = "<a id='chakan' href=#>"+str+"</a>";
-						str = tempAry[0]+" "+tempAry[1]+" "+str+" "+tempAry[3];
-						var $a = bc.msg.alert(str);
-						$a.find('#chakan').click(function(){
-							bc.page.newWin({
-								url: bc.root + "/bc-business/contract4Charger/edit?id="+json.id,
-								name: $page.find(":input[name='e.ext_str1']").val() + "&nbsp;经济合同续约",
-								mid: "contract4Charger." + json.id,
-								afterClose: function(status){
-									if(status) bc.grid.reloadData($page);
-								}
-							})
-							$a.dialog("close");
-							return false;
-						});
-
-						$page.data("data-status","saved");
-						$page.dialog("close");
-						return false;
-					}
-				});
-			}
-		});
+		bc.contract4ChargerForm.openNewWin("确定对此合同续约操作？","续约",4,$page);
 	},
 	
 	/** 过户处理 */
 	doChangeCharger : function($form) {
 		var $page = $(this);
-		// 让用户输入新的合同期限
-		bc.page.newWin({
-			name:"经济合同过户",
-			mid: "selectchangeChargerContract4Charger",
-			url: bc.root + "/bc-business/selectDateAndCharger/select",
-			data: {endDate: $page.find(":input[name='e.endDate']").val(),
-				title:"过户操作",carId: $page.find(":input[name='carId']").val(),code: $page.find(":input[name='code']").val()
-			},
-			afterClose: function(status){
-				logger.info("status=" + $.toJSON(status));
-				if(!status) return;
-				
-				//执行过户处理
-				bc.ajax({
-					url: bc.root + "/bc-business/contract4ChargerOperate/doChangeCharger",
-					dataType: "json",
-					data: {
-						newStartDate: status.startDate,
-						newEndDate: status.endDate,
-						id: $page.find(":input[name='e.id']").val(),
-						carId: status.carId,
-						takebackOrigin: status.takebackOrigin,
-						assignChargerIds : status.assignChargerIds,
-						assignChargerNames : status.assignChargerNames,
-						code : status.code
-					},
-					success: function(json){
-						logger.info("doRenew result=" + $.toJSON(json));
-						//完成后提示用户
-						//bc.msg.info(json.msg);
-						var tempAry = json.msg.split(" ");
-						var str = tempAry[2];
-						str = "<a id='chakan' href=#>"+str+"</a>";
-						str = tempAry[0]+" "+tempAry[1]+" "+str+" "+tempAry[3];
-						var $a = bc.msg.alert(str);
-						$a.find('#chakan').click(function(){
-							bc.page.newWin({
-								url: bc.root + "/bc-business/contract4Charger/edit?id="+json.id,
-								name: $page.find(":input[name='e.ext_str1']").val() + "&nbsp;经济合同过户",
-								mid: "contract4Charger." + json.id,
-								afterClose: function(status){
-									if(status) bc.grid.reloadData($page);
-								}
-							})
-							$a.dialog("close");
-							return false;
-						});
-
-						$page.data("data-status","saved");
-						$page.dialog("close");
-						return false;
-					}
-				});
-			}
-		});
+		bc.contract4ChargerForm.openNewWin("确定对此合同过户操作？","过户",6,$page);
 	},
 	
 	
 	/** 重发包处理 */
 	doChangeCharger2 : function($form) {
 		var $page = $(this);
-		// 让用户输入新的合同期限
-		bc.page.newWin({
-			name:"经济合同重发包",
-			mid: "selectchangeChargerContract4Charger",
-			url: bc.root + "/bc-business/selectDateAndCharger/select",
-			data: {endDate: $page.find(":input[name='e.endDate']").val(),
-				title:"重发包操作",carId: $page.find(":input[name='carId']").val(),code: $page.find(":input[name='code']").val()
-			},
-			afterClose: function(status){
-				logger.info("status=" + $.toJSON(status));
-				if(!status) return;
-				
-				//执行过户处理
-				bc.ajax({
-					url: bc.root + "/bc-business/contract4ChargerOperate/doChangeCharger2",
-					dataType: "json",
-					data: {
-						newStartDate: status.startDate,
-						newEndDate: status.endDate,
-						id: $page.find(":input[name='e.id']").val(),
-						carId: status.carId,
-						takebackOrigin: status.takebackOrigin,
-						assignChargerIds : status.assignChargerIds,
-						assignChargerNames : status.assignChargerNames,
-						code : status.code
-					},
-					success: function(json){
-						logger.info("doRenew result=" + $.toJSON(json));
-						//完成后提示用户
-						//bc.msg.info(json.msg);
-						var tempAry = json.msg.split(" ");
-						var str = tempAry[2];
-						str = "<a id='chakan' href=#>"+str+"</a>";
-						str = tempAry[0]+" "+tempAry[1]+" "+str+" "+tempAry[3];
-						var $a = bc.msg.alert(str);
-						$a.find('#chakan').click(function(){
-							bc.page.newWin({
-								url: bc.root + "/bc-business/contract4Charger/edit?id="+json.id,
-								name: $page.find(":input[name='e.ext_str1']").val() + "&nbsp;经济合同重发包",
-								mid: "contract4Charger." + json.id,
-								from: $page.attr("data-from")
-							})
-							$a.dialog("close");
-							return false;
-						});
-
-						$page.data("data-status","saved");
-						$page.dialog("close");
-						return false;
-					}
-				});
-			}
-		});
+		bc.contract4ChargerForm.openNewWin("确定对此合同重发包操作？","重发包",7,$page);
 	},
 	
+	/**
+	 * @param tips 提示信息
+	 * @param type 签约类型
+	 * @param $page 表单上下文
+	 */
+	openNewWin : function (tips,signType,opType,$page){
+		// 关闭当前窗口
+		bc.msg.confirm(tips,function(){
+			$page.dialog("close");
+			var data = {id: $page.find(":input[name='e.id']").val(),
+						signType : signType,
+						opType : opType
+						};
+			// 重新打开可编辑表单
+			bc.page.newWin({
+				name: signType + $page.find(":input[name='e.ext_str1']").val() + "的经济合同",
+				mid: "contract4Charger" + $page.find(":input[name='e.id']").val(),
+				url: bc.root + "/bc-business/contract4ChargerOperate2/edit",
+				data: data,
+				afterClose: function(status){
+					if(status) bc.grid.reloadData($page);
+				}
+			});
+		});
+	},
 	
 	/** 注销处理 */
 	doLogout : function($form) {
@@ -473,8 +347,10 @@ bc.contract4ChargerForm = {
 				return false;
 			}
 		};
+		
 		//调用标准的方法执行保存
 		bc.page.save.call(this,option);
+
 	},
 	//保存并关闭
 	saveAndClose:function(){
@@ -523,9 +399,7 @@ bc.contract4ChargerForm = {
 		//调用标准的方法执行保存
 		bc.page.save.call(this,option);
 	}
-		
-		
-		
+	
 
 /**		
 		// 选择司机责任人

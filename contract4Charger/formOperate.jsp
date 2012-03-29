@@ -1,11 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div title='<s:text name="contract4Charger.title"/> - v<s:property value="e.verMajor" />.<s:property value="e.verMinor" />' data-type='form' class="bc-page"
-	data-saveUrl='<s:url value="/bc-business/contract4Charger/save" />'
-	data-js='js:editor,js:bc_identity,<s:url value="/bc-business/bs.js" />,<s:url value="/bc-business/contract4Charger/form.js" />'
-	data-initMethod='bc.contract4ChargerForm.init'
+	data-saveUrl='<s:url value="/bc-business/contract4ChargerOperate2/save" />'
+	data-js='js:editor,js:bc_identity,<s:url value="/bc-business/bs.js" />,<s:url value="/bc-business/contract4Charger/formOperate.js" />'
+	data-initMethod='bc.contract4ChargerFormOperate.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow:hidden;">
-	<s:form name="contract4ChargerForm" theme="simple" cssClass="bc-form">
+	<s:form name="contract4ChargerFormOperate" theme="simple" cssClass="bc-form">
 		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset"
 			data-cfg="{height:400}" style="overflow: hidden;">
 			<div class="tabsContainer">
@@ -40,24 +40,13 @@
 								</td>
 								<td class="label">*<s:text name="contract4Charger.signType"/>:</td>
 								<td class="value">
-									<s:select name="e.signType" list="signTypeList" listKey="value" listValue="value"  data-validate="required" headerKey="" headerValue="" cssClass="ui-widget-content" ></s:select>
+									<s:textfield name="e.signType" cssClass="ui-widget-content" readonly="true" />
 								</td>
 							</tr>
 							<tr>
 								<td class="label">*<s:text name="contract.car"/>:</td>
 								<td class="value relative">
-									<!-- 
-										<s:if test="!e.isNew()">
-											<s:textfield name="ext_str1_temp" value="%{e.ext_str1}" data-validate="required" disabled="true" />
-											<s:hidden name="e.ext_str1" />
-										</s:if>
-									 -->
-									<s:textfield name="e.ext_str1" data-validate="required" cssClass="ui-widget-content" />
-									<s:if test="e.isNew()">
-										<ul class="inputIcons">
-											<li class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="contract.title.click2selectCar"/>' id="selectCarPlate">
-										</ul>
-									</s:if>
+									<s:textfield name="e.ext_str1" data-validate="required" cssClass="ui-widget-content" readonly="true" />
 								</td>
 								<td class="label" >*<s:text name="contract4Charger.businessType"/>:</td>
 								<td class="value" >
@@ -76,14 +65,6 @@
 										<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.signDate' ></li>
 									</ul>
 								</td>
-								<!-- 经办人
-									<td class="label">*<s:text name="contract.transactor"/>:</td>
-									<td class="value" style="position:relative;display: block;">
-										<s:textfield name="e.transactorName" data-validate="required" readonly="true"	
-										title='%{getText("contract.select.transactor")}' cssClass="ui-widget-content " />
-										<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectTransactorName" ></span>
-									</td>
-								 -->
 							</tr>
 							<tr>
 								<td class="label" ><s:text name="contract4Charger.contractVersionNo"/>:</td>
@@ -108,34 +89,6 @@
 												<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.endDate' ></li>
 											</ul>
 									</div>
-									<!--   业务变更,编辑的时候所有签约类型都可以改合同期限
-									<s:if test="e.isNew()">
-										<div style="position : relative; display: inline-block">
-											&nbsp;从<input type="text" name="e.startDate" readonly="readonly" data-validate='{"type":"date","required":true}' 
-												value='<s:date format="yyyy-MM-dd" name="e.startDate" />' 
-												style="width: 7em;" class="bc-date ui-widget-content" />
-												<ul class="inputIcons" style="right : 0px;">
-													<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.startDate' ></li>
-												</ul>
-										</div>
-										<div style="position : relative; display: inline-block">
-											&nbsp;到<input type="text" name="e.endDate" readonly="readonly" data-validate='{"type":"date","required":true}'
-												value='<s:date format="yyyy-MM-dd" name="e.endDate" />'
-												style="width: 7em;" class="bc-date ui-widget-content" />
-												<ul class="inputIcons" style="right : 0px;">
-													<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.endDate' ></li>
-												</ul>
-										</div>
-									</s:if>
-									<s:else>
-										&nbsp;从<input type="text" name="e.startDate" readonly="readonly" data-validate='{"type":"date","required":true}' 
-												value='<s:date format="yyyy-MM-dd" name="e.startDate" />' 
-												style="width: 7em;" class="ui-widget-content" />
-										&nbsp;到<input type="text" name="e.endDate" readonly="readonly" data-validate='{"type":"date","required":true}'
-												value='<s:date format="yyyy-MM-dd" name="e.endDate" />'
-												style="width: 7em;" class="ui-widget-content" />
-									</s:else>
-								    -->
 								</td>
 							</tr>
 							<tr>
@@ -231,7 +184,8 @@
 		<s:hidden name="e.transactorId" />
 		<s:hidden name="e.transactorName" />
 		<s:hidden name="isExistContract"/>
-
+		<s:hidden name="oldId"/>
+		<s:hidden name="isSaved"/>
 		<!-- 
 		<s:hidden name="e.transactor.id" />
 		<s:hidden name="e.changerId1" />
