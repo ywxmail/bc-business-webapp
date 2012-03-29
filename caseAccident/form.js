@@ -262,6 +262,33 @@ bc.caseAccidentForm = {
 					
 		});
 		
+		// 选择受款司机
+		$form.find("#selectPayDriver").click(function() {
+			var selecteds = $form.find(":input[name='e.payDriver']").val();
+			bs.selectDriver({
+				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
+				onOk : function(carMan) {
+					$form.find(":input[name='e.payDriverId']").val(carMan.id);
+					$form.find(":input[name='e.payDriver']").val(carMan.name);
+				}
+			});
+					
+		});
+		
+		
+		// 选择受款司机(二次)
+		$form.find("#selectPayDriverTwo").click(function() {
+			var selecteds = $form.find(":input[name='e.payDriverTwo']").val();
+			bs.selectDriver({
+				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
+				onOk : function(carMan) {
+					$form.find(":input[name='e.payDriverIdTwo']").val(carMan.id);
+					$form.find(":input[name='e.payDriverTwo']").val(carMan.name);
+				}
+			});
+					
+		});
+		
 		// 负责人
 		$form.find("#selectPrincipal").click(function() {
 			var selecteds = $form.find(":input[name='e.chargerName']").val();
@@ -476,10 +503,8 @@ bc.caseAccidentForm = {
 	},//保存时触发相关事件
 	save: function(){
 		$page=$(this);
-		logger.info("save");
-		if(($page.find(":checkbox[name='e.pay']")[0].checked&&$page.find(":checkbox[name='e.deliverSecond']")[0].checked)
+		if(($page.find(":checkbox[name='e.pay']")[0].checked&&!($page.find(":checkbox[name='e.deliverSecond']")[0].checked))
 				||($page.find(":checkbox[name='e.pay']")[0].checked&&$page.find(":checkbox[name='e.payTwo']")[0].checked)){
-				logger.info("save2");
 				bc.msg.confirm("你好，已勾选受款司机，确定要结案吗？",function(){
 					$page.find(":input[name='isClosed']").val("1");
 					//调用标准的方法执行保存
