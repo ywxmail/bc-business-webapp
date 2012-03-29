@@ -262,6 +262,33 @@ bc.caseAccidentForm = {
 					
 		});
 		
+		// 选择受款司机
+		$form.find("#selectPayDriver").click(function() {
+			var selecteds = $form.find(":input[name='e.payDriver']").val();
+			bs.selectDriver({
+				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
+				onOk : function(carMan) {
+					$form.find(":input[name='e.payDriverId']").val(carMan.id);
+					$form.find(":input[name='e.payDriver']").val(carMan.name);
+				}
+			});
+					
+		});
+		
+		
+		// 选择受款司机(二次)
+		$form.find("#selectPayDriverTwo").click(function() {
+			var selecteds = $form.find(":input[name='e.payDriverTwo']").val();
+			bs.selectDriver({
+				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
+				onOk : function(carMan) {
+					$form.find(":input[name='e.payDriverIdTwo']").val(carMan.id);
+					$form.find(":input[name='e.payDriverTwo']").val(carMan.name);
+				}
+			});
+					
+		});
+		
 		// 负责人
 		$form.find("#selectPrincipal").click(function() {
 			var selecteds = $form.find(":input[name='e.chargerName']").val();
