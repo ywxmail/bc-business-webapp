@@ -242,8 +242,6 @@ bc.caseTrafficForm = {
 		var $form = $(this);
 		$form.find(":input[name='e.status']").val("0");
 		$form.data("data-status","saved");
-		alert($form.find(":input[name='e.charger']").val());
-		return;
 		//调用标准的方法执行保存
 		bc.page.save.call($form);
 	}
