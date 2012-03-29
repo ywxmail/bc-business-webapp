@@ -503,10 +503,8 @@ bc.caseAccidentForm = {
 	},//保存时触发相关事件
 	save: function(){
 		$page=$(this);
-		logger.info("save");
-		if(($page.find(":checkbox[name='e.pay']")[0].checked&&$page.find(":checkbox[name='e.deliverSecond']")[0].checked)
+		if(($page.find(":checkbox[name='e.pay']")[0].checked&&!($page.find(":checkbox[name='e.deliverSecond']")[0].checked))
 				||($page.find(":checkbox[name='e.pay']")[0].checked&&$page.find(":checkbox[name='e.payTwo']")[0].checked)){
-				logger.info("save2");
 				bc.msg.confirm("你好，已勾选受款司机，确定要结案吗？",function(){
 					$page.find(":input[name='isClosed']").val("1");
 					//调用标准的方法执行保存
