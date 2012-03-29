@@ -7,7 +7,7 @@
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow:hidden;">
 	<s:form name="contract4LabourForm" theme="simple" cssClass="bc-form">
 		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" 
-			data-cfg="{height:400}" style="overflow: hidden;">
+			data-cfg="{height:403}" style="overflow: hidden;">
 			<div class="tabsContainer">
            	 	<div class="slideContainer">
 					<ul class="tabs ui-helper-reset">
@@ -103,7 +103,7 @@
 												 </td>
 												<td class="label"><s:text name="contract4Labour.registerDate"/>:</td>
 												<td class="value">
-													<input type="text" name="registerDate" class="ui-widget-content"
+													<input type="text" name="registerDate" class="ui-widget-content nostyle"
 													value='<s:date format="yyyy-MM-dd" name="registerDate" />'  readonly="readonly" />
 												</td>
 											</tr>
@@ -126,7 +126,7 @@
 												</td>
 												<td class="label" ><s:text name="contract4Labour.bsType"/>:</td>
 												<td class="value" >
-													<s:textfield name="bsType" readonly="true" cssClass="ui-widget-content " readonly="true" />
+													<s:textfield name="bsType" readonly="true" cssClass="ui-widget-content nostyle" readonly="true" />
 												</td>
 											</tr>
 											<tr>
@@ -134,27 +134,31 @@
 												<td class="value">
 													<s:textfield name="certNo" data-validate="required" cssClass="ui-widget-content" readonly="true" />
 												</td>
-												<td class="label"><s:text name="contract4Labour.birthDate"/>:</td>
-												<td class="value" style="position:relative;display: block;">
-													<input type="text" name="birthDate"value='<s:date format="yyyy-MM-dd" name="birthDate" />'
-													 readonly="readonly" class="ui-widget-content"/>
+												<td class="label"><s:text name="contract4Labour.certIdentity"/>:</td>
+												<td class="value">
+												 	<s:textfield name="certIdentity" cssClass="ui-widget-content nostyle" readonly="true"/>
 												</td>
 											</tr>
 											<tr>
 												<td class="label" >*<s:text name="contract4Labour.houseType"/>:</td>
 												<td class="value" >
-													<s:select name="e.houseType" list="houseTypeList" listKey="value" listValue="value" headerKey="" headerValue="" headerValue="%{getText('label.please.choose')}" data-validate="required" cssClass="ui-widget-content"></s:select>
+													<s:select name="e.houseType" list="houseTypeList" listKey="value" listValue="value" headerKey="" headerValue="" headerValue="%{getText('label.please.choose')}" data-validate="required" cssClass="ui-widget-content "></s:select>
 												</td>
-												<td class="label"><s:text name="contract4Labour.origin"/>:</td>
-												<td class="value">
-												 	<s:textfield name="origin" cssClass="ui-widget-content" readonly="true"/>
+												<td class="label"><s:text name="contract4Labour.birthDate"/>:</td>
+												<td class="value" style="position:relative;display: block;">
+													<input type="text" name="birthDate"value='<s:date format="yyyy-MM-dd" name="birthDate" />'
+													 readonly="readonly" class="ui-widget-content nostyle"/>
 												</td>
 											</tr>
 											<tr>
-												<td class="label"><s:text name="contract4Labour.certIdentity"/>:</td>
+												<td class="label"><s:text name="contract4Labour.region"/>:</td>
+												<td class="value"><s:select list="#{0:'',1:'本市',2:'本省',3:'外省'}" listKey="key" listValue="value"  cssClass="ui-widget-content" headerValue="" name="e.region" /></td>
+												<td class="label"><s:text name="contract4Labour.origin"/>:</td>
 												<td class="value">
-												 	<s:textfield name="certIdentity" cssClass="ui-widget-content" readonly="true"/>
-												</td>
+												 	<s:textfield name="origin" cssClass="ui-widget-content nostyle" readonly="true"/>
+												</td>	
+											</tr>
+											<tr>
 												<td class="label"><s:text name="contract4Labour.leaveDate"/>:</td>
 												<td class="value" style="position:relative;display: block;">
 													<input type="text" name="e.leaveDate" data-validate='{"type":"date"}'
@@ -164,10 +168,6 @@
 														<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.leaveDate' ></li>
 													</ul>
 												</td>
-											</tr>
-											<tr>
-												<td class="label"><s:text name="contract4Labour.region"/>:</td>
-												<td class="value"><s:select list="#{0:'',1:'本市',2:'本省',3:'外省'}" listKey="key" listValue="value"  cssClass="ui-widget-content" headerValue="" name="e.region" /></td>
 											</tr>
 						        		</table>
 						    		</fieldset>
@@ -188,9 +188,11 @@
 												<td class="label">*<s:text name="contract4Labour.insurCode"/>:</td>
 												<td class="value relative">
 													<s:textfield name="e.insurCode" data-validate="required" cssClass="ui-widget-content"/>
-													<ul class="inputIcons">
-														<li class="inputIcon ui-icon ui-icon-lightbulb" title='<s:text name="点击查询此社保号是否被占用"/>' id="selectInsurCode">
-													</ul>
+													<s:if test="isSupply == false">
+														<ul class="inputIcons">
+															<li class="inputIcon ui-icon ui-icon-lightbulb" title='<s:text name="点击查询此社保号是否被占用"/>' id="selectInsurCode">
+														</ul>
+													</s:if>
 												</td>
 												<td class="label">*<s:text name="contract4Labour.joinDate"/>:</td>
 												<td class="value" style="position:relative;display: block;">
@@ -332,7 +334,7 @@
 				</div>
 				<div id="contractContents" class="content" >
 					<div class="formEditor">
-						<textarea name="e.content" id="textareaId" class="bc-editor ui-widget-content" style="width: 720px;height:320px" data-validate="required"
+						<textarea name="e.content" id="textareaId" class="bc-editor ui-widget-content" style="width: 718px;height:313px" data-validate="required"
 							 data-ptype="contract4Labour.editor" data-puid='${e.uid}' 
 							 data-readonly='${readonly}'>
 							 ${e.content} 
