@@ -124,12 +124,24 @@
 					<tr class="ui-widget-content row bc-i4sell-detail" data-id='<s:property value="id"/>'>
 						<td class="id first" style="padding:0;text-align:left;"><span class="ui-icon"></span>
 						</td>
-						<!-- 发票代码 -->
-						<td class="middle" style="padding:0;text-align:left;">
-							<s:select name="code" list="codeList" listValue="value" listKey="key" headerValue="" headerKey="" 
-								theme="simple" data-validate="required" cssClass="ui-widget-content bs-i4sell-detail-code" 
-									cssStyle="width:100%;height:100%;border:none;margin:0;padding:0 10px 0 2px"/>
-						</td>
+						
+						<s:if test="buyId!=null">
+								<!-- 发票代码 -->
+							<td class="middle" style="padding:0;text-align:left;">
+								<s:select name="code" list="codeList" listValue="value" listKey="key"  
+									theme="simple" data-validate="required" cssClass="ui-widget-content bs-i4sell-detail-code" 
+										cssStyle="width:100%;height:100%;border:none;margin:0;padding:0 10px 0 2px"/>
+							</td>
+						</s:if>
+						<s:else>
+								<!-- 发票代码 -->
+							<td class="middle" style="padding:0;text-align:left;">
+								<s:select name="code" list="codeList" listValue="value" listKey="key" headerValue="" headerKey="" 
+									theme="simple" data-validate="required" cssClass="ui-widget-content bs-i4sell-detail-code" 
+										cssStyle="width:100%;height:100%;border:none;margin:0;padding:0 10px 0 2px"/>
+							</td>
+						</s:else>
+						
 						<!-- 开始号 -->
 						<td class="middle" style="padding:0;text-align:left;">
 							<input id="startNo" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;" type="text" class="ui-widget-content bs-i4sell-detail-startNo" 
@@ -211,6 +223,7 @@
 		<s:hidden name="isMoreBuyer"/>
 		<s:hidden name="isNullCar"/>
 		<s:hidden name="isNullBuyer"/>
+		<s:hidden name="buyId"/>
 		<!-- 销售明细隐藏信息 -->
 		<s:hidden name="sellDetails"/>
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
