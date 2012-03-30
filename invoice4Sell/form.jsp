@@ -4,7 +4,7 @@
 	data-saveUrl='<s:url value="/bc-business/invoice4Sell/save" />'
 	data-js='<s:url value="/bc-business/invoice4Sell/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js" />'
 	data-initMethod='bs.invoice4SellForm.init'
-	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
+	data-option='<s:property value="%{formPageOption}"/>' style="overflow:auto;">
 	<s:form name="invoice4SellForm" theme="simple">
 		<div class="formFields ui-widget-content"  style="width:750px;">
 			<table class="formFields" cellspacing="2" cellpadding="0">

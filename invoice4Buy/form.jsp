@@ -37,7 +37,7 @@
 							<tr>
 							    <td class="label">*<s:text name="invoice4Buy.buydate"/>:</td>
 								<td class="value relative">
-									<input type="text" name="e.buyDate" data-validate='{"type":"date","required":true}'
+									<input  type="text" name="e.buyDate" data-validate='{"type":"date","required":true}'
 									value='<s:date format="yyyy-MM-dd" name="e.buyDate" />'
 									class="bc-date ui-widget-content" data-cfg='{changeYear:true}' />
 									<ul class="inputIcons">
@@ -46,7 +46,7 @@
 								</td>
 								<td class="label">*<s:text name="invoice.company"/>:</td>
 								<td class="value ">
-									<s:select name="e.company" list="companyList" listKey="value" listValue="value" data-validate="required" 
+									<s:select name="e.company"  list="companyList" listKey="value" listValue="value" data-validate="required" 
 										 cssClass="ui-widget-content" />
 								</td>
 							</tr>
@@ -82,14 +82,13 @@
 											 cssClass="ui-widget-content" />
 								</td> 
 								<td class="label">*<s:text name="invoice4Buy.count"/>(<span id="eachCountName"/>):</td>
-								<td class="value"><s:textfield name="e.count" cssClass="ui-widget-content" 
+								<td class="value"><s:textfield  name="e.count" cssClass="ui-widget-content" 
 									data-validate='{required:true,type:"number"}' /></td>
 							</tr> 
 							<tr>
 							    <td class="label">*<s:text name="invoice.unit"/>:</td>
 								<td class="value">
-									<s:select name="e.unit" list="unitList" listKey="key" listValue="value" data-validate="required" 
-											 cssClass="ui-widget-content" /></td>
+									<s:textfield  name="unitName" cssClass="ui-widget-content" readonly="true" />
 								<td class="label"><s:text name="invoice4Buy.amount"/>:</td>
 								<td class="value">
 									<s:textfield name="amount" cssClass="ui-widget-content" readonly="true" /></td>
@@ -149,6 +148,7 @@
 			</div>
 			</s:if>
 		<s:hidden name="e.id" />
+		<s:hidden name="e.unit" />
 		<s:hidden name="e.author.id" />
 		<s:hidden name="e.buyerId.id" />
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>

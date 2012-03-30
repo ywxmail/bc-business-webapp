@@ -3,8 +3,10 @@ bs.invoice4BuyForm = {
 	init : function(option,readonly)  {
 		var $form = $(this);
 		//加载一次单位显示
-		$form.find("#eachCountName").html($form.find("select[name='e.unit']")[0]
-			.options[$form.find("select[name='e.unit']")[0].selectedIndex].text);
+		$form.find("#eachCountName").html($form.find(":input[name='unitName']").val());
+		
+		//加载一次单位显示
+		$form.find(":input[name='e.buyerId.name']")[0].focus();
 		
 		if(readonly) return;
 		//验收入库
@@ -26,6 +28,25 @@ bs.invoice4BuyForm = {
 		});
 		$form.find(":input[name='e.eachCount']").blur(function(){
 			bs.invoice4BuyForm.autoCheckStartNoAndEndNo($form);
+		});
+		
+		//采购单价失去焦点时出发事件
+		$form.find(":input[name='e.buyPrice']").blur(function(){
+			var count=$.trim($form.find(":input[name='e.count']").val());
+			if(count!=0&&count!=''){
+				if(!isNaN(count)){
+					var int_count=parseInt(count,10);
+					//计算合计
+					var buyPrice=$form.find(":input[name='e.buyPrice']").val();
+					if(buyPrice!=''&&!isNaN(buyPrice)){
+						var amount=bc.formatNumber(int_count*buyPrice,"###,###.00");
+						$form.find(":input[name='amount']").val(amount);
+					}
+				}else{
+					bc.msg.alert("你好，你输入的采购数量不是数值");
+					return false;
+				}
+			}
 		});
 		
 		//采购数量失去早点触发事件
@@ -62,21 +83,17 @@ bs.invoice4BuyForm = {
 		
 		//当选择打印票时，单位为卷，但选择手撕票时，单位为本
 		$form.find("select[name='e.type']").change(function(){
-			var unit=$form.find("select[name='e.unit']")[0];
-			for(var i=0;i<unit.options.length;i++){
-				if(unit.options[i].value == this.value){
-					unit.options[i].selected = true;
-					$form.find("#eachCountName").html(unit.options[i].text);
-					break;
-				}
+			var val=$(this).find(":selected").val();
+			if(val=='2'){
+				$form.find(":input[name='unitName']").val("卷");
+				$form.find(":input[name='e.unit']").val("2");
+				$form.find("#eachCountName").html($form.find(":input[name='unitName']").val());
+			}else if(val=='1'){
+				$form.find(":input[name='unitName']").val("本");
+				$form.find(":input[name='e.unit']").val("1");
+				$form.find("#eachCountName").html($form.find(":input[name='unitName']").val());
 			}
-		});
-		
-		//当选择打印票时，单位为卷，但选择手撕票时，单位为本
-		$form.find("select[name='e.unit']").change(function(){
-			$form.find("#eachCountName").html(this.options[this.selectedIndex].text);
-		});
-		
+		});	
 	},
 	save:function(){
 		$page = $(this);
