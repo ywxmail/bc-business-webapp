@@ -184,7 +184,6 @@
 		<s:hidden name="e.transactorId" />
 		<s:hidden name="e.transactorName" />
 		<s:hidden name="isExistContract"/>
-		<s:hidden name="oldId"/>
 		<s:hidden name="isSaved"/>
 		<!-- 
 		<s:hidden name="e.transactor.id" />
