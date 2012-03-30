@@ -154,18 +154,18 @@ bc.contract4ChargerFormOperate = {
 	save:function(){
 		$page = $(this);
 		
-		var $code = $page.find(":input[name='e.code']");
-		var id = $page.find(":input[name='e.id']").val();
-		
-		if(id.length > 0){//新建id不为空做code格式检测
-			if($code.val().length > 0 && 
-			$code.val().toUpperCase().indexOf("C",0) != 0){//code不为空,并且满足代码验证
-				$code.removeAttr('data-validate');
-			}else if($code.val().length == 0 || $code.val().toUpperCase().indexOf("C",0) == 0){
-				$code.attr('data-validate','{"required":true,"method":"bc.contract4ChargerFormOperate.validateCode",'+
-				'"msg":"请输入正确的经济合同编号格式：<br/>CLHT+[4位年份]+[2位月份]+[2位流水号]"}');
-			}
-		}
+//		var $code = $page.find(":input[name='e.code']");
+//		var id = $page.find(":input[name='e.id']").val();
+//		
+//		if(id.length > 0){//新建id不为空做code格式检测
+//			if($code.val().length > 0 && 
+//			$code.val().toUpperCase().indexOf("C",0) != 0){//code不为空,并且满足代码验证
+//				$code.removeAttr('data-validate');
+//			}else if($code.val().length == 0 || $code.val().toUpperCase().indexOf("C",0) == 0){
+//				$code.attr('data-validate','{"required":true,"method":"bc.contract4ChargerFormOperate.validateCode",'+
+//				'"msg":"请输入正确的经济合同编号格式：<br/>CLHT+[4位年份]+[2位月份]+[2位流水号]"}');
+//			}
+//		}
 		
 		//先将角色的id合并到隐藏域
 		var ids=[];
@@ -222,18 +222,18 @@ bc.contract4ChargerFormOperate = {
 	saveAndClose:function(){
 		$page = $(this);
 		
-		var $code = $page.find(":input[name='e.code']");
-		var id = $page.find(":input[name='e.id']").val();
-		
-		if(id.length > 0){//新建id不为空做code格式检测
-			if($code.val().length > 0 && 
-			$code.val().toUpperCase().indexOf("C",0) != 0){//code不为空,并且满足代码验证
-				$code.removeAttr('data-validate');
-			}else if($code.val().length == 0 || $code.val().toUpperCase().indexOf("C",0) == 0){
-				$code.attr('data-validate','{"required":true,"method":"bc.contract4ChargerFormOperate.validateCode",'+
-				'"msg":"请输入正确的经济合同编号格式：<br/>CLHT+[4位年份]+[2位月份]+[2位流水号]"}');
-			}
-		}
+//		var $code = $page.find(":input[name='e.code']");
+//		var id = $page.find(":input[name='e.id']").val();
+//		
+//		if(id.length > 0){//新建id不为空做code格式检测
+//			if($code.val().length > 0 && 
+//			$code.val().toUpperCase().indexOf("C",0) != 0){//code不为空,并且满足代码验证
+//				$code.removeAttr('data-validate');
+//			}else if($code.val().length == 0 || $code.val().toUpperCase().indexOf("C",0) == 0){
+//				$code.attr('data-validate','{"required":true,"method":"bc.contract4ChargerFormOperate.validateCode",'+
+//				'"msg":"请输入正确的经济合同编号格式：<br/>CLHT+[4位年份]+[2位月份]+[2位流水号]"}');
+//			}
+//		}
 		
 		//先将角色的id合并到隐藏域
 		var ids=[];
