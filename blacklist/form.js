@@ -112,6 +112,7 @@ bc.business.blacklistForm = {
 			var $lis = $ul.find("li");
 
 			bs.selectCarMan({
+				status :'0,1',
 				multiple : true,
 				onOk : function(drivers) {
 					var driversInfo = $form.find(":hidden[name='e.drivers']").val();
