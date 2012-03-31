@@ -365,6 +365,50 @@ bs.invoice4SellForm = {
 			success:function(json){		
 				if(json.checkResult){
 					bc.msg.alert(json.checkResult);
+				}else if(json.checkResult4Sell){
+					logger.info(json.checkResult4Sell.code);
+					
+					//组装提示查看信息
+					var str = "保存的销售明细"+json.checkResult4Sell.code;
+						str +="("+json.checkResult4Sell.save_startNo+"~"+json.checkResult4Sell.save_endNo+")";
+						str +="与系统中销售单";
+						str +="<a id='chakan4Sell' href=#>";
+						str +=json.checkResult4Sell.code+"("+json.checkResult4Sell.data_startNo+"~"+json.checkResult4Sell.data_endNo+")";
+						str +="</a>";
+						str +="范围重叠!";
+					var $a = bc.msg.alert(str);
+					$a.find('#chakan4Sell').click(function(){
+						bc.page.newWin({
+							url: bc.root + "/bc-business/invoice4Sell/open?id="+json.checkResult4Sell.data_sellId,
+							name: "查看销售单",
+							mid:  "invoice4Sell." + json.checkResult4Sell.data_sellId,
+							afterClose: function(){
+
+							}
+						})
+						$a.dialog("close");
+					});
+				}else if(json.checkResult4Buy){
+					//组装提示查看信息
+					var str = "保存的销售明细"+json.checkResult4Buy.code;
+						str +="("+json.checkResult4Buy.save_startNo+"~"+json.checkResult4Buy.save_endNo+")";
+						str +="不在或超出系统中的采购单";
+						str +="<a id='chakan4Buy' href=#>";
+						str +=json.checkResult4Buy.code+"("+json.checkResult4Buy.data_startNo+"~"+json.checkResult4Buy.data_endNo+")";
+						str +="</a>";
+						str +="范围!";
+					var $a = bc.msg.alert(str);
+					$a.find('#chakan4Buy').click(function(){
+						bc.page.newWin({
+							url: bc.root + "/bc-business/invoice4Buy/open?id="+json.checkResult4Buy.data_buyId,
+							name: "查看采购单",
+							mid:  "invoice4Buy." + json.checkResult4Buy.data_buyId,
+							afterClose: function(){
+
+							}
+						})
+						$a.dialog("close");
+					});
 				}else{
 					//调用标准的方法执行保存
 					bc.page.save.call($page);
