@@ -3,8 +3,10 @@ bs.invoice4BuyForm = {
 	init : function(option,readonly)  {
 		var $form = $(this);
 		//加载一次单位显示
-		$form.find("#eachCountName").html($form.find("select[name='e.unit']")[0]
-			.options[$form.find("select[name='e.unit']")[0].selectedIndex].text);
+		$form.find("#eachCountName").html($form.find(":input[name='unitName']").val());
+		
+		//加载一次单位显示
+		$form.find(":input[name='e.buyerId.name']")[0].focus();
 		
 		if(readonly) return;
 		//验收入库
@@ -28,23 +30,70 @@ bs.invoice4BuyForm = {
 			bs.invoice4BuyForm.autoCheckStartNoAndEndNo($form);
 		});
 		
-		//当选择打印票时，单位为卷，但选择手撕票时，单位为本
-		$form.find("select[name='e.type']").change(function(){
-			var unit=$form.find("select[name='e.unit']")[0];
-			for(var i=0;i<unit.options.length;i++){
-				if(unit.options[i].value == this.value){
-					unit.options[i].selected = true;
-					$form.find("#eachCountName").html(unit.options[i].text);
-					break;
+		//采购单价失去焦点时出发事件
+		$form.find(":input[name='e.buyPrice']").blur(function(){
+			var count=$.trim($form.find(":input[name='e.count']").val());
+			if(count!=0&&count!=''){
+				if(!isNaN(count)){
+					var int_count=parseInt(count,10);
+					//计算合计
+					var buyPrice=$form.find(":input[name='e.buyPrice']").val();
+					if(buyPrice!=''&&!isNaN(buyPrice)){
+						var amount=bc.formatNumber(int_count*buyPrice,"###,###.00");
+						$form.find(":input[name='amount']").val(amount);
+					}
+				}else{
+					bc.msg.alert("你好，你输入的采购数量不是数值");
+					return false;
+				}
+			}
+		});
+		
+		//采购数量失去早点触发事件
+		$form.find(":input[name='e.count']").blur(function(){
+			var startNo=$.trim($form.find(":input[name='e.startNo']").val());
+			var eachCount=$.trim($form.find(":input[name='e.eachCount']").val());
+			var count=$.trim($form.find(":input[name='e.count']").val());
+			if(startNo!=''&&count!=0&&count!=''&&eachCount!=''){
+				if(!isNaN(startNo)&&!isNaN(count)&&!isNaN(eachCount)){
+					var int_startNo=parseInt(startNo,10);
+					var int_count=parseInt(count,10);
+					var int_eachCount=parseInt(eachCount,10);
+					var int_endNo=int_startNo+int_count*int_eachCount-1;
+					
+					if(int_endNo.toString().length>=startNo.length){
+						$form.find(":input[name='e.endNo']").val(int_endNo);
+					}else{
+						var zoreStr=startNo.substring(0,startNo.length-int_endNo.toString().length);
+						$form.find(":input[name='e.endNo']").val(zoreStr+int_endNo);
+					}
+					
+					//计算合计
+					var buyPrice=$form.find(":input[name='e.buyPrice']").val();
+					if(buyPrice!=''&&!isNaN(buyPrice)){
+						var amount=bc.formatNumber(int_count*buyPrice,"###,###.00");
+						$form.find(":input[name='amount']").val(amount);
+					}
+				}else{
+					bc.msg.alert("你好，你输入的开始号、采购数量、每份数量不是数值");
+					return false;
 				}
 			}
 		});
 		
 		//当选择打印票时，单位为卷，但选择手撕票时，单位为本
-		$form.find("select[name='e.unit']").change(function(){
-			$form.find("#eachCountName").html(this.options[this.selectedIndex].text);
-		});
-		
+		$form.find("select[name='e.type']").change(function(){
+			var val=$(this).find(":selected").val();
+			if(val=='2'){
+				$form.find(":input[name='unitName']").val("卷");
+				$form.find(":input[name='e.unit']").val("2");
+				$form.find("#eachCountName").html($form.find(":input[name='unitName']").val());
+			}else if(val=='1'){
+				$form.find(":input[name='unitName']").val("本");
+				$form.find(":input[name='e.unit']").val("1");
+				$form.find("#eachCountName").html($form.find(":input[name='unitName']").val());
+			}
+		});	
 	},
 	save:function(){
 		$page = $(this);
@@ -80,7 +129,7 @@ bs.invoice4BuyForm = {
 							str+="和系统中相同代码的采购单范围重叠，不能保存！";
 							bc.msg.confirm(str);
 						}else if(json.checkResult==2){
-							str+="，有相应的销售单，且这些销售单号码范围不在这采购单内，不能保存！";
+							str+="，有相应的销售单，这采购单号码范围不能比这些销售单号码范围要少！";
 							bc.msg.confirm(str);
 						}else if(json.checkResult==3){
 							str+="，有相应的销售单，不能作废，若作废此采购单必须先作废相应销售单！";
@@ -127,33 +176,11 @@ bs.invoice4BuyForm = {
 						//计算合计
 						var buyPrice=$form.find(":input[name='e.buyPrice']").val();
 						if(buyPrice!=''&&!isNaN(buyPrice)){
-							/**
-							 * 将数值四舍五入(保留2位小数)后格式化成金额形式
-							 *
-							 * @param num 数值(Number或者String)
-							 * @return 金额格式的字符串,如'1,234,567.45'
-							 * @type String
-							 */
-							function formatCurrency(num) {
-							    num = num.toString().replace(/\$|\,/g,'');
-							    if(isNaN(num))
-							    num = "0";
-							    sign = (num == (num = Math.abs(num)));
-							    num = Math.floor(num*100+0.50000000001);
-							    cents = num%100;
-							    num = Math.floor(num/100).toString();
-							    if(cents<10)
-							    cents = "0" + cents;
-							    for (var i = 0; i < Math.floor((num.length-(1+i))/3); i++)
-							    num = num.substring(0,num.length-(4*i+3))+','+
-							    num.substring(num.length-(4*i+3));
-							    return (((sign)?'':'-') + num + '.' + cents);
-							}
-							var amount=formatCurrency(count*buyPrice);
+							var amount=bc.formatNumber(count*buyPrice,"###,###.00");
 							$form.find(":input[name='amount']").val(amount);
 						}
 					}else{
-						bc.msg.alert("你好，你填写的开始号和结束号之差不能整除每份每份数量，请修正！");
+						bc.msg.alert("你好，你填写的开始号到结束号数值范围不能整除"+eachCount+"，请修正！");
 						return false;
 					}
 				}else if(startNo>endNo){

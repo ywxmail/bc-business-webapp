@@ -443,15 +443,12 @@
 											 display:none; 
 											 </s:else>
 											 '>
-									    	 <div class="input ui-widget-content"  >
-									     			<span class="link showCarMan" data-cfg='<s:property value="e.payDriverId"/>' id="carManInfo" >
-									     			<s:property value="%{e.payDriver}" /></span>
-									      	</div>
-									      	<ul class="inputIcons">
-									        		<li class="selectCarMan inputIcon ui-icon ui-icon-circle-plus" 
-									        		title='<s:text name="title.click2select"/>' 
-									        		data-cfg='e.payDriverId=id,e.payDriver=name,carManInfo=name|text'></li>
-									      	</ul>
+									    	 <div style="position:relative;display: inline-block" >
+												<s:textfield name="e.payDriver" cssStyle="width:8em;"  readonly="true" cssClass="ui-widget-content"/>
+												<ul class="inputIcons">
+											 		<li class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectPayDriver">
+											 	</ul>
+											</div>
 										</samp>	
 									</td>								
 								</tr>
@@ -697,7 +694,7 @@
 												<s:text name="runcase.driverName"/>:
 										</samp>
 									</td>
-									<td class="value relative">
+									<td class="value">
 										<samp id="payTwo" style='<s:if test="%{e.payTwo==true}"> 
 												display:block;
 												</s:if>
@@ -705,14 +702,12 @@
 												display:none;
 												</s:else>
 												'>
-												<div class="input ui-widget-content" >
-										     			<span class="link showCarMan" data-cfg='<s:property value="e.payDriverIdTwo"/>' id="carManInfo2" >
-										     			<s:property value="%{e.payDriverTwo}" /></span>
-										      	</div>
-										      	<ul class="inputIcons">
-										        		<li class="selectCarMan inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>' 
-										        		data-cfg='e.payDriverIdTwo=id,e.payDriverTwo=name,carManInfo2=name|text'></li>
-										      	</ul>
+												<div style="position:relative;display: inline-block" >
+													<s:textfield name="e.payDriverTwo" cssStyle="width:8em;"  readonly="true" cssClass="ui-widget-content"/>
+													<ul class="inputIcons">
+											 			<li class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectPayDriverTwo">
+											 		</ul>
+												</div>
 										</samp>
 									</td>								
 								</tr>
@@ -885,9 +880,7 @@
 		<s:hidden name="isNullCar" />
 		<s:hidden name="e.motorcadeName" />
 		<s:hidden name="e.payDriverId" />
-		<s:hidden name="e.payDriver" />
 		<s:hidden name="e.payDriverIdTwo" />
-		<s:hidden name="e.payDriverTwo" />
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 		
 	</s:form>

@@ -25,6 +25,7 @@
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseAdvices/list?carManId=%{e.id}&type=2" />' class="ui-state-default">客管投诉</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseAdvices/list?carManId=%{e.id}&type=6" />' class="ui-state-default">公司投诉</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/casePraises/list?carManId=%{e.id}" />' class="ui-state-default">表扬</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/invoice4Sells/list?buyerId=%{e.id}" />' class="ui-state-default">发票销售</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">安全学习</a></li>
 					</s:if>
 					<s:else>

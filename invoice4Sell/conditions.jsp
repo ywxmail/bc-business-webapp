@@ -57,7 +57,7 @@
 			<div class="clear"></div>
 		</li>
 		<li class="condition">
-			<div class="label">发票编码</div>
+			<div class="label">发票编码(开始号≤输入值≤结束号)</div>
 			<div class="value">
 				<input type="text" class="ui-widget-content" data-condition='{"type":"string","ql":"(d.start_no<=? and d.end_no>=?)"}'>
 				<ul class="inputIcons">
@@ -86,6 +86,30 @@
 				</div>
 			</div>
 			<div class="clear"></div>
+		</li>
+		<li class="condition">
+			<div class="label">数量</div>
+			<div class="value">
+				<div class="bc-dateContainer">
+					<input type="text" class="ui-widget-content" data-condition='{"type":"int","ql":"d.count_>=?"}' 
+						style="width:9em;" data-validate="number">
+					<ul class="inputIcons">
+						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
+					</ul>
+				</div><div style="width:12px;display:inline-block;">～</div><div class="bc-dateContainer">
+					<input type="text" class="ui-widget-content" data-condition='{"type":"int","ql":"d.count_<=?"}' 
+						style="width:9em;" data-validate="number">
+					<ul class="inputIcons">
+						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</li>
+		<li class="condition">
+			<div class="value checkboxes" data-condition='{"type":"string","ql":"checkI4SellDetailCount(d.count_,d.start_no,d.end_no)>0"}' >
+				<label><input type="checkbox" name="checkboxField1" ><span>开始号、结束号、数量异常的销售单</span></label>
+			</div>
 		</li>
 	</ul>
 </form>

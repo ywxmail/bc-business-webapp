@@ -3,9 +3,28 @@ bs.invoice4SellForm = {
 	init : function(option,readonly){
 		var $form = $(this);
 		
+		//计算合计
+		$form.find(".bs-i4sell-detail-amount").each(function(index){
+			  $tr=$(this).closest("tr");
+			  var $count=$tr.find(".bs-i4sell-detail-count");
+			  var $price=$tr.find(".bs-i4sell-detail-price");
+			  //判断是否有值且是否输数字
+			  function isNumber($val){
+					if($val.val()&&!isNaN($val.val())){
+						return true;
+					}else{
+						return false;
+					}
+			  }
+			  if(isNumber($count)&&isNumber($price)){
+					var float_price=parseFloat($price.val().trim());
+					var int_count=parseInt($count.val().trim(),10);
+					$(this).val(bc.formatNumber(int_count*float_price,"###,###.00"));
+			  }
+		});
+		
 		
 		if(readonly) return;
-		
 		//绑定销售员按钮事件
 		// 销售员
 		$form.find("#selectCashier").click(function(){
@@ -21,6 +40,7 @@ bs.invoice4SellForm = {
 		
 		//预加载一个司机关联多台车的对话框选择
 		if($form.find(":input[name='isMoreCar']").val()=="true"){
+			logger.info("isMoreCar");
 			var driverId=$form.find(":input[name='e.buyerId']").val();
 			var url= bc.root +"/bc-business/selectMoreCarWithCarMan/selectCars?carManId="+driverId;
 			var optionCar = {
@@ -28,9 +48,10 @@ bs.invoice4SellForm = {
 				name: "选择车辆信息",
 				mid: "selectCar",
 				afterClose: function(car){
+					logger.info("info=" + $.toJSON(car));
 					if(car != null){
 						$form.find(":input[name='e.carId']").val(car.id);
-						$form.find(":input[name='e.carPlate']").val(car.plate);
+						$form.find(":input[name='e.carPlate']").val(car.name);
 						$form.find("select[name='e.motorcadeId.id']").val(car.motorcadeId);
 						$form.find("select[name='e.company']").val(car.company);
 					}
@@ -38,12 +59,12 @@ bs.invoice4SellForm = {
 			};
 			bc.page.newWin(optionCar);
 		};
-		if($form.find(":input[name='isNullCar']").val()=="true"){
+		if($form.find(":input[name='isNullCar']").val()=="true"){	
 			bc.msg.alert("此司机没有驾驶任何车辆！");	
 		};
 		
 		//预加载一台车关联多个司机的对话框选择
-		if($form.find(":input[name='isMoreCarMan']").val()=="true"){
+		if($form.find(":input[name='isMoreBuyer']").val()=="true"){	
 			var carId=$form.find(":input[name='e.carId']").val();
 			bs.findInfoByCar({
 				carId: carId,
@@ -60,7 +81,7 @@ bs.invoice4SellForm = {
 				}
 			});
 		};
-		if($form.find(":input[name='isNullCarMan']").val()=="true"){
+		if($form.find(":input[name='isNullBuyer']").val()=="true"){
 			bc.msg.alert("此车辆没有被任何司机驾驶！");	
 		};
 		
@@ -118,7 +139,7 @@ bs.invoice4SellForm = {
 					cell.style.padding="0";
 					cell.style.textAlign="left";
 					cell.setAttribute("class","middle");
-					var codeRow='<select name="code" class="ui-widget-content" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px"'
+					var codeRow='<select name="code" class="ui-widget-content bs-i4sell-detail-code" style="width:100%;height:100%;border:none;margin:0;padding:0 10px 0 2px"'
 						codeRow+='data-validate="required">';
 					codeRow+='<option value=" "></option>';
 					//logger.info($.toJSON(jsonArray));
@@ -138,7 +159,7 @@ bs.invoice4SellForm = {
 					cell.style.textAlign="left";
 					cell.setAttribute("class","middle");
 					cell.innerHTML='<input name="startNo" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
-						+'type="text" class="ui-widget-content"  data-validate="required">';
+						+'type="text" class="ui-widget-content bs-i4sell-detail-startNo"  data-validate="required">';
 					
 					//插入结束号
 					cell=newRow.insertCell(3);
@@ -146,7 +167,7 @@ bs.invoice4SellForm = {
 					cell.style.textAlign="left";
 					cell.setAttribute("class","middle");
 					cell.innerHTML='<input name="endNo" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
-						+'type="text" class="ui-widget-content" data-validate="required">';
+						+'type="text" class="ui-widget-content bs-i4sell-detail-endNo" data-validate="required">';
 					
 					//插入数量
 					cell=newRow.insertCell(4);
@@ -154,7 +175,9 @@ bs.invoice4SellForm = {
 					cell.style.textAlign="left";
 					cell.setAttribute("class","middle");
 					cell.innerHTML='<input name="count" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
-						+'type="text" class="ui-widget-content" data-validate="required">';
+						+'type="text" class="ui-widget-content bs-i4sell-detail-count" data-validate="required">'
+					//每份数量
+						+'<input name="eachCount" class="bs-i4sell-detail-eachCount" type="hidden"/>';
 					
 					//插入单价
 					cell=newRow.insertCell(5);
@@ -162,7 +185,7 @@ bs.invoice4SellForm = {
 					cell.style.textAlign="left";
 					cell.setAttribute("class","middle");
 					cell.innerHTML='<input name="price" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
-						+'type="text" class="ui-widget-content" data-validate="required">';
+						+'type="text" class="ui-widget-content bs-i4sell-detail-price" data-validate="required">';
 					
 					//插入合计
 					cell=newRow.insertCell(6);
@@ -170,7 +193,7 @@ bs.invoice4SellForm = {
 					cell.style.textAlign="left";
 					cell.setAttribute("class","middle");
 					cell.innerHTML='<input name="amount" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
-									+'type="text" class="ui-widget-content" >';	
+									+'type="text" class="ui-widget-content bs-i4sell-detail-amount" >';	
 					
 				}
 			});
@@ -182,7 +205,7 @@ bs.invoice4SellForm = {
 		$form.find("#sellDetailTables").delegate("tr.ui-widget-content.row input","focus",function(){
 			$(this).closest("tr.row").removeClass("ui-state-highlight").find("td:eq(0)>span.ui-icon").removeClass("ui-icon-check");
 		});
-		//删除表中选中的险种
+		//删除表中选中的
 		$form.find("#deleteLine").click(function() {
 			var $trs = $form.find("#sellDetailTables tr.ui-state-highlight");
 			if($trs.length == 0){
@@ -196,44 +219,7 @@ bs.invoice4SellForm = {
 			});
 			
 		});
-		
-		//选择采购单预加载单价，每份数量的信息
-		$form.find("select[name='code']").change(function(){
-			var buyId=$(this).select().val();
-			if(buyId!=''){
-				var url=bc.root + "/bc-business/invoice4Sell/findOneInvoice4Buy";
-				$.ajax({
-					url:url,
-					data:{buyId:buyId},
-					dataType:"json",
-					success:function(json){
-						logger.info($.toJSON(json));
-						if(json){
-							$form.find("#startNo").val(json.startNo);
-							$form.find("#eachCount").val(json.eachCount);
-							$form.find("#price").val(json.sellPrice);
-						}
-					}
-				});
-			}
-		});
-		
-		//新建时
-		if($form.find(":input[name='e.id']").val()==''){
-			//失去焦点时，自动填上明细的结束号和合计
-			$form.find("#count").blur(function(){
-				bs.invoice4SellForm.autoCountEndNoAndAmount($form);
-			});
-			
-			//失去焦点时，自动填上明细的结束号和合计
-			$form.find("#startNo").blur(function(){
-				bs.invoice4SellForm.autoCountEndNoAndAmount($form);
-			});
-			//失去焦点时，自动计算合计
-			$form.find("#price").blur(function(){
-				bs.invoice4SellForm.autoCountEndNoAndAmount($form);
-			});
-		}
+				
 		//绑定选择购买人按钮事件
 		$form.find("#selectBuyer").click(function() {
 			var selecteds = $form.find(":input[name='e.buyerId']").val();
@@ -244,6 +230,93 @@ bs.invoice4SellForm = {
 					$form.find(":input[name='e.buyerName']").val(carMan.name);
 				}
 			});
+		});
+		
+		//动态绑定事件  输入结束号，得出数量和合计
+		$form.find("#sellDetailTables").delegate(".bs-i4sell-detail-endNo","blur",function(){;
+			logger.info("进入 输入结束号，得出数量和合计");
+			//向上找到tr父级元素
+			var $tr=$(this).closest("tr");
+			bs.invoice4SellForm.autoCountNmberAndAmount($tr,'endNo');
+		});
+		
+		//动态绑定事件   输入数量，得出结束号和合计
+		$form.find("#sellDetailTables").delegate(".bs-i4sell-detail-count","blur",function(){;
+			logger.info("进入  输入数量，得出结束号和合计");
+			//向上找到tr父级元素
+			var $tr=$(this).closest("tr");
+			bs.invoice4SellForm.autoCountNmberAndAmount($tr,'count');
+		});
+		
+		//动态绑定事件   计算合计
+		$form.find("#sellDetailTables").delegate(".bs-i4sell-detail-amount","blur",function(){;
+			logger.info("进入 计算合计");
+			//向上找到tr父级元素
+			var $tr=$(this).closest("tr");
+			bs.invoice4SellForm.autoCountNmberAndAmount($tr,'amount');
+		});
+		
+		//动态绑定事件   结束号失去焦点时
+		$form.find("#sellDetailTables").delegate(".bs-i4sell-detail-code","change",function(){
+			var $codeList=$(this)
+			var buyId=$codeList.select().val();
+			//向上找到tr父级元素
+			var $tr= $codeList.closest("tr");
+			if(buyId){
+				var url=bc.root + "/bc-business/invoice4Sell/findOneInvoice4Buy";
+				$.ajax({
+					url:url,
+					data:{buyId:buyId},
+					dataType:"json",
+					success:function(json){
+						logger.info($.toJSON(json));
+						if(json){
+							$tr.find(".bs-i4sell-detail-startNo").val(json.startNo);
+							$tr.find(".bs-i4sell-detail-eachCount").val(json.eachCount);
+							$tr.find(".bs-i4sell-detail-price").val(json.sellPrice);
+							$tr.find(".bs-i4sell-detail-count").val('');
+							$tr.find(".bs-i4sell-detail-endNo").val('');
+							$tr.find(".bs-i4sell-detail-amount").val('');
+						}else{
+							$tr.find(".bs-i4sell-detail-startNo").val('');
+							$tr.find(".bs-i4sell-detail-eachCount").val('');
+							$tr.find(".bs-i4sell-detail-price").val('');
+							$tr.find(".bs-i4sell-detail-count").val('');
+							$tr.find(".bs-i4sell-detail-endNo").val('');
+							$tr.find(".bs-i4sell-detail-amount").val('');	
+						}
+					}
+				});
+			}
+		});
+		
+		//采购单新建时
+		var buyId_create=$form.find(":input[name='buyId']").val();
+		var eid=$form.find(":input[name='e.id']").val();
+		if(buyId_create!=''&&eid==''){
+			var $tr= $form.find(".bs-i4sell-detail-code").closest("tr");
+			var url=bc.root + "/bc-business/invoice4Sell/findOneInvoice4Buy";
+				$.ajax({
+					url:url,
+					data:{buyId:buyId_create},
+					dataType:"json",
+					success:function(json){
+						logger.info($.toJSON(json));
+						if(json){
+							$tr.find(".bs-i4sell-detail-startNo").val(json.startNo);
+							$tr.find(".bs-i4sell-detail-eachCount").val(json.eachCount);
+							$tr.find(".bs-i4sell-detail-price").val(json.sellPrice);
+							$tr.find(".bs-i4sell-detail-count").val('');
+							$tr.find(".bs-i4sell-detail-endNo").val('');
+							$tr.find(".bs-i4sell-detail-amount").val('');
+						}
+					}
+			});
+		}
+		
+		//去除select中的属性，防止相同的name名称导致保存出错。
+		$form.find("select[name='buyId']").each(function(){
+			$(this).removeAttr("name");
 		});
 	},
 	save : function(){
@@ -283,14 +356,59 @@ bs.invoice4SellForm = {
 		
 		//检测销售明细的正确性
 		var sellId=$page.find(":input[name='e.id']").val();
+		var status=$page.find(":radio[name='e.status']:checked").val();
 		var url=bc.root + "/bc-business/invoice4Sell/checkSell4Detail";
 		$.ajax({
 			url:url,
-			data:{sellId:sellId,sellDetailsStr:sellDetailsStr},
+			data:{sellId:sellId,status:status,sellDetailsStr:sellDetailsStr},
 			dataType: "json",
 			success:function(json){		
-				if(json){
+				if(json.checkResult){
 					bc.msg.alert(json.checkResult);
+				}else if(json.checkResult4Sell){
+					logger.info(json.checkResult4Sell.code);
+					
+					//组装提示查看信息
+					var str = "保存的销售明细"+json.checkResult4Sell.code;
+						str +="("+json.checkResult4Sell.save_startNo+"~"+json.checkResult4Sell.save_endNo+")";
+						str +="与系统中销售单";
+						str +="<a id='chakan4Sell' href=#>";
+						str +=json.checkResult4Sell.code+"("+json.checkResult4Sell.data_startNo+"~"+json.checkResult4Sell.data_endNo+")";
+						str +="</a>";
+						str +="范围重叠!";
+					var $a = bc.msg.alert(str);
+					$a.find('#chakan4Sell').click(function(){
+						bc.page.newWin({
+							url: bc.root + "/bc-business/invoice4Sell/open?id="+json.checkResult4Sell.data_sellId,
+							name: "查看销售单",
+							mid:  "invoice4Sell." + json.checkResult4Sell.data_sellId,
+							afterClose: function(){
+
+							}
+						})
+						$a.dialog("close");
+					});
+				}else if(json.checkResult4Buy){
+					//组装提示查看信息
+					var str = "保存的销售明细"+json.checkResult4Buy.code;
+						str +="("+json.checkResult4Buy.save_startNo+"~"+json.checkResult4Buy.save_endNo+")";
+						str +="不在或超出系统中的采购单";
+						str +="<a id='chakan4Buy' href=#>";
+						str +=json.checkResult4Buy.code+"("+json.checkResult4Buy.data_startNo+"~"+json.checkResult4Buy.data_endNo+")";
+						str +="</a>";
+						str +="范围!";
+					var $a = bc.msg.alert(str);
+					$a.find('#chakan4Buy').click(function(){
+						bc.page.newWin({
+							url: bc.root + "/bc-business/invoice4Buy/open?id="+json.checkResult4Buy.data_buyId,
+							name: "查看采购单",
+							mid:  "invoice4Buy." + json.checkResult4Buy.data_buyId,
+							afterClose: function(){
+
+							}
+						})
+						$a.dialog("close");
+					});
 				}else{
 					//调用标准的方法执行保存
 					bc.page.save.call($page);
@@ -306,7 +424,7 @@ bs.invoice4SellForm = {
 			$page.dialog("close");
 			// 重新打开可编辑表单
 			bc.page.newWin({
-				name: "维护发票采购单",
+				name: "维护发票销售单",
 				mid: "invoice4Sell" + $page.find(":input[name='e.id']").val(),
 				url: bc.root + "/bc-business/invoice4Sell/edit",
 				data: {id: $page.find(":input[name='e.id']").val()},
@@ -316,52 +434,74 @@ bs.invoice4SellForm = {
 			});
 		});
 	},
-	/**
-	 * 将数值四舍五入(保留2位小数)后格式化成金额形式
-	 *
-	 * @param num 数值(Number或者String)
-	 * @return 金额格式的字符串,如'1,234,567.45'
-	 * @type String
+	
+	/*
+	 * 根据情况自动填上明细的各项
+	 * $tr:保存当行明细
+	 * $type:类型，如$type="endNo",通过结束号计算数量，合计
 	 */
-	formatNumberToMoney : function(num) {
-	    num = num.toString().replace(/\$|\,/g,'');
-	    if(isNaN(num))
-	    num = "0";
-	    sign = (num == (num = Math.abs(num)));
-	    num = Math.floor(num*100+0.50000000001);
-	    cents = num%100;
-	    num = Math.floor(num/100).toString();
-	    if(cents<10)
-	    cents = "0" + cents;
-	    for (var i = 0; i < Math.floor((num.length-(1+i))/3); i++)
-	    num = num.substring(0,num.length-(4*i+3))+','+
-	    num.substring(num.length-(4*i+3));
-	    return (((sign)?'':'-') + num + '.' + cents);
-	},
-	//自动填上明细的结束号和合计
-	autoCountEndNoAndAmount : function($form){
-		var count=$form.find("#count").val();
-		var startNo=$form.find("#startNo").val();
-		var eachCount=$form.find("#eachCount").val();
-		var price=$form.find("#price").val();
-		//判断数量和开始号是否为数字
-		if(count!=''&&!isNaN(count)&&startNo!=''&&!isNaN(startNo)&&eachCount!=null&&price!=null&&!isNaN(price)){
-			var a=parseInt(count*eachCount-1,10);
-			var b=parseInt(startNo,10);	
-			//计算结束号
-			var endNo=a+b;
-			//logger.info(a+'~'+b+'~'+endNo);
-			if(endNo.toString().length>=startNo.length){
-				$form.find("#endNo").val(endNo); 
-			}else{//当开始号是‘0’开始时，结束号补回前边的0
-				var zoreStr=startNo.substring(0,startNo.length-endNo.toString().length)
-				$form.find("#endNo").val(zoreStr+endNo); 
+	autoCountNmberAndAmount : function($tr,$type){
+		var $startNo=$tr.find(".bs-i4sell-detail-startNo");
+		var $count=$tr.find(".bs-i4sell-detail-count");
+		var $eachCount=$tr.find(".bs-i4sell-detail-eachCount");
+		var $price=$tr.find(".bs-i4sell-detail-price");
+		var $endNo=$tr.find(".bs-i4sell-detail-endNo");
+		var $amount=$tr.find(".bs-i4sell-detail-amount");
+		
+		//判断是否有值且是否输数字
+		function isNumber($val){
+			if($val.val()&&!isNaN($val.val())){
+				return true;
+			}else{
+				return false;
 			}
-			//计算合计
-			var amount=bs.invoice4SellForm.formatNumberToMoney(count*price);
-			$form.find("#amount").val(amount);
+		}
+		
+		if(isNumber($startNo)){
+
+			//通过结束号计算数量和合计
+			if($type=='endNo'&&isNumber($endNo)&&isNumber($eachCount)){
+				var int_startNo=parseInt($startNo.val().trim(),10);
+				var int_endNo=parseInt($endNo.val().trim(),10);
+				var int_eachCount=parseInt($eachCount.val(),10);
+				if(int_startNo<int_endNo){
+					//开始号必需要整除结束号
+					if((int_endNo-int_startNo+1)%int_eachCount==0){
+						$count.val((int_endNo-int_startNo+1)/int_eachCount);
+						if(isNumber($price)){
+							var float_price=parseFloat($price.val().trim());
+							$amount.val(bc.formatNumber((int_endNo-int_startNo+1)/int_eachCount*float_price,"###,###.00"))
+						}
+					}else{
+						bc.msg.alert("明细中开始号到结束号数值范围不能整除"+$eachCount.val());
+					}
+				}else{
+					bc.msg.alert("你输入的明细结束号小于或等于开始号");
+				}
+				
+			//通过数量计算结束号，合计
+			}else if($type=='count'&&isNumber($count)&&isNumber($eachCount)){
+				var int_startNo=parseInt($startNo.val().trim(),10);
+				var int_count=parseInt($count.val().trim(),10);
+				var int_eachCount=parseInt($eachCount.val(),10);
+				var int_endNo=int_startNo+int_count*int_eachCount-1;
+				
+				if(int_endNo.toString().length>=$startNo.val().trim().length){
+					$endNo.val(int_endNo);
+				}else{
+					var zoreStr=$startNo.val().trim().substring(0,$startNo.val().trim().length-int_endNo.toString().length);
+					$endNo.val(zoreStr+int_endNo);
+				}
+				
+				if(isNumber($price)){
+					var float_price=parseFloat($price.val().trim());
+					$amount.val(bc.formatNumber(int_count*float_price,"###,###.00"));
+				}
+			}else if($type=='amount'&&isNumber($count)&&isNumber($price)){
+				var float_price=parseFloat($price.val().trim());
+				var int_count=parseInt($count.val().trim(),10);
+				$amount.val(bc.formatNumber(int_count*float_price,"###,###.00"));
+			}
 		}
 	}
-	
-	
 };

@@ -27,7 +27,7 @@
 			<div class="clear"></div>
 		</li>
 		<li class="condition">
-			<div class="label">发票编码</div>
+			<div class="label">发票编码(开始号≤输入值≤结束号)</div>
 			<div class="value">
 				<input type="text" class="ui-widget-content" data-condition='{"type":"string","ql":"(b.start_no<=? and b.end_no>=?)"}'>
 				<ul class="inputIcons">
@@ -51,6 +51,44 @@
 						data-condition='{"type":"endDate","ql":"b.buy_date<=?"}'>
 					<ul class="inputIcons">
 						<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
+						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</li>
+		<li class="condition">
+			<div class="label">采购数量</div>
+			<div class="value">
+				<div class="bc-dateContainer">
+					<input type="text" class="ui-widget-content" data-condition='{"type":"int","ql":"b.count_>=?"}' 
+						style="width:9em;" data-validate="number">
+					<ul class="inputIcons">
+						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
+					</ul>
+				</div><div style="width:12px;display:inline-block;">～</div><div class="bc-dateContainer">
+					<input type="text" class="ui-widget-content" data-condition='{"type":"int","ql":"b.count_<=?"}' 
+						style="width:9em;" data-validate="number">
+					<ul class="inputIcons">
+						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</li>
+		<li class="condition">
+			<div class="label">库存数量</div>
+			<div class="value">
+				<div class="bc-dateContainer">
+					<input type="text" class="ui-widget-content" data-condition='{"type":"int","ql":"getbalancecountbyinvoicebuyid(b.id)>=?"}' 
+						style="width:9em;" data-validate="number">
+					<ul class="inputIcons">
+						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
+					</ul>
+				</div><div style="width:12px;display:inline-block;">～</div><div class="bc-dateContainer">
+					<input type="text" class="ui-widget-content" data-condition='{"type":"int","ql":"getbalancecountbyinvoicebuyid(b.id)<=?"}' 
+						style="width:9em;" data-validate="number">
+					<ul class="inputIcons">
 						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
 					</ul>
 				</div>
