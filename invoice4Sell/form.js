@@ -424,7 +424,7 @@ bs.invoice4SellForm = {
 			$page.dialog("close");
 			// 重新打开可编辑表单
 			bc.page.newWin({
-				name: "维护发票采购单",
+				name: "维护发票销售单",
 				mid: "invoice4Sell" + $page.find(":input[name='e.id']").val(),
 				url: bc.root + "/bc-business/invoice4Sell/edit",
 				data: {id: $page.find(":input[name='e.id']").val()},
