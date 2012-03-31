@@ -128,7 +128,7 @@
 						<s:if test="buyId!=null">
 								<!-- 发票代码 -->
 							<td class="middle" style="padding:0;text-align:left;">
-								<s:select name="code" list="codeList" listValue="value" listKey="key"  
+								<s:select  list="codeList" listValue="value" listKey="key"  
 									theme="simple" data-validate="required" cssClass="ui-widget-content bs-i4sell-detail-code" 
 										cssStyle="width:100%;height:100%;border:none;margin:0;padding:0 10px 0 2px"/>
 							</td>
@@ -136,7 +136,7 @@
 						<s:else>
 								<!-- 发票代码 -->
 							<td class="middle" style="padding:0;text-align:left;">
-								<s:select name="code" list="codeList" listValue="value" listKey="key" headerValue="" headerKey="" 
+								<s:select list="codeList" listValue="value" listKey="key" headerValue="" headerKey="" 
 									theme="simple" data-validate="required" cssClass="ui-widget-content bs-i4sell-detail-code" 
 										cssStyle="width:100%;height:100%;border:none;margin:0;padding:0 10px 0 2px"/>
 							</td>
@@ -176,7 +176,7 @@
 						</td>
 						<!-- 发票代码 -->
 						<td class="middle" style="padding:0;text-align:left;">
-							<s:select  list="codeList" listValue="value" listKey="key"
+							<s:select name="buyId"  list="codeList" listValue="value" listKey="key"
 								theme="simple" data-validate="required" cssClass="ui-widget-content bs-i4sell-detail-code" 
 									cssStyle="width:100%;height:100%;border:none;margin:0;padding:0 10px 0 2px"/>
 						</td>

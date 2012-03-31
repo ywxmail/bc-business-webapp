@@ -292,7 +292,8 @@ bs.invoice4SellForm = {
 		
 		//采购单新建时
 		var buyId_create=$form.find(":input[name='buyId']").val();
-		if(buyId_create!=''){
+		var eid=$form.find(":input[name='e.id']").val();
+		if(buyId_create!=''&&eid==''){
 			var $tr= $form.find(".bs-i4sell-detail-code").closest("tr");
 			var url=bc.root + "/bc-business/invoice4Sell/findOneInvoice4Buy";
 				$.ajax({
@@ -308,16 +309,9 @@ bs.invoice4SellForm = {
 							$tr.find(".bs-i4sell-detail-count").val('');
 							$tr.find(".bs-i4sell-detail-endNo").val('');
 							$tr.find(".bs-i4sell-detail-amount").val('');
-						}else{
-							$tr.find(".bs-i4sell-detail-startNo").val('');
-							$tr.find(".bs-i4sell-detail-eachCount").val('');
-							$tr.find(".bs-i4sell-detail-price").val('');
-							$tr.find(".bs-i4sell-detail-count").val('');
-							$tr.find(".bs-i4sell-detail-endNo").val('');
-							$tr.find(".bs-i4sell-detail-amount").val('');	
 						}
 					}
-			}); 
+			});
 			
 		}
 	},

@@ -5,18 +5,16 @@ bs.invoice4BalanceForm = {
 		
 		if(readonly) return;
 		
+		$form.find("select[name='company']")[0].focus();
 
 		var startDate=$form.find(":input[name='startDate']").val();
 		var endDate=$form.find(":input[name='endDate']").val();
 		var company=$form.find("select[name='company']").val();
-		//var type=$form.find("select[name='type']").val();
-		
-		//logger.info(company+"~"+type);
-		
+
 		var url=bc.root + "/bc-business/invoice4Balance/select";
 		$.ajax({
 			url:url,
-			data:{startDate:startDate,endDate:endDate,company:company,type:2},
+			data:{startDate:startDate,endDate:endDate,company:company},
 			dataType:"json",
 			success:function(json){
 				//logger.info($.toJSON(json));
@@ -31,6 +29,17 @@ bs.invoice4BalanceForm = {
 			}
 		});
 		
+		$form.find("select[name='type']").change(function(){
+			if($(this).val()==''){
+				$form.find("#unitName").text('');
+			}else if($(this).val()=='2'){
+				$form.find("#unitName").text('(卷)');
+			}else{
+				$form.find("#unitName").text('(本)');
+			}
+		});
+		
+		
 	},
 	select : function(){
 		var $form = $(this);
@@ -41,12 +50,10 @@ bs.invoice4BalanceForm = {
 		var company=$form.find("select[name='company']").val();
 		var type=$form.find("select[name='type']").val();
 		
-		logger.info(company+"~"+type);
-		
 		var url=bc.root + "/bc-business/invoice4Balance/select";
 		$.ajax({
 			url:url,
-			data:{startDate:startDate,endDate:endDate,company:company,type:2},
+			data:{startDate:startDate,endDate:endDate,company:company,type:type},
 			dataType:"json",
 			success:function(json){
 				//logger.info($.toJSON(json));

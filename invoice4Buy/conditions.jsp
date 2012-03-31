@@ -80,13 +80,13 @@
 			<div class="label">库存数量</div>
 			<div class="value">
 				<div class="bc-dateContainer">
-					<input type="text" class="ui-widget-content" data-condition='{"type":"int","ql":"(SELECT getbalancecountbyinvoicebuyid(b.id))>=?"}' 
+					<input type="text" class="ui-widget-content" data-condition='{"type":"int","ql":"getbalancecountbyinvoicebuyid(b.id)>=?"}' 
 						style="width:9em;" data-validate="number">
 					<ul class="inputIcons">
 						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
 					</ul>
 				</div><div style="width:12px;display:inline-block;">～</div><div class="bc-dateContainer">
-					<input type="text" class="ui-widget-content" data-condition='{"type":"int","ql":"(SELECT getbalancecountbyinvoicebuyid(b.id))<=?"}' 
+					<input type="text" class="ui-widget-content" data-condition='{"type":"int","ql":"getbalancecountbyinvoicebuyid(b.id)<=?"}' 
 						style="width:9em;" data-validate="number">
 					<ul class="inputIcons">
 						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>

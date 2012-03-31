@@ -107,7 +107,7 @@
 			<div class="clear"></div>
 		</li>
 		<li class="condition">
-			<div class="value checkboxes" data-condition='{"type":"string","ql":"(select checkI4SellDetailCount(d.count_,d.start_no,d.end_no))>0"}' >
+			<div class="value checkboxes" data-condition='{"type":"string","ql":"checkI4SellDetailCount(d.count_,d.start_no,d.end_no)>0"}' >
 				<label><input type="checkbox" name="checkboxField1" ><span>开始号、结束号、数量异常的销售单</span></label>
 			</div>
 		</li>
