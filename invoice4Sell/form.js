@@ -312,8 +312,12 @@ bs.invoice4SellForm = {
 						}
 					}
 			});
-			
 		}
+		
+		//去除select中的属性，防止相同的name名称导致保存出错。
+		$form.find("select[name='buyId']").each(function(){
+			$(this).removeAttr("name");
+		});
 	},
 	save : function(){
 		$page = $(this);
@@ -359,7 +363,7 @@ bs.invoice4SellForm = {
 			data:{sellId:sellId,status:status,sellDetailsStr:sellDetailsStr},
 			dataType: "json",
 			success:function(json){		
-				if(json){
+				if(json.checkResult){
 					bc.msg.alert(json.checkResult);
 				}else{
 					//调用标准的方法执行保存
