@@ -265,7 +265,7 @@ bc.contract4ChargerForm = {
 			bc.page.newWin({
 				name: signType + $page.find(":input[name='e.ext_str1']").val() + "的经济合同",
 				mid: "contract4Charger" + $page.find(":input[name='e.id']").val(),
-				url: bc.root + "/bc-business/contract4ChargerOperate2/edit",
+				url: bc.root + "/bc-business/contract4ChargerOperate2/create",
 				data: data,
 				afterClose: function(status){
 					if(status) bc.grid.reloadData($page);

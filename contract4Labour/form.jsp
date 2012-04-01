@@ -356,6 +356,7 @@
 		<s:hidden name="e.verMinor"/>
 		<s:hidden name="e.opType"/>
 		<s:hidden name="e.patchNo"/>
+		<s:hidden name="e.main"/>
 		<s:hidden name="driverId"/>
 		<s:hidden name="carId"/>
 		<s:hidden name="isMoreCar"/>
