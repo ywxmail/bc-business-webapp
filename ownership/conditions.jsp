@@ -108,7 +108,7 @@
 			</div>
 			<div class="clear"></div>
 		</li>
-		<li class="condition">
+		<!-- <li class="condition">
 			<div class="label">车辆报废日期</div>
 			<div class="value">
 				<div class="bc-dateContainer">
@@ -128,6 +128,6 @@
 				</div>
 			</div>
 			<div class="clear"></div>
-		</li>
+		</li> -->
 	</ul>
 </form>
