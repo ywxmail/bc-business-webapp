@@ -234,7 +234,6 @@ bs.invoice4SellForm = {
 		
 		//动态绑定事件  输入结束号，得出数量和合计
 		$form.find("#sellDetailTables").delegate(".bs-i4sell-detail-endNo","blur",function(){;
-			logger.info("进入 输入结束号，得出数量和合计");
 			//向上找到tr父级元素
 			var $tr=$(this).closest("tr");
 			bs.invoice4SellForm.autoCountNmberAndAmount($tr,'endNo');
@@ -242,7 +241,6 @@ bs.invoice4SellForm = {
 		
 		//动态绑定事件   输入数量，得出结束号和合计
 		$form.find("#sellDetailTables").delegate(".bs-i4sell-detail-count","blur",function(){;
-			logger.info("进入  输入数量，得出结束号和合计");
 			//向上找到tr父级元素
 			var $tr=$(this).closest("tr");
 			bs.invoice4SellForm.autoCountNmberAndAmount($tr,'count');
@@ -250,10 +248,16 @@ bs.invoice4SellForm = {
 		
 		//动态绑定事件   计算合计
 		$form.find("#sellDetailTables").delegate(".bs-i4sell-detail-amount","blur",function(){;
-			logger.info("进入 计算合计");
 			//向上找到tr父级元素
 			var $tr=$(this).closest("tr");
 			bs.invoice4SellForm.autoCountNmberAndAmount($tr,'amount');
+		});
+		
+		//动态绑定事件 修改单价后  计算合计
+		$form.find("#sellDetailTables").delegate(".bs-i4sell-detail-price","blur",function(){;
+			//向上找到tr父级元素
+			var $tr=$(this).closest("tr");
+			bs.invoice4SellForm.autoCountNmberAndAmount($tr,'price');
 		});
 		
 		//动态绑定事件   结束号失去焦点时
@@ -321,6 +325,15 @@ bs.invoice4SellForm = {
 	},
 	save : function(){
 		$page = $(this);
+		bs.invoice4SellForm.saveInfo($page,0);
+	},
+	//保存并关闭
+	saveAndClose:function(){
+		$page=$(this);
+		bs.invoice4SellForm.saveInfo($page,1);
+	},
+	//保存信息
+	saveInfo:function($page,saveStatus){
 		//表单先验证一次
 		if(!bc.validator.validate($page))
 			return;
@@ -383,7 +396,6 @@ bs.invoice4SellForm = {
 							name: "查看销售单",
 							mid:  "invoice4Sell." + json.checkResult4Sell.data_sellId,
 							afterClose: function(){
-
 							}
 						})
 						$a.dialog("close");
@@ -410,8 +422,15 @@ bs.invoice4SellForm = {
 						$a.dialog("close");
 					});
 				}else{
-					//调用标准的方法执行保存
-					bc.page.save.call($page);
+					if(saveStatus=='0'){
+						//调用标准的方法执行保存
+						bc.page.save.call($page);
+					}else{
+						//调用标准的方法执行保存
+						bc.page.save.call($page,{callback: function(json){
+							$page.dialog("close");
+						}});
+					}
 				}		
 			}
 		});
@@ -498,6 +517,12 @@ bs.invoice4SellForm = {
 					$amount.val(bc.formatNumber(int_count*float_price,"###,###.00"));
 				}
 			}else if($type=='amount'&&isNumber($count)&&isNumber($price)){
+				var float_price=parseFloat($price.val().trim());
+				var int_count=parseInt($count.val().trim(),10);
+				$amount.val(bc.formatNumber(int_count*float_price,"###,###.00"));
+			}
+			//修改单价后计算合计
+			else if($type=='price'&&isNumber($count)&&isNumber($price)){
 				var float_price=parseFloat($price.val().trim());
 				var int_count=parseInt($count.val().trim(),10);
 				$amount.val(bc.formatNumber(int_count*float_price,"###,###.00"));
