@@ -47,7 +47,7 @@
 						    <table style="width:100%;" style="margin:0;padding:0;" cellspacing="0" cellpadding="0" >
 							    <tr>
 								    <td><s:select name="plates" list="cars" listKey="key" listValue="value" theme="simple"
-								     	multiple="true" cssStyle="width:100%;height:9em;;" cssClass="ui-widget-content" data-validate="required" />
+								     	multiple="true" cssStyle="width:100%;height:9em;;" cssClass="ui-widget-content" />
 							     	</td>
 									<s:if test="!isReadonly()">
 								    <td style="width:40px;text-align: center;vertical-align: middle;"><input type="button" id="addCar" 
