@@ -97,6 +97,16 @@ bs.invoice4BuyForm = {
 	},
 	save:function(){
 		$page = $(this);
+		bs.invoice4BuyForm.saveInfo($page,0);
+		
+	},
+	//保存并关闭按钮
+	saveAndClose:function(){
+		$page = $(this);
+		bs.invoice4BuyForm.saveInfo($page,1);
+	},
+	//保存
+	saveInfo:function($page,saveStatus){
 		//验证表单必填
 		if(bc.validator.validate($page)){
 			//验证逻辑
@@ -123,8 +133,16 @@ bs.invoice4BuyForm = {
 						str+=endNo;
 						str+="]";
 						if(json.checkResult==0){
-							//调用标准的方法执行保存
-							bc.page.save.call($page);
+							
+							if(saveStatus=='0'){
+								//调用标准的方法执行保存
+								bc.page.save.call($page);
+							}else{
+								//调用标准的方法执行保存
+								bc.page.save.call($page,{callback: function(json){
+									$page.dialog("close");
+								}});
+							}
 						}else if(json.checkResult==1){
 							str+="和系统中相同代码的采购单范围重叠，不能保存！";
 							bc.msg.confirm(str);

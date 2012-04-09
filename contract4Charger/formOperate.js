@@ -208,10 +208,14 @@ bc.contract4ChargerFormOperate = {
 				success: function(json){
 					logger.info("doLogout result=" + $.toJSON(json));
 					//完成后提示用户
-					bc.msg.info(json.msg);
-					$page.data("data-status","saved");
-					$page.find(":hidden[name='isSaved']").val("true");
-					$page.find(":hidden[name='e.id']").val(json.id);
+					if(json.success){
+						bc.msg.alert(json.msg);
+						$page.data("data-status","saved");
+						$page.find(":hidden[name='isSaved']").val("true");
+						$page.find(":hidden[name='e.id']").val(json.id);
+					}else{
+						bc.msg.info(json.msg);
+					}
 					return false;
 				}
 			});
@@ -276,15 +280,17 @@ bc.contract4ChargerFormOperate = {
 				data: data,
 				success: function(json){
 					logger.info("doLogout result=" + $.toJSON(json));
+					
 					//完成后提示用户
-					bc.msg.info(json.msg);
 					if(json.success){
+						bc.msg.alert(json.msg);
 						$page.data("data-status","saved");
 						$page.find(":hidden[name='isSaved']").val("true");
 						$page.find(":hidden[name='e.id']").val(json.id);
 						$page.dialog("close");
+					}else{
+						bc.msg.info(json.msg);
 					}
-						
 					return false;
 				}
 			});
