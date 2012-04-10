@@ -14,18 +14,18 @@
 		                <td >&nbsp;</td>
 	                </tr>
 					<tr>
-					    <td style="font-weight: normal;"><s:checkbox name="isNature" cssStyle="width:1em;" />*<s:text name="ownership.nature"/>:</td>
+					    <td style="font-weight: normal;"><s:checkbox name="isNature" cssStyle="width:1em;" /><s:text name="ownership.nature"/>:</td>
 					    <td style="font-weight: normal;"><s:text name="car"/>: 
 							<ul class="inputIcons" style="margin: -18px 0;position: relative;left: 230px;">
 								<li id="addCar" class="inputIcon ui-icon ui-icon-circle-plus"
-									title='<s:text name="certLost.title.click2addLine"/>'></li>
+									title='<s:text name="batchChange.title.click2addLine"/>'></li>
 								<li id="deleteCar" class="inputIcon ui-icon ui-icon-circle-close"
-									title='<s:text name="certLost.title.click2deleteLine"/>'></li>
+									title='<s:text name="batchChange.title.click2deleteLine"/>'></li>
 							</ul>
 					    </td>
 				    </tr>
 				    <tr>
-						<td class="value" ><s:select list="natures" listKey="value" listValue="value" data-validate="required" 
+						<td class="value" ><s:select list="natures" listKey="value" listValue="value" 
 						 	headerKey="" headerValue="%{getText('label.please.choose')}" name="natureValue" cssClass="ui-widget-content"></s:select>
 				 		</td>
 					    <td class="value" rowspan="7">
@@ -39,10 +39,10 @@
 					    <td>
 					</tr>
 					<tr>
-						<td style="font-weight: normal;"><s:checkbox name="isSituation" cssStyle="width:1em;" />*<s:text name="ownership.situation"/>:</td>
+						<td style="font-weight: normal;"><s:checkbox name="isSituation" cssStyle="width:1em;" /><s:text name="ownership.situation"/>:</td>
 					</tr>
 					<tr>
-						<td class="value" ><s:select list="situations" listKey="value" listValue="value" data-validate="required" 
+						<td class="value" ><s:select list="situations" listKey="value" listValue="value" 
 							headerKey="" headerValue="%{getText('label.please.choose')}" name="situationValue" cssClass="ui-widget-content"></s:select>
 						</td>
 					</tr>
@@ -80,9 +80,6 @@
 		<s:hidden name="isNature"/>
 		<s:hidden name="isSituation"/>
 		<s:hidden name="isOwner"/>
-		<s:hidden name="natureValue"/>
-		<s:hidden name="situationValue"/>
-		<s:hidden name="ownerValue"/>
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 	</s:form>
 </div>
