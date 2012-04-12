@@ -24,7 +24,7 @@
 						<tr>
 							<td colspan="4">
 							    <fieldset class="ui-widget-content">
-							    	<legend>投诉信息</legend>
+							    	<legend>表扬信息</legend>
 							    	<table class="formFields" cellspacing="2" cellpadding="0">
 										<tr class="widthMarker">
 											<td style="width: 90px;">&nbsp;</td>
