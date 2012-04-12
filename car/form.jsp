@@ -33,6 +33,7 @@
 					<!-- <li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">费用</a></li> -->
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">回场检</a></li>
 					<!-- <li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">变更历史</a></li> -->
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/operateLogs/list?carId=%{e.id}&module=%{e.class.getSimpleName()}" />' class="ui-state-default">操作日志</a></li>
 					</s:if>
 					<s:else>
 				    <li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">车辆明细</a></li>
