@@ -20,6 +20,7 @@ bc.contract4ChargerFormOperate = {
 			var $lis = $ul.find("li");
 
 			bs.selectCharger({
+				status :'0,1',
 				multiple : true,
 				onOk : function(chargers) {
 					//var chargers = [charger];
