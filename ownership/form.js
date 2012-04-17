@@ -25,7 +25,6 @@ bs.ownershipForm = {
 		});
 		//删除所选中的车辆
 		$form.find("#deleteCar").click(function() {
-			alert("123");
 			var selectedindex = selectEl.selectedIndex;
 			var length=selectEl.options.length;
 			if(length==0){

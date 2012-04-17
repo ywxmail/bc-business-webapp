@@ -5,7 +5,7 @@
 	data-initMethod='bc.jiaoWeiJTWFForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="jiaoWeiJTWFForm" theme="simple">
-		<div class="formFields ui-widget-content" style="width:600px;">
+		<div class="formFields ui-widget-content" style="width:615px;">
 			<table class="formFields" cellspacing="2" cellpadding="0">
 				<tbody>
 					<tr class="widthMarker">
@@ -38,7 +38,12 @@
 						<td class="value"><s:textfield name="e.syncCode"  cssClass="ui-widget-content"/></td>
 					</tr>
 					<tr>
-						<td class="label"><s:text name="jiaoWeiJTWF.content"/>:</td>
+						<td style="width: 120px;text-align: right;font-weight: normal;"><s:text name="jiaoWeiJTWF.address"/>:</td>
+						<!-- <td class="value"><s:textfield name="e.content" value="%{jinDunAddress}"  cssClass="ui-widget-content"/></td> -->
+						<td class="value"><a title="点击查看金盾网相关的交通违法信息" id="jinDunInfo" href="##"><s:property value="%{jinDunAddress}"/></a></td>
+					<tr>
+					<tr>
+						<td class="topLabel"><s:text name="jiaoWeiJTWF.content"/>:</td>
 						<td class="value" colspan="3"><s:textarea name="e.content" cssStyle="width: 38.4em" cssClass="ui-widget-content"/></td>
 					<tr>
 						<td class="label" colspan="4">
@@ -51,5 +56,7 @@
 			</table>
 		</div>
 		<s:hidden name="e.id" />
+		<s:hidden id="jinDunInfoID" value="%{jinDunInfoId}"/>
+		
 	</s:form>
 </div>
