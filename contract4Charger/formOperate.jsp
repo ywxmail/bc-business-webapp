@@ -185,6 +185,7 @@
 		<s:hidden name="e.transactorName" />
 		<s:hidden name="isExistContract"/>
 		<s:hidden name="isSaved"/>
+		<s:hidden name="stopDate"/>
 		<!-- 
 		<s:hidden name="e.transactor.id" />
 		<s:hidden name="e.changerId1" />

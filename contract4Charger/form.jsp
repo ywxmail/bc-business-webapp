@@ -150,6 +150,19 @@
 									<s:checkbox name="e.includeCost" cssStyle="width:1em;" />
 									<s:text name="contract4Charger.includeCost"/>
 								</td>
+							</tr>
+							<tr>
+							<s:if test="%{e.status == 1}">
+								<td class="label"><s:text name="contract4Charger.stopDate"/>:</td>
+								<td class="value" style="position:relative;display: block;">
+									<input type="text" name="e.stopDate" data-validate='{"type":"date","required":false}'
+									value='<s:date format="yyyy-MM-dd" name="e.stopDate" />'
+									class="bc-date ui-widget-content" />
+									<ul class="inputIcons">
+										<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.stopDate' ></li>
+									</ul>
+								</td>
+							</s:if>
 							</tr>			
 							<tr>
 								<td class="label" colspan="4">
@@ -231,6 +244,7 @@
 		<s:hidden name="e.transactorId" />
 		<s:hidden name="e.transactorName" />
 		<s:hidden name="isExistContract"/>
+		
 
 		<!-- 
 		<s:hidden name="e.transactor.id" />

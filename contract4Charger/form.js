@@ -255,44 +255,60 @@ bc.contract4ChargerForm = {
 	 * @param $page 表单上下文
 	 */
 	openNewWin : function (tips,signType,opType,$page){
+		//var $page = $(this);
 		// 关闭当前窗口
 		bc.msg.confirm(tips,function(){
 			$page.dialog("close");
-			var data = {id: $page.find(":input[name='e.id']").val(),
-						signType : signType,
-						opType : opType
-						};
-			// 重新打开可编辑表单
+			//---
+
+			// 让用户输入新的经济合同的实际结束日期
 			bc.page.newWin({
-				name: signType + $page.find(":input[name='e.ext_str1']").val() + "的经济合同",
-				mid: "contract4Charger" + $page.find(":input[name='e.id']").val(),
-				url: bc.root + "/bc-business/contract4ChargerOperate2/create",
-				data: data,
-				afterClose: function(status){
-					if(status) bc.grid.reloadData($page);
+				name: signType,
+				mid: "stopContract4Charger",
+				url: bc.root + "/bc/common/selectDate",
+				data: {time:true,title:"请输入经济合同的实际结束日期"},
+				afterClose: function(date){
+					if(!date) return;
+					var data = {id: $page.find(":input[name='e.id']").val(),
+							signType : signType,
+							opType : opType,
+							stopDate : date
+							};
+				// 重新打开可编辑表单
+				bc.page.newWin({
+					name: signType + $page.find(":input[name='e.ext_str1']").val() + "的经济合同",
+					mid: "contract4Charger" + $page.find(":input[name='e.id']").val(),
+					url: bc.root + "/bc-business/contract4ChargerOperate2/create",
+					data: data,
+					afterClose: function(status){
+						if(status) bc.grid.reloadData($page);
+					}
+				});
+					
 				}
-			});
+			});		
+			//----
 		});
 	},
 	
 	/** 注销处理 */
 	doLogout : function($form) {
 		var $page = $(this);
-		// 让用户输入新的注销日期
+		// 让用户输入新的经济合同的实际结束日期
 		bc.page.newWin({
 			name: "注销经济合同",
 			mid: "logoutContract4Charger",
 			url: bc.root + "/bc/common/selectDate",
-			data: {time:true,title:"请输入经济合同的注销日期"},
-			afterClose: function(status){
+			data: {time:true,title:"请输入经济合同的实际结束日期"},
+			afterClose: function(date){
 				logger.info("status=" + $.toJSON(status));
-				if(!status) return;
+				if(!date) return;
 				
 				//执行注销处理
 				bc.ajax({
 					url: bc.root + "/bc-business/contract4ChargerOperate/doLogout",
 					dataType: "json",
-					data: {id: $page.find(":input[name='e.id']").val(),logoutDate: status},
+					data: {id: $page.find(":input[name='e.id']").val(),stopDate: date},
 					success: function(json){
 						logger.info("doLogout result=" + $.toJSON(json));
 						//完成后提示用户
