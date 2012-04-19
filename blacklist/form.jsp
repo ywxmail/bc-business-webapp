@@ -74,15 +74,26 @@
 							headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" ></s:select></td>
 					</tr>
 					<tr>
-						<td class="label">*<s:text name="blacklist.type"/>:</td>
-						<td class="value" ><s:select list="blackTypeList" listKey="value" listValue="value" headerKey="" headerValue="%{getText('label.please.choose')}" name="e.type" style="width:267px" 
-						data-validate="required" cssClass="ui-widget-content"></s:select></td>
+						<td class="label" ><s:text name="blacklist.level"/>:</td>
+						<td class="value" ><s:select list="blackLevelList" listKey="value" listValue="value" headerKey="" 
+							headerValue="" name="e.level" cssClass="ui-widget-content"></s:select></td>
 						<td class="label"><s:text name="blacklist.code"/>:</td>
 						<td class="value"><s:textfield name="e.code" cssClass="ui-widget-content"/></td>
 					</tr>
 					<tr>
-						<td class="label" ><s:text name="blacklist.level"/>:</td>
-						<td class="value" ><s:select list="blackLevelList" listKey="value" listValue="value" headerKey="" headerValue="" name="e.level" style="width:267px" cssClass="ui-widget-content"></s:select></td>
+						<td class="label">*<s:text name="blacklist.type"/>:</td>
+						<td class="value" colspan="3"><s:select list="blackTypeList" listKey="value" listValue="value" headerKey="" headerValue="%{getText('label.please.choose')}" name="e.type" 
+							data-validate="required" cssClass="ui-widget-content" cssStyle="width: 175px;"></s:select>从	
+							<div style="display: inline-block;" class="relative">
+								<input type="text" name="e.appointDate" data-validate='{"type":"date","required":false}'
+								value='<s:date format="yyyy-MM-dd" name="e.appointDate" />' class="bc-date ui-widget-content" style="width: 150px;"/>
+								<ul class="inputIcons" >
+									<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.appointDate' ></li>
+								</ul>
+							</div>
+							起变为:<s:select list="blackTypeList" listKey="value" listValue="value" headerKey="" headerValue="%{getText('label.please.choose')}" name="e.conversionType" 
+							data-validate="required" cssClass="ui-widget-content" cssStyle="width: 175px;"></s:select>
+						</td>
 					</tr>
 					<tr>
 						<td class="label" colspan="2" style="text-align:left;">
