@@ -42,15 +42,15 @@ bc.carForm = {
 		
 		//绑定自动生成原车号按钮
 		$form.find("#selectOriginNo").click(function(){
-			if($form.find(":input[name='e.code']").val() == ""){
-				bc.msg.alert("请先填写自编号!");
+			if($form.find(":input[name='e.certNo2']").val() == ""){
+				bc.msg.alert("请先填写经营权证!");
 				return;
 			}
 			var url = bc.root + "/bc-business/car/autoSetOriginNo";
 			$.ajax({
 				url: url,
 				dataType:"json",
-				data: {code : $form.find(":input[name='e.code']").val()},
+				data: {ownershipNo : $form.find(":input[name='e.certNo2']").val()},
 				success: function (json){
 					$form.find(":input[name='e.originNo']").val(json.plateNo);
 					if($form.find(":input[name='e.originNo']").val() != ""){
@@ -85,12 +85,12 @@ bc.carForm = {
 			}
 		});
 	},
-	
+
 	checkPlateNo:function($form,$plateNo){
 		$.ajax({
 			url: bc.root + "/bc-business/car/checkPlateIsExists",
 			dataType:"json",
-			data: {plateNo: $plateNo.val(), plateType: $form.find(":input[name='e.plateType']").val(), excludeId: $form.find(":input[name='e.id']").val()},
+			data: {plateNo: $plateNo.val(), plateType: $form.find(":input[name='e.plateType']").val(), excludeId: $form.find(":input[name='e.id']").val(), code: $form.find(":input[name='e.code']").val()},
 			success: function (json){
 				if(json.isExists == "true"){ // 已被占用
 					//组装提示查看信息
