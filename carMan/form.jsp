@@ -45,9 +45,14 @@
 							<td style="width: 260px;">&nbsp;</td>
 							<td style="width: 110px;">&nbsp;</td>
 							<td style="">&nbsp;</td>
-							<td rowspan="10" style="text-align:center;vertical-align: top;width:110px;" title='点击更改照片'>
-								<img id="portrait" style="width:110px;height:140px;cursor: pointer;" title='<s:text name="image.click2change"/>'
+							<td rowspan="10" style="text-align:center;vertical-align: top;width:110px;">
+								<div style="position:relative;width:110px;height:140px;" >
+									<img id="portrait" style="width:110px;height:140px;cursor: pointer;" title='<s:text name="image.click2change"/>'
 									src='<s:url value="/bc/image/download?ptype=portrait"><s:param name='puid' value='e.uid'/><s:param name='ts' value='ts'/></s:url>'/>
+									<ul class="inputIcons ui-state-highlight" style="position: absolute;right: 0;bottom: 0;top: auto;opacity: 0.8;border-top-left-radius:5px;display: none;border-width:0;">
+										<li class="inputIcon ui-icon ui-icon-note toTaxiNet" title="点击查看出租车协会网信誉档案"  style="display: inline-block;" data-cert4fwzg='<s:property value="e.cert4FWZG"/>'></li>
+									</ul>
+								</div>
 							</td>
 						</tr>
 						<tr>
