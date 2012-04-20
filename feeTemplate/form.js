@@ -54,7 +54,7 @@ bs.feeTemplateForm = {
 						dataType:"json",
 						success:function(json){
 							if(json.result=="true"){
-								$form.find(":radio[name='e.type'][value='0']").attr("checked",'checked');
+								$form.find(":radio[name='e.type'][value='"+type_template+"']").attr("checked",'checked');
 								bc.msg.alert("有费用单属于此模板，不能修改类型，如需修改请清空或修改这些费用单的所属模板项！");
 							}else{
 								bs.feeTemplateForm.showFeeInput($form);
