@@ -51,7 +51,7 @@ bs.infoCenter = {
 				$this.attr("title","点击展开");
 			}
 		});
-
+		
 		// 提醒信息列表的样式控制
 		$page.find("#msgsBody").delegate("tr:not(.header)",{
 			mouseover : function() {
@@ -146,7 +146,50 @@ bs.infoCenter = {
 				return false;
 			}
 		});
+		//鼠标移到司机头上像显示跳转到出租车协会网的按键
+		$mansBody.delegate("img",{
+			mouseover : function() {
+				$(this).next().show();
+			},
+			mouseout : function() {
+				var $ul = $(this).next();
+				$ul.data("hiding",true);
+				setTimeout(function(){
+					if($ul.data("hiding"))
+						$ul.hide();
+				},100);
+			}
+		});
+		$mansBody.delegate("ul.inputIcons",{
+			mouseover : function() {
+				$(this).data("hiding",false);
+			},
+			mouseout : function() {
+				var $this = $(this);
+				$this.hide(600);
+				$this.data("hiding",false);
+			}
+		});
+		//点击跳转到出租车协会网的按键跳转到出租车协会网
+		$mansBody.delegate("li.toTaxiNet",{
+			click : function() {
+				var $this = $(this);
+				var v=$this.attr("data-cert4fwzg");
+				// 打开查询窗口
+				bc.page.newWin({
+					mid: "gztaxixhDriverInfo" + v,
+					name: "出租协会" + (v ? " - " + v : ""),
+					url: bc.root + "/bc-business/gztaxixh/driverInfo",
+					data: {value: (v ? v : "")}
+				});				
+				return false;
+			},
+			mouseout : function() {
+				$(this).parent().hide();
+			}
+		});
 
+		
 		// 修改司机的联系电话
 		$mansBody.delegate("span.updatePhone","click", function() {
 			var $this = $(this);
@@ -396,7 +439,7 @@ bs.infoCenter = {
 						trs.push('<tr data-json="'+$.toJSON(man)+'" class="detail' + (isLogoutMan ? " ui-state-disabled disabled" : "") + '"><td colspan="6" style="padding:0;">'
 							+'<table class="contentTable" cellspacing="2" cellpadding="0" style="height: auto;">'
 							+'<tr>'
-							+'<td rowspan="6" style="width: 87px;vertical-align: top;"><img style="width:86.4px;height:110px;cursor: pointer;" data-id="' + man.id + '" data-name="' + man.name + '" ');
+							+'<td rowspan="6" style="width: 87px;vertical-align: top;"><div style="position:relative;width:86.4px;height:110px;" ><img id="photo" style="width:86.4px;height:110px;cursor: pointer;" data-id="' + man.id + '" data-name="' + man.name + '" ');
 						
 						// 延时加载注销司机图片的处理
 						imgUrl = bc.root+'/bc-business/cacheImage/download?ptype=portrait&puid=' + man.uid + '&ts=' + ts;
@@ -406,7 +449,11 @@ bs.infoCenter = {
 							trs.push('src="' + imgUrl + '"');
 						}
 						
-						trs.push('></td>'
+						trs.push('/>'
+							+'<ul class="inputIcons ui-state-highlight" style="position: absolute;right: 0;bottom: 0;top: auto;opacity: 0.8;border-top-left-radius:5px;display: none;border-width:0;">'
+							+'	<li class="inputIcon ui-icon ui-icon-note toTaxiNet" title="点击查看出租车协会网信誉档案"  style="display: inline-block;"'+'data-cert4fwzg="'+man.cert4fwzg+'"'+'></li>'
+							+'</ul>'
+							+'</div></td>'
 							+'<td class="label" style="width: 6em;">身份证号码:</td>'
 							+'<td class="value" style="width: 20em;"><input type="text" class="ui-widget-content ui-state-default" readonly="readonly" value="' + man.identity + '"/></td>'
 							

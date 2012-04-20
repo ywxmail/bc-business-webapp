@@ -46,6 +46,49 @@ bc.carManForm = {
 			});
 		});
 		
+		//鼠标移到司机头上像显示跳转到出租车协会网的按键
+		$form.delegate("img",{
+			mouseover : function() {
+				$(this).next().show();
+			},
+			mouseout : function() {
+				var $ul = $(this).next();
+				$ul.data("hiding",true);
+				setTimeout(function(){
+					if($ul.data("hiding"))
+						$ul.hide();
+				},100);
+			}
+		});
+		$form.delegate("ul.inputIcons",{
+			mouseover : function() {
+				$(this).data("hiding",false);
+			},
+			mouseout : function() {
+				var $this = $(this);
+				$this.hide(600);
+				$this.data("hiding",false);
+			}
+		});
+		//点击跳转到出租车协会网的按键跳转到出租车协会网
+		$form.delegate("li.toTaxiNet",{
+			click : function() {
+				var $this = $(this);
+				var v=$this.attr("data-cert4fwzg");
+				// 打开查询窗口
+				bc.page.newWin({
+					mid: "gztaxixhDriverInfo" + v,
+					name: "出租协会" + (v ? " - " + v : ""),
+					url: bc.root + "/bc-business/gztaxixh/driverInfo",
+					data: {value: (v ? v : "")}
+				});				
+				return false;
+			},
+			mouseout : function() {
+				$(this).parent().hide();
+			}
+		});
+		
 		// 服务资格证唯一性检测
 		var $cert4FWZG = $form.find(":input[name='e.cert4FWZG']");
 		$cert4FWZG.bind("blur",function(){
@@ -106,4 +149,6 @@ bc.carManForm = {
 				$form.dialog("close");
 		}});
 	}
+	
+
 };
