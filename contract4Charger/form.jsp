@@ -137,33 +137,51 @@
 								    -->
 								</td>
 							</tr>
-							<tr>
-								<td class="label"><s:text name="contract4Charger.paymentDate"/>:</td>
-								<td class="value">
-									<s:select name="e.paymentDate" list="paymentDates" listKey="key" listValue="value" headerKey="" headerValue=""
-									 cssClass="ui-widget-content"/>
-								</td>
-								<td></td>
-								<td class="label" style="text-align: right;">
-									<s:checkbox name="e.takebackOrigin" cssStyle="width:1em;"/>
-									<s:text name="contract4Charger.takebackOrigin"/>
-									<s:checkbox name="e.includeCost" cssStyle="width:1em;" />
-									<s:text name="contract4Charger.includeCost"/>
-								</td>
-							</tr>
-							<tr>
 							<s:if test="%{e.status == 1}">
-								<td class="label"><s:text name="contract4Charger.stopDate"/>:</td>
-								<td class="value" style="position:relative;display: block;">
-									<input type="text" name="e.stopDate" data-validate='{"type":"date","required":false}'
-									value='<s:date format="yyyy-MM-dd" name="e.stopDate" />'
-									class="bc-date ui-widget-content" />
-									<ul class="inputIcons">
-										<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.stopDate' ></li>
-									</ul>
-								</td>
+								<tr>
+									<td class="label"><s:text name="contract4Charger.paymentDate"/>:</td>
+									<td class="value">
+										<s:select name="e.paymentDate" list="paymentDates" listKey="key" listValue="value" headerKey="" headerValue=""
+										 cssClass="ui-widget-content"/>
+									</td>
+									<td class="label"><s:text name="contract4Charger.stopDate"/>:</td>
+									<td class="value" style="position:relative;display: block;">
+										<input type="text" name="e.stopDate" data-validate='{"type":"date","required":false}'
+										value='<s:date format="yyyy-MM-dd" name="e.stopDate" />'
+										class="bc-date ui-widget-content" />
+										<ul class="inputIcons">
+											<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.stopDate' ></li>
+										</ul>
+									</td>
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td class="label" style="text-align: right;">
+										<s:checkbox name="e.takebackOrigin" cssStyle="width:1em;"/>
+										<s:text name="contract4Charger.takebackOrigin"/>
+										<s:checkbox name="e.includeCost" cssStyle="width:1em;" />
+										<s:text name="contract4Charger.includeCost"/>
+									</td>
+								</tr>
 							</s:if>
-							</tr>			
+							<s:else>
+								<tr>
+									<td class="label"><s:text name="contract4Charger.paymentDate"/>:</td>
+									<td class="value">
+										<s:select name="e.paymentDate" list="paymentDates" listKey="key" listValue="value" headerKey="" headerValue=""
+										 cssClass="ui-widget-content"/>
+									</td>
+									<td></td>
+									<td class="label" style="text-align: right;">
+										<s:checkbox name="e.takebackOrigin" cssStyle="width:1em;"/>
+										<s:text name="contract4Charger.takebackOrigin"/>
+										<s:checkbox name="e.includeCost" cssStyle="width:1em;" />
+										<s:text name="contract4Charger.includeCost"/>
+									</td>
+								</tr>
+							</s:else>
 							<tr>
 								<td class="label" colspan="4">
 									<div class="formTopInfo">
