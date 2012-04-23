@@ -92,7 +92,7 @@
 								</ul>
 							</div>
 							起变为:<s:select list="blackTypeList" listKey="value" listValue="value" headerKey="" headerValue="%{getText('label.please.choose')}" name="e.conversionType" 
-							data-validate="required" cssClass="ui-widget-content" cssStyle="width: 175px;"></s:select>
+							 cssClass="ui-widget-content" cssStyle="width: 175px;"></s:select>
 						</td>
 					</tr>
 					<tr>
