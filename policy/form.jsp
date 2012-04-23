@@ -254,7 +254,7 @@
 							<s:iterator var="b" value="e.buyPlants">
 							<tr class="ui-widget-content row" data-id='<s:property value="id"/>'>
 								<td class="id first" style="padding:0;text-align:left;"><span class="ui-icon"></span>
-								<s:if test="isReadonly()">
+								<s:if test="canCopy">
 								<s:label style="width:90%;height:100%;border:none;margin:0;padding:0 0 0 2px;background:none;" readonly="readonly" 
 										type="text" class="ui-widget-content" value='%{name}'/>
 								</s:if>
@@ -264,7 +264,7 @@
 								</s:else>
 								</td>
 								<td class="middle" style="padding:0;text-align:left;">
-								<s:if test="isReadonly()">
+								<s:if test="canCopy">
 									<s:label style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" 
 										value="%{getText(coverage)}"/>
 								</s:if>
@@ -274,7 +274,7 @@
 								</s:else>
 								</td>
 								<td class="last" style="padding:0;text-align:left;">
-								<s:if test="isReadonly()">
+								<s:if test="canCopy">
 									<s:label style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content"
 										 	value="%{description}"/>
 								</s:if>
