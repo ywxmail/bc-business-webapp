@@ -181,7 +181,7 @@
 							<td class="topLabel">
 								<s:text name="runcase.description"/>:
 							</td>
-							<td class="value" colspan="3"><s:textarea name="e.desc" rows="4" cssClass="ui-widget-content noresize"/></td>
+							<td class="value" colspan="3"><s:textarea name="e.description" rows="4" cssClass="ui-widget-content noresize"/></td>
 						</tr>
 					</tbody>
 				</table>
