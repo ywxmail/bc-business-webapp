@@ -75,6 +75,15 @@ bc.caseLostForm = {
 			$form.find(":hidden[name='e.motorcadeName']").val(name);
 		});
 		
+		//失物取向事件
+		$form.find(":input[name='e.result']").change(function(){
+			var $select = $(this);
+			var name = $select.find("option:selected").val();
+			if(name == 2){
+				$form.find(":input[name='e.retrunDate']").val('');
+			}
+		});
+		
 		// 选择车辆车牌
 		$form.find("#selectCarPlate").click(function() {
 			var selecteds = $form.find(":input[name='e.carPlate']").val();
