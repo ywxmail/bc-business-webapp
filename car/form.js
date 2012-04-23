@@ -50,7 +50,7 @@ bc.carForm = {
 			$.ajax({
 				url: url,
 				dataType:"json",
-				data: {ownershipNo : $form.find(":input[name='e.certNo2']").val()},
+				data: {ownershipNo : $form.find(":input[name='e.certNo2']").val(),fileDate : $form.find(":input[name='e.fileDate']").val()},
 				success: function (json){
 					$form.find(":input[name='e.originNo']").val(json.plateNo);
 					if($form.find(":input[name='e.originNo']").val() != ""){
