@@ -194,8 +194,10 @@
 						<tr>
 							<td class="label"><s:text name="carMan.gz"/>:</td>
 							<td class="value"><s:radio name="e.gz" list="#{'true':'是','false':'否'}"   value="e.gz" cssStyle="width:auto;"/></td>
-							<td class="label"><s:text name="carMan.status"/>:</td>
-						    <td class="value"><s:radio name="e.status" list="#{'0':'在案','1':'注销'}" cssStyle="width:auto;"/></td>
+							<s:if test="%{e.status!=-1}">
+								<td class="label"><s:text name="carMan.status"/>:</td>
+							    <td class="value"><s:radio name="e.status" list="#{'0':'在案','1':'注销'}" cssStyle="width:auto;"/></td>
+						    </s:if>
 						</tr>
 						<tr>
 							<td class="topLabel"><s:text name="carMan.description"/>:</td>
@@ -221,6 +223,9 @@
 		<s:hidden name="e.author.id" />
 		<s:hidden name="e.charger" />
 		<s:hidden name="e.moveType" />
+		<s:if test="%{e.status==-1}">
+			<s:hidden name="e.status" />
+		</s:if>
 		<s:hidden name="e.classes" />
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 		<s:hidden name="e.modifier.id"/>
