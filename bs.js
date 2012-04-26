@@ -151,6 +151,8 @@ bs.selectCar = function(option) {
 		option.data.selecteds = option.selecteds;
 	if(option.multiple === true)
 		option.data.multiple = true;
+	if(option.status)
+		option.data.status = option.status;
 	
 	//弹出选择对话框
 	bc.page.newWin(jQuery.extend({
