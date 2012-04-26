@@ -161,5 +161,21 @@ bc.carForm = {
 			}
 			return false;
 		}});
+	},
+	//入库
+	warehousing:function(){
+		var $form = $(this);
+		//status=0为正常状态
+		$form.find(":input[name='e.status']").val("0");
+		//调用标准的方法执行保存
+		bc.page.save.call(this,{callback: function(json){
+			if(json.success){
+				bc.msg.slide("入库成功！");
+				$form.dialog("close");
+			}else{
+				bc.msg.alert(json.msg);
+			}
+			return false;
+		}});
 	}
 };

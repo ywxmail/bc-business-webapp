@@ -545,12 +545,14 @@
 			</div>
 		</div>
 		<s:hidden name="e.uid" />
+		<s:hidden name="e.status" />
 		<s:hidden name="e.id" />
 		<s:hidden name="e.author.id" />
 		<s:hidden name="e.driver"/>
 		<s:hidden name="e.charger"/>
 		<s:hidden name="e.originalValue"/>
 		<s:hidden name="e.rentNo"/>
+		<s:hidden name="carEntering"/>
 		<s:if test="!e.isNew()">
 		<s:hidden name="e.company"/>
 		<s:hidden name="e.motorcade.id"/>
