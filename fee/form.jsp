@@ -347,11 +347,11 @@
 						<tr>
 							<td class="value" colspan="4" style="text-align: center">
 							&nbsp;&nbsp;&nbsp;<s:text name="fee.subtotal"/>:
-								<s:textfield name="e.oweSubtotal" cssStyle="width:20%" value="%{getText('bs.format.number',{e.oweSubtotal})}" cssClass="ui-widget-content "/>
+								<s:textfield name="e.oweSubtotal" cssStyle="width:20%" value="%{getText('bs.format.number',{e.oweSubtotal})}" data-validate='{required:true,type:"digits"}' cssClass="ui-widget-content "/>
 							&nbsp;&nbsp;&nbsp;<s:text name="fee.upkeep"/>:
-								<s:textfield name="e.oweUpkeep" cssStyle="width:20%"  value="%{getText('bs.format.number',{e.oweUpkeep})}" cssClass="ui-widget-content "/>
+								<s:textfield name="e.oweUpkeep" cssStyle="width:20%"  value="%{getText('bs.format.number',{e.oweUpkeep})}" data-validate='{required:true,type:"digits"}' cssClass="ui-widget-content "/>
 							&nbsp;&nbsp;&nbsp;<s:text name="fee.total"/>:
-								<s:textfield name="e.oweTotal" cssStyle="width:20%"  value="%{getText('bs.format.number',{e.oweTotal})}" cssClass="ui-widget-content "/>
+								<s:textfield name="e.oweTotal" cssStyle="width:20%"  value="%{getText('bs.format.number',{e.oweTotal})}" data-validate='{required:true,type:"digits"}' cssClass="ui-widget-content "/>
 							</td>
 						</tr>
 					</tbody>
