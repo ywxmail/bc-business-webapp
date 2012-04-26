@@ -163,107 +163,131 @@ bs.feeForm = {
 		
 		// 绑定应收合计计算事件(本期应收小计)
 		$form.find(":input[name='e.shouldSubtotal']").blur(function() {
-			var shouldSubTotal = $form.find(":input[name='e.shouldSubtotal']").val();
-			var shouldUpKeep = $form.find(":input[name='e.shouldUpkeep']").val();
-			var adjustSubTotal = $form.find(":input[name='e.adjustSubtotal']").val();
-			var adjustUpKeep = $form.find(":input[name='e.adjustUpkeep']").val();
-			var b4owe = $form.find(":input[name='b4oweTotal']").val();
+			var shouldSubTotal = $.trim($form.find(":input[name='e.shouldSubtotal']").val());
+			var shouldUpKeep = $.trim($form.find(":input[name='e.shouldUpkeep']").val());
+			var adjustSubTotal = $.trim($form.find(":input[name='e.adjustSubtotal']").val());
+			var adjustUpKeep = $.trim($form.find(":input[name='e.adjustUpkeep']").val());
+			var b4owe = $.trim($form.find(":input[name='b4oweTotal']").val());
 			
-			var shouldTotal = parseFloat(shouldSubTotal)+parseFloat(shouldUpKeep); 
-			var adjustTotal = parseFloat(adjustSubTotal)+parseFloat(adjustUpKeep); 
-			var b4oweTotal = parseFloat(b4owe);
-			
-			$form.find(":input[name='e.shouldTotal']").val(shouldTotal); //本期应收合计
-			$form.find(":input[name='e.saTotal1']").val(shouldTotal - adjustTotal);//本期应收款合计
-			$form.find(":input[name='e.saTotal2']").val(shouldTotal - adjustTotal + b4oweTotal); //前期加本期应收款合计
+			if(shouldSubTotal.length > 0 && shouldUpKeep.length > 0 && adjustSubTotal.length > 0
+				 && adjustUpKeep.length > 0 && b4owe.length > 0){
+				var shouldTotal = parseFloat(shouldSubTotal)+parseFloat(shouldUpKeep); 
+				var adjustTotal = parseFloat(adjustSubTotal)+parseFloat(adjustUpKeep); 
+				var b4oweTotal = parseFloat(b4owe);
+				
+				$form.find(":input[name='e.shouldTotal']").val(shouldTotal); //本期应收合计
+				$form.find(":input[name='e.saTotal1']").val(shouldTotal - adjustTotal);//本期应收款合计
+				$form.find(":input[name='e.saTotal2']").val(shouldTotal - adjustTotal + b4oweTotal); //前期加本期应收款合计
+			}
+
 		});
 		
 		// 绑定应收合计计算事件(本期应收维修费)
 		$form.find(":input[name='e.shouldUpkeep']").blur(function() {
-			var shouldSubTotal = $form.find(":input[name='e.shouldSubtotal']").val();
-			var shouldUpKeep = $form.find(":input[name='e.shouldUpkeep']").val();
-			var adjustSubTotal = $form.find(":input[name='e.adjustSubtotal']").val();
-			var adjustUpKeep = $form.find(":input[name='e.adjustUpkeep']").val();
-			var b4owe = $form.find(":input[name='b4oweTotal']").val();
+			var shouldSubTotal = $.trim($form.find(":input[name='e.shouldSubtotal']").val());
+			var shouldUpKeep = $.trim($form.find(":input[name='e.shouldUpkeep']").val());
+			var adjustSubTotal = $.trim($form.find(":input[name='e.adjustSubtotal']").val());
+			var adjustUpKeep = $.trim($form.find(":input[name='e.adjustUpkeep']").val());
+			var b4owe = $.trim($form.find(":input[name='b4oweTotal']").val());
 			
-			var shouldTotal = parseFloat(shouldSubTotal)+parseFloat(shouldUpKeep); 
-			var adjustTotal = parseFloat(adjustSubTotal)+parseFloat(adjustUpKeep); 
-			var b4oweTotal = parseFloat(b4owe);
+			if(shouldSubTotal.length > 0 && shouldUpKeep.length > 0 && adjustSubTotal.length > 0
+					 && adjustUpKeep.length > 0 && b4owe.length > 0){
+				var shouldTotal = parseFloat(shouldSubTotal)+parseFloat(shouldUpKeep); 
+				var adjustTotal = parseFloat(adjustSubTotal)+parseFloat(adjustUpKeep); 
+				var b4oweTotal = parseFloat(b4owe);
+				
+				$form.find(":input[name='e.shouldTotal']").val(shouldTotal); //本期应收合计
+				$form.find(":input[name='e.saTotal1']").val(shouldTotal - adjustTotal);//本期应收款合计
+				$form.find(":input[name='e.saTotal2']").val(shouldTotal - adjustTotal + b4oweTotal); //前期加本期应收款合计
+			}
 			
-			$form.find(":input[name='e.shouldTotal']").val(shouldTotal); //本期应收合计
-			$form.find(":input[name='e.saTotal1']").val(shouldTotal - adjustTotal);//本期应收款合计
-			$form.find(":input[name='e.saTotal2']").val(shouldTotal - adjustTotal + b4oweTotal); //前期加本期应收款合计
 		});
 		
 		// 绑定应收合计计算事件(本期调整小计)
 		$form.find(":input[name='e.adjustSubtotal']").blur(function() {
-			var shouldSubTotal = $form.find(":input[name='e.shouldSubtotal']").val();
-			var shouldUpKeep = $form.find(":input[name='e.shouldUpkeep']").val();
-			var adjustSubTotal = $form.find(":input[name='e.adjustSubtotal']").val();
-			var adjustUpKeep = $form.find(":input[name='e.adjustUpkeep']").val();
-			var b4owe = $form.find(":input[name='b4oweTotal']").val();
+			var shouldSubTotal = $.trim($form.find(":input[name='e.shouldSubtotal']").val());
+			var shouldUpKeep = $.trim($form.find(":input[name='e.shouldUpkeep']").val());
+			var adjustSubTotal = $.trim($form.find(":input[name='e.adjustSubtotal']").val());
+			var adjustUpKeep = $.trim($form.find(":input[name='e.adjustUpkeep']").val());
+			var b4owe = $.trim($form.find(":input[name='b4oweTotal']").val());
 			
-			var shouldTotal = parseFloat(shouldSubTotal)+parseFloat(shouldUpKeep); 
-			var adjustTotal = parseFloat(adjustSubTotal)+parseFloat(adjustUpKeep); 
-			var b4oweTotal = parseFloat(b4owe);
+			if(shouldSubTotal.length > 0 && shouldUpKeep.length > 0 && adjustSubTotal.length > 0
+					 && adjustUpKeep.length > 0 && b4owe.length > 0){
+				var shouldTotal = parseFloat(shouldSubTotal)+parseFloat(shouldUpKeep); 
+				var adjustTotal = parseFloat(adjustSubTotal)+parseFloat(adjustUpKeep); 
+				var b4oweTotal = parseFloat(b4owe);
+				
+				$form.find(":input[name='e.adjustTotal']").val(adjustTotal); //本期应收合计
+				$form.find(":input[name='e.saTotal1']").val(shouldTotal - adjustTotal);//本期应收款合计
+				$form.find(":input[name='e.saTotal2']").val(shouldTotal - adjustTotal + b4oweTotal); //前期加本期应收款合计
+			}
 			
-			$form.find(":input[name='e.adjustTotal']").val(adjustTotal); //本期应收合计
-			$form.find(":input[name='e.saTotal1']").val(shouldTotal - adjustTotal);//本期应收款合计
-			$form.find(":input[name='e.saTotal2']").val(shouldTotal - adjustTotal + b4oweTotal); //前期加本期应收款合计
 		});
 		
 		// 绑定应收合计计算事件(本期调整维修费)
 		$form.find(":input[name='e.adjustUpkeep']").blur(function() {
-			var shouldSubTotal = $form.find(":input[name='e.shouldSubtotal']").val();
-			var shouldUpKeep = $form.find(":input[name='e.shouldUpkeep']").val();
-			var adjustSubTotal = $form.find(":input[name='e.adjustSubtotal']").val();
-			var adjustUpKeep = $form.find(":input[name='e.adjustUpkeep']").val();
-			var b4owe = $form.find(":input[name='b4oweTotal']").val();
+			var shouldSubTotal = $.trim($form.find(":input[name='e.shouldSubtotal']").val());
+			var shouldUpKeep = $.trim($form.find(":input[name='e.shouldUpkeep']").val());
+			var adjustSubTotal = $.trim($form.find(":input[name='e.adjustSubtotal']").val());
+			var adjustUpKeep = $.trim($form.find(":input[name='e.adjustUpkeep']").val());
+			var b4owe = $.trim($form.find(":input[name='b4oweTotal']").val());
 			
-			var shouldTotal = parseFloat(shouldSubTotal)+parseFloat(shouldUpKeep);
-			var adjustTotal = parseFloat(adjustSubTotal)+parseFloat(adjustUpKeep);
-			var b4oweTotal = parseFloat(b4owe);
+			if(shouldSubTotal.length > 0 && shouldUpKeep.length > 0 && adjustSubTotal.length > 0
+					 && adjustUpKeep.length > 0 && b4owe.length > 0){
+				var shouldTotal = parseFloat(shouldSubTotal)+parseFloat(shouldUpKeep);
+				var adjustTotal = parseFloat(adjustSubTotal)+parseFloat(adjustUpKeep);
+				var b4oweTotal = parseFloat(b4owe);
+				
+				$form.find(":input[name='e.adjustTotal']").val(adjustTotal); //本期应收合计
+				$form.find(":input[name='e.saTotal1']").val(shouldTotal - adjustTotal); //本期应收款合计
+				$form.find(":input[name='e.saTotal2']").val(shouldTotal - adjustTotal + b4oweTotal); //前期加本期应收款合计
+			}
 			
-			$form.find(":input[name='e.adjustTotal']").val(adjustTotal); //本期应收合计
-			$form.find(":input[name='e.saTotal1']").val(shouldTotal - adjustTotal); //本期应收款合计
-			$form.find(":input[name='e.saTotal2']").val(shouldTotal - adjustTotal + b4oweTotal); //前期加本期应收款合计
 		});
 		
 		// 绑定实收合计计算事件(本期实收小计)
 		$form.find(":input[name='e.realSubtotal']").blur(function() {
-			var realSubTotal = $form.find(":input[name='e.realSubtotal']").val();
-			var realUpKeep = $form.find(":input[name='e.realUpkeep']").val();
+			var realSubTotal = $.trim($form.find(":input[name='e.realSubtotal']").val());
+			var realUpKeep = $.trim($form.find(":input[name='e.realUpkeep']").val());
 			
-			$form.find(":input[name='e.realTotal']").val(
-				parseFloat(realSubTotal)+parseFloat(realUpKeep)
-			);
+			if(realSubTotal.length > 0 && realUpKeep.length > 0){
+				$form.find(":input[name='e.realTotal']").val(
+						parseFloat(realSubTotal)+parseFloat(realUpKeep)
+				);
+			}
 		});
 		// 绑定实收合计计算事件(本期实收维修费)
 		$form.find(":input[name='e.realUpkeep']").blur(function() {
-			var realSubTotal = $form.find(":input[name='e.realSubtotal']").val();
-			var realUpKeep = $form.find(":input[name='e.realUpkeep']").val();
+			var realSubTotal = $.trim($form.find(":input[name='e.realSubtotal']").val());
+			var realUpKeep = $.trim($form.find(":input[name='e.realUpkeep']").val());
 			
-			$form.find(":input[name='e.realTotal']").val(
-				parseFloat(realSubTotal)+parseFloat(realUpKeep)
-			);
+			if(realSubTotal.length > 0 && realUpKeep.length > 0){
+				$form.find(":input[name='e.realTotal']").val(
+					parseFloat(realSubTotal)+parseFloat(realUpKeep)
+				);
+			}
 		});
 		// 绑定欠费合计计算事件(本期欠费小计)
 		$form.find(":input[name='e.oweSubtotal']").blur(function() {
-			var oweSubTotal = $form.find(":input[name='e.oweSubtotal']").val();
-			var oweUpKeep = $form.find(":input[name='e.oweUpkeep']").val();
+			var oweSubTotal = $.trim($form.find(":input[name='e.oweSubtotal']").val());
+			var oweUpKeep = $.trim($form.find(":input[name='e.oweUpkeep']").val());
 			
-			$form.find(":input[name='e.oweTotal']").val(
-				parseFloat(oweSubTotal)+parseFloat(oweUpKeep)
-			);
+			if(oweSubTotal.length > 0 && oweUpKeep.length > 0){
+				$form.find(":input[name='e.oweTotal']").val(
+					parseFloat(oweSubTotal)+parseFloat(oweUpKeep)
+				);
+			}
 		});
 		// 绑定欠费合计计算事件(本期欠费维修费)
 		$form.find(":input[name='e.oweUpkeep']").blur(function() {
-			var oweSubTotal = $form.find(":input[name='e.oweSubtotal']").val();
-			var oweUpKeep = $form.find(":input[name='e.oweUpkeep']").val();
+			var oweSubTotal = $.trim($form.find(":input[name='e.oweSubtotal']").val());
+			var oweUpKeep =$.trim( $form.find(":input[name='e.oweUpkeep']").val());
 			
-			$form.find(":input[name='e.oweTotal']").val(
-				parseFloat(oweSubTotal)+parseFloat(oweUpKeep)
-			);
+			if(oweSubTotal.length > 0 && oweUpKeep.length > 0){
+				$form.find(":input[name='e.oweTotal']").val(
+					parseFloat(oweSubTotal)+parseFloat(oweUpKeep)
+				);
+			}
 		});
 		
 		
