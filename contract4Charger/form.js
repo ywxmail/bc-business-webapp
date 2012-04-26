@@ -20,7 +20,7 @@ bc.contract4ChargerForm = {
 			var $lis = $ul.find("li");
 
 			bs.selectCharger({
-				status :'0,1',
+				status :'-1,0,1',
 				multiple : true,
 				onOk : function(chargers) {
 					//var chargers = [charger];
@@ -84,7 +84,7 @@ bc.contract4ChargerForm = {
 		$form.find("#selectCarPlate").click(function() {
 			var selecteds = $form.find(":input[name='carId']").val();
 			bs.selectCar({
-				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
+				status :'-1,0,1',
 				onOk : function(car) {
 					$form.find(":input[name='e.ext_str1']").val(car.plate);
 					$form.find(":input[name='e.wordNo']").val(car.code); 
@@ -415,6 +415,19 @@ bc.contract4ChargerForm = {
 		
 		//调用标准的方法执行保存
 		bc.page.save.call(this,option);
+	},
+	//入库
+	warehousing:function(){
+		
+		var $form = $(this);
+		//status=0为正常状态
+		$form.find(":input[name='e.status']").val("0");
+		//调用标准的方法执行保存
+		bc.contract4ChargerForm.save.call(this,{callback: function(json){
+				bc.msg.slide("入库成功！");
+				$form.dialog("close");
+			return false;
+		}});
 	}
 	
 
