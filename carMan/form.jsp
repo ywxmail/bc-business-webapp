@@ -7,10 +7,10 @@
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:hidden;">
 	<s:form name="carManForm" theme="simple" cssClass="bc-form" >
 		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:430}">
+	        <s:if test="!e.isNew()">
 	        <div class="tabsContainer">
            	 	<div class="slideContainer">
                 <ul class="tabs ui-helper-reset">
-					<s:if test="!e.isNew()">
 				    <li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">司机信息</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/carByDriverHistorys/list?carManId=%{e.id}" />' class="ui-state-default">迁移记录</a></li>
 					<!--<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/carByDrivers/list?carManId=%{e.id}"/>' class="ui-state-default">营运车辆</a></li>-->
@@ -29,13 +29,20 @@
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/invoice4Sells/list?buyerId=%{e.id}" />' class="ui-state-default">发票销售</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">安全学习</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/operateLogs/list?carManId=%{e.id}&module=%{e.class.getSimpleName()}" />' class="ui-state-default">操作日志</a></li>
-					</s:if>
-					<s:else>
-				    <li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">其他信息</a></li>
-					</s:else>
                 </ul>
             	</div>
 	        </div>
+	        </s:if>
+	        <s:else>
+	       	<!-- 新建时不显示页签 -->
+	       		<div class="tabsContainer" style="display: none;">
+					<div class="slideContainer">
+						<ul class="tabs ui-helper-reset">
+						<li class="tab ui-widget-content first active"></li>
+	       				</ul>
+		       		</div>
+	       		</div>
+	        </s:else>
 	        <div class="contentContainer ui-helper-reset ui-widget-content noBottomBorder">
 	        <div id="otherFormFields" class="content active">
 				<table class="formFields" cellspacing="2" cellpadding="0" style="width:740px">

@@ -8,10 +8,10 @@
 	<s:form name="carForm" theme="simple" cssClass="bc-form" >
 		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset" data-cfg="{height:400}"
 		 style="overflow: hidden;">
+		 <s:if test="!e.isNew()">
 			<div class="tabsContainer">
            	 	<div class="slideContainer">
                 <ul class="tabs ui-helper-reset">
-					<s:if test="!e.isNew()">
 				    <li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">车辆明细</a></li>
 					<li class="tab ui-widget-content"><a href= "#otherFormFields2" class="ui-state-default">注销信息</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/carByDriverHistorys/list?carId=%{e.id}" />' class="ui-state-default">迁移记录</a></li>
@@ -35,13 +35,20 @@
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">回场检</a></li>
 					<!-- <li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">变更历史</a></li> -->
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/operateLogs/list?carId=%{e.id}&module=%{e.class.getSimpleName()}" />' class="ui-state-default">操作日志</a></li>
-					</s:if>
-					<s:else>
-				    <li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">车辆明细</a></li>
-					</s:else>
-                </ul>
+				</ul>
             	</div>
 	        </div>
+       	</s:if>
+       	<s:else>
+       	<!-- 新建时不显示页签 -->
+       		<div class="tabsContainer" style="display: none;">
+				<div class="slideContainer">
+					<ul class="tabs ui-helper-reset">
+					<li class="tab ui-widget-content first active"></li>
+       				</ul>
+	       		</div>
+       		</div>
+       	</s:else>
 	        <div class="contentContainer ui-helper-reset ui-widget-content noBottomBorder">
 <!--------------------------------   基本资料     -------------------------------->
 		        <div id="otherFormFields" class="content active">
