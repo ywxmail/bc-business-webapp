@@ -13,6 +13,7 @@ bc.business.shiftworkByDriverForm = {
 				bs.selectCar({
 					multiple: true,
 					selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
+					status :'-1,0,1',
 					onOk : function(cars) {
 						var car=null;
 						var carId=null;
@@ -110,6 +111,7 @@ bc.business.shiftworkByDriverForm = {
 				var selecteds = $form.find(":input[name='e.driver.id']").val();
 				bs.selectDriver({
 					selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
+					status :'-1,0,1',
 					onOk : function(driver) {
 						$form.find(":input[name='e.driver.id']").val(driver.id);
 						$form.find(":input[name='e.driver.name']").val(driver.name);
@@ -120,6 +122,7 @@ bc.business.shiftworkByDriverForm = {
 			$form.find("#driverName").click(function() {
 				bs.selectDriver({
 					//selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
+					status :'-1,0,1',
 					onOk : function(driver) {
 						$form.find(":input[name='e.driver.id']").val(driver.id);
 						$form.find(":input[name='e.driver.name']").val(driver.name);
