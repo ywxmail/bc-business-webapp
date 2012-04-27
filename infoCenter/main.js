@@ -451,7 +451,7 @@ bs.infoCenter = {
 						
 						trs.push('/>'
 							+'<ul class="inputIcons ui-state-highlight" style="position: absolute;right: 0;bottom: 0;top: auto;opacity: 0.8;border-top-left-radius:5px;display: none;border-width:0;">'
-							+'	<li class="inputIcon ui-icon ui-icon-note toTaxiNet" title="点击查看出租车协会网信誉档案"  style="display: inline-block;"'+'data-cert4fwzg="'+man.cert4fwzg+'"'+'></li>'
+							+'	<li class="inputIcon ui-icon ui-icon-note toTaxiNet" title="点击查看出租协会网信誉档案"  style="display: inline-block;"'+'data-cert4fwzg="'+man.cert4fwzg+'"'+'></li>'
 							+'</ul>'
 							+'</div></td>'
 							+'<td class="label" style="width: 6em;">身份证号码:</td>'
