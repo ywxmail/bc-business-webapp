@@ -11,6 +11,7 @@ bc.business.carByDriverHistoryForm = {
 			var selecteds = $form.find(":input[name='e.toCar.id']").val();
 			bs.selectCar({
 				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
+				status :'-1,0,1',	
 				onOk : function(car) {
 					$form.find(":input[name='e.toCar.id']").val(car.id);
 					$form.find(":input[name='toCarPlate']").val(car.plate);

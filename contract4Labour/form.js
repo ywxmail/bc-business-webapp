@@ -81,7 +81,9 @@ bc.contract4LabourForm = {
 		
 		// 选择车辆车牌
 		$page.find("#selectCarPlate").click(function(){
-			bs.selectCar({onOk: function(car){
+			bs.selectCar({
+				status :'-1,0,1',
+				onOk: function(car){
 				//填写车辆信息
 				$page.find(":input[name='carId']").val(car.id);
 				$page.find(":input[name='e.ext_str1']").val(car.plate);
@@ -136,6 +138,7 @@ bc.contract4LabourForm = {
 			var selecteds = $page.find(":input[name='driverId']").val();
 			bs.selectDriver({
 				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
+				status :'-1,0,1',
 				onOk : function(carMan) {
 					$page.find(":input[name='e.ext_str2']").val(carMan.name);
 					$page.find(":input[name='driverId']").val(carMan.id);
@@ -270,7 +273,7 @@ bc.contract4LabourForm = {
 				name: "维护" + $page.find(":input[name='e.ext_str2']").val() + "的劳动合同",
 				mid: "contract4Labour" + $page.find(":input[name='e.id']").val(),
 				url: bc.root + "/bc-business/contract4Labour/edit",
-				data: {id: $page.find(":input[name='e.id']").val()},
+				data: {id: $page.find(":input[name='e.id']").val(),isDoMaintenance: true},
 				afterClose: function(status){
 					if(status) bc.grid.reloadData($page);
 				}
@@ -417,5 +420,60 @@ bc.contract4LabourForm = {
 		};
 		//调用标准的方法执行保存
 		bc.page.save.call(this,option);
+	},	
+	//保存并关闭
+	saveAndClose:function(){
+		var $form = $(this);
+		//唯一性检测
+		var option = { callback : function (json){
+				if(json.success){
+					bc.msg.slide(json.msg);
+				}else{
+					bc.msg.alert(json.msg);
+				}
+				return false;
+			}
+		};
+
+		//调用标准的方法执行保存
+		bc.page.save.call(this,option,{callback: function(json){
+			if(json.success){
+				bc.msg.slide(json.msg);
+				$form.dialog("close");
+			}else{
+				bc.msg.alert(json.msg);
+			}
+			return false;
+		}});
+	},
+	//入库
+	warehousing:function(){
+		
+		var $form = $(this);
+		
+		//唯一性检测
+		var option = { callback : function (json){
+				if(json.success){
+					bc.msg.slide(json.msg);
+				}else{
+					bc.msg.alert(json.msg);
+				}
+				return false;
+			}
+		};
+
+		//status=0为正常状态
+		$form.find(":input[name='e.status']").val("0");
+		//调用标准的方法执行保存
+		bc.page.save.call(this,option,{callback: function(json){
+			if(json.success){
+				bc.msg.slide("入库成功！");
+				$form.dialog("close");
+			}else{
+				bc.msg.alert(json.msg);
+			}
+			return false;
+		}});
+
 	}
 };
