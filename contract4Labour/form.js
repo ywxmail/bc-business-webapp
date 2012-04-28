@@ -364,46 +364,110 @@ bc.contract4LabourForm = {
 	doChangeCar : function($form) {
 		var $page = $(this);
 		// 让用户选择新的车辆
-		bs.selectCar({
-			title: "请为司机劳动合同选择新的车辆",
-			onOk: function(car){
+		//bs.selectCar({
+			//title: "请为司机劳动合同选择新的车辆",
+			//onOk: function(car){
 				// 不允许选择原来的车辆
-				if(car.id == $page.find(":input[name='carId']").val()){
-					bc.msg.alert("你所选择的车辆与原车辆相同，转车操作将被忽略！");
-					return;
-				}
+			//	if(car.id == $page.find(":input[name='carId']").val()){
+				//	bc.msg.alert("你所选择的车辆与原车辆相同，转车操作将被忽略！");
+				//	return;
+				//}
 				
-				// 执行转车处理
-				bc.ajax({
-					url: bc.root + "/bc-business/contract4LabourOperate/doChangeCar",
-					dataType: "json",
-					data: {newCarId: car.id,newCarPlate: car.plate,id: $page.find(":input[name='e.id']").val()},
-					success: function(json){
-						logger.info("doChangeCar result=" + $.toJSON(json));
-						//完成后提示用户
-						//bc.msg.info(json.msg);
-						var str = json.msg.split(" ")[2];
-						str = "<a id='chakan' href=#>"+str+"</a>";
-						str = json.msg.split(" ")[0]+" "+json.msg.split(" ")[1]+" "+str+" "+json.msg.split(" ")[3];
-						var $a = bc.msg.alert(str);
-						$a.find('#chakan').click(function(){
-							bc.page.newWin({
-								url: bc.root + "/bc-business/contract4Labour/open?id="+json.id,
-								name: "查看劳动合同",
-								mid:  "viewcontract4Labour",
-								from: $page.attr("data-from")
-							})
-							$a.dialog("close");
-							return false;
-						});
-
-						$page.data("data-status","saved");
-						$page.dialog("close");
+//				// 执行转车处理
+//				bc.ajax({
+//					url: bc.root + "/bc-business/contract4Labour/create",
+//					dataType: "json",
+//					//data: {newCarId: null,newCarPlate: null,id: $page.find(":input[name='e.id']").val()},
+//					success: function(json){
+//						
+//					}
+//				});
+			//关闭当前窗口
+			$page.dialog("close");
+	// 重新打开新建表单
+			bc.page.newWin({
+				name: "执行转车操作",
+				mid: "contract4Charger" + $page.find(":input[name='e.id']").val(),
+				url: bc.root + "/bc-business/contract4Labour/create",
+				data:{isDoChangeCar : true},
+				afterClose: function(status){
+					if(status) bc.grid.reloadData($page);
+				}
+			});
+		
+	
+				
+//
+//				bc.page.newWin({
+//					url: bc.root + "/bc-business/contract4Labour/create,
+//					name: "查看劳动合同",
+//					mid:  "viewcontract4Labour"
+//				});
+			
+			//}
+		//});
+	},
+	//-----------------------------------------------劳动合同操作-----------
+	
+	
+	/** 续约处理 */
+	doRenew : function($form) {
+		var $page = $(this);
+		bc.contract4ChargerForm.openNewWin("续约",$page);
+	},
+	
+	/** 转车处理 */
+	doChangeCharger : function($form) {
+		var $page = $(this);
+		bc.contract4ChargerForm.openNewWin("转车",$page);
+	},
+	
+	
+	
+	/**
+	 * 
+	 * @param type 签约类型
+	 * @param $page 表单上下文
+	 */
+	openNewWin : function (signType,$page){
+			//关闭当前窗口
+			$page.dialog("close");
+			// 让用户输入当前经济合同的实际结束日期
+			bc.page.newWin({
+				name: signType,
+				mid: "stopContract4Labour",
+				url: bc.root + "/bc/common/selectDate",
+				data: {time:false,title:signType+":请输入当前劳动合同的实际结束日期"},
+				afterClose: function(date){
+					if(!date) return;
+					var data = {id: $page.find(":input[name='e.id']").val(),
+							signType : signType,
+							stopDate : date
+							};
+				// 重新打开可编辑表单
+				bc.page.newWin({
+					name: signType + $page.find(":input[name='e.ext_str1']").val() + "的经济合同",
+					mid: "contract4Labour" + $page.find(":input[name='e.id']").val(),
+					url: bc.root + "/bc-business/contract4ChargerOperate2/create",
+					data: data,
+					afterClose: function(status){
+						if(status) bc.grid.reloadData($page);
 					}
 				});
-			}
-		});
+					
+				}
+			});		
+			//----
+//		});
 	},
+	
+	
+	
+	
+	
+	//-------------------------------------------------------------------
+	
+	
 	
 	//保存的处理
 	save:function(){
