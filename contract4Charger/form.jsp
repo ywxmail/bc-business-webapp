@@ -155,8 +155,10 @@
 									</td>
 								</tr>
 								<tr>
-									<td></td>
-									<td></td>
+									<td class="label"><s:text name="contract4Charger.scrapTo"/>:</td>
+									<td class="value">
+										<s:select name="e.scrapTo" list="scrapToList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content" ></s:select>
+									</td>
 									<td></td>
 									<td class="label" style="text-align: right;">
 										<s:checkbox name="e.takebackOrigin" cssStyle="width:1em;"/>
@@ -179,6 +181,12 @@
 										<s:text name="contract4Charger.takebackOrigin"/>
 										<s:checkbox name="e.includeCost" cssStyle="width:1em;" />
 										<s:text name="contract4Charger.includeCost"/>
+									</td>
+								</tr>
+								<tr>
+									<td class="label"><s:text name="contract4Charger.scrapTo"/>:</td>
+									<td class="value">
+										<s:select name="e.scrapTo" list="scrapToList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content" ></s:select>
 									</td>
 								</tr>
 							</s:else>
