@@ -33,13 +33,13 @@
 			<div class="label">年份</div>
 			<div class="value">
 				<div style="position: relative;display: inline-block;">
-					<input type="text" class="bc-date ui-widget-content" data-validate="{'type':'number','min':'1000','max':'9999'}" 
+					<input type="text" class="ui-widget-content" data-validate="{'type':'number','min':'1000','max':'9999'}" 
 						style="width:9em;" data-condition='{"type":"int","ql":"s.start_year>=?"}'>
 					<ul class="inputIcons">
 						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
 					</ul>
 				</div>～<div style="position: relative;display: inline-block;">
-					<input type="text" class="bc-date ui-widget-content" data-validate="{'type':'number','min':'1000','max':'9999'}" 
+					<input type="text" class="ui-widget-content" data-validate="{'type':'number','min':'1000','max':'9999'}" 
 						style="width:9em;" data-condition='{"type":"int","ql":"s.start_year<=?"}'>
 					<ul class="inputIcons">
 						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
@@ -52,13 +52,13 @@
 			<div class="label">月份</div>
 			<div class="value">
 				<div style="position: relative;display: inline-block;">
-					<input type="text" class="bc-date ui-widget-content" data-validate="{'type':'number','min':'1','max':'12'}" 
+					<input type="text" class="ui-widget-content" data-validate="{'type':'number','min':'1','max':'12'}" 
 						style="width:9em;"  data-condition='{"type":"int","ql":"s.start_month>=?"}'>
 					<ul class="inputIcons">
 						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
 					</ul>
 				</div>～<div style="position: relative;display: inline-block;">
-					<input type="text" class="bc-date ui-widget-content" data-validate="{'type':'number','min':'1','max':'12'}" 
+					<input type="text" class="ui-widget-content" data-validate="{'type':'number','min':'1','max':'12'}" 
 						style="width:9em;" data-condition='{"type":"int","ql":"s.start_month<=?"}'>
 					<ul class="inputIcons">
 						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
