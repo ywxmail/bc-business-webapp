@@ -61,8 +61,8 @@
 						title='<s:text name="socialSecurityRule.title.click2deleteLine"/>'></li>
 				</ul>
 			</div>
-	    	<div class="bc-grid header" style="overflow-x:scroll;">
-			<table class="table" id="socialSecurityRuleTables" cellspacing="0" cellpadding="0" style="width: 43em">
+	    	<div class="bc-grid header" >
+			<table class="table" id="socialSecurityRuleTables" cellspacing="0" cellpadding="0" style="width: 100%">
 				<tr class="ui-state-default header row">
 					<td class="first" style="width: 15px;">&nbsp;</td>
 					<td class="middle" style="width: 6em;">名称</td>
