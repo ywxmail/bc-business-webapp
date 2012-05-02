@@ -60,7 +60,7 @@ bc.carManForm = {
 				},100);
 			}
 		});
-		$form.delegate("ul.inputIcons",{
+		$form.delegate("ul.inputIcons.operators",{
 			mouseover : function() {
 				$(this).data("hiding",false);
 			},
