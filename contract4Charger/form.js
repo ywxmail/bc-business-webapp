@@ -338,9 +338,13 @@ bc.contract4ChargerForm = {
 //				'"msg":"请输入正确的经济合同编号格式：<br/>CLHT+[4位年份]+[2位月份]+[2位流水号]"}');
 //			}
 //		}
-		
+		//表单验证
+		if(!bc.validator.validate($form))
+			return;
+
 		//保存之前
-		bc.contract4ChargerForm.beforeSave($form);
+		if(bc.contract4ChargerForm.beforeSave($form)==false)
+			return;
 
 		
 		//调用标准的方法执行保存
@@ -357,9 +361,13 @@ bc.contract4ChargerForm = {
 	//保存并关闭
 	saveAndClose:function(){
 		var $form = $(this);
+		//表单验证
+		if(!bc.validator.validate($form))
+			return;
 
 		//保存之前
-		bc.contract4ChargerForm.beforeSave($form);
+		if(bc.contract4ChargerForm.beforeSave($form)==false)
+			return;
 
 		//调用标准的方法执行保存
 		bc.page.save.call(this,{callback: function(json){
@@ -378,8 +386,12 @@ bc.contract4ChargerForm = {
 		var $form = $(this);
 		//status=0为正常状态
 		$form.find(":input[name='e.status']").val("0");
+		//表单验证
+		if(!bc.validator.validate($form))
+			return;
 		//保存之前
-		bc.contract4ChargerForm.beforeSave($form);
+		if(bc.contract4ChargerForm.beforeSave($form)==false)
+			return;
 		//调用标准的方法执行保存
 		bc.page.save.call(this,{callback: function(json){
 			if(json.success){
@@ -394,6 +406,7 @@ bc.contract4ChargerForm = {
 	},
 	//保存之前的操作
 	beforeSave:function($page){
+
 		//先将角色的id合并到隐藏域
 		var ids=[];
 		var names=[];
