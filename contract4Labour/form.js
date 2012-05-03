@@ -282,51 +282,6 @@ bc.contract4LabourForm = {
 		
 	},
 	
-	/** 续约处理 */
-	doRenew : function($form) {
-		var $page = $(this);
-		// 让用户输入新的合同期限
-		bc.page.newWin({
-			name:"劳动合同续约",
-			mid: "renewContract4Labour",
-			url: bc.root + "/bc/common/selectDateRange",
-			data: {addDay:1,startDate: $page.find(":input[name='e.endDate']").val(),title:"请输入新的续约期限"},
-			afterClose: function(status){
-				logger.info("status=" + $.toJSON(status));
-				if(!status) return;
-				
-				//执行续签处理
-				bc.ajax({
-					url: bc.root + "/bc-business/contract4LabourOperate/doRenew",
-					dataType: "json",
-					data: {newStartDate: status.startDate,newEndDate: status.endDate,id: $page.find(":input[name='e.id']").val()},
-					success: function(json){
-						logger.info("doRenew result=" + $.toJSON(json));
-						//完成后提示用户
-						//bc.msg.info(json.msg);
-						var str = json.msg.split(" ")[2];
-						str = "<a id='chakan' href=#>"+str+"</a>";
-						str = json.msg.split(" ")[0]+" "+json.msg.split(" ")[1]+" "+str+" "+json.msg.split(" ")[3];
-						var $a = bc.msg.alert(str);
-						$a.find('#chakan').click(function(){
-							bc.page.newWin({
-								url: bc.root + "/bc-business/contract4Labour/open?id="+json.id,
-								name: "查看劳动合同",
-								mid:  "viewcontract4Labour",
-							   from: $page.attr("data-from")
-							})
-							$a.dialog("close");
-							return false;
-						});
-
-						$page.data("data-status","saved");
-						$page.dialog("close");
-					}
-				});
-			}
-		});
-	},
-	
 	/** 离职处理 */
 	doResign : function($page) {
 		var $page = $(this);
@@ -359,67 +314,19 @@ bc.contract4LabourForm = {
 			}
 		});
 	},
-	
-	/** 转车处理 */
-	doChangeCar : function($form) {
-		var $page = $(this);
-		// 让用户选择新的车辆
-		//bs.selectCar({
-			//title: "请为司机劳动合同选择新的车辆",
-			//onOk: function(car){
-				// 不允许选择原来的车辆
-			//	if(car.id == $page.find(":input[name='carId']").val()){
-				//	bc.msg.alert("你所选择的车辆与原车辆相同，转车操作将被忽略！");
-				//	return;
-				//}
-				
-//				// 执行转车处理
-//				bc.ajax({
-//					url: bc.root + "/bc-business/contract4Labour/create",
-//					dataType: "json",
-//					//data: {newCarId: null,newCarPlate: null,id: $page.find(":input[name='e.id']").val()},
-//					success: function(json){
-//						
-//					}
-//				});
-			//关闭当前窗口
-			$page.dialog("close");
-	// 重新打开新建表单
-			bc.page.newWin({
-				name: "执行转车操作",
-				mid: "contract4Charger" + $page.find(":input[name='e.id']").val(),
-				url: bc.root + "/bc-business/contract4Labour/create",
-				data:{isDoChangeCar : true},
-				afterClose: function(status){
-					if(status) bc.grid.reloadData($page);
-				}
-			});
-		
-	
-				
-//
-//				bc.page.newWin({
-//					url: bc.root + "/bc-business/contract4Labour/create,
-//					name: "查看劳动合同",
-//					mid:  "viewcontract4Labour"
-//				});
-			
-			//}
-		//});
-	},
 	//-----------------------------------------------劳动合同操作-----------
 	
 	
 	/** 续约处理 */
 	doRenew : function($form) {
 		var $page = $(this);
-		bc.contract4ChargerForm.openNewWin("续约",$page);
+		bc.contract4LabourForm.openNewWin("续约",4,$page);
 	},
 	
 	/** 转车处理 */
-	doChangeCharger : function($form) {
+	doChangeCar : function($form) {
 		var $page = $(this);
-		bc.contract4ChargerForm.openNewWin("转车",$page);
+		bc.contract4LabourForm.openNewWin("转车",3,$page);
 	},
 	
 	
@@ -428,8 +335,9 @@ bc.contract4LabourForm = {
 	 * 
 	 * @param type 签约类型
 	 * @param $page 表单上下文
+	 * @param $opType 操作类型
 	 */
-	openNewWin : function (signType,$page){
+	openNewWin : function (signType,opType,$page){
 			//关闭当前窗口
 			$page.dialog("close");
 			// 让用户输入当前经济合同的实际结束日期
@@ -440,15 +348,17 @@ bc.contract4LabourForm = {
 				data: {time:false,title:signType+":请输入当前劳动合同的实际结束日期"},
 				afterClose: function(date){
 					if(!date) return;
-					var data = {id: $page.find(":input[name='e.id']").val(),
+					var data = {contractId: $page.find(":input[name='e.id']").val(),
+							driverId : $page.find(":input[name='driverId']").val(),
 							signType : signType,
-							stopDate : date
+							opType : opType,
+							stopDate : date,
 							};
 				// 重新打开可编辑表单
 				bc.page.newWin({
-					name: signType + $page.find(":input[name='e.ext_str1']").val() + "的经济合同",
+					name: "对"+ $page.find(":input[name='e.ext_str1']").val()+"进行"+signType+"操作",
 					mid: "contract4Labour" + $page.find(":input[name='e.id']").val(),
-					url: bc.root + "/bc-business/contract4ChargerOperate2/create",
+					url: bc.root + "/bc-business/contract4Labour/create",
 					data: data,
 					afterClose: function(status){
 						if(status) bc.grid.reloadData($page);
