@@ -367,13 +367,7 @@ bc.contract4LabourForm = {
 					
 				}
 			});		
-			//----
-//		});
 	},
-	
-	
-	
-	
 	
 	//-------------------------------------------------------------------
 	
@@ -438,8 +432,7 @@ bc.contract4LabourForm = {
 
 		//status=0为正常状态
 		$form.find(":input[name='e.status']").val("0");
-		//调用标准的方法执行保存
-		bc.page.save.call(this,option,{callback: function(json){
+		bc.page.save.call(this,{callback: function(json){
 			if(json.success){
 				bc.msg.slide("入库成功！");
 				$form.dialog("close");
@@ -448,6 +441,5 @@ bc.contract4LabourForm = {
 			}
 			return false;
 		}});
-
 	}
 };

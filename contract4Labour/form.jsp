@@ -72,6 +72,19 @@
 												</div>
 												</td>
 											</tr>
+											<tr>
+												<s:if test="%{e.status == 1}">
+													<td class="label"><s:text name="contract4Charger.stopDate"/>:</td>
+													<td class="value" style="position:relative;display: block;">
+														<input type="text" name="e.stopDate" data-validate='{"type":"date","required":false}'
+														value='<s:date format="yyyy-MM-dd" name="e.stopDate" />'
+														class="bc-date ui-widget-content" />
+														<ul class="inputIcons">
+															<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.stopDate' ></li>
+														</ul>
+													</td>
+												</s:if>
+											</tr>
 								        </table>
 								   </fieldset>
 								</td>
@@ -367,7 +380,6 @@
 		<!-- 是否补录 true为补录 -->
 		<s:hidden name="isSupply"/> 
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
-		
 		<!-- 保留字段 -->
 		<input type="hidden" name="e.registerDate"  value='<s:date format="yyyy-MM-dd" name="e.registerDate" />'/>
 		<input type="hidden" name="e.birthDate"  value='<s:date format="yyyy-MM-dd" name="e.birthDate" />'/>
@@ -375,8 +387,8 @@
 		<s:hidden name="e.certNo" />
 		<s:hidden name="e.origin" />
 		<s:hidden name="e.certIdentity" />
-		
 		<s:hidden name="e.age" />
+		<s:hidden name="stopDate"/>
 		
 	</s:form>
 </div>
