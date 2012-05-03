@@ -4,7 +4,7 @@
 	data-saveUrl='<s:url value="/bc-business/socialSecurityRule/save" />'
 	data-js='<s:url value="/bc/libs/select.js" />,<s:url value="/bc-business/socialSecurityRule/form.js" />,<s:url value="/bc-business/bs.js" />'
 	data-initMethod='bc.socialSecurityRuleForm.init'
-	data-option='<s:property value="%{formPageOption}"/>' style="overflow:hidden;">
+	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="socialSecurityRuleForm" theme="simple">	
 		<table class="formFields" cellspacing="2" cellpadding="0" style="width: 43em">
 			<tbody>
