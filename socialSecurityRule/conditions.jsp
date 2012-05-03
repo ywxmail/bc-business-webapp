@@ -33,15 +33,19 @@
 			<div class="label">年份</div>
 			<div class="value">
 				<div style="position: relative;display: inline-block;">
-					<input type="text" class="ui-widget-content" data-validate="{'type':'number','min':'1000','max':'9999'}" 
-						style="width:9em;" data-condition='{"type":"int","ql":"s.start_year>=?"}'>
+					<input type="text" class="bc-select ui-widget-content" data-validate="{'type':'number','min':'1000','max':'9999'}" 
+						data-maxHeight="150px" style="width:9em;" data-source='<s:property value="years"/>'>
+					<input type="hidden" data-condition='{"type":"int","ql":"s.start_year>=?"}'>	
 					<ul class="inputIcons">
+						<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
 						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
 					</ul>
 				</div>～<div style="position: relative;display: inline-block;">
-					<input type="text" class="ui-widget-content" data-validate="{'type':'number','min':'1000','max':'9999'}" 
-						style="width:9em;" data-condition='{"type":"int","ql":"s.start_year<=?"}'>
+					<input type="text" class="bc-select ui-widget-content" data-validate="{'type':'number','min':'1000','max':'9999'}" 
+						data-maxHeight="150px" style="width:9em;" data-source='<s:property value="years"/>'>
+					<input type="hidden" data-condition='{"type":"int","ql":"s.start_year<=?"}'>	
 					<ul class="inputIcons">
+						<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
 						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
 					</ul>
 				</div>
@@ -52,15 +56,19 @@
 			<div class="label">月份</div>
 			<div class="value">
 				<div style="position: relative;display: inline-block;">
-					<input type="text" class="ui-widget-content" data-validate="{'type':'number','min':'1','max':'12'}" 
-						style="width:9em;"  data-condition='{"type":"int","ql":"s.start_month>=?"}'>
+					<input type="text" class="bc-select ui-widget-content" data-validate="{'type':'number','min':'1','max':'12'}" 
+						data-maxHeight="150px" style="width:9em;"  readonly="readonly" data-source='<s:property value="months"/>' >
+					<input type="hidden" data-condition='{"type":"int","ql":"s.start_month>=?"}'>
 					<ul class="inputIcons">
+						<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
 						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
 					</ul>
 				</div>～<div style="position: relative;display: inline-block;">
-					<input type="text" class="ui-widget-content" data-validate="{'type':'number','min':'1','max':'12'}" 
-						style="width:9em;" data-condition='{"type":"int","ql":"s.start_month<=?"}'>
+					<input type="text" class="bc-select ui-widget-content" data-validate="{'type':'number','min':'1','max':'12'}" 
+						data-maxHeight="150px" style="width:9em;"  readonly="readonly" data-source='<s:property value="months"/>' >
+					<input type="hidden" data-condition='{"type":"int","ql":"s.start_month<=?"}'>
 					<ul class="inputIcons">
+						<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
 						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
 					</ul>
 				</div>
