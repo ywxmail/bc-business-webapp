@@ -102,18 +102,18 @@
 											</tr>
 											<tr>
 												<td class="label">*<s:text name="contract.car" />:</td>
-												<!--
-												<td class="value" style="position:relative;display: block;">
-													<s:textfield name="e.ext_str1" data-validate="required" readonly="true" title='%{getText("contract.title.click2selectCar")}' cssClass="ui-widget-content " />
-													<span class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectCarPlate"></span>
-												</td>
-												 -->
-												 <td class="value relative">
+												 <!--  <td class="value relative">
 												 	<s:textfield name="e.ext_str1" data-validate="required" readonly="true" cssClass="ui-widget-content " />
 												 	<ul class="inputIcons">
 												 		<li class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="contract.title.click2selectCar"/>' id="selectCarPlate">
 												 	</ul>
-												 </td>
+												 </td>-->
+												<td class="value relative">
+													<div class="input ui-widget-content" data-validate="required" ><span class="link showCar" data-cfg='<s:property value="carId" />' id="carInfo" ><s:property value="%{e.ext_str1}" /></span>
+													</div>
+											    <span id="selectCarPlate" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" style="margin: -8px 5px;" title='<s:text name="title.click2select"/>'></span>
+											    </td> 
+												 
 												<td class="label"><s:text name="contract4Labour.registerDate"/>:</td>
 												<td class="value">
 													<input type="text" name="registerDate" class="ui-widget-content nostyle"
@@ -122,17 +122,22 @@
 											</tr>
 											<tr>
 												<td class="label">*<s:text name="contract4Labour.driver"/>:</td>
-												<td class="value">
+												<td class="value relative">
 													<div style="position:relative;display: inline-block">
-													    <s:if test="e.isNew()">
+													    <!--
 													 		<s:textfield name="e.ext_str2" data-validate="required" readonly="true" cssStyle="width:6.5em;" cssClass="ui-widget-content " />
 															<ul class="inputIcons">
 														 		<li class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="contract.title.click2selectCarMan"/>' id="selectDriverName">
-														 	</ul>
-													 	</s:if>
-													 	<s:else>
+														 	</ul>-->
+													      <div style="width:6.5em;" class="input ui-widget-content" data-validate="required" ><span class="link showCarMan" data-cfg='<s:property value="driverId"/>' id="carManInfo" ><s:property value="%{e.ext_str2}" /></span>
+													      </div>
+													      <ul class="inputIcons">
+													        <li  id="selectDriverName" class="selectButton inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>' data-cfg='e.driver.id=id,carManInfo=name|text'></li>
+													      </ul>
+														 	
+													 	<!--
 													 		<s:textfield name="e.ext_str2" data-validate="required" readonly="true" cssStyle="width:6.5em;" cssClass="ui-widget-content" />
-													 	</s:else>
+													 	-->
 													 </div>
 													<s:radio name="e.sex" list="#{'1':'男','2':'女'}" 
 													value="e.sex" cssStyle="width:auto;"/>
@@ -377,6 +382,9 @@
 		<s:hidden name="isNullCar"/>
 		<s:hidden name="isNullCarMan"/>
 		<s:hidden name="isExistContract"/>
+		<s:hidden name="e.ext_str1"/>
+		<s:hidden name="e.ext_str2"/>
+		
 		<!-- 是否补录 true为补录 -->
 		<s:hidden name="isSupply"/> 
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>

@@ -86,6 +86,10 @@ bc.contract4ChargerForm = {
 			bs.selectCar({
 				status :'-1,0,1',
 				onOk : function(car) {
+					//----车辆超连接
+					$form.find(".link.showCar").attr("data-cfg",car.id);
+					$form.find(".link.showCar").text(car.plate);
+
 					$form.find(":input[name='e.ext_str1']").val(car.plate);
 					$form.find(":input[name='e.wordNo']").val(car.code); 
 					$form.find(":input[name='carId']").val(car.id); 

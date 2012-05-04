@@ -87,11 +87,19 @@ bc.contract4LabourForm = {
 				//填写车辆信息
 				$page.find(":input[name='carId']").val(car.id);
 				$page.find(":input[name='e.ext_str1']").val(car.plate);
+				//----车辆超连接
+				$page.find(".link.showCar").attr("data-cfg",car.id);
+				$page.find(".link.showCar").text(car.plate);
+
 				bs.findInfoByCar({
 					carId: car.id,
 					success: function(info){
 						logger.info("info=" + $.toJSON(info));
 						// 根据车辆ID查找关联的司机否存在劳动合同
+						//车辆没有营运司机时也填写车辆的登记与合同性质
+						$page.find(":input[name='registerDate']").val(car.registerDate);
+						$page.find(":input[name='bsType']").val(car.bsType);
+
 						if(info.driver){
 							var url = bc.root + "/bc-business/contract4Labour/isExistContract?driverId="+info.driver.id;
 							var isSupply = $page.find(":hidden[name='isSupply']").val();//true为补录
@@ -112,6 +120,10 @@ bc.contract4LabourForm = {
 									$page.find(":input[name='e.houseType']").val('');
 									$page.find(":input[name='origin']").val('');
 								}else{//填写司机信息
+									//----司机超连接
+									$page.find(".link.showCarMan").attr("data-cfg",info.driver.id);
+									$page.find(".link.showCarMan").text(info.driver.name);
+
 									$page.find(":input[name='e.ext_str2']").val(info.driver.name);
 									$page.find(":input[name='registerDate']").val(info.car.registerDate);
 									$page.find(":input[name='bsType']").val(info.car.bsType);
@@ -142,7 +154,10 @@ bc.contract4LabourForm = {
 				onOk : function(carMan) {
 					$page.find(":input[name='e.ext_str2']").val(carMan.name);
 					$page.find(":input[name='driverId']").val(carMan.id);
-					
+					//----司机超连接
+					$page.find(".link.showCarMan").attr("data-cfg",carMan.id);
+					$page.find(".link.showCarMan").text(carMan.name);
+
 					var url = bc.root + "/bc-business/contract4Labour/certInfo?driverId="+carMan.id;
 					$.ajax({ url: url,dataType:"json", success: update_page});
 					function update_page(json){
@@ -404,7 +419,7 @@ bc.contract4LabourForm = {
 		};
 
 		//调用标准的方法执行保存
-		bc.page.save.call(this,option,{callback: function(json){
+		bc.page.save.call(this,{callback: function(json){
 			if(json.success){
 				bc.msg.slide(json.msg);
 				$form.dialog("close");
@@ -412,8 +427,8 @@ bc.contract4LabourForm = {
 				bc.msg.alert(json.msg);
 			}
 			return false;
-		}});
-	},
+			}});
+		},
 	//入库
 	warehousing:function(){
 		

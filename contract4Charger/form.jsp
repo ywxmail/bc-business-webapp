@@ -4,7 +4,7 @@
 	data-saveUrl='<s:url value="/bc-business/contract4Charger/save" />'
 	data-js='js:editor,js:bc_identity,<s:url value="/bc-business/bs.js" />,<s:url value="/bc-business/contract4Charger/form.js" />'
 	data-initMethod='bc.contract4ChargerForm.init'
-	data-option='<s:property value="%{formPageOption}"/>' style="overflow:hidden;">
+	data-option='<s:property value="%{formPageOption}"/>' style="overflow: hidden;">
 	<s:form name="contract4ChargerForm" theme="simple" cssClass="bc-form">
 		<div id="formTabs" class="formTabs bc-tabs layout-top ui-widget ui-helper-reset"
 			data-cfg="{height:400}" style="overflow: hidden;">
@@ -44,20 +44,22 @@
 							</tr>
 							<tr>
 								<td class="label">*<s:text name="contract.car"/>:</td>
-								<td class="value relative">
-									<!-- 
-										<s:if test="!e.isNew()">
-											<s:textfield name="ext_str1_temp" value="%{e.ext_str1}" data-validate="required" disabled="true" />
-											<s:hidden name="e.ext_str1" />
-										</s:if>
-									 -->
+								<!--  <td class="value relative">
 									<s:textfield name="e.ext_str1" data-validate="required" cssClass="ui-widget-content" />
-									<s:if test="e.isNew()">
+									
 										<ul class="inputIcons">
 											<li class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="contract.title.click2selectCar"/>' id="selectCarPlate">
 										</ul>
-									</s:if>
-								</td>
+									
+								</td>-->
+								<td class="value relative">
+									<div class="input ui-widget-content" data-validate="required" ><span class="link showCar" data-cfg='<s:property value="carId" />' id="carInfo" ><s:property value="%{e.ext_str1}" /></span>
+									</div>
+									<s:if test="e.isNew()">
+							    		<span id="selectCarPlate" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" style="margin: -8px 5px;" title='<s:text name="title.click2select"/>'></span>
+						    		</s:if>
+							    </td> 
+								
 								<td class="label" >*<s:text name="contract4Charger.businessType"/>:</td>
 								<td class="value" >
 									<s:select name="e.businessType" list="businessTypeList" listKey="value" listValue="value"  data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content"></s:select>
@@ -262,8 +264,8 @@
 		<s:hidden name="e.transactorId" />
 		<s:hidden name="e.transactorName" />
 		<s:hidden name="isExistContract"/>
+		<s:hidden name="e.ext_str1"/>
 		
-
 		<!-- 
 		<s:hidden name="e.transactor.id" />
 		<s:hidden name="e.changerId1" />
