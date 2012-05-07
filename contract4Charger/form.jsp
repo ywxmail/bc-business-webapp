@@ -185,12 +185,14 @@
 										<s:text name="contract4Charger.includeCost"/>
 									</td>
 								</tr>
+								<s:if test="%{scrapToPower}">
 								<tr>
 									<td class="label"><s:text name="contract4Charger.scrapTo"/>:</td>
 									<td class="value">
 										<s:select name="e.scrapTo" list="scrapToList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content" ></s:select>
 									</td>
 								</tr>
+								</s:if>
 							</s:else>
 							<tr>
 								<td class="label" colspan="4">
@@ -273,6 +275,9 @@
 		<s:hidden name="e.transactorName" />
 		<s:hidden name="isExistContract"/>
 		<s:hidden name="e.ext_str1"/>
+		<s:if test="%{!scrapToPower}">
+			<s:hidden name="e.scrapTo"/>
+		</s:if>
 		
 		<!-- 
 		<s:hidden name="e.transactor.id" />
