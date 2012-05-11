@@ -214,7 +214,7 @@ bc.contract4ChargerForm = {
 				onOk : function(selectFeeTemplate) {
 					for(var i=0;i<selectFeeTemplate.length;i++){
 						//如果项目为每月承包费的根据合同期限来生成相应的项目
-						if(selectFeeTemplate[i].name=="每月承包费"){
+						if(selectFeeTemplate[i].name=="每月承包款"){
 							//获取合同的开始日期和结束日期
 							var startDate=$form.find(":input[name='e.startDate']").val();
 							var endDate=$form.find(":input[name='e.endDate']").val();
