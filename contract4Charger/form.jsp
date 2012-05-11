@@ -66,8 +66,35 @@
 								</td>
 							</tr>
 							<tr>
-								<td class="label"><s:text name="contract.wordNo"/>:</td>
-								<td class="value "><s:textfield name="e.wordNo" cssClass="ui-widget-content" /></td>
+<!-- -   ----------------------------------   责任人                                         -->
+								<td class="label"><s:text name="contract4Charger.charger"/>:</td>
+								<td class="value relative">
+									<!--<s:textfield name="drivers" cssClass="ui-widget-content" readonly="true"/>
+									<ul class="inputIcons">
+										<li id="selectdriverName" class="inputIcon ui-icon ui-icon-circle-plus" title='点击选择司机'></li>
+										<li class="clearSelect inputIcon ui-icon ui-icon-circle-close" data-cfg="drivers,e.drivers" title='点击清除司机'></li>
+									</ul>-->
+									<div id="assignChargers" style="position:relative;margin: 0;padding: 0;" class="input ui-widget-content" 
+										data-removeTitle='<s:text name="title.click2remove" />'>
+										<span id="addChargers" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" style="" title='<s:text name="blacklist.title.click2selectCarMan"/>'></span>
+										<s:if test="%{chargersInfoList != null && !chargersInfoList.isEmpty()}">
+											<ul class="horizontal" style="padding: 0;height: 23px;">
+											<s:iterator value="chargersInfoList">
+											<li class="horizontal" style="position: relative;margin:0 2px;float: left;padding: 0;"
+												data-id=<s:property value="['id']" /> >
+											<span class="text"><a href="#" style="color: #1F1F1F;"><s:property value="['name']" /></a></span>
+											<s:if test="!isReadonly()">
+												<span class="click2remove verticalMiddle ui-icon ui-icon-close" style="margin: -8px -2px;" title='<s:text name="title.click2remove"/>'></span>
+											</s:if>
+											</li>
+											</s:iterator>
+											</ul>
+										</s:if>	
+									</div>
+								</td>
+
+<!-- ---------------------------------------------------------------------------------- -->							
+							
 								<td class="label">*<s:text name="contract.signDate"/>:</td>
 								<td class="value" style="position:relative;display: block;">
 									<input type="text" name="e.signDate" data-validate='{"type":"date","required":true}'
@@ -87,10 +114,8 @@
 								 -->
 							</tr>
 							<tr>
-								<td class="label" ><s:text name="contract4Charger.contractVersionNo"/>:</td>
-								<td class="value">
-									<s:select name="e.contractVersionNo" list="contractVersionNoList" listKey="key" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
-								</td>
+								<td class="label"><s:text name="contract.wordNo"/>:</td>
+								<td class="value "><s:textfield name="e.wordNo" cssClass="ui-widget-content" /></td>
 								<td class="label">*<s:text name="contract.deadline"/>:</td>
 								<td class="value">
 									<div style="position : relative; display: inline-block">
@@ -109,42 +134,13 @@
 												<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.endDate' ></li>
 											</ul>
 									</div>
-									<!--   业务变更,编辑的时候所有签约类型都可以改合同期限
-									<s:if test="e.isNew()">
-										<div style="position : relative; display: inline-block">
-											&nbsp;从<input type="text" name="e.startDate" readonly="readonly" data-validate='{"type":"date","required":true}' 
-												value='<s:date format="yyyy-MM-dd" name="e.startDate" />' 
-												style="width: 7em;" class="bc-date ui-widget-content" />
-												<ul class="inputIcons" style="right : 0px;">
-													<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.startDate' ></li>
-												</ul>
-										</div>
-										<div style="position : relative; display: inline-block">
-											&nbsp;到<input type="text" name="e.endDate" readonly="readonly" data-validate='{"type":"date","required":true}'
-												value='<s:date format="yyyy-MM-dd" name="e.endDate" />'
-												style="width: 7em;" class="bc-date ui-widget-content" />
-												<ul class="inputIcons" style="right : 0px;">
-													<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.endDate' ></li>
-												</ul>
-										</div>
-									</s:if>
-									<s:else>
-										&nbsp;从<input type="text" name="e.startDate" readonly="readonly" data-validate='{"type":"date","required":true}' 
-												value='<s:date format="yyyy-MM-dd" name="e.startDate" />' 
-												style="width: 7em;" class="ui-widget-content" />
-										&nbsp;到<input type="text" name="e.endDate" readonly="readonly" data-validate='{"type":"date","required":true}'
-												value='<s:date format="yyyy-MM-dd" name="e.endDate" />'
-												style="width: 7em;" class="ui-widget-content" />
-									</s:else>
-								    -->
 								</td>
 							</tr>
 							<s:if test="%{e.status == 1}">
 								<tr>
-									<td class="label"><s:text name="contract4Charger.paymentDate"/>:</td>
+									<td class="label" ><s:text name="contract4Charger.contractVersionNo"/>:</td>
 									<td class="value">
-										<s:select name="e.paymentDate" list="paymentDates" listKey="key" listValue="value" headerKey="" headerValue=""
-										 cssClass="ui-widget-content"/>
+										<s:select name="e.contractVersionNo" list="contractVersionNoList" listKey="key" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
 									</td>
 									<td class="label"><s:text name="contract4Charger.stopDate"/>:</td>
 									<td class="value" style="position:relative;display: block;">
@@ -157,26 +153,21 @@
 									</td>
 								</tr>
 								<tr>
-									<td class="label"><s:text name="contract4Charger.scrapTo"/>:</td>
-									<td class="value">
-										<s:select name="e.scrapTo" list="scrapToList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content" ></s:select>
-									</td>
-									<td></td>
-									<td class="label" style="text-align: right;">
-										<s:checkbox name="e.takebackOrigin" cssStyle="width:1em;"/>
-										<s:text name="contract4Charger.takebackOrigin"/>
-										<s:checkbox name="e.includeCost" cssStyle="width:1em;" />
-										<s:text name="contract4Charger.includeCost"/>
-									</td>
-								</tr>
-							</s:if>
-							<s:else>
-								<tr>
 									<td class="label"><s:text name="contract4Charger.paymentDate"/>:</td>
 									<td class="value">
 										<s:select name="e.paymentDate" list="paymentDates" listKey="key" listValue="value" headerKey="" headerValue=""
 										 cssClass="ui-widget-content"/>
 									</td>
+									<s:if test="%{scrapToPower}">
+										<td class="label"><s:text name="contract4Charger.scrapTo"/>:</td>
+										<td class="value">
+											<s:select name="e.scrapTo" list="scrapToList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content" ></s:select>
+										</td>
+									</s:if>
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
 									<td></td>
 									<td class="label" style="text-align: right;">
 										<s:checkbox name="e.takebackOrigin" cssStyle="width:1em;"/>
@@ -184,15 +175,38 @@
 										<s:checkbox name="e.includeCost" cssStyle="width:1em;" />
 										<s:text name="contract4Charger.includeCost"/>
 									</td>
+								
 								</tr>
-								<s:if test="%{scrapToPower}">
+							</s:if>
+							<s:else>
 								<tr>
-									<td class="label"><s:text name="contract4Charger.scrapTo"/>:</td>
+									<td class="label" ><s:text name="contract4Charger.contractVersionNo"/>:</td>
 									<td class="value">
-										<s:select name="e.scrapTo" list="scrapToList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content" ></s:select>
+										<s:select name="e.contractVersionNo" list="contractVersionNoList" listKey="key" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
+									</td>
+									<td class="label"><s:text name="contract4Charger.paymentDate"/>:</td>
+									<td class="value">
+										<s:select name="e.paymentDate" list="paymentDates" listKey="key" listValue="value" headerKey="" headerValue=""
+										 cssClass="ui-widget-content"/>
 									</td>
 								</tr>
-								</s:if>
+								
+								<tr>
+									<s:if test="%{scrapToPower}">
+										<td class="label"><s:text name="contract4Charger.scrapTo"/>:</td>
+										<td class="value">
+											<s:select name="e.scrapTo" list="scrapToList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content" ></s:select>
+										</td>
+									<td></td>
+									</s:if>
+									<td class="label" style="text-align: right;">
+										<s:checkbox name="e.takebackOrigin" cssStyle="width:1em;"/>
+										<s:text name="contract4Charger.takebackOrigin"/>
+										<s:checkbox name="e.includeCost" cssStyle="width:1em;" />
+										<s:text name="contract4Charger.includeCost"/>
+									</td>
+								</tr>
+								
 							</s:else>
 							<tr>
 								<td class="label" colspan="4">
@@ -213,7 +227,7 @@
 						</tbody>
 					</table>
 					<!-- 责任人信息 -->
-					<div id="assignChargers" style="position:relative;border-width:1px 0 0 0;" class="ui-widget-content" 
+					<!-- <div id="assignChargers" style="position:relative;border-width:1px 0 0 0;" class="ui-widget-content" 
 						data-removeTitle='<s:text name="title.click2remove" />'>
 						<div class="ui-widget-header title" style="position:relative;">
 							<span class="text"><s:text name="contract4Charger.charger"/>：
@@ -231,7 +245,125 @@
 						</s:iterator>
 						</ul>
 						</s:if>	
+					</div> -->
+					<!-- 收费明细 -->
+					<div class="ui-widget-content" style="border-width:1px 0 0 0;margin-bottom:8px;width: 100%;">
+						<div class="ui-widget-header title" style="position:relative;border-width: 0;padding: 0.25em;">
+							<span class="text"><s:text name="contract.fee.detail"/>：</span>
+							<ul class="inputIcons">
+								<li id="selectFeeTemplate" class="inputIcon ui-icon ui-icon-circle-plus"
+									title='<s:text name="title.click2selectFeeTemplate"/>'></li>
+								<li id="deleteFeeTemplate" class="inputIcon ui-icon ui-icon-circle-close"
+									title='<s:text name="title.click2deleteFeeTemplate"/>'></li>
+							</ul>
+						</div>
+				    	<div class="bc-grid header">
+						<table class="table" id="feeDetailTables" cellspacing="0" cellpadding="0" style="width: 100%">
+							<tr class="widthMarker" style="height: 0;line-height:0;font-size: 0;border: none;margin: 0;padding: 0;">
+								<td class="first" style="width: 130px;text-align: center;">&nbsp;</td>
+								<td class="middle" style="width: 105px;text-align: center;">&nbsp;</td>
+								<td class="middle" style="width: 50px;text-align: center;">&nbsp;</td>
+								<td class="middle" style="width: 85px;text-align: center;">&nbsp;</td>
+								<td class="middle" style="width: 100px;text-align: center;">&nbsp;</td>
+								<td class="middle" style="width: 15px;text-align: center;">&nbsp;</td>
+								<td class="middle" style="width: 100px;text-align: center;">&nbsp;</td>
+								<td class="last"style="text-align: center;">&nbsp;</td>
+							</tr>
+							<tr class="ui-state-default row">
+								<td class="first" style="width: 130px;height: 20px;text-align: center;">项目</td>
+								<td class="middle" style="width: 105px;text-align: center;">金额(元)</td>
+								<td class="middle" style="width: 50px;text-align: center;">数量</td>
+								<td class="middle" style="width: 85px;text-align: center;">收费方式</td>
+								<td class="middle" style="border-right: 1px ;text-align: center;width: 215px;" colspan="3">收费期限</td>
+								<td class="last"style="text-align: center;">备注</td>
+							</tr>
+							<s:iterator var="b" value="e.contractFeeDetail">
+							<tr class="ui-widget-content row" data-id='<s:property value="id"/>'>
+								<td class="id first" style="padding:0;text-align:left;width: 130px;"><span class="ui-icon"></span>
+								<s:if test="canCopy">
+								<s:label style="width:90%;height:100%;border:none;margin:0;padding:0 0 0 2px;background:none;" readonly="readonly" 
+										type="text" class="ui-widget-content" value='%{name}'/>
+								</s:if>
+								<s:else>
+									<input style="width:90%;height:100%;border:none;margin:0;padding:0 0 0 2px;background:none;" readonly="readonly" 
+										type="text" class="ui-widget-content" value='<s:property value="name"/>'/>
+								</s:else>
+								</td>
+								<td class="middle" style="padding:0;text-align:left;width: 105px;">
+								<s:if test="canCopy">
+									<label style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" >
+										<s:property value="%{getText('bs.format.numberRMB',{price})}"/>
+									</label>
+								</s:if>
+								<s:else>
+									<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" 
+										value='<s:property value="%{getText('bs.format.numberRMB',{price})}"/>' data-validate="required"/>
+								</s:else>
+								</td>
+								<td class="middle" style="padding:0;text-align:left;width: 50px;">
+								<s:if test="canCopy">
+									<s:label style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" 
+										value="%{getText(count)}"/>
+								</s:if>
+								<s:else>
+									<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" 
+										value='<s:property value="%{getText(count)}"/>' data-validate="required"/>
+								</s:else>
+								</td>
+								<td class="middle" style="padding:0;text-align:left;width: 85px;">
+								<s:if test="canCopy">
+									<s:iterator value="payTypeList" id="item" >
+										<s:if test="payType==key"><s:property value="value"/></s:if>
+									</s:iterator>
+								</s:if>
+								<s:else>
+									<s:select name="payType" list="payTypeList" listKey="key" listValue="value" data-validate="required"
+										headerKey="" headerValue="" cssClass="ui-widget-content" cssStyle="border:none;"/>								</s:else>
+								</td>
+								<td class="middle" style="padding:0;text-align:left;border-right: 1px ;width: 100px;">
+								<s:if test="canCopy"><s:date format="yyyy-MM-dd" name="startDate"/></s:if>
+								<s:else>
+									<div class="relative">
+										<input type="text" name="startDate" data-validate='{"type":"date","required":false}' style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"
+										value='<s:date format="yyyy-MM-dd" name="startDate" />'
+										class="bc-date ui-widget-content" />
+										<ul class="inputIcons">
+											<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
+										</ul>
+									</div>
+								</s:else>
+								</td>
+								<td class="middle" style="padding:0;text-align:left;border-right: 1px ;border-left: 1px;width: 15px;">~</td>
+								<td class="middle" style="padding:0;text-align:right;border-left: 1px;width: 100px;">
+								<s:if test="canCopy"><s:date format="yyyy-MM-dd" name="endDate" /></s:if>
+								<s:else>
+									<div class="relative">
+										<input type="text" name="endDate" data-validate='{"type":"date","required":false}' style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"
+										value='<s:date format="yyyy-MM-dd" name="endDate" />'
+										class="bc-date ui-widget-content" />
+										<ul class="inputIcons">
+											<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
+										</ul>
+									</div>
+								</s:else>
+								</td>
+								<td class="last" style="padding:0;text-align:left;">
+								<s:if test="canCopy">
+									<s:label style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content"
+										 	value="%{description}"/>
+								</s:if>
+								<s:else>
+									<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content"
+										 value='<s:property value="description"/>'/>
+								 </s:else>
+								</td>
+							</tr>
+							</s:iterator>
+						</table>
+						</div>
 					</div>
+					
+					
 				</div>
 				</div>
 				<div id="contractContents" class="content" >
@@ -275,6 +407,9 @@
 		<s:hidden name="e.transactorName" />
 		<s:hidden name="isExistContract"/>
 		<s:hidden name="e.ext_str1"/>
+		<s:hidden name="e.ext_str2"/>
+		<s:hidden name="stopDate"/>
+		<s:hidden name="feeDetails"/>
 		<s:if test="%{!scrapToPower}">
 			<s:hidden name="e.scrapTo"/>
 		</s:if>
