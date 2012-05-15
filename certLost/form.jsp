@@ -95,7 +95,7 @@
 		</table>
 		<!-- 证件列表 -->
 		<div class="ui-widget-content" style="border-width:1px 0 0 0;margin-bottom:8px;width: 100%;">
-			<div class="ui-widget-header" style="position:relative;border-width: 0;padding: 0.25em;">
+			<div class="ui-widget-header title" style="position:relative;border-width:0;">
 				<span class="text"><s:text name="certLost.certs"/>：</span>
 				<ul class="inputIcons">
 					<li id="addLine" class="inputIcon ui-icon ui-icon-circle-plus"

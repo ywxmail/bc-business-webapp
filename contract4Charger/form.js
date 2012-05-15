@@ -223,15 +223,16 @@ bc.contract4ChargerForm = {
 							var ed =new Date();//结束日期
 							sd=$.datepicker.parseDate('yy-mm-dd', startDate);
 							ed=$.datepicker.parseDate('yy-mm-dd', endDate);
-							var spec=selectFeeTemplate[i].spec;//特殊设置的样式格式为[不足一月收取(6850),每年递减(500).]
+							var priceDate=selectFeeTemplate[i].spec;//特殊设置的样式格式为[不足一月收取(6850),每年递减(500).]
 							//不足一个月的金额
-							var lackPrice=spec.substring(spec.indexOf("(")+1,spec.indexOf(")"));
+							var lackPrice=priceDate.key1;
 							//如果为空，默认为6850
 							if(lackPrice==null||lackPrice==""){
 								lackPrice=6850;
 							}
 							//每年递减的金额
-							var cutPrice=spec.substring(spec.lastIndexOf("(")+1,spec.lastIndexOf(")"));
+							//var cutPrice=spec.substring(spec.lastIndexOf("(")+1,spec.lastIndexOf(")"));
+							var cutPrice=priceDate.key2;
 							//如果为空，默认为500
 							if(cutPrice==null||cutPrice==""){
 								cutPrice=500;
@@ -540,7 +541,6 @@ bc.contract4ChargerForm = {
 		//保存之前
 		if(bc.contract4ChargerForm.beforeSave($form)==false)
 			return;
-
 		
 		//调用标准的方法执行保存
 		bc.page.save.call(this,{callback: function(json){
@@ -559,11 +559,9 @@ bc.contract4ChargerForm = {
 		//表单验证
 		if(!bc.validator.validate($form))
 			return;
-
 		//保存之前
 		if(bc.contract4ChargerForm.beforeSave($form)==false)
 			return;
-
 		//调用标准的方法执行保存
 		bc.page.save.call(this,{callback: function(json){
 			if(json.success){
@@ -579,16 +577,17 @@ bc.contract4ChargerForm = {
 	warehousing:function(){
 		
 		var $form = $(this);
-		//status=0为正常状态
-		$form.find(":input[name='e.status']").val("0");
 		//表单验证
 		if(!bc.validator.validate($form))
 			return;
 		//保存之前
 		if(bc.contract4ChargerForm.beforeSave($form)==false)
 			return;
+		bc.msg.confirm("是否入库？",function(){
+		//status=0为正常状态
+		$form.find(":input[name='e.status']").val("0");
 		//调用标准的方法执行保存
-		bc.page.save.call(this,{callback: function(json){
+		bc.page.save.call($form,{callback: function(json){
 			if(json.success){
 				bc.msg.slide("入库成功！");
 				$form.dialog("close");
@@ -597,7 +596,7 @@ bc.contract4ChargerForm = {
 			}
 			return false;
 		}});
-
+		});
 	},
 	//保存之前的操作
 	beforeSave:function($page){
@@ -675,7 +674,7 @@ bc.contract4ChargerForm = {
 
 	 buildInput : function(name,value,readonly,isFirst){
 		//正常
-		var s = '<input style="width:99%;height:100%;border:none;margin:0;padding:0 0 0 2px;';
+		var s = '<input style="width:99%;height:100%;border:none;margin:0;padding:0 0 0 2px;background:none;';
 		if(isFirst){
 			s='<span class="ui-icon"></span><input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;'
 			s += 'background:none;';
@@ -763,7 +762,7 @@ buildSelect : function (value){
 //		cell.innerHTML=bc.contract4ChargerForm.buildInput("startDate",sDate);//插入开始期限
 		cell.innerHTML='<div class="relative">'
 			+'	<input type="text" name="startDate" data-validate=\'{"type":"date","required":false}\' value="'+sDate+'"'
-			+'  style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;" class="bc-date ui-widget-content" >'
+			+'  style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;background:none;" class="bc-date ui-widget-content" >'
 			+'	<ul class="inputIcons">'
 			+'		<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>'
 			+'	</ul>'
@@ -791,7 +790,7 @@ buildSelect : function (value){
 		cell.style.width="100px";
 		cell.innerHTML='<div class="relative">'
 			+'	<input type="text" name="startDate" data-validate=\'{"type":"date","required":false}\' value="'+eDate+'"'
-			+'  style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;" class="bc-date ui-widget-content" >'
+			+'  style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;background:none;" class="bc-date ui-widget-content" >'
 			+'	<ul class="inputIcons">'
 			+'		<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>'
 			+'	</ul>'
