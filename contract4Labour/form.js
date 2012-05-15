@@ -431,9 +431,7 @@ bc.contract4LabourForm = {
 		},
 	//入库
 	warehousing:function(){
-		
 		var $form = $(this);
-		
 		//唯一性检测
 		var option = { callback : function (json){
 				if(json.success){
@@ -444,10 +442,13 @@ bc.contract4LabourForm = {
 				return false;
 			}
 		};
-
+		//表单验证
+		if(!bc.validator.validate($form))
+			return;
+		bc.msg.confirm("是否入库？",function(){
 		//status=0为正常状态
 		$form.find(":input[name='e.status']").val("0");
-		bc.page.save.call(this,{callback: function(json){
+		bc.page.save.call($form,{callback: function(json){
 			if(json.success){
 				bc.msg.slide("入库成功！");
 				$form.dialog("close");
@@ -456,5 +457,6 @@ bc.contract4LabourForm = {
 			}
 			return false;
 		}});
+		});
 	}
 };
