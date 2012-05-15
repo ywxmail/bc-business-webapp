@@ -46,7 +46,6 @@ bs.feeTemplateSelectDialog = {
 		
 		//选择模板后到服务器获取属于这一模板的险种
 		var url=bc.root +"/bc-business/selectTemplateWithFeeTemplate/selectFeeTemplates?pid="+pid;
-		
 		if(pid!=''){
 			$.ajax({
 				  url: url,
