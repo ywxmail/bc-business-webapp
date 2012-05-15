@@ -46,6 +46,10 @@
 						<td class="value"><s:textfield name="e.order"cssClass="ui-widget-content" /></td>
 					</tr>
 					<tr>
+						<td class="topLabel"><s:text name="feeTemplate.spec"/>:</td>
+						<td class="value"><s:textarea rows="3" name="e.spec"cssClass="ui-widget-content" /></td>
+					</tr>
+					<tr>
 						<td class="label"><s:text name="feeTemplate.status"/>:</td>
 						<td><s:radio name="e.status" list="#{'0':'在案','1':'禁用'}" cssStyle="width:auto;"/></td>
 					</tr>

@@ -8,10 +8,11 @@ bc.contract4ChargerForm = {
 		
 		/* 选择司机责任人*/
 		//需要组装的li
-		var liTpl = '<li class="horizontal ui-widget-content ui-corner-all ui-state-highlight" data-id="{0}">'+
+		var liTpl = '<li class="horizontal ui-state-highlight" data-id="{0}" '+
+		'style="position: relative;margin:0 2px;float: left;padding: 0;border-width: 0;">'+
 		'<span class="text"><a href="#">{1}</a></span>'+
-		'<span class="click2remove verticalMiddle ui-icon ui-icon-close" title={2}></span></li>';
-		var ulTpl = '<ul class="horizontal"></ul>';
+		'<span class="click2remove verticalMiddle ui-icon ui-icon-close" style="margin: -8px -2px;" title={3}></span></li>';
+		var ulTpl = '<ul class="horizontal" style="padding: 0;"></ul>';
 		var title = $form.find("#assignChargers").attr("data-removeTitle");
 		
 		$form.find("#addChargers").click(function() {
@@ -23,7 +24,7 @@ bc.contract4ChargerForm = {
 				status :'-1,0,1',
 				multiple : true,
 				onOk : function(chargers) {
-					//var chargers = [charger];
+					var driversInfo = $form.find(":hidden[name='e.ext_str2']").val();
 					//添加司机责任人
 					$.each(chargers,function(i,charger){
 						if($lis.filter("[data-id='" + charger.id + "']").size() > 0){//已存在
@@ -32,22 +33,32 @@ bc.contract4ChargerForm = {
 							if(!$ul.size()){//先创建ul元素
 								$ul = $(ulTpl).appendTo($form.find("#assignChargers"));
 							}
+							if($form.find(":input[name='e.ext_str2']").val().length>0){//之前存在司机责任人的话先加逗号
+								driversInfo = driversInfo+";";
+							}
+
 							//组装并加入对应的值
 							var $liObj = $(liTpl.format(charger.id,charger.name,title)).appendTo($ul);
-							//绑定删除事件
-							$liObj.find("span.click2remove").click(function(){
-								$(this).parent().remove();
-							});
 							//绑定查看事件
 							$liObj.find("span.text").click(function(){
 								bc.page.newWin({
 									url: bc.root + "/bc-business/carMan/edit?id="+charger.id,
 									name: "查看责任人信息",
-									mid:  "viewCharger"+charger.id
+									mid:  "viewDriver"+charger.id
 								})
 							});
+							if(i>0){
+								var tempStr = ";"+charger.name+","+charger.id;
+							}else{
+								var tempStr = charger.name+","+charger.id;
+							}
+							
+							driversInfo += tempStr;
 						}
 					});
+					$form.find(":hidden[name='e.ext_str2']").val(driversInfo);
+				
+				
 				}
 			});
 		});
@@ -60,25 +71,39 @@ bc.contract4ChargerForm = {
 				bc.page.newWin({
 					url: bc.root + "/bc-business/carMan/edit?id="+$(obj).parent().attr('data-id'),
 					name: "查看责任人信息",
-					mid:  "viewCharger"+$(obj).parent().attr('data-id')
+					mid:  "viewDriver"+$(obj).parent().attr('data-id')
 				})
 			});
 		});
 		
-		//只读权限控制
-		if(readonly) return;
 		
-		//绑定删除责任人的按钮事件处理
-		$.each($objs,function(i,obj){
-			//绑定删除
-			$(obj).next().click(function(){
-				$(this).parent().remove();
-			});
+//		//绑定删除责任人的按钮事件处理
+		$form.find("#assignChargers").delegate("span.click2remove","click", function(e) {
+			$(this).parent().remove();
+			var driverInfo ="";
+			$li=$form.find(".horizontal>.horizontal");
+			//每删除一个重新组合
+			if($li.length>0){
+				for(var i=0;i<$li.length;i++){
+					var id=$($li[i]).attr("data-id");
+					var name=$($li[i]).children().children().text();
+					if(i>0){
+						driverInfo +=";"+name+","+id;
+					}else{
+						driverInfo =name+","+id;
+					}
+				}
+				$form.find(":hidden[name='e.ext_str2']").val(driverInfo);
+			}
+			//当无司机责任人时就清空
+			if($li.length==0){
+				$form.find(":hidden[name='e.ext_str2']").val("");
+			}
 		});
 		
-//		if($form.find(":input[name='isExistContract']").val()=="true"){
-//			bc.msg.alert("所选车辆已配置了相应的经济合同，不能重复配置，请您编辑原来的经济合同！");
-//		};
+		
+		
+		
 		
 		/* 选择车辆车牌*/
 		$form.find("#selectCarPlate").click(function() {
@@ -151,6 +176,185 @@ bc.contract4ChargerForm = {
 			bc.contract4ChargerForm.checkCode($form.find(":input[name='e.id']").val(),$code,null);
 		});
 		
+	
+	//收费明细
+		
+		var tableEl=$form.find("#feeDetailTables")[0];
+		
+		/**收费明细表格中插入input控件
+		 * @option {string} name 单元格的name属性值
+		 * @option {Object} value 单元格的json值
+		 * @option {Boolean} readonly 单元格是否只读
+		 * @option {Boolean} isFirst 单元格是列头
+		 */
+		function buildInput(name,value,readonly,isFirst){
+			var s = '<input style="width:99%;height:100%;border:none;margin:0;padding:0 0 0 2px;';
+			if(isFirst){
+				s='<span class="ui-icon"></span><input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;'
+				s += 'background:none;';
+			}
+			if(name=="coverage"){
+				s += '" name="' + name + '" type="text" class="ui-widget-content" value="' + value + '"';
+			}else{
+				s += '" name="' + name + '" type="text" class="ui-widget-content" value="' + value + '"';
+			}
+
+			s += '" name="' + name + '" type="text" class="ui-widget-content" value="' + value + '"';
+			if(readonly){
+				s += ' readonly="' + readonly + '"';
+			}
+			s += '/>';
+			return s;
+		}
+		// 选择收费项目
+		$form.find("#selectFeeTemplate").click(function() {
+			bs.selectFeeTemplate({
+				module : '经济合同',
+				multiple: true,
+				onOk : function(selectFeeTemplate) {
+					for(var i=0;i<selectFeeTemplate.length;i++){
+						//如果项目为每月承包费的根据合同期限来生成相应的项目
+						if(selectFeeTemplate[i].name=="每月承包款"){
+							//获取合同的开始日期和结束日期
+							var startDate=$form.find(":input[name='e.startDate']").val();
+							var endDate=$form.find(":input[name='e.endDate']").val();
+							
+							var sd =new Date();//开始日期
+							var ed =new Date();//结束日期
+							sd=$.datepicker.parseDate('yy-mm-dd', startDate);
+							ed=$.datepicker.parseDate('yy-mm-dd', endDate);
+							var priceDate=selectFeeTemplate[i].spec;//特殊设置的样式格式为[不足一月收取(6850),每年递减(500).]
+							//不足一个月的金额
+							var lackPrice=priceDate.key1;
+							//如果为空，默认为6850
+							if(lackPrice==null||lackPrice==""){
+								lackPrice=6850;
+							}
+							//每年递减的金额
+							//var cutPrice=spec.substring(spec.lastIndexOf("(")+1,spec.lastIndexOf(")"));
+							var cutPrice=priceDate.key2;
+							//如果为空，默认为500
+							if(cutPrice==null||cutPrice==""){
+								cutPrice=500;
+							}
+							//每年应收的金额
+							var mustPrice=selectFeeTemplate[i].price.replace(",","").substring(0,selectFeeTemplate[i].price.indexOf("."));
+							//如果为空，默认为8850
+							if(mustPrice==null){
+								mustPrice=8850;
+							}
+							
+							if(sd!=null){
+								//第一条承包费项目期限为开始日期到本月的月底
+								if(sd.getDate()!=1){
+									sd.setMonth(sd.getMonth()+1);//将开始日期的月份加1
+									sd.setDate(1);//将开始日期的月份加1后的日期的天数设置为1
+									sd.setDate(sd.getDate()-1);//日期的天数设置为开始日期同一月份的最后一日
+									bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],startDate,$.datepicker.formatDate('yy-mm-dd', sd),lackPrice);
+									//将第一条承包费项目的结束日期设置为下一个月的第一日并增加一年时间 
+									sd.setDate(sd.getDate()+1);
+									sd.setMonth(sd.getMonth()+12);
+									//如果开始日期比结束日期小,就循环生成每月承包费项目
+									var md;
+									while(sd<ed){
+										var md=new Date(sd.getTime());
+										md.setMonth(md.getMonth()-12);
+										sd.setDate(sd.getDate()-1);
+										//承包费项目期限满足一年的开始日期
+										var mDate=$.datepicker.formatDate('yy-mm-dd', md);
+										//承包费项目期限满足一年的结束日期
+										var eDate=$.datepicker.formatDate('yy-mm-dd', sd);
+										bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],mDate,eDate,mustPrice);
+										//实收的金额每年递减
+										mustPrice=mustPrice-cutPrice;
+										sd.setDate(sd.getDate()+1);
+										sd.setMonth(sd.getMonth()+12);
+									}
+									//最后一条承包费项目
+									sd.setMonth(sd.getMonth()-12);
+									var edStr=$.datepicker.formatDate('yy-mm-dd', ed);
+									var sdStr=$.datepicker.formatDate('yy-mm-dd', sd);
+
+									bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],sdStr,edStr,mustPrice);
+
+									
+								}else{
+									//如果是1号开始的
+									sd.setMonth(sd.getMonth()+12);
+									var begDate=new Date(sd.getTime());
+									//满一年期限的
+									if(begDate<ed){
+										logger.info("ed:"+ed);
+										var md;
+										while(sd<ed){
+											var md=new Date(sd.getTime());
+											md.setMonth(md.getMonth()-12);
+											sd.setDate(sd.getDate()-1);
+											//承包费项目期限满足一年的开始日期
+											var mDate=$.datepicker.formatDate('yy-mm-dd', md);
+											//承包费项目期限满足一年的结束日期
+											var eDate=$.datepicker.formatDate('yy-mm-dd', sd);
+											bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],mDate,eDate,mustPrice);
+											//实收的金额每年递减
+											mustPrice=mustPrice-cutPrice;
+											sd.setDate(sd.getDate()+1);
+											sd.setMonth(sd.getMonth()+12);
+											logger.info("sd:"+sd);
+										}
+										//最后一条承包费项目
+										sd.setMonth(sd.getMonth()-12);
+										var edStr=$.datepicker.formatDate('yy-mm-dd', ed);
+										var sdStr=$.datepicker.formatDate('yy-mm-dd', sd);
+
+										bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],sdStr,edStr,mustPrice);
+										
+									}else{
+										//不满一年的
+										var edStr=$.datepicker.formatDate('yy-mm-dd', ed);
+										var sdStr=$.datepicker.formatDate('yy-mm-dd', sd);
+
+										bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],sdStr,edStr,mustPrice);
+										
+									}
+									
+									
+								}
+								
+							}
+							
+							
+						}else{
+							var price=selectFeeTemplate[i].price.replace(",","").substring(0,selectFeeTemplate[i].price.indexOf("."));
+							bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],"","",price);
+						}
+					}
+				}
+			});
+		});
+		//添加选中明细项目
+		$form.find("#feeDetailTables").delegate("tr.ui-widget-content.row>td.id","click",function(){
+			$(this).parent().toggleClass("ui-state-highlight").find("td:eq(0)>span.ui-icon").toggleClass("ui-icon-check");
+		});
+		$form.find("#feeDetailTables").delegate("tr.ui-widget-content.row input","focus",function(){
+			$(this).closest("tr.row").removeClass("ui-state-highlight").find("td:eq(0)>span.ui-icon").removeClass("ui-icon-check");
+		});
+		//删除表中选中的明细项目
+		$form.find("#deleteFeeTemplate").click(function() {
+			var $trs = $form.find("#feeDetailTables tr.ui-state-highlight");
+			if($trs.length == 0){
+				bc.msg.slide("请先选择要删除的项目！");
+				return;
+			}
+			bc.msg.confirm("确定要删除选定的 <b>"+$trs.length+"</b>个项目吗？",function(){
+				for(var i=0;i<$trs.length;i++){
+					$($trs[i]).remove();
+				}
+			});
+			
+		});
+		
+		
+	
 	},
 	
 	/** 编号的格式验证:上下文为validate对象,格式为CLHT+[yyyy]+[MM]+[两位流水号] */
@@ -273,7 +477,7 @@ bc.contract4ChargerForm = {
 				data: {time:false,title:signType+":请输入当前经济合同的实际结束日期"},
 				afterClose: function(date){
 					if(!date) return;
-					var data = {id: $page.find(":input[name='e.id']").val(),
+					var data = {contractId: $page.find(":input[name='e.id']").val(),
 							signType : signType,
 							opType : opType,
 							stopDate : date
@@ -282,7 +486,7 @@ bc.contract4ChargerForm = {
 				bc.page.newWin({
 					name: signType + $page.find(":input[name='e.ext_str1']").val() + "的经济合同",
 					mid: "contract4Charger" + $page.find(":input[name='e.id']").val(),
-					url: bc.root + "/bc-business/contract4ChargerOperate2/create",
+					url: bc.root + "/bc-business/contract4Charger/create",
 					data: data,
 					afterClose: function(status){
 						if(status) bc.grid.reloadData($page);
@@ -330,18 +534,6 @@ bc.contract4ChargerForm = {
 	save:function(){
 		var $form = $(this);
 		
-//		var $code = $page.find(":input[name='e.code']");
-//		var id = $page.find(":input[name='e.id']").val();
-//		
-//		if(id.length > 0){//新建id不为空做code格式检测
-//			if($code.val().length > 0 && 
-//			$code.val().toUpperCase().indexOf("C",0) != 0){//code不为空,并且满足代码验证
-//				$code.removeAttr('data-validate');
-//			}else if($code.val().length == 0 || $code.val().toUpperCase().indexOf("C",0) == 0){
-//				$code.attr('data-validate','{"required":true,"method":"bc.contract4ChargerForm.validateCode",'+
-//				'"msg":"请输入正确的经济合同编号格式：<br/>CLHT+[4位年份]+[2位月份]+[2位流水号]"}');
-//			}
-//		}
 		//表单验证
 		if(!bc.validator.validate($form))
 			return;
@@ -349,7 +541,6 @@ bc.contract4ChargerForm = {
 		//保存之前
 		if(bc.contract4ChargerForm.beforeSave($form)==false)
 			return;
-
 		
 		//调用标准的方法执行保存
 		bc.page.save.call(this,{callback: function(json){
@@ -368,11 +559,9 @@ bc.contract4ChargerForm = {
 		//表单验证
 		if(!bc.validator.validate($form))
 			return;
-
 		//保存之前
 		if(bc.contract4ChargerForm.beforeSave($form)==false)
 			return;
-
 		//调用标准的方法执行保存
 		bc.page.save.call(this,{callback: function(json){
 			if(json.success){
@@ -388,16 +577,17 @@ bc.contract4ChargerForm = {
 	warehousing:function(){
 		
 		var $form = $(this);
-		//status=0为正常状态
-		$form.find(":input[name='e.status']").val("0");
 		//表单验证
 		if(!bc.validator.validate($form))
 			return;
 		//保存之前
 		if(bc.contract4ChargerForm.beforeSave($form)==false)
 			return;
+		bc.msg.confirm("是否入库？",function(){
+		//status=0为正常状态
+		$form.find(":input[name='e.status']").val("0");
 		//调用标准的方法执行保存
-		bc.page.save.call(this,{callback: function(json){
+		bc.page.save.call($form,{callback: function(json){
 			if(json.success){
 				bc.msg.slide("入库成功！");
 				$form.dialog("close");
@@ -406,10 +596,46 @@ bc.contract4ChargerForm = {
 			}
 			return false;
 		}});
-
+		});
 	},
 	//保存之前的操作
 	beforeSave:function($page){
+		
+		//收费明细合并到隐藏域
+		var feeDetails=[];
+		//将收费明细表中的内容添加到buyPlants里
+		$page.find("#feeDetailTables tr:gt(1)").each(function(){
+			var $inputs = $(this).find("td>:input");
+			var $divInput= $(this).find("td>div>input");
+			logger.info("name:"+$inputs[0].value);
+			logger.info("price:"+$inputs[1].value);
+			logger.info("count:"+$inputs[2].value);
+			logger.info("payType:"+$inputs[3].value);
+			logger.info("startDate:"+$divInput[0].value);
+			logger.info("endDate:"+$divInput[1].value);
+			logger.info("description:"+$inputs[4].value);
+			var json = {
+				name: $inputs[0].value,
+				price: $inputs[1].value,
+				count: $inputs[2].value,
+				payType: $inputs[3].value,
+				startDate: $divInput[0].value,
+				endDate: $divInput[1].value,
+				description: $inputs[4].value
+			};
+			var id = $(this).attr("data-id");
+			if(id && id.length > 0)
+				json.id = id;
+			feeDetails.push(json);
+		});
+		$page.find(":input[name='feeDetails']").val($.toJSON(feeDetails));
+		//表单验证
+		$feeDetailTables=$page.find("#feeDetailTables tr");
+		
+		if(!bc.validator.validate($feeDetailTables))
+			return;
+
+		
 
 		//先将角色的id合并到隐藏域
 		var ids=[];
@@ -438,138 +664,147 @@ bc.contract4ChargerForm = {
 			}
 		};
 
-	}
-	
-
-/**		
-		// 选择司机责任人
-		//需要组装的li
-		var liTpl = '<li class="horizontal ui-widget-content ui-corner-all ui-state-highlight" data-id="{0}">'+
-		'<span class="text">{1}</span>'+
-		'<span class="click2remove verticalMiddle ui-icon ui-icon-close" title={2}></span></li>';
-		var ulTpl = '<ul class="horizontal"></ul>';
-		var title = $form.find("#assignChargers").attr("data-removeTitle");
-		
-		$form.find("#addChargers").click(function() {
-			var $ul = $form.find("#assignChargers ul");
-			var $lis = $ul.find("li");
-
-			bs.selectCharger({
-				multiple : true,
-				onOk : function(chargers) {
-					//onOk : function(charger) {  未修改选择司机责任人方法的时候chargers传进来是单个对象所以要转成数组遍历
-					//var chargers = [charger];
-					if(chargers.length > 2){
-						bc.msg.slide("最多只能选择两个,请筛选!");
-					}else if(chargers.length == 2){
-						$ul.empty();
-						$.each(chargers,function(i,charger){
-							var index = i+1;
-							var cid	 = "e.changerId"+index;
-							var cname = "e.changerName"+index;
-							//组装并加入对应的值
-							var $liObj = $(liTpl.format(charger.id,charger.name,title)).appendTo($ul);
-							
-							bc.contractChargerForm.setup($form,$liObj,cid,cname);
-							
-							$form.find(":input[name='"+cid+"']").val(charger.id);
-							$form.find(":input[name='"+cname+"']").val(charger.name);
-							
-							if(i == 1)
-								return false;
-						});
-					}else if(chargers.length == 1){
-						var $lis = $ul.children();
-						var index;
-						var cid,cname;
-						if($lis.size() <= 1){
-							//加一个
-							index = $lis.size() ==0 ? 1 :2;
-							cid	 = "e.changerId"+index;
-							cname = "e.changerName"+index;
-						}else{
-							//删除最后那个
-							index = 2;
-							cid	 = "e.changerId"+index;
-							cname = "e.changerName"+index;
-							$($lis[1]).remove();
-							$form.find(":input[name='"+cid+"']").val("");
-							$form.find(":input[name='"+cname+"']").val("");
-						}
-						
-						//加上去
-						var charger = chargers[0];
-						var $liObj = $(liTpl.format(charger.id,charger.name,title)).appendTo($ul);
-						
-						bc.contractChargerForm.setup($form,$liObj,cid,cname);
-						
-						$form.find(":input[name='"+cid+"']").val(charger.id);
-						$form.find(":input[name='"+cname+"']").val(charger.name);
-					}
-						
-				}
-			});
-		});
-		
-		//绑定查看,删除责任人的按钮事件处理
-		var $objs = $form.find('.horizontal').children('span.text');
-		$.each($objs,function(i,obj){
-			//绑定查看
-			$(obj).click(function(){
-				bc.page.newWin({
-					url: bc.root + "/bc-business/carMan/edit?id="+$(obj).parent().attr('data-id'),
-					name: "查看责任人信息",
-					mid:  "viewCharger"
-				})
-			});
-			
-			//绑定删除
-			$(obj).next().click(function(){
-				var id = $(this).parent().attr('data-id');
-				$form.find(":input[value='"+id+"']").next().val("");
-				$form.find(":input[value='"+id+"']").val("");
-				$(this).parent().remove();
-			});
-		});
-		
-		//绑定删除责任人的按钮事件处理
-		//$form.find("span.click2remove").click(function(){
-		//	$(this).parent().remove();
-		//});
-		
 	},
-	//保存的处理
-	save : function(){
-		$page = $(this);
-		if(($page.find(":input[name='e.changerId1']").val().length > 0 &&
-			$page.find(":input[name='e.changerId1']").val().length != null) ||
-			($page.find(":input[name='e.changerId2']").val().length > 0 &&
-			$page.find(":input[name='e.changerId2']").val().length != null)
-			){
-			//调用标准的方法执行保存
-			bc.page.save.call(this);
-		}else{
-			bc.msg.slide("最少选择一个责任人！");
+	/**收费明细表格中插入input控件
+	 * @option {string} name 单元格的name属性值
+	 * @option {Object} value 单元格的json值
+	 * @option {Boolean} readonly 单元格是否只读
+	 * @option {Boolean} isFirst 单元格是列头
+	 */
+
+	 buildInput : function(name,value,readonly,isFirst){
+		//正常
+		var s = '<input style="width:99%;height:100%;border:none;margin:0;padding:0 0 0 2px;background:none;';
+		if(isFirst){
+			s='<span class="ui-icon"></span><input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;'
+			s += 'background:none;';
 		}
+		//金额的样式
+		if(name=="price"){
+			s += '" name="' + name + '" type="text" class="ui-widget-content" value="' +bc.formatNumber(value,'#,##0.##')+ '"';
+		}else{
+			s += '" name="' + name + '" type="text" class="ui-widget-content" value="' + value + '"';
+		}
+		
+		
+		//s += '" name="' + name + '" type="text" class="ui-widget-content" value="' + value + '"';
+		if(readonly){
+			s += ' readonly="' + readonly + '"';
+		}
+		s += '/>';
+		return s;
 	},
 	
-	setup : function(page,obj,cid,cname){
-		var $form  = page;
-		var $liObj = obj;
-		//绑定删除事件
-		$liObj.find("span.click2remove").click(function(){
-			$form.find(":input[name='"+cid+"']").val("");
-			$form.find(":input[name='"+cname+"']").val("");
-			$(this).parent().remove();
-		});
-		//绑定查看事件
-		$liObj.find("span.text").click(function(){
-			bc.page.newWin({
-				url: bc.root + "/bc-business/carMan/edit?id="+charger.id,
-				name: "查看责任人信息",
-				mid:  "viewCharger"
-			})
-		});
+	/**收费明细表格中插入select控件
+	 * @option {string} name 单元格的name属性值
+	 * @option {Object} value 单元格的json值
+	 *
+	 */
+buildSelect : function (value){
+		var s='<select name="payType" id="edit_payType" class="ui-widget-content" data-validate="required" style="border:none;">';
+		(value==''? s+='  <option value="" selected="selected"></option>':s+='  <option value="" ></option>');
+		(value==1? s+='  <option value="1" selected="selected">每月</option>':s+='  <option value="1" >每月</option>');
+		(value==2? s+='  <option value="2" selected="selected">每季</option>':s+='  <option value="2" >每季</option>');
+		(value==3? s+='  <option value="3" selected="selected">每年</option>':s+='  <option value="3" >每年</option>');
+		(value==4? s+='  <option value="4" selected="selected">一次性</option>':s+='  <option value="4" >一次性</option>');
+		s+="</select>"
+		return s;
+	},
+	
+	
+	/**添加收费明细行数据
+	 * @option  tableEl 表格
+	 * @option  selectFeeTemplate json对象
+	 * @option  sDate开始日期
+	 * @option  eDate 结束日期 
+	 * @option  price 金额
+	 *
+	 */
+	addFeeDetailData : function (tableEl,selectFeeTemplate,sDate,eDate,price){
+		//插入行
+		var newRow=tableEl.insertRow(tableEl.rows.length);
+		newRow.setAttribute("class","ui-widget-content row");
+		//插入列
+		var cell=newRow.insertCell(0);
+		cell.style.padding="0";
+		cell.style.textAlign="left";
+		cell.style.width="130px"; 
+		cell.setAttribute("class","id first");
+		cell.innerHTML=bc.contract4ChargerForm.buildInput("name",selectFeeTemplate.name,true,true);//插入项目
+		
+		cell=newRow.insertCell(1);
+		cell.style.padding="0";
+		cell.style.textAlign="left";
+		cell.setAttribute("class","middle");
+		cell.style.width="105px"; 
+		cell.innerHTML=bc.contract4ChargerForm.buildInput("price",price);//插入金额
+		
+		cell=newRow.insertCell(2);
+		cell.style.padding="0";
+		cell.style.textAlign="left";
+		cell.setAttribute("class","middle");
+		cell.style.width="50px"; 
+		cell.innerHTML=bc.contract4ChargerForm.buildInput("count",selectFeeTemplate.count);//插入数量
+
+		cell=newRow.insertCell(3);
+		cell.style.padding="0";
+		cell.style.textAlign="left";
+		cell.setAttribute("class","middle");
+		cell.style.width="85px"; 
+		cell.innerHTML=bc.contract4ChargerForm.buildSelect(selectFeeTemplate.payType);//插入收费方式
+		
+		cell=newRow.insertCell(4);
+		cell.style.padding="0";
+		cell.style.textAlign="left";
+		cell.style.borderRight="1px";
+		cell.setAttribute("class","middle");
+		cell.style.width="100px";
+//		cell.innerHTML=bc.contract4ChargerForm.buildInput("startDate",sDate);//插入开始期限
+		cell.innerHTML='<div class="relative">'
+			+'	<input type="text" name="startDate" data-validate=\'{"type":"date","required":false}\' value="'+sDate+'"'
+			+'  style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;background:none;" class="bc-date ui-widget-content" >'
+			+'	<ul class="inputIcons">'
+			+'		<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>'
+			+'	</ul>'
+			+'</div>';//插入开始期限
+		//绑定日期选择
+		bc.form.initCalendarSelect($(cell));
+
+
+		cell=newRow.insertCell(5);
+		cell.style.padding="0";
+		cell.style.textAlign="left";
+		cell.style.borderRight="1px";
+		cell.style.borderLeft="1px";
+		cell.setAttribute("class","middle");
+		cell.style.width="15px";
+		cell.innerHTML="~";//~
+
+		
+		cell=newRow.insertCell(6);
+		cell.style.padding="0";
+		cell.style.textAlign="left";
+		cell.style.borderLeft="1px";
+		cell.setAttribute("class","middle");
+//		cell.innerHTML=bc.contract4ChargerForm.buildInput("description",eDate);//插入结束期限
+		cell.style.width="100px";
+		cell.innerHTML='<div class="relative">'
+			+'	<input type="text" name="startDate" data-validate=\'{"type":"date","required":false}\' value="'+eDate+'"'
+			+'  style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;background:none;" class="bc-date ui-widget-content" >'
+			+'	<ul class="inputIcons">'
+			+'		<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>'
+			+'	</ul>'
+			+'</div>';//插入结束期限
+		//绑定日期选择
+		bc.form.initCalendarSelect($(cell));
+
+
+		cell=newRow.insertCell(7);
+		cell.style.padding="0";
+		cell.style.textAlign="left";
+		cell.setAttribute("class","middle");
+		cell.innerHTML=bc.contract4ChargerForm.buildInput("description",selectFeeTemplate.desc);//插入备注
 	}
-**/
+	
+
 };

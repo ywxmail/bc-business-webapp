@@ -10,12 +10,12 @@ bs.feeTemplateSelectDialog = {
 			bc.msg.alert("请先选择！");
 			return false;
 		}
-		
-		//var $trs = $grid.find(">.data>.left tr.ui-state-highlight");
+		var $trs = $page.find("..bc-grid>.data>.right tr.ui-state-highlight");
 		var pid='';
 		var datap=[];
 		var $right = $($tds[0]).closest(".left").siblings();
 		$tds.each(function(i){
+			var $tr = $($trs.get(i));
 			var $this = $(this);
 			var index = $this.parent().index();
 			var $row = $right.find("tr.row:eq("+index+")");
@@ -31,14 +31,14 @@ bs.feeTemplateSelectDialog = {
 				var count = $row.find("td:eq(5)").text();
 				var payType = $row.find("td:eq(6)").attr("data-value");
 				var desc = $row.find("td:eq(7)").text();
-				datap.push({
+				datap.push($.extend({
 					id: id,
 					name:name,
 					price:price,
 					count:count,
 					payType:payType,
 					desc:desc
-				});
+				},$tr.data("hidden")));
 			}
 		});
 		
@@ -46,7 +46,6 @@ bs.feeTemplateSelectDialog = {
 		
 		//选择模板后到服务器获取属于这一模板的险种
 		var url=bc.root +"/bc-business/selectTemplateWithFeeTemplate/selectFeeTemplates?pid="+pid;
-		
 		if(pid!=''){
 			$.ajax({
 				  url: url,
@@ -60,13 +59,15 @@ bs.feeTemplateSelectDialog = {
 						  	var count=feeTemplates[i].count;
 						  	var payType=feeTemplates[i].payType;
 						  	var desc=feeTemplates[i].desc;
+						  	var spec=feeTemplates[i].spec;
 						  	datat.push({
 								id: id,//id
 								name:name,
 								price:price,
 								count:count,
 								payType:payType,
-								desc:desc
+								desc:desc,
+								spec:spec
 							});
 						}
 						// 返回
