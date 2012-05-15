@@ -7,7 +7,7 @@ bc.socialSecurityRuleForm = {
 		
 		//绑定使用区域小按钮事件
 		$form.find("#selectArea").click(function(){
-			bs.selectPlaceOrigin({
+			bc.selectPlaceOrigin({
 				types:'2',
 				onOk: function(json){
 					$form.find(":input[name='e.areaName']").val(json.fullname);
