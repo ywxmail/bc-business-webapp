@@ -805,7 +805,20 @@ buildSelect : function (value){
 		cell.style.textAlign="left";
 		cell.setAttribute("class","middle");
 		cell.innerHTML=bc.contract4ChargerForm.buildInput("description",selectFeeTemplate.desc);//插入备注
-	}
+	},
 	
+	/** 从模板添加附件 */
+	addAttachFromTemplate: function(){
+		logger.info("addAttachFromTemplate");
+		bc.ajax({
+			url: bc.root + "/bc-business/contract4Charger/addAttachFromTemplate",
+			dataType: "json",
+			data: {id: $page.find(":input[name='e.id']").val(),tpl: ["testWordTpl1:1"]},
+			success: function(jsons){
+				logger.info("addAttachFromTemplate result=" + $.toJSON(jsons));
 
+				return false;
+			}
+		});
+	}
 };
