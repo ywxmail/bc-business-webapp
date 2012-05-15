@@ -153,19 +153,34 @@
 									</td>
 								</tr>
 								<tr>
-									<td class="label"><s:text name="contract4Charger.paymentDate"/>:</td>
-									<td class="value">
-										<s:select name="e.paymentDate" list="paymentDates" listKey="key" listValue="value" headerKey="" headerValue=""
-										 cssClass="ui-widget-content"/>
-									</td>
 									<s:if test="%{scrapToPower}">
 										<td class="label"><s:text name="contract4Charger.scrapTo"/>:</td>
 										<td class="value">
 											<s:select name="e.scrapTo" list="scrapToList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content" ></s:select>
 										</td>
+										<td class="label"><s:text name="contract4Charger.paymentDate"/>:</td>
+										<td class="value">
+											<s:select name="e.paymentDate" list="paymentDates" listKey="key" listValue="value" headerKey="" headerValue=""
+											 cssClass="ui-widget-content"/>
+										</td>
 									</s:if>
+									<s:else>
+										<td class="label"><s:text name="contract4Charger.paymentDate"/>:</td>
+										<td class="value">
+											<s:select name="e.paymentDate" list="paymentDates" listKey="key" listValue="value" headerKey="" headerValue=""
+											 cssClass="ui-widget-content"/>
+										</td>
+										<td></td>
+										<td class="label" style="text-align: right;">
+											<s:checkbox name="e.takebackOrigin" cssStyle="width:1em;"/>
+											<s:text name="contract4Charger.takebackOrigin"/>
+											<s:checkbox name="e.includeCost" cssStyle="width:1em;" />
+											<s:text name="contract4Charger.includeCost"/>
+										</td>
+									</s:else>
 								</tr>
 								<tr>
+								<s:if test="%{scrapToPower}">
 									<td></td>
 									<td></td>
 									<td></td>
@@ -175,7 +190,7 @@
 										<s:checkbox name="e.includeCost" cssStyle="width:1em;" />
 										<s:text name="contract4Charger.includeCost"/>
 									</td>
-								
+								</s:if>
 								</tr>
 							</s:if>
 							<s:else>
@@ -198,13 +213,24 @@
 											<s:select name="e.scrapTo" list="scrapToList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content" ></s:select>
 										</td>
 									<td></td>
-									</s:if>
 									<td class="label" style="text-align: right;">
 										<s:checkbox name="e.takebackOrigin" cssStyle="width:1em;"/>
 										<s:text name="contract4Charger.takebackOrigin"/>
 										<s:checkbox name="e.includeCost" cssStyle="width:1em;" />
 										<s:text name="contract4Charger.includeCost"/>
 									</td>
+									</s:if>
+									<s:else>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td class="label" style="text-align: right;">
+										<s:checkbox name="e.takebackOrigin" cssStyle="width:1em;"/>
+										<s:text name="contract4Charger.takebackOrigin"/>
+										<s:checkbox name="e.includeCost" cssStyle="width:1em;" />
+										<s:text name="contract4Charger.includeCost"/>
+									</td>
+									</s:else>
 								</tr>
 								
 							</s:else>
@@ -248,7 +274,7 @@
 					</div> -->
 					<!-- 收费明细 -->
 					<div class="ui-widget-content" style="border-width:1px 0 0 0;margin-bottom:8px;width: 100%;">
-						<div class="ui-widget-header title" style="position:relative;border-width: 0;padding: 0.25em;">
+						<div class="ui-widget-header title" style="position:relative;border-width:0!important;">
 							<span class="text"><s:text name="contract.fee.detail"/>：</span>
 							<ul class="inputIcons">
 								<li id="selectFeeTemplate" class="inputIcon ui-icon ui-icon-circle-plus"
@@ -296,7 +322,7 @@
 									</label>
 								</s:if>
 								<s:else>
-									<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" 
+									<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;background:none;"type="text" class="ui-widget-content" 
 										value='<s:property value="%{getText('bs.format.numberRMB',{price})}"/>' data-validate="required"/>
 								</s:else>
 								</td>
@@ -306,7 +332,7 @@
 										value="%{getText(count)}"/>
 								</s:if>
 								<s:else>
-									<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" 
+									<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;background:none;"type="text" class="ui-widget-content" 
 										value='<s:property value="%{getText(count)}"/>' data-validate="required"/>
 								</s:else>
 								</td>
@@ -324,7 +350,7 @@
 								<s:if test="canCopy"><s:date format="yyyy-MM-dd" name="startDate"/></s:if>
 								<s:else>
 									<div class="relative">
-										<input type="text" name="startDate" data-validate='{"type":"date","required":false}' style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"
+										<input type="text" name="startDate" data-validate='{"type":"date","required":false}' style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;background:none;"
 										value='<s:date format="yyyy-MM-dd" name="startDate" />'
 										class="bc-date ui-widget-content" />
 										<ul class="inputIcons">
@@ -338,7 +364,7 @@
 								<s:if test="canCopy"><s:date format="yyyy-MM-dd" name="endDate" /></s:if>
 								<s:else>
 									<div class="relative">
-										<input type="text" name="endDate" data-validate='{"type":"date","required":false}' style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"
+										<input type="text" name="endDate" data-validate='{"type":"date","required":false}' style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;background:none;"
 										value='<s:date format="yyyy-MM-dd" name="endDate" />'
 										class="bc-date ui-widget-content" />
 										<ul class="inputIcons">
@@ -353,7 +379,7 @@
 										 	value="%{description}"/>
 								</s:if>
 								<s:else>
-									<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content"
+									<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;background:none;"type="text" class="ui-widget-content"
 										 value='<s:property value="description"/>'/>
 								 </s:else>
 								</td>
