@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div title='<s:text name="socialSecurityRule.title"/>' data-type='form' class="bc-page"
 	data-saveUrl='<s:url value="/bc-business/socialSecurityRule/save" />'
-	data-js='<s:url value="/bc/libs/select.js" />,<s:url value="/bc-business/socialSecurityRule/form.js" />,<s:url value="/bc-business/bs.js" />'
+	data-js='<s:url value="/bc/libs/select.js" />,<s:url value="/bc-business/socialSecurityRule/form.js" />,<s:url value="/bc/placeOrigin/placeOrigin.js" />'
 	data-initMethod='bc.socialSecurityRuleForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="socialSecurityRuleForm" theme="simple">	
