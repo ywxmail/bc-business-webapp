@@ -167,14 +167,14 @@ bc.contract4ChargerForm = {
 		//}
 		
 		//绑定失去焦点自编号唯一性检测
-		var $code = $form.find(":input[name='e.code']");
-		$code.bind("blur",function(){
-			var code = $code.val();
-			if(!code || code.length == 0)
-				return false;
-			
-			bc.contract4ChargerForm.checkCode($form.find(":input[name='e.id']").val(),$code,null);
-		});
+//		var $code = $form.find(":input[name='e.code']");
+//		$code.bind("blur",function(){
+//			var code = $code.val();
+//			if(!code || code.length == 0)
+//				return false;
+//			
+//			bc.contract4ChargerForm.checkCode($form.find(":input[name='e.id']").val(),$code,null);
+//		});
 		
 	
 	//收费明细
@@ -583,6 +583,11 @@ bc.contract4ChargerForm = {
 		//保存之前
 		if(bc.contract4ChargerForm.beforeSave($form)==false)
 			return;
+//		//绑定失去焦点自编号唯一性检测
+//		var $code = $form.find(":input[name='e.code']");
+//		if(bc.contract4ChargerForm.checkCode($form.find(":input[name='e.id']").val(),$code,null)==false);
+//			return;
+		
 		bc.msg.confirm("是否入库？",function(){
 		//status=0为正常状态
 		$form.find(":input[name='e.status']").val("0");
@@ -652,17 +657,17 @@ bc.contract4ChargerForm = {
 			return false;
 		}
 		
-		//唯一性检测
-		var option = { callback : function (json){
-				if(json.success){
-					bc.msg.slide(json.msg);
-					$page.dialog("close");
-				}else{
-					bc.msg.alert(json.msg);
-				}
-				return false;
-			}
-		};
+//		//唯一性检测
+//		var option = { callback : function (json){
+//				if(json.success){
+//					bc.msg.slide(json.msg);
+//					$page.dialog("close");
+//				}else{
+//					bc.msg.alert(json.msg);
+//				}
+//				return false;
+//			}
+//		};
 
 	},
 	/**收费明细表格中插入input控件

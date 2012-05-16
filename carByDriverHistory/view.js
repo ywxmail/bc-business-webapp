@@ -1,27 +1,5 @@
 if(!window['bs'])window['bs']={};
-bs.carManView = {
-	/** 使用服务资格证到出租协会网查询信誉档案 */
-	gztaxixhDriverInfo : function(option) {
-		var $page = $(this);
-		
-		// 确定选中的行
-		var $trs = $page.find(">.bc-grid>.data>.right tr.ui-state-highlight");
-		if($trs.length > 1){
-			bc.msg.slide("一次只能查询一个司机！");
-			return;
-		}
-		
-		// 服务资格证号
-		var v = $($trs[0]).children("td[data-column='m.cert_fwzg']").attr("data-value");
-
-		// 打开查询窗口
-		bc.page.newWin({
-			mid: "gztaxixhDriverInfo" + v,
-			name: "出租协会" + (v ? " - " + v : ""),
-			url: bc.root + "/bc-business/gztaxixh/driverInfo",
-			data: {value: (v ? v : "")}
-		});
-	},
+bs.carByDriverHistoryView = {
 	//删除草稿
 	delete_: function(option) {
 		option = option || {};
@@ -41,18 +19,24 @@ bs.carManView = {
 		var $tr = $page.find(".bc-grid>.data>.right tr.ui-state-highlight");
 		var $trs = $page.find(".bc-grid>.data>.right tr.ui-state-highlight");
 		if($tds.length == 1){
+			var statusValue=$.evalJSON($tr.attr("data-hidden"));
+			if(statusValue.status){
 			//如果不是草稿状态的返回[status=-1:草稿]
-			if(-1 != $tr.find("td:eq(0)").attr("data-value")){
-				bc.msg.alert("只能删除草稿状态的司机！");
+			if(-1 != statusValue.status){
+				bc.msg.alert("只能删除草稿状态的迁移记录！");
 				return;
 			}else{
 				data = "id=" + $tds.attr("data-id");
+			}
+			}else{
+				bc.msg.alert("只能删除草稿状态司机的迁移记录");
+				return;
 			}
 		}else if($tds.length > 1){
 			data = "ids=";
 			//如果不是草稿状态的返回[status=-1:草稿]
 			if(-1 != $($trs.get(0)).find("td:eq(0)").attr("data-value")){
-				bc.msg.alert("只能删除草稿状态的司机！");
+				bc.msg.alert("只能删除草稿状态的迁移记录！");
 				return;
 			}else{
 			$tds.each(function(i){
