@@ -14,7 +14,7 @@
                 <ul class="tabs ui-helper-reset">
 				    <li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">车辆明细</a></li>
 					<li class="tab ui-widget-content"><a href= "#otherFormFields2" class="ui-state-default">注销信息</a></li>
-					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/carByDriverHistorys/list?carId=%{e.id}" />' class="ui-state-default">迁移记录</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/carByDriverHistorys/list?carId=%{e.id}&status4tab=%{e.status}" />' class="ui-state-default">迁移记录</a></li>
 					<!--<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/carByDrivers/list?carId=%{e.id}"/>' class="ui-state-default">营运司机</a></li>-->
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contract4Chargers/list?carId=%{e.id}" />' class="ui-state-default">经济合同</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/contract4Labours/list?carId=%{e.id}" />' class="ui-state-default">劳动合同</a></li>
@@ -77,7 +77,7 @@
 							<tr>
 								<td class="label" >*<s:text name="car.company2"/>:</td>
 								<td class="value" >
-									<s:select name="e.company" list="companyList" listKey="value" listValue="value" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" disabled="%{!e.isNew()}"></s:select>
+									<s:select name="e.company" list="companyList" listKey="value" listValue="value" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" disabled="%{!e.isNew()&&e.status!=-1}"></s:select>
 								</td>
 								<td class="label" >*<s:text name="car.businessType"/>:</td>
 								<td class="value" >
@@ -87,7 +87,7 @@
 							<tr>
 								<td class="label" >*<s:text name="car.motorcade"/>:</td>
 								<td class="value" >
-									<s:select name="e.motorcade.id" list="motorcadeList" listKey="key" listValue="value" value="e.motorcade.id" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" disabled="%{!e.isNew()}"></s:select>
+									<s:select name="e.motorcade.id" list="motorcadeList" listKey="key" listValue="value" value="e.motorcade.id" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" disabled="%{!e.isNew()&&e.status!=-1}"></s:select>
 								</td>
 								<td class="label" >*<s:text name="car.vin"/>:</td>
 								<td class="value" >

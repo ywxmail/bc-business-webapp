@@ -67,7 +67,7 @@
 							</tr>
 							<tr>
 <!-- -   ----------------------------------   责任人                                         -->
-								<td class="label"><s:text name="contract4Charger.charger"/>:</td>
+								<td class="label">*<s:text name="contract4Charger.charger"/>:</td>
 								<td class="value relative">
 									<!--<s:textfield name="drivers" cssClass="ui-widget-content" readonly="true"/>
 									<ul class="inputIcons">

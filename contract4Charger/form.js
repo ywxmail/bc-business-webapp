@@ -167,14 +167,14 @@ bc.contract4ChargerForm = {
 		//}
 		
 		//绑定失去焦点自编号唯一性检测
-		var $code = $form.find(":input[name='e.code']");
-		$code.bind("blur",function(){
-			var code = $code.val();
-			if(!code || code.length == 0)
-				return false;
-			
-			bc.contract4ChargerForm.checkCode($form.find(":input[name='e.id']").val(),$code,null);
-		});
+//		var $code = $form.find(":input[name='e.code']");
+//		$code.bind("blur",function(){
+//			var code = $code.val();
+//			if(!code || code.length == 0)
+//				return false;
+//			
+//			bc.contract4ChargerForm.checkCode($form.find(":input[name='e.id']").val(),$code,null);
+//		});
 		
 	
 	//收费明细
@@ -372,11 +372,6 @@ bc.contract4ChargerForm = {
 			dataType:"json",
 			data: {code : $code.val(),excludeId: excludeId},
 			success: function (json){
-				// 自定义回调函数
-				if(typeof callback == "function"){
-					return callback.call(this,json);
-				}
-				
 				// 默认的处理
 				if(json.isExist == "true"){ //合同编号存在
 					//组装提示查看信息
@@ -396,6 +391,15 @@ bc.contract4ChargerForm = {
 						})
 						$a.dialog("close");
 					});
+					// 自定义回调函数
+					if(typeof callback == "function"){
+						return callback.call(this,false);
+					}
+				}else{
+					// 自定义回调函数
+					if(typeof callback == "function"){
+						return callback.call(this,true);
+					}
 				}
 			}
 		});
@@ -577,26 +581,36 @@ bc.contract4ChargerForm = {
 	warehousing:function(){
 		
 		var $form = $(this);
-		//表单验证
-		if(!bc.validator.validate($form))
-			return;
-		//保存之前
-		if(bc.contract4ChargerForm.beforeSave($form)==false)
-			return;
-		bc.msg.confirm("是否入库？",function(){
-		//status=0为正常状态
-		$form.find(":input[name='e.status']").val("0");
-		//调用标准的方法执行保存
-		bc.page.save.call($form,{callback: function(json){
-			if(json.success){
-				bc.msg.slide("入库成功！");
-				$form.dialog("close");
+		//绑定失去焦点自编号唯一性检测
+		var $code = $form.find(":input[name='e.code']");
+		bc.contract4ChargerForm.checkCode($form.find(":input[name='e.id']").val(),$code,function(sucess){
+			//如果存在相同编号就返回
+			if(!sucess){
+				return;
 			}else{
-				bc.msg.alert(json.msg);
+				//表单验证
+				if(!bc.validator.validate($form))
+					return;
+				//保存之前
+				if(!bc.contract4ChargerForm.beforeSave($form))
+					return;
+				bc.msg.confirm("是否入库？",function(){
+				//status=0为正常状态
+				$form.find(":input[name='e.status']").val("0");
+				//调用标准的方法执行保存
+				bc.page.save.call($form,{callback: function(json){
+					if(json.success){
+						bc.msg.slide("入库成功！");
+						$form.dialog("close");
+					}else{
+						bc.msg.alert(json.msg);
+					}
+					return false;
+				}});
+				});	
 			}
-			return false;
-		}});
 		});
+
 	},
 	//保存之前的操作
 	beforeSave:function($page){
@@ -635,8 +649,6 @@ bc.contract4ChargerForm = {
 		if(!bc.validator.validate($feeDetailTables))
 			return;
 
-		
-
 		//先将角色的id合并到隐藏域
 		var ids=[];
 		var names=[];
@@ -647,22 +659,12 @@ bc.contract4ChargerForm = {
 		if(names != null && names.length > 0){
 			$page.find(":input[name=assignChargerIds]").val(ids.join(","));
 			$page.find(":input[name=assignChargerNames]").val(names.join(","));
+			return true;
 		}else{
 			bc.msg.alert("最少选择一个责任人！");
 			return false;
 		}
 		
-		//唯一性检测
-		var option = { callback : function (json){
-				if(json.success){
-					bc.msg.slide(json.msg);
-					$page.dialog("close");
-				}else{
-					bc.msg.alert(json.msg);
-				}
-				return false;
-			}
-		};
 
 	},
 	/**收费明细表格中插入input控件
