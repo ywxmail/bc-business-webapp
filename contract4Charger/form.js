@@ -811,67 +811,9 @@ buildSelect : function (value){
 		var $atm = $(this)
 		var $page = $atm.closest(".bc-page");
 		var id = $page.find(":input[name='e.id']").val();
-		if(!id || id.length == 0){
-			bc.msg.alert("要从模板添加附件，请先保存经济合同信息！");
-			return false;
-		}
-		var tpl="testWordTpl1";
-		logger.info("addAttachFromTemplate:" + $page.size());
-		
-		// 选择模板
-		bc.selectTemplate({
-			category: "test/aa",
-			multiple: true,
-			onOk: function(tpls){
-			    //显示所有要添加的模板
-			    var f;
-			    var batchNo = "k" + new Date().getTime() + "-";//批号
-			    for(var i=0;i<tpls.length;i++){
-			    	f=tpls[i];
-					//上传进度显示
-					var attach = bc.attach.tabelTpl.format(f.size,bc.attach.getSizeInfo(f.size),f.path.substr(f.path.lastIndexOf(".")+1).toLowerCase(),f.subject);
-					$(attach).attr("data-tpl",batchNo+i).insertAfter($atm.find(".header")).find(".progressbar").progressbar();
-			    }
-			    
-			    //逐一处理模板
-			    var $newAttachs = $atm.find(".attach[data-tpl]");//含有data-tpl属性的代表还没处理
-			    var $totalCount = $atm.find("#totalCount");
-				var $totalSize = $atm.find("#totalSize");
-			    for(var i=0;i<tpls.length;i++){
-			    	var $attach = $newAttachs.filter("[data-tpl='" + batchNo+i + "']");
-			    	var $progressbar = $attach.find(".progressbar");
-			    	f=tpls[i];
-					bc.ajax({
-						url: bc.root + "/bc-business/contract4Charger/addAttachFromTemplate",
-						dataType: "json",
-						data: {id: id, tpl:f.code + ":" + f.version},
-						success: function(json){
-							logger.info("addAttachFromTemplate result=" + $.toJSON(json));
-							//附件总数加一
-							$totalCount.text(parseInt($totalCount.text()) + 1);
-							
-							//附件总大小添加该附件的部分
-							var newSize = parseInt($totalSize.attr("data-size")) + f.size;
-							$totalSize.attr("data-size",newSize).text(bc.attach.getSizeInfo(newSize));
-							
-							//删除进度条、显示附件操作按钮（延时1秒后执行）
-							setTimeout(function(){
-								var tds = $progressbar.parent();
-								var $operations = tds.next();
-								tds.remove();
-								$operations.empty().append(bc.attach.operationsTpl);
-								
-								$attach.attr("data-id",json.id)
-									.attr("data-name",json.subject)
-									.attr("data-url",bc.root + "/bc/attach/download?id=" + json.id)
-									.removeAttr("data-tpl");
-							},1000);
-
-							return false;
-						}
-					});
-			    }
-			}
+		bc.addAttachFromTemplate($atm, id, bc.root + "/bc-business/contract4Charger/addAttachFromTemplate",{
+			category: "合同附件",
+			multiple: true
 		});
 	}
 };
