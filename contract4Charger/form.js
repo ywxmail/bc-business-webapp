@@ -810,17 +810,12 @@ buildSelect : function (value){
 	
 	/** 从模板添加附件 */
 	addAttachFromTemplate: function(){
-		var $page = $(this).closest(".bc-page");
-		logger.info("addAttachFromTemplate:" + $page.size());
-		bc.ajax({
-			url: bc.root + "/bc-business/contract4Charger/addAttachFromTemplate",
-			dataType: "json",
-			data: {id: $page.find(":input[name='e.id']").val(),tpl: "testWordTpl1:1"},
-			success: function(jsons){
-				logger.info("addAttachFromTemplate result=" + $.toJSON(jsons));
-
-				return false;
-			}
+		var $atm = $(this)
+		var $page = $atm.closest(".bc-page");
+		var id = $page.find(":input[name='e.id']").val();
+		bc.addAttachFromTemplate($atm, id, bc.root + "/bc-business/contract4Charger/addAttachFromTemplate",{
+			category: "合同附件",
+			multiple: true
 		});
 	}
 };
