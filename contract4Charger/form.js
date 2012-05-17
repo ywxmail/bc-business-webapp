@@ -812,7 +812,7 @@ buildSelect : function (value){
 		var $page = $atm.closest(".bc-page");
 		var id = $page.find(":input[name='e.id']").val();
 		bc.addAttachFromTemplate($atm, id, bc.root + "/bc-business/contract4Charger/addAttachFromTemplate",{
-			category: "合同附件",
+			category: "经济合同附件模板",
 			multiple: true
 		});
 	}

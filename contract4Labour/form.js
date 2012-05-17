@@ -458,5 +458,16 @@ bc.contract4LabourForm = {
 			return false;
 		}});
 		});
+	},
+	
+	/** 从模板添加附件 */
+	addAttachFromTemplate: function(){
+		var $atm = $(this)
+		var $page = $atm.closest(".bc-page");
+		var id = $page.find(":input[name='e.id']").val();
+		bc.addAttachFromTemplate($atm, id, bc.root + "/bc-business/contract4Labour/addAttachFromTemplate",{
+			category: "劳动合同附件模板",
+			multiple: true
+		});
 	}
 };

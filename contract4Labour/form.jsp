@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div title='<s:text name="contract4Labour.title"/> - v<s:property value="e.verMajor" />.<s:property value="e.verMinor" />' data-type='form' class="bc-page"
 	data-saveUrl='<s:url value="/bc-business/contract4Labour/save" />'
-	data-js='js:editor,js:bc_identity,<s:url value="/bc-business/bs.js" />,<s:url value="/bc-business/contract4Labour/form.js" />'
+	data-js='js:editor,js:bc_identity,<s:url value="/bc/template/template.js" />,<s:url value="/bc-business/bs.js" />,<s:url value="/bc-business/contract4Labour/form.js" />'
 	data-initMethod='bc.contract4LabourForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow:hidden;">
 	<s:form name="contract4LabourForm" theme="simple" cssClass="bc-form">
@@ -12,8 +12,8 @@
            	 	<div class="slideContainer">
 					<ul class="tabs ui-helper-reset">
 						<li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">基本信息</a></li>
+						<li class="tab ui-widget-content"><a href='#attachment' class="ui-state-default">合同附件</a></li>
 						<li class="tab ui-widget-content"><a href="#contractContents" class="ui-state-default">合同内容</a></li>
-						<li class="tab ui-widget-content"><a href='#attachment' class="ui-state-default">附件</a></li>
 						<s:if test="!e.isNew()">
 							<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/injurys/list?contractId=%{e.id}" />' class="ui-state-default">工伤</a></li>
 						
