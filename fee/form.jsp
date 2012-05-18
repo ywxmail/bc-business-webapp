@@ -30,7 +30,7 @@
 										<s:textfield name="e.feeYear" data-validate='{required:true,type:"digits"}' cssStyle="width:3em;" cssClass="ui-widget-content"/> 年
 									</div>
 									<div style="display: inline-block">
-										<s:select name="e.feeMonth" data-validate='{required:true,type:"digits"}' cssStyle="width:4em;" list="feeMonths" listKey="key" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content"></s:select> 月
+										<s:select name="e.feeMonth" data-validate='{required:true,type:"digits"}' cssStyle="width:4em;" list="feeMonths" listKey="key" listValue="value" headerKey="-1" headerValue="" cssClass="ui-widget-content"></s:select> 月
 									</div>
 								</s:if>
 								<s:else>
@@ -43,7 +43,7 @@
 								</s:else>
 								<div style="display: inline-block">
 									<input type="text" name="e.feeDate" 
-		                            data-validate='{required:true,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
+		                            data-validate='{type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
 	                                value='<s:date format="yyyy-MM-dd" name="e.feeDate" />' style="width:8em;"/>
 	                                <ul class="inputIcons" style="right : 1em;">
 										<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.feeDate' ></li>
@@ -101,10 +101,10 @@
 		</div>
 		<div class="formTable2 ui-widget-content" style="width:710px;">
 			<div class="ui-widget-header title" style="position:relative;">
-				<span class="text" >前期欠费:</span>
+				<span class="text" >前期欠费明细:</span>
 				<span id="showGroups2" class="verticalMiddle ui-icon ui-icon-carat-1-n" title='<s:text name="fee.title.click2HiddenGroups"/>'></span>
 			</div>
-			<div id="div2">
+			<div id="div2" class="ui-state-highlight" >
 				<table class="formFields" cellspacing="2" cellpadding="0">
 					<tbody>
 						<tr class="widthMarker">
@@ -126,10 +126,7 @@
 					</tbody>
 				</table>
 				<div class="ui-widget-content" style="border-width:1px 0 0 0;margin-bottom:8px;width: 100%;">
-					<div class="ui-widget-header" style="position:relative;border-width: 0;padding: 0.25em;">
-						<span class="text">前期欠费明细:</span>
-					</div>
-				   	<div class="bc-grid header" style="overflow-x:scroll;">
+				   	<div class="bc-grid header">
 						<table class="table" id="b4feeOweDetailTables" cellspacing="0" cellpadding="0">
 							<tr class="ui-state-default header row">
 								<td class="first" style="width: 2em">&nbsp;</td>
@@ -138,26 +135,26 @@
 								<td class="last" colspan="1" style="width: 26.375em;">备注</td>
 							</tr>
 							<s:iterator var="b4o" value="b4feeOweDetail">
-							<tr class="ui-widget-content row" data-id='<s:property value="id"/>'>
-								<td class="id first" style="padding:0;text-align:left;"><span class="ui-icon"></span>
-								</td>
-								<td class="middle" style="padding:0;text-align:left;">
-									<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" 
-										value='<s:property value="feeName"/>' readonly="readonly" />
-								</td>
-								<td class="middle" style="padding:0;text-align:left;">
-									<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" 
-									  value='<s:property value="charge"/>' readonly="readonly"/>
-								</td>
-								<td class="middle" style="padding:0;text-align:left;">
-									<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content"
-										 value='<s:property value="feeDescription"/>' readonly="readonly"/>
-								</td>
-								<td class="last" style="padding:0;text-align:left;">
-									<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;" type="hidden" class="ui-widget-content"
-									 value='<s:property value="feeType"/>' readonly="readonly"/>
-								</td>
-							</tr>
+								<tr class="ui-widget-content row" data-id='<s:property value="id"/>'>
+									<td class="id first" style="padding:0;text-align:left;"><span class="ui-icon"></span>
+									</td>
+									<td class="middle" style="padding:0;text-align:left;">
+										<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" 
+											value='<s:property value="feeName"/>' readonly="readonly" />
+									</td>
+									<td class="middle" style="padding:0;text-align:left;">
+										<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" 
+										  value='<s:property value="charge"/>' readonly="readonly"/>
+									</td>
+									<td class="middle" style="padding:0;text-align:left;">
+										<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content"
+											 value='<s:property value="feeDescription"/>' readonly="readonly"/>
+									</td>
+									<td class="last" style="padding:0;text-align:left;">
+										<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;" type="hidden" class="ui-widget-content"
+										 value='<s:property value="feeType"/>' readonly="readonly"/>
+									</td>
+								</tr>
 							</s:iterator>
 						</table>
 					</div>
@@ -192,13 +189,13 @@
 										<tr>
 							               	<td class="label">*<s:text name="fee.subtotal"/>:</td>
 											<td class="value" colspan="3">
-												<s:textfield name="e.shouldSubtotal" value="%{getText('bs.format.number',{e.shouldSubtotal})}" data-validate='{required:true,type:"number"}' cssClass="ui-widget-content "/>
+												<s:textfield name="e.shouldSubtotal" value="%{getText('bs.format.number',{e.shouldSubtotal})}" data-validate='{required:true,type:"number"}' cssClass="ui-widget-content count"/>
 											</td>
 						               </tr>
 						               <tr>
 						               		<td class="label">*<s:text name="fee.upkeep"/>:</td>
 											<td class="value" colspan="3">
-												<s:textfield name="e.shouldUpkeep" value="%{getText('bs.format.number',{e.shouldUpkeep})}" data-validate='{required:true,type:"number"}' cssClass="ui-widget-content "/>
+												<s:textfield name="e.shouldUpkeep" value="%{getText('bs.format.number',{e.shouldUpkeep})}" data-validate='{required:true,type:"number"}' cssClass="ui-widget-content count"/>
 											</td>
 					                   </tr>
 					                   <tr>
@@ -223,13 +220,13 @@
 										<tr>
 							               	<td class="label">*<s:text name="fee.subtotal"/>:</td>
 											<td class="value" colspan="3">
-												<s:textfield name="e.adjustSubtotal" value="%{getText('bs.format.number',{e.adjustSubtotal})}" data-validate='{required:true,type:"number"}' cssClass="ui-widget-content "/>
+												<s:textfield name="e.adjustSubtotal" value="%{getText('bs.format.number',{e.adjustSubtotal})}" data-validate='{required:true,type:"number"}' cssClass="ui-widget-content count"/>
 											</td>
 						               </tr>
 						               <tr>
 						               		<td class="label">*<s:text name="fee.upkeep"/>:</td>
 											<td class="value" colspan="3">
-												<s:textfield name="e.adjustUpkeep" value="%{getText('bs.format.number',{e.adjustUpkeep})}" data-validate='{required:true,type:"number"}' cssClass="ui-widget-content "/>
+												<s:textfield name="e.adjustUpkeep" value="%{getText('bs.format.number',{e.adjustUpkeep})}" data-validate='{required:true,type:"number"}' cssClass="ui-widget-content count"/>
 											</td>
 					                   </tr>
 					                   <tr>
@@ -260,8 +257,14 @@
 		</div>
 		<div class="formTable2 ui-widget-content" style="width:710px;">
 			<div class="ui-widget-header title" style="position:relative;">
-				<span class="text" >本期实收:</span>
-				<span id="showGroups4" class="verticalMiddle ui-icon ui-icon-carat-1-n" title='<s:text name="fee.title.click2HiddenGroups"/>'></span>
+				<ul class="inputIcons">
+					<li id="addLine" class="inputIcon ui-icon ui-icon-circle-plus"
+						title='<s:text name="点击新增一行实收明细"/>'></li>
+					<li id="deleteLine" class="inputIcon ui-icon ui-icon-circle-close"
+						title='<s:text name="点击删除一行实收明细"/>'></li>
+					<li id="showGroups4" class="inputIcon ui-icon ui-icon-carat-1-n" title='<s:text name="fee.title.click2HiddenGroups"/>'></li>
+				</ul>
+				<span class="text" >本期实收明细:</span>
 			</div>
 			<div id="div4" class="content">
 				<table class="formFields" cellspacing="2" cellpadding="0">
@@ -275,26 +278,17 @@
 						<tr>
 							<td class="value" colspan="4" style="text-align: center">
 							&nbsp;&nbsp;*<s:text name="fee.subtotal"/>:
-								<s:textfield name="e.realSubtotal" cssStyle="width:20%" value="%{getText('bs.format.number',{e.realSubtotal})}" data-validate='{required:true,type:"number"}' cssClass="ui-widget-content "/>
+								<s:textfield name="e.realSubtotal" cssStyle="width:20%" value="%{getText('bs.format.number',{e.realSubtotal})}" data-validate='{required:true,type:"number"}' cssClass="ui-widget-content count"/>
 							&nbsp;&nbsp;*<s:text name="fee.upkeep"/>:
-								<s:textfield name="e.realUpkeep" cssStyle="width:20%"  value="%{getText('bs.format.number',{e.realUpkeep})}" data-validate='{required:true,type:"number"}' cssClass="ui-widget-content "/>
+								<s:textfield name="e.realUpkeep" cssStyle="width:20%"  value="%{getText('bs.format.number',{e.realUpkeep})}" data-validate='{required:true,type:"number"}' cssClass="ui-widget-content count"/>
 							&nbsp;&nbsp;*<s:text name="fee.total"/>:
-								<s:textfield name="e.realTotal" cssStyle="width:20%"  value="%{getText('bs.format.number',{e.realTotal})}" data-validate='{required:true,type:"number"}' cssClass="ui-widget-content "/>
+								<s:textfield name="e.realTotal" cssStyle="width:20%"  value="%{getText('bs.format.number',{e.realTotal})}" data-validate='{required:true,type:"number"}' cssClass="ui-widget-content count"/>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 				<div class="ui-widget-content" style="border-width:1px 0 0 0;margin-bottom:8px;width: 100%;">
-					<div class="ui-widget-header" style="position:relative;border-width: 0;padding: 0.25em;">
-						<span class="text">本期实收明细:</span>
-						<ul class="inputIcons">
-							<li id="addLine" class="inputIcon ui-icon ui-icon-circle-plus"
-								title='<s:text name="点击新增一行实收明细"/>'></li>
-							<li id="deleteLine" class="inputIcon ui-icon ui-icon-circle-close"
-								title='<s:text name="点击删除一行实收明细"/>'></li>
-						</ul>
-					</div>
-				   	<div class="bc-grid header" style="overflow-x:scroll;">
+				   	<div class="bc-grid header">
 						<table class="table" id="feeDetailTables" cellspacing="0" cellpadding="0">
 							<tr class="ui-state-default header row">
 								<td class="first" style="width: 2em">&nbsp;</td>
@@ -307,8 +301,15 @@
 								<td class="id first" style="padding:0;text-align:left;"><span class="ui-icon"></span>
 								</td>
 								<td class="middle" style="padding:0;text-align:left;">
-									<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" 
-										value='<s:property value="feeName"/>' data-validate="required" />
+									<div style="width:99%;" class="bc-relativeContainer">
+										<input type="text" name="feeName" value='<s:property value="feeName"/>' style="width:99%;height:100%;border:none;margin:0;padding:0 0 0 2px;background:none;" 
+											class="bc-select ui-widget-content" data-validate="required" 
+											data-maxHeight="150px"
+											data-source='<s:property value="feeNames"/>'/>
+										<ul class="inputIcons">
+											<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
+										</ul>
+									</div>
 								</td>
 								<td class="middle" style="padding:0;text-align:left;">
 									<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" 
@@ -332,8 +333,14 @@
 		</div>
 		<div class="formTable2 ui-widget-content" style="width:710px;">
 			<div class="ui-widget-header title" style="position:relative;">
-				<span class="text" >本期欠费:</span>
-				<span id="showGroups5" class="verticalMiddle ui-icon ui-icon-carat-1-n" title='<s:text name="fee.title.click2HiddenGroups"/>'></span>
+				<ul class="inputIcons">
+					<li id="addOweLine" class="inputIcon ui-icon ui-icon-circle-plus"
+						title='<s:text name="点击新增一行欠费明细"/>'></li>
+					<li id="deleteOweLine" class="inputIcon ui-icon ui-icon-circle-close"
+						title='<s:text name="点击删除一行欠费明细"/>'></li>
+					<li id="showGroups5" class="inputIcon ui-icon ui-icon-carat-1-n" title='<s:text name="fee.title.click2HiddenGroups"/>'></li>
+				</ul>
+				<span class="text" >本期欠费明细:</span>
 			</div>
 			<div id="div5" class="content">
 				<table class="formFields" cellspacing="2" cellpadding="0">
@@ -357,16 +364,7 @@
 					</tbody>
 				</table>
 				<div class="ui-widget-content" style="border-width:1px 0 0 0;margin-bottom:8px;width: 100%;">
-					<div class="ui-widget-header" style="position:relative;border-width: 0;padding: 0.25em;">
-						<span class="text">本期欠费明细:</span>
-						<ul class="inputIcons">
-							<li id="addOweLine" class="inputIcon ui-icon ui-icon-circle-plus"
-								title='<s:text name="点击新增一行欠费明细"/>'></li>
-							<li id="deleteOweLine" class="inputIcon ui-icon ui-icon-circle-close"
-								title='<s:text name="点击删除一行欠费明细"/>'></li>
-						</ul>
-					</div>
-				   	<div class="bc-grid header" style="overflow-x:scroll;">
+				   	<div class="bc-grid header">
 						<table class="table" id="feeOweDetailTables" cellspacing="0" cellpadding="0">
 							<tr class="ui-state-default header row">
 								<td class="first" style="width: 2em">&nbsp;</td>
@@ -379,8 +377,15 @@
 								<td class="id first" style="padding:0;text-align:left;"><span class="ui-icon"></span>
 								</td>
 								<td class="middle" style="padding:0;text-align:left;">
-									<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" 
-										value='<s:property value="feeName"/>' data-validate="required" />
+									<div style="width:99%;" class="bc-relativeContainer">
+										<input type="text" name="feeName" value='<s:property value="feeName"/>' style="width:99%;height:100%;border:none;margin:0;padding:0 0 0 2px;background:none;" 
+											class="bc-select ui-widget-content" data-validate="required" 
+											data-maxHeight="150px"
+											data-source='<s:property value="feeNames"/>'/>
+										<ul class="inputIcons">
+											<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
+										</ul>
+									</div>
 								</td>
 								<td class="middle" style="padding:0;text-align:left;">
 									<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content" 
@@ -417,10 +422,7 @@
 							<td style="width: 260px;">&nbsp;</td>
 						</tr>
 						<tr>
-							<td class="topLabel">
-								<s:text name="fee.description"/>:
-							</td>
-							<td class="value" colspan="3"><s:textarea name="e.desc" rows="4" cssClass="ui-widget-content noresize"/></td>
+							<td class="value" style="padding:0;text-align:center;" colspan="4"><s:textarea name="e.desc" rows="4" cssClass="ui-widget-content noresize"/></td>
 						</tr>
 					</tbody>
 				</table>
@@ -440,6 +442,8 @@
 	<s:hidden name="isNullCarMan" />
 	<s:hidden name="isNullCar" />
 	<s:hidden name="feeDetails"/>
+	<s:hidden name="feeLists" value="%{feeNames}"/>
+	<s:hidden name="feeOweDetails"/>
 	<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 	
 	</s:form>

@@ -106,7 +106,7 @@ bs.batchInitForm = {
 		$form.find(":input[name='vehicles']").val(shiftworkCars);
 	},
 	
-	//保存并关闭
+	//确认
 	saveAndClose:function(){
 		$form = $(this);
 		
