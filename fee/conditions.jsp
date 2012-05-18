@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ page import="cn.bc.web.ui.html.toolbar.*"%>
-<form class="bc-conditionsForm draggable ui-widget-content ui-state-highlight">
+<form class="bc-conditionsForm draggable ui-widget-content ui-state-highlight" data-js='<s:url value="/bc-business/bs.js" />' >
 	<ul class="conditions" style="min-width:19.3em;">
 		<li class="condition">
 			<div class="label">所属公司</div>
@@ -24,9 +24,7 @@
 								<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
 							</ul>
 						</div>
-				</div>
-				<div style="width:12px;display:inline-block;"></div>
-					<div class="bc-dateContainer">
+				</div><div style="width:12px;display:inline-block;"></div><div class="bc-dateContainer">
 						<div class="label">所属车队</div>
 						<div class="value bc-dateContainer">
 							<input type="text" class="bc-select ui-widget-content" readonly="readonly"
@@ -52,9 +50,7 @@
 								<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
 							</ul>
 						</div>
-				</div>
-				<div style="width:12px;display:inline-block;"></div>
-					<div class="bc-dateContainer">
+				</div><div style="width:12px;display:inline-block;"></div><div class="bc-dateContainer">
 						<div class="label">收费月份</div>
 						<div class="value bc-dateContainer">
 							<input type="text" class="bc-select ui-widget-content" readonly="readonly"
@@ -71,7 +67,7 @@
 		</li>
 		<li class="condition">
 			<div class="label">车辆</div>
-			<div class="value relative">
+			<div class="value">
 				<input type="text" name="car_plate" class="ui-widget-content" readonly="readonly"/>
 				<ul class="inputIcons">
 		        	<li class="selectCar inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>' 
