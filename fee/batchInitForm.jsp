@@ -16,39 +16,25 @@
 						</td>
 					</tr>
 					<tr>
-					    <td style="font-weight: normal;">
-					    	&nbsp;* 需要初始化的车辆:
-							<ul class="inputIcons" style="margin: -18px 0;position: relative;left: 338px;">
-								<li id="addAllCar" class="inputIcon ui-icon ui-icon-info"
-									title="添加所有在案车辆"></li>
-								<li id="addCar" class="inputIcon ui-icon ui-icon-circle-plus"
-									title="添加车辆"></li>
-								<li id="deleteCar" class="inputIcon ui-icon ui-icon-circle-close"
-									title="删除车辆"></li>
-							</ul>
+					    <td class="value" style="font-weight: normal;">
+					    	<div style="position : relative; display: inline-block">
+						    	&nbsp;* 需要初始化的车辆:
+								<ul class="inputIcons" style="margin: -14px 0;position: relative;left: 338px;">
+									<li id="addAllCar" class="inputIcon ui-icon ui-icon-info"
+										title="添加所有在案车辆"></li>
+									<li id="addCar" class="inputIcon ui-icon ui-icon-circle-plus"
+										title="添加车辆"></li>
+									<li id="deleteCar" class="inputIcon ui-icon ui-icon-circle-close"
+										title="删除车辆"></li>
+								</ul>
+							</div>
 					    </td>
 				    </tr>
 					<tr>
-					    <td class="value">
-						    <table style="width:98%;height: 100%;" style="margin:0;padding:0;" cellspacing="0" cellpadding="0" >
-							    <tr>
-								    <td style="text-align: center;">
-										<s:select name="vehiclesView" data-validate="required" list="carList" listKey="key" listValue="value" headerKey="-1" theme="simple"
-								     	multiple="true" cssStyle="width:98%;height:16em;" cssClass="ui-widget-content" />
-							     	</td>
-							    </tr>
-						    </table>
+					    <td style="text-align: center;" class="value">
+							<s:select name="vehiclesView" data-validate="required" list="carList" listKey="key" listValue="value" headerKey="-1" theme="simple"
+					     	multiple="true" cssStyle="width:98%;height:16em;" cssClass="ui-widget-content" />
 					    </td>
-					</tr>
-					<tr>
-						<td class="label">
-							<div class="formTopInfo">
-								登记：<s:property value="e.author.name" />(<s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>)
-								<s:if test="%{e.modifier != null}">
-								最后修改：<s:property value="e.modifier.name" />(<s:date name="e.modifiedDate" format="yyyy-MM-dd HH:mm:ss"/>)
-								</s:if>
-							</div>
-						</td>
 					</tr>
 				</tbody>
 			</table>

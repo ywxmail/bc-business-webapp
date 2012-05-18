@@ -70,6 +70,11 @@ bs.feeForm = {
 		
 		// 选择车辆车牌
 		$form.find("#selectCarPlate").click(function() {
+			if($form.find(":input[name='e.feeYear']").val().length <= 0
+				|| $form.find(":input[name='e.feeMonth']").val().length <= 0){ //收费年月为空不能选择车辆
+				bc.msg.alert("请输入收费年费和月份!");
+				return;
+			}
 			var selecteds = $form.find(":input[name='e.carPlate']").val();
 			bs.selectCar({
 				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
@@ -121,13 +126,15 @@ bs.feeForm = {
 								
 								function onSelectDriver(){
 									if(driversEl.selectedIndex == -1){
-										alert("请先选择事发司机！");
+										alert("请先选择缴费司机！");
 										return false;
 									}
 									//更新司机信息
 									updateFieldsFromDriver(drivers[driversEl.selectedIndex]);
 									//销毁对话框
 									html.dialog("destroy").remove();
+									//根据车辆,收费年,月查找上期承包费欠费明细
+									bs.feeForm.selectFeeb4OweDetail($form);
 								}
 								
 								//绑定双击事件
@@ -136,7 +143,7 @@ bs.feeForm = {
 								//弹出对话框让用户选择司机
 								html.dialog({
 									id: "selectFeeDriver",
-									title: "所选车辆有多个营运司机，请选择当事司机",
+									title: "所选车辆有多个营运司机，请选择缴费司机",
 									dialogClass: 'bc-ui-dialog ui-widget-header',
 									width:300,modal:true,
 									buttons:[{text:"确定",click: onSelectDriver}],
@@ -145,8 +152,17 @@ bs.feeForm = {
 							}
 						}
 					});
+					
 				}
 			});
+		});
+		
+		// 选择收费月绑定事件
+		$form.find(":input[name='e.feeMonth']").change(function(){
+			if($form.find(":input[name='e.feeYear']").val().length > 0
+					&& $form.find(":input[name='e.carId']").val().length > 0){
+				bs.feeForm.selectFeeb4OweDetail($form);
+			}
 		});
 		
 		// 选择司机
@@ -308,8 +324,13 @@ bs.feeForm = {
 			cell.style.padding="0";
 			cell.style.textAlign="left";
 			cell.setAttribute("class","middle");
-			cell.innerHTML='<input name="feeName" data-validate="required" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"' 
-				           +'type="text" class="ui-widget-content">';//费用名称
+			cell.innerHTML='<div style="width:99%;" class="bc-relativeContainer">'
+				+'<input type="text" name="feeName" style="width:99%;height:100%;border:none;margin:0;padding:0 0 0 2px;'
+				+'background:none;" class="bc-select ui-widget-content" data-validate="required" data-maxheight="150px" '
+				+'data-source='+$form.find(":input[name='feeLists']").val()+'>'
+				+'<ul class="inputIcons">'
+				+'	<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title="点击选择"></li>'
+				+'</ul></div>';//费用名称
 			
 			cell=newRow.insertCell(2);
 			cell.style.padding="0";
@@ -355,7 +376,6 @@ bs.feeForm = {
 		//------------本期实收添加行 结束-------------------
 		
 		
-		
 		//------------本期欠费添加行 开始-------------------
 		var tableElTwo=$form.find("#feeOweDetailTables")[0];
 		$form.find("#addOweLine").click(function() {
@@ -373,8 +393,14 @@ bs.feeForm = {
 			cell.style.padding="0";
 			cell.style.textAlign="left";
 			cell.setAttribute("class","middle");
-			cell.innerHTML='<input name="feeName" data-validate="required" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"' 
-				+'type="text" class="ui-widget-content">';//费用名称
+			cell.setAttribute("style","padding:0;text-align:left;");
+			cell.innerHTML='<div style="width:99%;" class="bc-relativeContainer">'
+				+'<input type="text" name="feeName" style="width:99%;height:100%;border:none;margin:0;padding:0 0 0 2px;'
+				+'background:none;" class="bc-select ui-widget-content" data-validate="required" data-maxheight="150px" '
+				+'data-source='+$form.find(":input[name='feeLists']").val()+'>'
+				+'<ul class="inputIcons">'
+				+'	<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title="点击选择"></li>'
+				+'</ul></div>';//费用名称
 			
 			cell=newRow.insertCell(2);
 			cell.style.padding="0";
@@ -419,6 +445,16 @@ bs.feeForm = {
 		});
 		//------------本期欠费添加行 结束-------------------
 		
+		//输入的不是数字就清除
+		$form.delegate(".count",{
+			keyup: function() {
+				var $obj = $(this);
+				var regx = /[^\d.]/g; 
+				if(regx.test($obj.val()))
+					$obj.val('');
+			}
+		});
+		
 	},
 
 	
@@ -458,6 +494,50 @@ bs.feeForm = {
 		bc.page.newWin(option);
 	},
 	
+	//根据车辆,收费年,月查找上期承包费欠费明细
+	selectFeeb4OweDetail : function($form){
+		$.ajax({
+			url: bc.root +"/bc-business/fee/selectFeeb4OweDetail",
+			data: {	searchCarId : $form.find(":input[name='e.carId']").val(),
+					feeYear: $form.find(":input[name='e.feeYear']").val(),
+					feeMonth: $form.find(":input[name='e.feeMonth']").val()},
+			dataType:"json",
+			success: function(b4owes){
+				var $tableElOne = $form.find("#b4feeOweDetailTables");
+				$tableElOne.html('');
+				
+				if(b4owes.success){//检查所查的车辆收费年,月是否已经存在承包费
+					bc.msg.alert(b4owes.msg);
+				}else{
+					logger.info("b4owes=" + $.toJSON(b4owes));
+					$tableElOne.html("<tr class=\"ui-state-default header row\">"+
+					"<td class=\"first\" style=\"width: 2em\">&nbsp;<\/td>"+
+					"<td class=\"middle\" style=\"width: 15em;\">费用名称<\/td>"+
+					"<td class=\"middle\" style=\"width: 10em;\">费用<\/td>"+
+					"<td class=\"last\" colspan=\"1\" style=\"width: 26.375em;\">备注<\/td><\/tr>");
+					for(var i=0;i<b4owes.length;i++){
+						$tableElOne.append("<tr class=\"ui-widget-content row\" id=\'"+b4owes[i].id+"\' data-id=\'"+b4owes[i].id+"\'><\/tr>");
+						var $tdEl = $form.find("#"+b4owes[i].id);
+						$tdEl.append("<td class=\"id first\" style=\"padding:0;text-align:left;\"><span class=\"ui-icon\"><\/span><\/td>");
+						$tdEl.append("<td class=\"middle\" style=\"padding:0;text-align:left;\"> " +
+								"<input style=\"width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;\" type=\"text\" class=\"ui-widget-content\" " +
+								"value=\'"+b4owes[i].feeName+"\' readonly=\"readonly\" \/><\/td>");
+						$tdEl.append("<td class=\"middle\" style=\"padding:0;text-align:left;\"> " +
+								"<input style=\"width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;\" type=\"text\" class=\"ui-widget-content\" " +
+								"value=\'"+b4owes[i].charge+"\' readonly=\"readonly\" \/><\/td>");
+						$tdEl.append("<td class=\"middle\" style=\"padding:0;text-align:left;\"> " +
+								"<input style=\"width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;\" type=\"text\" class=\"ui-widget-content\" " +
+								"value=\'"+b4owes[i].feeDescription+"\' readonly=\"readonly\" /><\/td>");
+						$tdEl.append("<td class=\"last\" style=\"padding:0;text-align:left;\"> " +
+								"<input style=\"width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;\" type=\"hidden\" class=\"ui-widget-content\" " +
+								"value=\'"+b4owes[i].feeType+"\' readonly=\"readonly\" \/><\/td>");
+					}
+				}
+			}
+		});
+
+	},
+	
 	//保存的处理
 	save : function(){
 		var $form = $(this);
@@ -470,11 +550,12 @@ bs.feeForm = {
 		//将明细列表的内容添加到feeDetails里
 		$form.find("#feeDetailTables tr:gt(0)").each(function(){
 			var $inputs = $(this).find("td>input");
+			var $divInput= $(this).find("td>div>input");
 			json = {
-				feeName: $inputs[0].value,
-				charge: $inputs[1].value,
-				feeDescription: $inputs[2].value,
-				feeType: $inputs[3].value
+				feeName: $divInput[0].value,
+				charge: $inputs[0].value,
+				feeDescription: $inputs[1].value,
+				feeType: $inputs[2].value
 			};
 			var id = $(this).attr("data-id");
 			if(id && id.length > 0)
@@ -492,11 +573,12 @@ bs.feeForm = {
 		//将欠费明细列表的内容添加到feeDetails里
 		$form.find("#feeOweDetailTables tr:gt(0)").each(function(){
 			var $inputs = $(this).find("td>input");
+			var $divInput= $(this).find("td>div>input");
 			var json = {
-					feeName: $inputs[0].value,
-					charge: $inputs[1].value,
-					feeDescription: $inputs[2].value,
-					feeType: $inputs[3].value
+					feeName: $divInput[0].value,
+					charge: $inputs[0].value,
+					feeDescription: $inputs[1].value,
+					feeType: $inputs[2].value
 			};
 			feeDetails.push(json);
 		});
