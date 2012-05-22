@@ -445,18 +445,49 @@ bc.contract4LabourForm = {
 		//表单验证
 		if(!bc.validator.validate($form))
 			return;
-		bc.msg.confirm("是否入库？",function(){
-		//status=0为正常状态
-		$form.find(":input[name='e.status']").val("0");
-		bc.page.save.call($form,{callback: function(json){
-			if(json.success){
-				bc.msg.slide("入库成功！");
-				$form.dialog("close");
-			}else{
-				bc.msg.alert(json.msg);
+		bc.msg.confirm("确定要入库吗？",function(){
+			//status=0为正常状态
+//			$form.find(":input[name='e.status']").val("0");
+			//入库
+			bc.contract4LabourForm.storage.call($form,function(success){
+				if(success){
+					bc.msg.slide("入库成功！");
+					//记录已保存状态
+					//刷新
+					$form.data("data-status","saved");
+					$form.dialog("close");
+					
+				}else{
+					bc.msg.alert(this.msg);
+				}
+				return false;
+			});
+			});
+	},
+	/**
+	 * 劳动合同入库
+	 */
+	storage : function (callback){
+		var $form = $("form",this);
+		var data = $form.serialize();
+		var url = bc.root + "/bc-business/contract4Labour/warehousing";
+		$.ajax({
+			url: url,
+			dataType:"json",
+			data: data,
+			success: function (json){
+
+				// 默认的处理
+				if(json.success){ //合同编号存在
+					// 自定义回调函数
+						return callback.call(json,true);
+				}else{
+					// 自定义回调函数
+					if(typeof callback == "function"){
+						return callback.call(json,false);
+					}
+				}
 			}
-			return false;
-		}});
 		});
 	}
 };

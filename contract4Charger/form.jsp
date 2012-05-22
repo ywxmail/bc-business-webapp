@@ -434,6 +434,7 @@
 		<s:hidden name="isExistContract"/>
 		<s:hidden name="e.ext_str1"/>
 		<s:hidden name="e.ext_str2"/>
+		<s:hidden name="e.ext_str3"/>
 		<s:hidden name="stopDate"/>
 		<s:hidden name="feeDetails"/>
 		<s:if test="%{!scrapToPower}">

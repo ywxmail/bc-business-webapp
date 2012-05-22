@@ -594,19 +594,19 @@ bc.contract4ChargerForm = {
 				//保存之前
 				if(!bc.contract4ChargerForm.beforeSave($form))
 					return;
-				bc.msg.confirm("是否入库？",function(){
-				//status=0为正常状态
-				$form.find(":input[name='e.status']").val("0");
-				//调用标准的方法执行保存
-				bc.page.save.call($form,{callback: function(json){
-					if(json.success){
+				bc.msg.confirm("确定要入库吗？",function(){
+				//入库
+				bc.contract4ChargerForm.storage.call($form,function(success){
+					if(success){
 						bc.msg.slide("入库成功！");
+						//刷新
+						$form.data("data-status","saved");
 						$form.dialog("close");
 					}else{
-						bc.msg.alert(json.msg);
+						bc.msg.alert(this.msg);
 					}
 					return false;
-				}});
+				});
 				});	
 			}
 		});
@@ -816,6 +816,32 @@ buildSelect : function (value){
 		bc.addAttachFromTemplate($atm, id, bc.root + "/bc-business/contract4Charger/addAttachFromTemplate",{
 			category: "合同附件",
 			multiple: true
+		});
+	},
+	/**
+	 * 经济合同入库
+	 */
+	storage : function (callback){
+		var $form = $("form",this);
+		var data = $form.serialize();
+		var url = bc.root + "/bc-business/contract4Charger/warehousing";
+		$.ajax({
+			url: url,
+			dataType:"json",
+			data: data,
+			success: function (json){
+
+				// 默认的处理
+				if(json.success){ //合同编号存在
+					// 自定义回调函数
+						return callback.call(json,true);
+				}else{
+					// 自定义回调函数
+					if(typeof callback == "function"){
+						return callback.call(json,false);
+					}
+				}
+			}
 		});
 	}
 };
