@@ -384,6 +384,7 @@
 		<s:hidden name="isExistContract"/>
 		<s:hidden name="e.ext_str1"/>
 		<s:hidden name="e.ext_str2"/>
+		<s:hidden name="e.ext_str3"/>
 		
 		<!-- 是否补录 true为补录 -->
 		<s:hidden name="isSupply"/> 
