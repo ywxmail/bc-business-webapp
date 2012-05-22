@@ -422,7 +422,7 @@
 							<td style="width: 260px;">&nbsp;</td>
 						</tr>
 						<tr>
-							<td class="value" style="padding:0;text-align:center;" colspan="4"><s:textarea name="e.desc" rows="4" cssClass="ui-widget-content noresize"/></td>
+							<td class="value" style="padding:0;text-align:center;" colspan="4"><s:textarea name="e.description" rows="4" cssClass="ui-widget-content noresize"/></td>
 						</tr>
 					</tbody>
 				</table>

@@ -42,7 +42,7 @@ bs.batchInitForm = {
             	   			selectEl.options.remove(i);
             	   		}
             	   	}
-            	   	//将顶班车辆变成字符串
+            	   	//将初始化车辆变成字符串
             	   	bs.batchInitForm.shiftworkCars2String(selectEl,$form);
             	}else{
             	   bc.msg.slide("请选择车辆！");  
@@ -110,6 +110,17 @@ bs.batchInitForm = {
 	saveAndClose:function(){
 		$form = $(this);
 		
+		var selectEl = $form.find(":input[name='vehiclesView']")[0];
+		
+		if(selectEl.length <= 0){//车辆列表不能为空
+			bc.msg.alert('初始化车辆不能为空!');
+			return;
+		}
+		
+		if(selectEl.length >= 100){//保存车辆列表数大于100提示
+			bc.msg.slide("本操作比较耗时,请稍后.");
+		}
+		
 		//唯一性检测
 		var option = { callback : function (json){
 				if(json.success){
@@ -124,23 +135,23 @@ bs.batchInitForm = {
 						$select.children().each(function(){ //遍历select控件下的option
 							exists = false;
 							for(var i=0;i<cars.length;i++){
-								if(cars[i] == this.value){//已存在的承包费车辆选中
+								if(cars[i] == this.value){//此月份已存在的承包费车辆选中
 									exists = true;
 									this.selected = true;
 									break;
 								}
 							}
-							if(!exists)//不存在承包费车辆取消选中
+							if(!exists)//此月份不存在的承包费车辆取消选中
 								this.selected = false;
 						});
-
-						},null
+						
+					},null
 					);
 				}
 				return false;
 			}
 		};
-		
+
 		//调用标准的方法执行保存
 		bc.page.save.call(this,option);
 	}
