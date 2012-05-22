@@ -37,6 +37,7 @@
 				</tr>
 			</tbody>
 		</table>
+		
 		<s:hidden name="e.id" />
 		<s:hidden name="e.author.id" />
 		<s:hidden name="e.modifier.id"/>
