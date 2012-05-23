@@ -22,6 +22,10 @@
 					<tr>
 					    <td class="label">*<s:text name="feeTemplate.module"/>:</td>
 						<td class="value "><s:textfield name="e.module" cssClass="ui-widget-content" data-validate="required"/></td>
+					</tr>
+					<tr>
+						<td class="label">*<s:text name="feeTemplate.code"/>:</td>
+						<td class="value"><s:textfield name="e.code" cssClass="ui-widget-content" data-validate="required" /></td>
 					</tr>			
 					<tr>
 					    <td class="label">*<s:text name="feeTemplate.name"/>:</td>

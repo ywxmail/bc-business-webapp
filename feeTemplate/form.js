@@ -100,5 +100,31 @@ bs.feeTemplateForm = {
 		$form.find(":input[name='e.count']").removeAttr("data-validate");
 		$form.find("select[name='e.payType']").val('');
 		$form.find("select[name='e.payType']").removeAttr("data-validate");
+	},
+	/** 保存处理 **/
+	save:function(){
+		var $page = $(this);
+		var code=$page.find(":input[name='e.code']").val();
+		var id=$page.find(":input[name='e.id']").val();
+		var url=bc.root+"/bc-business/feeTemplate/isUniqueCode";
+		if(code==''){
+			bc.msg.slide("请输入编码");
+			return null;
+		}
+		
+		//检查编码唯一性ajax请求
+		$.ajax({
+			url:url,
+			data:{fid:id,code:code},
+			dataType:"json",
+			success:function(json){
+				if(json.result){
+					//调用标准的方法执行保存
+					bc.page.save.call($page);
+				}else{
+					bc.msg.alert("系统中其它费用模板已使用此编码！");
+				}
+			}
+		});
 	}
 };

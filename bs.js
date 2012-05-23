@@ -604,16 +604,25 @@ bs.selectInsuranceType = function(option) {
 	},option));
 };
 
+
 /**
  * 选择费用模板信息
  * @param {Object} option 配置参数
- * @option {String} module [可选]费用模板的所属模块，默认为null，例如'经济合同'
+ * @option {String} module[可选]费用模板的所属模，默认为空，可设置单个或多个，单个：例如'经济合同',多个：逗号连接 如'经济合同,劳动合同'					
  * @option {Boolean} multiple [可选]是否允许多选，默认false
- * @option {Boolean} paging [可选]是否分页，默认true
- * @option {String} status [可选]车辆保单险种的状态，默认在案，设为空则代表所有状态
- * @option {Function} onOk 选择完毕后的回调函数，函数第一个参数为选中的车辆保单险种信息，
- * 							如果为多选则返回的是数组，每个车辆的格式为{id:[id],name:[name]}
- * @option {String} selecteds [可选]已选中车辆保单险种的id值，多个值用逗号连接
+ * @option {Boolean} paging [可选]是否分页，默认false
+ * @option {String} status [可选]模板的状态，默认正常，设为空则代表所有状态
+ * @option {Function} onOk 选择完毕后的回调函数，
+ * 单选返回一个对象 格式为{
+ * 					id:[id],				--id
+ * 					name:[name],			--名称
+ * 					price:[price],			--金额
+ * 					code:[code],			--编码
+ * 					count:[count],			--数量
+ * 					desc:[desc],			--描述
+ * 					spec:[spec]				--特殊配置
+ * 					}
+ * 如果为多选则返回的是对象集合，[对象1,对象2]。
  */
 bs.selectFeeTemplate = function(option) {
 	// 构建默认参数
