@@ -103,8 +103,6 @@ bc.contract4ChargerForm = {
 		
 		
 		
-		
-		
 		/* 选择车辆车牌*/
 		$form.find("#selectCarPlate").click(function() {
 			var selecteds = $form.find(":input[name='carId']").val();
@@ -224,15 +222,20 @@ bc.contract4ChargerForm = {
 							sd=$.datepicker.parseDate('yy-mm-dd', startDate);
 							ed=$.datepicker.parseDate('yy-mm-dd', endDate);
 							var priceDate=selectFeeTemplate[i].spec;//特殊设置的样式格式为[不足一月收取(6850),每年递减(500).]
+							if(priceDate!=null){
 							//不足一个月的金额
 							var lackPrice=priceDate.key1;
+							//每年递减的金额v
+							var cutPrice=priceDate.key2;
+							}
+							//不足一个月的金额
 							//如果为空，默认为6850
 							if(lackPrice==null||lackPrice==""){
 								lackPrice=6850;
 							}
 							//每年递减的金额
 							//var cutPrice=spec.substring(spec.lastIndexOf("(")+1,spec.lastIndexOf(")"));
-							var cutPrice=priceDate.key2;
+							
 							//如果为空，默认为500
 							if(cutPrice==null||cutPrice==""){
 								cutPrice=500;
@@ -250,7 +253,7 @@ bc.contract4ChargerForm = {
 									sd.setMonth(sd.getMonth()+1);//将开始日期的月份加1
 									sd.setDate(1);//将开始日期的月份加1后的日期的天数设置为1
 									sd.setDate(sd.getDate()-1);//日期的天数设置为开始日期同一月份的最后一日
-									bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],startDate,$.datepicker.formatDate('yy-mm-dd', sd),lackPrice);
+									bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],startDate,$.datepicker.formatDate('yy-mm-dd', sd),lackPrice,null);
 									//将第一条承包费项目的结束日期设置为下一个月的第一日并增加一年时间 
 									sd.setDate(sd.getDate()+1);
 									sd.setMonth(sd.getMonth()+12);
@@ -264,7 +267,7 @@ bc.contract4ChargerForm = {
 										var mDate=$.datepicker.formatDate('yy-mm-dd', md);
 										//承包费项目期限满足一年的结束日期
 										var eDate=$.datepicker.formatDate('yy-mm-dd', sd);
-										bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],mDate,eDate,mustPrice);
+										bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],mDate,eDate,mustPrice,null);
 										//实收的金额每年递减
 										mustPrice=mustPrice-cutPrice;
 										sd.setDate(sd.getDate()+1);
@@ -275,7 +278,7 @@ bc.contract4ChargerForm = {
 									var edStr=$.datepicker.formatDate('yy-mm-dd', ed);
 									var sdStr=$.datepicker.formatDate('yy-mm-dd', sd);
 
-									bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],sdStr,edStr,mustPrice);
+									bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],sdStr,edStr,mustPrice,null);
 
 									
 								}else{
@@ -294,7 +297,7 @@ bc.contract4ChargerForm = {
 											var mDate=$.datepicker.formatDate('yy-mm-dd', md);
 											//承包费项目期限满足一年的结束日期
 											var eDate=$.datepicker.formatDate('yy-mm-dd', sd);
-											bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],mDate,eDate,mustPrice);
+											bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],mDate,eDate,mustPrice,null);
 											//实收的金额每年递减
 											mustPrice=mustPrice-cutPrice;
 											sd.setDate(sd.getDate()+1);
@@ -306,26 +309,44 @@ bc.contract4ChargerForm = {
 										var edStr=$.datepicker.formatDate('yy-mm-dd', ed);
 										var sdStr=$.datepicker.formatDate('yy-mm-dd', sd);
 
-										bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],sdStr,edStr,mustPrice);
+										bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],sdStr,edStr,mustPrice,null);
 										
 									}else{
 										//不满一年的
 										var edStr=$.datepicker.formatDate('yy-mm-dd', ed);
 										var sdStr=$.datepicker.formatDate('yy-mm-dd', sd);
 
-										bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],sdStr,edStr,mustPrice);
+										bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],sdStr,edStr,mustPrice,null);
 										
 									}
 									
-									
 								}
 								
+							}else{
+								var price=selectFeeTemplate[i].price.replace(",","").substring(0,selectFeeTemplate[i].price.indexOf("."));
+								bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],"","",price,null);
 							}
 							
-							
+							//其他选项
 						}else{
-							var price=selectFeeTemplate[i].price.replace(",","").substring(0,selectFeeTemplate[i].price.indexOf("."));
-							bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],"","",price);
+							//如果责任人只有一个，其工资和个人所得税的数量为1
+							//如果没有选择责任人，按正常情况初始化
+							var chargers=$form.find(":hidden[name='e.ext_str2']").val();//责任人信息
+							if((chargers)&&(selectFeeTemplate[i].name=="个人所得税"||selectFeeTemplate[i].name=="工资")){
+								//如果是一个责任人，数量就为1
+								if((chargers.split(',')).length-1==1){
+									//设置数量为1
+									var price=selectFeeTemplate[i].price.replace(",","").substring(0,selectFeeTemplate[i].price.indexOf("."));
+									bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],"","",price,1);
+								}else{
+									var price=selectFeeTemplate[i].price.replace(",","").substring(0,selectFeeTemplate[i].price.indexOf("."));
+									bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],"","",price,null);
+								}
+							}else{
+								var price=selectFeeTemplate[i].price.replace(",","").substring(0,selectFeeTemplate[i].price.indexOf("."));
+								bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],"","",price,null);
+								
+							}
 						}
 					}
 				}
@@ -337,6 +358,10 @@ bc.contract4ChargerForm = {
 		});
 		$form.find("#feeDetailTables").delegate("tr.ui-widget-content.row input","focus",function(){
 			$(this).closest("tr.row").removeClass("ui-state-highlight").find("td:eq(0)>span.ui-icon").removeClass("ui-icon-check");
+		});
+		//全选
+		$form.find("#feeDetailTables").delegate("tr.ui-state-default.row>td.first","click",function(){
+			$form.find("#feeDetailTables > tbody > tr:gt(1)").toggleClass("ui-state-highlight").find("td:eq(0)>span.ui-icon").toggleClass("ui-icon-check");
 		});
 		//删除表中选中的明细项目
 		$form.find("#deleteFeeTemplate").click(function() {
@@ -719,43 +744,52 @@ buildSelect : function (value){
 	 * @option  selectFeeTemplate json对象
 	 * @option  sDate开始日期
 	 * @option  eDate 结束日期 
-	 * @option  price 金额
+	 * @option  price 金额	
+	 * @option  count 数量
 	 *
 	 */
-	addFeeDetailData : function (tableEl,selectFeeTemplate,sDate,eDate,price){
+	addFeeDetailData : function (tableEl,selectFeeTemplate,sDate,eDate,price,count){
 		//插入行
 		var newRow=tableEl.insertRow(tableEl.rows.length);
 		newRow.setAttribute("class","ui-widget-content row");
 		//插入列
+		//插入列
 		var cell=newRow.insertCell(0);
 		cell.style.padding="0";
 		cell.style.textAlign="left";
-		cell.style.width="130px"; 
 		cell.setAttribute("class","id first");
-		cell.innerHTML=bc.contract4ChargerForm.buildInput("name",selectFeeTemplate.name,true,true);//插入项目
+		cell.innerHTML='<span class="ui-icon"></span>';//空白头列
+
 		
-		cell=newRow.insertCell(1);
+		var cell=newRow.insertCell(1);
+		cell.style.padding="0";
+		cell.style.textAlign="left";
+		cell.style.width="130px"; 
+		cell.setAttribute("class","middle");
+		cell.innerHTML=bc.contract4ChargerForm.buildInput("name",selectFeeTemplate.name);//插入项目
+		
+		cell=newRow.insertCell(2);
 		cell.style.padding="0";
 		cell.style.textAlign="left";
 		cell.setAttribute("class","middle");
 		cell.style.width="105px"; 
 		cell.innerHTML=bc.contract4ChargerForm.buildInput("price",price);//插入金额
 		
-		cell=newRow.insertCell(2);
+		cell=newRow.insertCell(3);
 		cell.style.padding="0";
 		cell.style.textAlign="left";
 		cell.setAttribute("class","middle");
 		cell.style.width="50px"; 
-		cell.innerHTML=bc.contract4ChargerForm.buildInput("count",selectFeeTemplate.count);//插入数量
+		cell.innerHTML=bc.contract4ChargerForm.buildInput("count",(count!=null?count:selectFeeTemplate.count));//插入数量
 
-		cell=newRow.insertCell(3);
+		cell=newRow.insertCell(4);
 		cell.style.padding="0";
 		cell.style.textAlign="left";
 		cell.setAttribute("class","middle");
 		cell.style.width="85px"; 
 		cell.innerHTML=bc.contract4ChargerForm.buildSelect(selectFeeTemplate.payType);//插入收费方式
 		
-		cell=newRow.insertCell(4);
+		cell=newRow.insertCell(5);
 		cell.style.padding="0";
 		cell.style.textAlign="left";
 		cell.style.borderRight="1px";
@@ -773,7 +807,7 @@ buildSelect : function (value){
 		bc.form.initCalendarSelect($(cell));
 
 
-		cell=newRow.insertCell(5);
+		cell=newRow.insertCell(6);
 		cell.style.padding="0";
 		cell.style.textAlign="left";
 		cell.style.borderRight="1px";
@@ -783,7 +817,7 @@ buildSelect : function (value){
 		cell.innerHTML="~";//~
 
 		
-		cell=newRow.insertCell(6);
+		cell=newRow.insertCell(7);
 		cell.style.padding="0";
 		cell.style.textAlign="left";
 		cell.style.borderLeft="1px";
@@ -801,7 +835,7 @@ buildSelect : function (value){
 		bc.form.initCalendarSelect($(cell));
 
 
-		cell=newRow.insertCell(7);
+		cell=newRow.insertCell(8);
 		cell.style.padding="0";
 		cell.style.textAlign="left";
 		cell.setAttribute("class","middle");
