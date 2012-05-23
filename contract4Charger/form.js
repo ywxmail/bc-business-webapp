@@ -646,6 +646,7 @@ bc.contract4ChargerForm = {
 		$page.find("#feeDetailTables tr:gt(1)").each(function(){
 			var $inputs = $(this).find("td>:input");
 			var $divInput= $(this).find("td>div>input");
+			var code=$(this).find("td.id.first").attr("data-code");
 			logger.info("name:"+$inputs[0].value);
 			logger.info("price:"+$inputs[1].value);
 			logger.info("count:"+$inputs[2].value);
@@ -654,6 +655,7 @@ bc.contract4ChargerForm = {
 			logger.info("endDate:"+$divInput[1].value);
 			logger.info("description:"+$inputs[4].value);
 			var json = {
+				code:code,
 				name: $inputs[0].value,
 				price: $inputs[1].value,
 				count: $inputs[2].value,
@@ -758,6 +760,7 @@ buildSelect : function (value){
 		cell.style.padding="0";
 		cell.style.textAlign="left";
 		cell.setAttribute("class","id first");
+		cell.setAttribute("data-code",selectFeeTemplate.code)//编码
 		cell.innerHTML='<span class="ui-icon"></span>';//空白头列
 
 		

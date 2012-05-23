@@ -307,7 +307,7 @@
 							</tr>
 							<s:iterator var="b" value="e.contractFeeDetail">
 							<tr class="ui-widget-content row" data-id='<s:property value="id"/>'>
-								<td class="id first" style="padding:0;text-align:left;"><span class="ui-icon"></span></td>
+								<td class="id first" style="padding:0;text-align:left;" data-code='<s:property value="code"/>'><span class="ui-icon"></span></td>
 								<td class="middle" style="padding:0;text-align:left;width: 130px;">
 								<s:if test="canCopy">
 								<s:label style="width:90%;height:100%;border:none;margin:0;padding:0 0 0 2px;background:none;" readonly="readonly" 
