@@ -11,6 +11,7 @@ bs.feeTemplateSelectDialog = {
 			return false;
 		}
 		var $trs = $page.find("..bc-grid>.data>.right tr.ui-state-highlight");
+		//保存类型为模板的id，逗号链接
 		var pid='';
 		var datap=[];
 		var $right = $($tds[0]).closest(".left").siblings();
@@ -26,6 +27,7 @@ bs.feeTemplateSelectDialog = {
 			if(type==0){
 				pid=id+","+pid;
 			}else{
+				var code = $row.find("td:eq(2)").text();
 				var name = $row.find("td:eq(3)").text();
 				var price = $row.find("td:eq(4)").text();
 				var count = $row.find("td:eq(5)").text();
@@ -37,7 +39,8 @@ bs.feeTemplateSelectDialog = {
 					price:price,
 					count:count,
 					payType:payType,
-					desc:desc
+					desc:desc,
+					code:code
 				},$tr.data("hidden")));
 			}
 		});
@@ -60,6 +63,7 @@ bs.feeTemplateSelectDialog = {
 						  	var payType=feeTemplates[i].payType;
 						  	var desc=feeTemplates[i].desc;
 						  	var spec=feeTemplates[i].spec;
+						  	var code=feeTemplates[i].code;
 						  	datat.push({
 								id: id,//id
 								name:name,
@@ -67,7 +71,8 @@ bs.feeTemplateSelectDialog = {
 								count:count,
 								payType:payType,
 								desc:desc,
-								spec:spec
+								spec:spec,
+								code:code
 							});
 						}
 						// 返回
