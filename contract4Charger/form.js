@@ -212,7 +212,7 @@ bc.contract4ChargerForm = {
 				onOk : function(selectFeeTemplate) {
 					for(var i=0;i<selectFeeTemplate.length;i++){
 						//如果项目为每月承包费的根据合同期限来生成相应的项目
-						if(selectFeeTemplate[i].name=="每月承包款"){
+						if(selectFeeTemplate[i].code=="contract4Charger.MYCBK"){
 							//获取合同的开始日期和结束日期
 							var startDate=$form.find(":input[name='e.startDate']").val();
 							var endDate=$form.find(":input[name='e.endDate']").val();
@@ -332,7 +332,7 @@ bc.contract4ChargerForm = {
 							//如果责任人只有一个，其工资和个人所得税的数量为1
 							//如果没有选择责任人，按正常情况初始化
 							var chargers=$form.find(":hidden[name='e.ext_str2']").val();//责任人信息
-							if((chargers)&&(selectFeeTemplate[i].name=="个人所得税"||selectFeeTemplate[i].name=="工资")){
+							if((chargers)&&(selectFeeTemplate[i].code=="contract4Charger.GRSDS"||selectFeeTemplate[i].code=="contract4Charger.salary")){
 								//如果是一个责任人，数量就为1
 								if((chargers.split(',')).length-1==1){
 									//设置数量为1
