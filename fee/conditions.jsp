@@ -25,14 +25,11 @@
 							</ul>
 						</div>
 				</div><div style="width:12px;display:inline-block;"></div><div class="bc-dateContainer">
-						<div class="label">所属车队</div>
+						<div class="label">收费年份</div>
 						<div class="value bc-dateContainer">
-							<input type="text" class="bc-select ui-widget-content" readonly="readonly"
-								data-maxHeight="150px" style="width:9em;"
-								data-source='<s:property value="motorcades"/>'>
-							<input type="hidden" data-condition='{"type":"long","ql":"f.motorcade_id=?"}'>
+							<input type="text" class="ui-widget-content" data-validate="number" data-condition='{"type":"int","ql":"f.fee_year=?"}'
+								data-maxHeight="150px" style="width:9em;"/>
 							<ul class="inputIcons">
-								<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
 								<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
 							</ul>
 						</div>
@@ -42,11 +39,14 @@
 		<li class="condition">
 			<div class="value">
 				<div class="bc-dateContainer">
-					<div class="label">收费年份</div>
+					<div class="label">所属车队</div>
 						<div class="value bc-dateContainer">
-							<input type="text" class="ui-widget-content" data-validate="number" data-condition='{"type":"int","ql":"f.fee_year=?"}'
-								data-maxHeight="150px" style="width:9em;"/>
+							<input type="text" class="bc-select ui-widget-content" readonly="readonly"
+								data-maxHeight="150px" style="width:9em;"
+								data-source='<s:property value="motorcades"/>'>
+							<input type="hidden" data-condition='{"type":"long","ql":"f.motorcade_id=?"}'>
 							<ul class="inputIcons">
+								<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
 								<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
 							</ul>
 						</div>

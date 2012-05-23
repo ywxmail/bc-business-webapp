@@ -560,7 +560,7 @@
 		<s:hidden name="e.originalValue"/>
 		<s:hidden name="e.rentNo"/>
 		<s:hidden name="carEntering"/>
-		<s:if test="!e.isNew()">
+		<s:if test="!e.isNew()&&e.status!=-1">
 		<s:hidden name="e.company"/>
 		<s:hidden name="e.motorcade.id"/>
 		</s:if>
