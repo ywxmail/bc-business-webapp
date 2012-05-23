@@ -273,7 +273,7 @@
 						</s:if>	
 					</div> -->
 					<!-- 收费明细 -->
-					<div class="ui-widget-content" style="border-width:1px 0 0 0;margin-bottom:8px;width: 100%;">
+					<div class="ui-widget-content" style="border-width:1px 1px 0 0;margin-bottom:8px;width: 100%;">
 						<div class="ui-widget-header title" style="position:relative;border-width:0!important;">
 							<span class="text"><s:text name="contract.fee.detail"/>：</span>
 							<ul class="inputIcons">
@@ -286,7 +286,8 @@
 				    	<div class="bc-grid header">
 						<table class="table" id="feeDetailTables" cellspacing="0" cellpadding="0" style="width: 100%">
 							<tr class="widthMarker" style="height: 0;line-height:0;font-size: 0;border: none;margin: 0;padding: 0;">
-								<td class="first" style="width: 130px;text-align: center;">&nbsp;</td>
+								<td class="first" style="width: 15px;">&nbsp;</td>
+								<td class="middle" style="width: 130px;text-align: center;">&nbsp;</td>
 								<td class="middle" style="width: 105px;text-align: center;">&nbsp;</td>
 								<td class="middle" style="width: 50px;text-align: center;">&nbsp;</td>
 								<td class="middle" style="width: 85px;text-align: center;">&nbsp;</td>
@@ -296,7 +297,8 @@
 								<td class="last"style="text-align: center;">&nbsp;</td>
 							</tr>
 							<tr class="ui-state-default row">
-								<td class="first" style="width: 130px;height: 20px;text-align: center;">项目</td>
+								<td class="first ui-icon ui-icon-notice" style="width: 15px;height: 20px;">&nbsp;</td>
+								<td class="middle" style="width: 130px;text-align: center;">项目</td>
 								<td class="middle" style="width: 105px;text-align: center;">金额(元)</td>
 								<td class="middle" style="width: 50px;text-align: center;">数量</td>
 								<td class="middle" style="width: 85px;text-align: center;">收费方式</td>
@@ -305,7 +307,8 @@
 							</tr>
 							<s:iterator var="b" value="e.contractFeeDetail">
 							<tr class="ui-widget-content row" data-id='<s:property value="id"/>'>
-								<td class="id first" style="padding:0;text-align:left;width: 130px;"><span class="ui-icon"></span>
+								<td class="id first" style="padding:0;text-align:left;"><span class="ui-icon"></span></td>
+								<td class="middle" style="padding:0;text-align:left;width: 130px;">
 								<s:if test="canCopy">
 								<s:label style="width:90%;height:100%;border:none;margin:0;padding:0 0 0 2px;background:none;" readonly="readonly" 
 										type="text" class="ui-widget-content" value='%{name}'/>

@@ -234,7 +234,7 @@
 					
 					
 					<!-- 购买的险种 -->
-					<div class="ui-widget-content" style="border-left-width:0;border-right-width:0;">
+					<div class="ui-widget-content" style="border-left-width:0;border-right-width:1px;">
 						<div class="ui-widget-header title" style="position:relative;">
 							<span class="text"><s:text name="policy.insuranceType"/>：</span>
 							<ul class="inputIcons">
