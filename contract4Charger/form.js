@@ -361,7 +361,14 @@ bc.contract4ChargerForm = {
 		});
 		//全选
 		$form.find("#feeDetailTables").delegate("tr.ui-state-default.row>td.first","click",function(){
-			$form.find("#feeDetailTables > tbody > tr:gt(1)").toggleClass("ui-state-highlight").find("td:eq(0)>span.ui-icon").toggleClass("ui-icon-check");
+			var spanClass=$form.find("#feeDetailTables > tbody > tr.ui-state-default.row>td.first >span").attr("class");
+			if(spanClass=="ui-icon ui-icon-notice"){
+				$form.find("#feeDetailTables > tbody > tr:gt(1)").addClass("ui-state-highlight").find("td:eq(0)>span.ui-icon").addClass("ui-icon-check");
+				$form.find("#feeDetailTables > tbody > tr.ui-state-default.row>td.first >span").addClass("ui-icon-check").removeClass("ui-icon-notice");
+			}else{
+				$form.find("#feeDetailTables > tbody > tr:gt(1)").removeClass("ui-state-highlight").find("td:eq(0)>span.ui-icon").removeClass("ui-icon-check");
+				$form.find("#feeDetailTables > tbody > tr.ui-state-default.row>td.first >span").addClass("ui-icon-notice").removeClass("ui-icon-check");
+			}
 		});
 		//删除表中选中的明细项目
 		$form.find("#deleteFeeTemplate").click(function() {

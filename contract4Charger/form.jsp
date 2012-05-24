@@ -252,26 +252,6 @@
 							</tr>
 						</tbody>
 					</table>
-					<!-- 责任人信息 -->
-					<!-- <div id="assignChargers" style="position:relative;border-width:1px 0 0 0;" class="ui-widget-content" 
-						data-removeTitle='<s:text name="title.click2remove" />'>
-						<div class="ui-widget-header title" style="position:relative;">
-							<span class="text"><s:text name="contract4Charger.charger"/>：
-								<s:if test="%{chargerInfoMap == null || chargerInfoMap.isEmpty()}"><s:text name="label.empty"/></s:if>
-							</span>
-							<span id="addChargers" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" title='<s:text name="contract.title.click2selectCharger"/>'></span>
-						</div>
-						<s:if test="%{chargerInfoMap != null && !chargerInfoMap.isEmpty()}">
-						<ul class="horizontal">
-						<s:iterator value="chargerInfoMap">
-							<li class="horizontal ui-widget-content ui-corner-all" data-id='<s:property value="key" />'>
-								<span class="text"><a href="#"><s:property value="value" /></a></span>
-								<span class="click2remove verticalMiddle ui-icon ui-icon-close" title='<s:text name="title.click2remove"/>'></span>
-							</li>
-						</s:iterator>
-						</ul>
-						</s:if>	
-					</div> -->
 					<!-- 收费明细 -->
 					<div class="ui-widget-content" style="border-width:1px 1px 0 0;margin-bottom:8px;width: 100%;">
 						<div class="ui-widget-header title" style="position:relative;border-width:0!important;">
@@ -297,7 +277,7 @@
 								<td class="last"style="text-align: center;">&nbsp;</td>
 							</tr>
 							<tr class="ui-state-default row">
-								<td class="first ui-icon ui-icon-notice" style="width: 15px;height: 20px;">&nbsp;</td>
+								<td class="first" style="width: 15px;height: 20px;" title="点击全选!"><span class="ui-icon ui-icon-notice"></span></td>
 								<td class="middle" style="width: 130px;text-align: center;">项目</td>
 								<td class="middle" style="width: 105px;text-align: center;">金额(元)</td>
 								<td class="middle" style="width: 50px;text-align: center;">数量</td>
