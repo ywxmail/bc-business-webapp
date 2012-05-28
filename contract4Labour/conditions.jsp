@@ -11,29 +11,31 @@
 			</div>
 		</li>
 		<li class="condition">
-			<div class="label">所属分公司</div>
-			<div class="value">
-				<input type="text" class="bc-select ui-widget-content" readonly="readonly"
-					data-maxHeight="150px"
-					data-source='<s:property value="units"/>'>
-				<input type="hidden" data-condition='{"type":"long","ql":"m.unit_id=?"}'>
-				<ul class="inputIcons">
-					<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
-					<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
-				</ul>
+			<div class="bc-dateContainer">
+				<div class="label">所属分公司</div>
+				<div class="value bc-dateContainer">
+					<input type="text" class="bc-select ui-widget-content" readonly="readonly"
+						data-maxHeight="150px" style="width:9em;"
+						data-source='<s:property value="units"/>'>
+					<input type="hidden" data-condition='{"type":"long","ql":"m.unit_id=?"}'>
+					<ul class="inputIcons">
+						<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
+						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
+					</ul>
+				</div>
 			</div>
-		</li>
-		<li class="condition">
-			<div class="label">所属车队</div>
-			<div class="value">
-				<input type="text" class="bc-select ui-widget-content" readonly="readonly"
-					data-maxHeight="150px"
-					data-source='<s:property value="motorcades"/>'>
-				<input type="hidden" data-condition='{"type":"long","ql":"car.motorcade_id=?"}'>
-				<ul class="inputIcons">
-					<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
-					<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
-				</ul>
+			<div class="bc-dateContainer">
+				<div class="label">所属车队</div>
+				<div class="value bc-dateContainer">
+					<input type="text" class="bc-select ui-widget-content" readonly="readonly"
+						data-maxHeight="150px" style="width:9em;"
+						data-source='<s:property value="motorcades"/>'>
+					<input type="hidden" data-condition='{"type":"long","ql":"car.motorcade_id=?"}'>
+					<ul class="inputIcons">
+						<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
+						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
+					</ul>
+				</div>
 			</div>
 		</li>
 		<li class="condition">
