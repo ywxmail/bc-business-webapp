@@ -11,10 +11,9 @@ bc.contract4ChargerForm = {
 		var liTpl = '<li class="horizontal ui-state-highlight" data-id="{0}" '+
 		'style="position: relative;margin:0 2px;float: left;padding: 0;border-width: 0;">'+
 		'<span class="text"><a href="#">{1}</a></span>'+
-		'<span class="click2remove verticalMiddle ui-icon ui-icon-close" style="margin: -8px -2px;" title={3}></span></li>';
+		'<span class="click2remove verticalMiddle ui-icon ui-icon-close" style="margin: -8px -2px;" title={2}></span></li>';
 		var ulTpl = '<ul class="horizontal" style="padding: 0;"></ul>';
 		var title = $form.find("#assignChargers").attr("data-removeTitle");
-		
 		$form.find("#addChargers").click(function() {
 			var data = {};
 			var $ul = $form.find("#assignChargers ul");
@@ -34,9 +33,13 @@ bc.contract4ChargerForm = {
 								$ul = $(ulTpl).appendTo($form.find("#assignChargers"));
 							}
 							if($form.find(":input[name='e.ext_str2']").val().length>0){//之前存在司机责任人的话先加逗号
-								driversInfo = driversInfo+";";
+								//如果司机责任人最后一位存在“;”号就不用加";"
+								if (driversInfo.substr(driversInfo.length-1,1) == ";") {
+									driversInfo += driversInfo;
+								}else{
+									driversInfo = driversInfo+";";
+								}
 							}
-
 							//组装并加入对应的值
 							var $liObj = $(liTpl.format(charger.id,charger.name,title)).appendTo($ul);
 							//绑定查看事件
@@ -48,9 +51,14 @@ bc.contract4ChargerForm = {
 								})
 							});
 							if(i>0){
-								var tempStr = ";"+charger.name+","+charger.id;
-							}else{
 								var tempStr = charger.name+","+charger.id;
+							}else{
+								//如果司机责任人最后一位存在“;”号就不用加";"
+								if (driversInfo.substr(driversInfo.length-1,1) == ";"){
+									var tempStr =charger.name+","+charger.id;
+								}else{
+									var tempStr = ";"+charger.name+","+charger.id;
+								}
 							}
 							
 							driversInfo += tempStr;
