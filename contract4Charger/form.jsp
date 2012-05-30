@@ -252,6 +252,51 @@
 							</tr>
 						</tbody>
 					</table>
+					<!-- 补充协议 -->
+					<div class="formTable1 ui-widget-content" style="width:100%;">
+						<div class="ui-widget-header title" style="position:relative;">
+							<span class="text" >补充协议:</span>
+							<span id="showGroups1" class="verticalMiddle ui-icon ui-icon-carat-1-n" title='<s:text name="runcase.title.click2HiddenGroups"/>'></span>
+						</div>
+						<div id="div1">
+							<table class="formFields" cellspacing="2" cellpadding="0">
+								<tbody>
+									<tr class="widthMarker">
+										<td >&nbsp;</td>
+										<td style="width: 250px;">&nbsp;</td>
+										<td style="width: 60px;">&nbsp;</td>
+										<td style="width: 250px;">&nbsp;</td>
+									</tr>
+									<tr>
+						    			<td class="label"><s:text name="contract4Charger.quitter"/>:</td>
+										<td class="value">
+											<s:select name="e.quitterId" list="quittersList" listKey="key" listValue="value" value="e.quitterId" 
+												  headerKey="" headerValue="" cssClass="ui-widget-content" ></s:select>
+										</td>
+										<td class="label"><s:text name="contract4Charger.agreement"/>:</td>
+										<td class="value" style="position:relative;display: block;">
+											<div style="position : relative; display: inline-block">
+												&nbsp;从<input type="text" name="e.agreementStartDate" data-validate='{"type":"date","required":false}' 
+													value='<s:date format="yyyy-MM-dd" name="e.agreementStartDate" />' 
+													style="width: 7em;" class="bc-date ui-widget-content" />
+													<ul class="inputIcons" style="right : 0px;">
+														<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.agreementStartDate' ></li>
+													</ul>
+											</div>
+											<div style="position : relative; display: inline-block">
+												&nbsp;到<input type="text" name="e.agreementEndDate"  data-validate='{"type":"date","required":false}'
+													value='<s:date format="yyyy-MM-dd" name="e.agreementEndDate" />'
+													style="width: 7em;" class="bc-date ui-widget-content" />
+													<ul class="inputIcons" style="right : 0px;">
+														<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.agreementEndDate' ></li>
+													</ul>
+											</div>
+										</td>
+						    		</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
 					<!-- 收费明细 -->
 					<div class="ui-widget-content" style="border-width:1px 1px 0 0;margin-bottom:8px;width: 100%;">
 						<div class="ui-widget-header title" style="position:relative;border-width:0!important;">

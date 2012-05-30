@@ -5,7 +5,7 @@ bc.contract4ChargerForm = {
 		
 		/* 初始化多页签*/
 		$form.find('#formTabs').bctabs(bc.page.defaultBcTabsOption);
-		
+		bc.contract4ChargerForm.foldingDiv($form,"showGroups1","div1");
 		/* 选择司机责任人*/
 		//需要组装的li
 		var liTpl = '<li class="horizontal ui-state-highlight" data-id="{0}" '+
@@ -14,6 +14,8 @@ bc.contract4ChargerForm = {
 		'<span class="click2remove verticalMiddle ui-icon ui-icon-close" style="margin: -8px -2px;" title={2}></span></li>';
 		var ulTpl = '<ul class="horizontal" style="padding: 0;"></ul>';
 		var title = $form.find("#assignChargers").attr("data-removeTitle");
+		var selectEl = $form.find(":input[name='e.quitterId']")[0];
+		
 		$form.find("#addChargers").click(function() {
 			var data = {};
 			var $ul = $form.find("#assignChargers ul");
@@ -35,7 +37,7 @@ bc.contract4ChargerForm = {
 							if($form.find(":input[name='e.ext_str2']").val().length>0){//之前存在司机责任人的话先加逗号
 								//如果司机责任人最后一位存在“;”号就不用加";"
 								if (driversInfo.substr(driversInfo.length-1,1) == ";") {
-									driversInfo += driversInfo;
+									driversInfo = driversInfo;
 								}else{
 									driversInfo = driversInfo+";";
 								}
@@ -50,19 +52,23 @@ bc.contract4ChargerForm = {
 									mid:  "viewDriver"+charger.id
 								})
 							});
+							var tempStr="";
 							if(i>0){
-								var tempStr = charger.name+","+charger.id;
-							}else{
 								//如果司机责任人最后一位存在“;”号就不用加";"
 								if (driversInfo.substr(driversInfo.length-1,1) == ";"){
-									var tempStr =charger.name+","+charger.id;
+									 tempStr =charger.name+","+charger.id;
 								}else{
-									var tempStr = ";"+charger.name+","+charger.id;
+									 tempStr = ";"+charger.name+","+charger.id;
 								}
+
+							}else{
+								tempStr = charger.name+","+charger.id;
 							}
-							
 							driversInfo += tempStr;
 						}
+						
+						//向提前终止方的下拉列表添加值
+						selectEl.options[selectEl.length] = new Option(charger.name, charger.id);
 					});
 					$form.find(":hidden[name='e.ext_str2']").val(driversInfo);
 				
@@ -87,7 +93,16 @@ bc.contract4ChargerForm = {
 		
 //		//绑定删除责任人的按钮事件处理
 		$form.find("#assignChargers").delegate("span.click2remove","click", function(e) {
+			//获取要删除责任人的ID
+			var delId=$(this).parent().attr("data-id");
 			$(this).parent().remove();
+			//删除提前终止方的责任人
+			for(var j = 0; j < selectEl.length; j++){
+				if(selectEl.options[j].value == delId){
+					selectEl.options.remove(j);
+				}
+			}
+			
 			var driverInfo ="";
 			$li=$form.find(".horizontal>.horizontal");
 			//每删除一个重新组合
@@ -100,6 +115,7 @@ bc.contract4ChargerForm = {
 					}else{
 						driverInfo =name+","+id;
 					}
+
 				}
 				$form.find(":hidden[name='e.ext_str2']").val(driverInfo);
 			}
@@ -895,5 +911,22 @@ buildSelect : function (value){
 				}
 			}
 		});
+	},
+	//绑定点击按钮内容展出事件
+	foldingDiv : function (context,spanId,divId){
+		var $form = context;
+		var flip = 0;
+		$form.find('#'+spanId).click(function(){
+			$(this).toggleClass("ui-icon-carat-1-s ui-icon-carat-1-n");
+			//$form.find('#'+divId).toggle( flip++ % 2 == 0 );
+			$form.find('#'+divId).toggle('fast',function(){
+				if(flip++ % 2 == 0){
+					$form.find('#'+spanId).attr('title','点击展出内容');
+				}else{
+					$form.find('#'+spanId).attr('title','点击隐藏内容');
+				}
+			});
+		});
 	}
+
 };
