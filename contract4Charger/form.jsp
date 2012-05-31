@@ -78,7 +78,7 @@
 										data-removeTitle='<s:text name="title.click2remove" />'>
 										<span id="addChargers" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" style="" title='<s:text name="contract4Charger.title.click2selectCarMan"/>'></span>
 										<s:if test="%{chargersInfoList != null && !chargersInfoList.isEmpty()}">
-											<ul class="horizontal" style="padding: 0;height: 23px;">
+											<ul class="horizontal" style="padding: 0;overflow:hidden;">
 											<s:iterator value="chargersInfoList">
 											<li class="horizontal" style="position: relative;margin:0 2px;float: left;padding: 0;"
 												data-id=<s:property value="['id']" /> >
@@ -253,8 +253,8 @@
 						</tbody>
 					</table>
 					<!-- 补充协议 -->
-					<div class="formTable1 ui-widget-content" style="width:100%;">
-						<div class="ui-widget-header title" style="position:relative;">
+					<div class="formTable1 ui-widget-content" style="width:100%;border-width:1px 1px 0 0;margin-bottom:8px;margin-bottom: 0;">
+						<div class="ui-widget-header title" style="position:relative;border-width:0!important;">
 							<span class="text" >补充协议:</span>
 							<span id="showGroups1" class="verticalMiddle ui-icon ui-icon-carat-1-n" title='<s:text name="runcase.title.click2HiddenGroups"/>'></span>
 						</div>
@@ -322,7 +322,7 @@
 								<td class="last"style="text-align: center;">&nbsp;</td>
 							</tr>
 							<tr class="ui-state-default row">
-								<td class="first" style="width: 15px;height: 20px;" title="点击全选!"><span class="ui-icon ui-icon-notice"></span></td>
+								<td class="first" style="width: 15px;height: 20px;padding:0;text-align:left;" title="点击全选!"><span class="ui-icon ui-icon-notice"></span></td>
 								<td class="middle" style="width: 130px;text-align: center;">项目</td>
 								<td class="middle" style="width: 105px;text-align: center;">金额(元)</td>
 								<td class="middle" style="width: 50px;text-align: center;">数量</td>

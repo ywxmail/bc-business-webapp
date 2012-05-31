@@ -12,7 +12,7 @@ bc.contract4ChargerForm = {
 		'style="position: relative;margin:0 2px;float: left;padding: 0;border-width: 0;">'+
 		'<span class="text"><a href="#">{1}</a></span>'+
 		'<span class="click2remove verticalMiddle ui-icon ui-icon-close" style="margin: -8px -2px;" title={2}></span></li>';
-		var ulTpl = '<ul class="horizontal" style="padding: 0;"></ul>';
+		var ulTpl = '<ul class="horizontal" style="padding: 0;overflow:hidden;"></ul>';
 		var title = $form.find("#assignChargers").attr("data-removeTitle");
 		var selectEl = $form.find(":input[name='e.quitterId']")[0];
 		
