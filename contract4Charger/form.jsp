@@ -264,7 +264,7 @@
 									<tr class="widthMarker">
 										<td >&nbsp;</td>
 										<td style="width: 250px;">&nbsp;</td>
-										<td style="width: 60px;">&nbsp;</td>
+										<td style="width: 100px;">&nbsp;</td>
 										<td style="width: 250px;">&nbsp;</td>
 									</tr>
 									<tr>
