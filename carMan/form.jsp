@@ -65,7 +65,7 @@
 						<tr>
 							<td class="label"><s:text name="carMan.type"/>:</td>
 							<td class="value"><!--<s:checkboxlist name="e.type" list="#{'0':'司机','1':'责任人','2':'司机和责任人'}" cssStyle="width:auto;"/>-->
-							   <s:select name="e.type" list="#{'0':'司机','1':'责任人','2':'司机责任人','3':'非编'}" listKey="key" listValue="value" cssClass="ui-widget-content" headerValue="" /></td>
+							   <s:select name="e.type" id="carManType" list="#{'0':'司机','1':'责任人','2':'司机责任人','3':'非编'}" listKey="key" listValue="value" cssClass="ui-widget-content" headerValue="" /></td>
 							<td class="label"><s:text name="carMan.region"/>:</td>
 							<td class="value"><s:select list="#{0:'',1:'本市',2:'本省',3:'外省'}" listKey="key" listValue="value" cssClass="ui-widget-content" headerValue="" name="e.region"></s:select></td>
 						</tr>
@@ -133,7 +133,12 @@
 							<td class="value" colspan="3"><s:textfield name="e.address1" cssClass="ui-widget-content"/></td>
 						</tr>
 						<tr>
-				            <td class="label">*<s:text name="carMan.cert4FWZG"/>:</td>
+							<s:if test="%{e.type==1}">
+				            	<td class="label" id="carMan4cert4FWZG"><s:text name="carMan.cert4FWZG"/>:</td>
+							</s:if>
+							<s:else>
+				            	<td class="label" id="carMan4cert4FWZG">*<s:text name="carMan.cert4FWZG"/>:</td>
+							</s:else>
 							<td class="value"><s:textfield name="e.cert4FWZG" cssClass="ui-widget-content" data-validate='{"minLen": 6,"maxLen": 7,"required":true,"type":"string"}' cssStyle="width:7.5em;"/>
 								<s:text name="carMan.level"/>:
 								<s:select list="carManLevelList" listKey="value" listValue="value" headerKey="" headerValue="未有等级" name="e.level" cssStyle="width:7.5em;" cssClass="ui-widget-content"/>

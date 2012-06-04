@@ -6,6 +6,20 @@ bc.carManForm = {
 		//$form.find('#formTabs').bctabs(bc.page.defaultBcTabsOption);
 		
 		if(readonly) return;
+		//选择分类为责任人时，资格证可以为空
+		$form.find("#carManType").change(function() {
+			//责任人的value值为"1"
+			if($form.find("#carManType").val() == 1){
+				$form.find(":input[name='e.cert4FWZG']").attr("data-validate",'{"minLen": 6,"maxLen": 7,"required":false,"type":"string"}');
+				$form.find("#carMan4cert4FWZG").text($form.find("#carMan4cert4FWZG").text().replace("*",""))
+			}else{
+				$form.find(":input[name='e.cert4FWZG']").attr("data-validate",'{"minLen": 6,"maxLen": 7,"required":true,"type":"string"}');
+				if($form.find("#carMan4cert4FWZG").text().indexOf("*")==-1){
+					$form.find("#carMan4cert4FWZG").text("*"+$form.find("#carMan4cert4FWZG").text())
+				}
+			}
+		});
+
 		
 		//新建时，输入身份证号，驾驶证号自动跟随其变化
 		$form.find(":input[name='e.cert4Indentity']").keyup(function(){		
