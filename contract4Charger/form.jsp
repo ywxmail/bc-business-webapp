@@ -302,6 +302,10 @@
 						<div class="ui-widget-header title" style="position:relative;border-width:0!important;">
 							<span class="text"><s:text name="contract.fee.detail"/>：</span>
 							<ul class="inputIcons">
+								<li id="upFeeTemplate" class="inputIcon ui-icon ui-icon-arrowthick-1-n"
+									title='<s:text name="title.up2selectFeeTemplate"/>'></li>
+								<li id="downFeeTemplate" class="inputIcon ui-icon ui-icon-arrowthick-1-s"
+									title='<s:text name="title.down2selectFeeTemplate"/>'></li>
 								<li id="selectFeeTemplate" class="inputIcon ui-icon ui-icon-circle-plus"
 									title='<s:text name="title.click2selectFeeTemplate"/>'></li>
 								<li id="deleteFeeTemplate" class="inputIcon ui-icon ui-icon-circle-close"
@@ -332,7 +336,7 @@
 							</tr>
 							<s:iterator var="b" value="e.contractFeeDetail">
 							<tr class="ui-widget-content row" data-id='<s:property value="id"/>'>
-								<td class="id first" style="padding:0;text-align:left;" data-code='<s:property value="code"/>'><span class="ui-icon"></span></td>
+								<td class="id first" style="padding:0;text-align:left;" data-code='<s:property value="code"/>' data-spec='<s:property value="spec"/>'><span class="ui-icon"></span></td>
 								<td class="middle" style="padding:0;text-align:left;width: 130px;">
 								<s:if test="canCopy">
 								<s:label style="width:90%;height:100%;border:none;margin:0;padding:0 0 0 2px;background:none;" readonly="readonly" 

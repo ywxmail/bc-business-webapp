@@ -126,7 +126,6 @@ bc.contract4ChargerForm = {
 		});
 		
 		
-		
 		/* 选择车辆车牌*/
 		$form.find("#selectCarPlate").click(function() {
 			var selecteds = $form.find(":input[name='carId']").val();
@@ -142,18 +141,6 @@ bc.contract4ChargerForm = {
 					$form.find(":input[name='carId']").val(car.id); 
 					$form.find(":input[name='e.businessType']").val(car.bsType); 
 					
-					
-//					var url = bc.root + "/bc-business/contract4Charger/isExistContract?carId="+car.id;
-//					$.ajax({url: url,dataType:"json",success: function (json){
-//						if(json.isExistContract){
-//							bc.msg.alert("所选车辆已配置了相应的经济合同，不能重复配置，请您编辑原来的经济合同！");
-//							$form.find(":input[name='e.ext_str1']").val('');
-//							$form.find(":input[name='carId']").val('');
-//						}else{
-//							$form.find(":input[name='e.ext_str1']").val(car.plate);
-//							$form.find(":input[name='carId']").val(car.id);
-//						}
-//					}});
 				}
 			});
 		});
@@ -186,18 +173,6 @@ bc.contract4ChargerForm = {
 					dates.not( this ).datepicker( "option", option, date );
 				}
 			});
-		//}
-		
-		//绑定失去焦点自编号唯一性检测
-//		var $code = $form.find(":input[name='e.code']");
-//		$code.bind("blur",function(){
-//			var code = $code.val();
-//			if(!code || code.length == 0)
-//				return false;
-//			
-//			bc.contract4ChargerForm.checkCode($form.find(":input[name='e.id']").val(),$code,null);
-//		});
-		
 	
 	//收费明细
 		
@@ -234,23 +209,26 @@ bc.contract4ChargerForm = {
 				module : '经济合同',
 				multiple: true,
 				onOk : function(selectFeeTemplate) {
-					for(var i=0;i<selectFeeTemplate.length;i++){
-						//如果项目为每月承包费的根据合同期限来生成相应的项目
-						if(selectFeeTemplate[i].code=="contract4Charger.MYCBK"){
-							//获取合同的开始日期和结束日期
-							var startDate=$form.find(":input[name='e.startDate']").val();
-							var endDate=$form.find(":input[name='e.endDate']").val();
-							
-							var sd =new Date();//开始日期
-							var ed =new Date();//结束日期
-							sd=$.datepicker.parseDate('yy-mm-dd', startDate);
-							ed=$.datepicker.parseDate('yy-mm-dd', endDate);
+					
+					bc.contract4ChargerForm.getDriverAmount($form.find(":input[name='carId']").val(),selectFeeTemplate,function(count){
+
+						for(var i=0;i<selectFeeTemplate.length;i++){
+							//截取项目编码最后一个"."后的字符
+							var code4name=selectFeeTemplate[i].code;
+							var lastCode =code4name.substring(code4name.lastIndexOf(".")+1,code4name.length);
+
 							var priceDate=selectFeeTemplate[i].spec;//特殊设置的样式格式为[不足一月收取(6850),每年递减(500).]
 							if(priceDate!=null){
 							//不足一个月的金额
-							var lackPrice=priceDate.key1;
+							var lackPrice=priceDate.lackPrice;
 							//每年递减的金额v
-							var cutPrice=priceDate.key2;
+							var cutPrice=priceDate.cutPrice;
+							//是否拆分
+							var isSplit=priceDate.isSplit;
+							//是否按司机填写数量
+							var isByDriver=priceDate.isByDriver;
+							//金额是否*司机数量
+							var  isRide=priceDate.isRide;
 							}
 							//不足一个月的金额
 							//如果为空，默认为6850
@@ -270,48 +248,29 @@ bc.contract4ChargerForm = {
 							if(mustPrice==null){
 								mustPrice=8850;
 							}
-							
-							if(sd!=null){
-								//第一条承包费项目期限为开始日期到本月的月底
-								if(sd.getDate()!=1){
-									sd.setMonth(sd.getMonth()+1);//将开始日期的月份加1
-									sd.setDate(1);//将开始日期的月份加1后的日期的天数设置为1
-									sd.setDate(sd.getDate()-1);//日期的天数设置为开始日期同一月份的最后一日
-									bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],startDate,$.datepicker.formatDate('yy-mm-dd', sd),lackPrice,null);
-									//将第一条承包费项目的结束日期设置为下一个月的第一日并增加一年时间 
-									sd.setDate(sd.getDate()+1);
-									sd.setMonth(sd.getMonth()+12);
-									//如果开始日期比结束日期小,就循环生成每月承包费项目
-									var md;
-									while(sd<ed){
-										var md=new Date(sd.getTime());
-										md.setMonth(md.getMonth()-12);
-										sd.setDate(sd.getDate()-1);
-										//承包费项目期限满足一年的开始日期
-										var mDate=$.datepicker.formatDate('yy-mm-dd', md);
-										//承包费项目期限满足一年的结束日期
-										var eDate=$.datepicker.formatDate('yy-mm-dd', sd);
-										bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],mDate,eDate,mustPrice,null);
-										//实收的金额每年递减
-										mustPrice=mustPrice-cutPrice;
+
+							//如果项目为每月承包费的根据合同期限来生成相应的项目
+							if(isSplit !=null && isSplit ==true){
+								//获取合同的开始日期和结束日期
+								var startDate=$form.find(":input[name='e.startDate']").val();
+								var endDate=$form.find(":input[name='e.endDate']").val();
+								
+								var sd =new Date();//开始日期
+								var ed =new Date();//结束日期
+								sd=$.datepicker.parseDate('yy-mm-dd', startDate);
+								ed=$.datepicker.parseDate('yy-mm-dd', endDate);
+								
+								if(sd!=null){
+									//第一条承包费项目期限为开始日期到本月的月底
+									if(sd.getDate()!=1){
+										sd.setMonth(sd.getMonth()+1);//将开始日期的月份加1
+										sd.setDate(1);//将开始日期的月份加1后的日期的天数设置为1
+										sd.setDate(sd.getDate()-1);//日期的天数设置为开始日期同一月份的最后一日
+										bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],startDate,$.datepicker.formatDate('yy-mm-dd', sd),lackPrice,null);
+										//将第一条承包费项目的结束日期设置为下一个月的第一日并增加一年时间 
 										sd.setDate(sd.getDate()+1);
 										sd.setMonth(sd.getMonth()+12);
-									}
-									//最后一条承包费项目
-									sd.setMonth(sd.getMonth()-12);
-									var edStr=$.datepicker.formatDate('yy-mm-dd', ed);
-									var sdStr=$.datepicker.formatDate('yy-mm-dd', sd);
-
-									bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],sdStr,edStr,mustPrice,null);
-
-									
-								}else{
-									//如果是1号开始的
-									sd.setMonth(sd.getMonth()+12);
-									var begDate=new Date(sd.getTime());
-									//满一年期限的
-									if(begDate<ed){
-										logger.info("ed:"+ed);
+										//如果开始日期比结束日期小,就循环生成每月承包费项目
 										var md;
 										while(sd<ed){
 											var md=new Date(sd.getTime());
@@ -326,7 +285,6 @@ bc.contract4ChargerForm = {
 											mustPrice=mustPrice-cutPrice;
 											sd.setDate(sd.getDate()+1);
 											sd.setMonth(sd.getMonth()+12);
-											logger.info("sd:"+sd);
 										}
 										//最后一条承包费项目
 										sd.setMonth(sd.getMonth()-12);
@@ -334,45 +292,98 @@ bc.contract4ChargerForm = {
 										var sdStr=$.datepicker.formatDate('yy-mm-dd', sd);
 
 										bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],sdStr,edStr,mustPrice,null);
+
 										
 									}else{
-										//不满一年的
-										var edStr=$.datepicker.formatDate('yy-mm-dd', ed);
-										var sdStr=$.datepicker.formatDate('yy-mm-dd', sd);
+										//如果是1号开始的
+										sd.setMonth(sd.getMonth()+12);
+										var begDate=new Date(sd.getTime());
+										//满一年期限的
+										if(begDate<ed){
+											logger.info("ed:"+ed);
+											var md;
+											while(sd<ed){
+												var md=new Date(sd.getTime());
+												md.setMonth(md.getMonth()-12);
+												sd.setDate(sd.getDate()-1);
+												//承包费项目期限满足一年的开始日期
+												var mDate=$.datepicker.formatDate('yy-mm-dd', md);
+												//承包费项目期限满足一年的结束日期
+												var eDate=$.datepicker.formatDate('yy-mm-dd', sd);
+												bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],mDate,eDate,mustPrice,null);
+												//实收的金额每年递减
+												mustPrice=mustPrice-cutPrice;
+												sd.setDate(sd.getDate()+1);
+												sd.setMonth(sd.getMonth()+12);
+												logger.info("sd:"+sd);
+											}
+											//最后一条承包费项目
+											sd.setMonth(sd.getMonth()-12);
+											var edStr=$.datepicker.formatDate('yy-mm-dd', ed);
+											var sdStr=$.datepicker.formatDate('yy-mm-dd', sd);
 
-										bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],sdStr,edStr,mustPrice,null);
+											bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],sdStr,edStr,mustPrice,null);
+											
+										}else{
+											//不满一年的
+											var edStr=$.datepicker.formatDate('yy-mm-dd', ed);
+											var sdStr=$.datepicker.formatDate('yy-mm-dd', sd);
+
+											bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],sdStr,edStr,mustPrice,null);
+											
+										}
 										
 									}
 									
-								}
-								
-							}else{
-								var price=selectFeeTemplate[i].price.replace(",","").substring(0,selectFeeTemplate[i].price.indexOf("."));
-								bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],"","",price,null);
-							}
-							
-							//其他选项
-						}else{
-							//如果责任人只有一个，其工资和个人所得税的数量为1
-							//如果没有选择责任人，按正常情况初始化
-							var chargers=$form.find(":hidden[name='e.ext_str2']").val();//责任人信息
-							if((chargers)&&(selectFeeTemplate[i].code=="contract4Charger.GRSDS"||selectFeeTemplate[i].code=="contract4Charger.salary")){
-								//如果是一个责任人，数量就为1
-								if((chargers.split(',')).length-1==1){
-									//设置数量为1
-									var price=selectFeeTemplate[i].price.replace(",","").substring(0,selectFeeTemplate[i].price.indexOf("."));
-									bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],"","",price,1);
 								}else{
 									var price=selectFeeTemplate[i].price.replace(",","").substring(0,selectFeeTemplate[i].price.indexOf("."));
 									bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],"","",price,null);
 								}
+								
+								//其他选项
 							}else{
 								var price=selectFeeTemplate[i].price.replace(",","").substring(0,selectFeeTemplate[i].price.indexOf("."));
-								bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],"","",price,null);
+
+								//根据营运司机的数量特殊处理安全互助金 ,个人所得税,工资,残疾人基金
+								if(isByDriver!=null && isByDriver==true){
+									//如果是安全互助金,金额*司机数量
+									if(isRide!=null && isRide==true){
+										var price=price*count;
+										bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],"","",price,null);
+										
+									}else{
+										//个人所得税,工资,残疾人基金
+										bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],"","",price,count);
+									}
+									
+								}else{
+									//其他 
+									bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],"","",price,null);
+								}
 								
 							}
-						}
-					}
+						}						
+						
+						
+						
+					});
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+
 				}
 			});
 		});
@@ -408,9 +419,46 @@ bc.contract4ChargerForm = {
 			});
 			
 		});
+		//上移表中选中的明细项目
+		$form.find("#upFeeTemplate").click(function() {
+			var $trs = $form.find("#feeDetailTables tr.ui-state-highlight");
+			if($trs.length == 0){
+				bc.msg.slide("请先选择要上移的项目！");
+				return;
+			}else{
+				$trs.each(function(){
+					var $tr = $(this);
+					if($tr[0].rowIndex < 3){
+						bc.msg.slide("选中的项目为第一条项目,不能再上移！");					
+					}else{
+						var $beroreTr=$tr.prev();
+						$beroreTr.insertAfter($tr);
+					}
+				});
+			}
+
+		});
+		//下移表中选中的明细项目
+		$form.find("#downFeeTemplate").click(function() {
+			var $trs = $form.find("#feeDetailTables tr.ui-state-highlight");
+			if($trs.length == 0){
+				bc.msg.slide("请先选择要下移的项目！");
+				return;
+			}else{
+				
+				for(var i=$trs.length;i>0;i--){
+					var $tr=$($trs[i-1]);
+					var $beroreTr=$tr.next();
+					if($beroreTr.length==0){
+						bc.msg.slide("选中的项目为最后一条项目,不能再下移！");					
+					}else{
+						$beroreTr.insertBefore($tr);
+					}
+				}
+			}
+		});
 		
 		
-	
 	},
 	
 	/** 编号的格式验证:上下文为validate对象,格式为CLHT+[yyyy]+[MM]+[两位流水号] */
@@ -678,6 +726,7 @@ bc.contract4ChargerForm = {
 			var $inputs = $(this).find("td>:input");
 			var $divInput= $(this).find("td>div>input");
 			var code=$(this).find("td.id.first").attr("data-code");
+			var spec=$(this).find("td.id.first").attr("data-spec");
 			logger.info("name:"+$inputs[0].value);
 			logger.info("price:"+$inputs[1].value);
 			logger.info("count:"+$inputs[2].value);
@@ -687,6 +736,7 @@ bc.contract4ChargerForm = {
 			logger.info("description:"+$inputs[4].value);
 			var json = {
 				code:code,
+				spec:spec,
 				name: $inputs[0].value,
 				price: $inputs[1].value,
 				count: $inputs[2].value,
@@ -791,7 +841,8 @@ buildSelect : function (value){
 		cell.style.padding="0";
 		cell.style.textAlign="left";
 		cell.setAttribute("class","id first");
-		cell.setAttribute("data-code",selectFeeTemplate.code)//编码
+		cell.setAttribute("data-code",selectFeeTemplate.code);//编码
+		cell.setAttribute("data-spec",$.toJSON(selectFeeTemplate.spec));//特殊配置
 		cell.innerHTML='<span class="ui-icon"></span>';//空白头列
 
 		
@@ -927,6 +978,20 @@ buildSelect : function (value){
 				}
 			});
 		});
-	}
+	},
+	/** 获取司机的数目 */
+	getDriverAmount : function(carId,selectFeeTemplate,callback) {
+				bc.ajax({
+					url: bc.root + "/bc-business/contract4Charger/getDriverAmount",
+					dataType: "json",
+					data: {carId: carId},
+					success: function(json){
+						// 自定义回调函数
+						if(typeof callback == "function"){
+							return callback.call(this,json);
+						}
+					}
+				});
+			}
 
 };
