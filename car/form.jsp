@@ -152,7 +152,7 @@
 								</td>
 								<td class="label" ><s:text name="car.tv.screen"/>:</td>
 								<td class="value" >
-									<s:if test="isReadonly()">
+									<s:if test="isReadonly()&&isEntering()&&e.status!=-1">
 										<s:textfield name="e.carTvScreen" cssClass="ui-widget-content" cssStyle="width:250px;"/>
 									</s:if>
 									<s:else>

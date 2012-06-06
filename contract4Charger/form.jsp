@@ -365,7 +365,7 @@
 								</s:if>
 								<s:else>
 									<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;background:none;"type="text" class="ui-widget-content" 
-										value='<s:property value="%{getText(count)}"/>' data-validate="required"/>
+										value='<s:property value="%{getText(count)}"/>' data-validate='{"required":true,"type":"number","min":1}'/>
 								</s:else>
 								</td>
 								<td class="middle" style="padding:0;text-align:left;width: 85px;">
