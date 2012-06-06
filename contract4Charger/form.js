@@ -229,6 +229,8 @@ bc.contract4ChargerForm = {
 							var isByDriver=priceDate.isByDriver;
 							//金额是否*司机数量
 							var  isRide=priceDate.isRide;
+							//是否输入合同期限
+							var isDeadline=priceDate.isDeadline;
 							}
 							//不足一个月的金额
 							//如果为空，默认为6850
@@ -340,8 +342,17 @@ bc.contract4ChargerForm = {
 									bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],"","",price,null);
 								}
 								
-								//其他选项
+								
+							}else if(isDeadline!=null && isDeadline==true){
+								//不用拆分的每月承包款输入合同开始日期和结束期
+								var startDate=$form.find(":input[name='e.startDate']").val();
+								var endDate=$form.find(":input[name='e.endDate']").val();
+								var price=selectFeeTemplate[i].price.replace(",","").substring(0,selectFeeTemplate[i].price.indexOf("."));
+								bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],startDate,endDate,price,null);
+
+								
 							}else{
+								//其他选项
 								var price=selectFeeTemplate[i].price.replace(",","").substring(0,selectFeeTemplate[i].price.indexOf("."));
 
 								//根据营运司机的数量特殊处理安全互助金 ,个人所得税,工资,残疾人基金
@@ -364,25 +375,7 @@ bc.contract4ChargerForm = {
 							}
 						}						
 						
-						
-						
 					});
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
 
 				}
 			});
