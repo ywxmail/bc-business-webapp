@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div title='<s:text name="contract4Labour.title"/> - v<s:property value="e.verMajor" />.<s:property value="e.verMinor" />' data-type='form' class="bc-page"
 	data-saveUrl='<s:url value="/bc-business/contract4Labour/save" />'
-	data-js='js:editor,js:bc_identity,<s:url value="/bc/template/template.js" />,<s:url value="/bc-business/bs.js" />,<s:url value="/bc-business/contract4Labour/form.js" />'
+	data-js='js:editor,js:bc_identity,<s:url value="/bc/template/template.js" />,<s:url value="/bc-business/bs.js" />,<s:url value="/bc-business/contract4Labour/form.js" />,<s:url value="/bc/placeOrigin/placeOrigin.js"/>'
 	data-initMethod='bc.contract4LabourForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow:hidden;">
 	<s:form name="contract4LabourForm" theme="simple" cssClass="bc-form">
@@ -177,6 +177,22 @@
 												</td>	
 											</tr>
 											<tr>
+												<td class="label" ><s:text name="contract4Labour.domicilePlace"/>:</td>
+												<td class="value relative">
+												 	<s:textfield name="e.domicilePlace"  cssClass="ui-widget-content " />
+												 	<ul class="inputIcons">
+												 		<li class="inputIcon ui-icon ui-icon-circle-plus" title='点击选择户口所在地' id="selectArea">
+												 	</ul>
+												</td>
+												<td class="label"><s:text name="contract4Labour.culturalDegree"/>:</td>
+												<td class="value">
+													<s:select name="e.culturalDegree" list="culturalDegreeList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content "></s:select>
+												</td>											
+											</tr>
+											<tr>
+												<td class="label"><s:text name="contract4Labour.maritalStatus"/>:</td>
+												<td class="value">
+													<s:select name="e.maritalStatus" list="maritalStatusList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content "></s:select>
 												<td class="label"><s:text name="contract4Labour.leaveDate"/>:</td>
 												<td class="value" style="position:relative;display: block;">
 													<input type="text" name="e.leaveDate" data-validate='{"type":"date"}'

@@ -175,6 +175,16 @@ bc.contract4LabourForm = {
 			});
 		});
 		
+		//绑定使用区域小按钮事件
+		$page.find("#selectArea").click(function() {
+			bc.selectPlaceOrigin({
+				types:'1,2,3',
+				onOk: function(json){
+					$page.find(":input[name='e.domicilePlace']").val(json.code+'.'+json.pname+json.name);
+				}
+			});
+		});
+		
 		//签约期限日期控件设置日期范围
 		var startDates = $page.find(':input[name^="e.startDate"], :input[name^="e.endDate"]').datepicker({
 			changeYear : true,
@@ -215,6 +225,7 @@ bc.contract4LabourForm = {
 				return false;
 			bc.contract4LabourForm.checkCode($page.find(":input[name='e.id']").val(),$insurCode,null);
 		});
+		
 	},
 	
 	/**
