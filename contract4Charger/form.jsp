@@ -12,7 +12,7 @@
            	 	<div class="slideContainer">
 					<ul class="tabs ui-helper-reset">
 						<li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">基本信息</a></li>
-						<s:if test="!isReadonly()">
+						<s:if test="!isReadonly()||isEntering()">
 							<li class="tab ui-widget-content"><a href='#attachment' class="ui-state-default">合同附件</a></li>
 							<li class="tab ui-widget-content"><a href="#contractContents" class="ui-state-default">合同内容</a></li>
 							<li class="tab ui-widget-content"><a href="#contractOldContents" class="ui-state-default">旧合同内容</a></li>
@@ -306,7 +306,7 @@
 							<ul class="inputIcons">
 								<li id="upFeeTemplate" class="inputIcon ui-icon ui-icon-arrowthick-1-n"
 									title='<s:text name="title.up2selectFeeTemplate"/>'></li>
-								<li id="downFeeTemplate" class="inputIcon ui-icon ui-icon-arrowthick-1-s"
+								<li id="downFeeTemplate" class="inputIcon ui-icon ui-icon-circle-arrow-s"
 									title='<s:text name="title.down2selectFeeTemplate"/>'></li>
 								<li id="selectFeeTemplate" class="inputIcon ui-icon ui-icon-circle-plus"
 									title='<s:text name="title.click2selectFeeTemplate"/>'></li>
