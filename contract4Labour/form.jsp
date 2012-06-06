@@ -12,8 +12,10 @@
            	 	<div class="slideContainer">
 					<ul class="tabs ui-helper-reset">
 						<li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">基本信息</a></li>
-						<li class="tab ui-widget-content"><a href='#attachment' class="ui-state-default">合同附件</a></li>
-						<li class="tab ui-widget-content"><a href="#contractContents" class="ui-state-default">合同内容</a></li>
+						<s:if test="!isReadonly()">
+							<li class="tab ui-widget-content"><a href='#attachment' class="ui-state-default">合同附件</a></li>
+							<li class="tab ui-widget-content"><a href="#contractContents" class="ui-state-default">合同内容</a></li>
+						</s:if>
 						<s:if test="!e.isNew()">
 							<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/injurys/list?contractId=%{e.id}" />' class="ui-state-default">工伤</a></li>
 						
