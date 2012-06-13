@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div title='<s:text name="invoice4Balance.title"/>' data-type='form' class="bc-page"
-	data-js='<s:url value="/bc-business/invoice4Balance/form.js" />'
+	data-js='<s:url value="/bc-business/invoice/balance/form.js" />'
 	data-initMethod='bs.invoice4BalanceForm.init'
 	data-option='<s:property value="pageOption"/>'
 	style="overflow:auto;">

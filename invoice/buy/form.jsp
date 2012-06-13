@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div title='<s:text name="invoice4Buy.title"/>' data-type='form' class="bc-page"
 	data-saveUrl='<s:url value="/bc-business/invoice4Buy/save" />'
-	data-js='<s:url value="/bc-business/invoice4Buy/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js" />'
+	data-js='<s:url value="/bc-business/invoice/buy/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js" />'
 	data-initMethod='bs.invoice4BuyForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow: hidden;">
 	<s:form name="invoice4BuyForm" theme="simple" cssClass="bc-form"  >
