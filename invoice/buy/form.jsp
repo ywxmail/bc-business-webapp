@@ -58,8 +58,18 @@
 										 <li id="selectBuyer" class=" inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></li>
 									</ul>
 								</td>
-								<td class="label">*<s:text name="invoice.code"/>:</td>
-								<td class="value"><s:textfield name="e.code" cssClass="ui-widget-content" data-validate="required" /></td>
+								<td class="label"><s:text name="invoice4Buy.projectNo"/>:</td>
+								<td class="value">
+									<s:textfield name="e.projectNo" cssClass="ui-widget-content" /></td>
+							</tr>
+							<tr>
+							    <td class="label">*<s:text name="invoice.code"/>:</td>
+								<td class="value">
+									<s:textfield name="e.code" cssClass="ui-widget-content" data-validate="required" />
+								</td>
+								<td class="label"><s:text name="invoice4Buy.patchNo"/>:</td>
+								<td class="value">
+									<s:textfield name="e.patchNo" cssClass="ui-widget-content"/></td>
 							</tr>
 							<tr>
 							    <td class="label">*<s:text name="invoice.startNo"/>:</td>
