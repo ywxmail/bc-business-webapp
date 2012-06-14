@@ -265,7 +265,9 @@ bc.contract4ChargerForm = {
 							if(mustPrice==null){
 								mustPrice=8850;
 							}
-
+							
+							//是否第一条
+							var fristone=true;
 							//如果项目为每月承包费的根据合同期限来生成相应的项目
 							if(isSplit !=null && isSplit ==true){
 								//获取合同的开始日期和结束日期
@@ -292,11 +294,13 @@ bc.contract4ChargerForm = {
 										//第条承包款的开始日期默认为合同的开始日期加1日
 										if(isDOD !=null && isDOD==true){
 											//标记读取第一条每月承包款的开始日期
-											if(isRSD !=null && isRSD==true){
+											if(isRSD !=null && isRSD==true && fristone==true){
 												//往特殊配置值中添加读取标记
-												var specValue=$.extend(priceDate,{isRSDV:true});
-												logger.info("---" + $.toJSON(specValue));
+												var v1=$.toJSON(priceDate);
+												var specValue=eval("("+v1+")");
+												specValue.isRSDV=true;
 												bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],$.datepicker.formatDate('yy-mm-dd', rsd),$.datepicker.formatDate('yy-mm-dd', sd),lackPrice,null,specValue);
+												fristone=false;
 											}else{
 												bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],$.datepicker.formatDate('yy-mm-dd', rsd),$.datepicker.formatDate('yy-mm-dd', sd),lackPrice,null,null);
 											}
@@ -338,7 +342,7 @@ bc.contract4ChargerForm = {
 										if(begDate<ed){
 											logger.info("ed:"+ed);
 											var md;
-											var f = true;
+											//var f = true;
 											while(sd<=ed){
 												var md=new Date(sd.getTime());
 												md.setMonth(md.getMonth()-12);
@@ -353,11 +357,13 @@ bc.contract4ChargerForm = {
 												//承包费项目期限满足一年的结束日期
 												var eDate=$.datepicker.formatDate('yy-mm-dd', sd);
 												//第一条数据的开始日期为实际开始日期
-												if(f ==true && isRSD !=null && isRSD==true){
+												if(fristone ==true && isRSD !=null && isRSD==true){
 													//往特殊配置值中添加读取标记
-													var specValue=$.extend(priceDate,{"isRSDV":true});
+													var v1=$.toJSON(priceDate);
+													var specValue=eval("("+v1+")");
+													specValue.isRSDV=true;
 													bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],rDate,eDate,mustPrice,null,specValue);
-													f=false;
+													fristone=false;
 												}else{
 													bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],mDate,eDate,mustPrice,null,null);
 													}
@@ -417,13 +423,23 @@ bc.contract4ChargerForm = {
 									rsd.setDate(rsd.getDate()+1);
 									if(isRSD !=null && isRSD==true){
 										//往特殊配置值中添加读取标记
-										var specValue=$.extend(priceDate,{"isRSDV":true});
+										var v1=$.toJSON(priceDate);
+										var specValue=eval("("+v1+")");
+										specValue.isRSDV=true;
 										bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],$.datepicker.formatDate('yy-mm-dd', rsd),endDate,lackPrice,null,specValue);
 									}else{
 										bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],$.datepicker.formatDate('yy-mm-dd',rsd),endDate,price,null,null);
 									}
 								}else{
-									bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],startDate,endDate,price,null,null);
+									if(isRSD !=null && isRSD==true){
+										//往特殊配置值中添加读取标记
+										var v1=$.toJSON(priceDate);
+										var specValue=eval("("+v1+")");
+										specValue.isRSDV=true;
+										bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],startDate,endDate,lackPrice,null,specValue);
+									}else{
+										bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],startDate,endDate,price,null,null);
+									}
 								}
 								
 							}else if(isTOTMB !=null && isTOTMB==true){
@@ -803,11 +819,6 @@ bc.contract4ChargerForm = {
 									//刷新
 									$form.data("data-status","saved");
 									$form.dialog("close");
-								}else{
-									bc.msg.confirm("确定要入库吗？",function(){
-										
-									});
-									bc.msg.alert(this.msg);
 								}
 								return false;
 							});
@@ -840,25 +851,6 @@ bc.contract4ChargerForm = {
 					
 				});	
 			}
-//==========================================
-//				bc.msg.confirm("确定要入库吗？",function(){
-				//入库
-//				bc.contract4ChargerForm.storage.call($form,function(success){
-//					if(success){
-//						bc.msg.slide("入库成功！");
-//						//刷新
-//						$form.data("data-status","saved");
-//						$form.dialog("close");
-//					}else{
-//						bc.msg.confirm("确定要入库吗？",function(){
-//							
-//						});
-//						bc.msg.alert(this.msg);
-//					}
-//					return false;
-//				});
-//				});	
-//===========================================
 		});
 
 	},
