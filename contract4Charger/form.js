@@ -426,7 +426,7 @@ bc.contract4ChargerForm = {
 										var v1=$.toJSON(priceDate);
 										var specValue=eval("("+v1+")");
 										specValue.isRSDV=true;
-										bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],$.datepicker.formatDate('yy-mm-dd', rsd),endDate,lackPrice,null,specValue);
+										bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],$.datepicker.formatDate('yy-mm-dd', rsd),endDate,price,null,specValue);
 									}else{
 										bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],$.datepicker.formatDate('yy-mm-dd',rsd),endDate,price,null,null);
 									}
@@ -436,7 +436,7 @@ bc.contract4ChargerForm = {
 										var v1=$.toJSON(priceDate);
 										var specValue=eval("("+v1+")");
 										specValue.isRSDV=true;
-										bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],startDate,endDate,lackPrice,null,specValue);
+										bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],startDate,endDate,price,null,specValue);
 									}else{
 										bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],startDate,endDate,price,null,null);
 									}
