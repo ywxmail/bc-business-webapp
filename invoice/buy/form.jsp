@@ -13,7 +13,7 @@
            	 	<div class="slideContainer">
                 <ul class="tabs ui-helper-reset">
 				    <li class="tab ui-widget-content first active"><a href="#otherFormFields" class="ui-state-default ui-state-active">采购信息</a></li>
-					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/invoice4Sells/paging?buyId=%{e.id}" />' class="ui-state-default">销售信息</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/invoice4Sells/paging?readType=3&buyId=%{e.id}" />' class="ui-state-default">销售与退票信息</a></li>
                 </ul>
             	</div>
 	        </div>
