@@ -167,6 +167,10 @@ bc.carManForm = {
 	warehousing:function(){
 		
 		var $form = $(this);
+		
+		var isNew = $form.find(":input[name='e.id']").val()=="";
+		var name= $form.find(":input[name='e.name']").val();
+
 		//表单验证
 		if(!bc.validator.validate($form))
 			return;
@@ -177,6 +181,20 @@ bc.carManForm = {
 		bc.page.save.call($form,{callback: function(json){
 				bc.msg.slide("入库成功！");
 				$form.dialog("close");
+				//如果是新建入库就重新打开表单
+				if(isNew){
+					// 重新打开可编辑表单
+					bc.page.newWin({
+						name: name,
+						mid: "carMan" + json.id,
+						url: bc.root + "/bc-business/carMan/edit",
+						data: {id: json.id},
+						afterClose: function(status){
+							if(status) bc.grid.reloadData($form);
+						}
+					});
+
+				}
 			return false;
 		}});
 		});
