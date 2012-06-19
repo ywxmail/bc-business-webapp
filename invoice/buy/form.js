@@ -67,7 +67,6 @@ bs.invoice4BuyForm = {
 						var zoreStr=startNo.substring(0,startNo.length-int_endNo.toString().length);
 						$form.find(":input[name='e.endNo']").val(zoreStr+int_endNo);
 					}
-					
 					//计算合计
 					var buyPrice=$form.find(":input[name='e.buyPrice']").val();
 					if(buyPrice!=''&&!isNaN(buyPrice)){
@@ -97,66 +96,72 @@ bs.invoice4BuyForm = {
 	},
 	save:function(){
 		$page = $(this);
-		bs.invoice4BuyForm.saveInfo($page,0);
-		
+		if(!bc.validator.validate($page))
+			return;
+		if(!bs.invoice4BuyForm.autoCheckStartNoAndEndNo($page))
+			return;
+		//调用标准的方法执行保存
+		bc.page.save.call($page,{callback: function(json){
+			if(!json.success){
+				if(!json.isShowBuyInfo){
+					bc.msg.alert(json.msg);
+				}else{
+					var str = json.msg+'<br>';
+					str +="采购单:<br>";
+					str +="<a id='chakan4Sell' href=#>";
+					str +=json.code+"("+json.data_startNo+"~"+json.data_endNo+")";
+					str +="</a>";
+					var $a = bc.msg.alert(str);
+					$a.find('#chakan4Sell').click(function(){
+						bc.page.newWin({
+							url: bc.root + "/bc-business/invoice4Buy/open?id="+json.data_buyId,
+							name: "查看采购单",
+							mid:  "invoice4Buy." + json.data_buyId,
+							afterClose: function(){
+							}
+						})
+						$a.dialog("close");
+					});
+				}
+				return false;
+			}
+		}});	
 	},
 	//保存并关闭按钮
 	saveAndClose:function(){
 		$page = $(this);
-		bs.invoice4BuyForm.saveInfo($page,1);
-	},
-	//保存
-	saveInfo:function($page,saveStatus){
-		//验证表单必填
-		if(bc.validator.validate($page)){
-			//验证逻辑
-			if(bs.invoice4BuyForm.autoCheckStartNoAndEndNo($page)){
-				var code=$page.find(":input[name='e.code']").val();
-				var startNo=$page.find(":input[name='e.startNo']").val();
-				var endNo=$page.find(":input[name='e.endNo']").val();
-				var id4Buy=$page.find(":input[name='e.id']").val();
-				var status=$page.find("input:radio[name='e.status']:checked").val();
-				var url=bc.root + "/bc-business/invoice4Buy/checkSameCode4StartNoAndEndNo";
-				//验证是否可以保存
-				$.ajax({
-					url:url,
-					dataType: "json",
-					data: {code:code,startNo:startNo,endNo:endNo,id4Buy:id4Buy,status:status},
-					success: function(json){
-						var str="你好，保存的采购单,";
-						str+="发票代码:";
-						str+=code;
-						str+=",";
-						str+="范围[";
-						str+=startNo;
-						str+="-";
-						str+=endNo;
-						str+="]";
-						if(json.checkResult==0){
-							
-							if(saveStatus=='0'){
-								//调用标准的方法执行保存
-								bc.page.save.call($page);
-							}else{
-								//调用标准的方法执行保存
-								bc.page.save.call($page,{callback: function(json){
-									$page.dialog("close");
-								}});
+		if(!bc.validator.validate($page))
+			return;
+		if(!bs.invoice4BuyForm.autoCheckStartNoAndEndNo($page))
+			return;
+		//调用标准的方法执行保存
+		bc.page.save.call($page,{callback: function(json){
+			if(!json.success){
+				if(!json.isShowBuyInfo){
+					bc.msg.alert(json.msg);
+				}else{
+					var str = json.msg+'<br>';
+					str +="采购单:<br>";
+					str +="<a id='chakan4Sell' href=#>";
+					str +=json.code+"("+json.data_startNo+"~"+json.data_endNo+")";
+					str +="</a>";
+					var $a = bc.msg.alert(str);
+					$a.find('#chakan4Sell').click(function(){
+						bc.page.newWin({
+							url: bc.root + "/bc-business/invoice4Buy/open?id="+json.data_buyId,
+							name: "查看采购单",
+							mid:  "invoice4Buy." + json.data_buyId,
+							afterClose: function(){
 							}
-						}else if(json.checkResult==1){
-							str+="和系统中相同代码的采购单范围重叠，不能保存！";
-							bc.msg.confirm(str);
-						}else if(json.checkResult==2){
-							str+="，有相应的销售单，这采购单号码范围不能比这些销售单号码范围要少！";
-							bc.msg.confirm(str);
-						}else if(json.checkResult==3){
-							str+="，有相应的销售单，不能作废，若作废此采购单必须先作废相应销售单！";
-							bc.msg.confirm(str);
-						}
-					}
-				});
+						})
+						$a.dialog("close");
+					});
+				}
+				return false;
+			}else{
+				$page.dialog("close");
 			}
-		}
+		}});
 	},
 	/** 维护 */
 	doMaintenance : function() {

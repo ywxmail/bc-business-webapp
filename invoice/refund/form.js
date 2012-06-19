@@ -1,5 +1,5 @@
 if(!window['bs'])window['bs']={};
-bs.invoice4SellForm = {
+bs.invoice4RefundForm = {
 	init : function(option,readonly){
 		var $form = $(this);
 		
@@ -98,6 +98,7 @@ bs.invoice4SellForm = {
 					//选择司机信息
 					bs.findInfoByCar({
 						carId: car.id,
+						status: '0,1,-1',
 						success: function(info){
 							logger.info("info=" + $.toJSON(info));
 							if(info.driver){
@@ -118,7 +119,7 @@ bs.invoice4SellForm = {
 		//------------添加行-------------------
 		var tableEl=$form.find("#sellDetailTables")[0];
 		$form.find("#addLine").click(function() {
-			var url=bc.root + "/bc-business/invoice4Sell/autoLoadInvoice4BuyCode";
+			var url=bc.root + "/bc-business/invoice4Refund/autoLoadInvoice4BuyCode";
 			$.ajax({
 				url:url,
 				dataType: "json",
@@ -209,10 +210,10 @@ bs.invoice4SellForm = {
 		$form.find("#deleteLine").click(function() {
 			var $trs = $form.find("#sellDetailTables tr.ui-state-highlight");
 			if($trs.length == 0){
-				bc.msg.slide("请先选择要删除的销售明细！");
+				bc.msg.slide("请先选择要删除的退票明细！");
 				return;
 			}
-			bc.msg.confirm("确定要删除选定的 <b>"+$trs.length+"</b>个销售明细吗？",function(){
+			bc.msg.confirm("确定要删除选定的 <b>"+$trs.length+"</b>个退票明细吗？",function(){
 				for(var i=0;i<$trs.length;i++){
 					$($trs[i]).remove();
 				}
@@ -236,38 +237,38 @@ bs.invoice4SellForm = {
 		$form.find("#sellDetailTables").delegate(".bs-i4sell-detail-endNo","blur",function(){;
 			//向上找到tr父级元素
 			var $tr=$(this).closest("tr");
-			bs.invoice4SellForm.autoCountNmberAndAmount($tr,'endNo');
+			bs.invoice4RefundForm.autoCountNmberAndAmount($tr,'endNo');
 		});
 		
 		//动态绑定事件   输入数量，得出结束号和合计
 		$form.find("#sellDetailTables").delegate(".bs-i4sell-detail-count","blur",function(){;
 			//向上找到tr父级元素
 			var $tr=$(this).closest("tr");
-			bs.invoice4SellForm.autoCountNmberAndAmount($tr,'count');
+			bs.invoice4RefundForm.autoCountNmberAndAmount($tr,'count');
 		});
 		
 		//动态绑定事件   计算合计
 		$form.find("#sellDetailTables").delegate(".bs-i4sell-detail-amount","blur",function(){;
 			//向上找到tr父级元素
 			var $tr=$(this).closest("tr");
-			bs.invoice4SellForm.autoCountNmberAndAmount($tr,'amount');
+			bs.invoice4RefundForm.autoCountNmberAndAmount($tr,'amount');
 		});
 		
 		//动态绑定事件 修改单价后  计算合计
 		$form.find("#sellDetailTables").delegate(".bs-i4sell-detail-price","blur",function(){;
 			//向上找到tr父级元素
 			var $tr=$(this).closest("tr");
-			bs.invoice4SellForm.autoCountNmberAndAmount($tr,'price');
+			bs.invoice4RefundForm.autoCountNmberAndAmount($tr,'price');
 		});
 		
-		//动态绑定事件   结束号失去焦点时
+		//动态绑定事件 
 		$form.find("#sellDetailTables").delegate(".bs-i4sell-detail-code","change",function(){
 			var $codeList=$(this)
 			var buyId=$codeList.select().val();
 			//向上找到tr父级元素
 			var $tr= $codeList.closest("tr");
 			if(buyId){
-				var url=bc.root + "/bc-business/invoice4Sell/findOneInvoice4Buy";
+				var url=bc.root + "/bc-business/invoice4Refund/findOneInvoice4Buy";
 				$.ajax({
 					url:url,
 					data:{buyId:buyId},
@@ -299,7 +300,7 @@ bs.invoice4SellForm = {
 		var eid=$form.find(":input[name='e.id']").val();
 		if(buyId_create!=''&&eid==''){
 			var $tr= $form.find(".bs-i4sell-detail-code").closest("tr");
-			var url=bc.root + "/bc-business/invoice4Sell/findOneInvoice4Buy";
+			var url=bc.root + "/bc-business/invoice4Refund/findOneInvoice4Buy";
 				$.ajax({
 					url:url,
 					data:{buyId:buyId_create},
@@ -356,13 +357,13 @@ bs.invoice4SellForm = {
 		
 		var sellDetailsStr=$page.find(":input[name='sellDetails']").val();
 		if(sellDetailsStr=='[]')
-			bc.msg.alert("销售单至少需要一条明细！");
+			bc.msg.alert("退票单至少需要一条明细！");
 		
 		//调用标准的方法执行保存
 		bc.page.save.call($page,{callback: function(json){
 			if(!json.success){
 				var str = json.msg+'<br>';
-				str +="销售明细:<br>"+json.code;
+				str +="退票明细:<br>"+json.code;
 				str +="("+json.save_startNo+"~"+json.save_endNo+")<br>";
 				str +="采购单:<br>";
 				str +="<a id='chakan4Sell' href=#>";
@@ -417,13 +418,13 @@ bs.invoice4SellForm = {
 		
 		var sellDetailsStr=$page.find(":input[name='sellDetails']").val();
 		if(sellDetailsStr=='[]')
-			bc.msg.alert("销售单至少需要一条明细！");
+			bc.msg.alert("退票单至少需要一条明细！");
 		
 		//调用标准的方法执行保存
 		bc.page.save.call($page,{callback: function(json){
 			if(!json.success){
 				var str = json.msg+'<br>';
-				str +="销售明细:<br>"+json.code;
+				str +="退票明细:<br>"+json.code;
 				str +="("+json.save_startNo+"~"+json.save_endNo+")<br>";
 				str +="采购单:<br>";
 				str +="<a id='chakan4Sell' href=#>";
@@ -449,14 +450,14 @@ bs.invoice4SellForm = {
 	/** 维护 */
 	doMaintenance : function() {
 		var $page = $(this);
-		bc.msg.confirm("是否对发票销售单进行维护？",function(){
+		bc.msg.confirm("是否对发票退票单进行维护？",function(){
 			// 关闭当前窗口
 			$page.dialog("close");
 			// 重新打开可编辑表单
 			bc.page.newWin({
-				name: "维护发票销售单",
-				mid: "invoice4Sell" + $page.find(":input[name='e.id']").val(),
-				url: bc.root + "/bc-business/invoice4Sell/edit",
+				name: "维护发票退票单",
+				mid: "invoice4Refund" + $page.find(":input[name='e.id']").val(),
+				url: bc.root + "/bc-business/invoice4Refund/edit",
 				data: {id: $page.find(":input[name='e.id']").val()},
 				afterClose: function(status){
 					if(status) bc.grid.reloadData($page);
