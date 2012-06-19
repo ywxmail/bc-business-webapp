@@ -29,7 +29,7 @@
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseAdvices/list?carId=%{e.id}&type=6" />' class="ui-state-default">公司投诉</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/casePraises/list?carId=%{e.id}" />' class="ui-state-default">表扬</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/caseLosts/list?carId=%{e.id}" />' class="ui-state-default">报失</a></li>
-					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/invoice4Sells/list?carId=%{e.id}" />' class="ui-state-default">发票销售</a></li>
+					<li class="tab ui-widget-content"><a href='<s:url value="/bc-business/invoice4Sells/list?carId=%{e.id}&readType=3" />' class="ui-state-default">发票查询</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">附属设施</a></li>
 					<!-- <li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">费用</a></li> -->
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">回场检</a></li>

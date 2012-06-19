@@ -119,7 +119,13 @@
 			<!-- 销售明细 -->
 			<div class="ui-widget-content" style="border-width:1px 0 0 0;margin-bottom:8px;">
 				<div class="ui-widget-header" style="position:relative;border-width: 0;padding: 0.25em;">
-					<span class="text"><s:text name="invoice4Sell.detail"/>:</span>
+					<span class="text">
+						<s:if test="%{e.type==2}">
+							<s:text name="invoice4Refund.detail"/>
+						</s:if><s:else>
+							<s:text name="invoice4Sell.detail"/>
+						</s:else> 
+					:</span>
 					<ul class="inputIcons">
 						<li id="addLine" class="inputIcon ui-icon ui-icon-circle-plus"
 							title='<s:text name="invoice4Sell.title.click2addLine"/>'></li>

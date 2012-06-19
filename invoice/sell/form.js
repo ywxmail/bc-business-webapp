@@ -89,7 +89,7 @@ bs.invoice4SellForm = {
 		$form.find("#selectCar").click(function() {
 			var selecteds = $form.find(":input[name='e.carPlate']").val();
 			bs.selectCar({
-				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
+				status: '0,1,-1',
 				onOk : function(car) {
 					$form.find(":input[name='e.carId']").val(car.id);
 					$form.find(":input[name='e.carPlate']").val(car.plate);
@@ -223,8 +223,8 @@ bs.invoice4SellForm = {
 		//绑定选择购买人按钮事件
 		$form.find("#selectBuyer").click(function() {
 			var selecteds = $form.find(":input[name='e.buyerId']").val();
-			bs.selectDriver({
-				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
+			bs.selectCarMan({
+				status: '0,1,-1',
 				onOk : function(carMan) {
 					$form.find(":input[name='e.buyerId']").val(carMan.id);
 					$form.find(":input[name='e.buyerName']").val(carMan.name);
@@ -325,12 +325,126 @@ bs.invoice4SellForm = {
 	},
 	save : function(){
 		$page = $(this);
-		bs.invoice4SellForm.saveInfo($page,0);
+		//表单先验证一次
+		if(!bc.validator.validate($page))
+			return;
+		
+		//先将销售合并到隐藏域
+		var sellDetails=[];
+
+		$page.find("#sellDetailTables tr:gt(0)").each(function(){
+			var $inputs = $(this).find("td>input");
+			var $selects= $(this).find("td>select");
+			var $divInput= $(this).find("td>div>input");
+			var json = {
+				buyId: $selects[0].value,
+				startNo: $inputs[0].value,
+				endNo: $inputs[1].value,
+				count: $inputs[2].value,
+				price: $inputs[4].value
+			};
+			var id = $(this).attr("data-id");
+			if(id && id.length > 0)
+				json.id = id;
+			sellDetails.push(json);
+		});
+		$page.find(":input[name='sellDetails']").val($.toJSON(sellDetails));
+		//表单验证
+		$sellDetailTables=$page.find("#sellDetailTables tr");
+		if(!bc.validator.validate($sellDetailTables))
+			return;
+		
+		var sellDetailsStr=$page.find(":input[name='sellDetails']").val();
+		if(sellDetailsStr=='[]')
+			bc.msg.alert("销售单至少需要一条明细！");
+		
+		//调用标准的方法执行保存
+		bc.page.save.call($page,{callback: function(json){
+			if(!json.success){
+				var str = json.msg+'<br>';
+				str +="销售明细:<br>"+json.code;
+				str +="("+json.save_startNo+"~"+json.save_endNo+")<br>";
+				str +="采购单:<br>";
+				str +="<a id='chakan4Sell' href=#>";
+				str +=json.code+"("+json.data_startNo+"~"+json.data_endNo+")";
+				str +="</a>";
+				var $a = bc.msg.alert(str);
+				$a.find('#chakan4Sell').click(function(){
+					bc.page.newWin({
+						url: bc.root + "/bc-business/invoice4Buy/open?id="+json.data_buyId,
+						name: "查看采购单",
+						mid:  "invoice4Buy." + json.data_buyId,
+						afterClose: function(){
+						}
+					})
+					$a.dialog("close");
+				});
+				return false;
+			}
+		}});
 	},
 	//保存并关闭
 	saveAndClose:function(){
 		$page=$(this);
-		bs.invoice4SellForm.saveInfo($page,1);
+		//表单先验证一次
+		if(!bc.validator.validate($page))
+			return;
+		
+		//先将销售合并到隐藏域
+		var sellDetails=[];
+
+		$page.find("#sellDetailTables tr:gt(0)").each(function(){
+			var $inputs = $(this).find("td>input");
+			var $selects= $(this).find("td>select");
+			var $divInput= $(this).find("td>div>input");
+			var json = {
+				buyId: $selects[0].value,
+				startNo: $inputs[0].value,
+				endNo: $inputs[1].value,
+				count: $inputs[2].value,
+				price: $inputs[4].value
+			};
+			var id = $(this).attr("data-id");
+			if(id && id.length > 0)
+				json.id = id;
+			sellDetails.push(json);
+		});
+		$page.find(":input[name='sellDetails']").val($.toJSON(sellDetails));
+		//表单验证
+		$sellDetailTables=$page.find("#sellDetailTables tr");
+		if(!bc.validator.validate($sellDetailTables))
+			return;
+		
+		var sellDetailsStr=$page.find(":input[name='sellDetails']").val();
+		if(sellDetailsStr=='[]')
+			bc.msg.alert("销售单至少需要一条明细！");
+		
+		//调用标准的方法执行保存
+		bc.page.save.call($page,{callback: function(json){
+			if(!json.success){
+				var str = json.msg+'<br>';
+				str +="销售明细:<br>"+json.code;
+				str +="("+json.save_startNo+"~"+json.save_endNo+")<br>";
+				str +="采购单:<br>";
+				str +="<a id='chakan4Sell' href=#>";
+				str +=json.code+"("+json.data_startNo+"~"+json.data_endNo+")";
+				str +="</a>";
+				var $a = bc.msg.alert(str);
+				$a.find('#chakan4Sell').click(function(){
+					bc.page.newWin({
+						url: bc.root + "/bc-business/invoice4Buy/open?id="+json.data_buyId,
+						name: "查看采购单",
+						mid:  "invoice4Buy." + json.data_buyId,
+						afterClose: function(){
+						}
+					})
+					$a.dialog("close");
+				});
+				return false;
+			}else{
+				$page.dialog("close");
+			}
+		}});
 	},
 	//保存信息
 	saveInfo:function($page,saveStatus){
@@ -365,9 +479,41 @@ bs.invoice4SellForm = {
 		
 		var sellDetailsStr=$page.find(":input[name='sellDetails']").val();
 		if(sellDetailsStr=='[]')
-			bc.msg.alert("你好，销售单至少需要一条发票明细！");
+			bc.msg.alert("销售单至少需要一条明细！");
 		
-		//检测销售明细的正确性
+		if(saveStatus=='0'){
+			//调用标准的方法执行保存
+			bc.page.save.call($page,{callback: function(json){
+				if(!json.success){
+					var str = json.msg+'<br>';
+					str +="销售明细:<br>"+json.code;
+					str +="("+json.save_startNo+"~"+json.save_endNo+")<br>";
+					str +="采购单:<br>";
+					str +="<a id='chakan4Sell' href=#>";
+					str +=json.code+"("+json.data_startNo+"~"+json.data_endNo+")";
+					str +="</a>";
+					var $a = bc.msg.alert(str);
+					$a.find('#chakan4Sell').click(function(){
+						bc.page.newWin({
+							url: bc.root + "/bc-business/invoice4Buy/open?id="+json.data_buyId,
+							name: "查看采购单",
+							mid:  "invoice4Buy." + json.data_buyId,
+							afterClose: function(){
+							}
+						})
+						$a.dialog("close");
+					});
+					return false;
+				}
+			}});
+		}else{
+			//调用标准的方法执行保存
+			bc.page.save.call($page,{callback: function(json){
+				$page.dialog("close");
+			}});
+		}
+		
+		/*//检测销售明细的正确性
 		var sellId=$page.find(":input[name='e.id']").val();
 		var status=$page.find(":radio[name='e.status']:checked").val();
 		var url=bc.root + "/bc-business/invoice4Sell/checkSell4Detail";
@@ -433,7 +579,7 @@ bs.invoice4SellForm = {
 					}
 				}		
 			}
-		});
+		});*/
 	},
 	/** 维护 */
 	doMaintenance : function() {
