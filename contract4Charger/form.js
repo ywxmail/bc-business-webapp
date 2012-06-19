@@ -368,7 +368,7 @@ bc.contract4ChargerForm = {
 													bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],mDate,eDate,mustPrice,null,null);
 													}
 												}else{
-													bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],mDate,eDate,mustPrice,null,null);
+													bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],mDate,$.datepicker.formatDate('yy-mm-dd', sd),mustPrice,null,null);
 												}
 												
 												//bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],mDate,eDate,mustPrice,null);

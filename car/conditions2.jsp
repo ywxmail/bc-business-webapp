@@ -5,7 +5,7 @@
 	<ul class="conditions" style="min-width:19.3em;">
 		<li class="condition">
 			<div class="label">所属公司</div>
-			<div class="value checkboxes" data-condition='{"type":"string","key":"c.company"}' >
+			<div class="value checkboxes" data-condition='{"type":"string","key":"car.company"}' >
 				<label><input type="checkbox" name="checkboxField1" value="宝城"><span>宝城</span></label>
 				<label><input type="checkbox" name="checkboxField1" value="广发"><span>广发</span></label>
 			</div>
