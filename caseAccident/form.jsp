@@ -186,6 +186,29 @@
 						</td>					
 					</tr>
 					<tr>
+					    <td class="label"><s:text name="runcase.accident.delayDate"/>:</td>
+						<td class="value">
+							<div style="position : relative; display: block">
+								<s:if test="%{isManage()}">
+									<input type="text" name="e.delayDate" data-validate='{"type": "date"}'
+										value='<s:date format="yyyy-MM-dd" name="e.delayDate" />'
+										class="bc-date ui-widget-content" />
+									<ul class="inputIcons" style="right : 4px;">
+										<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.delayDate' ></li>
+									</ul>
+								</s:if><s:else>
+									<input type="text" name="e.delayDate" data-validate='{"type": "date"}'
+										value='<s:date format="yyyy-MM-dd" name="e.delayDate" />'
+										class="bc-date ui-widget-content" />
+								</s:else>
+							</div>
+						</td>
+						<td class="label" ><s:text name="runcase.accident.delayDesc"/>:</td>
+						<td class="value">
+								<s:textfield name="e.delayDesc" cssClass="ui-widget-content"/>
+						</td>					
+					</tr>
+					<tr>
 						<td class="topLabel" ><s:text name="runcase.jingguo"/>:</td>
 						<td class="value" colspan="3" ><s:textarea name="e.description" rows="5" cssClass="ui-widget-content noresize"/>
 						</td>
@@ -692,7 +715,7 @@
 												</s:if><s:else>
 													<input type="text" name="e.payDateTwo" data-validate='{"type": "date"}'
 													    value='<s:date format="yyyy-MM-dd" name="e.payDateTwo" />'
-													    class="ui-widget-content"  />
+													    class="ui-widget-content" readonly="readonly" />
 												</s:else> 
 											</div>
 										</samp>

@@ -50,5 +50,55 @@
 			</div>
 			<div class="clear"></div>
 		</li>
+		
+		<s:if test="!isReadonly()">
+			<li class="condition">
+				<div class="label">送保日期</div>
+				<div class="value">
+					<div class="bc-dateContainer">
+						<input type="text" class="bc-date ui-widget-content" data-validate="date" style="width:9em;"
+							data-condition='{"type":"startDate","ql":"c.deliver_date>=?"}'>
+						<ul class="inputIcons">
+							<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
+							<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
+						</ul>
+					</div>～<div class="bc-dateContainer">
+						<input type="text" class="bc-date ui-widget-content" data-validate="date" style="width:9em;"
+							data-condition='{"type":"endDate","ql":"c.deliver_date<=?"}'>
+						<ul class="inputIcons">
+							<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
+							<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
+						</ul>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</li>
+			<li class="condition">
+				<div class="label">延期日期至</div>
+				<div class="value">
+					<div class="bc-dateContainer">
+						<input type="text" class="bc-date ui-widget-content" data-validate="date" style="width:9em;"
+							data-condition='{"type":"startDate","ql":"c.delay_date>=?"}'>
+						<ul class="inputIcons">
+							<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
+							<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
+						</ul>
+					</div>～<div class="bc-dateContainer">
+						<input type="text" class="bc-date ui-widget-content" data-validate="date" style="width:9em;"
+							data-condition='{"type":"endDate","ql":"c.delay_date<=?"}'>
+						<ul class="inputIcons">
+							<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
+							<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
+						</ul>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</li>
+			<li class="condition">
+			<div class="value checkboxes" data-condition='{"type":"string","ql":"c.claim_money is not null and c.pay_money is not null and c.claim_money>c.pay_money"}' >
+				<label><input type="checkbox" name="checkboxField1" ><span>赔付不足</span></label>
+			</div>
+		</li>
+		</s:if>
 	</ul>
 </form>
