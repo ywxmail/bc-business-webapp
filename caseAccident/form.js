@@ -491,9 +491,12 @@ bc.caseAccidentForm = {
 		
 		//清空司机受款的受款金额和司机受款说明信息
 		var isPayManage=$form.find(":input[name='isPayManage']").val();
+		var isPayRead=$form.find(":input[name='isPayRead']").val();
 		var isManage=$form.find(":input[name='isManage']").val();
 		
-		if(isPayManage=='true'&&isManage=='true'){
+		if((isPayManage=='true'&&isManage=='true')||(
+				isManage=='true'&&isPayRead=='true'
+			)){
 			if((pay&&!deliverSecond)||payTwo){
 				bc.msg.confirm("你好，已勾选受款司机，确定要结案？ 注意：选择否为保存信息",function(){
 					$form.find(":input[name='isClosed']").val("1");
@@ -516,6 +519,8 @@ bc.caseAccidentForm = {
 		}else if(isManage=='true'){
 			$form.find(":input[name='e.payMoney']").val('');
 			$form.find(":input[name='e.payDesc']").val('');
+			$form.find(":input[name='e.payMoneyTwo']").val('');
+			$form.find(":input[name='e.payDescTwo']").val('');
 			if((pay&&!deliverSecond)||payTwo){
 				bc.msg.confirm("你好，已勾选受款司机，确定要结案？ 注意：选择否为保存信息",function(){
 					$form.find(":input[name='isClosed']").val("1");
@@ -530,15 +535,27 @@ bc.caseAccidentForm = {
 				},function(){
 					//调用标准的方法执行保存
 					bc.page.save.call($form,{callback:function(){
-						$form.find(":input[name='e.payMoney']").val('******');
-						$form.find(":input[name='e.payDesc']").val('******');
+						if(pay){
+							$form.find(":input[name='e.payMoney']").val('******');
+							$form.find(":input[name='e.payDesc']").val('******');
+						}
+						if(payTwo){
+							$form.find(":input[name='e.payMoneyTwo']").val('******');
+							$form.find(":input[name='e.payDescTwo']").val('******');
+						}
 					}});
 				});
 			}else
 				//调用标准的方法执行保存
 				bc.page.save.call(this,{callback:function(){
-					$form.find(":input[name='e.payMoney']").val('******');
-					$form.find(":input[name='e.payDesc']").val('******');
+					if(pay){
+						$form.find(":input[name='e.payMoney']").val('******');
+						$form.find(":input[name='e.payDesc']").val('******');
+					}
+					if(payTwo){
+						$form.find(":input[name='e.payMoneyTwo']").val('******');
+						$form.find(":input[name='e.payDescTwo']").val('******');
+					}
 				}});
 			
 		}else if(isPayManage=='true')

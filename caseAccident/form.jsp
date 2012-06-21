@@ -138,8 +138,6 @@
 								</s:else>
 						</td>
 					</tr>
-					
-					
 					<tr>
 						<td class="label"><s:text name="runcase.driverArea"/>:</td>
 						<td class="value">
