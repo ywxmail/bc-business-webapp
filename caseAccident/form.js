@@ -2,13 +2,6 @@ if(!window['bs'])window['bs']={};
 bc.caseAccidentForm = {
 	init : function(option,readonly) {
 		var $form = $(this);
-		
-        //初始化是根据二次送保的状态是否显示其内容
-		if(!$form.find(":checkbox[name='e.deliverSecond']")[0].checked){
-			$form.find("#idSecondDeliver").css("display","none");
-		}else{
-			$form.find("#idSecondDeliver").css("display","block");
-		}
 		//初始化时显示相关保单
 		bc.caseAccidentForm.accAddPolicyInfo($form);
 		
@@ -18,6 +11,7 @@ bc.caseAccidentForm = {
 			$form.find(":input[name='e.fixCost']").hide();
 		}
 		
+		//----- 折叠DIV 代码--------开始-------
 		//损失情况
 		$form.find('#ShowGroups1').css("display","none");		
 		//绑定点击按钮内容展出事件
@@ -62,8 +56,88 @@ bc.caseAccidentForm = {
 			$(this).css("display","none");
 			$form.find('#ShowGroups3').css("display","block");
 		});
+		//----- 折叠DIV 代码--------结束-------
 		
+		//只读状态就不需要执行其它初始化，直接返回
 		if(readonly) return;
+		
+		//----根据权限禁用页面部分代码-----开始---
+		
+		var isManage=$form.find(":input[name='isManage']").val();
+		var isPayManage=$form.find(":input[name='isPayManage']").val();
+		
+		if(isPayManage=='true'){
+			// 选择受款司机
+			$form.find("#selectPayDriver").click(function() {
+				var selecteds = $form.find(":input[name='e.payDriver']").val();
+				bs.selectDriver({
+					selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
+					onOk : function(carMan) {
+						$form.find(":input[name='e.payDriverId']").val(carMan.id);
+						$form.find(":input[name='e.payDriver']").val(carMan.name);
+					}
+				});
+						
+			});
+			
+			// 选择受款司机(二次)
+			$form.find("#selectPayDriverTwo").click(function() {
+				var selecteds = $form.find(":input[name='e.payDriverTwo']").val();
+				bs.selectDriver({
+					selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
+					onOk : function(carMan) {
+						$form.find(":input[name='e.payDriverIdTwo']").val(carMan.id);
+						$form.find(":input[name='e.payDriverTwo']").val(carMan.name);
+					}
+				});
+						
+			});
+			
+			// 绑定司机受款事件
+			$form.find(":checkbox[name='e.pay']").change(function() {
+				if(this.checked){
+					$form.find('#pay').show();
+				}else{
+					$form.find('#pay').hide();
+					$form.find(":input[name='e.payDriverId']").val('');
+					$form.find(":input[name='e.payDriver']").val('');
+					$form.find(":input[name='e.payDate']").val('');
+					$form.find(":input[name='e.payMoney']").val('');
+					$form.find(":input[name='e.payDesc']").val('');
+				}
+			})
+			
+			// 绑定司机受款事件(二次)
+			$form.find(":checkbox[name='e.payTwo']").change(function() {
+				if(this.checked){
+					$form.find('#payTwo').show();
+				}else{
+					$form.find('#payTwo').hide();
+					$form.find(":input[name='e.payDriverIdTwo']").val('');
+					$form.find(":input[name='e.payDriverTwo']").val('');
+					$form.find(":input[name='e.payDateTwo']").val('');
+					$form.find(":input[name='e.payMoneyTwo']").val('');
+					$form.find(":input[name='e.payDescTwo']").val('');
+				}
+			})
+		}
+		
+		if(isManage=='false'&&isPayManage=='true'){
+			//只读表单的处理
+			$form.find(":input:visible:not('.custom,.payManage')").each(function(){
+				logger.debug("disabled:" + this.name);
+				if(this.nodeName.toLowerCase() == "select")
+					this.disabled=true;
+				else
+					this.readOnly=true;
+			});
+			$form.find("ul.inputIcons").find(":not('.payManage')").each(function(){
+				$(this).hide();
+			});
+			return;
+		}
+		
+		//----根据权限禁用页面部分代码-----结束---
 		
 		//绑定厂修按钮事件
 		$form.find(":input[name='e.innerFix']").change(function(){
@@ -262,33 +336,6 @@ bc.caseAccidentForm = {
 					
 		});
 		
-		// 选择受款司机
-		$form.find("#selectPayDriver").click(function() {
-			var selecteds = $form.find(":input[name='e.payDriver']").val();
-			bs.selectDriver({
-				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
-				onOk : function(carMan) {
-					$form.find(":input[name='e.payDriverId']").val(carMan.id);
-					$form.find(":input[name='e.payDriver']").val(carMan.name);
-				}
-			});
-					
-		});
-		
-		
-		// 选择受款司机(二次)
-		$form.find("#selectPayDriverTwo").click(function() {
-			var selecteds = $form.find(":input[name='e.payDriverTwo']").val();
-			bs.selectDriver({
-				selecteds : (selecteds && selecteds.length > 0) ? selecteds : null,
-				onOk : function(carMan) {
-					$form.find(":input[name='e.payDriverIdTwo']").val(carMan.id);
-					$form.find(":input[name='e.payDriverTwo']").val(carMan.name);
-				}
-			});
-					
-		});
-		
 		// 负责人
 		$form.find("#selectPrincipal").click(function() {
 			var selecteds = $form.find(":input[name='e.chargerName']").val();
@@ -312,120 +359,94 @@ bc.caseAccidentForm = {
 			});
 		});
 		
+		//--------------送保按钮绑定事件------------开始---
 		// 绑定是否送保事件
 		$form.find(":checkbox[name='e.deliver']").change(function() {
-			if(this.checked){
-				$form.find('#deliver').css("display","block");
+			var claim=$form.find(":checkbox[name='e.claim']")[0].checked;
+			var deliverSecond=$form.find(":checkbox[name='e.deliverSecond']")[0].checked;
+			if(claim){
+				$form.find(":checkbox[name='e.deliver']")[0].checked=true;
+				bc.msg.slide("已勾选保险公司赔付,请先操作保险公司赔付!");
+			}else if(deliverSecond){
+				$form.find(":checkbox[name='e.deliver']")[0].checked=true;
+				bc.msg.slide("已勾选使用二次送保,请先操作使用二次送保!");
 			}else{
-				$form.find('#deliver').css("display","none");
+				if(this.checked){
+					$form.find('#deliver').show();
+				}else{
+					$form.find('#deliver').hide();
+					$form.find("input:[name='e.deliverDate']").val('');
+					$form.find("input:[name='e.deliverMoney']").val('');
+				}
 			}
 		});
 		
 		// 绑定是否保险公司是否赔款事件
 		$form.find(":checkbox[name='e.claim']").change(function() {
-			if(this.checked){
-				$form.find('#claim').css("display","block");
+			var pay=$form.find(":checkbox[name='e.pay']")[0].checked;
+			if(pay){
+				$form.find(":checkbox[name='e.claim']")[0].checked=true;
+				bc.msg.slide("已勾选司机受款,请先操作司机受款!");
 			}else{
-				$form.find('#claim').css("display","none");
-			}
-		});
-		
-		// 绑定签领日期事件
-		$form.find(":checkbox[name='e.pay']").change(function() {
-			if(this.checked){
-				$form.find('#pay').css("display","block");
-			}else{
-				$form.find('#pay').css("display","none");
-			}
-		})
-		
-		// 绑定是否送保事件 二次送保
-		$form.find(":checkbox[name='e.deliverTwo']").change(function() {
-			if(this.checked){
-				$form.find('#deliverTwo').css("display","block");
-			}else{
-				$form.find('#deliverTwo').css("display","none");
-			}
-		});
-		
-		// 绑定是否保险公司是否赔款事件 二次送保
-		$form.find(":checkbox[name='e.claimTwo']").change(function() {
-			if(this.checked){
-				$form.find('#claimTwo').css("display","block");
-			}else{
-				$form.find('#claimTwo').css("display","none");
-			}
-		});
-		
-		// 绑定签领日期事件 二次送保
-		$form.find(":checkbox[name='e.payTwo']").change(function() {
-			if(this.checked){
-				$form.find('#payTwo').css("display","block");
-			}else{
-				$form.find('#payTwo').css("display","none");
-			}
-		});
-		
-		//绑定送保 隐藏保险公司赔付和受款司机内容
-		$form.find(":checkbox[name='e.deliver']").change(function(){
-			if($(this)[0].checked==false){
-				$form.find(":checkbox[name='e.claim']")[0].checked=false;
-				$form.find(":checkbox[name='e.pay']")[0].checked=false;
-				$form.find(":checkbox[name='e.deliverSecond']")[0].checked=false;
-				$form.find(":checkbox[name='e.deliverTwo']")[0].checked=false;
-				$form.find(":checkbox[name='e.claimTwo']")[0].checked=false;
-				$form.find(":checkbox[name='e.payTwo']")[0].checked=false;
-				$form.find('#claim').css("display","none");
-				$form.find('#pay').css("display","none");
-				$form.find("#idSecondDeliver").css("display","none");
-				$form.find('#deliverTwo').css("display","none");
-				$form.find('#claimTwo').css("display","none");
-				$form.find('#payTwo').css("display","none");
-			}
-		});
-		
-		//绑定保险公司赔付 隐藏受款司机内容
-		$form.find(":checkbox[name='e.claim']").change(function(){
-			if(!$(this)[0].checked){
-				$form.find(":checkbox[name='e.pay']")[0].checked=false;
-				$form.find('#pay').css("display","none");
+				if(this.checked){
+					$form.find('#claim').show();
+				}else{
+					$form.find('#claim').hide();
+					$form.find("input:[name='e.claimDate']").val('');
+					$form.find("input:[name='e.claimMoney']").val('');
+				}
 			}
 		});
 		
 		//绑定二次送保按钮  显示或隐藏二次送保的内容
 		$form.find(":checkbox[name='e.deliverSecond']").change(function(){
-			if(!$(this)[0].checked){
-				$form.find("#idSecondDeliver").css("display","none");
-				$form.find(":checkbox[name='e.deliverTwo']")[0].checked=false;
-				$form.find(":checkbox[name='e.claimTwo']")[0].checked=false;
-				$form.find(":checkbox[name='e.payTwo']")[0].checked=false;
-				$form.find('#deliverTwo').css("display","none");
-				$form.find('#claimTwo').css("display","none");
-				$form.find('#payTwo').css("display","none");
-			}else if($(this)[0].checked==true){
-				$form.find("#idSecondDeliver").css("display","block");
-				
-			}
-			
+			var deliverTwo=$form.find(":checkbox[name='e.deliverTwo']")[0].checked;
+			if(deliverTwo){
+				$form.find(":checkbox[name='e.deliverSecond']")[0].checked=true;
+				bc.msg.slide("已勾二次送保,请先操作二次送保!");
+			}else{
+				if(this.checked){
+					$form.find('#idSecondDeliver').show();
+				}else
+					$form.find('#idSecondDeliver').hide();
+			}		
 		});
+		
 		//绑定送保 隐藏保险公司赔付和受款司机内容  （二次送保）
 		$form.find(":checkbox[name='e.deliverTwo']").change(function(){
-			if(!$(this)[0].checked){
-				$form.find(":checkbox[name='e.claimTwo']")[0].checked=false;
-				$form.find(":checkbox[name='e.payTwo']")[0].checked=false;
-				$form.find('#claimTwo').css("display","none");
-				$form.find('#payTwo').css("display","none");
+			var claimTwo=$form.find(":checkbox[name='e.claimTwo']")[0].checked;
+			if(claimTwo){
+				$form.find(":checkbox[name='e.deliverTwo']")[0].checked=true;
+				bc.msg.slide("已勾选二次保险公司赔付,请先操作二次保险公司赔付!");
+			}else{
+				if(this.checked){
+					$form.find('#deliverTwo').show();
+				}else{
+					$form.find('#deliverTwo').hide();
+					$form.find("input:[name='e.deliverDateTwo']").val('');
+					$form.find("input:[name='e.deliverMoneyTwo']").val('');
+				}
 			}
 		});
 		
-		
-		//绑定保险公司赔付 隐藏受款司机内容（二次送保）
-		$form.find(":checkbox[name='e.claimTwo']").change(function(){
-			if(!$(this)[0].checked){
-				$form.find(":checkbox[name='e.payTwo']")[0].checked=false;
-				$form.find('#payTwo').css("display","none");
+		// 绑定是否保险公司是否赔款事件 二次送保
+		$form.find(":checkbox[name='e.claimTwo']").change(function() {
+			var payTwo=$form.find(":checkbox[name='e.payTwo']")[0].checked;
+			if(payTwo){
+				$form.find(":checkbox[name='e.claimTwo']")[0].checked=true;
+				bc.msg.slide("已勾选二次司机受款,请先操作二次司机受款!");
+			}else{
+				if(this.checked){
+					$form.find('#claimTwo').show();
+				}else{
+					$form.find('#claimTwo').hide();
+					$form.find("input:[name='e.claimDateTwo']").val('');
+					$form.find("input:[name='e.claimMoneyTwo']").val('');
+				}
 			}
 		});
+				
+		//--------------送保按钮绑定事件------------结束---
 		
 		//绑定按钮点击获取相关保单
 		$form.find("#loadPolicy").click(function(){
@@ -435,91 +456,96 @@ bc.caseAccidentForm = {
 	//结案 
 	closefile : function(){
 		var $form = $(this);
-		if(	$form.find(":checkbox[name='e.deliverSecond']")[0].checked==false){
-			//首次送保信息未填写好时，弹出相应的提示性信息
-			if($form.find(":checkbox[name='e.deliver']")[0].checked==false||
-					$form.find(":checkbox[name='e.claim']")[0].checked==false||
-					$form.find(":checkbox[name='e.pay']")[0].checked==false
+		var deliverSecond=$form.find(":checkbox[name='e.deliverSecond']")[0].checked;
+		var deliver=$form.find(":checkbox[name='e.deliver']")[0].checked;
+		var claim=$form.find(":checkbox[name='e.claim']")[0].checked;
+		var pay=$form.find(":checkbox[name='e.pay']")[0].checked;
+		var deliverTwo=$form.find(":checkbox[name='e.deliverTwo']")[0].checked;
+		var claimTwo=$form.find(":checkbox[name='e.claimTwo']")[0].checked;
+		var payTwo=$form.find(":checkbox[name='e.payTwo']")[0].checked;
+		var msg='';
+		if((deliver&&claim&&pay&&!deliverSecond)||
+			(deliver&&claim&&pay&&deliverSecond&&deliverTwo&&claimTwo&&payTwo)	
 			){
-				bc.msg.confirm("送保相关的信息未完成，确定要结案吗？",function(){
-					$form.find(":input[name='isClosed']").val("1");
-					//调用标准的方法执行保存
-					bc.page.save.call($form,{callback:function(){
-						$form.dialog("close");
-						//显示结案成功提示信息
-						bc.msg.slide("结案成功");
-						
-						//返回false，禁止默认的“保存成功”提示信息的显示
-						return false;
-					}});
-				});
-			}else{
-				bc.msg.confirm("确定要结案吗？",function(){
-					$form.find(":input[name='isClosed']").val("1");
-					//调用标准的方法执行保存
-					bc.page.save.call($form,{callback:function(){
-						$form.dialog("close");
-						//显示结案成功提示信息
-						bc.msg.slide("结案成功");
-						
-						//返回false，禁止默认的“保存成功”提示信息的显示
-						return false;
-					}});
-				});
-			}
-		}else{
-			if($form.find(":checkbox[name='e.deliver']")[0].checked==false||
-					$form.find(":checkbox[name='e.claim']")[0].checked==false||
-					$form.find(":checkbox[name='e.pay']")[0].checked==false||
-					$form.find(":checkbox[name='e.deliverTwo']")[0].checked==false||
-					$form.find(":checkbox[name='e.claimTwo']")[0].checked==false||
-					$form.find(":checkbox[name='e.payTwo']")[0].checked==false
-			){
-				bc.msg.confirm("送保或二次送保相关的信息未完成，确定要结案吗？",function(){
-					$form.find(":input[name='isClosed']").val("1");
-					//调用标准的方法执行保存
-					bc.page.save.call($form,{callback:function(){
-						$form.dialog("close");
-						//显示结案成功提示信息
-						bc.msg.slide("结案成功");
-						//返回false，禁止默认的“保存成功”提示信息的显示
-						return false;
-					}});
-				});
-			}else{
-				bc.msg.confirm("确定要结案吗？",function(){
-					$form.find(":input[name='isClosed']").val("1");
-					//调用标准的方法执行保存
-					bc.page.save.call($form,{callback:function(){
-						$form.dialog("close");
-						//显示结案成功提示信息
-						bc.msg.slide("结案成功");
-						//返回false，禁止默认的“保存成功”提示信息的显示
-						return false;
-					}});
-				});
-			}
-		}
-	},//保存时触发相关事件
-	save: function(){
-		$page=$(this);
-		if(($page.find(":checkbox[name='e.pay']")[0].checked&&!($page.find(":checkbox[name='e.deliverSecond']")[0].checked))
-				||($page.find(":checkbox[name='e.pay']")[0].checked&&$page.find(":checkbox[name='e.payTwo']")[0].checked)){
-				bc.msg.confirm("你好，已勾选受款司机，确定要结案吗？",function(){
-					$page.find(":input[name='isClosed']").val("1");
-					//调用标准的方法执行保存
-					bc.page.save.call($page,{callback:function(){
-						$page.dialog("close");
-						//显示结案成功提示信息
-						bc.msg.slide("结案成功");
-						//返回false，禁止默认的“保存成功”提示信息的显示
-						return false;
-					}});
-				});
-		}else{
+			msg="确定要结案？";
+		}else
+			msg="送保相关的信息未完成，确定要结案？";
+		bc.msg.confirm(msg,function(){
+			$form.find(":input[name='isClosed']").val("1");
 			//调用标准的方法执行保存
-			bc.page.save.call(this);
-		}
+			bc.page.save.call($form,{callback:function(){
+				$form.dialog("close");
+				//显示结案成功提示信息
+				bc.msg.slide("结案成功");
+				//返回false，禁止默认的“保存成功”提示信息的显示
+				return false;
+			}});
+		});
+
+	},//保存时触发相关事件
+	save: function(readonly){
+		$form=$(this);
+		var pay=$form.find(":checkbox[name='e.pay']")[0].checked;
+		var	deliverSecond=$form.find(":checkbox[name='e.deliverSecond']")[0].checked;
+		var payTwo=$form.find(":checkbox[name='e.payTwo']")[0].checked;
+		
+		//清空司机受款的受款金额和司机受款说明信息
+		var isPayManage=$form.find(":input[name='isPayManage']").val();
+		var isManage=$form.find(":input[name='isManage']").val();
+		
+		if(isPayManage=='true'&&isManage=='true'){
+			if((pay&&!deliverSecond)||payTwo){
+				bc.msg.confirm("你好，已勾选受款司机，确定要结案？ 注意：选择否为保存信息",function(){
+					$form.find(":input[name='isClosed']").val("1");
+					//调用标准的方法执行保存
+					bc.page.save.call($form,{callback:function(){
+						$form.dialog("close");
+						//显示结案成功提示信息
+						bc.msg.slide("结案成功");
+						//返回false，禁止默认的“保存成功”提示信息的显示
+						return false;
+					}});
+				},function(){
+					//调用标准的方法执行保存
+					bc.page.save.call($form);
+				});
+			}else
+				//调用标准的方法执行保存
+				bc.page.save.call($form);
+			
+		}else if(isManage=='true'){
+			$form.find(":input[name='e.payMoney']").val('');
+			$form.find(":input[name='e.payDesc']").val('');
+			if((pay&&!deliverSecond)||payTwo){
+				bc.msg.confirm("你好，已勾选受款司机，确定要结案？ 注意：选择否为保存信息",function(){
+					$form.find(":input[name='isClosed']").val("1");
+					//调用标准的方法执行保存
+					bc.page.save.call($form,{callback:function(){
+						$form.dialog("close");
+						//显示结案成功提示信息
+						bc.msg.slide("结案成功");
+						//返回false，禁止默认的“保存成功”提示信息的显示
+						return false;
+					}});
+				},function(){
+					//调用标准的方法执行保存
+					bc.page.save.call($form,{callback:function(){
+						$form.find(":input[name='e.payMoney']").val('******');
+						$form.find(":input[name='e.payDesc']").val('******');
+					}});
+				});
+			}else
+				//调用标准的方法执行保存
+				bc.page.save.call(this,{callback:function(){
+					$form.find(":input[name='e.payMoney']").val('******');
+					$form.find(":input[name='e.payDesc']").val('******');
+				}});
+			
+		}else if(isPayManage=='true')
+			//调用标准的方法执行保存
+			bc.page.save.call($form);
+		
+
 	}
 	,
 	//添加车辆相关保单信息
