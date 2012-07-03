@@ -170,7 +170,7 @@
 										                         visibility: hidden;
 									                             </s:else>
 									                             '>
-									                             <s:text name="policy.insurelDeadline"/>:
+									                             *<s:text name="policy.insurelDeadline"/>:
 								                                 </samp>
 								                           </td>
 								                           <td class="value" >
@@ -183,7 +183,7 @@
 									                             '>
 									                            <div style="position : relative; display: inline-block">
 													               &nbsp;从<input type="text" name="e.greenslipStartDate" 
-										                            data-validate='{required:false,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
+										                            data-validate='{required:true,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
 									                                value='<s:date format="yyyy-MM-dd" name="e.greenslipStartDate" />' style="width: 90px;"/>
 									                                <ul class="inputIcons" style="right : 0px;">
 																		<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.greenslipStartDate' ></li>
@@ -191,7 +191,7 @@
 												                 </div>
 												                 <div style="position : relative; display: inline-block">
 													               &nbsp;到<input type="text" name="e.greenslipEndDate" 
-										                            data-validate='{required:false,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
+										                            data-validate='{required:true,type:"date"}'class="bc-date ui-widget-content" title='<s:text name="title.click2selectDate"/>'
 									                                value='<s:date format="yyyy-MM-dd" name="e.greenslipEndDate" />' style="width: 90px;"/>
 									                                <ul class="inputIcons" style="right : 0px;">
 																		<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.greenslipEndDate' ></li>
