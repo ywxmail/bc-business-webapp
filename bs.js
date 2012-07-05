@@ -141,7 +141,7 @@ bs.selectCar = function(option) {
 		paging: true,
 		title: '选择车辆信息'
 	},option);
-	
+
 	// 将一些配置参数放到data参数内(这些参数是提交到服务器的参数)
 	option.data = jQuery.extend({
 		status: '0,1',
@@ -448,6 +448,7 @@ $document.delegate(".selectCar",{
 	click: function() {
 		var $this = $(this);
 		var cfg = $this.data("cfg");
+		var status =$this.attr("data-status");
 		if(!cfg){
 			alert("没有配置dom元素data-cfg属性的值，无法处理！");
 			return;
@@ -457,6 +458,7 @@ $document.delegate(".selectCar",{
 		
 		var $form = $this.closest("form");
 		bs.selectCar({
+				status : (status !=null ? status : "0,1"),
 			onOk : function(car) {
 				var mapping = cfg.mapping.split(",");
 				var c,c1;

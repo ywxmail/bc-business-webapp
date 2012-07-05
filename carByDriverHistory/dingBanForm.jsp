@@ -36,7 +36,8 @@
 						      <div class="input ui-widget-content" data-validate="required" ><span class="link showCar" title='<s:text name="title.click2openCar"/>' data-cfg='<s:property value="e.toCar.id" />' id="carInfo" ><s:property value="%{e.toCar.plateType+'.'+e.toCar.plateNo }" /></span>
 						      </div>
 						      <ul class="inputIcons">
-						        <li class="selectCar inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>' data-cfg='e.toCar.id=id,carInfo=plate|text,carInfo=id|attr'></li>
+						        <li class="selectCar inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>' 
+						        	data-cfg='e.toCar.id=id,carInfo=plate|text,carInfo=id|attr' data-status="-1,0,1"></li>
 						      </ul>
                                </td>
 						</s:else>
