@@ -210,7 +210,7 @@
 			<div class="clear"></div>
 		</li>
 		<li class="condition">
-			<div class="label">迁移日期(顶班合同开始日期)</div>
+			<div class="label">最新迁移日期(顶班合同开始日期)</div>
 			<div class="value">
 				<div class="bc-dateContainer">
 					<input type="text" class="bc-date ui-widget-content" data-validate="date" style="width:9em;"
@@ -231,7 +231,7 @@
 			<div class="clear"></div>
 		</li>
 		<li class="condition">
-			<div class="label">顶班合同结束日期</div>
+			<div class="label">最新顶班合同结束日期</div>
 			<div class="value">
 				<div class="bc-dateContainer">
 					<input type="text" class="bc-date ui-widget-content" data-validate="date" style="width:9em;"
