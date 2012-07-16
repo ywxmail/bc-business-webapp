@@ -250,6 +250,11 @@
 				</div>
 			</div>
 			<div class="clear"></div>
+		</li>
+		<li class="condition">
+			<div class="value checkboxes" data-condition="{'type':'string','ql':'(m.origin=\'\' or m.origin is null)'}" >
+				<label><input type="checkbox" name="checkboxField1" ><span>籍贯为空</span></label>
+			</div>
 		</li>		
 	</ul>
 </form>
