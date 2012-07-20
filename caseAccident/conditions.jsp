@@ -95,10 +95,17 @@
 				<div class="clear"></div>
 			</li>
 			<li class="condition">
-			<div class="value checkboxes" data-condition='{"type":"string","ql":"c.claim_money is not null and c.pay_money is not null and c.claim_money>c.pay_money"}' >
-				<label><input type="checkbox" name="checkboxField1" ><span>赔付不足</span></label>
-			</div>
-		</li>
+				<div style="position: relative;display: inline-block;">
+					<div class="value checkboxes" data-condition='{"type":"string","ql":"c.claim_money is not null and c.pay_money is not null and c.claim_money>c.pay_money"}' >
+						<label><input type="checkbox" name="checkboxField1" ><span>赔付不足</span></label>
+					</div>
+				</div>&nbsp;
+				<div style="position: relative;display: inline-block;">
+					<div class="value checkboxes" data-condition='{"type":"string","ql":"c.is_deliver is true"}' >
+						<label><input type="checkbox" name="checkboxField1" ><span>送保为是</span></label>
+					</div>
+				</div>
+			</li>
 		</s:if>
 	</ul>
 </form>
