@@ -102,7 +102,7 @@
 				</div>&nbsp;
 				<div style="position: relative;display: inline-block;">
 					<div class="value checkboxes" data-condition='{"type":"string","ql":"c.is_deliver is true"}' >
-						<label><input type="checkbox" name="checkboxField1" ><span>送保为是</span></label>
+						<label><input type="checkbox" name="checkboxField1" ><span>已送保</span></label>
 					</div>
 				</div>
 			</li>
