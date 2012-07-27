@@ -21,7 +21,7 @@
 				<tr>
 					<td class="label">*<s:text name="certLost.plate"/>:</td>
 					<s:if test="%{carManId != null || carId !=null }">
-						<td class="value"><s:textfield name="carPlate" value="%{e.car.plateType+'.'+e.car.plateNo }" readonly="true" cssClass="ui-widget-content ui-state-disabled"/></td>
+						<td class="value"><s:textfield name="carPlate" value="%{e.car.plateType+'.'+e.car.plateNo }" readonly="true" cssClass="ui-widget-content"/></td>
 				    </s:if><s:else>
 						<td class="value" style="position:relative;display: block;"><s:textfield name="carPlate" value="%{e.car.plateType+'.'+e.car.plateNo }"
 				    		data-validate="required" cssClass="ui-widget-content" readonly="true" />
@@ -252,6 +252,8 @@
 		<s:hidden name="e.transactor.id"/>
 		<s:hidden name="e.modifier.id"/>
 		<s:hidden name="certs"/>
+		<s:hidden name="carPlate"/>
+		<s:hidden name="isMoreCarMan"/>
 		<s:hidden name="certLists" value="%{certNames}"/>
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 	</s:form>

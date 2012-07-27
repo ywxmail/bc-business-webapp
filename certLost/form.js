@@ -40,74 +40,21 @@ bc.certLostForm = {
 					}
 
 					//根据选择的车辆信息获取相应的营运司机信息
-					var url=bc.root +"/bc-business/caseAccident/selectCarMansInfo?carId="+car.id;
-					$.ajax({
-						url:url,
-						dataType:"json",
-						success: function(drivers){
-							logger.info("drivers=" + $.toJSON(drivers));
-							if(drivers.length==0){
-								$form.find(":input[name='e.driver.id']").val("");
-								$form.find(":input[name='e.driver.cert4FWZG']").val("");
-								$form.find(":input[name='e.driverNane']").val("");
-								bc.msg.alert("该车辆还没有被任何司机驾驶！");
-								//按照司机信息更新表单相应的域
-								function updateFieldsFromDriver(driver){
-									$form.find(":input[name='e.driver.id']").val(driver.id);
-									$form.find(":input[name='e.driverNane']").val(driver.name);
-									$form.find(":input[name='e.driver.cert4FWZG']").val(driver.cert4FWZG);
-								};
-
-							}
-							if(drivers.length == 1){//单个司机直接填写
-								updateFieldsFromDriver(drivers[0]);
-							}else if(drivers.length > 1){//多个司机，让用户选择后再填写
-								//生成对话框的html代码
-								var html = [];
-								html.push('<div class="bc-page" data-type="dialog">');
-								html.push('<div style="margin: 4px;">');
-								html.push('<select id="drivers" size="10" style="width:100%;height:100%;">');
-								for(var i=0; i<drivers.length; i++){
-									html.push('<option value="' + drivers[i].id + '"');
-									if(i == 0){
-										//默认选中第一个司机
-										html.push(' selected="selected"');
-									}
-									html.push('>' + drivers[i].name + '</option>');
-								}
-								html.push('</select>');
-								html.push('</div>');
-								html.push('</div>');
-								html = $(html.join("")).appendTo("body");
-								
-								//绑定双击事件
-								function onSelectDriver(){
-									if(driversEl.selectedIndex == -1){
-										alert("请先选择营运司机！");
-										return false;
-									}
-									//更新司机信息
-									updateFieldsFromDriver(drivers[driversEl.selectedIndex]);
-									//销毁对话框
-									html.dialog("destroy").remove();
-								}
-								var driversEl = html.find("#drivers").dblclick(onSelectDriver)[0];
-								
-								//弹出对话框让用户选择司机
-								html.dialog({
-									id: "selectAccidentDriver",
-									title: "所选车辆有多个营运司机，请选择当事司机",
-									dialogClass: 'bc-ui-dialog ui-widget-header',
-									width:300,modal:true,
-									buttons:[{text:"确定",click: onSelectDriver}]
-								});
-							}
-						}
-					});
+					bc.certLostForm.getCarManInfoByCarId.call($form,car.id);
 				}
 			});
 		});
 		//------------绑定选择车辆按钮事件结束-------------------
+		//通过车辆信息页签新建证照遗失(多司机)
+		if($form.find(":input[name='isMoreCarMan']").val()=="true"){
+			var carId = $form.find(":input[name='e.car.id']").val();
+			var carPlate = $form.find(":input[name='carPlate']").val();
+			var subject="["+carPlate+"]"+bc.certLostForm.changeTimeToString()+"补办证件";
+			$form.find(":input[name='e.subject']").val(subject);
+			bc.certLostForm.getCarManInfoByCarId.call($form,carId);
+			
+		};
+		
 		//------------添加行-------------------
 		var tableEl=$form.find("#certTables")[0];
 		$form.find("#addLine").click(function() {
@@ -307,6 +254,75 @@ bc.certLostForm = {
 			currentDate=currentDate+"0"+day;
 		}
 		return currentDate;
+	},
+	//通过车辆的Id获取相关信息
+	getCarManInfoByCarId : function(carId){
+		var $form=$(this);
+		//根据选择的车辆信息获取相应的营运司机信息
+		var url=bc.root +"/bc-business/caseAccident/selectCarMansInfo?carId="+carId;
+		$.ajax({
+			url:url,
+			dataType:"json",
+			success: function(drivers){
+				logger.info("drivers=" + $.toJSON(drivers));
+				if(drivers.length==0){
+					$form.find(":input[name='e.driver.id']").val("");
+					$form.find(":input[name='e.driver.cert4FWZG']").val("");
+					$form.find(":input[name='e.driverNane']").val("");
+					bc.msg.alert("该车辆还没有被任何司机驾驶！");
+					//按照司机信息更新表单相应的域
+					function updateFieldsFromDriver(driver){
+						$form.find(":input[name='e.driver.id']").val(driver.id);
+						$form.find(":input[name='e.driverNane']").val(driver.name);
+						$form.find(":input[name='e.driver.cert4FWZG']").val(driver.cert4FWZG);
+					};
+
+				}
+				if(drivers.length == 1){//单个司机直接填写
+					updateFieldsFromDriver(drivers[0]);
+				}else if(drivers.length > 1){//多个司机，让用户选择后再填写
+					//生成对话框的html代码
+					var html = [];
+					html.push('<div class="bc-page" data-type="dialog">');
+					html.push('<div style="margin: 4px;">');
+					html.push('<select id="drivers" size="10" style="width:100%;height:100%;">');
+					for(var i=0; i<drivers.length; i++){
+						html.push('<option value="' + drivers[i].id + '"');
+						if(i == 0){
+							//默认选中第一个司机
+							html.push(' selected="selected"');
+						}
+						html.push('>' + drivers[i].name + '</option>');
+					}
+					html.push('</select>');
+					html.push('</div>');
+					html.push('</div>');
+					html = $(html.join("")).appendTo("body");
+					
+					//绑定双击事件
+					function onSelectDriver(){
+						if(driversEl.selectedIndex == -1){
+							alert("请先选择营运司机！");
+							return false;
+						}
+						//更新司机信息
+						updateFieldsFromDriver(drivers[driversEl.selectedIndex]);
+						//销毁对话框
+						html.dialog("destroy").remove();
+					}
+					var driversEl = html.find("#drivers").dblclick(onSelectDriver)[0];
+					
+					//弹出对话框让用户选择司机
+					html.dialog({
+						id: "selectAccidentDriver",
+						title: "所选车辆有多个营运司机，请选择当事司机",
+						dialogClass: 'bc-ui-dialog ui-widget-header',
+						width:300,modal:true,
+						buttons:[{text:"确定",click: onSelectDriver}]
+					});
+				}
+			}
+		});
 	}
 	
 	
