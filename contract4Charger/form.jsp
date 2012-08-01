@@ -236,9 +236,10 @@
 								</tr>
 							</s:else>
 								<tr>
-									<td class="label"><s:text name="contract4Charger.carMaintain"/>:</td>
+									<td class="label">*<s:text name="contract4Charger.carMaintain"/>:</td>
 									<td class="value">
-										<s:select name="e.carMaintain" list="carMaintainList" listKey="value" listValue="value" headerKey="" headerValue="" cssClass="ui-widget-content" ></s:select>
+										<s:select name="e.carMaintain" list="carMaintainList" listKey="value" listValue="value" 
+											data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" ></s:select>
 									</td>
 								</tr>
 							<tr>
