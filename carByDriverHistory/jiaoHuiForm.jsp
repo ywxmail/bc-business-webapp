@@ -108,12 +108,13 @@
 				</tbody>
 			</table>
 			<div class="formTopInfo">
-					登记：<s:property value="e.author.name" />(<s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>)
+					状态：<s:property value="%{statusesValue[e.status]}" />&nbsp;&nbsp;&nbsp;&nbsp;登记：<s:property value="e.author.name" />(<s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>)
 					<s:if test="%{e.modifier != null}">
 					最后修改：<s:property value="e.modifier.name" />(<s:date name="e.modifiedDate" format="yyyy-MM-dd HH:mm:ss"/>)
 					</s:if>
 		   </div>
 		<s:hidden name="e.id" />
+		<s:hidden name="e.status" />
 		<!--<s:hidden name="e.moveType" />-->
 		<s:hidden name="e.driver.id" />
 		<s:hidden id="header" value="%{e.driver.name}"/>

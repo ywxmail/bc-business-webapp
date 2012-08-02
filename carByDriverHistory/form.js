@@ -114,6 +114,23 @@ bc.business.carByDriverHistoryForm = {
 		bc.page.save.call($form,{callback: function(json){
 				$form.dialog("close");
 		}});
+	},
+	//入库
+	warehousing:function(){
+		var $form = $(this);
+		//表单验证
+		if(!bc.validator.validate($form))
+			return;
+		bc.msg.confirm("确定要入库吗？",function(){
+		//status=0为正常状态
+		$form.find(":input[name='e.status']").val("0");
+		//调用标准的方法执行保存
+		bc.page.save.call($form,{callback: function(json){
+			bc.msg.slide("入库成功！");
+			$form.dialog("close");
+			return false;
+		}});
+		});
 	}
 
 };
