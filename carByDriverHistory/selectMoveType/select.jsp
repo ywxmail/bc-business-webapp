@@ -12,7 +12,7 @@
 		<s:select list="#{5:getText('carByDriverHistory.moveType.xinruzhi'),4:getText('carByDriverHistory.moveType.jiaohuiweizhuxiao')
 		     ,0:getText('carByDriverHistory.moveType.cheliangdaocheliang'),8:getText('carByDriverHistory.moveType.jiaohuizhuanche')
 		     ,2:getText('carByDriverHistory.moveType.zhuxiaoweiyouquxiang'),1:getText('carByDriverHistory.moveType.gongsidaogongsiyizhuxiao')
-		     ,3:getText('carByDriverHistory.moveType.youwaigongsiqianhui')
+		     ,3:getText('carByDriverHistory.moveType.youwaigongsiqianhui'),9:getText('carByDriverHistory.moveType.weijiaozhengzhuxiao')
 	         }" theme="simple"
 		size="10" cssStyle="width:100%;height:100%;" value="selected" cssClass="ui-widget-content"
 		multiple="%{multiple}"></s:select>
@@ -20,7 +20,8 @@
 	<s:select list="#{5:getText('carByDriverHistory.moveType.xinruzhi'),4:getText('carByDriverHistory.moveType.jiaohuiweizhuxiao')
 		     ,0:getText('carByDriverHistory.moveType.cheliangdaocheliang'),8:getText('carByDriverHistory.moveType.jiaohuizhuanche')
 		     ,2:getText('carByDriverHistory.moveType.zhuxiaoweiyouquxiang'),1:getText('carByDriverHistory.moveType.gongsidaogongsiyizhuxiao')
-		     ,3:getText('carByDriverHistory.moveType.youwaigongsiqianhui'),6:getText('carByDriverHistory.moveType.cheduidaochedui')
+		     ,3:getText('carByDriverHistory.moveType.youwaigongsiqianhui'),9:getText('carByDriverHistory.moveType.weijiaozhengzhuxiao')
+		     ,6:getText('carByDriverHistory.moveType.cheduidaochedui')
 		     }" theme="simple"
 		size="10" cssStyle="width:100%;height:100%;" value="selected" cssClass="ui-widget-content"
 		multiple="%{multiple}"></s:select>
