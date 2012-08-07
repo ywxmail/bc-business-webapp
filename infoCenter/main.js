@@ -403,7 +403,8 @@ bs.infoCenter = {
 							+'<td class="middle ui-widget-content">' + msgs[i].limit + '</td>'
 							+'<td class="middle ui-widget-content">' + msgs[i].link + '</td>'
 							+'<td class="middle ui-widget-content">' + msgs[i].subject + '</td>'
-							+'<td class="last ui-widget-content">' + msgs[i].date + '</td>'
+							+'<td class="middle ui-widget-content">' + msgs[i].date + '</td>'
+							+'<td class="last ui-widget-content">' + msgs[i].upper + '</td>'
 							+'</tr>');
 					}
 					$messages.find("#msgsBody").append(trs.join(""));
