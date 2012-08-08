@@ -82,7 +82,7 @@
 					</tr>
 					<tr>
 						<td class="label" ><s:text name="blacklist.relatedDepartmennts"/>:</td>
-						<td class="value" ><s:select list="relatedDepartmenntsList" listKey="value" listValue="value" headerKey="" 
+						<td class="value" ><s:select list="relatedDepartmenntsList" listKey="id" listValue="name" headerKey="" 
 							headerValue="" name="e.relatedDepartmenntsId" cssClass="ui-widget-content"></s:select></td>
 					</tr>
 					<tr>
