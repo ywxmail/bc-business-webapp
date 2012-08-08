@@ -81,6 +81,11 @@
 						<td class="value"><s:textfield name="e.code" cssClass="ui-widget-content"/></td>
 					</tr>
 					<tr>
+						<td class="label" ><s:text name="blacklist.relatedDepartmennts"/>:</td>
+						<td class="value" ><s:select list="relatedDepartmenntsList" listKey="value" listValue="value" headerKey="" 
+							headerValue="" name="e.relatedDepartmenntsId" cssClass="ui-widget-content"></s:select></td>
+					</tr>
+					<tr>
 						<td class="label">*<s:text name="blacklist.type"/>:</td>
 						<td class="value" colspan="3"><s:select list="blackTypeList" listKey="value" listValue="value" headerKey="" headerValue="%{getText('label.please.choose')}" name="e.type" 
 							data-validate="required" cssClass="ui-widget-content" cssStyle="width: 175px;"></s:select>从	
