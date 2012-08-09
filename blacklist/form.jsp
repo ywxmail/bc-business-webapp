@@ -77,13 +77,11 @@
 						<td class="label" ><s:text name="blacklist.level"/>:</td>
 						<td class="value" ><s:select list="blackLevelList" listKey="value" listValue="value" headerKey="" 
 							headerValue="" name="e.level" cssClass="ui-widget-content"></s:select></td>
-						<td class="label"><s:text name="blacklist.code"/>:</td>
-						<td class="value"><s:textfield name="e.code" cssClass="ui-widget-content"/></td>
-					</tr>
-					<tr>
 						<td class="label" ><s:text name="blacklist.relatedDepartmennts"/>:</td>
 						<td class="value" ><s:select list="relatedDepartmenntsList" listKey="id" listValue="name" headerKey="" 
 							headerValue="" name="e.relatedDepartmenntsId" cssClass="ui-widget-content"></s:select></td>
+						<!--  <td class="label"><s:text name="blacklist.code"/>:</td>
+						<td class="value"><s:textfield name="e.code" cssClass="ui-widget-content"/></td>-->
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="blacklist.type"/>:</td>
@@ -177,6 +175,7 @@
 		<s:hidden name="isMoreCarMan" />
 		<s:hidden name="carManId" />
 		<s:hidden name="carId" />
+		<s:hidden name="e.code" />
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 		<input type="hidden" name="e.lockDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.lockDate" />'/>
 		<input type="hidden" name="e.unlockDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.unlockDate" />'/>
