@@ -278,4 +278,37 @@ bc.policyForm = {
 			});
 		});
 	},
+	
+	//保存并关闭
+	saveAndClose:function(){
+		$page = $(this);
+		//先将购买险种合并到隐藏域
+		var buyPlants=[];
+		//将购买险种表中的内容添加到buyPlants里
+		$page.find("#buyPlantTables tr:gt(0)").each(function(){
+			var $inputs = $(this).find("td>input");
+			var json = {
+				name: $inputs[0].value,
+				coverage: $inputs[1].value,
+				description: $inputs[2].value
+			};
+			var id = $(this).attr("data-id");
+			if(id && id.length > 0)
+				json.id = id;
+			buyPlants.push(json);
+		});
+		$page.find(":input[name='buyPlants']").val($.toJSON(buyPlants));
+		//表单验证
+		$buyPlantTables=$page.find("#buyPlantTables tr");
+		
+		if(!bc.validator.validate($buyPlantTables))
+			return;
+		
+		if(!bc.validator.validate($page))
+			return;
+		
+		//调用标准的方法执行保存
+		bc.page.save.call(this);
+		$page.dialog("close");
+	}
 };
