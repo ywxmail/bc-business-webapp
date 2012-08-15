@@ -163,7 +163,8 @@
 							<td class="middle ui-widget-content" style="min-width: 6em">限制项目</td>
 							<td class="middle ui-widget-content" style="min-width: 4em">关系人</td>
 							<td class="middle ui-widget-content" >内容</td>
-							<td class="last ui-widget-content" style="min-width: 6em">相关日期</td>
+							<td class="middle ui-widget-content" style="min-width: 6em">相关日期</td>
+							<td class="last ui-widget-content" style="min-width: 4em">相关部门</td>
 						</tr>
 						<!-- 
 						<tr class="middle odd">

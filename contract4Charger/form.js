@@ -833,10 +833,13 @@ bc.contract4ChargerForm = {
 						if(this.carId){
 							var carIdStr=this.carId;
 						}
-						
+						//获取未入库的迁移记录id
+						if(this.carByDriverHistoryId){
+							var carByDriverHistoryIdStr=this.carByDriverHistoryId;
+						}
 						bc.msg.confirm(this.msg,function(){
 							//入库
-							bc.contract4ChargerForm.storage.call($form,carIdStr,carManIdStr,function(success){
+							bc.contract4ChargerForm.storage.call($form,carIdStr,carManIdStr,carByDriverHistoryIdStr,function(success){
 								if(success){
 									bc.msg.slide("入库成功！");
 									//刷新
@@ -1079,17 +1082,28 @@ buildSelect : function (value){
 	/**
 	 * 经济合同入库
 	 */
-	storage : function (carIdStr,carManIdStr,callback){
+	storage : function (carIdStr,carManIdStr,carByDriverHistoryIdStr,callback){
 		var $form = $(this);
-		if(carIdStr !=null && carManIdStr !=null){
-			var url = bc.root + "/bc-business/contract4Charger/warehousing?draftCarId ="+ carIdStr+"&& draftCarManId ="+ carManIdStr;			
-		}else if(carIdStr !=null && carManIdStr ==null){
-			var url = bc.root + "/bc-business/contract4Charger/warehousing?draftCarId ="+ carIdStr;			
-		}else if(carIdStr ==null && carManIdStr !=null){
-			var url = bc.root + "/bc-business/contract4Charger/warehousing?draftCarManId ="+ carManIdStr;			
-		}else{
-			var url = bc.root + "/bc-business/contract4Charger/warehousing";			
+		var url = bc.root + "/bc-business/contract4Charger/warehousing";
+		if(carIdStr){
+			url = bc.addParamToUrl(url,"draftCarId=" + carIdStr);			
 		}
+		if(carManIdStr){
+			url = bc.addParamToUrl(url,"draftCarManId=" + carManIdStr);			
+		}
+		if(carByDriverHistoryIdStr){
+			url = bc.addParamToUrl(url,"draftcarByDriverHistoryId=" + carByDriverHistoryIdStr);			
+		}
+		
+//		else if(carIdStr !=null && carManIdStr ==null){
+//			var url = bc.root + "/bc-business/contract4Charger/warehousing?draftCarId ="+ carIdStr;			
+//		}else if(carIdStr ==null && carManIdStr !=null){
+//			var url = bc.root + "/bc-business/contract4Charger/warehousing?draftCarManId ="+ carManIdStr;			
+//		}else{
+//			var url = bc.root + "/bc-business/contract4Charger/warehousing";			
+//		}
+//		var url = bc.root + "/bc-business/contract4Charger/warehousing";
+//		+(carIdStr !=null ? "?draftCarId ="+carIdStr :)
 		var $form = $("form",this);
 		var data = $form.serialize();
 		

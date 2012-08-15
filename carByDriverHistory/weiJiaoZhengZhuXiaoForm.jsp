@@ -27,7 +27,7 @@
 					    </td>
 					</s:else>
 						<td class="label" style="min-width: 5em;width: 5em;"><s:text name="carByDriverHistory.moveType"/>:</td>
-						<td class="value"><s:select id="moveType" name="e.moveType" list="#{4:'交回未注销',2:'注销未有去向'}" 
+						<td class="value"><s:select id="moveType" name="e.moveType" list="#{9:'未交证注销',4:'交回未注销',2:'注销未有去向'}" 
 							              listKey="key" listValue="value" data-validate="required" cssClass="ui-widget-content"/></td>
 						<!--<s:textfield name="moveTypeValue"  value="%{moveTypeValueList[e.moveType]}" readonly="true" cssClass="ui-widget-content"/>-->
 					</tr>

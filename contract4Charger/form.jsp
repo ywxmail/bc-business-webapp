@@ -183,8 +183,11 @@
 								</tr>
 								<tr>
 								<s:if test="%{scrapToPower}">
-									<td></td>
-									<td></td>
+									<td class="label">*<s:text name="contract4Charger.carMaintain"/>:</td>
+									<td class="value">
+										<s:select name="e.carMaintain" list="carMaintainList" listKey="value" listValue="value" 
+											data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" ></s:select>
+									</td>
 									<td></td>
 									<td class="label" style="text-align: right;">
 										<s:checkbox name="e.takebackOrigin" cssStyle="width:1em;"/>
@@ -193,6 +196,13 @@
 										<s:text name="contract4Charger.includeCost"/>
 									</td>
 								</s:if>
+								<s:else>
+									<td class="label">*<s:text name="contract4Charger.carMaintain"/>:</td>
+									<td class="value">
+										<s:select name="e.carMaintain" list="carMaintainList" listKey="value" listValue="value" 
+											data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" ></s:select>
+									</td>
+								</s:else>
 								</tr>
 							</s:if>
 							<s:else>
@@ -223,8 +233,11 @@
 									</td>
 									</s:if>
 									<s:else>
-									<td></td>
-									<td></td>
+									<td class="label">*<s:text name="contract4Charger.carMaintain"/>:</td>
+									<td class="value">
+										<s:select name="e.carMaintain" list="carMaintainList" listKey="value" listValue="value" 
+											data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" ></s:select>
+									</td>
 									<td></td>
 									<td class="label" style="text-align: right;">
 										<s:checkbox name="e.takebackOrigin" cssStyle="width:1em;"/>
@@ -234,7 +247,7 @@
 									</td>
 									</s:else>
 								</tr>
-							</s:else>
+								<s:if test="%{scrapToPower}">
 								<tr>
 									<td class="label">*<s:text name="contract4Charger.carMaintain"/>:</td>
 									<td class="value">
@@ -242,6 +255,15 @@
 											data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" ></s:select>
 									</td>
 								</tr>
+								</s:if>
+							</s:else>
+								<!--  <tr>
+									<td class="label">*<s:text name="contract4Charger.carMaintain"/>:</td>
+									<td class="value">
+										<s:select name="e.carMaintain" list="carMaintainList" listKey="value" listValue="value" 
+											data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" ></s:select>
+									</td>
+								</tr>-->
 							<tr>
 								<td class="label" colspan="4">
 									<div class="formTopInfo">
@@ -278,7 +300,7 @@
 									<tr>
 						    			<td class="label"><s:text name="contract4Charger.quitter"/>:</td>
 										<td class="value">
-											<s:select name="e.quitterId" list="quittersList" listKey="key" listValue="value" value="e.quitterId" 
+											<s:select name="e.quitterId" list="quittersList" listKey="id" listValue="name" value="e.quitterId" 
 												  headerKey="" headerValue="" cssClass="ui-widget-content" ></s:select>
 										</td>
 										<td class="label"><s:text name="contract4Charger.agreement"/>:</td>
