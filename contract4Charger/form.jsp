@@ -502,7 +502,9 @@
 		<s:if test="%{!scrapToPower}">
 			<s:hidden name="e.scrapTo"/>
 		</s:if>
-		
+		<s:hidden name="isChange"/>
+		<s:hidden name="contractFee4EndDate"/>
+		<s:hidden name="contractFee4Price"/>
 		<!-- 
 		<s:hidden name="e.transactor.id" />
 		<s:hidden name="e.changerId1" />

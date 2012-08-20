@@ -285,9 +285,12 @@ bc.contract4ChargerForm = {
 								sd=$.datepicker.parseDate('yy-mm-dd', startDate);
 								ed=$.datepicker.parseDate('yy-mm-dd', endDate);
 								
+								//是否是过户，生发包操作
+								var isChange = $form.find(":input[name='isChange']").val();
+								
 								if(sd!=null){
 									//第一条承包费项目期限为开始日期到本月的月底
-									if(sd.getDate()!=1){
+									if(sd.getDate()!=1 && isChange !="true"){
 										sd.setMonth(sd.getMonth()+1);//将开始日期的月份加1
 										sd.setDate(1);//将开始日期的月份加1后的日期的天数设置为1
 										sd.setDate(sd.getDate()-1);//日期的天数设置为开始日期同一月份的最后一日
@@ -333,7 +336,56 @@ bc.contract4ChargerForm = {
 
 										bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],sdStr,edStr,mustPrice,null,null);
 
+									//重发包，过户后生成的每月承包款	
+									}else if(isChange=="true"){
+										//第一条每月承包款的结束日期
+										sd=$.datepicker.parseDate('yy-mm-dd', $form.find(":input[name='contractFee4EndDate']").val());	
+										mustPrice=$form.find(":input[name='contractFee4Price']").val();
+										mustPrice=mustPrice.substring(0,mustPrice.lastIndexOf("."));
+										if(isDOD !=null && isDOD==true){
+											//标记读取第一条每月承包款的开始日期
+											if(isRSD !=null && isRSD==true && fristone==true){
+												//往特殊配置值中添加读取标记
+												var v1=$.toJSON(priceDate);
+												var specValue=eval("("+v1+")");
+												specValue.isRSDV=true;
+												bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],$.datepicker.formatDate('yy-mm-dd', rsd),$.datepicker.formatDate('yy-mm-dd', sd),mustPrice,null,specValue);
+												fristone=false;
+											}else{
+												bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],$.datepicker.formatDate('yy-mm-dd', rsd),$.datepicker.formatDate('yy-mm-dd', sd),mustPrice,null,null);
+											}
+										}else{
+											bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],startDate,$.datepicker.formatDate('yy-mm-dd', sd),mustPrice,null,null);
+										}
+										//将第一条承包费项目的结束日期设置为下一个月的第一日并增加一年时间 
+										sd.setDate(sd.getDate()+1);
+										sd.setMonth(sd.getMonth()+12);
+										//如果开始日期比结束日期小,就循环生成每月承包费项目
+										var md;
+										//实收的金额每年递减
+										mustPrice=mustPrice-cutPrice;
+										while(sd<=ed){
+											var md=new Date(sd.getTime());
+											md.setMonth(md.getMonth()-12);
+											sd.setDate(sd.getDate()-1);
+											//承包费项目期限满足一年的开始日期
+											var mDate=$.datepicker.formatDate('yy-mm-dd', md);
+											//承包费项目期限满足一年的结束日期
+											var eDate=$.datepicker.formatDate('yy-mm-dd', sd);
+											bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],mDate,eDate,mustPrice,null,null);
+											//实收的金额每年递减
+											mustPrice=mustPrice-cutPrice;
+											sd.setDate(sd.getDate()+1);
+											sd.setMonth(sd.getMonth()+12);
+										}
+										//最后一条承包费项目
+										sd.setMonth(sd.getMonth()-12);
+										var edStr=$.datepicker.formatDate('yy-mm-dd', ed);
+										var sdStr=$.datepicker.formatDate('yy-mm-dd', sd);
 										
+										if(sd<ed){
+											bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],sdStr,edStr,mustPrice,null,null);
+										}
 									}else{
 										//如果是1号开始的
 										sd.setMonth(sd.getMonth()+12);
