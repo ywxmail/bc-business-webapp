@@ -878,7 +878,7 @@ bc.contract4ChargerForm = {
 					if(success){
 						bc.msg.confirm("确定要入库吗？",function(){
 							//入库
-							bc.contract4ChargerForm.storage.call($form,null,null,function(success){
+							bc.contract4ChargerForm.storage.call($form,null,null,null,function(success){
 								if(success){
 									bc.msg.slide("入库成功！");
 									//刷新
