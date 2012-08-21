@@ -503,6 +503,7 @@
 			<s:hidden name="e.scrapTo"/>
 		</s:if>
 		<s:hidden name="isChange"/>
+		<s:hidden name="oldContractId"/>
 		<s:hidden name="contractFee4EndDate"/>
 		<s:hidden name="contractFee4Price"/>
 		<!-- 
