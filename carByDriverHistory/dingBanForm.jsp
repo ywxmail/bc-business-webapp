@@ -19,7 +19,7 @@
 						<td class="value"><s:textfield name="e.driver.name" readonly="true" cssClass="ui-widget-content" /></td>
 					</s:if><s:else>
 					    <td class="label">*<s:text name="shiftworkByDriver.driver"/>:</td>
-						<td class="value relative"><s:textfield name="e.driver.name"  data-validate="required" cssClass="ui-widget-content" />
+						<td class="value relative"><s:textfield name="e.driver.name" readonly="true" data-validate="required" cssClass="ui-widget-content" />
 					        <ul class="inputIcons">
                                <li id="driverName" class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></li>
                                <li class="clearSelect inputIcon ui-icon ui-icon-circle-close" data-cfg="e.driver.name" title='<s:text name="title.click2clear"/>'></li>
