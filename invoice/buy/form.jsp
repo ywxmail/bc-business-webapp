@@ -54,9 +54,6 @@
 							    <td class="label">*<s:text name="invoice4Buy.buyer"/>:</td>
 								<td class="value relative">
 									<s:textfield name="e.buyerId.name" cssClass="ui-widget-content" readonly="true" data-validate="required"/>
-									<ul class="inputIcons">
-										 <li id="selectBuyer" class=" inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></li>
-									</ul>
 								</td>
 								<td class="label"><s:text name="invoice4Buy.projectNo"/>:</td>
 								<td class="value">

@@ -95,6 +95,7 @@ bs.invoice4SellForm = {
 					$form.find(":input[name='e.carPlate']").val(car.plate);
 					$form.find("select[name='e.motorcadeId.id']").val(car.motorcadeId);
 					$form.find("select[name='e.company']").val(car.company);
+					addDetailLine(car.company);
 					//选择司机信息
 					bs.findInfoByCar({
 						carId: car.id,
@@ -118,7 +119,17 @@ bs.invoice4SellForm = {
 		//------------添加行-------------------
 		var tableEl=$form.find("#sellDetailTables")[0];
 		$form.find("#addLine").click(function() {
+			var company=$form.find("select[name='e.company']").val();
+			addDetailLine(company);
+		});
+		
+		//增加明细列方法封装
+		function addDetailLine(company){
 			var url=bc.root + "/bc-business/invoice4Sell/autoLoadInvoice4BuyCode";
+			if(company != '' && company.length>0){
+				url+="?company="+company;
+			}
+				
 			$.ajax({
 				url:url,
 				dataType: "json",
@@ -197,7 +208,9 @@ bs.invoice4SellForm = {
 					
 				}
 			});
-		});
+		}
+		
+		
 		//点击选中行
 		$form.find("#sellDetailTables").delegate("tr.ui-widget-content.row>td.id","click",function(){
 			$(this).parent().toggleClass("ui-state-highlight").find("td:eq(0)>span.ui-icon").toggleClass("ui-icon-check");
