@@ -71,9 +71,6 @@
 						:</td>
 						<td class="value relative">
 							<s:textfield name="e.cashierId.name" cssClass="ui-widget-content" readonly="true" data-validate="required" />
-							<ul class="inputIcons">
-								 <li id="selectCashier" class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></li>
-							</ul>
 						</td>
 					</tr>
 					<tr>
@@ -145,7 +142,7 @@
 						<td class="last" style="min-width: 4em;"><s:text name="invoice4Sell.amount"/></td>
 					</tr>
 					<!-- 新建时 -->
-					<s:if test="%{e.isNew()}">
+					<%-- <s:if test="%{e.isNew()}">
 					<tr class="ui-widget-content row bc-i4sell-detail" data-id='<s:property value="id"/>'>
 						<td class="id first" style="padding:0;text-align:left;"><span class="ui-icon"></span>
 						</td>
@@ -194,7 +191,7 @@
 								 value='<s:property value="amount"/>'/>
 						</td>
 					</tr>
-					</s:if>
+					</s:if> --%>
 					<s:iterator var="b" value="e.invoice4SellDetail">
 					<tr class="ui-widget-content row" data-id='<s:property value="id"/>'>
 						<td class="id first" style="padding:0;text-align:left;"><span class="ui-icon"></span>
