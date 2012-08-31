@@ -53,14 +53,10 @@
 							<s:select name="e.company" list="companyList" listKey="value" listValue="value" data-validate="required" 
 								 headerKey="" headerValue="" cssClass="ui-widget-content" />
 						</td>
-						<s:if test="%{readType==3}">
-							<td class="label"><s:text name="invoice4Sell.type"/>:</td>
-							<td>
-								<s:radio name="e.type" list="#{'1':'销售','2':'退票'}" cssStyle="width:auto;"/>
-							</td>
-						</s:if><s:else>
-							<s:hidden name="e.type" />
-						</s:else>
+						<td class="label"><s:text name="invoice.codeNo"/>:</td>
+						<td>
+							<s:textfield name="e.codeNo"  readonly="true" cssClass="ui-widget-content"/>
+						</td>
 					</tr>
 					<tr>
 					    <td class="label">*<s:text name="invoice.motorcade"/>:</td>
@@ -68,7 +64,16 @@
 										listValue="value"  headerKey="" headerValue="" cssClass="ui-widget-content"/>
 					    </td>
 					  	<td class="label"><s:text name="invoice.status"/>:</td>
-						<td><s:radio name="e.status" list="#{'0':'正常','1':'作废'}" cssStyle="width:auto;"/></td>
+						<td>
+							<s:radio name="e.status" list="#{'0':'正常','1':'作废'}" cssStyle="width:auto;"/>
+							<s:if test="%{readType==3}">
+								&nbsp;&nbsp;<s:text name="invoice4Sell.type"/>:
+								<s:radio name="e.type" list="#{'1':'销售','2':'退票'}" cssStyle="width:auto;"/>
+							</s:if>
+							<s:else>
+								<s:hidden name="e.type" />
+							</s:else>
+						</td>
 					</tr>
 					<tr>
 						<td class="topLabel" ><s:text name="invoice.desc"/>:</td>
@@ -87,7 +92,6 @@
 				</tbody>
 			</table>
 			
-			<!-- 销售明细 -->
 			<div class="ui-widget-content" style="border-width:1px 0 0 0;margin-bottom:8px;">
 				<div class="ui-widget-header" style="position:relative;border-width: 0;padding: 0.25em;">
 					<span class="text"><s:text name="invoice4Refund.detail"/>:</span>

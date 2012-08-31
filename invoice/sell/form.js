@@ -393,6 +393,9 @@ bs.invoice4SellForm = {
 					$a.dialog("close");
 				});
 				return false;
+			}else{
+				$page.find(":input[name='e.id']").val(json.id);
+				$page.find(":input[name='e.codeNo']").val(json.codeNo);
 			}
 		}});
 	},
