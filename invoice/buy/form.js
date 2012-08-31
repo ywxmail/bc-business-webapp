@@ -222,5 +222,23 @@ bs.invoice4BuyForm = {
 			}
 		}
 		return ok;
+	},
+	/**
+	 * 自定义打印
+	 */
+	print : function(){
+		var $page = $(this);
+		var id=$page.find(":input[name='e.id']").val();
+		if(id){
+			var url =bc.root+"/bc/templatefile/inline?code=invoice.buy.excel";
+			var dataObj={};
+			var dataArr=[];
+			dataObj.key="id";
+			dataObj.value=id;	
+			dataArr.push(dataObj);
+			url += "&formatSqlJsons="+$.toJSON(dataArr);
+			var win = window.open(url, "_blank");
+		}else
+			bc.page.print.call($page);
 	}
 };
