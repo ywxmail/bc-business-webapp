@@ -26,8 +26,11 @@
 					<tr>
 						<td class="label">*<s:text name="invoice.carPlate"/>:</td>
 						<td class="value relative">
-							<s:textfield name="e.carPlate" 
-							    data-validate="required" cssClass="ui-widget-content" readonly="true" />
+							<s:textfield name="e.carPlate" cssClass="bc-select ui-widget-content" readonly="false" 
+							    data-validate="required"
+								data-cfg='{"autoFocus":true,"delay":300,"minLength":2, "labelMapping":"{{plateType}}.{{plateNo}}", "valueMapping":"{{id}}","itemMapping":"<a>[{{statusCN}}] {{plateType}}.{{plateNo}}</a>","callback":"bs.invoice4SellForm.afterSelectCar"}'
+								data-maxHeight="150px" 
+								data-source='bc-business/car/find?status=-1,0,1'/>
 						    <span id="selectCar" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" 
 						    	title='<s:text name="title.click2select"/>'>
 						    </span>
@@ -242,7 +245,7 @@
 		</div>
 		<s:hidden name="e.id" />
 		<s:hidden name="e.author.id" />
-		<s:hidden name="e.carId" />
+		<s:hidden name="e.carId" data-validate="required"/>
 		<s:hidden name="e.buyerId" />
 		<s:hidden name="e.cashierId.id" />
 		<s:hidden name="e.payType" />

@@ -85,6 +85,8 @@ bs.invoice4SellForm = {
 			bc.msg.alert("此车辆没有被任何司机驾驶！");	
 		};
 		
+		var tableEl=$form.find("#sellDetailTables")[0];
+		
 		//------------绑定选择车辆按钮事件开始-------------------
 		$form.find("#selectCar").click(function() {
 			var selecteds = $form.find(":input[name='e.carPlate']").val();
@@ -95,7 +97,7 @@ bs.invoice4SellForm = {
 					$form.find(":input[name='e.carPlate']").val(car.plate);
 					$form.find("select[name='e.motorcadeId.id']").val(car.motorcadeId);
 					$form.find("select[name='e.company']").val(car.company);
-					addDetailLine(car.company);
+					bs.invoice4SellForm.addDetailLine(tableEl, car.company);
 					//选择司机信息
 					bs.findInfoByCar({
 						carId: car.id,
@@ -117,99 +119,10 @@ bs.invoice4SellForm = {
 		//------------绑定选择车辆按钮事件结束-------------------
 		
 		//------------添加行-------------------
-		var tableEl=$form.find("#sellDetailTables")[0];
 		$form.find("#addLine").click(function() {
 			var company=$form.find("select[name='e.company']").val();
-			addDetailLine(company);
+			bs.invoice4SellForm.addDetailLine(tableEl, company);
 		});
-		
-		//增加明细列方法封装
-		function addDetailLine(company){
-			var url=bc.root + "/bc-business/invoice4Sell/autoLoadInvoice4BuyCode";
-			if(company != '' && company.length>0){
-				url+="?company="+company;
-			}
-				
-			$.ajax({
-				url:url,
-				dataType: "json",
-				success:function(jsonArray){
-					
-					//插入行
-					var newRow=tableEl.insertRow(tableEl.rows.length);
-					newRow.setAttribute("class","ui-widget-content row");
-					//插入列
-					var cell=newRow.insertCell(0);
-					cell.style.padding="0";
-					cell.style.textAlign="left";
-					cell.setAttribute("class","id first");
-					cell.innerHTML='<span class="ui-icon"></span>';//空白头列
-
-					//插入发票代码
-					cell=newRow.insertCell(1);
-					cell.style.padding="0";
-					cell.style.textAlign="left";
-					cell.setAttribute("class","middle");
-					var codeRow='<select name="code" class="ui-widget-content bs-i4sell-detail-code" style="width:100%;height:100%;border:none;margin:0;padding:0 10px 0 2px"'
-						codeRow+='data-validate="required">';
-					codeRow+='<option value=" "></option>';
-					//logger.info($.toJSON(jsonArray));
-					for(var i=0;i<jsonArray.length;i++){
-						codeRow+='<option value="';
-						codeRow+=jsonArray[i].key;
-						codeRow+='">';
-						codeRow+=jsonArray[i].value;
-						codeRow+='</option>';
-					}
-					codeRow+='</select>';
-					cell.innerHTML=codeRow;
-					
-					//插入开始号
-					cell=newRow.insertCell(2);
-					cell.style.padding="0";
-					cell.style.textAlign="left";
-					cell.setAttribute("class","middle");
-					cell.innerHTML='<input name="startNo" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
-						+'type="text" class="ui-widget-content bs-i4sell-detail-startNo"  data-validate="required">';
-					
-					//插入结束号
-					cell=newRow.insertCell(3);
-					cell.style.padding="0";
-					cell.style.textAlign="left";
-					cell.setAttribute("class","middle");
-					cell.innerHTML='<input name="endNo" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
-						+'type="text" class="ui-widget-content bs-i4sell-detail-endNo" data-validate="required">';
-					
-					//插入数量
-					cell=newRow.insertCell(4);
-					cell.style.padding="0";
-					cell.style.textAlign="left";
-					cell.setAttribute("class","middle");
-					cell.innerHTML='<input name="count" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
-						+'type="text" class="ui-widget-content bs-i4sell-detail-count" data-validate="required">'
-					//每份数量
-						+'<input name="eachCount" class="bs-i4sell-detail-eachCount" type="hidden"/>';
-					
-					//插入单价
-					cell=newRow.insertCell(5);
-					cell.style.padding="0";
-					cell.style.textAlign="left";
-					cell.setAttribute("class","middle");
-					cell.innerHTML='<input name="price" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
-						+'type="text" class="ui-widget-content bs-i4sell-detail-price" data-validate="required">';
-					
-					//插入合计
-					cell=newRow.insertCell(6);
-					cell.style.padding="0";
-					cell.style.textAlign="left";
-					cell.setAttribute("class","middle");
-					cell.innerHTML='<input name="amount" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
-									+'type="text" class="ui-widget-content bs-i4sell-detail-amount" >';	
-					
-				}
-			});
-		}
-		
 		
 		//点击选中行
 		$form.find("#sellDetailTables").delegate("tr.ui-widget-content.row>td.id","click",function(){
@@ -335,6 +248,18 @@ bs.invoice4SellForm = {
 		$form.find("select[name='buyId']").each(function(){
 			$(this).removeAttr("name");
 		});
+		
+		// test
+//		$form.find("#testRichInput").autocomplete({
+//			minLength: 2,delay: 300,
+//			focus: function(){
+//				
+//				return false;
+//			},
+//			select: function(){
+//				
+//			}
+//		});
 	},
 	save : function(){
 		$page = $(this);
@@ -573,5 +498,127 @@ bs.invoice4SellForm = {
 			var win = window.open(url, "_blank");
 		}else
 			bc.page.print.call($page);
+	},
+	
+	/** 根据指定的公司增加一条明细行 */
+	addDetailLine: function (tableEl, company){
+		var url=bc.root + "/bc-business/invoice4Sell/autoLoadInvoice4BuyCode";
+		if(company != '' && company.length>0){
+			url+="?company="+company;
+		}
+			
+		$.ajax({
+			url:url,
+			dataType: "json",
+			success:function(jsonArray){
+				
+				//插入行
+				var newRow=tableEl.insertRow(tableEl.rows.length);
+				newRow.setAttribute("class","ui-widget-content row");
+				//插入列
+				var cell=newRow.insertCell(0);
+				cell.style.padding="0";
+				cell.style.textAlign="left";
+				cell.setAttribute("class","id first");
+				cell.innerHTML='<span class="ui-icon"></span>';//空白头列
+
+				//插入发票代码
+				cell=newRow.insertCell(1);
+				cell.style.padding="0";
+				cell.style.textAlign="left";
+				cell.setAttribute("class","middle");
+				var codeRow='<select name="code" class="ui-widget-content bs-i4sell-detail-code" style="width:100%;height:100%;border:none;margin:0;padding:0 10px 0 2px"'
+					codeRow+='data-validate="required">';
+				codeRow+='<option value=" "></option>';
+				//logger.info($.toJSON(jsonArray));
+				for(var i=0;i<jsonArray.length;i++){
+					codeRow+='<option value="';
+					codeRow+=jsonArray[i].key;
+					codeRow+='">';
+					codeRow+=jsonArray[i].value;
+					codeRow+='</option>';
+				}
+				codeRow+='</select>';
+				cell.innerHTML=codeRow;
+				
+				//插入开始号
+				cell=newRow.insertCell(2);
+				cell.style.padding="0";
+				cell.style.textAlign="left";
+				cell.setAttribute("class","middle");
+				cell.innerHTML='<input name="startNo" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
+					+'type="text" class="ui-widget-content bs-i4sell-detail-startNo"  data-validate="required">';
+				
+				//插入结束号
+				cell=newRow.insertCell(3);
+				cell.style.padding="0";
+				cell.style.textAlign="left";
+				cell.setAttribute("class","middle");
+				cell.innerHTML='<input name="endNo" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
+					+'type="text" class="ui-widget-content bs-i4sell-detail-endNo" data-validate="required">';
+				
+				//插入数量
+				cell=newRow.insertCell(4);
+				cell.style.padding="0";
+				cell.style.textAlign="left";
+				cell.setAttribute("class","middle");
+				cell.innerHTML='<input name="count" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
+					+'type="text" class="ui-widget-content bs-i4sell-detail-count" data-validate="required">'
+				//每份数量
+					+'<input name="eachCount" class="bs-i4sell-detail-eachCount" type="hidden"/>';
+				
+				//插入单价
+				cell=newRow.insertCell(5);
+				cell.style.padding="0";
+				cell.style.textAlign="left";
+				cell.setAttribute("class","middle");
+				cell.innerHTML='<input name="price" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
+					+'type="text" class="ui-widget-content bs-i4sell-detail-price" data-validate="required">';
+				
+				//插入合计
+				cell=newRow.insertCell(6);
+				cell.style.padding="0";
+				cell.style.textAlign="left";
+				cell.setAttribute("class","middle");
+				cell.innerHTML='<input name="amount" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
+								+'type="text" class="ui-widget-content bs-i4sell-detail-amount" >';	
+				
+			}
+		});
+	},
+	
+	/** 选择车辆后 */
+	afterSelectCar: function(event, ui){
+		var $form = $(this).closest(".bc-page");
+		if(logger.infoEnabled){
+			logger.info("afterSelectCar=" + $.toJSON(ui.item));
+			logger.info("p=" + $form.attr("class"));
+		}
+		
+		$form.find(":input[name='e.carId']").val(ui.item.id);// 车辆ID
+		$form.find(":input[name='e.company']").val(ui.item.company);// 公司
+		$form.find(":input[name='e.motorcadeId.id']").val(ui.item.motorcadeId);// 公司
+		
+		// 添加一条销售明细
+		bs.invoice4SellForm.addDetailLine($form.find("#sellDetailTables")[0], ui.item.company);
+		
+		//选择司机信息
+		bs.findInfoByCar({
+			carId: ui.item.id,
+			success: function(info){
+				logger.info("info=" + $.toJSON(info));
+				if(info.driver){
+					$form.find(":input[name='e.buyerId']").val(info.driver.id);
+					$form.find(":input[name='e.buyerName']").val(info.driver.name);
+				}else{
+					$form.find(":input[name='e.buyerId']").val('');
+					$form.find(":input[name='e.buyerName']").val('');
+					bc.msg.alert("该车辆还没有被任何司机驾驶！");
+				}
+			}
+		});
+		
+		// 记得返回false，否则车辆域信息会被清空
+		return false;
 	}
 };
