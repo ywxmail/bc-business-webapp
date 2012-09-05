@@ -40,6 +40,7 @@ bc.contract4LabourForm = {
 			var carId=$page.find(":input[name='carId']").val();
 			bs.findInfoByCar({
 				carId: carId,
+				status: '-1,0',
 				success: function(info){
 					var url = bc.root + "/bc-business/contract4Labour/isExistContract?driverId="+info.driver.id;
 					var isSupply = $page.find(":hidden[name='isSupply']").val();//true为补录
@@ -93,6 +94,7 @@ bc.contract4LabourForm = {
 
 				bs.findInfoByCar({
 					carId: car.id,
+					status: '-1,0',
 					success: function(info){
 						logger.info("info=" + $.toJSON(info));
 						// 根据车辆ID查找关联的司机否存在劳动合同
