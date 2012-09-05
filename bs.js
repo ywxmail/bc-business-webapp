@@ -294,7 +294,11 @@ bs.findInfoByCar = function(option) {
 					//销毁对话框
 					html.dialog("destroy").remove();
 				}
-				var driversEl = html.find("#drivers").dblclick(onSelectDriver)[0];
+				var driversEl = html.find("#drivers").dblclick(onSelectDriver).keyup(function(e){
+					if (e.which == 13) { //按下回车键
+						onSelectDriver();
+					}
+				})[0];
 				
 				//弹出对话框让用户选择司机
 				html.dialog({
