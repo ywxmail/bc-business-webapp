@@ -199,6 +199,7 @@ bs.findInfoByCar = function(option) {
 	var data = {};
 	if(option.carId) data.carId = option.carId;
 	if(option.carPlate) data.carPlate = option.carPlate;
+	if(option.status) data.status = option.status;
 	bc.ajax({
 		dataType: "json", data: data,
 		url: bc.root + "/bc-business/findInfoByCar",
