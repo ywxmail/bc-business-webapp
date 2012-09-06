@@ -172,6 +172,8 @@ bs.selectCar = function(option) {
  * @param {Object} option 配置参数
  * @option {String} carId 车辆id
  * @option {String} carPlate 车牌号，如"粤A.E1P11"，如果指定了carId将忽略该参数
+ * @option {String} emptyMsg 如找不到司机时对应的自定义提示信息
+ * @option {String} multMsg 如找到多个司机时对应的自定义提示信息
  * @option {Function} success 信息获取成功后的回调函数，函数第一个参数为返回的相关信息，格式为
  * 	{
  * 		car:{id:[id],plate:[plate],status:[status],registerDate:[registerDate],company:[company],bsType:[bsType]},
@@ -207,7 +209,7 @@ bs.findInfoByCar = function(option) {
 			logger.info("json=" + $.toJSON(json));
 			if(json.drivers.length == 0){
 				//提示用户此不正常现象
-				bc.msg.alert("没有找到所选车辆对应的营运司机信息！",null,function(){
+				bc.msg.alert(option.emptyMsg || "没有找到所选车辆对应的营运司机信息！",null,function(){
 					//直接调用回调函数,但没有司机信息
 					option.success.call(json,{
 						car: json.car,
@@ -304,7 +306,7 @@ bs.findInfoByCar = function(option) {
 				//弹出对话框让用户选择司机
 				html.dialog({
 					id: "selectDriver4findInfoByCar",
-					title: "此车辆有多个营运司机，请选择一个",
+					title: option.multMsg || "此车辆有多个营运司机，请选择一个",
 					dialogClass: 'bc-ui-dialog ui-widget-header',
 					width:300,modal:true,
 					buttons:[{text:"确定",click: onSelectDriver}]
@@ -661,8 +663,13 @@ bs.selectFeeTemplate = function(option) {
 			}
 		}
 	},option));
-}
+};
 
+/** bs的自定义模板 */
+bc.namespace("TPL.BS");
+TPL.BS = {
+	CAR_SELECT_ITEM: '<a><table cellspacing="0" cellpadding="0" style="width:100%;border:0;"><tr><td style="text-align:left">{{plateType}}.{{plateNo}}</td><td style="text-align:right">[{{motorcadeName}} {{statusCN}}]</td></tr></table></a>'
+};
 
 
 
