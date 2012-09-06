@@ -249,17 +249,8 @@ bs.invoice4SellForm = {
 			$(this).removeAttr("name");
 		});
 		
-		// test
-//		$form.find("#testRichInput").autocomplete({
-//			minLength: 2,delay: 300,
-//			focus: function(){
-//				
-//				return false;
-//			},
-//			select: function(){
-//				
-//			}
-//		});
+		// 因车号输入域打开就自动聚焦，需要触发一下click事件让其支持富文本输入
+		$form.find(":input[name='e.carPlate']").click();
 	},
 	save : function(){
 		$page = $(this);
@@ -605,6 +596,7 @@ bs.invoice4SellForm = {
 		//选择司机信息
 		bs.findInfoByCar({
 			carId: ui.item.id,
+			emptyMsg: "该车辆还没有被任何司机驾驶！",
 			success: function(info){
 				logger.info("info=" + $.toJSON(info));
 				if(info.driver){
@@ -613,7 +605,6 @@ bs.invoice4SellForm = {
 				}else{
 					$form.find(":input[name='e.buyerId']").val('');
 					$form.find(":input[name='e.buyerName']").val('');
-					bc.msg.alert("该车辆还没有被任何司机驾驶！");
 				}
 			}
 		});
