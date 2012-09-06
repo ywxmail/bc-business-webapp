@@ -139,7 +139,7 @@
 							value='<s:property value="certNo"/>'/>
 					</td>
 					<td class="middle" style="padding:0;text-align:left;">	
-						<s:select name="reason" list="{'掉失','被盗','损坏','其它'}" theme="simple" data-validate="required" cssClass="ui-widget-content" 
+						<s:select name="reason" list="{'掉失','被盗','损坏','被抢','其它'}" theme="simple" data-validate="required" cssClass="ui-widget-content" 
 									cssStyle="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px"/>
 					</td>
 					<td class="middle" style="padding:0;text-align:left;">
@@ -203,7 +203,7 @@
 							value='<s:property value="certNo"/>'/>
 					</td>
 					<td class="middle" style="padding:0;text-align:left;">	
-						<s:select name="reason" list="{'掉失','被盗','损坏','其它'}" theme="simple" data-validate="required" cssClass="ui-widget-content" 
+						<s:select name="reason" list="{'掉失','被盗','损坏','被抢','其它'}" theme="simple" data-validate="required" cssClass="ui-widget-content" 
 									cssStyle="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px"/>
 					</td>
 					<td class="middle" style="padding:0;text-align:left;">
