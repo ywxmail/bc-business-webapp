@@ -232,11 +232,8 @@ bs.invoice4BuyForm = {
 		if(id){
 			var url =bc.root+"/bc/templatefile/inline?code=invoice.buy.excel";
 			var dataObj={};
-			var dataArr=[];
-			dataObj.key="id";
-			dataObj.value=id;	
-			dataArr.push(dataObj);
-			url += "&formatSqlJsons="+$.toJSON(dataArr);
+			dataObj.id=id;
+			url += "&formatSqlJsons="+$.toJSON(dataObj);
 			var win = window.open(url, "_blank");
 		}else
 			bc.page.print.call($page);
