@@ -38,52 +38,6 @@ bs.invoice4SellForm = {
 			});
 		});
 		
-		//预加载一个司机关联多台车的对话框选择
-		if($form.find(":input[name='isMoreCar']").val()=="true"){
-			logger.info("isMoreCar");
-			var driverId=$form.find(":input[name='e.buyerId']").val();
-			var url= bc.root +"/bc-business/selectMoreCarWithCarMan/selectCars?carManId="+driverId;
-			var optionCar = {
-				url: url,
-				name: "选择车辆信息",
-				mid: "selectCar",
-				afterClose: function(car){
-					logger.info("info=" + $.toJSON(car));
-					if(car != null){
-						$form.find(":input[name='e.carId']").val(car.id);
-						$form.find(":input[name='e.carPlate']").val(car.name);
-						$form.find("select[name='e.motorcadeId.id']").val(car.motorcadeId);
-						$form.find("select[name='e.company']").val(car.company);
-					}
-				}
-			};
-			bc.page.newWin(optionCar);
-		};
-		if($form.find(":input[name='isNullCar']").val()=="true"){	
-			bc.msg.alert("此司机没有驾驶任何车辆！");	
-		};
-		
-		//预加载一台车关联多个司机的对话框选择
-		if($form.find(":input[name='isMoreBuyer']").val()=="true"){	
-			var carId=$form.find(":input[name='e.carId']").val();
-			bs.findInfoByCar({
-				carId: carId,
-				success: function(info){
-					logger.info("info=" + $.toJSON(info));
-					if(info.driver){
-						$form.find(":input[name='e.buyerId']").val(info.driver.id);
-						$form.find(":input[name='e.buyerName']").val(info.driver.name);
-					}else{
-						$form.find(":input[name='e.buyerId']").val('');
-						$form.find(":input[name='e.buyerName']").val('');
-						bc.msg.alert("该车辆还没有被任何司机驾驶！");
-					}
-				}
-			});
-		};
-		if($form.find(":input[name='isNullBuyer']").val()=="true"){
-			bc.msg.alert("此车辆没有被任何司机驾驶！");	
-		};
 		
 		var tableEl=$form.find("#sellDetailTables")[0];
 		
@@ -101,6 +55,7 @@ bs.invoice4SellForm = {
 					//选择司机信息
 					bs.findInfoByCar({
 						carId: car.id,
+						status: '-1,0',
 						success: function(info){
 							logger.info("info=" + $.toJSON(info));
 							if(info.driver){
@@ -593,6 +548,7 @@ bs.invoice4SellForm = {
 		//选择司机信息
 		bs.findInfoByCar({
 			carId: ui.item.id,
+			status: '-1,0',
 			emptyMsg: "该车辆还没有被任何司机驾驶！",
 			success: function(info){
 				logger.info("info=" + $.toJSON(info));
