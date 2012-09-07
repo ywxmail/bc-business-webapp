@@ -48,7 +48,7 @@ bc.contract4LabourForm = {
 						if(json.isExistContract && isSupply == "false"){//非录取状态下检测司机是否存在合同
 							bc.msg.alert("所选司机已配置了相应的劳动合同，不能重复配置，请您编辑原来的劳动合同！");
 							$page.find(":input[name='e.ext_str1']").val('');
-							$page.find(":input[name='carId']").val('');
+							//$page.find(":input[name='carId']").val('');
 							$page.find(":input[name='registerDate']").val('');
 							$page.find(":input[name='bsType']").val('');
 							$page.find(":input[name='driverId']").val('');
@@ -110,7 +110,7 @@ bc.contract4LabourForm = {
 								if(json.isExistContract && isSupply == "false"){//非录取状态下检测司机是否存在合同
 									bc.msg.alert("所选司机已配置了相应的劳动合同，不能重复配置，请您编辑原来的劳动合同！");
 									$page.find(":input[name='e.ext_str1']").val('');
-									$page.find(":input[name='carId']").val('');
+									//$page.find(":input[name='carId']").val('');
 									$page.find(":input[name='registerDate']").val('');
 									$page.find(":input[name='e.bsType']").val('');
 									$page.find(":input[name='driverId']").val('');
