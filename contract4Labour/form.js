@@ -404,6 +404,7 @@ bc.contract4LabourForm = {
 	//保存的处理
 	save:function(){
 		$page = $(this);
+		
 		//唯一性检测
 		var option = { callback : function (json){
 				if(json.success){
@@ -414,6 +415,12 @@ bc.contract4LabourForm = {
 				return false;
 			}
 		};
+		//新建劳动合同入库.社保号加必填验证
+		if($page.find(":input[name='e.status']").val() == -1){
+			$page.find(":input[name='e.insurCode']").removeAttr("data-validate");
+			$page.find(":input[name='e.joinDate']").removeAttr("data-validate");
+		}
+		
 		//调用标准的方法执行保存
 		bc.page.save.call(this,option);
 	},	
@@ -455,6 +462,11 @@ bc.contract4LabourForm = {
 				return false;
 			}
 		};
+		//新建劳动合同入库.社保号加必填验证
+		if($form.find(":input[name='e.status']") != -1){
+			$form.find(":input[name='e.insurCode']").attr("data-validate","required");
+			$form.find(":input[name='e.joinDate']").attr("data-validate",'{"type":"date","required":true}');
+		}
 		//表单验证
 		if(!bc.validator.validate($form))
 			return;

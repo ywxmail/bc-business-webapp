@@ -223,21 +223,41 @@
 											<tr>
 												<td class="label">*<s:text name="contract4Labour.insurCode"/>:</td>
 												<td class="value relative">
+												<s:if test="%{e.status == -1}"><!--草稿状态,社保号不用必填  -->
+													<s:textfield name="e.insurCode" cssClass="ui-widget-content"/>
+													<s:if test="isSupply == false">
+														<ul class="inputIcons">
+															<li class="inputIcon ui-icon ui-icon-lightbulb" title='<s:text name="点击查询此社保号是否被占用"/>' id="selectInsurCode">
+														</ul>
+													</s:if>
+												</s:if>
+												<s:else>
 													<s:textfield name="e.insurCode" data-validate="required" cssClass="ui-widget-content"/>
 													<s:if test="isSupply == false">
 														<ul class="inputIcons">
 															<li class="inputIcon ui-icon ui-icon-lightbulb" title='<s:text name="点击查询此社保号是否被占用"/>' id="selectInsurCode">
 														</ul>
 													</s:if>
+												</s:else>
 												</td>
 												<td class="label">*<s:text name="contract4Labour.joinDate"/>:</td>
 												<td class="value" style="position:relative;display: block;">
-													<input type="text" name="e.joinDate" data-validate='{"type":"date","required":true}'
-													value='<s:date format="yyyy-MM-dd" name="e.joinDate" />'
-													class="bc-date ui-widget-content" data-cfg='{changeYear:true}' />
-													<ul class="inputIcons">
-														<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.joinDate' ></li>
-													</ul>
+													<s:if test="%{e.status == -1}"><!--草稿状态,参保号不用必填  -->
+														<input type="text" name="e.joinDate" data-validate='{"type":"date"}'
+														value='<s:date format="yyyy-MM-dd" name="e.joinDate" />'
+														class="bc-date ui-widget-content" data-cfg='{changeYear:true}' />
+														<ul class="inputIcons">
+															<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.joinDate' ></li>
+														</ul>
+													</s:if>
+													<s:else>
+														<input type="text" name="e.joinDate" data-validate='{"type":"date","required":true}'
+														value='<s:date format="yyyy-MM-dd" name="e.joinDate" />'
+														class="bc-date ui-widget-content" data-cfg='{changeYear:true}' />
+														<ul class="inputIcons">
+															<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.joinDate' ></li>
+														</ul>
+													</s:else>
 												</td>
 											</tr>
 											<tr>
