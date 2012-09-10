@@ -18,8 +18,11 @@
 					<tr>
 						<td class="label">*<s:text name="invoice.carPlate"/>:</td>
 						<td class="value relative">
-							<s:textfield name="e.carPlate" 
-							    data-validate="required" cssClass="ui-widget-content" readonly="true" />
+							<s:textfield name="e.carPlate" cssClass="bc-select ui-widget-content" readonly="false" 
+							    data-validate="required" 
+								data-cfg='{"delay":100,"minLength":2, "labelMapping":"{{plateType}}.{{plateNo}}", "valueMapping":"{{id}}","itemMapping":"TPL.BS.CAR_SELECT_ITEM","callback":"bs.invoice4RefundForm.afterSelectCar"}'
+								data-maxHeight="150px" 
+								data-source='bc-business/car/find?status=-1,0,1'/>
 						    <span id="selectCar" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" 
 						    	title='<s:text name="title.click2select"/>'>
 						    </span>
@@ -37,14 +40,14 @@
 					<tr>
 						<td class="label">*<s:text name="invoice4Refund.carman"/>:</td>
 						<td class="value relative">
-							<s:textfield name="e.buyerName"  readonly="true" cssClass="ui-widget-content" data-validate="required"/>
-							<span id="selectBuyer" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" 
+							<s:textfield name="e.refunder.name"  readonly="true" cssClass="ui-widget-content" data-validate="required"/>
+							<span id="selectRefunder" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" 
 					    		title='<s:text name="title.click2select"/>'>
 					    	</span>
 					    </td>
 						<td class="label">*<s:text name="invoice4Refund.receiver"/>:</td>
 						<td class="value relative">
-							<s:textfield name="e.cashierId.name" cssClass="ui-widget-content" readonly="true" data-validate="required" />
+							<s:textfield name="e.cashier.name" cssClass="ui-widget-content" readonly="true" data-validate="required" />
 						</td>
 					</tr>
 					<tr>
@@ -60,7 +63,7 @@
 					</tr>
 					<tr>
 					    <td class="label">*<s:text name="invoice.motorcade"/>:</td>
-						<td class="value"><s:select name="e.motorcadeId.id" list="motorcadeList" listKey="key" data-validate="required"
+						<td class="value"><s:select name="e.motorcade.id" list="motorcadeList" listKey="key" data-validate="required"
 										listValue="value"  headerKey="" headerValue="" cssClass="ui-widget-content"/>
 					    </td>
 					  	<td class="label"><s:text name="invoice.status"/>:</td>
@@ -118,24 +121,12 @@
 					<tr class="ui-widget-content row bc-i4sell-detail" data-id='<s:property value="id"/>'>
 						<td class="id first" style="padding:0;text-align:left;"><span class="ui-icon"></span>
 						</td>
-						
-						<s:if test="buyId!=null">
-								<!-- 发票代码 -->
-							<td class="middle" style="padding:0;text-align:left;">
-								<s:select  list="codeList" listValue="value" listKey="key"  
-									theme="simple" data-validate="required" cssClass="ui-widget-content bs-i4sell-detail-code" 
-										cssStyle="width:100%;height:100%;border:none;margin:0;padding:0 10px 0 2px"/>
-							</td>
-						</s:if>
-						<s:else>
-								<!-- 发票代码 -->
-							<td class="middle" style="padding:0;text-align:left;">
-								<s:select list="codeList" listValue="value" listKey="key" headerValue="" headerKey="" 
-									theme="simple" data-validate="required" cssClass="ui-widget-content bs-i4sell-detail-code" 
-										cssStyle="width:100%;height:100%;border:none;margin:0;padding:0 10px 0 2px"/>
-							</td>
-						</s:else>
-						
+						<!-- 发票代码 -->
+						<td class="middle" style="padding:0;text-align:left;">
+							<s:select list="codeList" listValue="value" listKey="key" headerValue="" headerKey="" 
+								theme="simple" data-validate="required" cssClass="ui-widget-content bs-i4sell-detail-code" 
+									cssStyle="width:100%;height:100%;border:none;margin:0;padding:0 10px 0 2px"/>
+						</td>
 						<!-- 开始号 -->
 						<td class="middle" style="padding:0;text-align:left;">
 							<input id="startNo" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;" type="text" class="ui-widget-content bs-i4sell-detail-startNo" 
@@ -210,15 +201,11 @@
 		<s:hidden name="e.author.id" />
 		<s:hidden name="e.carId" />
 		<s:hidden name="e.buyerId" />
-		<s:hidden name="e.cashierId.id" />
+		<s:hidden name="e.cashier.id" />
+		<s:hidden name="e.refunder.id" />
 		<s:hidden name="e.payType" />
 		<s:hidden name="e.bankCode" />
-		<s:hidden name="isMoreCar"/>
-		<s:hidden name="isMoreBuyer"/>
-		<s:hidden name="isNullCar"/>
-		<s:hidden name="isNullBuyer"/>
-		<s:hidden name="buyId"/>
-		<!-- 销售明细隐藏信息 -->
+		<!-- 明细隐藏信息 -->
 		<s:hidden name="sellDetails"/>
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 	</s:form>
