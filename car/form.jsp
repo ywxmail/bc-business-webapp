@@ -71,10 +71,21 @@
 										<s:textfield name="e.plateType" cssStyle="width:30px;text-align:right;border-right-width:0;" value='%{getText("car.plate.yue.A")}' data-validate="required" cssClass="ui-widget-content"/><s:textfield name="e.plateNo" cssStyle="width:203px;" data-validate='{"minLen": 5,"maxLen": 5,"required":true,"type":"string",msg:"必须填写正确格式的5位车牌号，如J1B23"}' cssClass="ui-widget-content"/>
 									</s:else>
 								</td>
-								<td class="label" >*<s:text name="car.manageNo"/>:</td>
-								<td class="value" ><s:textfield name="e.manageNo" data-validate='{"minLen": 4,"maxLen": 4,"required":true,"type":"string"}' cssClass="ui-widget-content" cssStyle="width: 98px;"/>
-									*<s:text name="car.code"/>:<s:textfield name="e.code" data-validate="required" cssClass="ui-widget-content" cssStyle="width: 98px;"/>
-								</td>
+								<s:if test="%{e.status!=1}">
+									<td class="label" >*<s:text name="car.manageNo"/>:</td>
+									<td class="value" ><s:textfield name="e.manageNo" data-validate='{"required":true,"type":"digits","max":4499,"min":1101}' cssClass="ui-widget-content" cssStyle="width: 98px;"/>
+										*<s:text name="car.code"/>:<s:textfield name="e.code" data-validate="required" cssClass="ui-widget-content" cssStyle="width: 98px;"/>
+										<ul class="inputIcons" >
+											<li class="inputIcon ui-icon ui-icon-lightbulb" style="margin-top: -168px;margin-left: -173px;"
+									 		title='<s:text name="car.getManageNoInfoTips"/>' id="getManageNoInfo">
+										</ul>	
+									</td>
+								</s:if><s:else>
+									<td class="label" ><s:text name="car.manageNo"/>:</td>
+									<td class="value" ><s:textfield name="e.manageNo" cssClass="ui-widget-content" cssStyle="width: 98px;"/>
+										*<s:text name="car.code"/>:<s:textfield name="e.code" data-validate="required" cssClass="ui-widget-content" cssStyle="width: 98px;"/>
+									</td>
+								</s:else>
 							</tr>
 							<tr>
 								<td class="label" >*<s:text name="car.company2"/>:</td>

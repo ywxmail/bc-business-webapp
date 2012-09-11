@@ -88,6 +88,10 @@ bc.carForm = {
 		var $manageNo = $form.find(":input[name='e.manageNo']");
 		$manageNo.bind("blur",function(){
 			var manageNo = $manageNo.val();
+			var status = $form.find(":input[name='e.status']");
+			//注销车辆不作检测
+			if(status== 1)
+				return false;
 			if(!manageNo || manageNo.length == 0)
 				return false;
 			
@@ -105,6 +109,13 @@ bc.carForm = {
 				}
 			});
 		});
+		
+		//点击管理号input的灯泡自动获取管理号
+		$form.find("#getManageNoInfo").click(function(){
+			bc.msg.alert("该功能正在开发.....！");
+			
+		});
+
 		
 	},
 
