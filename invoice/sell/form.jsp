@@ -28,7 +28,7 @@
 						<td class="value relative">
 							<s:textfield name="e.carPlate" cssClass="bc-select ui-widget-content" readonly="false" 
 							    data-validate="required"
-								data-cfg='{"delay":100,"minLength":2, "labelMapping":"{{plateType}}.{{plateNo}}", "valueMapping":"{{id}}","itemMapping":"TPL.BS.CAR_SELECT_ITEM","callback":"bs.invoice4SellForm.afterSelectCar"}'
+								data-cfg='{"strict":true,"delay":100,"minLength":2, "labelMapping":"{{plateType}}.{{plateNo}}", "valueMapping":"{{id}}","itemMapping":"TPL.BS.CAR_SELECT_ITEM","callback":"bs.invoice4SellForm.afterSelectCar"}'
 								data-maxHeight="150px" 
 								data-source='bc-business/car/find?status=-1,0,1'/>
 						    <span id="selectCar" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" 
