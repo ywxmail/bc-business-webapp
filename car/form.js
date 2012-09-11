@@ -84,6 +84,28 @@ bc.carForm = {
 				$form.find(":input[name='e.returnDate']").attr("data-validate",'{"type":"date"}');
 			}
 		});
+		// 管理号唯一性检测
+		var $manageNo = $form.find(":input[name='e.manageNo']");
+		$manageNo.bind("blur",function(){
+			var manageNo = $manageNo.val();
+			if(!manageNo || manageNo.length == 0)
+				return false;
+			
+			var $this = $(this);
+			$.ajax({
+				url: bc.root + "/bc-business/car/checkManageNoIsExists",
+				dataType:"json",
+				data: {manageNo: manageNo, carId: $form.find(":input[name='e.id']").val()},
+				success: function (json){
+					if(json.isExists == "true"){ // 已被占用
+						bc.msg.alert(json.msg, null ,function(){
+							//$this.focus();// 重新获取焦点
+						});
+					}
+				}
+			});
+		});
+		
 	},
 
 	checkPlateNo:function($form,$plateNo){
