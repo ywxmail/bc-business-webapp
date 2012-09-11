@@ -1,18 +1,19 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<s:if test="%{readType==2}">
-<div title='<s:text name="invoice4Refund.title"/>' data-type='form' class="bc-page"
+
+<div title='
+	<s:if test="%{readType==2}">
+		<s:text name="invoice4Refund.title"/>
+	</s:if><s:else>
+		<s:text name="invoice4Sell.title"/>
+	</s:else>' 
+	data-type='form' class="bc-page"
 	data-saveUrl='<s:url value="/bc-business/invoice4Sell/save" />'
 	data-js='<s:url value="/bc-business/invoice/sell/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js" />'
 	data-initMethod='bs.invoice4SellForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow:auto;">
-</s:if><s:else>
-<div title='<s:text name="invoice4Sell.title"/>' data-type='form' class="bc-page"
-	data-saveUrl='<s:url value="/bc-business/invoice4Sell/save" />'
-	data-js='<s:url value="/bc-business/invoice/sell/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js" />'
-	data-initMethod='bs.invoice4SellForm.init'
-	data-option='<s:property value="%{formPageOption}"/>' style="overflow:auto;">
-</s:else>
+
+
 	<s:form name="invoice4SellForm" theme="simple">
 		<div class="formFields ui-widget-content"  style="width:750px;">
 			<table class="formFields" cellspacing="2" cellpadding="0">
@@ -60,10 +61,14 @@
 							</s:else> 
 						:</td>
 						<td class="value relative">
-							<s:textfield name="e.buyerName"  readonly="true" cssClass="ui-widget-content" data-validate="required"/>
-							<span id="selectBuyer" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" 
-					    		title='<s:text name="title.click2select"/>'>
-					    	</span>
+							<s:if test="%{e.type==2}">
+								<s:textfield name="e.refunder.name"  readonly="true" cssClass="ui-widget-content"/>
+							</s:if><s:else>
+								<s:textfield name="e.buyerName"  readonly="true" cssClass="ui-widget-content" data-validate="required"/>
+								<span id="selectBuyer" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" 
+						    		title='<s:text name="title.click2select"/>'>
+						    	</span>
+							</s:else> 
 					    </td>
 						<td class="label">*
 							<s:if test="%{e.type==2}">
@@ -73,7 +78,7 @@
 							</s:else> 
 						:</td>
 						<td class="value relative">
-							<s:textfield name="e.cashierId.name" cssClass="ui-widget-content" readonly="true" data-validate="required" />
+							<s:textfield name="e.cashier.name" cssClass="ui-widget-content" readonly="true" data-validate="required" />
 						</td>
 					</tr>
 					<tr>
@@ -89,7 +94,7 @@
 					</tr>
 					<tr>
 					    <td class="label">*<s:text name="invoice.motorcade"/>:</td>
-						<td class="value"><s:select name="e.motorcadeId.id" list="motorcadeList" listKey="key" data-validate="required"
+						<td class="value"><s:select name="e.motorcade.id" list="motorcadeList" listKey="key" data-validate="required"
 										listValue="value"  headerKey="" headerValue="" cssClass="ui-widget-content"/>
 					    </td>
 					  	<td class="label"><s:text name="invoice.status"/>:</td>
@@ -150,64 +155,13 @@
 						<td class="middle" style="width: 6em;"><s:text name="invoice4Sell.price"/></td>
 						<td class="last" style="min-width: 4em;"><s:text name="invoice4Sell.amount"/></td>
 					</tr>
-					<!-- 新建时 -->
-					<%-- <s:if test="%{e.isNew()}">
-					<tr class="ui-widget-content row bc-i4sell-detail" data-id='<s:property value="id"/>'>
-						<td class="id first" style="padding:0;text-align:left;"><span class="ui-icon"></span>
-						</td>
-						
-						<s:if test="buyId!=null">
-								<!-- 发票代码 -->
-							<td class="middle" style="padding:0;text-align:left;">
-								<s:select  list="codeList" listValue="value" listKey="key"  
-									theme="simple" data-validate="required" cssClass="ui-widget-content bs-i4sell-detail-code" 
-										cssStyle="width:100%;height:100%;border:none;margin:0;padding:0 10px 0 2px"/>
-							</td>
-						</s:if>
-						<s:else>
-								<!-- 发票代码 -->
-							<td class="middle" style="padding:0;text-align:left;">
-								<s:select list="codeList" listValue="value" listKey="key" headerValue="" headerKey="" 
-									theme="simple" data-validate="required" cssClass="ui-widget-content bs-i4sell-detail-code" 
-										cssStyle="width:100%;height:100%;border:none;margin:0;padding:0 10px 0 2px"/>
-							</td>
-						</s:else>
-						
-						<!-- 开始号 -->
-						<td class="middle" style="padding:0;text-align:left;">
-							<input id="startNo" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;" type="text" class="ui-widget-content bs-i4sell-detail-startNo" 
-								data-validate="required" value='<s:property value="startNo"/>'/>
-						</td>
-						<!-- 结束号 -->
-						<td class="middle" style="padding:0;text-align:left;">
-							<input id="endNo" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;" type="text" class="ui-widget-content bs-i4sell-detail-endNo" 
-								data-validate="required" value='<s:property value="endNo"/>' />
-						</td>
-						<!-- 数量 -->
-						<td class="middle" style="padding:0;text-align:left;">
-							<input id="count" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;" type="text" class="ui-widget-content bs-i4sell-detail-count" 
-								data-validate="required" value='<s:property value="count"/>'/>
-							<input id="eachCount" class="bs-i4sell-detail-eachCount" type="hidden"  value='<s:property value="eachCount"/>'/>
-						</td>
-						<!-- 单价 -->
-						<td class="middle" style="padding:0;text-align:left;">
-							<input id="price" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;" type="text" class="ui-widget-content bs-i4sell-detail-price" 
-								data-validate="required" value='<s:property value="price"/>'/>
-						</td>
-						<!-- 合计 -->
-						<td class="last" style="padding:0;text-align:left;">
-							<input id="amount" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;" type="text" class="ui-widget-content bs-i4sell-detail-amount"
-								 value='<s:property value="amount"/>'/>
-						</td>
-					</tr>
-					</s:if> --%>
 					<s:iterator var="b" value="e.invoice4SellDetail">
 					<tr class="ui-widget-content row" data-id='<s:property value="id"/>'>
 						<td class="id first" style="padding:0;text-align:left;"><span class="ui-icon"></span>
 						</td>
 						<!-- 发票代码 -->
 						<td class="middle" style="padding:0;text-align:left;">
-							<s:select name="buyId"  list="codeList" listValue="value" listKey="key"
+							<s:select  list="codeList" listValue="value" listKey="key"
 								theme="simple" data-validate="required" cssClass="ui-widget-content bs-i4sell-detail-code" 
 									cssStyle="width:100%;height:100%;border:none;margin:0;padding:0 10px 0 2px"/>
 						</td>
@@ -247,14 +201,9 @@
 		<s:hidden name="e.author.id" />
 		<s:hidden name="e.carId" data-validate="required"/>
 		<s:hidden name="e.buyerId" />
-		<s:hidden name="e.cashierId.id" />
+		<s:hidden name="e.cashier.id" />
 		<s:hidden name="e.payType" />
 		<s:hidden name="e.bankCode" />
-		<s:hidden name="isMoreCar"/>
-		<s:hidden name="isMoreBuyer"/>
-		<s:hidden name="isNullCar"/>
-		<s:hidden name="isNullBuyer"/>
-		<s:hidden name="buyId"/>
 		<!-- 销售明细隐藏信息 -->
 		<s:hidden name="sellDetails"/>
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>

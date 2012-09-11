@@ -30,10 +30,10 @@ bs.invoice4SellForm = {
 		$form.find("#selectCashier").click(function(){
 			bc.identity.selectUser({
 				history: true,
-				selecteds: $form.find(":input[name='e.cashierId.name']").val(),
+				selecteds: $form.find(":input[name='e.cashier.name']").val(),
 				onOk : function(user) {
-					$form.find(":input[name='e.cashierId.id']").val(user.id);
-					$form.find(":input[name='e.cashierId.name']").val(user.name);
+					$form.find(":input[name='e.cashier.id']").val(user.id);
+					$form.find(":input[name='e.cashier.name']").val(user.name);
 				}
 			});
 		});
@@ -49,7 +49,7 @@ bs.invoice4SellForm = {
 				onOk : function(car) {
 					$form.find(":input[name='e.carId']").val(car.id);
 					$form.find(":input[name='e.carPlate']").val(car.plate);
-					$form.find("select[name='e.motorcadeId.id']").val(car.motorcadeId);
+					$form.find("select[name='e.motorcade.id']").val(car.motorcadeId);
 					$form.find("select[name='e.company']").val(car.company);
 					bs.invoice4SellForm.addDetailLine(tableEl, car.company);
 					//选择司机信息
@@ -175,34 +175,7 @@ bs.invoice4SellForm = {
 			}
 		});
 		
-		//采购单新建时
-		var buyId_create=$form.find(":input[name='buyId']").val();
-		var eid=$form.find(":input[name='e.id']").val();
-		if(buyId_create!=''&&eid==''){
-			var $tr= $form.find(".bs-i4sell-detail-code").closest("tr");
-			var url=bc.root + "/bc-business/invoice4Sell/findOneInvoice4Buy";
-				$.ajax({
-					url:url,
-					data:{buyId:buyId_create},
-					dataType:"json",
-					success:function(json){
-						logger.info($.toJSON(json));
-						if(json){
-							$tr.find(".bs-i4sell-detail-startNo").val(json.startNo);
-							$tr.find(".bs-i4sell-detail-eachCount").val(json.eachCount);
-							$tr.find(".bs-i4sell-detail-price").val(json.sellPrice);
-							$tr.find(".bs-i4sell-detail-count").val('');
-							$tr.find(".bs-i4sell-detail-endNo").val('');
-							$tr.find(".bs-i4sell-detail-amount").val('');
-						}
-					}
-			});
-		}
-		
-		//去除select中的属性，防止相同的name名称导致保存出错。
-		$form.find("select[name='buyId']").each(function(){
-			$(this).removeAttr("name");
-		});
+
 		
 		// 因车号输入域打开就自动聚焦，需要触发一下click事件让其支持富文本输入
 		$form.find(":input[name='e.carPlate']").click();
@@ -470,7 +443,7 @@ bs.invoice4SellForm = {
 				cell.style.padding="0";
 				cell.style.textAlign="left";
 				cell.setAttribute("class","middle");
-				var codeRow='<select name="code" class="ui-widget-content bs-i4sell-detail-code" style="width:100%;height:100%;border:none;margin:0;padding:0 10px 0 2px"'
+				var codeRow='<select  class="ui-widget-content bs-i4sell-detail-code" style="width:100%;height:100%;border:none;margin:0;padding:0 10px 0 2px"'
 					codeRow+='data-validate="required">';
 				codeRow+='<option value=" "></option>';
 				//logger.info($.toJSON(jsonArray));
@@ -489,7 +462,7 @@ bs.invoice4SellForm = {
 				cell.style.padding="0";
 				cell.style.textAlign="left";
 				cell.setAttribute("class","middle");
-				cell.innerHTML='<input name="startNo" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
+				cell.innerHTML='<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
 					+'type="text" class="ui-widget-content bs-i4sell-detail-startNo"  data-validate="required">';
 				
 				//插入结束号
@@ -497,7 +470,7 @@ bs.invoice4SellForm = {
 				cell.style.padding="0";
 				cell.style.textAlign="left";
 				cell.setAttribute("class","middle");
-				cell.innerHTML='<input name="endNo" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
+				cell.innerHTML='<input  style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
 					+'type="text" class="ui-widget-content bs-i4sell-detail-endNo" data-validate="required">';
 				
 				//插入数量
@@ -505,7 +478,7 @@ bs.invoice4SellForm = {
 				cell.style.padding="0";
 				cell.style.textAlign="left";
 				cell.setAttribute("class","middle");
-				cell.innerHTML='<input name="count" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
+				cell.innerHTML='<input n style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
 					+'type="text" class="ui-widget-content bs-i4sell-detail-count" data-validate="required">'
 				//每份数量
 					+'<input name="eachCount" class="bs-i4sell-detail-eachCount" type="hidden"/>';
@@ -515,7 +488,7 @@ bs.invoice4SellForm = {
 				cell.style.padding="0";
 				cell.style.textAlign="left";
 				cell.setAttribute("class","middle");
-				cell.innerHTML='<input name="price" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
+				cell.innerHTML='<input  style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
 					+'type="text" class="ui-widget-content bs-i4sell-detail-price" data-validate="required">';
 				
 				//插入合计
@@ -523,7 +496,7 @@ bs.invoice4SellForm = {
 				cell.style.padding="0";
 				cell.style.textAlign="left";
 				cell.setAttribute("class","middle");
-				cell.innerHTML='<input name="amount" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
+				cell.innerHTML='<input  style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
 								+'type="text" class="ui-widget-content bs-i4sell-detail-amount" >';	
 				
 			}
@@ -540,7 +513,7 @@ bs.invoice4SellForm = {
 		
 		$form.find(":input[name='e.carId']").val(ui.item.id);// 车辆ID
 		$form.find(":input[name='e.company']").val(ui.item.company);// 公司
-		$form.find(":input[name='e.motorcadeId.id']").val(ui.item.motorcadeId);// 公司
+		$form.find(":input[name='e.motorcade.id']").val(ui.item.motorcadeId);// 公司
 		
 		// 添加一条销售明细
 		bs.invoice4SellForm.addDetailLine($form.find("#sellDetailTables")[0], ui.item.company);

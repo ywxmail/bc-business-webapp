@@ -25,65 +25,30 @@ bs.invoice4RefundForm = {
 		
 		
 		if(readonly) return;
-		//绑定销售员按钮事件
-		// 销售员
+
+		// 退票受理人
 		$form.find("#selectCashier").click(function(){
 			bc.identity.selectUser({
 				history: true,
-				selecteds: $form.find(":input[name='e.cashierId.name']").val(),
+				selecteds: $form.find(":input[name='e.cashier.name']").val(),
 				onOk : function(user) {
-					$form.find(":input[name='e.cashierId.id']").val(user.id);
-					$form.find(":input[name='e.cashierId.name']").val(user.name);
+					$form.find(":input[name='e.cashier.id']").val(user.id);
+					$form.find(":input[name='e.cashier.name']").val(user.name);
 				}
 			});
 		});
 		
-		//预加载一个司机关联多台车的对话框选择
-		if($form.find(":input[name='isMoreCar']").val()=="true"){
-			logger.info("isMoreCar");
-			var driverId=$form.find(":input[name='e.buyerId']").val();
-			var url= bc.root +"/bc-business/selectMoreCarWithCarMan/selectCars?carManId="+driverId;
-			var optionCar = {
-				url: url,
-				name: "选择车辆信息",
-				mid: "selectCar",
-				afterClose: function(car){
-					logger.info("info=" + $.toJSON(car));
-					if(car != null){
-						$form.find(":input[name='e.carId']").val(car.id);
-						$form.find(":input[name='e.carPlate']").val(car.name);
-						$form.find("select[name='e.motorcadeId.id']").val(car.motorcadeId);
-						$form.find("select[name='e.company']").val(car.company);
-					}
-				}
-			};
-			bc.page.newWin(optionCar);
-		};
-		if($form.find(":input[name='isNullCar']").val()=="true"){	
-			bc.msg.alert("此司机没有驾驶任何车辆！");	
-		};
-		
-		//预加载一台车关联多个司机的对话框选择
-		if($form.find(":input[name='isMoreBuyer']").val()=="true"){	
-			var carId=$form.find(":input[name='e.carId']").val();
-			bs.findInfoByCar({
-				carId: carId,
-				success: function(info){
-					logger.info("info=" + $.toJSON(info));
-					if(info.driver){
-						$form.find(":input[name='e.buyerId']").val(info.driver.id);
-						$form.find(":input[name='e.buyerName']").val(info.driver.name);
-					}else{
-						$form.find(":input[name='e.buyerId']").val('');
-						$form.find(":input[name='e.buyerName']").val('');
-						bc.msg.alert("该车辆还没有被任何司机驾驶！");
-					}
+		// 退票人
+		$form.find("#selectRefunder").click(function(){
+			bc.identity.selectUser({
+				history: true,
+				selecteds: $form.find(":input[name='e.refunder.name']").val(),
+				onOk : function(user) {
+					$form.find(":input[name='e.refunder.id']").val(user.id);
+					$form.find(":input[name='e.refunder.name']").val(user.name);
 				}
 			});
-		};
-		if($form.find(":input[name='isNullBuyer']").val()=="true"){
-			bc.msg.alert("此车辆没有被任何司机驾驶！");	
-		};
+		});
 		
 		//------------绑定选择车辆按钮事件开始-------------------
 		$form.find("#selectCar").click(function() {
@@ -93,24 +58,8 @@ bs.invoice4RefundForm = {
 				onOk : function(car) {
 					$form.find(":input[name='e.carId']").val(car.id);
 					$form.find(":input[name='e.carPlate']").val(car.plate);
-					$form.find("select[name='e.motorcadeId.id']").val(car.motorcadeId);
+					$form.find("select[name='e.motorcade.id']").val(car.motorcadeId);
 					$form.find("select[name='e.company']").val(car.company);
-					//选择司机信息
-					bs.findInfoByCar({
-						carId: car.id,
-						status: '0,1,-1',
-						success: function(info){
-							logger.info("info=" + $.toJSON(info));
-							if(info.driver){
-								$form.find(":input[name='e.buyerId']").val(info.driver.id);
-								$form.find(":input[name='e.buyerName']").val(info.driver.name);
-							}else{
-								$form.find(":input[name='e.buyerId']").val('');
-								$form.find(":input[name='e.buyerName']").val('');
-								bc.msg.alert("该车辆还没有被任何司机驾驶！");
-							}
-						}
-					});
 				}
 			});
 		});
@@ -140,7 +89,7 @@ bs.invoice4RefundForm = {
 					cell.style.padding="0";
 					cell.style.textAlign="left";
 					cell.setAttribute("class","middle");
-					var codeRow='<select name="code" class="ui-widget-content bs-i4sell-detail-code" style="width:100%;height:100%;border:none;margin:0;padding:0 10px 0 2px"'
+					var codeRow='<select  class="ui-widget-content bs-i4sell-detail-code" style="width:100%;height:100%;border:none;margin:0;padding:0 10px 0 2px"'
 						codeRow+='data-validate="required">';
 					codeRow+='<option value=" "></option>';
 					//logger.info($.toJSON(jsonArray));
@@ -167,7 +116,7 @@ bs.invoice4RefundForm = {
 					cell.style.padding="0";
 					cell.style.textAlign="left";
 					cell.setAttribute("class","middle");
-					cell.innerHTML='<input name="endNo" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
+					cell.innerHTML='<input  style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
 						+'type="text" class="ui-widget-content bs-i4sell-detail-endNo" data-validate="required">';
 					
 					//插入数量
@@ -175,7 +124,7 @@ bs.invoice4RefundForm = {
 					cell.style.padding="0";
 					cell.style.textAlign="left";
 					cell.setAttribute("class","middle");
-					cell.innerHTML='<input name="count" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
+					cell.innerHTML='<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
 						+'type="text" class="ui-widget-content bs-i4sell-detail-count" data-validate="required">'
 					//每份数量
 						+'<input name="eachCount" class="bs-i4sell-detail-eachCount" type="hidden"/>';
@@ -185,7 +134,7 @@ bs.invoice4RefundForm = {
 					cell.style.padding="0";
 					cell.style.textAlign="left";
 					cell.setAttribute("class","middle");
-					cell.innerHTML='<input name="price" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
+					cell.innerHTML='<input  style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
 						+'type="text" class="ui-widget-content bs-i4sell-detail-price" data-validate="required">';
 					
 					//插入合计
@@ -193,7 +142,7 @@ bs.invoice4RefundForm = {
 					cell.style.padding="0";
 					cell.style.textAlign="left";
 					cell.setAttribute("class","middle");
-					cell.innerHTML='<input name="amount" style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
+					cell.innerHTML='<input  style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"'
 									+'type="text" class="ui-widget-content bs-i4sell-detail-amount" >';	
 					
 				}
@@ -219,18 +168,6 @@ bs.invoice4RefundForm = {
 				}
 			});
 			
-		});
-				
-		//绑定选择购买人按钮事件
-		$form.find("#selectBuyer").click(function() {
-			var selecteds = $form.find(":input[name='e.buyerId']").val();
-			bs.selectCarMan({
-				status: '0,1,-1',
-				onOk : function(carMan) {
-					$form.find(":input[name='e.buyerId']").val(carMan.id);
-					$form.find(":input[name='e.buyerName']").val(carMan.name);
-				}
-			});
 		});
 		
 		//动态绑定事件  输入结束号，得出数量和合计
@@ -295,34 +232,9 @@ bs.invoice4RefundForm = {
 			}
 		});
 		
-		//采购单新建时
-		var buyId_create=$form.find(":input[name='buyId']").val();
-		var eid=$form.find(":input[name='e.id']").val();
-		if(buyId_create!=''&&eid==''){
-			var $tr= $form.find(".bs-i4sell-detail-code").closest("tr");
-			var url=bc.root + "/bc-business/invoice4Refund/findOneInvoice4Buy";
-				$.ajax({
-					url:url,
-					data:{buyId:buyId_create},
-					dataType:"json",
-					success:function(json){
-						logger.info($.toJSON(json));
-						if(json){
-							$tr.find(".bs-i4sell-detail-startNo").val(json.startNo);
-							$tr.find(".bs-i4sell-detail-eachCount").val(json.eachCount);
-							$tr.find(".bs-i4sell-detail-price").val(json.sellPrice);
-							$tr.find(".bs-i4sell-detail-count").val('');
-							$tr.find(".bs-i4sell-detail-endNo").val('');
-							$tr.find(".bs-i4sell-detail-amount").val('');
-						}
-					}
-			});
-		}
 		
-		//去除select中的属性，防止相同的name名称导致保存出错。
-		$form.find("select[name='buyId']").each(function(){
-			$(this).removeAttr("name");
-		});
+		// 因车号输入域打开就自动聚焦，需要触发一下click事件让其支持富文本输入
+		$form.find(":input[name='e.carPlate']").click();
 	},
 	save : function(){
 		$page = $(this);
@@ -558,5 +470,21 @@ bs.invoice4RefundForm = {
 			var win = window.open(url, "_blank");
 		}else
 			bc.page.print.call($page);
+	},
+	
+	/** 选择车辆后 */
+	afterSelectCar: function(event, ui){
+		var $form = $(this).closest(".bc-page");
+		if(logger.infoEnabled){
+			logger.info("afterSelectCar=" + $.toJSON(ui.item));
+			logger.info("p=" + $form.attr("class"));
+		}
+		
+		$form.find(":input[name='e.carId']").val(ui.item.id);// 车辆ID
+		$form.find(":input[name='e.company']").val(ui.item.company);// 公司
+		$form.find(":input[name='e.motorcade.id']").val(ui.item.motorcadeId);// 公司
+		
+		// 记得返回false，否则车辆域信息会被清空
+		return false;
 	}
 };
