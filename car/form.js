@@ -121,7 +121,7 @@ bc.carForm = {
 								name: "编辑车辆",
 								mid:  "edit4Car",
 								afterClose: function(){
-									$manageNo.focus();
+									//$manageNo.focus();
 								}
 							})
 							$a.dialog("close");
