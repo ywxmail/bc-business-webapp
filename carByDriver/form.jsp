@@ -84,6 +84,7 @@
 		<s:hidden name="e.author.id" />
 		<s:hidden name="e.startDate" />
 		<s:hidden name="e.endDate" />
+		<s:hidden name="e.pid" />
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 	</s:form>
 </div>

@@ -84,6 +84,62 @@ bc.carForm = {
 				$form.find(":input[name='e.returnDate']").attr("data-validate",'{"type":"date"}');
 			}
 		});
+		// 管理号唯一性检测
+		var $manageNo = $form.find(":input[name='e.manageNo']");
+		$manageNo.bind("blur",function(){
+			var manageNo = $manageNo.val();
+			var status = $form.find(":input[name='e.status']");
+			//数字验证
+			if(isNaN(manageNo))
+				return false;
+			//注销车辆不作检测
+			if(status== 1)
+				return false;
+			if(!manageNo || manageNo.length == 0)
+				return false;
+			
+			var $this = $(this);
+			$.ajax({
+				url: bc.root + "/bc-business/car/checkManageNoIsExists",
+				dataType:"json",
+				data: {manageNo: manageNo, carId: $form.find(":input[name='e.id']").val()},
+				success: function (json){
+					if(json.isExists == "true"){ // 已被占用
+//						bc.msg.alert(json.msg, null ,function(){
+//							//$this.focus();// 重新获取焦点
+//						});
+						
+						//组装提示查看信息
+						var tempAry = json.msg.split(" ");
+						var str = tempAry[2];
+						str = "<a id='chakan' href=#>"+str+"</a>";
+						str = tempAry[0]+" "+tempAry[1]+" "+str+" "+tempAry[3];
+						var $a = bc.msg.alert(str);
+						$a.find('#chakan').click(function(){
+							bc.page.newWin({
+								url: bc.root + "/bc-business/car/edit?id="+json.id,
+								name: "编辑车辆",
+								mid:  "edit4Car",
+								afterClose: function(){
+									//$manageNo.focus();
+								}
+							})
+							$a.dialog("close");
+						});
+
+						
+					}
+				}
+			});
+		});
+		
+		//点击管理号input的灯泡自动获取管理号
+		$form.find("#getManageNoInfo").click(function(){
+			bc.msg.alert("该功能正在开发.....！");
+			
+		});
+
+		
 	},
 
 	checkPlateNo:function($form,$plateNo){
