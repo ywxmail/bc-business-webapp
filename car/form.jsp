@@ -65,25 +65,25 @@
 								<td class="label" >*<s:text name="car.plate"/>:</td>
 								<td class="value" >
 									<s:if test="!e.isNew()">
-										<s:textfield name="e.plateType" readonly="true" cssStyle="width:30px;text-align:right;border-right-width:0;" data-validate="required" cssClass="ui-widget-content"/><s:textfield name="e.plateNo" readonly="true" cssStyle="width:203px;" data-validate='{"minLen": 5,"maxLen": 5,"required":true,"type":"string",msg:"必须填写正确格式的5位车牌号，如J1B23"}' cssClass="ui-widget-content"/>
+										<s:textfield name="e.plateType" readonly="true" cssStyle="width:18%;text-align:right;border-right-width:0;padding-right:2px;-moz-box-sizing: border-box;" data-validate="required" cssClass="ui-widget-content"/><s:textfield name="e.plateNo" readonly="true" cssStyle="width:82%;padding-left:2px;-moz-width:50%;" data-validate='{"minLen": 5,"maxLen": 5,"required":true,"type":"string",msg:"必须填写正确格式的5位车牌号，如J1B23"}' cssClass="ui-widget-content"/>
 									</s:if>
 									<s:else>
-										<s:textfield name="e.plateType" cssStyle="width:30px;text-align:right;border-right-width:0;" value='%{getText("car.plate.yue.A")}' data-validate="required" cssClass="ui-widget-content"/><s:textfield name="e.plateNo" cssStyle="width:203px;" data-validate='{"minLen": 5,"maxLen": 5,"required":true,"type":"string",msg:"必须填写正确格式的5位车牌号，如J1B23"}' cssClass="ui-widget-content"/>
+										<s:textfield name="e.plateType" cssStyle="width:18%;text-align:right;border-right-width:0;padding-right:2px;" value='%{getText("car.plate.yue.A")}' data-validate="required" cssClass="ui-widget-content"/><s:textfield name="e.plateNo" cssStyle="width:82%;padding-left:2px;" data-validate='{"minLen": 5,"maxLen": 5,"required":true,"type":"string",msg:"必须填写正确格式的5位车牌号，如J1B23"}' cssClass="ui-widget-content"/>
 									</s:else>
 								</td>
 								<s:if test="%{e.status!=1}">
 									<td class="label" >*<s:text name="car.manageNo"/>:</td>
-									<td class="value" ><s:textfield name="e.manageNo" data-validate='{"required":true,"type":"digits","max":4499,"min":1101,msg:"管理号必须填写1101~4499！"}' cssClass="ui-widget-content" cssStyle="width: 98px;"/>
-										*<s:text name="car.code"/>:<s:textfield name="e.code" data-validate="required" cssClass="ui-widget-content" cssStyle="width: 98px;"/>
+									<td class="value" ><div class="bc-relativeContainer" style="width:36%;"><s:textfield name="e.manageNo" data-validate='{"required":true,"type":"digits","max":4499,"min":1101,msg:"管理号必须填写1101~4499！"}' 
+										cssClass="ui-widget-content" cssStyle="width: 100%;"/>
 										<ul class="inputIcons" >
-											<li class="inputIcon ui-icon ui-icon-lightbulb" style="margin-top: -168px;margin-left: -173px;"
-									 		title='<s:text name="car.getManageNoInfoTips"/>' id="getManageNoInfo">
+											<li class="inputIcon ui-icon ui-icon-lightbulb" title='<s:text name="car.getManageNoInfoTips"/>' id="getManageNoInfo">
 										</ul>	
+									</div><div class="bc-relativeContainer" style="width:28%;text-align:right;">*<s:text name="car.code"/>:</div><s:textfield name="e.code" data-validate="required" cssClass="ui-widget-content" cssStyle="width:36%;"/>
 									</td>
 								</s:if><s:else>
 									<td class="label" ><s:text name="car.manageNo"/>:</td>
-									<td class="value" ><s:textfield name="e.manageNo" cssClass="ui-widget-content" cssStyle="width: 98px;"/>
-										*<s:text name="car.code"/>:<s:textfield name="e.code" data-validate="required" cssClass="ui-widget-content" cssStyle="width: 98px;"/>
+									<td class="value" ><div class="bc-relativeContainer" style="width:36%;"><s:textfield name="e.manageNo" cssClass="ui-widget-content" cssStyle="width: 100%;"/>
+									</div><div class="bc-relativeContainer" style="width:28%;text-align:right;">*<s:text name="car.code"/>:</div><s:textfield name="e.code" data-validate="required" cssClass="ui-widget-content" cssStyle="width: 36%;"/>
 									</td>
 								</s:else>
 							</tr>
@@ -164,20 +164,18 @@
 									</ul>
 								</td>
 								<td class="label" ><s:text name="car.tv.screen"/>:</td>
-								<td class="value" >
+								<td class="value relative" >
 									<s:if test="isReadonly()&&isEntering()&&e.status!=-1">
-										<s:textfield name="e.carTvScreen" cssClass="ui-widget-content" cssStyle="width:250px;"/>
+										<s:textfield name="e.carTvScreen" cssClass="ui-widget-content"/>
 									</s:if>
 									<s:else>
-										<div class="bc-relativeContainer">
-											<input type="text" name="e.carTvScreen" value='<s:property value="e.carTvScreen"/>' style="width:250px;"
-												data-validate='{"type":"string"}' class="bc-select ui-widget-content"
-												data-maxHeight="150px"
-												data-source='<s:property value="carTvScreenList"/>'/>
-											<ul class="inputIcons">
-												<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
-											</ul>
-										</div>
+										<input type="text" name="e.carTvScreen" value='<s:property value="e.carTvScreen"/>'
+											data-validate='{"type":"string"}' class="bc-select ui-widget-content"
+											data-maxHeight="150px"
+											data-source='<s:property value="carTvScreenList"/>'/>
+										<ul class="inputIcons">
+											<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
+										</ul>
 									</s:else>
 								</td>
 							</tr>					
@@ -379,20 +377,18 @@
 									car.lpg.insurance.enddate	=LPG保单结束日期 -->	
 								<tr>
 									<td class="label" ><s:text name="car.lpg.name"/>:</td>
-									<td class="value" >
+									<td class="value relative" >
 										<s:if test="isReadonly()">
-											<s:textfield name="e.lpgName" cssClass="ui-widget-content" cssStyle="width:235px;"/>
+											<s:textfield name="e.lpgName" cssClass="ui-widget-content"/>
 										</s:if>
 										<s:else>
-											<div class="bc-relativeContainer" style="position : relative; display: inline-block">
-												<input type="text" id="carLPGs" name="e.lpgName" value='<s:property value="e.lpgName"/>' style="width:235px;" 
-													data-validate='{"maxLen": 50,"type":"string"}' class="bc-select ui-widget-content"
-													data-maxHeight="150px" data-cfg='{"callback":"bc.carForm.autoLoadLpgInfo"}'
-													data-source='<s:property value="carLPGList"/>'/>
-												<ul class="inputIcons">
-													<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
-												</ul>
-											</div>
+											<input type="text" id="carLPGs" name="e.lpgName" value='<s:property value="e.lpgName"/>'
+												data-validate='{"maxLen": 50,"type":"string"}' class="bc-select ui-widget-content"
+												data-maxHeight="150px" data-cfg='{"callback":"bc.carForm.autoLoadLpgInfo"}'
+												data-source='<s:property value="carLPGList"/>'/>
+											<ul class="inputIcons">
+												<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
+											</ul>
 										</s:else>
 									</td>
 									<td class="label" ><s:text name="car.lpg.model"/>:</td>
