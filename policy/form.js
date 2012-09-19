@@ -208,7 +208,8 @@ bc.policyForm = {
 				url: bc.root + "/bc-business/policy4CarOperate/doRenew",
 				data: {id: $page.find(":input[name='e.id']").val()},
 				afterClose: function(status){
-					$page.data("data-status","saved");
+					//$page.data("data-status","saved");
+					if(status) bc.grid.reloadData($page);
 				}
 			});
 		});
