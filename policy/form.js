@@ -198,7 +198,7 @@ bc.policyForm = {
 	/** 续保处理 */
 	doRenew : function() {
 		var $page = $(this);
-		bc.msg.confirm("是否对"+$page.find("#carInfo").text() + "进行续保？",function(){
+		bc.msg.confirm("确定要对"+$page.find("#carInfo").text() + "进行续保？",function(){
 			// 关闭当前窗口
 			$page.dialog("close");
 			// 续保表单
@@ -208,7 +208,8 @@ bc.policyForm = {
 				url: bc.root + "/bc-business/policy4CarOperate/doRenew",
 				data: {id: $page.find(":input[name='e.id']").val()},
 				afterClose: function(status){
-					$page.data("data-status","saved");
+					//$page.data("data-status","saved");
+					if(status) bc.grid.reloadData($page);
 				}
 			});
 		});
