@@ -40,7 +40,7 @@
 					      </ul>
                         </td> -->
 					    </s:else>
-						<td class="label"><s:text name="blacklist.company"/>:</td>
+						<td class="label"><s:text name="blacklist.company4Happen"/>:</td>
 						<td class="value"><s:textfield name="e.company" cssClass="ui-widget-content"/></td>
 					</tr>
 					<tr>
@@ -69,7 +69,7 @@
 								</s:if>	
 							</div>
 						</td>
-					    <td class="label">*<s:text name="blacklist.motorcade.name"/>:</td>
+					    <td class="label">*<s:text name="blacklist.motorcade4Happen.name"/>:</td>
 						<td class="value"><s:select name="e.motorcade.id" list="motorcadeList" listKey="key" listValue="value" value="e.motorcade.id" data-validate="required"
 							headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" ></s:select></td>
 					</tr>

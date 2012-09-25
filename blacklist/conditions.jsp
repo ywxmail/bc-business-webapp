@@ -16,7 +16,7 @@
 				<input type="text" class="bc-select ui-widget-content" readonly="readonly"
 					data-maxHeight="150px"
 					data-source='<s:property value="units"/>'>
-				<input type="hidden" data-condition='{"type":"long","ql":"unit.id=?"}'>
+				<input type="hidden" data-condition='{"type":"long","ql":"nbia.id=?"}'>
 				<ul class="inputIcons">
 					<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
 					<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
@@ -29,7 +29,7 @@
 				<input type="text" class="bc-select ui-widget-content" readonly="readonly"
 					data-maxHeight="150px"
 					data-source='<s:property value="motorcades"/>'>
-				<input type="hidden" data-condition='{"type":"long","ql":"m.id=?"}'>
+				<input type="hidden" data-condition='{"type":"long","ql":"nm.id=?"}'>
 				<ul class="inputIcons">
 					<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
 					<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
