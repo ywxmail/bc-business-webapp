@@ -92,8 +92,9 @@
 			<div id="carContent" class="content ui-state-default" style="padding:0;">
 				<table class="contentTable" cellspacing="2" cellpadding="0">
 					<tr>
-						<td class="label" style="width: 5em;">自编号:</td>
-						<td class="value" style="width: 13.5em;"><input type="text" name="main.code" class="ui-widget-content" value="" readonly="readonly"/></td>
+						<td class="label" style="width: 5em;">管理号:</td>
+						<td class="value" style="width: 13.5em;"><input type="text" name="main.manageNo" class="ui-widget-content" value="" readonly="readonly" style="width: 4.5em;"/>
+							<span style="width: 2.5em;">自编号:</span><input type="text" name="main.code" class="ui-widget-content" value="" readonly="readonly" style="width: 5.3em;"/></td>
 						<td class="label" style="width: 7em;">营运性质:</td>
 						<td class="value" style="width: 13.5em;"><input type="text" name="main.businessType" class="ui-widget-content" readonly="readonly"/></td>
 						<td rowspan="9" id="specalTD" class="desc-webkit"><textarea name="main.desc" class="ui-widget-content noresize" readonly="readonly"></textarea></td>
