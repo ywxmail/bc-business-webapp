@@ -9,14 +9,14 @@
 			<table class="formFields ui-widget-content" cellspacing="2" cellpadding="0" style="width:640px">
 				<tbody>
 					<tr class="widthMarker">
-						<td style="width: 100px;">&nbsp;</td>
+						<td style="width: 80px;">&nbsp;</td>
 						<td style="width: 240px;">&nbsp;</td>
-						<td style="width: 100px;">&nbsp;</td>
+						<td style="width: 80px;">&nbsp;</td>
 						<td>&nbsp;</td>
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="blacklist.subject"/>:</td>
-						<td class="value " colspan="3"><s:textfield name="e.subject"  data-validate="required" cssClass="ui-widget-content" cssStyle="width:99%"/></td>
+						<td class="value " colspan="3"><s:textfield name="e.subject"  data-validate="required" cssClass="ui-widget-content"/></td>
 					</tr>
 					<tr>
 					   <td class="label">*<s:text name="blacklist.car.plateNo"/>:</td>
@@ -30,7 +30,7 @@
 						<td class="value relative">
 							<div class="input ui-widget-content" data-validate="required" ><span class="link showCar" data-cfg='<s:property value="e.car.id" />' id="carInfo" ><s:property value="%{e.car.plateType+'.'+e.car.plateNo }" /></span>
 							</div>
-					    <span id="selectCar" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" style="margin: -8px 5px;" title='<s:text name="title.click2select"/>'></span>
+					    <span id="selectCar" class="selectButton verticalMiddle ui-icon ui-icon-circle-plus" style="margin: -8px 0.5px;" title='<s:text name="title.click2select"/>'></span>
 					    </td> 
                         <!--<td class="value relative">
 					      <div class="input ui-widget-content" data-validate="required" ><span class="link showCar" data-cfg='<s:property value="e.car.id" />' id="carInfo" ><s:property value="%{e.car.plateType+'.'+e.car.plateNo }" /></span>
@@ -86,61 +86,35 @@
 					<tr>
 						<td class="label">*<s:text name="blacklist.type"/>:</td>
 						<td class="value" colspan="3"><s:select list="blackTypeList" listKey="value" listValue="value" headerKey="" headerValue="%{getText('label.please.choose')}" name="e.type" 
-							data-validate="required" cssClass="ui-widget-content" cssStyle="width: 175px;"></s:select>从	
-							<div style="display: inline-block;" class="relative">
+							data-validate="required" cssClass="ui-widget-content" cssStyle="width: 29%;"></s:select><div class="bc-relativeContainer" style="width:4%;text-align:right;">从</div>	
+							<div style="display: inline-block;width: 22.3%;" class="relative">
 								<input type="text" name="e.appointDate" data-validate='{"type":"date","required":false}'
-								value='<s:date format="yyyy-MM-dd" name="e.appointDate" />' class="bc-date ui-widget-content" style="width: 150px;"/>
+								value='<s:date format="yyyy-MM-dd" name="e.appointDate" />' class="bc-date ui-widget-content"/>
 								<ul class="inputIcons" >
 									<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.appointDate' ></li>
 								</ul>
 							</div>
-							起变为:<s:select list="blackTypeList" listKey="value" listValue="value" headerKey="" headerValue="%{getText('label.please.choose')}" name="e.conversionType" 
-							 cssClass="ui-widget-content" cssStyle="width: 175px;"></s:select>
+							<div class="bc-relativeContainer" style="width:14%;text-align:center;">起变为:</div><s:select list="blackTypeList" listKey="value" listValue="value" headerKey="" headerValue="%{getText('label.please.choose')}" name="e.conversionType" 
+							 cssClass="ui-widget-content" cssStyle="width: 28.5%;"></s:select>
 						</td>
 					</tr>
 					<tr>
 						<td class="label" colspan="2" style="text-align:left;">
-						    <fieldset style="width:320px" class="ui-widget-content">
-						          <legend>锁定信息</legend>
-						          <table class="formFields" cellspacing="2" cellpadding="0" style="height:200px">
-									<tr class="widthMarker">
-										<td style="width: 80px;">&nbsp;</td>
-										<td>&nbsp;</td>
-									</tr>
-						              <tr>
-					                      <td class="label"><s:text name="blacklist.locker.name"/>:</td>
-					                      <td><s:property value="e.locker.name" />(<s:date name="e.lockDate" format="yyyy-MM-dd HH:mm:ss"/>)</td>
-					                  </tr>
-					                   <tr>
-						                   <td class="label"><s:text name="blacklist.lockReason"/>:</td>
-						                   <td class="value"  rowspan="10"><s:textarea name="e.lockReason" rows="10" cssClass="ui-widget-content noresize"/></td>
-					                   </tr>
-						          </table>
+						    <fieldset style="width:320px;height: 255px;padding: 5px;" class="ui-widget-content">
+						          <legend>锁定原因</legend>
+						          <s:textarea name="e.lockReason" rows="10" cssClass="ui-widget-content noresize" cssStyle="width:100%;box-sizing: border-box;"/>
+						          <div class="label" style="text-align: right;"><s:text name="blacklist.locker.name"/>:<s:property value="e.locker.name" />(<s:date name="e.lockDate" format="yyyy-MM-dd HH:mm:ss"/>)</div>
 						   </fieldset>
 						</td>
 						<td class="value" colspan="2" >
-						    <fieldset style="width:320px" class="ui-widget-content">
-						          <legend>解锁信息</legend>
-						          <table class="formFields" cellspacing="2" cellpadding="0" style="height:200px" >
+						    <fieldset style="width:320px;;height: 255px;padding: 5px;" class="ui-widget-content">
+						          <legend>解锁原因</legend>
  						          <s:if test="e.status!=1" >
- 						          <tr>
-					                        <td class="label" style="height:19px"></td>
-					                     </tr>
-					                     <tr>
-						                    <td class="label"><s:text name="blacklist.unlockReason"/>:</td>
-						                    <td class="value" rowspan="10" ><s:textarea name="e.unlockReason" rows="10" cssClass="ui-widget-content"/></td>
-					                      </tr>
+ 						          	<s:textarea name="e.unlockReason" rows="10" cssClass="ui-widget-content noresize" cssStyle="width:100%;box-sizing: border-box;"/>
 					               </s:if><s:else >
-					                      <tr>
-					                      <td class="label"><s:text name="blacklist.unlocker.name"/>:</td>
-					                      <td><s:property value="e.unlocker.name" />(<s:date name="e.unlockDate" format="yyyy-MM-dd HH:mm:ss"/>)</td>
-					                   </tr>
-					                   <tr>
-						                    <td class="label">*<s:text name="blacklist.unlockReason"/>:</td>
-						                    <td class="value" rowspan="10" ><s:textarea name="e.unlockReason" rows="10" cssClass="ui-widget-content noresize" data-validate="required"/></td>
-					                      </tr>
+					               	<s:textarea name="e.unlockReason" rows="10" cssClass="ui-widget-content noresize" data-validate="required"/>
+						          	<div class="label" style="text-align: right;"><s:text name="blacklist.unlocker.name"/>:<s:property value="e.unlocker.name" />(<s:date name="e.unlockDate" format="yyyy-MM-dd HH:mm:ss"/>)</div>
 					                     </s:else>
-						        </table>
 						    </fieldset>
 						</td>
 					</tr>
