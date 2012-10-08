@@ -59,11 +59,11 @@
 					</tr> -->
 					<tr>
 						<td class="label"><s:text name="carByDriver.statuses"/>:</td>
-						<td><s:radio name="e.status" list="#{'0':'在案','1':'注销'}" cssStyle="width:auto;"/></td>
+						<td><s:radio name="e.status" list="#{'-1':'草稿','0':'在案','1':'注销'}" cssStyle="width:auto;"/></td>
 					</tr>
 					<tr>
 						<td class="topLabel" ><s:text name="carByDriver.description"/>:</td>
-						<td class="value"><s:textarea name="e.description" rows="5" cssClass="ui-widget-content"/></td>
+						<td class="value"><s:textarea name="e.description" rows="5" cssClass="ui-widget-content noresize"/></td>
 					</tr>
 					<tr>
 						<td class="label" colspan="2" rowspan="2">
