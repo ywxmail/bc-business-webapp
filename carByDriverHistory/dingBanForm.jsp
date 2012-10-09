@@ -14,9 +14,9 @@
 		                <td >&nbsp;</td>
 	                </tr>
 					<tr>
-					<s:if test="%{carManId != null}">
+					<s:if test="%{carManId != null || !isNewest}">
 						<td class="label"><s:text name="shiftworkByDriver.driver"/>:</td>
-						<td class="value"><s:textfield name="e.driver.name" readonly="true" cssClass="ui-widget-content" /></td>
+						<td class="value"><s:textfield name="e.driver.name" readonly="true" cssClass="ui-widget-content"/></td>
 					</s:if><s:else>
 					    <td class="label">*<s:text name="shiftworkByDriver.driver"/>:</td>
 						<td class="value relative"><s:textfield name="e.driver.name" readonly="true" data-validate="required" cssClass="ui-widget-content" />
@@ -35,10 +35,12 @@
                               <td class="value relative">
 						      <div class="input ui-widget-content" data-validate="required" ><span class="link showCar" title='<s:text name="title.click2openCar"/>' data-cfg='<s:property value="e.toCar.id" />' id="carInfo" ><s:property value="%{e.toCar.plateType+'.'+e.toCar.plateNo }" /></span>
 						      </div>
-						      <ul class="inputIcons">
-						        <li class="selectCar inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>' 
-						        	data-cfg='e.toCar.id=id,carInfo=plate|text,carInfo=id|attr' data-status="-1,0,1"></li>
-						      </ul>
+					          <s:if test="isNewest">
+							      <ul class="inputIcons">
+							        <li class="selectCar inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>' 
+							        	data-cfg='e.toCar.id=id,carInfo=plate|text,carInfo=id|attr' data-status="-1,0,1"></li>
+							      </ul>
+						      </s:if>
                                </td>
 						</s:else>
 					</tr>
@@ -51,11 +53,14 @@
 								     	multiple="true" cssStyle="width:100%;height:9em;;" cssClass="ui-widget-content" />
 							     	</td>
 									<s:if test="!isReadonly()">
-								    <td style="width:40px;text-align: center;vertical-align: middle;"><input type="button" id="addCar" 
-								    	value="+" style="width:2em;height:2em;"/><br><input id="removeCar" type="button" value="-" 
-								    	style="width:2em;height:2em;"/><br>
-									    <input type="button" id="upCar" value="↑" style="width:2em;height:2em;"/><br><input 
-									    type="button" id="downCar" value="↓" style="width:2em;height:2em;"/>
+								    <td style="width:40px;text-align: center;vertical-align: middle;">
+					          			<s:if test="isNewest">
+									    	<input type="button" id="addCar" 
+									    		value="+" style="width:2em;height:2em;"/><br><input id="removeCar" type="button" value="-" 
+									    	style="width:2em;height:2em;"/><br>
+										    <input type="button" id="upCar" value="↑" style="width:2em;height:2em;"/><br><input 
+										    type="button" id="downCar" value="↓" style="width:2em;height:2em;"/>
+										</s:if>
 									</td>
 									</s:if>
 							    </tr>

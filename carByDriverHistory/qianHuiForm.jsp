@@ -16,7 +16,7 @@
 	                </tr> 
 					<tr>
 						<td class="label" style="min-width: 5em;width: 5em;">*<s:text name="carByDriverHistory.driver"/>:</td>
-					<s:if test="%{carManId != null}">
+					<s:if test="%{carManId != null || !isNewest}">
 						<td class="value"><s:textfield name="e.driver.name" readonly="true" data-validate="required" cssClass="ui-widget-content" /></td>
 					</s:if><s:else>
 					    <td class="value relative"><s:textfield name="e.driver.name" readonly="true" data-validate="required" cssClass="ui-widget-content" />
@@ -85,10 +85,12 @@
 						               <tr><td class="label" style="min-width: 5em;width: 5em;">*<s:text name="carByDriverHistory.car"/>:</td>
 						                   <td class="value relative" style="position:relative;display: block;"><s:textfield name="toCarPlate" value="%{e.toCar.plateType+'.'+e.toCar.plateNo }"
 					                        data-validate="required" cssClass="ui-widget-content" readonly="true" />
+					                        <s:if test="isNewest">
 					                           <ul class="inputIcons">
                                                    <li id="selectNewCar" class="inputIcon ui-icon ui-icon-circle-plus" title='<s:text name="title.click2select"/>'></li>
                                                    <li class="clearSelect inputIcon ui-icon ui-icon-circle-close" data-cfg="toCarPlate" title='<s:text name="title.click2clear"/>'></li>
                                                </ul>
+                                             </s:if>
                                             </td>
     							            <td class="label" style="min-width: 5em;width: 5em;"><s:text name="carByDriverHistory.unit"/>:</td>
 						                    <td class="value"><s:textfield name="e.toUnit" cssClass="ui-widget-content"/></td>
