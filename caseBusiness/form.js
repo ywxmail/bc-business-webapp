@@ -335,6 +335,26 @@ bc.caseBusinessForm = {
 		bc.msg.alert('功能正在开发中!');
 	},
 	
+	//维护按钮
+	doMaintenance : function(){
+		var $page = $(this);
+		// 关闭当前窗口
+		bc.msg.confirm("确定维护此营运违章信息？",function(){
+			$page.dialog("close");
+			// 重新打开可编辑表单
+			bc.page.newWin({
+				name: "维护" + $page.find(":input[name='e.carPlate']").val() + "的营运违章信息",
+				title: "维护" + $page.find(":input[name='e.carPlate']").val() + "的营运违章信息",
+				mid: "caseBusiness" + $page.find(":input[name='e.id']").val(),
+				url: bc.root + "/bc-business/caseBusiness/edit",
+				data: {id: $page.find(":input[name='e.id']").val()},
+				afterClose: function(status){
+					if(status) bc.grid.reloadData($page);
+				},
+			});
+		});
+	},
+	
 	//保存的处理
 	save:function(){
 		var $form = $(this);
