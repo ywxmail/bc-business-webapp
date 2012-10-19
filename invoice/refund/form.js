@@ -30,7 +30,7 @@ bs.invoice4RefundForm = {
 		$form.find("#selectCashier").click(function(){
 			bc.identity.selectUser({
 				history: true,
-				selecteds: $form.find(":input[name='e.cashier.name']").val(),
+				status:'0',
 				onOk : function(user) {
 					$form.find(":input[name='e.cashier.id']").val(user.id);
 					$form.find(":input[name='e.cashier.name']").val(user.name);
@@ -42,7 +42,7 @@ bs.invoice4RefundForm = {
 		$form.find("#selectRefunder").click(function(){
 			bc.identity.selectUser({
 				history: true,
-				selecteds: $form.find(":input[name='e.refunder.name']").val(),
+				status:'0',
 				onOk : function(user) {
 					$form.find(":input[name='e.refunder.id']").val(user.id);
 					$form.find(":input[name='e.refunder.name']").val(user.name);
