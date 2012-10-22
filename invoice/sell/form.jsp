@@ -160,8 +160,8 @@
 						<td class="id first" style="padding:0;text-align:left;"><span class="ui-icon"></span>
 						</td>
 						<!-- 发票代码 -->
-						<td class="middle" style="padding:0;text-align:left;">
-							<s:select  list="codeList" listValue="value" listKey="key"
+						<td class="middle"  style="padding:0;text-align:left;">
+							<s:select name="buyId" list="codeList" listValue="value" listKey="key"
 								theme="simple" data-validate="required" cssClass="ui-widget-content bs-i4sell-detail-code" 
 									cssStyle="width:100%;height:100%;border:none;margin:0;padding:0 10px 0 2px"/>
 						</td>

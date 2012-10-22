@@ -186,6 +186,11 @@ bs.invoice4SellForm = {
 		if(!bc.validator.validate($page))
 			return;
 		
+		//清除buyId
+		$page.find(".bs-i4sell-detail-code").each(function(){
+			  $(this).removeAttr("name");
+		});
+		
 		//先将销售合并到隐藏域
 		var sellDetails=[];
 
@@ -249,6 +254,11 @@ bs.invoice4SellForm = {
 		//表单先验证一次
 		if(!bc.validator.validate($page))
 			return;
+		
+		//清除buyId
+		$page.find(".bs-i4sell-detail-code").each(function(){
+			  $(this).removeAttr("name");
+		});
 		
 		//先将销售合并到隐藏域
 		var sellDetails=[];
