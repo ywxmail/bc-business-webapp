@@ -1,5 +1,15 @@
 bc.namespace("bs");
 bs.info = {
+	/** 打开管理端视图 */
+	doManage : function() {
+		var $page = $(this);
+		bc.page.newWin({
+			name: $page.attr("data-name") + "管理",
+			mid: "info.manage." + $page.attr("data-infoType"),
+			url: $page.attr("data-namespace") + "Manage/paging"
+		});
+	},
+		
 	/** 发布 */
 	doIssue : function() {
 		var $page = $(this);

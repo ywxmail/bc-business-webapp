@@ -1,11 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<div title='<s:text name="companyFile.title"/>' data-type='form' class="bc-page"
-	data-saveUrl='<s:url value="/bc-business/info/companyFile/save" />'
-	data-js='js:redactor_css,js:redactor,js:redactor_cn,js:redactor_plugins_fullscreen,<s:url value="/bc-business/info/companyFile/form.js" />'
-	data-initMethod='bs.companyFileForm.init'
+<div title='<s:property value="typeDesc"/>' data-type='form' class="bc-page"
+	data-saveUrl='<s:url value="/bc-business/info/save" />'
+	data-js='js:redactor_css,js:redactor,js:redactor_cn,js:redactor_plugins_fullscreen,<s:url value="/bc-business/info/form.js" />'
+	data-initMethod='bs.infoForm.init'
 	data-option='<s:property value="formPageOption"/>' style="overflow-y:auto;">
-	<s:form name="companyFileForm" theme="simple">
+	<s:form name="infoForm" theme="simple">
 		<table class="formTable2 ui-widget-content" cellspacing="2" cellpadding="0" style="width:650px;">
 			<tr class="widthMarker">
 				<td >&nbsp;</td>

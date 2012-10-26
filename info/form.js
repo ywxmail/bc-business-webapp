@@ -1,5 +1,5 @@
 bc.namespace("bs");
-bs.companyFileForm = {
+bs.infoForm = {
 	init : function() {
 		var $form = $(this);
 		
@@ -31,7 +31,7 @@ bs.companyFileForm = {
 		bc.page.newWin({
 			name: $page.find("input[name='e.subject']").val(),
 			mid: "info.preview."+id,
-			url: bc.root+ "/bc-business/info/companyFile/open?id="+id
+			url: bc.root+ "/bc-business/info/open?id="+id
 		});
 	}
 };

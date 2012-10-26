@@ -1,5 +1,5 @@
 bc.namespace("bs");
-bs.companyFileFormr = {
+bs.infoFormr = {
 	init : function() {
 		var $form = $(this);
 		
