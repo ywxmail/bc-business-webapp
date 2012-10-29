@@ -3,7 +3,7 @@ bs.infoFormr = {
 	init : function() {
 		var $form = $(this);
 		
-		// 初始化
-		logger.info("companyFileFormr");
+		//禁止选择文字
+		//$form.find("div.info-content").disableSelection();
 	}
 };
