@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div title='<s:property value="typeDesc"/>' data-type='form' class="bc-page"
 	data-saveUrl='<s:url value="/bc-business/info/save" />'
-	data-js='js:redactor_css,js:redactor,js:redactor_cn,js:redactor_plugins_fullscreen,<s:url value="/bc-business/info/form.js" />'
+	data-js='js:bc_identity,js:redactor_css,js:redactor,js:redactor_cn,js:redactor_plugins_fullscreen,<s:url value="/bc-business/info/form.js" />'
 	data-initMethod='bs.infoForm.init'
 	data-option='<s:property value="formPageOption"/>' style="overflow-y:auto;">
 	<s:form name="infoForm" theme="simple">
@@ -34,6 +34,17 @@
 					class="bc-date ui-widget-content" data-cfg='{changeYear:false}' />
 					<ul class="inputIcons">
 						<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td class="label">*<s:text name="info.code"/>:</td>
+				<td class="value"><s:textfield name="e.code" data-validate="required" cssClass="ui-widget-content"/></td>
+				<td class="label">*<s:text name="info.source"/>:</td>
+				<td class="value relative">
+					<s:textfield name="e.source" data-validate="required" cssClass="ui-widget-content"/>
+					<ul class="inputIcons">
+						<li class="inputIcon ui-icon ui-icon-home selectDepartment" title="点击选择部门" data-cfg='e.source=name'></li>
 					</ul>
 				</td>
 			</tr>
