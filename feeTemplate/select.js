@@ -27,12 +27,12 @@ bs.feeTemplateSelectDialog = {
 			if(type==0){
 				pid=id+","+pid;
 			}else{
-				var code = $row.find("td:eq(7)").text();
-				var name = $row.find("td:eq(2)").text();
-				var price = $row.find("td:eq(3)").text();
-				var count = $row.find("td:eq(4)").text();
-				var payType = $row.find("td:eq(5)").attr("data-value");
-				var desc = $row.find("td:eq(6)").text();
+				var code = $row.find("td:eq(6)").text();
+				var name = $row.find("td:eq(1)").text();
+				var price = $row.find("td:eq(2)").text();
+				var count = $row.find("td:eq(3)").text();
+				var payType = $row.find("td:eq(4)").attr("data-value");
+				var desc = $row.find("td:eq(5)").text();
 				datap.push($.extend({
 					id: id,
 					name:name,
