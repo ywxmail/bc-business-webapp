@@ -98,11 +98,11 @@
 						              <tr>
                                             <td class="label" style="min-width: 5em;width: 5em;"><s:text name="carByDriverHistory.motorcade"/>:</td>
 						                    <td class="value"> <s:select name="e.toMotorcadeId" list="motorcadeList" listKey="key" listValue="value" value="e.toMotorcadeId" 
-						                         headerKey="" headerValue="" cssClass="ui-widget-content"></s:select>
+						                         headerKey="" headerValue="" cssClass="ui-widget-content" disabled="%{!isNewest}"></s:select>
 					                        </td>
 						             		<td class="label" style="min-width: 5em;width: 5em;">*<s:text name="carByDriverHistory.classes"/>:</td>
 						                 	<td class="value"><s:select name="e.toClasses" list="classes" headerKey="" headerValue="%{getText('label.please.choose')}" 
-							              		listKey="key" listValue="value" data-validate="required" cssClass="ui-widget-content"/>
+							              		listKey="key" listValue="value" data-validate="required" cssClass="ui-widget-content" disabled="%{!isNewest}"/>
 						              		</td>
 							         </tr>
 						        </table>
