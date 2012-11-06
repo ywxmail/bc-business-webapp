@@ -10,10 +10,10 @@ bc.business.motorcadeForm = {
 		var $form = $(this);
 		var motorcadeId = $form.find(":input[name='e.id']").val();
 		var option = jQuery.extend({
-			url : bc.root + "/bc-business/historyCarQuantity/list?pid="
+			url : bc.root + "/bc-business/historyCarQuantitys/paging?motorcade_id="
 					+ motorcadeId,
 			name : "历史车辆数",
-			mid : "historyCarQuantity"
+			mid : "historyCarQuantity"+motorcadeId
 		}, option);
 
 		bc.page.newWin(option);
