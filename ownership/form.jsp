@@ -6,8 +6,7 @@
 	data-initMethod='bs.ownershipForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="ownershipForm" theme="simple">
-		<div class="formFields ui-widget-content" >
-			<table class="formFields" cellspacing="2" cellpadding="0">
+			<table class="formFields" cellspacing="2" cellpadding="0" style="width: 380px;">
 				<tbody>
 				<!-- 
 					<tr>
@@ -24,6 +23,14 @@
 						<td class="value"><s:textfield name="e.number" data-validate="required" /></td>
 					</tr>
 					<tr>
+						<td class="label">*<s:text name="ownership.owner_ship"/>:</td>
+						<td class="value"><s:textfield name="e.ownership" data-validate="required" /></td>
+					</tr>
+					<tr>
+						<td class="label">*<s:text name="ownership.source"/>:</td>
+						<td class="value"><s:textfield name="e.source" data-validate="required" /></td>
+					</tr>
+					<tr>
 					    <td class="label">*<s:text name="ownership.nature"/>:</td>
 						<td class="value" ><s:select list="natures" listKey="value" listValue="value" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" name="e.nature" cssClass="ui-widget-content"></s:select></td>
 					</tr>
@@ -34,6 +41,10 @@
 					<tr>
 						<td class="label"><s:text name="ownership.owner"/>:</td>
 						<td class="value" ><s:select list="owners" listKey="value" listValue="value" headerKey="" headerValue="" name="e.owner" cssClass="ui-widget-content"></s:select></td>
+					</tr>
+					<tr>
+						<td class="label"><s:text name="ownership.whither"/>:</td>
+						<td class="value"><s:textfield name="e.whither" /></td>
 					</tr>
 					<tr>
 						<td class="topLabel" ><s:text name="ownership.description"/>:</td>
@@ -52,7 +63,6 @@
 					</tr>
 				</tbody>
 			</table>
-		</div>
 		<s:hidden name="e.id" />
 		<s:hidden name="e.status" />
 		<s:hidden name="e.author.id" />
