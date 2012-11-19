@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<div title='<s:text name="ownership.title"/> data-type='form' class="bc-page"
+<div title='<s:text name="ownership.title"/>' data-type='form' class="bc-page"
 	data-saveUrl='<s:url value="/bc-business/ownership/save" />'
 	data-js='<s:url value="/bc-business/ownership/form.js" />,<s:url value="/bc-business/bs.js" />'
 	data-initMethod='bs.ownershipForm.init'
@@ -9,6 +9,7 @@
 		<div class="formFields ui-widget-content" >
 			<table class="formFields" cellspacing="2" cellpadding="0">
 				<tbody>
+				<!-- 
 					<tr>
 					    <td class="label"><s:text name="car"/>:</td>
 						<td class="value relative">
@@ -17,9 +18,10 @@
 							</div>
 						</td>
 					</tr>
+				 -->
 					<tr>
 						<td class="label">*<s:text name="car.certNo2"/>:</td>
-						<td class="value"><s:textfield name="certNo2" value="%{e.car.certNo2}" data-validate="required" readonly="true" /></td>
+						<td class="value"><s:textfield name="e.number" data-validate="required" /></td>
 					</tr>
 					<tr>
 					    <td class="label">*<s:text name="ownership.nature"/>:</td>
@@ -40,6 +42,7 @@
 					<tr>
 						<td class="label" colspan="2" rowspan="2">
 							<div class="formTopInfo">
+								状态：<s:property value="%{statusesValue[e.status]}" />，
 								登记：<s:property value="e.author.name" />(<s:date name="e.fileDate" format="yyyy-MM-dd HH:mm:ss"/>)
 								<s:if test="%{e.modifier != null}">
 								<br/>最后修改：<s:property value="e.modifier.name" />(<s:date name="e.modifiedDate" format="yyyy-MM-dd HH:mm:ss"/>)
@@ -51,7 +54,7 @@
 			</table>
 		</div>
 		<s:hidden name="e.id" />
-		<s:hidden name="e.car.id" />
+		<s:hidden name="e.status" />
 		<s:hidden name="e.author.id" />
 		<s:hidden name="e.modifier.id"/>
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
