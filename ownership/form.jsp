@@ -8,6 +8,10 @@
 	<s:form name="ownershipForm" theme="simple">
 			<table class="formFields" cellspacing="2" cellpadding="0" style="width: 380px;">
 				<tbody>
+					<tr class="widthMarker">
+						<td style="width: 100px;">&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
 				<!-- 
 					<tr>
 					    <td class="label"><s:text name="car"/>:</td>
