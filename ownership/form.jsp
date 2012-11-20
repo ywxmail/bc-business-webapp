@@ -13,12 +13,12 @@
 						<td>&nbsp;</td>
 					</tr>
 					<tr>
-						<td class="label">*<s:text name="ownership.owner"/>:</td>
-						<td class="value" ><s:select list="owners" listKey="value" listValue="value" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" name="e.owner" cssClass="ui-widget-content"></s:select></td>
+						<td class="label">*<s:text name="ownership.certNo2"/>:</td>
+						<td class="value"><s:textfield name="e.number" data-validate="required" /></td>
 					</tr>
 					<tr>
-						<td class="label">*<s:text name="car.certNo2"/>:</td>
-						<td class="value"><s:textfield name="e.number" data-validate="required" /></td>
+						<td class="label">*<s:text name="ownership.owner"/>:</td>
+						<td class="value" ><s:select list="owners" listKey="value" listValue="value" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" name="e.owner" cssClass="ui-widget-content"></s:select></td>
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="ownership.owner_ship"/>:</td>
