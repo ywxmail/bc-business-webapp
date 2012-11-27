@@ -22,15 +22,27 @@
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="ownership.owner_ship"/>:</td>
-						<td class="value"><s:textfield name="e.ownership" data-validate="required" /></td>
+						<s:if test="%{!isReadonly()||isCheck4Advanced()}">
+							<td class="value"><s:textfield name="e.ownership" data-validate="required" /></td>
+						</s:if><s:else>
+							<td class="value"><div class="input ui-widget-content">******</div></td>
+						</s:else>
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="ownership.situation"/>:</td>
-						<td class="value" ><s:select list="situations" listKey="value" listValue="value" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" name="e.situation" cssClass="ui-widget-content"></s:select></td>
+						<s:if test="%{!isReadonly()||isCheck4Advanced()}">
+							<td class="value" ><s:select list="situations" listKey="value" listValue="value" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" name="e.situation" cssClass="ui-widget-content"></s:select></td>
+						</s:if><s:else>
+							<td class="value"><div class="input ui-widget-content">******</div></td>
+						</s:else>
 					</tr>
 					<tr>
 					    <td class="label">*<s:text name="ownership.nature"/>:</td>
-						<td class="value" ><s:select list="natures" listKey="value" listValue="value" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" name="e.nature" cssClass="ui-widget-content"></s:select></td>
+					    <s:if test="%{!isReadonly()||isCheck4Advanced()}">
+							<td class="value" ><s:select list="natures" listKey="value" listValue="value" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" name="e.nature" cssClass="ui-widget-content"></s:select></td>
+						</s:if><s:else>
+							<td class="value"><div class="input ui-widget-content">******</div></td>
+						</s:else>
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="ownership.source"/>:</td>
@@ -64,6 +76,11 @@
 		<s:hidden name="e.id" />
 		<s:hidden name="e.author.id" />
 		<s:hidden name="e.modifier.id"/>
+		<s:if test="%{isReadonly()}">
+		<s:hidden name="e.ownership" />
+		<s:hidden name="e.situation" />
+		<s:hidden name="e.nature"/>
+		</s:if>
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 	</s:form>
 </div>
