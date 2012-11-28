@@ -574,6 +574,7 @@
 		<s:hidden name="e.charger"/>
 		<s:hidden name="e.originalValue"/>
 		<s:hidden name="e.rentNo"/>
+		<s:hidden name="e.owner"/>
 		<s:hidden name="carEntering"/>
 		<s:if test="!e.isNew()&&e.status!=-1">
 		<s:hidden name="e.company"/>
