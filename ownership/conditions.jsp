@@ -72,7 +72,7 @@
 						</ul>
 					</div>
 				</div><div style="width:12px;display:inline-block;"></div><div class="bc-dateContainer">
-					<div class="label">经营权情况</div>
+					<div class="label">权证抵押情况</div>
 					<div class="value bc-dateContainer">
 						<input type="text" class="bc-select ui-widget-content" readonly="readonly"
 							data-maxHeight="150px" style="width:9em;"

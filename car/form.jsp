@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div title='<s:property value="pageTitle"/>' data-type='form' class="bc-page"
 	data-saveUrl='<s:url value="/bc-business/car/save" />'
-	data-js='<s:url value="/bc-business/car/form.js" />,<s:url value="/bc/identity/identity.js" />'
+	data-js='<s:url value="/bc-business/car/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js" />'
 	data-initMethod='bc.carForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow:hidden;">
 	<s:form name="carForm" theme="simple" cssClass="bc-form" >
@@ -209,7 +209,13 @@
 									<td class="label" ><s:text name="car.registerNo"/>:</td>
 									<td class="value" ><s:textfield name="e.registerNo"  cssClass="ui-widget-content"/></td>
 									<td class="label" ><s:text name="car.certNo2"/>:</td>
-									<td class="value" ><s:textfield name="e.certNo2" cssClass="ui-widget-content"/></td>
+									<td class="value" ><s:textfield name="e.certNo2" cssClass="bc-select ui-widget-content" readonly="false"
+										data-cfg='{"strict":true,"delay":100,"minLength":2, "labelMapping":"{{number}}", "valueMapping":"{{number}}","itemMapping":"{{number}}","callback":"bc.carForm.afterSelectOwnership"}'
+										data-maxHeight="150px" 
+										data-source='bc-business/ownership/find?status=0,1'/>
+									</td>
+									
+									
 								</tr>
 								<tr>
 									<td class="label" ><s:text name="car.certNo1" />:</td>
@@ -568,6 +574,7 @@
 		<s:hidden name="e.charger"/>
 		<s:hidden name="e.originalValue"/>
 		<s:hidden name="e.rentNo"/>
+		<s:hidden name="e.owner"/>
 		<s:hidden name="carEntering"/>
 		<s:if test="!e.isNew()&&e.status!=-1">
 		<s:hidden name="e.company"/>

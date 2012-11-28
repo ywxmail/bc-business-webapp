@@ -8,6 +8,8 @@ bs.infoForm = {
 	       'unorderedlist', 'orderedlist', 'outdent', 'indent', '|',
 	       'image', 'video', 'file', 'table', 'link', '|',
 	       'fontcolor', 'backcolor', '|', 'alignment', '|', 'horizontalrule'];
+		var type = $form.find("input[name='e.type']").val();
+		var uid = $form.find("input[name='e.uid']").val()
 		$form.find(".bc-redactor").redactor({
 			lang: 'zh_cn',
 			fixed: true,
@@ -15,7 +17,8 @@ bs.infoForm = {
 			autoresize: false,
 			plugins: ['fullscreen'],
 			minHeight: 80,
-			buttons: buttons
+			buttons: buttons,
+			imageUpload: bc.root + "/upload/?a=1&type=img&sp=editor&fn=file&ptype=info." + type + ".editor&puid=" + uid
 		});
 	},
 	
