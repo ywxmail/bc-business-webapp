@@ -213,6 +213,7 @@ bs.tempDriverForm = {
 			cell.style.padding="0";
 			cell.style.textAlign="left";
 			cell.setAttribute("class","last");
+			cell.setAttribute("colspan","2");
 			cell.innerHTML='<input type="text" style="width:100%;height:100%;border:none;padding:0 0 0 2px;background:none;" class="ui-widget-content" data-validate=\'{"type":"phone"}\' />';
 		
 		});
@@ -488,6 +489,10 @@ bs.tempDriverForm = {
 				bs.tempDriverForm.searching = false;
 			}
 		});
+	},
+	/** 身份证验证方法:上下文为validate对象 */
+	validateIndentity : function(element, $form){
+		return /^(\d{15}|(\d{17}\w{1}))$/.test(element.value);
 	}
 	
 };

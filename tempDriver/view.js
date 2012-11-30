@@ -44,7 +44,7 @@ bs.tempDriverView = {
 		});
 		
 		bs.tempDriverView.startFlowing = true;
-		bc.msg.confirm("发起流程？"
+		bc.msg.confirm("确认发起司机入职审批流程？"
 				,function(){
 					bc.ajax({
 						url : bc.root + "/bc-business/tempDriver/startFlow",

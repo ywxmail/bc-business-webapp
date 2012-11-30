@@ -7,15 +7,15 @@
 	data-initMethod='bs.tempDriverForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="tempDriverForm" theme="simple" cssClass="bc-form" >
-		<div style="width:750px";>
+		<div style="width:640px";>
 				<table class="formFields" cellspacing="2" cellpadding="0">
 					<tbody>
 						<tr class="widthMarker">
-							<td style="width: 4em;"></td>
-							<td style="width: 16em;">&nbsp;</td>
-							<td style="width: 6em;">&nbsp;</td>
+							<td style="width: 8em;"></td>
+							<td style="width: 12em;">&nbsp;</td>
+							<td style="width: 8em;">&nbsp;</td>
 							<td >&nbsp;</td>
-							<td rowspan="9" style="text-align:center;vertical-align: top;width:16em;">
+							<td rowspan="9" style="text-align:center;vertical-align: top;width:10em;">
 								<div style="position:relative;width:110px;height:140px;" >
 									<img id="portrait" style="width:110px;height:140px;cursor: pointer;" title='<s:text name="image.click2change"/>'
 									src='<s:url value="/bc/image/download?ptype=portrait"><s:param name='puid' value='e.uid'/><s:param name='ts' value='ts'/></s:url>'/>
@@ -26,7 +26,8 @@
 						<tr>
 							<td class="label">*<s:text name="tempDriver.name"/>:</td>
 							<td class="value">
-								<s:textfield name="e.name"  data-validate='{"required":true,"type":"string","msg":"必须填写姓名"}' cssClass="ui-widget-content"/>
+								<s:textfield name="e.name"  data-validate='{"required":true,"type":"string","msg":"必须填写姓名"}' cssClass="ui-widget-content"  cssStyle="width:6em;" />
+								<s:radio name="e.sex" list="#{'1':'男','2':'女'}" value="e.sex" cssStyle="width:auto;"/>
 							</td>
 							<td class="label"><s:text name="tempDriver.birthdate"/>:</td>
 							<td class="value relative">
@@ -43,22 +44,21 @@
 							<td class="value">
 								<s:select list="#{'':'',1:'本市',2:'本省',3:'外省'}" listKey="key" listValue="value" cssClass="ui-widget-content" headerValue="" name="e.region" data-validate="required" ></s:select>
 							</td>
-							<td class="label"><s:text name="tempDriver.origin"/>:</td>
-							<td class="value"><s:textfield name="e.origin" cssClass="ui-widget-content"/></td>
+							<td class="label"><s:text name="tempDriver.education"/>:</td>
+							<td class="value"><s:textfield name="e.education" cssClass="ui-widget-content"/></td>
+						</tr>
+						<tr>
+							<td class="label"><s:text name="tempDriver.nation"/>:</td>
+							<td class="value"><s:textfield name="e.nation" cssClass="ui-widget-content"/></td>
+							<td class="label"><s:text name="tempDriver.marry"/>:</td>
+							<td class="value"><s:textfield name="e.marry" cssClass="ui-widget-content"/></td>
 						</tr>
 						<tr>
 							<td class="label"><s:text name="tempDriver.phone"/>:</td>
 							<td class="value"><s:textfield name="e.phone" cssClass="ui-widget-content"/></td>
 							<td class="label">*<s:text name="tempDriver.certIdentity"/>:</td>
-							<td class="value"><s:textfield name="e.certIdentity" cssClass="ui-widget-content" data-validate="required"/></td>
-						</tr>
-						<tr>
-							<td class="label"><s:text name="tempDriver.address"/>:</td>
-							<td class="value" colspan="3"><s:textfield name="e.address" cssClass="ui-widget-content"/></td>
-						</tr>
-						<tr>
-							<td class="label"><s:text name="tempDriver.newAddress"/>:</td>
-							<td class="value" colspan="3"><s:textfield name="e.newAddress" cssClass="ui-widget-content"/></td>
+							<td class="value"><s:textfield name="e.certIdentity" cssClass="ui-widget-content" 
+								data-validate='{"required":true,"method":"bs.tempDriverForm.validateIndentity","msg":"必须为15位或18位身份证格式"}'/></td>
 						</tr>
 						<tr>
 							<td class="label"><s:text name="tempDriver.fwzg"/>:</td>
@@ -66,40 +66,39 @@
 							<td class="label"><s:text name="tempDriver.cyzg"/>:</td>
 							<td class="value relative"><s:textfield name="e.certCYZG" cssClass="ui-widget-content"/></td>
 						</tr>
+						
 						<tr>
-							<td class="label"><s:text name="tempDriver.education"/>:</td>
-							<td class="value"><s:textfield name="e.education" cssClass="ui-widget-content"/></td>
-							<td class="label"><s:text name="tempDriver.nation"/>:</td>
-							<td class="value"><s:textfield name="e.nation" cssClass="ui-widget-content"/></td>
-						</tr>
-						<tr>
-							<td class="label"><s:text name="tempDriver.marry"/>:</td>
-							<td class="value"><s:textfield name="e.marry" cssClass="ui-widget-content"/></td>
-						</tr>
-						<tr>
-							<td class="label">*<s:text name="tempDriver.sex"/>:</td>
-							<td class="value">
-								<s:radio name="e.sex" list="#{'1':'男','2':'女'}" value="e.sex" cssStyle="width:auto;"/>
+							<td class="label" ><s:text name="tempDriver.certDrivingFirstDate"/>:</td>
+							<td class="value relative" >
+								<input type="text" name="e.certDrivingFirstDate" data-validate='{"type":"date","required":false}'
+									value='<s:date format="yyyy-MM-dd" name="e.certDrivingFirstDate" />' 
+									class="bc-date ui-widget-content"  />
+								<ul class="inputIcons">
+									<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.certDrivingFirstDate'></li>
+								</ul>
 							</td>
+							<td class="value" colspan="2"><s:text name="tempDriver.cyStartYear"/>:<s:textfield name="e.cyStartYear" cssClass="ui-widget-content" 
+								data-validate='{"type":"number","min":1950,"max":2200}' cssStyle="width:9.3em;" />
+							</td>
+						</tr>
+						<tr>
+							<td class="label"><s:text name="tempDriver.origin"/>:</td>
+							<td class="value" colspan="4"><s:textfield name="e.origin" cssClass="ui-widget-content"/></td>
+						</tr>
+						<tr>
+							<td class="label"><s:text name="tempDriver.address"/>:</td>
+							<td class="value" colspan="4"><s:textfield name="e.address" cssClass="ui-widget-content"/></td>
+						</tr>
+						<tr>
+							<td class="label"><s:text name="tempDriver.newAddress"/>:</td>
+							<td class="value" colspan="4"><s:textfield name="e.newAddress" cssClass="ui-widget-content"/></td>
+						</tr>
+						<tr>
 							<td class="label">*状态:</td>
-							<td class="value">
+							<td class="value" colspan="4">
 								<s:radio name="e.status" list="#{'0':'待聘','1':'审批中','2':'聘用','3':'弃用'}" 
 									value="e.status" cssStyle="width:auto;"/>
 							</td>
-						</tr>
-						<tr>
-							<td class="label">过往一年:</td>
-							<td colspan="4" class="value">
-									交通违法<s:textfield name="e.caseTraffic" style="width: 2em;" 
-										data-validate='{"type":"number"}' data-type="Long"/>宗，
-									服务投诉<s:textfield name="e.casePraise" style="width: 2em;" 
-										data-validate='{"type":"number"}' data-type="Long"/>宗，
-									营运违章<s:textfield name="e.caseBusiness" style="width: 2em;" 
-										data-validate='{"type":"number"}' data-type="Long"/>宗，
-									事故<s:textfield name="e.caseAccident" style="width: 2em;" 
-										data-validate='{"type":"number"}' data-type="Long"/>宗，
-									获表扬 <s:textfield name="e.caseAdvice" style="width: 2em;" 
-										data-validate='{"type":"number"}' data-type="Long"/>次。</td>
 						</tr>
 						<tr>
 							<td class="topLabel" ><s:text name="tempDriver.desc"/>:</td>
@@ -120,7 +119,7 @@
 				
 				
 				
-				<div  class="formTable2 ui-widget-content bs-tempDriver-containers"  style="width:740px;">
+				<div  class="formTable2 ui-widget-content bs-tempDriver-containers"  style="width:640px;">
 					<div class="ui-widget-header title" style="position:relative;">
 						<span class="text" >工作经历:</span>
 						<span class="bs-tempDriver-showGroups verticalMiddle ui-icon ui-icon-carat-1-s" style="display:none;" title='<s:text name="展开"/>'></span>
@@ -132,9 +131,9 @@
 								<td class="first" style="width: 1em;">&nbsp;</td>
 								<td class="middle" style="width: 15em;">起止日期</td>
 								<td class="middle" style="width: 15em;">工作单位</td>
-								<td class="middle" style="width: 6em;">证明人</td>
-								<td class="last" style="min-width: 0.001em;position:relative;">
-									电话
+								<td class="middle" style="width: 5em;">证明人</td>
+								<td class="middle" style="width: 4em;border-right:0;">电话</td>
+								<td class="last" style="min-width: 0.001em;position:relative;border-left:0;">
 									<ul class="inputIcons">
 										<li id="upLine_we" class="inputIcon ui-icon ui-icon-circle-arrow-n" title='上移选中项'></li>
 										<li id="downLine_we" class="inputIcon ui-icon ui-icon-circle-arrow-s" title='下移选中项'></li>
@@ -174,7 +173,7 @@
 										<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content"
 											 value='<s:property value="certifier"/>'/>
 									</td>
-									<td class="last" style="padding:0;text-align:left;">
+									<td class="last" colspan="2" style="padding:0;text-align:left;">
 										<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content"
 											 value='<s:property value="phone"/>' />
 									</td>
@@ -184,7 +183,7 @@
 					</div>
 				</div>
 				
-				<div  class="formTable2 ui-widget-content bs-tempDriver-containers"  style="width:740px;">
+				<div  class="formTable2 ui-widget-content bs-tempDriver-containers"  style="width:640px;">
 					<div class="ui-widget-header title" style="position:relative;">
 						<span class="text" >家庭成员:</span>
 						<span class="bs-tempDriver-showGroups verticalMiddle ui-icon ui-icon-carat-1-s" style="display:none;" title='<s:text name="展开"/>'></span>
@@ -194,8 +193,8 @@
 						<table id="fms" class="table bc-grid" cellspacing="0" cellpadding="0" style="width:100%;">
 							<tr class="header row">
 								<td class="first" style="width: 1em;">&nbsp;</td>
-								<td class="middle" style="width: 15em;">姓名</td>
-								<td class="middle" style="width: 15em;">关系</td>
+								<td class="middle" style="width: 7.5em;">姓名</td>
+								<td class="middle" style="width: 7em;">关系</td>
 								<td class="middle" style="width: 10em;">电话</td>
 								<td class="last" style="position:relative;min-width: 0.001em;">备注
 									<ul class="inputIcons">
@@ -232,7 +231,7 @@
 					</div>
 				</div>
 				
-				<div  class="formTable2 ui-widget-content bs-tempDriver-containers"  style="width:740px;">
+				<div  class="formTable2 ui-widget-content bs-tempDriver-containers"  style="width:640px;">
 					<div class="ui-widget-header title" style="position:relative;">
 						<span class="text" >入职流程信息区:</span>
 						<span class="bs-tempDriver-showGroups verticalMiddle ui-icon ui-icon-carat-1-s" style="display:none;" title='<s:text name="展开"/>'></span>
@@ -269,7 +268,7 @@
 					</div>
 				</div>
 				
-				<div class="formTable2 ui-widget-content bs-tempDriver-containers"  style="width:740px;">
+				<div class="formTable2 ui-widget-content bs-tempDriver-containers"  style="width:640px;">
 					<div class="ui-widget-header title" style="position:relative;">
 						<span class="text" >信誉档案:</span>
 						<span class="bs-tempDriver-showGroups verticalMiddle ui-icon ui-icon-carat-1-s" style="display:none;" title='<s:text name="展开"/>'></span>
