@@ -34,7 +34,7 @@
 					<div class="label">性别</div>
 					<div class="value checkboxes" data-condition='{"type":"int","key":"t.sex"}' >
 						<label><input type="checkbox" name="checkboxField3" value="1"><span>男</span></label>
-						<label><input type="checkbox" name="checkboxField3 value="2"><span>女</span></label>
+						<label><input type="checkbox" name="checkboxField3" value="2"><span>女</span></label>
 					</div>
 				</div>
 			</div>
@@ -52,6 +52,48 @@
 				</div>～<div class="bc-dateContainer">
 					<input type="text" class="bc-date ui-widget-content" data-validate="date" style="width:9em;"
 						data-condition='{"type":"endDate","ql":"t.birthdate<=?"}'>
+					<ul class="inputIcons">
+						<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
+						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</li>
+		<li class="condition">
+			<div class="label">面试日期</div>
+			<div class="value">
+				<div class="bc-dateContainer">
+					<input type="text" class="bc-date ui-widget-content" data-validate="date" style="width:9em;"
+						data-condition='{"type":"startDate","ql":"t.interview_date>=?"}'>
+					<ul class="inputIcons">
+						<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
+						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
+					</ul>
+				</div>～<div class="bc-dateContainer">
+					<input type="text" class="bc-date ui-widget-content" data-validate="date" style="width:9em;"
+						data-condition='{"type":"endDate","ql":"t.interview_date<=?"}'>
+					<ul class="inputIcons">
+						<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
+						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</li>
+		<li class="condition">
+			<div class="label">报名日期</div>
+			<div class="value">
+				<div class="bc-dateContainer">
+					<input type="text" class="bc-date ui-widget-content" data-validate="date" style="width:9em;"
+						data-condition='{"type":"startDate","ql":"t.register_date>=?"}'>
+					<ul class="inputIcons">
+						<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
+						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
+					</ul>
+				</div>～<div class="bc-dateContainer">
+					<input type="text" class="bc-date ui-widget-content" data-validate="date" style="width:9em;"
+						data-condition='{"type":"endDate","ql":"t.register_date<=?"}'>
 					<ul class="inputIcons">
 						<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
 						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
