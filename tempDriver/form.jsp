@@ -3,7 +3,7 @@
 <div title='<s:text name="tempDriver.title"/>' 
 	data-type='form' class="bc-page"
 	data-saveUrl='<s:url value="/bc-business/tempDriver/save" />'
-	data-js='<s:url value="/bc-business/tempDriver/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js" />,<s:url value="/bc-business/spider/gztaxixh/driverInfo.css" />'
+	data-js='<s:url value="/bc-business/tempDriver/form.js" />,<s:url value="/bc/template/template.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js" />,<s:url value="/bc-business/spider/gztaxixh/driverInfo.css" />'
 	data-initMethod='bs.tempDriverForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="tempDriverForm" theme="simple" cssClass="bc-form" >
@@ -103,6 +103,12 @@
 													<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.validEndDate' ></li>
 												</ul>
 										</div>
+									</td>
+								</tr>
+								<tr>
+									<td class="label"><s:text name="tempDriver.issue"/>:</td>
+									<td class="value" colspan="3" >
+										<s:textfield name="e.issue" cssClass="ui-widget-content" />
 									</td>
 								</tr>
 								<tr>
@@ -421,6 +427,20 @@
 						</div>
 					</div>
 				</div>
+				<s:if test="%{!isReadonly()||isAdvancedRead()}">
+					<div class="formTable2 ui-widget-content bs-tempDriver-containers"  style="width:640px;">
+						<div class="ui-widget-header title" style="position:relative;">
+							<span class="text" >附件信息:</span>
+							<ul class="inputIcons">
+								<li class="bs-tempDriver-showGroups verticalMiddle ui-icon ui-icon-carat-1-s" style="display:none;" title='展开'></li>
+								<li class="bs-tempDriver-hiddenGroups verticalMiddle ui-icon ui-icon-carat-1-n" title='隐藏'></li>
+							</ul>
+						</div>
+						<div class="bs-tempDriver-Groups" style="border-width:1px 1px 0 0;margin-bottom:8px;">
+							<s:property value="%{attachsUI}" escapeHtml="false"/>
+						</div>
+					</div>
+				</s:if>
 				<div style="height: 10px;">
 				</div>
 		<s:hidden name="e.id" />

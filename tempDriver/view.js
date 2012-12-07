@@ -31,6 +31,11 @@ bs.tempDriverView = {
 	/** 发起流程 */
 	startFlow : function(option) {
 		var $page = $(this);
+		
+		bc.msg.alert("司机入职处理流程开发中。");
+		return;
+		
+		
 		// 确定选中的行
 		var $trs = $page.find(">.bc-grid>.data>.left tr.ui-state-highlight");
 		if($trs.size()==0){

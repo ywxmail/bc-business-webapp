@@ -157,6 +157,9 @@ bs.tempDriverForm = {
 				return;
 			}
 			
+			bc.msg.alert("司机入职处理流程开发中。");
+			return;
+			
 			var name=$form.find(":input[name='e.name']").val();
 			$(this).closest(".bs-tempDriver-containers").find(".bs-tempDriver-showGroups").hide();
 			$(this).closest(".bs-tempDriver-containers").find(".bs-tempDriver-Groups").show();
@@ -530,6 +533,21 @@ bs.tempDriverForm = {
 	/** 身份证验证方法:上下文为validate对象 */
 	validateIndentity : function(element, $form){
 		return /^(\d{15}|(\d{17}\w{1}))$/.test(element.value);
+	},
+	/** 从模板添加附件 */
+	addAttachFromTemplate: function(){
+		var $atm = $(this)
+		var $page = $atm.closest(".bc-page");
+		var id = $page.find(":input[name='e.id']").val();
+		if(id == ""){
+			bc.msg.alert("请先保存信息，再添加模板。");
+			return;
+		}
+			
+		bc.addAttachFromTemplate($atm, id, bc.root + "/bc-business/tempDriver/addAttachFromTemplate",{
+			category: "营运系统/司机招聘附件",
+			multiple: true
+		});
 	}
 	
 };
