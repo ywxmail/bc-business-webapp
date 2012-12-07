@@ -5,6 +5,24 @@ bs.tempDriverForm = {
 	init : function(option,readonly) {
 		var $form = $(this);
 		
+		//点击身份证input的灯泡自动生成籍贯、区域、生日
+		$form.find("#autoLoadCarManIdentityInfo").click(function(){
+			if(!bc.validator.validate($form.find(":input[name='e.certIdentity']").parent())){
+				return;
+			}
+			var identityId=$form.find(":input[name='e.certIdentity']").val();
+			var url=bc.root + "/bc-business/carMan/autoLoadCarManIdentityInfo?identityId="+identityId;
+			$.ajax({
+				url:url,
+				dataType:"json",
+				success:function(json){
+					$form.find(":input[name='e.origin']").val(json.origin);
+					$form.find("select[name='e.region']").val(json.area);
+					$form.find(":input[name='e.birthdate']").val(json.birthday);
+				}
+			});
+		});
+		
 		//绑定图片的修改
 		$form.find("#portrait").click(function(){
 			bc.image.edit({
@@ -20,6 +38,9 @@ bs.tempDriverForm = {
 		
 		//使用姓名查出租车协会司机信息
 		$form.find("#selectCarManToTaxiNet4Name").click(function(){
+			$(this).closest(".bs-tempDriver-containers").find(".bs-tempDriver-showGroups").hide();
+			$(this).closest(".bs-tempDriver-containers").find(".bs-tempDriver-Groups").show();
+			$(this).closest( ".bs-tempDriver-containers").find(".bs-tempDriver-hiddenGroups").show();
 			var type="姓名";
 			var value=$form.find(":input[name='e.name']").val();
 			bs.tempDriverForm.doSearch.call($form,0,type,value);
@@ -30,6 +51,9 @@ bs.tempDriverForm = {
 		
 		//使用从业资格证查出租车协会司机信息
 		$form.find("#selectCarManToTaxiNet4CYZG").click(function(){
+			$(this).closest(".bs-tempDriver-containers").find(".bs-tempDriver-showGroups").hide();
+			$(this).closest(".bs-tempDriver-containers").find(".bs-tempDriver-Groups").show();
+			$(this).closest( ".bs-tempDriver-containers").find(".bs-tempDriver-hiddenGroups").show();
 			var type="从业人员资格证";
 			var value=$form.find(":input[name='e.certCYZG']").val();
 			bs.tempDriverForm.doSearch.call($form,0,type,value);
@@ -40,6 +64,9 @@ bs.tempDriverForm = {
 		
 		//使用资格证查出租车协会司机信息
 		$form.find("#selectCarManToTaxiNet4FWZG").click(function(){
+			$(this).closest(".bs-tempDriver-containers").find(".bs-tempDriver-showGroups").hide();
+			$(this).closest(".bs-tempDriver-containers").find(".bs-tempDriver-Groups").show();
+			$(this).closest( ".bs-tempDriver-containers").find(".bs-tempDriver-hiddenGroups").show();
 			var type="服务资格证";
 			var value=$form.find(":input[name='e.certFWZG']").val();
 			bs.tempDriverForm.doSearch.call($form,0,type,value);
@@ -51,15 +78,15 @@ bs.tempDriverForm = {
 		//绑定展开事件
 		$form.delegate(".bs-tempDriver-showGroups","click",function(){
 			$(this).hide();
-			$(this).closest(".bs-tempDriver-containers").find(".bs-tempDriver-Groups").show();
+			$(this).closest(".bs-tempDriver-containers").find(".bs-tempDriver-Groups").toggle('fast');
 			$(this).closest( ".bs-tempDriver-containers").find(".bs-tempDriver-hiddenGroups").show();
 		});
 		
 		//绑定隐藏事件
 		$form.delegate(".bs-tempDriver-hiddenGroups","click",function(){
-			$(this).hide();
-			$(this).closest(".bs-tempDriver-containers").find(".bs-tempDriver-Groups").hide();
-			$(this).closest(".bs-tempDriver-containers").find(".bs-tempDriver-showGroups").show();
+			$(this).toggle();
+			$(this).closest(".bs-tempDriver-containers").find(".bs-tempDriver-Groups").toggle('fast');
+			$(this).closest(".bs-tempDriver-containers").find(".bs-tempDriver-showGroups").toggle();
 			$(this).closest(".bs-tempDriver-containers").find("tr.row").removeClass("ui-state-highlight").find("td:eq(0)>span.ui-icon").removeClass("ui-icon-check");
 		});
 		
@@ -131,6 +158,9 @@ bs.tempDriverForm = {
 			}
 			
 			var name=$form.find(":input[name='e.name']").val();
+			$(this).closest(".bs-tempDriver-containers").find(".bs-tempDriver-showGroups").hide();
+			$(this).closest(".bs-tempDriver-containers").find(".bs-tempDriver-Groups").show();
+			$(this).closest( ".bs-tempDriver-containers").find(".bs-tempDriver-hiddenGroups").show();
 			
 			if(!bs.tempDriverForm.startFlowing){
 				bs.tempDriverForm.startFlowing = true;
@@ -162,6 +192,9 @@ bs.tempDriverForm = {
 		//----工作经历表格事件---开始---
 		var tableEl_we=$form.find("#wes")[0];
 		$form.find("#addLine_we").click(function(){
+			$(this).closest(".bs-tempDriver-containers").find(".bs-tempDriver-showGroups").hide();
+			$(this).closest(".bs-tempDriver-containers").find(".bs-tempDriver-Groups").show();
+			$(this).closest( ".bs-tempDriver-containers").find(".bs-tempDriver-hiddenGroups").show();
 			var newRow=tableEl_we.insertRow(tableEl_we.rows.length);
 			newRow.setAttribute("class","ui-widget-content row");
 			var cell=newRow.insertCell(0);
@@ -213,7 +246,6 @@ bs.tempDriverForm = {
 			cell.style.padding="0";
 			cell.style.textAlign="left";
 			cell.setAttribute("class","last");
-			cell.setAttribute("colspan","2");
 			cell.innerHTML='<input type="text" style="width:100%;height:100%;border:none;padding:0 0 0 2px;background:none;" class="ui-widget-content" data-validate=\'{"type":"phone"}\' />';
 		
 		});
@@ -284,6 +316,9 @@ bs.tempDriverForm = {
 		//----家庭成员表格事件---开始---
 		var tableEl_fm=$form.find("#fms")[0];
 		$form.find("#addLine_fm").click(function(){
+			$(this).closest(".bs-tempDriver-containers").find(".bs-tempDriver-showGroups").hide();
+			$(this).closest(".bs-tempDriver-containers").find(".bs-tempDriver-Groups").show();
+			$(this).closest( ".bs-tempDriver-containers").find(".bs-tempDriver-hiddenGroups").show();
 			var newRow=tableEl_fm.insertRow(tableEl_fm.rows.length);
 			newRow.setAttribute("class","ui-widget-content row");
 			var cell=newRow.insertCell(0);
@@ -435,6 +470,7 @@ bs.tempDriverForm = {
 				if(json.unique){ 
 					//调用标准的方法执行保存
 					bc.page.save.call($page);
+					$page.find(":input[name='creditStatus']").val(1);
 				}else{
 					var str="系统已保存身份证号码:<br>";
 					str +="<a id='tempDriverUnique' href=#>";
@@ -481,6 +517,7 @@ bs.tempDriverForm = {
 			success : function(json) {
 				$waste.html("(" + bc.getWasteTime(startTime) + ")");
 				if (json.success && !json.msg) {
+					$page.find(":input[name='creditStatus']").val(2);
 					$page.find(":input[name='e.credit']").val(json.detail);
 					$info.html(json.simple + json.detail);
 				} else {
