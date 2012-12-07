@@ -21,12 +21,12 @@ bs.jinDunJTWFView = {
 			//--金盾网原始查询
 			
 			// 确定选中的行
-			var $trs = $page.find(">.bc-grid>.data>.right tr.ui-state-focus");
+			var $trs = $page.find(">.bc-grid>.data>.right tr.ui-state-highlight");
 			if($trs.length == 0){
 				bc.msg.slide("请先选择信息！");
 				return;
 			}
-			
+
 			//跳转到金盾网的交通违法查询页面
 			var $tr,plateNo,engineNo;
 			$trs.each(function(){
