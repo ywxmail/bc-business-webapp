@@ -157,8 +157,6 @@ bs.tempDriverForm = {
 				return;
 			}
 			
-			bc.msg.alert("司机入职处理流程开发中。");
-			return;
 			
 			var name=$form.find(":input[name='e.name']").val();
 			$(this).closest(".bs-tempDriver-containers").find(".bs-tempDriver-showGroups").hide();
