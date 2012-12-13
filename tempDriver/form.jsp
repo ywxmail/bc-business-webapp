@@ -34,7 +34,7 @@
 								<tr>
 									<td class="label">*<s:text name="tempDriver.name"/>:</td>
 									<td class="value">
-										<s:textfield name="e.name"  data-validate='{"required":true,"type":"string","msg":"必须填写姓名"}' cssClass="ui-widget-content"  cssStyle="width:6em;" />
+										<s:textfield name="e.name"  data-validate='{"required":true,"type":"string","msg":"必须填写姓名"}' cssClass="ui-widget-content"  cssStyle="width:5.5em;" />
 										<s:radio name="e.sex" list="#{'1':'男','2':'女'}" value="e.sex" cssStyle="width:auto;"/>
 									</td>
 									<td class="label">*<s:text name="tempDriver.birthdate"/>:</td>

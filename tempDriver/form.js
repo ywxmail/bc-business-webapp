@@ -156,9 +156,7 @@ bs.tempDriverForm = {
 				bc.msg.alert("请先保存信息！");
 				return;
 			}
-			
-			bc.msg.alert("司机入职处理流程开发中。");
-			return;
+
 			
 			var name=$form.find(":input[name='e.name']").val();
 			$(this).closest(".bs-tempDriver-containers").find(".bs-tempDriver-showGroups").hide();
@@ -520,9 +518,17 @@ bs.tempDriverForm = {
 			success : function(json) {
 				$waste.html("(" + bc.getWasteTime(startTime) + ")");
 				if (json.success && !json.msg) {
+					//转为jquery对象
+					var $detail=$(json.detail);
+					//显示效果处理
+					$detail.css("width","100%");
+					$detail.find("tr:first>.boxRight:first").removeAttr("width");
+					$detail.find("tr:first>.boxRight:first").css("width","auto");
+					$detail.find("tr:first>.boxRight:last").removeAttr("width");
+					$detail.find("tr:first>.boxRight:last").css("width","100px");
 					$page.find(":input[name='creditStatus']").val(2);
-					$page.find(":input[name='e.credit']").val(json.detail);
-					$info.html(json.simple + json.detail);
+					$page.find(":input[name='e.credit']").val($detail.get(0).outerHTML);
+					$info.html(json.simple).append($detail);
 				} else {
 					$info.html("<div class='error ui-state-error'>" + json.msg + "</div>");
 				}
