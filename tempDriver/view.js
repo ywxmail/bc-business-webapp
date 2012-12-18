@@ -32,8 +32,8 @@ bs.tempDriverView = {
 	startFlow : function(option) {
 		var $page = $(this);
 		
-		bc.msg.alert("司机入职处理流程开发中。");
-		return;
+		/*bc.msg.alert("司机入职处理流程开发中。");
+		return;*/
 		
 		
 		// 确定选中的行
@@ -48,8 +48,14 @@ bs.tempDriverView = {
 			ids+=$(this).find("td").attr("data-id")+",";
 		});
 		
+		$trsRight = $page.find(">.bc-grid>.data>.right tr.ui-state-highlight");
+		var names="";
+		$trsRight.each(function(){
+			names+=$(this).find("td:eq(2)").attr("data-value")+",";
+		});
+		
 		bs.tempDriverView.startFlowing = true;
-		bc.msg.confirm("确认发起司机入职审批流程？"
+		bc.msg.confirm("确认发起 "+names.substring(0,names.length-1)+" 的司机入职审批流程？"
 				,function(){
 					bc.ajax({
 						url : bc.root + "/bc-business/tempDriver/startFlow",
