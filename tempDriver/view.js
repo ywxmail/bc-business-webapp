@@ -15,10 +15,10 @@ bs.tempDriverView = {
 		// 服务资格证号
 		var v = $($trs[0]).children("td[data-column='t.cert_fwzg']").attr("data-value");
 		
-		if(v == ''){
+/*		if(v == ''){
 			 bc.msg.alert("没有服务资格证！");
 			 return;
-		}
+		}*/
 
 		// 打开查询窗口
 		bc.page.newWin({
