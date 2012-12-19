@@ -89,6 +89,14 @@
 						<td class="value "><s:textfield name="e.code" data-validate="required" readonly="true" cssClass="ui-widget-content"/></td>
 					</tr>
 					<tr>
+						<td class="label"><s:text name="runcase.infractCode"/>:</td>
+						<td class="value "><s:textfield name="e.infractCode"  cssClass="ui-widget-content"/></td>
+						<td class="label"><s:text name="runcase.penalty" />:</td>
+						<td class="value "><s:textfield name="e.penalty"  cssClass="ui-widget-content"
+							value="%{getText('bs.format.numberRMB',{e.penalty})}"  data-validate="money" 
+						/></td>
+					</tr>
+					<tr>
 						<td class="label">
 						</td>
 						<td class="value">
