@@ -143,6 +143,14 @@ bs.tempDriverForm = {
 						$form.find(":input[name='e.status']:eq(1)").attr("checked","checked");
 						// 刷新边栏
 						bc.sidebar.refresh();
+						
+						//打开工作空间
+						bc.page.newWin({
+							name: "工作空间",
+							mid: "workspace"+json.procInstId,
+							url: bc.root+ "/bc-workflow/workspace/open?id="+json.procInstId
+						});
+						
 					}
 					bs.tempDriverForm.startFlowing = false;
 					return true;

@@ -32,9 +32,6 @@ bs.tempDriverView = {
 	startFlow : function(option) {
 		var $page = $(this);
 		
-		/*bc.msg.alert("司机入职处理流程开发中。");
-		return;*/
-		
 		
 		// 确定选中的行
 		var $trs = $page.find(">.bc-grid>.data>.left tr.ui-state-highlight");
@@ -66,6 +63,14 @@ bs.tempDriverView = {
 							if(json.success){
 								bc.grid.reloadData($page);
 								bc.sidebar.refresh();
+								if($trs.size()==1){
+									//打开工作空间
+									bc.page.newWin({
+										name: "工作空间",
+										mid: "workspace"+json.procInstId,
+										url: bc.root+ "/bc-workflow/workspace/open?id="+json.procInstId
+									});
+								}
 							}
 							bs.tempDriverView.startFlowing = false;
 						}
