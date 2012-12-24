@@ -231,7 +231,7 @@
 								<tr>
 									<td class="label">*状态:</td>
 									<td class="value" colspan="3">
-										<s:radio name="e.status" list="#{'0':'待聘','1':'审批中','2':'聘用','3':'弃用'}" 
+										<s:radio name="e.status" list="#{'0':'待聘','1':'审批中','2':'聘用','3':'未聘用'}" 
 											value="e.status" cssStyle="width:auto;"/>
 									</td>
 								</tr>
