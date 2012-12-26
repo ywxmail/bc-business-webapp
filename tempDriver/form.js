@@ -143,6 +143,14 @@ bs.tempDriverForm = {
 						$form.find(":input[name='e.status']:eq(1)").attr("checked","checked");
 						// 刷新边栏
 						bc.sidebar.refresh();
+						
+						//打开工作空间
+						bc.page.newWin({
+							name: "工作空间",
+							mid: "workspace"+json.procInstId,
+							url: bc.root+ "/bc-workflow/workspace/open?id="+json.procInstId
+						});
+						
 					}
 					bs.tempDriverForm.startFlowing = false;
 					return true;
@@ -156,6 +164,7 @@ bs.tempDriverForm = {
 				bc.msg.alert("请先保存信息！");
 				return;
 			}
+
 			
 			var name=$form.find(":input[name='e.name']").val();
 			$(this).closest(".bs-tempDriver-containers").find(".bs-tempDriver-showGroups").hide();
@@ -517,9 +526,17 @@ bs.tempDriverForm = {
 			success : function(json) {
 				$waste.html("(" + bc.getWasteTime(startTime) + ")");
 				if (json.success && !json.msg) {
+					//转为jquery对象
+					var $detail=$(json.detail);
+					//显示效果处理
+					$detail.css("width","100%");
+					$detail.find("tr:first>.boxRight:first").removeAttr("width");
+					$detail.find("tr:first>.boxRight:first").css("width","auto");
+					$detail.find("tr:first>.boxRight:last").removeAttr("width");
+					$detail.find("tr:first>.boxRight:last").css("width","100px");
 					$page.find(":input[name='creditStatus']").val(2);
-					$page.find(":input[name='e.credit']").val(json.detail);
-					$info.html(json.simple + json.detail);
+					$page.find(":input[name='e.credit']").val($detail.get(0).outerHTML);
+					$info.html(json.simple).append($detail);
 				} else {
 					$info.html("<div class='error ui-state-error'>" + json.msg + "</div>");
 				}
@@ -530,6 +547,21 @@ bs.tempDriverForm = {
 	/** 身份证验证方法:上下文为validate对象 */
 	validateIndentity : function(element, $form){
 		return /^(\d{15}|(\d{17}\w{1}))$/.test(element.value);
+	},
+	/** 从模板添加附件 */
+	addAttachFromTemplate: function(){
+		var $atm = $(this)
+		var $page = $atm.closest(".bc-page");
+		var id = $page.find(":input[name='e.id']").val();
+		if(id == ""){
+			bc.msg.alert("请先保存信息，再添加模板。");
+			return;
+		}
+			
+		bc.addAttachFromTemplate($atm, id, bc.root + "/bc-business/tempDriver/addAttachFromTemplate",{
+			category: "营运系统/司机招聘附件",
+			multiple: true
+		});
 	}
 	
 };

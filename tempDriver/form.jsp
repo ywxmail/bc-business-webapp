@@ -3,7 +3,7 @@
 <div title='<s:text name="tempDriver.title"/>' 
 	data-type='form' class="bc-page"
 	data-saveUrl='<s:url value="/bc-business/tempDriver/save" />'
-	data-js='<s:url value="/bc-business/tempDriver/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js" />,<s:url value="/bc-business/spider/gztaxixh/driverInfo.css" />'
+	data-js='<s:url value="/bc-business/tempDriver/form.js" />,<s:url value="/bc/template/template.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js" />,<s:url value="/bc-business/spider/gztaxixh/driverInfo.css" />'
 	data-initMethod='bs.tempDriverForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="tempDriverForm" theme="simple" cssClass="bc-form" >
@@ -34,7 +34,7 @@
 								<tr>
 									<td class="label">*<s:text name="tempDriver.name"/>:</td>
 									<td class="value">
-										<s:textfield name="e.name"  data-validate='{"required":true,"type":"string","msg":"必须填写姓名"}' cssClass="ui-widget-content"  cssStyle="width:6em;" />
+										<s:textfield name="e.name"  data-validate='{"required":true,"type":"string","msg":"必须填写姓名"}' cssClass="ui-widget-content"  cssStyle="width:5.5em;" />
 										<s:radio name="e.sex" list="#{'1':'男','2':'女'}" value="e.sex" cssStyle="width:auto;"/>
 									</td>
 									<td class="label">*<s:text name="tempDriver.birthdate"/>:</td>
@@ -103,6 +103,12 @@
 													<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.validEndDate' ></li>
 												</ul>
 										</div>
+									</td>
+								</tr>
+								<tr>
+									<td class="label"><s:text name="tempDriver.issue"/>:</td>
+									<td class="value" colspan="3" >
+										<s:textfield name="e.issue" cssClass="ui-widget-content" />
 									</td>
 								</tr>
 								<tr>
@@ -225,7 +231,7 @@
 								<tr>
 									<td class="label">*状态:</td>
 									<td class="value" colspan="3">
-										<s:radio name="e.status" list="#{'0':'待聘','1':'审批中','2':'聘用','3':'弃用'}" 
+										<s:radio name="e.status" list="#{'0':'待聘','1':'审批中','2':'聘用','3':'未聘用'}" 
 											value="e.status" cssStyle="width:auto;"/>
 									</td>
 								</tr>
@@ -265,7 +271,7 @@
 							<tr class="header row">
 								<td class="first" style="width: 1em;">&nbsp;</td>
 								<td class="middle" style="width: 15em;">起止日期</td>
-								<td class="middle" style="width: 15em;">工作单位</td>
+								<td class="middle" style="width: 15em;">*工作单位</td>
 								<td class="middle" style="width: 5em;">证明人</td>
 								<td class="last" style="min-width: 0.001em;">电话</td>
 							</tr>
@@ -301,8 +307,13 @@
 											 value='<s:property value="certifier"/>'/>
 									</td>
 									<td class="last" style="padding:0;text-align:left;">
-										<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content"
+										<s:if test="%{!isReadonly()||isAdvancedRead()}">
+											<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content"
 											 value='<s:property value="phone"/>' />
+										</s:if><s:else>
+											<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content"
+											 value='******' />
+										</s:else>
 									</td>
 								</tr>
 							</s:iterator>
@@ -326,7 +337,7 @@
 						<table id="fms" class="table bc-grid" cellspacing="0" cellpadding="0" style="width:100%;">
 							<tr class="header row">
 								<td class="first" style="width: 1em;">&nbsp;</td>
-								<td class="middle" style="width: 7.5em;">姓名</td>
+								<td class="middle" style="width: 7.5em;">*姓名</td>
 								<td class="middle" style="width: 7em;">关系</td>
 								<td class="middle" style="width: 10em;">电话</td>
 								<td class="last" style="min-width: 0.001em;">备注</td>
@@ -344,8 +355,13 @@
 											value='<s:property value="relation"/>'/>
 									</td>
 									<td class="middle" style="padding:0;text-align:left;">	
-										<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"  type="text" class="ui-widget-content"
-											 value='<s:property value="phone"/>'/>
+										<s:if test="%{!isReadonly()||isAdvancedRead()}">
+											<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content"
+											 value='<s:property value="phone"/>' />
+										</s:if><s:else>
+											<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;"type="text" class="ui-widget-content"
+											 value='******' />
+										</s:else>
 									</td>
 									<td class="last" style="padding:0;text-align:left;">
 										<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 2px;" type="text" class="ui-widget-content"
@@ -356,42 +372,43 @@
 						</table>
 					</div>
 				</div>
-				
-				<div  class="formTable2 ui-widget-content bs-tempDriver-containers"  style="width:640px;">
-					<div class="ui-widget-header title" style="position:relative;">
-						<span class="text" >入职流程信息区:</span>
-						<ul class="inputIcons">
-							<li id="startWorkFlow"  class="inputIcon ui-icon ui-icon-play" title='点击发起入职流程'></li>
-							<li class="bs-tempDriver-showGroups verticalMiddle ui-icon ui-icon-carat-1-s" style="display:none;" title='展开'></li>
-							<li class="bs-tempDriver-hiddenGroups verticalMiddle ui-icon ui-icon-carat-1-n" title='隐藏'></li>
-						</ul>
-					</div>
-					<div class="bs-tempDriver-Groups" style="border-width:1px 1px 0 0;margin-bottom:8px;">
-						<table id="tdwfs" class="table bc-grid" cellspacing="0" cellpadding="0" style="width:100%;">
-							<tr class="header row">
-								<td class="first" style="width: 16.5em;">发起时间</td>
-								<td class="middle" style="width: 10em;"><s:text name="tempDriverWorkFlow.offerStatus"/></td>
-								<td class="last" style="min-width: 0.001em;"></td>
-							</tr>
-							<s:iterator var="tdf" value="e.tempDriverWorkFlowList">
-								<tr class="ui-widget-content row bs-tempDriver-workFlow" >
-									<td class="first"  style="padding:0;text-align:left;">
-										<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 5px;background:none;" type="text" class="ui-widget-content" 
-											readonly="readonly" value='<s:date format="yyyy-MM-dd HH:mm" name="startTime" />' />
-										<input type="hidden" class="bs-tempDriver-workFlow-procInstId" value='<s:property value="procInstId"/>' />
-									</td>
-									<td class="middle" style="padding:0;text-align:left;padding-left:5px;">	
-										<s:if test="%{offerStatus == 1}"><s:text name="tempDriverWorkFlow.offerStatus.check"/></s:if>
-										<s:elseif test="%{offerStatus == 2}"><s:text name="tempDriverWorkFlow.offerStatus.pass"/></s:elseif>
-										<s:elseif test="%{offerStatus == 3}"><s:text name="tempDriverWorkFlow.offerStatus.noPass"/></s:elseif>
-									</td>
-									<td class="last" style="padding:0;text-align:left;">
-									</td>
+				<s:if test="%{!isReadonly()||isAdvancedRead()}">
+					<div  class="formTable2 ui-widget-content bs-tempDriver-containers"  style="width:640px;">
+						<div class="ui-widget-header title" style="position:relative;">
+							<span class="text" >入职流程信息区:</span>
+							<ul class="inputIcons">
+								<li id="startWorkFlow"  class="inputIcon ui-icon ui-icon-play" title='点击发起入职流程'></li>
+								<li class="bs-tempDriver-showGroups verticalMiddle ui-icon ui-icon-carat-1-s" style="display:none;" title='展开'></li>
+								<li class="bs-tempDriver-hiddenGroups verticalMiddle ui-icon ui-icon-carat-1-n" title='隐藏'></li>
+							</ul>
+						</div>
+						<div class="bs-tempDriver-Groups" style="border-width:1px 1px 0 0;margin-bottom:8px;">
+							<table id="tdwfs" class="table bc-grid" cellspacing="0" cellpadding="0" style="width:100%;">
+								<tr class="header row">
+									<td class="first" style="width: 16.5em;">发起时间</td>
+									<td class="middle" style="width: 10em;"><s:text name="tempDriverWorkFlow.offerStatus"/></td>
+									<td class="last" style="min-width: 0.001em;"></td>
 								</tr>
-							</s:iterator>
-						</table>
+								<s:iterator var="tdf" value="e.tempDriverWorkFlowList">
+									<tr class="ui-widget-content row bs-tempDriver-workFlow" >
+										<td class="first"  style="padding:0;text-align:left;">
+											<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 5px;background:none;" type="text" class="ui-widget-content" 
+												readonly="readonly" value='<s:date format="yyyy-MM-dd HH:mm" name="startTime" />' />
+											<input type="hidden" class="bs-tempDriver-workFlow-procInstId" value='<s:property value="procInstId"/>' />
+										</td>
+										<td class="middle" style="padding:0;text-align:left;padding-left:5px;">	
+											<s:if test="%{offerStatus == 1}"><s:text name="tempDriverWorkFlow.offerStatus.check"/></s:if>
+											<s:elseif test="%{offerStatus == 2}"><s:text name="tempDriverWorkFlow.offerStatus.pass"/></s:elseif>
+											<s:elseif test="%{offerStatus == 3}"><s:text name="tempDriverWorkFlow.offerStatus.noPass"/></s:elseif>
+										</td>
+										<td class="last" style="padding:0;text-align:left;">
+										</td>
+									</tr>
+								</s:iterator>
+							</table>
+						</div>
 					</div>
-				</div>
+				</s:if>
 				
 				<div class="formTable2 ui-widget-content bs-tempDriver-containers"  style="width:640px;">
 					<div class="ui-widget-header title" style="position:relative;">
@@ -421,6 +438,20 @@
 						</div>
 					</div>
 				</div>
+				<s:if test="%{!isReadonly()||isAdvancedRead()}">
+					<div class="formTable2 ui-widget-content bs-tempDriver-containers"  style="width:640px;">
+						<div class="ui-widget-header title" style="position:relative;">
+							<span class="text" >附件信息:</span>
+							<ul class="inputIcons">
+								<li class="bs-tempDriver-showGroups verticalMiddle ui-icon ui-icon-carat-1-s" style="display:none;" title='展开'></li>
+								<li class="bs-tempDriver-hiddenGroups verticalMiddle ui-icon ui-icon-carat-1-n" title='隐藏'></li>
+							</ul>
+						</div>
+						<div class="bs-tempDriver-Groups" style="border-width:1px 1px 0 0;margin-bottom:8px;">
+							<s:property value="%{attachsUI}" escapeHtml="false"/>
+						</div>
+					</div>
+				</s:if>
 				<div style="height: 10px;">
 				</div>
 		<s:hidden name="e.id" />

@@ -15,10 +15,10 @@ bs.tempDriverView = {
 		// 服务资格证号
 		var v = $($trs[0]).children("td[data-column='t.cert_fwzg']").attr("data-value");
 		
-		if(v == ''){
+/*		if(v == ''){
 			 bc.msg.alert("没有服务资格证！");
 			 return;
-		}
+		}*/
 
 		// 打开查询窗口
 		bc.page.newWin({
@@ -31,6 +31,8 @@ bs.tempDriverView = {
 	/** 发起流程 */
 	startFlow : function(option) {
 		var $page = $(this);
+		
+		
 		// 确定选中的行
 		var $trs = $page.find(">.bc-grid>.data>.left tr.ui-state-highlight");
 		if($trs.size()==0){
@@ -43,8 +45,14 @@ bs.tempDriverView = {
 			ids+=$(this).find("td").attr("data-id")+",";
 		});
 		
+		$trsRight = $page.find(">.bc-grid>.data>.right tr.ui-state-highlight");
+		var names="";
+		$trsRight.each(function(){
+			names+=$(this).find("td:eq(2)").attr("data-value")+",";
+		});
+		
 		bs.tempDriverView.startFlowing = true;
-		bc.msg.confirm("确认发起司机入职审批流程？"
+		bc.msg.confirm("确认发起 "+names.substring(0,names.length-1)+" 的司机入职审批流程？"
 				,function(){
 					bc.ajax({
 						url : bc.root + "/bc-business/tempDriver/startFlow",
@@ -55,6 +63,14 @@ bs.tempDriverView = {
 							if(json.success){
 								bc.grid.reloadData($page);
 								bc.sidebar.refresh();
+								if($trs.size()==1){
+									//打开工作空间
+									bc.page.newWin({
+										name: "工作空间",
+										mid: "workspace"+json.procInstId,
+										url: bc.root+ "/bc-workflow/workspace/open?id="+json.procInstId
+									});
+								}
 							}
 							bs.tempDriverView.startFlowing = false;
 						}
