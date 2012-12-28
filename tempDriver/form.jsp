@@ -23,7 +23,7 @@
 									<td style="width: 12em;">&nbsp;</td>
 									<td style="width: 8em;">&nbsp;</td>
 									<td >&nbsp;</td>
-									<td rowspan="9" style="text-align:center;vertical-align: top;width:10em;">
+									<td rowspan="9" style="text-align:center;vertical-align: top;width:8.5em;">
 										<div style="position:relative;width:110px;height:140px;" >
 											<img id="portrait" style="width:110px;height:140px;cursor: pointer;" title='<s:text name="image.click2change"/>'
 											src='<s:url value="/bc/image/download?ptype=portrait"><s:param name='puid' value='e.uid'/><s:param name='ts' value='ts'/></s:url>'/>
@@ -118,6 +118,11 @@
 								<tr>
 									<td class="label"><s:text name="tempDriver.newAddress"/>:</td>
 									<td class="value" colspan="4"><s:textfield name="e.newAddress" cssClass="ui-widget-content"/></td>
+								</tr>
+								<tr>
+									<td class="value" colspan="4">*<s:text name="tempDriver.isCrimeRecode"/>:
+										<s:select list="#{'':'',0:'无',1:'有'}" listKey="key" listValue="value" cssClass="ui-widget-content" headerValue="" name="e.isCrimeRecode" cssStyle="width:3em;"  ></s:select>
+									</td>
 								</tr>
 							</tbody>
 						</table>
@@ -375,9 +380,9 @@
 				<s:if test="%{!isReadonly()||isAdvancedRead()}">
 					<div  class="formTable2 ui-widget-content bs-tempDriver-containers"  style="width:640px;">
 						<div class="ui-widget-header title" style="position:relative;">
-							<span class="text" >入职流程信息区:</span>
+							<span class="text" >流程信息区:</span>
 							<ul class="inputIcons">
-								<li id="startWorkFlow"  class="inputIcon ui-icon ui-icon-play" title='点击发起入职流程'></li>
+								<li id="startWorkFlow"  class="inputIcon ui-icon ui-icon-play" title='点击发起司机新入职审批流程'></li>
 								<li class="bs-tempDriver-showGroups verticalMiddle ui-icon ui-icon-carat-1-s" style="display:none;" title='展开'></li>
 								<li class="bs-tempDriver-hiddenGroups verticalMiddle ui-icon ui-icon-carat-1-n" title='隐藏'></li>
 							</ul>
@@ -385,21 +390,34 @@
 						<div class="bs-tempDriver-Groups" style="border-width:1px 1px 0 0;margin-bottom:8px;">
 							<table id="tdwfs" class="table bc-grid" cellspacing="0" cellpadding="0" style="width:100%;">
 								<tr class="header row">
-									<td class="first" style="width: 16.5em;">发起时间</td>
-									<td class="middle" style="width: 10em;"><s:text name="tempDriverWorkFlow.offerStatus"/></td>
+									<td class="first" style="width: 16.5em;">流程名称</td>
+									<td class="middle" style="width: 16em;">发起时间</td>
+									<td class="middle" style="width: 6em;">流程状态</td>
+									<td class="middle" style="width: 7em;">审批结果</td>
 									<td class="last" style="min-width: 0.001em;"></td>
 								</tr>
-								<s:iterator var="tdf" value="e.tempDriverWorkFlowList">
-									<tr class="ui-widget-content row bs-tempDriver-workFlow" >
+								<s:iterator var="wr" value="list_WorkflowModuleRelation">
+									<tr class="ui-widget-content row bs-tempDriver-workFlow" title="双击查看流程详细信息！">
 										<td class="first"  style="padding:0;text-align:left;">
 											<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 5px;background:none;" type="text" class="ui-widget-content" 
-												readonly="readonly" value='<s:date format="yyyy-MM-dd HH:mm" name="startTime" />' />
-											<input type="hidden" class="bs-tempDriver-workFlow-procInstId" value='<s:property value="procInstId"/>' />
+												readonly="readonly" value='<s:property value="name"/>' />
+											<input type="hidden" class="bs-tempDriver-workFlow-procInstId" value='<s:property value="pid"/>' />
+										</td>
+										<td class="middle"  style="padding:0;text-align:left;">
+											<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 5px;background:none;" type="text" class="ui-widget-content" 
+												readonly="readonly" value='<s:property value="startTime"/>' />
 										</td>
 										<td class="middle" style="padding:0;text-align:left;padding-left:5px;">	
-											<s:if test="%{offerStatus == 1}"><s:text name="tempDriverWorkFlow.offerStatus.check"/></s:if>
-											<s:elseif test="%{offerStatus == 2}"><s:text name="tempDriverWorkFlow.offerStatus.pass"/></s:elseif>
-											<s:elseif test="%{offerStatus == 3}"><s:text name="tempDriverWorkFlow.offerStatus.noPass"/></s:elseif>
+											<s:if test="%{status == 1}">流转中</s:if>
+											<s:elseif test="%{status == 2}">已暂停</s:elseif>
+											<s:elseif test="%{status == 3}">已结束</s:elseif>
+										</td>
+										<td class="middle" style="padding:0;text-align:left;padding-left:5px;">	
+											<s:if test="%{status == 3 && key == 'CarManEntry'}">
+												<s:if test="%{isGiveUp != null && isGiveUp == 1}">司机放弃</s:if>
+												<s:elseif test="%{isPass != null && isPass == 0}">不通过</s:elseif>
+												<s:elseif test="%{isPass != null && isPass == 1}">通过</s:elseif>
+											</s:if>
 										</td>
 										<td class="last" style="padding:0;text-align:left;">
 										</td>

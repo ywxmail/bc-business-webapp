@@ -96,7 +96,7 @@ bs.tempDriverForm = {
 			var id=$form.find(":input[name='e.id']").val();
 			bc.ajax({
 				url : bc.root + "/bc-business/tempDriver/startFlow",
-				data : {tdIds:id+','},
+				data : {tdIds:id+',',flowKey:"CarManEntry",flagStatus:true},
 				dataType : "json",
 				success : function(json) {
 					bc.msg.slide(json.msg);
@@ -109,9 +109,7 @@ bs.tempDriverForm = {
 						cell.style.textAlign="left";
 						cell.setAttribute("class","id first");
 						cell.innerHTML='<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 5px;background:none;" type="text" class="ui-widget-content"'
-								+'readonly="readonly" value="'
-								+json.startTime
-								+'" />'
+								+'readonly="readonly" value="司机新入职审批流程" />'
 								+'<input type="hidden" class="bs-tempDriver-workFlow-procInstId" value="'
 								+json.procInstId
 								+'" />';
@@ -120,9 +118,20 @@ bs.tempDriverForm = {
 						cell.style.padding="0 0 0 5px";
 						cell.style.textAlign="left";
 						cell.setAttribute("class","middle");
-						cell.innerHTML=json.offerStatus;
+						cell.innerHTML=json.startTime;
 						
 						cell=newRow.insertCell(2);
+						cell.style.padding="0 0 0 5px";
+						cell.style.textAlign="left";
+						cell.setAttribute("class","middle");
+						cell.innerHTML='流转中';
+						
+						cell=newRow.insertCell(3);
+						cell.style.padding="0 0 0 5px";
+						cell.style.textAlign="left";
+						cell.setAttribute("class","middle");
+						
+						cell=newRow.insertCell(4);
 						cell.style.padding="0";
 						cell.style.textAlign="left";
 						cell.setAttribute("class","last");
@@ -173,7 +182,7 @@ bs.tempDriverForm = {
 			
 			if(!bs.tempDriverForm.startFlowing){
 				bs.tempDriverForm.startFlowing = true;
-				bc.msg.confirm("确认发起"+name+"的司机入职处理流程？"
+				bc.msg.confirm("确认发起"+name+"的司机新入职审批流程？"
 						,startFlow
 						,function(){
 							bs.tempDriverForm.startFlowing = false;
