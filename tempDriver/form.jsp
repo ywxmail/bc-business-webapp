@@ -120,7 +120,7 @@
 									<td class="value" colspan="4"><s:textfield name="e.newAddress" cssClass="ui-widget-content"/></td>
 								</tr>
 								<tr>
-									<td class="value" colspan="4">*<s:text name="tempDriver.isCrimeRecode"/>:
+									<td class="value" colspan="4"><s:text name="tempDriver.isCrimeRecode"/>:
 										<s:select list="#{'':'',0:'无',1:'有'}" listKey="key" listValue="value" cssClass="ui-widget-content" headerValue="" name="e.isCrimeRecode" cssStyle="width:3em;"  ></s:select>
 									</td>
 								</tr>
