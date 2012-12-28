@@ -218,6 +218,43 @@
 				</tbody>
 			</table>
 		</div>
+		<s:if test="%{!isReadonly()}">
+			<div  class="formTable2 ui-widget-content bs-tempDriver-containers"  style="width:640px;">
+				<div class="ui-widget-header title" style="position:relative;">
+					<span class="text" >交通违法流程信息区:</span>
+					<ul class="inputIcons">
+						<li id="startWorkFlow"  class="inputIcon ui-icon ui-icon-play" title='点击发起入职流程'></li>
+						<li class="bs-tempDriver-showGroups verticalMiddle ui-icon ui-icon-carat-1-s" style="display:none;" title='展开'></li>
+						<li class="bs-tempDriver-hiddenGroups verticalMiddle ui-icon ui-icon-carat-1-n" title='隐藏'></li>
+					</ul>
+				</div>
+				<div class="bs-tempDriver-Groups" style="border-width:1px 1px 0 0;margin-bottom:8px;">
+					<table id="tdwfs" class="table bc-grid" cellspacing="0" cellpadding="0" style="width:100%;">
+						<tr class="header row">
+							<td class="first" style="width: 16.5em;">发起时间</td>
+							<td class="middle" style="width: 10em;"><s:text name="carTrafficHandleFlow.offerStatus"/></td>
+							<td class="last" style="min-width: 0.001em;"></td>
+						</tr>
+						<s:iterator var="ctf" value="carTrafficHandleFlowList">
+							<tr class="ui-widget-content row bs-tempDriver-workFlow" >
+								<td class="first"  style="padding:0;text-align:left;">
+									<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 5px;background:none;" type="text" class="ui-widget-content" 
+										readonly="readonly" value='<s:date format="yyyy-MM-dd HH:mm" name="startTime" />' />
+									<input type="hidden" class="bs-tempDriver-workFlow-procInstId" value='<s:property value="procInstId"/>' />
+								</td>
+								<td class="middle" style="padding:0;text-align:left;padding-left:5px;">	
+									<s:if test="%{offerStatus == 1}"><s:text name="tempDriverWorkFlow.offerStatus.check"/></s:if>
+									<s:elseif test="%{offerStatus == 2}"><s:text name="tempDriverWorkFlow.offerStatus.pass"/></s:elseif>
+									<s:elseif test="%{offerStatus == 3}"><s:text name="tempDriverWorkFlow.offerStatus.noPass"/></s:elseif>
+								</td>
+								<td class="last" style="padding:0;text-align:left;">
+								</td>
+							</tr>
+						</s:iterator>
+					</table>
+				</div>
+			</div>
+		</s:if>
 		<s:hidden name="e.uid" />
 		<s:hidden name="e.id" />
 		<s:hidden name="e.author.id" />
