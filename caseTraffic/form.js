@@ -218,6 +218,17 @@ bc.caseTrafficForm = {
 				$form.find('#tdValue2').css("visibility","hidden");
 			}
 		});
+		
+		//鼠标双击流程表格事件
+		$form.find("#tdwfs").delegate(".bs-carTraffic-workFlow","dblclick",function(){
+			var procInstId=$(this).find(".bs-carTraffic-workFlow-procInstId").val();
+			bc.page.newWin({
+				name: "工作空间",
+				mid: "workspace"+procInstId,
+				url: bc.root+ "/bc-workflow/workspace/open?id="+procInstId
+			});
+		});
+
 	},
 	
 	closefile : function(){
@@ -244,7 +255,17 @@ bc.caseTrafficForm = {
 		$form.data("data-status","saved");
 		//调用标准的方法执行保存
 		bc.page.save.call($form);
+	},
+	/** 选择违法代码后 */
+	afterSelectInfractCode: function(event, ui){
+		var $form = $(this).closest(".bc-page");
+		$form.find(":input[name='e.infractCode']").val(ui.item.code);
+		$form.find(":input[name='e.penalty']").val(ui.item.penalty);
+		$form.find(":input[name='e.jeom']").val(ui.item.jeom);
+		// 记得返回false，否则车辆域信息会被清空
+		return false;
 	}
+	
  /*   
   	closefile : function(){
 		var $form = $(this);
