@@ -28,26 +28,26 @@ bc.caseTrafficForm = {
 		if($form.find(":input[name='isNullCar']").val()=="true"){
 			bc.msg.alert("该司机还没有驾驶任何车辆！");	
 		}
-		if($form.find(":input[name='isMoreCarMan']").val()=="true"){
-			var carId=$form.find(":input[name='carId']").val();
-			var url=bc.root +"/bc-business/selectMoreCarManWithCar/selectCarMans?carId="+carId;
-			bc.page.newWin({
-				url: url,
-				name: "选择司机信息",
-				mid: "selectCarMan",
-				afterClose: function(carMan){
-					if(carMan){
-						$form.find(":input[name='e.driverId']").val(carMan.id);
-						$form.find(":input[name='e.driverName']").val(carMan.name);
-						$form.find(":input[name='e.driverCert']").val(carMan.cert4FWZG);
-					}
-				}
-			});
-		}
-		
-		if($form.find(":input[name='isNullCarMan']").val()=="true"){
-			bc.msg.alert("该车辆还没有被任何司机驾驶！请自行填写司机信息");	
-		}
+//		if($form.find(":input[name='isMoreCarMan']").val()=="true"){
+//			var carId=$form.find(":input[name='carId']").val();
+//			var url=bc.root +"/bc-business/selectMoreCarManWithCar/selectCarMans?carId="+carId;
+//			bc.page.newWin({
+//				url: url,
+//				name: "选择司机信息",
+//				mid: "selectCarMan",
+//				afterClose: function(carMan){
+//					if(carMan){
+//						$form.find(":input[name='e.driverId']").val(carMan.id);
+//						$form.find(":input[name='e.driverName']").val(carMan.name);
+//						$form.find(":input[name='e.driverCert']").val(carMan.cert4FWZG);
+//					}
+//				}
+//			});
+//		}
+//		
+//		if($form.find(":input[name='isNullCarMan']").val()=="true"){
+//			bc.msg.alert("该车辆还没有被任何司机驾驶！请自行填写司机信息");	
+//		}
 		
 		//绑定车队事件
 		$form.find(":input[name='e.motorcadeId']").change(function(){
@@ -260,6 +260,7 @@ bc.caseTrafficForm = {
 	afterSelectInfractCode: function(event, ui){
 		var $form = $(this).closest(".bc-page");
 		$form.find(":input[name='e.infractCode']").val(ui.item.code);
+		$form.find(":input[name='e.subject']").val(ui.item.subject);
 		$form.find(":input[name='e.penalty']").val(ui.item.penalty);
 		$form.find(":input[name='e.jeom']").val(ui.item.jeom);
 		// 记得返回false，否则车辆域信息会被清空
