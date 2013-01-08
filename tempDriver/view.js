@@ -68,17 +68,17 @@ bs.tempDriverView = {
 		$trsRight = $page.find(">.bc-grid>.data>.right tr.ui-state-highlight");
 		var names="";
 		$trsRight.each(function(){
-			names+=$(this).find("td:eq(2)").attr("data-value")+",";
+			names+=$(this).find("td:eq(2)").attr("data-value")+"、";
 		});
 		
 		var msg="";
 		var flagStatus=false;
-		msg+="确认发起 "+names.substring(0,names.length-1);
+		msg+="确认发起<b>"+names.substring(0,names.length-1)+"</b>";
 		if(flowKey=="CarManEntry"){
-			msg+="的司机新入职审批流程";
+			msg+="的<b>司机新入职、留用审批流程</b>";
 			flagStatus=true;
 		}else if(flowKey=="RequestDerviceCertficate"){
-			msg+="的司机服务资格证办理流程";
+			msg+="的<b>司机服务资格证办理流程</b>";
 		}
 		
 		bs.tempDriverView.starflowing = true;
@@ -137,7 +137,7 @@ bs.tempDriverView = {
 		html.push('<table id="tables" style="width:100%;height:100%;">');
 		html.push('<tbody>');
 			html.push('<tr>')
-				html.push('<td class="value" >'+"修改 "+names.substring(0,names.length-1)+" 的状态为"+'</td>');
+				html.push('<td class="value" >'+"修改<b>"+names.substring(0,names.length-1)+"</b>的状态为"+'</td>');
 			html.push('</tr>')
 			html.push('<tr>')
 				html.push('<td>');
@@ -224,7 +224,7 @@ bs.tempDriverView = {
 			names+=$(this).find("td:eq(2)").attr("data-value")+",";
 		});
 		
-		var msg="确定修改 "+names.substring(0,names.length-1)+" 的面试日期为";
+		var msg="确定修改<b>"+names.substring(0,names.length-1)+"</b>的面试日期为";
 		
 		bc.page.newWin({
 			name: "确定面试日期",
@@ -232,7 +232,7 @@ bs.tempDriverView = {
 			url: bc.root + "/bc/common/selectDate",
 			data: {time:false,title:"请输入面试日期"},
 			afterClose: function(date){
-				msg+=date+"吗？";
+				msg+="<b>"+date+"</b>吗？";
 				bs.tempDriverView.operate = true;
 				bc.msg.confirm(msg
 						,function(){

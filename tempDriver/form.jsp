@@ -76,9 +76,29 @@
 								</tr>
 								<tr>
 									<td class="label"><s:text name="tempDriver.education"/>:</td>
-									<td class="value"><s:textfield name="e.education" cssClass="ui-widget-content"/></td>
+									<td class="value">
+										<div class="bc-relativeContainer" style="position : relative; display: inline-block">
+											<input type="text" name="e.education" value='<s:property value="e.education"/>' style="width:11em;" 
+												data-validate='{"maxLen": 50,"type":"string"}' class="bc-select ui-widget-content"
+												data-maxHeight="150px"
+												data-source='["大学","高中","初中","小学"]'/>
+											<ul class="inputIcons">
+												<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
+											</ul>
+										</div>
+									
+									</td>
 									<td class="label"><s:text name="tempDriver.marry"/>:</td>
-									<td class="value"><s:textfield name="e.marry" cssClass="ui-widget-content"/></td>
+									<td class="value">
+										<div class="bc-relativeContainer" style="position : relative; display: inline-block">
+											<input type="text" name="e.marry" value='<s:property value="e.marry"/>' style="width:14em;" 
+												data-validate='{"maxLen": 50,"type":"string"}' class="bc-select ui-widget-content"
+												data-maxHeight="150px"
+												data-source='["已婚","未婚"]'/>
+											<ul class="inputIcons">
+												<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
+											</ul>
+										</div>
 								</tr>
 								<tr>
 									<td class="label"><s:text name="tempDriver.origin"/>:</td>
@@ -96,7 +116,7 @@
 												</ul>
 										</div>&nbsp;&nbsp;到
 										<div style="position : relative; display: inline-block">
-											<input type="text" name="e.validEndDate"  data-validate='{"type":"date","required":true}'
+											<input type="text" name="e.validEndDate"  data-validate='{"type":"date","required":false}'
 												value='<s:date format="yyyy-MM-dd" name="e.validEndDate" />'
 												style="width: 9em;" class="bc-date ui-widget-content" />
 												<ul class="inputIcons" style="right : 0px;">
@@ -107,8 +127,13 @@
 								</tr>
 								<tr>
 									<td class="label"><s:text name="tempDriver.issue"/>:</td>
-									<td class="value" colspan="3" >
+									<td class="value"  >
 										<s:textfield name="e.issue" cssClass="ui-widget-content" />
+									</td>
+									<td class="label"><s:text name="tempDriver.isCrimeRecode"/>:</td>
+									<td class="value">
+										<s:select list="#{'':'',0:'无',1:'有'}" listKey="key" listValue="value" 
+											cssClass="ui-widget-content" headerValue="" name="e.isCrimeRecode"   ></s:select>
 									</td>
 								</tr>
 								<tr>
@@ -118,11 +143,6 @@
 								<tr>
 									<td class="label"><s:text name="tempDriver.newAddress"/>:</td>
 									<td class="value" colspan="4"><s:textfield name="e.newAddress" cssClass="ui-widget-content"/></td>
-								</tr>
-								<tr>
-									<td class="value" colspan="4"><s:text name="tempDriver.isCrimeRecode"/>:
-										<s:select list="#{'':'',0:'无',1:'有'}" listKey="key" listValue="value" cssClass="ui-widget-content" headerValue="" name="e.isCrimeRecode" cssStyle="width:3em;"  ></s:select>
-									</td>
 								</tr>
 							</tbody>
 						</table>
@@ -217,7 +237,17 @@
 									<td class="label"><s:text name="tempDriver.entryCar"/>:</td>
 									<td class="value"><s:textfield name="e.entryCar" cssClass="ui-widget-content"/></td>
 									<td class="label"><s:text name="tempDriver.applyAttr"/>:</td>
-									<td class="value"><s:textfield name="e.applyAttr" cssClass="ui-widget-content"/></td>
+									<td class="value">
+										<div class="bc-relativeContainer" style="position : relative; display: inline-block">
+											<input type="text" name="e.applyAttr" value='<s:property value="e.applyAttr"/>' style="width:19em;" 
+												data-validate='{"maxLen": 50,"type":"string"}' class="bc-select ui-widget-content"
+												data-maxHeight="150px"
+												data-source='["外司加入","新考","留用"]'/>
+											<ul class="inputIcons">
+												<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
+											</ul>
+										</div>
+									</td>
 								</tr>
 								<tr>
 									<td class="label"><s:text name="tempDriver.creditDesc"/>:</td>
@@ -390,11 +420,11 @@
 						<div class="bs-tempDriver-Groups" style="border-width:1px 1px 0 0;margin-bottom:8px;">
 							<table id="tdwfs" class="table bc-grid" cellspacing="0" cellpadding="0" style="width:100%;">
 								<tr class="header row">
-									<td class="first" style="width: 16.5em;">流程名称</td>
-									<td class="middle" style="width: 16em;">发起时间</td>
-									<td class="middle" style="width: 6em;">流程状态</td>
-									<td class="middle" style="width: 7em;">审批结果</td>
-									<td class="last" style="min-width: 0.001em;"></td>
+									<td class="first" style="width: 12em;">名称</td>
+									<td class="middle" style="width: 15.5em;">主题</td>
+									<td class="middle" style="width: 9em;">发起时间</td>
+									<td class="middle" style="width: 4.5em;">流程状态</td>
+									<td class="last" style="min-width: 0.001em;">审批结果</td>
 								</tr>
 								<s:iterator var="wr" value="list_WorkflowModuleRelation">
 									<tr class="ui-widget-content row bs-tempDriver-workFlow" title="双击查看流程详细信息！">
@@ -405,6 +435,10 @@
 										</td>
 										<td class="middle"  style="padding:0;text-align:left;">
 											<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 5px;background:none;" type="text" class="ui-widget-content" 
+												readonly="readonly" value='<s:property value="subject"/>' />
+										</td>
+										<td class="middle"  style="padding:0;text-align:left;">
+											<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 5px;background:none;" type="text" class="ui-widget-content" 
 												readonly="readonly" value='<s:property value="startTime"/>' />
 										</td>
 										<td class="middle" style="padding:0;text-align:left;padding-left:5px;">	
@@ -412,14 +446,12 @@
 											<s:elseif test="%{status == 2}">已暂停</s:elseif>
 											<s:elseif test="%{status == 3}">已结束</s:elseif>
 										</td>
-										<td class="middle" style="padding:0;text-align:left;padding-left:5px;">	
+										<td class="last" style="padding:0;text-align:left;padding-left:5px;">
 											<s:if test="%{status == 3 && key == 'CarManEntry'}">
 												<s:if test="%{isGiveUp != null && isGiveUp == 1}">司机放弃</s:if>
 												<s:elseif test="%{isPass != null && isPass == 0}">不通过</s:elseif>
 												<s:elseif test="%{isPass != null && isPass == 1}">通过</s:elseif>
 											</s:if>
-										</td>
-										<td class="last" style="padding:0;text-align:left;">
 										</td>
 									</tr>
 								</s:iterator>
@@ -481,5 +513,6 @@
 		<s:hidden name="e.credit" />
 		<s:hidden name="creditStatus" />
 		<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
+		<input type="hidden" name="e.creditDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.creditDate" />'/>
 	</s:form>
 </div>
