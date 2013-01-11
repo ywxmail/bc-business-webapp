@@ -228,6 +228,21 @@ bc.caseTrafficForm = {
 				url: bc.root+ "/bc-workflow/workspace/open?id="+procInstId
 			});
 		});
+		
+		//绑定展开事件
+		$form.delegate(".showGroups","click",function(){
+			$(this).hide();
+			$(this).closest(".formTable").find(".bs-caseTraffic-Groups").toggle('fast');
+			$(this).closest(".formTable").find(".hiddenGroups").show();
+		});
+		
+		//绑定隐藏事件
+		$form.delegate(".hiddenGroups","click",function(){
+			$(this).hide();
+			$(this).closest(".formTable").find(".bs-caseTraffic-Groups").toggle('fast');
+			$(this).closest(".formTable").find(".showGroups").show();
+		});
+
 
 	},
 	
