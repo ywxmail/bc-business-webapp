@@ -18,19 +18,23 @@ bs.carManSelectDialog = {
 			data = {};
 			data.id = $tds.attr("data-id");
 			var $trs = $grid.find(">.data>.right tr.ui-state-highlight");
+			
 			data.name = $trs.find("td:eq(0)").attr("data-value");
 			data.cert4FWZG = $trs.find("td:eq(1)").attr("data-value");
+			data.workDate = $trs.find("td:eq(2)").text();
 			data.classes = $trs.find("td:eq(3)").text();
+			$.extend(data,$trs.data("hidden"));
 		}else{//多选
 			data = [];
 			var $trs = $grid.find(">.data>.right tr.ui-state-highlight");
 			$tds.each(function(i){
-				data.push({
+				data.push($.extend({
 					id: $(this).attr("data-id"),
 					name:$($trs.get(i)).find("td:eq(0)").attr("data-value"),
 					cert4FWZG:$($trs.get(i)).find("td:eq(1)").attr("data-value"),
+					workDate:$($trs.get(i)).find("td:eq(2)").text(),
 					classes:$($trs.get(i)).find("td:eq(3)").text()
-				});
+				},$($trs.get(i)).data("hidden")));
 			});
 		}
 		logger.info($.toJSON(data));

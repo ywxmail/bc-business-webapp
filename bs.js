@@ -223,7 +223,10 @@ bs.findInfoByCar = function(option) {
 					carMans.push({
 						id: json.drivers[0].id,
 						name: json.drivers[0].name,
-						classes: json.drivers[0].classes
+						classes: json.drivers[0].classes,
+						cert4FWZG:json.drivers[0].cert4FWZG,
+						certDrivingFirstDate:json.drivers[0].certDrivingFirstDate,
+						workDate:json.drivers[0].workDate
 					});
 					//调用回调函数，返回司机信息
 					option.success.call(json,{
@@ -276,7 +279,10 @@ bs.findInfoByCar = function(option) {
 								carMans.push({
 									id: o.value,
 									name: o.text,
-									classes: drivers[i].classes
+									classes: drivers[i].classes,
+									cert4FWZG:json.drivers[i].cert4FWZG,
+									certDrivingFirstDate:json.drivers[i].certDrivingFirstDate,
+									workDate:json.drivers[i].workDate
 								});
 							}
 						}
@@ -719,7 +725,8 @@ bs.selectTempDriver = function(option) {
 /** bs的自定义模板 */
 bc.namespace("TPL.BS");
 TPL.BS = {
-	CAR_SELECT_ITEM: '<a><table cellspacing="0" cellpadding="0" style="width:100%;border:0;"><tr><td style="text-align:left">{{plateType}}.{{plateNo}}</td><td style="text-align:right">[{{motorcadeName}} {{statusCN}}]</td></tr></table></a>'
+		CAR_SELECT_ITEM: '<a><table cellspacing="0" cellpadding="0" style="width:100%;border:0;"><tr><td style="text-align:left">{{plateType}}.{{plateNo}}</td><td style="text-align:right">[{{motorcadeName}} {{statusCN}}]</td></tr></table></a>',
+		CARMAN_SELECT_ITEM: '<a><table cellspacing="0" cellpadding="0" style="width:100%;border:0;"><tr><td style="text-align:left">{{name}}</td><td style="text-align:right">[{{statusCN}}]</td></tr></table></a>'
 };
 
 
