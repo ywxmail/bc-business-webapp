@@ -11,6 +11,7 @@
 					<div class="ui-widget-header title" style="position:relative;">
 						<span class="text" >基本信息:</span>
 						<ul class="inputIcons">
+							<li class="bs-tempDriver-reverse inputIcon ui-icon ui-icon-carat-2-n-s" title='反转内容信息区域的显示'></li>
 							<li class="bs-tempDriver-showGroups verticalMiddle ui-icon ui-icon-carat-1-s" style="display:none;" title='展开'></li>
 							<li class="bs-tempDriver-hiddenGroups verticalMiddle ui-icon ui-icon-carat-1-n" title='隐藏'></li>
 						</ul>
@@ -19,11 +20,11 @@
 						<table class="formFields" cellspacing="2" cellpadding="0">
 							<tbody>
 								<tr class="widthMarker">
-									<td style="width: 8em;"></td>
-									<td style="width: 12em;">&nbsp;</td>
+									<td style="width: 7.5em;">&nbsp;</td>
+									<td style="width: 11em;">&nbsp;</td>
 									<td style="width: 8em;">&nbsp;</td>
-									<td >&nbsp;</td>
-									<td rowspan="9" style="text-align:center;vertical-align: top;width:8.5em;">
+									<td style="width: 12.5em;">&nbsp;</td>
+									<td rowspan="9" style="text-align:center;vertical-align: top;">
 										<div style="position:relative;width:110px;height:140px;" >
 											<img id="portrait" style="width:110px;height:140px;cursor: pointer;" title='<s:text name="image.click2change"/>'
 											src='<s:url value="/bc/image/download?ptype=portrait"><s:param name='puid' value='e.uid'/><s:param name='ts' value='ts'/></s:url>'/>
@@ -91,7 +92,7 @@
 									<td class="label"><s:text name="tempDriver.marry"/>:</td>
 									<td class="value">
 										<div class="bc-relativeContainer" style="position : relative; display: inline-block">
-											<input type="text" name="e.marry" value='<s:property value="e.marry"/>' style="width:14em;" 
+											<input type="text" name="e.marry" value='<s:property value="e.marry"/>' style="width:12.4em;" 
 												data-validate='{"maxLen": 50,"type":"string"}' class="bc-select ui-widget-content"
 												data-maxHeight="150px"
 												data-source='["已婚","未婚"]'/>
@@ -102,7 +103,12 @@
 								</tr>
 								<tr>
 									<td class="label"><s:text name="tempDriver.origin"/>:</td>
-									<td class="value" colspan="3"><s:textfield name="e.origin" cssClass="ui-widget-content"/></td>
+									<td class="value"><s:textfield name="e.origin" cssClass="ui-widget-content"/></td>
+									<td class="label"><s:text name="tempDriver.isCrimeRecode"/>:</td>
+									<td class="value">
+										<s:select list="#{'':'',0:'无',1:'有'}" listKey="key" listValue="value" 
+											cssClass="ui-widget-content" headerValue="" name="e.isCrimeRecode"   ></s:select>
+									</td>
 								</tr>
 								<tr>
 									<td class="label">*<s:text name="tempDriver.validDate"/>:</td>
@@ -110,7 +116,7 @@
 										<div style="position : relative; display: inline-block">
 											&nbsp;从<input type="text" name="e.validStartDate"  data-validate='{"type":"date","required":true}' 
 												value='<s:date format="yyyy-MM-dd" name="e.validStartDate" />' 
-												style="width: 9em;" class="bc-date ui-widget-content" />
+												style="width: 7em;" class="bc-date ui-widget-content" />
 												<ul class="inputIcons" style="right : 0px;">
 													<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.validStartDate' ></li>
 												</ul>
@@ -118,22 +124,13 @@
 										<div style="position : relative; display: inline-block">
 											<input type="text" name="e.validEndDate"  data-validate='{"type":"date","required":false}'
 												value='<s:date format="yyyy-MM-dd" name="e.validEndDate" />'
-												style="width: 9em;" class="bc-date ui-widget-content" />
+												style="width: 7em;" class="bc-date ui-widget-content" />
 												<ul class="inputIcons" style="right : 0px;">
 													<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.validEndDate' ></li>
 												</ul>
 										</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="label"><s:text name="tempDriver.issue"/>:</td>
-									<td class="value"  >
-										<s:textfield name="e.issue" cssClass="ui-widget-content" />
-									</td>
-									<td class="label"><s:text name="tempDriver.isCrimeRecode"/>:</td>
-									<td class="value">
-										<s:select list="#{'':'',0:'无',1:'有'}" listKey="key" listValue="value" 
-											cssClass="ui-widget-content" headerValue="" name="e.isCrimeRecode"   ></s:select>
+										<!-- 签发机关 -->
+										<s:text name="tempDriver.issue"/>:<s:textfield name="e.issue" cssClass="ui-widget-content" cssStyle="width:9em;" />
 									</td>
 								</tr>
 								<tr>
@@ -153,6 +150,7 @@
 					<div class="ui-widget-header title" style="position:relative;">
 						<span class="text" >从业信息:</span>
 						<ul class="inputIcons">
+							<li class="bs-tempDriver-reverse inputIcon ui-icon ui-icon-carat-2-n-s" title='反转内容信息区域的显示'></li>
 							<li class="bs-tempDriver-showGroups verticalMiddle ui-icon ui-icon-carat-1-s" style="display:none;" title='展开'></li>
 							<li class="bs-tempDriver-hiddenGroups verticalMiddle ui-icon ui-icon-carat-1-n" title='隐藏'></li>
 						</ul>
@@ -162,7 +160,7 @@
 							<tbody>
 								<tr class="widthMarker">
 									<td style="width: 9em;"></td>
-									<td style="width: 16em;">&nbsp;</td>
+									<td style="width: 13em;">&nbsp;</td>
 									<td style="width: 13em;">&nbsp;</td>
 									<td >&nbsp;</td>
 								</tr>
@@ -187,10 +185,46 @@
 										data-validate='{"type":"number","min":1950,"max":2200}' /></td>
 								</tr>
 								<tr>
+									<td class="label"><s:text name="tempDriver.certDriving"/>:</td>
+									<td class="value"><s:textfield name="e.certDriving" cssClass="ui-widget-content"/></td>
+									<td class="label"><s:text name="tempDriver.certDrivingArchive"/>:</td>
+									<td class="value"><s:textfield name="e.certDrivingArchive" cssClass="ui-widget-content"/></td>
+								</tr>
+								<tr>
+									<td class="label"><s:text name="tempDriver.certDrivingStartDate"/>:</td>
+									<td class="value relative">
+										<input type="text" name="e.certDrivingStartDate" data-validate='{"type":"date","required":false}'
+											value='<s:date format="yyyy-MM-dd" name="e.certDrivingStartDate" />' 
+											class="bc-date ui-widget-content"  />
+										<ul class="inputIcons">
+											<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.certDrivingStartDate'></li>
+										</ul>
+									</td>
+									<td class="label"><s:text name="tempDriver.certDrivingEndDate"/>:</td>
+									<td class="value relative">
+										<input type="text" name="e.certDrivingEndDate" data-validate='{"type":"date","required":false}'
+											value='<s:date format="yyyy-MM-dd" name="e.certDrivingEndDate" />' 
+											class="bc-date ui-widget-content"  />
+										<ul class="inputIcons">
+											<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.certDrivingEndDate'></li>
+										</ul>
+									</td>
+								</tr>
+								<tr>
+									<td class="label"><s:text name="tempDriver.model"/>:</td>
+									<td class="value"><s:textfield name="e.model" cssClass="ui-widget-content"/></td>
 									<td class="label"><s:text name="tempDriver.formerUnit"/>:</td>
-									<td class="value"><s:textfield name="e.formerUnit" cssClass="ui-widget-content"/></td>
-									<td class="label"></td>
-									<td class="value"></td>
+									<td class="value relative">
+										<div class="bc-relativeContainer">
+											<input type="text" name="e.formerUnit" value='<s:property value="e.formerUnit"/>' style="text-align:left;" 
+												class="bc-select ui-widget-content"
+												data-maxHeight="150px"
+												data-source='<s:property value="companyNames"/>'/>
+											<ul class="inputIcons">
+												<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
+											</ul>
+										</div>
+									</td>
 								</tr>
 							</tbody>
 						</table>
@@ -200,6 +234,7 @@
 					<div class="ui-widget-header title" style="position:relative;">
 						<span class="text" >招聘信息:</span>
 						<ul class="inputIcons">
+							<li class="bs-tempDriver-reverse inputIcon ui-icon ui-icon-carat-2-n-s" title='反转内容信息区域的显示'></li>
 							<li class="bs-tempDriver-showGroups verticalMiddle ui-icon ui-icon-carat-1-s" style="display:none;" title='展开'></li>
 							<li class="bs-tempDriver-hiddenGroups verticalMiddle ui-icon ui-icon-carat-1-n" title='隐藏'></li>
 						</ul>
@@ -297,6 +332,7 @@
 							<li id="downLine_we" class="inputIcon ui-icon ui-icon-circle-arrow-s" title='下移选中项'></li>
 							<li id="addLine_we" class="inputIcon ui-icon ui-icon-circle-plus" title='添加一条工作经历'></li>
 							<li id="deleteLine_we" class="inputIcon ui-icon ui-icon-circle-close" title='删除一条工作经历'></li>
+							<li class="bs-tempDriver-reverse inputIcon ui-icon ui-icon-carat-2-n-s" title='反转内容信息区域的显示'></li>
 							<li class="bs-tempDriver-showGroups verticalMiddle ui-icon ui-icon-carat-1-s" style="display:none;" title='展开'></li>
 							<li class="bs-tempDriver-hiddenGroups verticalMiddle ui-icon ui-icon-carat-1-n" title='隐藏'></li>
 						</ul>
@@ -364,6 +400,7 @@
 							<li id="downLine_fm" class="inputIcon ui-icon ui-icon-circle-arrow-s" title='下移选中项'></li>
 							<li id="addLine_fm" class="inputIcon ui-icon ui-icon-circle-plus" title='添加一条家庭成员信息'></li>
 							<li id="deleteLine_fm" class="inputIcon ui-icon ui-icon-circle-close" title='删除一条家庭成员信息'></li>
+							<li class="bs-tempDriver-reverse inputIcon ui-icon ui-icon-carat-2-n-s" title='反转内容信息区域的显示'></li>
 							<li class="bs-tempDriver-showGroups verticalMiddle ui-icon ui-icon-carat-1-s" style="display:none;" title='展开'></li>
 							<li class="bs-tempDriver-hiddenGroups verticalMiddle ui-icon ui-icon-carat-1-n" title='隐藏'></li>
 						</ul>
@@ -412,7 +449,9 @@
 						<div class="ui-widget-header title" style="position:relative;">
 							<span class="text" >流程信息区:</span>
 							<ul class="inputIcons">
-								<li id="startWorkFlow"  class="inputIcon ui-icon ui-icon-play" title='点击发起司机新入职审批流程'></li>
+								<li id="startWorkFlow"  class="inputIcon ui-icon ui-icon-play" title='点击发起司机新入职、留用审批流程'></li>
+								<li id="startWorkFlow4Cert"  class="inputIcon ui-icon ui-icon-play" title='点击发起司机服务资格证办理流程'></li>
+								<li class="bs-tempDriver-reverse inputIcon ui-icon ui-icon-carat-2-n-s" title='反转内容信息区域的显示'></li>
 								<li class="bs-tempDriver-showGroups verticalMiddle ui-icon ui-icon-carat-1-s" style="display:none;" title='展开'></li>
 								<li class="bs-tempDriver-hiddenGroups verticalMiddle ui-icon ui-icon-carat-1-n" title='隐藏'></li>
 							</ul>
@@ -427,26 +466,23 @@
 									<td class="last" style="min-width: 0.001em;">审批结果</td>
 								</tr>
 								<s:iterator var="wr" value="list_WorkflowModuleRelation">
-									<tr class="ui-widget-content row bs-tempDriver-workFlow" title="双击查看流程详细信息！">
-										<td class="first"  style="padding:0;text-align:left;">
-											<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 5px;background:none;" type="text" class="ui-widget-content" 
-												readonly="readonly" value='<s:property value="name"/>' />
+									<tr class="ui-widget-content row bs-tempDriver-workFlow" >
+										<td class="first"  style="padding:0 0 0 4px;text-align:left;">
+											<a class="bs-tempDriver-workFlow-processName" href="#"><s:property value="name"/></a>
 											<input type="hidden" class="bs-tempDriver-workFlow-procInstId" value='<s:property value="pid"/>' />
 										</td>
-										<td class="middle"  style="padding:0;text-align:left;">
-											<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 5px;background:none;" type="text" class="ui-widget-content" 
-												readonly="readonly" value='<s:property value="subject"/>' />
+										<td class="middle"  style="padding:0 0 0 4px;text-align:left;">
+											<s:property value="subject"/>
 										</td>
-										<td class="middle"  style="padding:0;text-align:left;">
-											<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 5px;background:none;" type="text" class="ui-widget-content" 
-												readonly="readonly" value='<s:property value="startTime"/>' />
+										<td class="middle"  style="padding:0 0 0 4px;text-align:left;">
+											<s:property value="startTime"/>
 										</td>
-										<td class="middle" style="padding:0;text-align:left;padding-left:5px;">	
+										<td class="middle" style="padding:0 0 0 4px;text-align:left;">	
 											<s:if test="%{status == 1}">流转中</s:if>
 											<s:elseif test="%{status == 2}">已暂停</s:elseif>
 											<s:elseif test="%{status == 3}">已结束</s:elseif>
 										</td>
-										<td class="last" style="padding:0;text-align:left;padding-left:5px;">
+										<td class="last" style="padding:0 0 0 4px;text-align:left;">
 											<s:if test="%{status == 3 && key == 'CarManEntry'}">
 												<s:if test="%{isGiveUp != null && isGiveUp == 1}">司机放弃</s:if>
 												<s:elseif test="%{isPass != null && isPass == 0}">不通过</s:elseif>
@@ -470,6 +506,7 @@
 								title="点击按钮，根据从业资格证更新信誉档案" id="selectCarManToTaxiNet4CYZG" ></li>
 							 <li class="inputIcon ui-icon ui-icon-note toTaxiNet"
 							  title="点击按钮，根据姓名更新信誉档案" id="selectCarManToTaxiNet4Name" ></li>
+							<li class="bs-tempDriver-reverse inputIcon ui-icon ui-icon-carat-2-n-s" title='反转内容信息区域的显示'></li>
 							<li class="bs-tempDriver-showGroups verticalMiddle ui-icon ui-icon-carat-1-s" style="display:none;" title='展开'></li>
 							<li class="bs-tempDriver-hiddenGroups verticalMiddle ui-icon ui-icon-carat-1-n" title='隐藏'></li>
 						</ul>
@@ -493,6 +530,7 @@
 						<div class="ui-widget-header title" style="position:relative;">
 							<span class="text" >附件信息:</span>
 							<ul class="inputIcons">
+								<li class="bs-tempDriver-reverse inputIcon ui-icon ui-icon-carat-2-n-s" title='反转内容信息区域的显示'></li>
 								<li class="bs-tempDriver-showGroups verticalMiddle ui-icon ui-icon-carat-1-s" style="display:none;" title='展开'></li>
 								<li class="bs-tempDriver-hiddenGroups verticalMiddle ui-icon ui-icon-carat-1-n" title='隐藏'></li>
 							</ul>

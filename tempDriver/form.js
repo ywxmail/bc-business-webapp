@@ -75,6 +75,13 @@ bs.tempDriverForm = {
 			});
 		});
 		
+		//绑定反转内容信息区事件
+		$form.delegate(".bs-tempDriver-reverse","click",function(){	
+			$form.find(".bs-tempDriver-Groups").toggle("fast");
+			$form.find(".bs-tempDriver-showGroups").toggle();
+			$form.find(".bs-tempDriver-hiddenGroups").toggle();
+		});
+		
 		//绑定展开事件
 		$form.delegate(".bs-tempDriver-showGroups","click",function(){
 			$(this).hide();
@@ -92,12 +99,11 @@ bs.tempDriverForm = {
 		
 		//----绑定发起流程事件---開始---
 		var tableEl_tdwf=$form.find("#tdwfs")[0];
-		function startFlow(){
-			var id=$form.find(":input[name='e.id']").val();
-			var name=$form.find(":input[name='e.name']").val();
+		//id: ,key:流程编码,flag：是否同步信息控制,name:流程名称,subject:主题名称
+		function startFlow(id,key,flag,name,subject){
 			bc.ajax({
 				url : bc.root + "/bc-business/tempDriver/startFlow",
-				data : {tdIds:id+',',flowKey:"CarManEntry",flagStatus:true},
+				data : {tdIds:id+',',flowKey:key,flagStatus:flag},
 				dataType : "json",
 				success : function(json) {
 					bc.msg.slide(json.msg);
@@ -109,8 +115,9 @@ bs.tempDriverForm = {
 						cell.style.padding="0";
 						cell.style.textAlign="left";
 						cell.setAttribute("class","id first");
-						cell.innerHTML='<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 5px;background:none;" type="text" class="ui-widget-content"'
-								+'readonly="readonly" value="司机新入职、留用审批流程" />'
+						cell.innerHTML='<a class="bs-tempDriver-workFlow-processName" href="#">'
+								+name
+								+'</a>'
 								+'<input type="hidden" class="bs-tempDriver-workFlow-procInstId" value="'
 								+json.procInstId
 								+'" />';
@@ -119,7 +126,7 @@ bs.tempDriverForm = {
 						cell.style.padding="0 0 0 5px";
 						cell.style.textAlign="left";
 						cell.setAttribute("class","middle");
-						cell.innerHTML="司机新入职、留用审批（"+name+")";
+						cell.innerHTML=subject;
 						
 						cell=newRow.insertCell(2);
 						cell.style.padding="0 0 0 5px";
@@ -139,6 +146,16 @@ bs.tempDriverForm = {
 						cell.setAttribute("class","last");
 						
 						$(newRow).dblclick(function(){
+							bc.page.newWin({
+								name: "工作空间",
+								mid: "workspace"+json.procInstId,
+								url: bc.root+ "/bc-workflow/workspace/open?id="+json.procInstId
+							});
+						});
+						
+						//流程名称超链接
+						var $a=$(newRow).find(".bs-tempDriver-workFlow-processName");
+						$a.click(function(){
 							bc.page.newWin({
 								name: "工作空间",
 								mid: "workspace"+json.procInstId,
@@ -176,7 +193,6 @@ bs.tempDriverForm = {
 				return;
 			}
 
-			
 			var name=$form.find(":input[name='e.name']").val();
 			$(this).closest(".bs-tempDriver-containers").find(".bs-tempDriver-showGroups").hide();
 			$(this).closest(".bs-tempDriver-containers").find(".bs-tempDriver-Groups").show();
@@ -185,21 +201,45 @@ bs.tempDriverForm = {
 			if(!bs.tempDriverForm.startFlowing){
 				bs.tempDriverForm.startFlowing = true;
 				bc.msg.confirm("确认发起<b>"+name+"</b>的<b>司机新入职、留用审批流程</b>？"
-						,startFlow
 						,function(){
+							startFlow(id,"CarManEntry",true,"司机新入职、留用审批流程","司机新入职、留用审批("+name+")");
+						},function(){
 							bs.tempDriverForm.startFlowing = false;
 						},"发起流程确认窗口");
 			}	
 		});
 		
-		//鼠标悬停于流程表格事件
-		$form.find("#tdwfs").delegate(".bs-tempDriver-workFlow","hover",function(){
-			$(this).toggleClass("ui-state-hover");
+		$form.find("#startWorkFlow4Cert").click(function(){
+			bc.msg.alert("司机服务资格证办理流程开发中。。。。");
+			return;
+			
+			var id=$form.find(":input[name='e.id']").val();
+			if(id == ''){
+				bc.msg.alert("请先保存信息！");
+				return;
+			}
+			
+			var name=$form.find(":input[name='e.name']").val();
+			$(this).closest(".bs-tempDriver-containers").find(".bs-tempDriver-showGroups").hide();
+			$(this).closest(".bs-tempDriver-containers").find(".bs-tempDriver-Groups").show();
+			$(this).closest( ".bs-tempDriver-containers").find(".bs-tempDriver-hiddenGroups").show();
+			
+			if(!bs.tempDriverForm.startFlowing){
+				bs.tempDriverForm.startFlowing = true;
+				bc.msg.confirm("确认发起<b>"+name+"</b>的<b>司机服务资格证办理流程</b>？"
+						,function(){
+							startFlow(id,"RequestServiceCertificate",false,"司机服务资格证办理流程","司机服务资格证办理("+name+")");
+						},function(){
+							bs.tempDriverForm.startFlowing = false;
+						},"发起流程确认窗口");
+			}	
 		});
 		
-		//鼠标双击流程表格事件
-		$form.find("#tdwfs").delegate(".bs-tempDriver-workFlow","dblclick",function(){
-			var procInstId=$(this).find(".bs-tempDriver-workFlow-procInstId").val();
+		
+		//鼠标单击流程名称事件
+		$form.find("#tdwfs").delegate(".bs-tempDriver-workFlow-processName","click",function(){
+			var $tr=$(this).closest("tr");
+			var procInstId=$tr.find(".bs-tempDriver-workFlow-procInstId").val();
 			bc.page.newWin({
 				name: "工作空间",
 				mid: "workspace"+procInstId,

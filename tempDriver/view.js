@@ -33,11 +33,12 @@ bs.tempDriverView = {
 					bs.tempDriverView.startFlow($page,"CarManEntry");
 				
 				break;
-			case "workflow.requestDerviceCertficate":
-				bc.msg.alert("司机办证流程开发中。。。");
-				if(!bs.tempDriverView.starflowing){
-					//bs.tempDriverView.startFlow($page,"RequestDerviceCertficate");
-				}
+			case "workflow.requestServiceCertificate":
+				bc.msg.alert("司机服务资格办理流程开发中。。。");
+				
+				//if(!bs.tempDriverView.starflowing){
+					//bs.tempDriverView.startFlow($page,"RequestServiceCertificate");
+				//}
 				break;
 			case "operate.interviewDate":
 				if(!bs.tempDriverView.operate)
@@ -73,12 +74,14 @@ bs.tempDriverView = {
 		
 		var msg="";
 		var flagStatus=false;
-		msg+="确认发起<b>"+names.substring(0,names.length-1)+"</b>";
+		msg+="确认发起<b>"+names.substring(0,names.length-1)+"</b>共<b>"+$trs.size()+"</b>人 的";
 		if(flowKey=="CarManEntry"){
-			msg+="的<b>司机新入职、留用审批流程</b>";
+			msg+="<b>司机新入职、留用审批流程</b>吗？";
 			flagStatus=true;
-		}else if(flowKey=="RequestDerviceCertficate"){
-			msg+="的<b>司机服务资格证办理流程</b>";
+		}else if(flowKey=="RequestServiceCertificate"){
+			msg+="<b>司机服务资格证办理流程</b>吗？";
+		}else{
+			return;
 		}
 		
 		bs.tempDriverView.starflowing = true;
@@ -137,7 +140,7 @@ bs.tempDriverView = {
 		html.push('<table id="tables" style="width:100%;height:100%;">');
 		html.push('<tbody>');
 			html.push('<tr>')
-				html.push('<td class="value" >'+"修改<b>"+names.substring(0,names.length-1)+"</b>的状态为"+'</td>');
+				html.push('<td class="value" >'+"修改<b>"+names.substring(0,names.length-1)+"</b>共<b>"+$trs.size()+"</b>人的状态为"+'</td>');
 			html.push('</tr>')
 			html.push('<tr>')
 				html.push('<td>');
@@ -224,7 +227,7 @@ bs.tempDriverView = {
 			names+=$(this).find("td:eq(2)").attr("data-value")+",";
 		});
 		
-		var msg="确定修改<b>"+names.substring(0,names.length-1)+"</b>的面试日期为";
+		var msg="确定修改<b>"+names.substring(0,names.length-1)+"</b>共<b>"+$trs.size()+"</b>人的<b>面试日期</b>为";
 		
 		bc.page.newWin({
 			name: "确定面试日期",
