@@ -11,10 +11,21 @@ bc.caseAdviceForm = {
 		bc.caseAdviceForm.foldingDiv($form,"showGroups2","div2");
 		bc.caseAdviceForm.foldingDiv($form,"showGroups3","div3");
 		bc.caseAdviceForm.foldingDiv($form,"showGroups4","div4");
+		bc.caseAdviceForm.foldingDiv($form,"showGroups5","div5");
+		
+		//鼠标单击流程名称事件
+		$form.find("#div5").delegate(".bs-case4Advice-workFlow-processName","click",function(){
+			var $tr=$(this).closest("tr");
+			var procInstId=$tr.find(".bs-case4Advice-workFlow-procInstId").val();
+			bc.page.newWin({
+				name: "工作空间",
+				mid: "workspace."+procInstId,
+				url: bc.root+ "/bc-workflow/workspace/open?id="+procInstId
+			});
+		});
 		
 		//只读权限控制
 		if(readonly) return;
-		
 		
 		if($form.find(":input[name='isMoreCar']").val()=="true"){
 			var carManId=$form.find(":input[name='carManId']").val();
