@@ -22,18 +22,18 @@ bs.tempDriverSelectDialog = {
 			data.certIdentity = $trs.find("td:eq(1)").attr("data-value");
 			data.certFWZG= $trs.find("td:eq(2)").attr("data-value");
 			data.certCYZG = $trs.find("td:eq(3)").attr("data-value");
-
+			$.extend(data,$trs.data("hidden"));
 		}else{//多选
 			data = [];
 			var $trs = $grid.find(">.data>.right tr.ui-state-highlight");
 			$tds.each(function(i){
-				data.push({
+				data.push($.extend({
 					id: $(this).attr("data-id"),
 					name:$($trs.get(i)).find("td:eq(0)").attr("data-value"),
 					certIdentity:$($trs.get(i)).find("td:eq(1)").attr("data-value"),
 					certFWZG:$($trs.get(i)).find("td:eq(2)").attr("data-value"),
-					certCYZG:$($trs.get(i)).find("td:eq(3)").attr("data-value"),
-				});
+					certCYZG:$($trs.get(i)).find("td:eq(3)").attr("data-value")
+				},$($trs.get(i)).data("hidden")));
 			});
 		}
 		logger.info($.toJSON(data));

@@ -353,7 +353,7 @@
 									<td class="middle"  style="padding:0;text-align:left;">
 										<div class="relative" style="display:inline;">
 											<input type="text" data-validate='{"type":"date"}' 
-												style="width:7em;height:100%;border:none;margin:0;padding:0 0 0 2px;background:none;" 
+													style="width:7em;height:100%;border:none;margin:0;padding:0 0 0 2px;background:none;" 
 												class="bc-date ui-widget-content" value='<s:property value="startDate"/>' />
 											<ul class="inputIcons">
 												<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
@@ -449,8 +449,9 @@
 						<div class="ui-widget-header title" style="position:relative;">
 							<span class="text" >流程信息区:</span>
 							<ul class="inputIcons">
-								<li id="startWorkFlow"  class="inputIcon ui-icon ui-icon-play" title='点击发起司机新入职、留用审批流程'></li>
-								<li id="startWorkFlow4Cert"  class="inputIcon ui-icon ui-icon-play" title='点击发起司机服务资格证办理流程'></li>
+								<s:if test="%{!isReadonly()}">
+									<li id="startWorkFlow"  class="inputIcon ui-icon ui-icon-play" title='点击发起司机新入职、留用审批流程'></li>
+								</s:if>
 								<li class="bs-tempDriver-reverse inputIcon ui-icon ui-icon-carat-2-n-s" title='反转内容信息区域的显示'></li>
 								<li class="bs-tempDriver-showGroups verticalMiddle ui-icon ui-icon-carat-1-s" style="display:none;" title='展开'></li>
 								<li class="bs-tempDriver-hiddenGroups verticalMiddle ui-icon ui-icon-carat-1-n" title='隐藏'></li>
