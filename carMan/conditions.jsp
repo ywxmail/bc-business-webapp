@@ -88,7 +88,7 @@
 		<li class="condition">
 			<div class="value">
 				<div class="bc-dateContainer">
-				<div class="label">性别</div>
+					<div class="label">性别</div>
 					<div class="value checkboxes" data-condition='{"type":"int","key":"m.sex"}' >
 						<label><input type="checkbox" name="checkboxField2" value="1"><span>男</span></label>
 						<label><input type="checkbox" name="checkboxField2" value="2"><span>女</span></label>
@@ -258,8 +258,15 @@
 			<div class="clear"></div>
 		</li>
 		<li class="condition">
-			<div class="value checkboxes" data-condition="{'type':'string','ql':'(m.origin=\'\' or m.origin is null)'}" >
-				<label><input type="checkbox" name="checkboxField1" ><span>籍贯为空</span></label>
+			<div class="bc-relativeContainer ">
+				<div class="value checkboxes" data-condition="{'type':'string','ql':'(m.origin=\'\' or m.origin is null)'}" >
+					<label><input type="checkbox" name="checkboxField1" ><span>籍贯为空</span></label>
+				</div>
+			</div>
+			<div class="bc-relativeContainer ">
+				<div class="value checkboxes" data-condition="{'type':'string','ql':'getCarManRiskStatus(m.id) in (\'已过期\',\'未购买\')'}" >
+					<label><input type="checkbox" name="checkboxField1" ><span>无有效人意险</span></label>
+				</div>
 			</div>
 		</li>		
 	</ul>
