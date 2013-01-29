@@ -210,11 +210,11 @@
 									<td class="value" ><s:textfield name="e.registerNo"  cssClass="ui-widget-content"/></td>
 									<td class="label" ><s:text name="car.certNo2"/>:</td>
 								<s:if test="%{isCheckOwnershipNumber()}">
-									<td class="value" ><s:textfield name="e.certNo2" cssClass="bc-select ui-widget-content" readonly="false"
-										data-cfg='{"strict":true,"delay":100,"minLength":2, "labelMapping":"{{number}}", "valueMapping":"{{number}}","itemMapping":"{{number}}","callback":"bc.carForm.afterSelectOwnership"}'
-										data-maxHeight="150px" 
-										data-source='bc-business/ownership/find?status=0,1'/>
-									</td>
+									<td class="value relative" >
+										<s:textfield name="e.certNo2" cssClass="ui-widget-content" readonly="true"/>
+										<ul class="inputIcons">
+											<li id="selectCertNo2" class="inputIcon ui-icon ui-icon-circle-plus" title='点击选择经营权证' >
+										</ul>
 								</s:if><s:else>
 									<td class="value"><div class="input ui-widget-content">******</div></td>
 								</s:else>

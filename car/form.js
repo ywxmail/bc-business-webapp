@@ -138,7 +138,18 @@ bc.carForm = {
 			bc.msg.alert("该功能正在开发.....！");
 			
 		});
-
+		
+		
+		//点击添加经营权证事件
+		$form.find("#selectCertNo2").click(function(){
+			bs.selectOwnership({
+				onOk:function(json){
+					$form.find(":input[name='e.certNo2']").val(json.number);
+				}
+			});
+				
+		});
+		
 		
 	},
 
