@@ -283,7 +283,7 @@
 						</tbody>
 					</table>
 					<!-- 补充协议 -->
-					<div class="formTable1 ui-widget-content" style="width:100%;border-width:1px 1px 0 0;margin-bottom:8px;margin-bottom: 0;">
+					<div class="formTable1 ui-widget-content"	style="width:100%;border-width:1px 1px 0 0;margin-bottom:8px;margin-bottom: 0;">
 						<div class="ui-widget-header title" style="position:relative;border-width:0!important;">
 							<span class="text" >补充协议:</span>
 							<span id="showGroups1" class="verticalMiddle ui-icon ui-icon-carat-1-n" title='<s:text name="runcase.title.click2HiddenGroups"/>'></span>
@@ -329,8 +329,7 @@
 					</div>
 
 				<!-- 权限控制显示 -->
-							<!-- 经济合同管理员权限，经济合同收费明细查询、经济合同草稿录入权限 -->	
-				<s:if test="%{!isReadonly()||isFeeDetailRead()||isEntering()}">
+							
 					<!-- 收费明细 -->
 					<div class="ui-widget-content" style="border-width:1px 1px 0 0;margin-bottom:8px;width: 100%;">
 						<div class="ui-widget-header title" style="position:relative;border-width:0!important;">
@@ -346,7 +345,9 @@
 									title='<s:text name="title.click2deleteFeeTemplate"/>'></li>
 							</ul>
 						</div>
-				    	<div class="bc-grid header">
+				    <!-- 经济合同管理员权限，经济合同收费明细查询、经济合同草稿录入权限 -->	
+					<s:if test="%{!isReadonly()||isFeeDetailRead()||isEntering()}">
+						<div class="bc-grid header">
 						<table class="table" id="feeDetailTables" cellspacing="0" cellpadding="0" style="width: 100%">
 							<tr class="widthMarker" style="height: 0;line-height:0;font-size: 0;border: none;margin: 0;padding: 0;">
 								<td class="first" style="width: 15px;">&nbsp;</td>
@@ -453,8 +454,13 @@
 							</s:iterator>
 						</table>
 						</div>
+					</s:if>
+					<s:else>
+						<div style="padding:0;margin:0;border-bottom:1px solid #CCC;">(无权限查看收费明细)</div>
+					</s:else>
 					</div>
-				</s:if>
+				
+					
 					
 				</div>
 				</div>
