@@ -327,6 +327,10 @@
 							</table>
 						</div>
 					</div>
+
+				<!-- 权限控制显示 -->
+							<!-- 经济合同管理员权限，经济合同收费明细查询、经济合同草稿录入权限 -->	
+				<s:if test="%{!isReadonly()||isFeeDetailRead()||isEntering()}">
 					<!-- 收费明细 -->
 					<div class="ui-widget-content" style="border-width:1px 1px 0 0;margin-bottom:8px;width: 100%;">
 						<div class="ui-widget-header title" style="position:relative;border-width:0!important;">
@@ -450,7 +454,7 @@
 						</table>
 						</div>
 					</div>
-					
+				</s:if>
 					
 				</div>
 				</div>
