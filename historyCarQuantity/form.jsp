@@ -7,7 +7,7 @@
 		<s:text name="e.motorcade.name"/><s:property value="e.year" />-<s:property value="e.month" />-<s:property value="e.day" />车辆数
 	</s:else>'
 	data-type='form' class="bc-page"
-    data-js='<s:url value="/bc-business/motorcade/historyCarQuantity/form.js" />,<s:url value="/bc-business/bs.js" />'	
+    data-js='<s:url value="/bc-business/historyCarQuantity/form.js" />,<s:url value="/bc-business/bs.js" />'	
     data-initMethod='bs.historyCarQuantityForm.init'
 	data-saveUrl='<s:url value="/bc-business/historyCarQuantity/save" />'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
