@@ -11,7 +11,7 @@
 				<tbody>
 					<tr>
 						<td class="label">*<s:text name="motorcade.unit"/>:</td>
-						<td class="value relative"><s:textfield name="e.unit.name" data-validate="required"
+						<td class="value relative"><s:textfield name="e.unit.name" data-validate="required" cssClass="ui-widget-content"
 							readonly="true"/>
 							<ul class="inputIcons">
 								<li class="selectUnit inputIcon ui-icon ui-icon-circle-plus" 
@@ -24,18 +24,18 @@
 						</td>
 						<td class="label"><s:text name="motorcade.paymentDate"/>:</td>
 						<td class="value">
-							<s:select name="e.paymentDate" list="paymentDates" listKey="key" listValue="value"></s:select>
+							<s:select name="e.paymentDate" cssClass="ui-widget-content" list="paymentDates" listKey="key" listValue="value"></s:select>
 						</td>
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="motorcade.name"/>:</td>
-						<td class="value"><s:textfield name="e.name" data-validate='required'/></td>
+						<td class="value"><s:textfield name="e.name" cssClass="ui-widget-content" data-validate='required'/></td>
 						<td class="label"><s:text name="label.phone"/>:</td>
-						<td class="value"><s:textfield name="e.phone" data-validate='{required:false,type:"phone"}' /></td>
+						<td class="value"><s:textfield name="e.phone" cssClass="ui-widget-content" data-validate='{required:false,type:"phone"}' /></td>
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="motorcade.principal"/>:</td>
-						<td class="value relative"><s:textfield name="e.principalName" data-validate='required'
+						<td class="value relative"><s:textfield name="e.principalName" cssClass="ui-widget-content" data-validate='required'
 							readonly="true"/>
 							<ul class="inputIcons">
 								<li class="selectUser inputIcon ui-icon ui-icon-circle-plus" 
@@ -47,24 +47,24 @@
 							</ul>
 						</td>
 						<td class="label"><s:text name="motorcade.fax"/>:</td>
-						<td class="value"><s:textfield name="e.fax"  data-validate='{required:false,type:"phone"}'/></td>
+						<td class="value"><s:textfield name="e.fax" cssClass="ui-widget-content"  data-validate='{required:false,type:"phone"}'/></td>
 					</tr>
 					<tr>
 						<td class="label"> <s:text name="motorcade.colour"/>:</td>
-						<td class="value"><s:textfield name="e.color" /></td>
+						<td class="value"><s:textfield name="e.color" cssClass="ui-widget-content"/></td>
 						<td class="label"><s:text name="motorcade.address"/>:</td>
-						<td class="value"><s:textfield name="e.address" /></td>
+						<td class="value"><s:textfield name="e.address" cssClass="ui-widget-content"/></td>
 					</tr>
 					<tr>
 						<td class="label">*<s:text name="label.order"/>:</td>
-						<td class="value"><s:textfield name="e.code" data-validate="required"/></td>
+						<td class="value"><s:textfield name="e.code" cssClass="ui-widget-content" data-validate="required"/></td>
 						<td class="label"><s:text name="label.status"/>:</td>
-						<td class="value"><s:radio name="e.status" list="#{'0':'正常','1':'禁用'}" 
+						<td class="value"><s:radio name="e.status" cssClass="ui-widget-content" list="#{'0':'正常','1':'禁用'}" 
 							value="e.status" cssStyle="width:auto;"/></td>
 					</tr>
 					<tr>
 						<td class="topLabel" ><s:text name="motorcade.description"/>:</td>
-						<td class="value" colspan="3"><s:textarea name="e.description" rows="5"/></td>
+						<td class="value" colspan="3"><s:textarea name="e.description" cssClass="ui-widget-content" rows="5"/></td>
 					</tr>
 				</tbody>
 			</table>
