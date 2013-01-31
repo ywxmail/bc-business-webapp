@@ -352,10 +352,14 @@ bc.contract4ChargerForm = {
 															bc.contract4ChargerForm.addFeeDetailData(tableEl,selectFeeTemplate[i],sdStr,edStr,mustPrice,null,null);
 														}
 												}else if(sd.getDate()!=1 ){
+													logger.info("sd=" +$.datepicker.formatDate('yy-mm-dd', sd));
 													//第一条承包费项目期限为开始日期到本月的月底
-													sd.setMonth(sd.getMonth()+1);//将开始日期的月份加1
 													sd.setDate(1);//将开始日期的月份加1后的日期的天数设置为1
+													logger.info("sd日设为1号=" + $.datepicker.formatDate('yy-mm-dd', sd));
+													sd.setMonth(sd.getMonth()+1);//将开始日期的月份加1
+													logger.info("sd加一个月=" + $.datepicker.formatDate('yy-mm-dd', sd));
 													sd.setDate(sd.getDate()-1);//日期的天数设置为开始日期同一月份的最后一日
+													logger.info("sd减去1日=" + $.datepicker.formatDate('yy-mm-dd', sd));
 													//第条承包款的开始日期默认为合同的开始日期加1日
 													if(isDOD !=null && isDOD==true){
 														//标记读取第一条每月承包款的开始日期
