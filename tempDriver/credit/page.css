@@ -1,0 +1,69 @@
+body {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-family: "宋体", "仿宋", "仿宋_GB2312", "微软雅黑", sans-serif;
+	font-size: 5px;
+	background-color: #cccccc;
+}
+
+/* 纸张 */
+.paper {
+	background-color: #ffffff;
+	box-shadow: #000 0px 0px 10px;
+	margin: 4px auto;	
+	width: 175mm;
+	padding: 10mm;
+}
+
+.paper>.title {
+	text-align: center;
+	font-size: 15px;
+	font-weight: bold;
+	color: red;
+	padding: 0;
+	margin: 0;
+}
+
+.paper>.updateTime {
+	text-align: right;
+	font-size: 10px;
+	font-weight: bold;
+	color: red;
+	margin: 0;
+}
+
+.paper>#info {
+	font-weight: normal;
+	border-width: 0;
+	padding: 1px 1px 5px 1px;
+}
+
+.paper>#info span.ui-icon-search {
+	cursor: pointer;
+}
+
+.paper>#info>table {
+	border-collapse: collapse;
+	margin-bottom: 5px;
+}
+
+.paper>#info>table>tbody>tr.active {
+	font-style: italic;
+	font-weight: bold;
+}
+
+.paper>#info>table>tbody>tr>td {
+	border: 1px solid #ccc;
+	padding: 0px 0px;
+	height: 13px;
+}
+
+.paper>#info>table>tbody>tr>td>table>tbody>tr>td{
+	min-width:60px;
+}
+
+.paper>#info>.error {
+	font-size: 150%;
+	border-width: 0;
+}

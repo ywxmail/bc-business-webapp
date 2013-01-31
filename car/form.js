@@ -138,7 +138,18 @@ bc.carForm = {
 			bc.msg.alert("该功能正在开发.....！");
 			
 		});
-
+		
+		
+		//点击添加经营权证事件
+		$form.find("#selectCertNo2").click(function(){
+			bs.selectOwnership({
+				onOk:function(json){
+					$form.find(":input[name='e.certNo2']").val(json.number);
+				}
+			});
+				
+		});
+		
 		
 	},
 
@@ -238,5 +249,16 @@ bc.carForm = {
 			return false;
 		}});
 		});
+	},
+	/** 选择经营权后 */
+	afterSelectOwnership: function(event, ui){
+		var $form = $(this).closest(".bc-page");
+		if(logger.infoEnabled){
+			logger.info("afterSelectOwnership=" + $.toJSON(ui.item));
+			logger.info("p=" + $form.attr("class"));
+		}
+		$form.find(":input[name='e.certNo2']").val(ui.item.number);// 车辆ID
+		// 记得返回false，否则车辆域信息会被清空
+		return false;
 	}
 };

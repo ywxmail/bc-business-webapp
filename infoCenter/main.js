@@ -459,7 +459,8 @@ bs.infoCenter = {
 							+'<td class="value" style="width: 20em;"><input type="text" class="ui-widget-content ui-state-default" readonly="readonly" value="' + man.identity + '"/></td>'
 							
 							+'<td rowspan="6" class="' + ($.browser.safari ? "desc-webkit" : "desc2") + '"><textarea class="ui-widget-content noresize ui-state-default"' 
-							+' readonly="readonly">' + man.desc + bs.infoCenter.getAutoInfo(man.autoInfo) + '</textarea></td>'
+							+' readonly="readonly">' + man.desc + bs.infoCenter.getAutoInfo(man.autoInfo) 
+							+'\r\n　人意险期限：' + man.riskInfo + '</textarea></td>'
 							+'</tr>'
 							
 							+'<tr>'

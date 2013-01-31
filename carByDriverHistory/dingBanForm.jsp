@@ -28,6 +28,9 @@
 					</s:else>
 					</tr>
 					<tr>
+						<td class="label" colspan="2"><div style="width: 165px;"><s:radio name="e.toClasses" list="#{'3':'替班','5':'公共替班'}" value="e.toClasses" cssStyle="width:auto;"/></div></td>
+					</tr>
+					<tr>
 						<td class="label">*<s:text name="shiftworkByDriver.zhuguache"/>:</td>
 						<s:if test="%{carId != null}">
                           <td class="value "><s:textfield name="plate" value="%{e.car.plateType+'.'+e.car.plateNo }" readonly="true"/></td>

@@ -223,7 +223,10 @@ bs.findInfoByCar = function(option) {
 					carMans.push({
 						id: json.drivers[0].id,
 						name: json.drivers[0].name,
-						classes: json.drivers[0].classes
+						classes: json.drivers[0].classes,
+						cert4FWZG:json.drivers[0].cert4FWZG,
+						certDrivingFirstDate:json.drivers[0].certDrivingFirstDate,
+						workDate:json.drivers[0].workDate
 					});
 					//调用回调函数，返回司机信息
 					option.success.call(json,{
@@ -276,7 +279,10 @@ bs.findInfoByCar = function(option) {
 								carMans.push({
 									id: o.value,
 									name: o.text,
-									classes: drivers[i].classes
+									classes: drivers[i].classes,
+									cert4FWZG:json.drivers[i].cert4FWZG,
+									certDrivingFirstDate:json.drivers[i].certDrivingFirstDate,
+									workDate:json.drivers[i].workDate
 								});
 							}
 						}
@@ -665,10 +671,112 @@ bs.selectFeeTemplate = function(option) {
 	},option));
 };
 
+/**
+ * 选择司机招聘信息
+ * @param {Object} option 配置参数
+ * @option {Boolean} multiple [可选]是否允许多选，默认false
+ * @option {Boolean} paging [可选]是否分页，默认true
+ * @option {String} status [可选]司机的状态，默认待聘，设为空则代表所有状态
+ * @option {Function} onOk 选择完毕后的回调函数，函数第一个参数为选中的招聘司机的信息，
+ * 							如果为多选则返回的是数组，每个的格式为{id:[id],name:[name],certIdentity:[certIdentity]}
+ * @option {String} mid [可选]对话框的id
+ * @option {String} title [可选]对话框的标题
+ * @option {String} selecteds [可选]已选中的id值，多个值用逗号连接
+ */
+bs.selectTempDriver = function(option) {
+	// 构建默认参数
+	option = jQuery.extend({
+		mid: 'selectTempDriver',
+		paging: true,
+		title: '选择司机招聘信息',
+	},option);
+	
+	// 将一些配置参数放到data参数内(这些参数是提交到服务器的参数)
+	option.data = jQuery.extend({
+		status: '0',
+		multiple: false
+	},option.data);
+	if(option.types)
+		option.data.types = option.types;
+	if(option.title)
+		option.data.title = option.title;
+	if(option.selecteds)
+		option.data.selecteds = option.selecteds;
+	if(option.excludes)
+		option.data.excludes = option.excludes;
+	if(option.multiple === true)
+		option.data.multiple = true;
+	if(option.status)
+		option.data.status = option.status;
+	
+	//弹出选择对话框
+	bc.page.newWin(jQuery.extend({
+		url: bc.root + "/bc-business/selectTempDriver/" + (option.paging ? "paging" : "list"),
+		name: option.title,
+		mid: option.mid,
+		afterClose: function(status){
+			if(status && typeof(option.onOk) == "function"){
+				option.onOk(status);
+			}
+		}
+	},option));
+};
+
+/**
+ * 选择经营权证
+ * @param {Object} option 配置参数
+ * @option {Boolean} multiple [可选]是否允许多选，默认false
+ * @option {Boolean} paging [可选]是否分页，默认true
+ * @option {String} status [可选]权证的状态，默认所有状态
+ * @option {Function} onOk 选择完毕后的回调函数，函数第一个参数为选中的招聘司机的信息，
+ * 							如果为多选则返回的是数组，每个的格式为{id:[id],status:[status],number:[number]}
+ * @option {String} mid [可选]对话框的id
+ * @option {String} title [可选]对话框的标题
+ * @option {String} selecteds [可选]已选中的id值，多个值用逗号连接
+ */
+bs.selectOwnership = function(option) {
+	// 构建默认参数
+	option = jQuery.extend({
+		mid: 'selectOwnership',
+		paging: true,
+		title: '选择经营权证',
+	},option);
+	
+	// 将一些配置参数放到data参数内(这些参数是提交到服务器的参数)
+	option.data = jQuery.extend({
+		multiple: false
+	},option.data);
+	if(option.types)
+		option.data.types = option.types;
+	if(option.title)
+		option.data.title = option.title;
+	if(option.selecteds)
+		option.data.selecteds = option.selecteds;
+	if(option.excludes)
+		option.data.excludes = option.excludes;
+	if(option.multiple === true)
+		option.data.multiple = true;
+	if(option.status)
+		option.data.status = option.status;
+	
+	//弹出选择对话框
+	bc.page.newWin(jQuery.extend({
+		url: bc.root + "/bc-business/selectOwnership/" + (option.paging ? "paging" : "list"),
+		name: option.title,
+		mid: option.mid,
+		afterClose: function(status){
+			if(status && typeof(option.onOk) == "function"){
+				option.onOk(status);
+			}
+		}
+	},option));
+};
+
 /** bs的自定义模板 */
 bc.namespace("TPL.BS");
 TPL.BS = {
-	CAR_SELECT_ITEM: '<a><table cellspacing="0" cellpadding="0" style="width:100%;border:0;"><tr><td style="text-align:left">{{plateType}}.{{plateNo}}</td><td style="text-align:right">[{{motorcadeName}} {{statusCN}}]</td></tr></table></a>'
+		CAR_SELECT_ITEM: '<a><table cellspacing="0" cellpadding="0" style="width:100%;border:0;"><tr><td style="text-align:left">{{plateType}}.{{plateNo}}</td><td style="text-align:right">[{{motorcadeName}} {{statusCN}}]</td></tr></table></a>',
+		CARMAN_SELECT_ITEM: '<a><table cellspacing="0" cellpadding="0" style="width:100%;border:0;"><tr><td style="text-align:left">{{name}}</td><td style="text-align:right">[{{statusCN}}]</td></tr></table></a>'
 };
 
 

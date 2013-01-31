@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div title='<s:property value="pageTitle"/>' data-type='form' class="bc-page"
 	data-saveUrl='<s:url value="/bc-business/car/save" />'
-	data-js='<s:url value="/bc-business/car/form.js" />,<s:url value="/bc/identity/identity.js" />'
+	data-js='<s:url value="/bc-business/car/form.js" />,<s:url value="/bc/identity/identity.js" />,<s:url value="/bc-business/bs.js" />'
 	data-initMethod='bc.carForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow:hidden;">
 	<s:form name="carForm" theme="simple" cssClass="bc-form" >
@@ -209,7 +209,17 @@
 									<td class="label" ><s:text name="car.registerNo"/>:</td>
 									<td class="value" ><s:textfield name="e.registerNo"  cssClass="ui-widget-content"/></td>
 									<td class="label" ><s:text name="car.certNo2"/>:</td>
-									<td class="value" ><s:textfield name="e.certNo2" cssClass="ui-widget-content"/></td>
+								<s:if test="%{isCheckOwnershipNumber()}">
+									<td class="value relative" >
+										<s:textfield name="e.certNo2" cssClass="ui-widget-content" readonly="true"/>
+										<ul class="inputIcons">
+											<li id="selectCertNo2" class="inputIcon ui-icon ui-icon-circle-plus" title='点击选择经营权证' >
+										</ul>
+								</s:if><s:else>
+									<td class="value"><div class="input ui-widget-content">******</div></td>
+								</s:else>
+									
+									
 								</tr>
 								<tr>
 									<td class="label" ><s:text name="car.certNo1" />:</td>
@@ -568,6 +578,7 @@
 		<s:hidden name="e.charger"/>
 		<s:hidden name="e.originalValue"/>
 		<s:hidden name="e.rentNo"/>
+		<s:hidden name="e.owner"/>
 		<s:hidden name="carEntering"/>
 		<s:if test="!e.isNew()&&e.status!=-1">
 		<s:hidden name="e.company"/>
