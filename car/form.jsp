@@ -372,19 +372,48 @@
 									<td style="width: 140px;">&nbsp;</td>
 									<td>&nbsp;</td>
 								</tr>
-								<!-- car.lpg.name				=专用装置供应商
-									car.lpg.model				=专用装置品牌型号
-									car.lpg.gpmodel				=钢瓶品牌型号
-									car.lpg.gpid				=钢瓶编号
-									car.lpg.gpdate				=钢瓶出厂日期
-									car.lpg.jcfmodel			=集成阀品牌型号
-									car.lpg.qhqmodel			=汽化器品牌型号
-									car.lpg.psqmodel			=混合/喷射器品牌型号
-									car.lpg.refit.factory		=改装厂
-									car.lpg.refit.date			=改装出厂日期
-									car.lpg.insuranceid			=LPG保单号
-									car.lpg.insurance.startdate	=LPG保单开始日期
-									car.lpg.insurance.enddate	=LPG保单结束日期 -->	
+								<tr>
+									<td class="label" ><s:text name="car.lpg.gpid"/>:</td>
+									<td class="value" ><s:textfield name="e.lpgGpId" cssClass="ui-widget-content"/></td>
+									<td class="label" ><s:text name="car.lpg.gpmodel"/>:</td>
+									<td class="value" ><s:textfield name="e.lpgGpModel" cssClass="ui-widget-content"/></td>
+								</tr>	
+								<tr>
+									<td class="label" ><s:text name="car.lpg.gpdate"/>:</td>
+									<td class="value relative" >
+										<input type="text" name="e.lpgGpDate" data-validate='{"type":"date"}'
+											value='<s:date format="yyyy-MM-dd" name="e.lpgGpDate" />'
+											class="bc-date ui-widget-content" />
+										<ul class="inputIcons">
+											<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.lpgGpDate'></li>
+										</ul>
+									</td>
+									<td class="label" ><s:text name="car.lpg.gp.supportNo"/>:</td>
+									<td class="value" ><s:textfield name="e.lpgGpSupportNo" cssClass="ui-widget-content"/></td>
+								</tr>
+								<tr>
+									<td class="label" ><s:text name="car.lpg.gp.icCard.no"/>:</td>
+									<td class="value" ><s:textfield name="e.lpgGpIcCardNo" cssClass="ui-widget-content"/></td>
+									<td class="label" ><s:text name="car.lpg.gp.icCard.getDate"/>:</td>
+									<td class="value relative" >
+										<input type="text" name="e.lpgGpIcCardGetDate" data-validate='{"type":"date"}'
+											value='<s:date format="yyyy-MM-dd" name="e.lpgGpIcCardGetDate" />'
+											class="bc-date ui-widget-content" />
+										<ul class="inputIcons">
+											<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.lpgGpIcCardGetDate'></li>
+										</ul>
+									</td>
+								</tr>
+								<tr>
+									<td class="label" ><s:text name="car.lpg.gp.icCard.pensioner"/>:</td>
+									<td class="value" ><s:textfield name="e.lpgGpIcCardPensioner" cssClass="ui-widget-content"/></td>				
+								</tr>
+								<tr>
+									<td class="label" ><s:text name="car.lpg.computerCode"/>:</td>
+									<td class="value" ><s:textfield name="e.lpgComputerCode" cssClass="ui-widget-content"/></td>
+									<td class="label" ><s:text name="car.lpg.qhqmodel"/>:</td>
+									<td class="value" ><s:textfield name="e.lpgQhqModel" cssClass="ui-widget-content"/></td>
+								</tr>	
 								<tr>
 									<td class="label" ><s:text name="car.lpg.name"/>:</td>
 									<td class="value relative" >
@@ -405,30 +434,12 @@
 									<td class="value" ><s:textfield name="e.lpgModel" cssClass="ui-widget-content"/></td>
 								</tr>
 								<tr>
-									<td class="label" ><s:text name="car.lpg.gpmodel"/>:</td>
-									<td class="value" ><s:textfield name="e.lpgGpModel" cssClass="ui-widget-content"/></td>
-									<td class="label" ><s:text name="car.lpg.gpid"/>:</td>
-									<td class="value" ><s:textfield name="e.lpgGpId" cssClass="ui-widget-content"/></td>
-								</tr>	
-								<tr>
-									<td class="label" ><s:text name="car.lpg.gpdate"/>:</td>
-									<td class="value relative" >
-										<input type="text" name="e.lpgGpDate" data-validate='{"type":"date"}'
-											value='<s:date format="yyyy-MM-dd" name="e.lpgGpDate" />'
-											class="bc-date ui-widget-content" />
-										<ul class="inputIcons">
-											<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.lpgGpDate'></li>
-										</ul>
-									</td>
+									
 									<td class="label" ><s:text name="car.lpg.jcfmodel"/>:</td>
 									<td class="value" ><s:textfield name="e.lpgJcfModel" cssClass="ui-widget-content"/></td>
-								</tr>	
-								<tr>
-									<td class="label" ><s:text name="car.lpg.qhqmodel"/>:</td>
-									<td class="value" ><s:textfield name="e.lpgQhqModel" cssClass="ui-widget-content"/></td>
 									<td class="label" ><s:text name="car.lpg.psqmodel"/>:</td>
 									<td class="value" ><s:textfield name="e.lpgPsqModel" cssClass="ui-widget-content"/></td>
-								</tr>	
+								</tr>		
 								<tr>
 									<td class="label" ><s:text name="car.lpg.insuranceid"/>:</td>
 									<td class="value" ><s:textfield name="e.lpgInsuranceId" cssClass="ui-widget-content"/></td>
