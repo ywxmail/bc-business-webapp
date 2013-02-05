@@ -776,7 +776,7 @@ bs.selectOwnership = function(option) {
 bc.namespace("TPL.BS");
 TPL.BS = {
 		CAR_SELECT_ITEM: '<a><table cellspacing="0" cellpadding="0" style="width:100%;border:0;"><tr><td style="text-align:left">{{plateType}}.{{plateNo}}</td><td style="text-align:right">[{{motorcadeName}} {{statusCN}}]</td></tr></table></a>',
-		CARMAN_SELECT_ITEM: '<a><table cellspacing="0" cellpadding="0" style="width:100%;border:0;"><tr><td style="text-align:left">{{name}}</td><td style="text-align:right">[{{statusCN}}]</td></tr></table></a>'
+		CARMAN_SELECT_ITEM: '<a><table cellspacing="0" cellpadding="0" style="width:100%;border:0;"><tr><td style="text-align:left;width:5em;">{{name}}</td><td style="text-align:right;width:4em;">[{{statusCN}}]</td></tr></table></a>'
 };
 
 
