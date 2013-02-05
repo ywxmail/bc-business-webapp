@@ -198,6 +198,39 @@
 							<td class="label"><s:text name="runcase.charge"/>:</td>
 							<td class="value"><s:textfield name="e.charge" value="%{getText('bs.format.number',{e.charge})}" cssClass="ui-widget-content"/></td>
 						</tr>
+						<s:if test="%{e.type==6}">
+						<tr>
+							<td class="label"><s:text name="runcase.receiveDate"/>:</td>
+							<td class="value" colspan="3" style="position:relative;">
+								<span style="position:relative;width: 25%;padding: 0;margin: 0;">
+								<input type="text" name="e.receiveDate" data-validate='{"type":"datetime"}' style="width: 25%;"
+								value='<s:date format="yyyy-MM-dd hh:mm:ss" name="e.receiveDate" />'
+								class="bc-datetime ui-widget-content" data-cfg='{changeYear:true,showSecond:true,timeFormat:"hh:mm:ss"}'/>
+								<ul class="inputIcons">
+									<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.receiveDate'></li>
+								</ul>
+								</span>
+							<s:text name="runcase.ridingStartTime"/>:
+							<span style="position:relative;width: 25%;padding: 0;margin: 0;">
+								<input type="text" name="e.ridingStartTime" data-validate='{"type":"datetime"}' style="width: 25%;"
+								value='<s:date format="yyyy-MM-dd hh:mm:ss" name="e.ridingStartTime" />'
+								class="bc-datetime ui-widget-content" data-cfg='{changeYear:true,showSecond:true,timeFormat:"hh:mm:ss"}'/>
+								<ul class="inputIcons">
+									<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.ridingStartTime'></li>
+								</ul>
+							</span>
+							<span style="position:relative;width: 24.8%;padding: 0;margin: 0;">
+							<s:text name="runcase.ridingEndTime"/>:
+								<input type="text" name="e.ridingEndTime" data-validate='{"type":"datetime"}' style="width: 24.8%;"
+								value='<s:date format="yyyy-MM-dd hh:mm:ss" name="e.ridingEndTime" />'
+								class="bc-datetime ui-widget-content" data-cfg='{changeYear:true,showSecond:true,timeFormat:"hh:mm:ss"}'/>
+								<ul class="inputIcons">
+									<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.ridingEndTime'></li>
+								</ul>
+							</span>
+							</td>
+						</tr>
+						</s:if><s:else>
 						<tr>
 							<td class="label"><s:text name="runcase.ridingStartTime"/>:</td>
 							<td class="value" style="position:relative;display: block;">
@@ -218,6 +251,7 @@
 								</ul>
 							</td>
 						</tr>
+						</s:else>
 						<tr>
 							<td class="label"><s:text name="runcase.path"/>:</td>
 							<td class="value" colspan="3">
@@ -402,7 +436,7 @@
 			
 		</s:if>
 		
-		<s:if test="%{!isReadonly()&&e.type == 2}">
+		<s:if test="%{!isReadonly()&&(e.type == 2||e.type == 6)}">
 			<div  class="formTable2 ui-widget-content bs-tempDriver-containers"  style="width:710px;">
 				<div class="ui-widget-header title" style="position:relative;">
 					<span class="text" >流程信息区:</span>
@@ -479,9 +513,11 @@
 	<input type="hidden" name="e.fileDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.fileDate" />'/>
 	
 	<!-- 曾显示,现屏蔽 -->
+	<s:if test="%{e.type!=6}">
+	<input type="hidden" name="e.receiveDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.receiveDate" />'/>
+	</s:if>
 	<s:hidden name="e.code" />
 	<s:hidden name="e.subject2" />
-	<input type="hidden" name="e.receiveDate" value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.receiveDate" />'/>
 	<s:hidden name="e.adviceType" value="0" />
 		
 	</s:form>
