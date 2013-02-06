@@ -114,7 +114,17 @@
 						</tr>
 						<tr>
 							<td class="label">*<s:text name="runcase.subject"/>:</td>
-							<td class="value" colspan="3"><s:textfield name="e.subject" data-validate="required" cssClass="ui-widget-content"/></td>
+							<td class="value" colspan="3">
+								<div class="bc-relativeContainer" style="position : relative; display: inline-block">
+									<input type="text" name="e.subject" value='<s:property value="e.subject"/>' style="width:46em;" 
+										data-validate="required" class="bc-select ui-widget-content"
+										data-maxHeight="150px" 
+										data-source='<s:property value="illegalActivityList"/>'/>
+									<ul class="inputIcons">
+										<li class="bc-select inputIcon ui-icon ui-icon-triangle-1-s" title='<s:text name="title.click2select"/>'></li>
+									</ul>
+								</div>
+							</td>
 						</tr>
 						<tr>
 							<td class="label">*<s:text name="runcase.address2"/>:</td>
@@ -350,6 +360,56 @@
 				</table>
 			</div>
 		</div>
+		
+		<div  class="formTable2 ui-widget-content bs-tempDriver-containers"  style="width:710px;">
+			<div class="ui-widget-header title" style="position:relative;">
+				<span class="text" >流程信息区:</span>
+				<span id="showGroups5" class="verticalMiddle ui-icon ui-icon-carat-1-n" title='<s:text name="runcase.title.click2HiddenGroups"/>'></span>
+			</div>
+			<div id="div5" style="border-width:1px 1px 0 0;margin-bottom:8px;">
+				<table class="table bc-grid" cellspacing="0" cellpadding="0" style="width:100%;">
+					<tr class="header row">
+						<td class="first" style="width: 12em;">名称</td>
+						<td class="middle" style="width: 15.5em;">主题</td>
+						<td class="middle" style="width: 9em;">发起时间</td>
+						<td class="middle" style="width: 9em;">结束时间</td>
+						<td class="last" style="min-width: 0.001em;">流程状态</td>
+					</tr>
+					<s:if test="%{!isReadonly()}">
+					<s:iterator var="wr" value="list_WorkflowModuleRelation">
+						<tr class="ui-widget-content row" >
+							<td class="first"  style="padding:0 0 0 4px;text-align:left;">
+								<a class="bs-case4Business-workFlow-processName" href="#"><s:property value="name"/></a>
+								<input type="hidden" class="bs-case4Business-workFlow-procInstId" value='<s:property value="pid"/>' />
+							</td>
+							<td class="middle"  style="padding:0 0 0 4px;text-align:left;">
+								<s:property value="subject"/>
+							</td>
+							<td class="middle"  style="padding:0 0 0 4px;text-align:left;">
+								<s:property value="startTime"/>
+							</td>
+							<td class="middle"  style="padding:0 0 0 4px;text-align:left;">
+								<s:property value="endTime"/>
+							</td>
+							<td class="last" style="padding:0 0 0 4px;text-align:left;">	
+								<s:if test="%{status == 1}">流转中</s:if>
+								<s:elseif test="%{status == 2}">已暂停</s:elseif>
+								<s:elseif test="%{status == 3}">已结束</s:elseif>
+							</td>
+						</tr>
+					</s:iterator>
+					</s:if>
+					<s:else>
+						<tr class="ui-widget-content row" >
+							<td colspan="5" class="last" style="padding:0 0 0 4px;text-align:left;">	
+								(无权查看流程信息)
+							</td>
+						</tr>
+					</s:else>
+				</table>
+			</div>
+		</div>
+		
 	        
 		<s:hidden name="e.uid" />
 		<s:hidden name="e.id" />
