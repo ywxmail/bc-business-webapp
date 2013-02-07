@@ -383,7 +383,7 @@
 								<input type="hidden" class="bs-case4Business-workFlow-procInstId" value='<s:property value="pid"/>' />
 							</td>
 							<td class="middle"  style="padding:0 0 0 4px;text-align:left;">
-								<s:property value="subject"/>
+								<div title='<s:property value="subject"/>'><s:property value="subject"/></div>
 							</td>
 							<td class="middle"  style="padding:0 0 0 4px;text-align:left;">
 								<s:property value="startTime"/>
@@ -410,6 +410,15 @@
 			</div>
 		</div>
 		
+	     <div  class="formTable2 ui-widget-content"  style="width:710px;">
+			<div class="ui-widget-header title" style="position:relative;">
+					<span class="text" >违章附件:</span>
+					<span id="showGroups6" class="verticalMiddle ui-icon ui-icon-carat-1-n" title='<s:text name="runcase.title.click2HiddenGroups"/>'></span>
+			</div>
+			<div id="div6">
+					 <s:property value="%{attachsUI}" escapeHtml="false"/>
+			</div>
+		</div>   
 	        
 		<s:hidden name="e.uid" />
 		<s:hidden name="e.id" />
