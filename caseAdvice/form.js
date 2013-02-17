@@ -12,6 +12,7 @@ bc.caseAdviceForm = {
 		bc.caseAdviceForm.foldingDiv($form,"showGroups3","div3");
 		bc.caseAdviceForm.foldingDiv($form,"showGroups4","div4");
 		bc.caseAdviceForm.foldingDiv($form,"showGroups5","div5");
+		bc.caseAdviceForm.foldingDiv($form,"showGroups6","div6");
 		
 		//鼠标单击流程名称事件
 		$form.find("#div5").delegate(".bs-case4Advice-workFlow-processName","click",function(){

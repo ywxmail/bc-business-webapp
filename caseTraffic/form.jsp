@@ -123,34 +123,6 @@
 							</td>
 							<td>
 							</td>
-							<!--
-								<td class="label">
-									<div id="divTitle" style="
-										<s:if test="%{ e.status == 1}">
-											visibility: visible;
-										</s:if>
-										<s:else>
-											visibility: hidden;
-										</s:else>
-										">
-										<s:text name="runcase.closeDate"/>:
-									</div>
-								</td>
-								<td class="value">
-									<div id="divValue" style="
-										<s:if test="%{ e.status == 1}">
-											visibility: visible;
-										</s:if>
-										<s:else>
-											visibility: hidden;
-										</s:else>
-										">
-										<input type="text" name="e.closeDate" data-validate='{"type": "date"}'
-										value='<s:date format="yyyy-MM-dd" name="e.closeDate" />'
-										class="bc-date" data-cfg='{changeYear:true}'/>
-									</div>
-								</td>
-							  -->
 						</tr>
 						<tr>
 							<td id="tdTitle1" class="label" style="
@@ -276,6 +248,21 @@
 				</div>
 			</div>
 		</s:if>
+		
+		<div  class="formTable ui-widget-content" style="width:668px;">
+			<div class="ui-widget-header title" style="position:relative;">
+				<span class="text" >附件:</span>
+				<ul class="inputIcons">
+					<li class="showGroups verticalMiddle ui-icon ui-icon-carat-1-s" style="display:none;" title='展开'></li>
+					<li class="hiddenGroups verticalMiddle ui-icon ui-icon-carat-1-n" title='隐藏'></li>
+				</ul>
+			</div>
+			<div class="bs-caseTraffic-Groups" style="border-width:1px 1px 0 0;margin-bottom:8px;">
+				<s:property value="%{attachsUI}" escapeHtml="false"/>
+			</div>
+		</div>
+		
+		
 		<s:hidden name="e.uid" />
 		<s:hidden name="e.id" />
 		<s:hidden name="e.author.id" />
