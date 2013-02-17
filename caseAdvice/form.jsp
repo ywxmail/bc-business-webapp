@@ -141,7 +141,7 @@
 							 		</ul>
 							 	</div>
 							</td>
-							<td class="label">*<s:text name="runcase.happenDate"/>:</td>
+							<td class="label">*<s:if test="%{e.type==6}"><s:text name="runcase.receive.happenDate"/></s:if><s:else><s:text name="runcase.happenDate"/></s:else>:</td>
 							<td class="value">
 								<div style="position : relative; display: block">
 									<input type="text" name="e.happenDate" data-validate='{"type":"datetime","required":true}'
@@ -200,34 +200,23 @@
 						</tr>
 						<s:if test="%{e.type==6}">
 						<tr>
-							<td class="label"><s:text name="runcase.receiveDate"/>:</td>
-							<td class="value" colspan="3" style="position:relative;">
-								<span style="position:relative;width: 25%;padding: 0;margin: 0;">
-								<input type="text" name="e.receiveDate" data-validate='{"type":"datetime"}' style="width: 25%;"
-								value='<s:date format="yyyy-MM-dd hh:mm:ss" name="e.receiveDate" />'
-								class="bc-datetime ui-widget-content" data-cfg='{changeYear:true,showSecond:true,timeFormat:"hh:mm:ss"}'/>
-								<ul class="inputIcons">
-									<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.receiveDate'></li>
-								</ul>
-								</span>
-							<s:text name="runcase.ridingStartTime"/>:
-							<span style="position:relative;width: 25%;padding: 0;margin: 0;">
-								<input type="text" name="e.ridingStartTime" data-validate='{"type":"datetime"}' style="width: 25%;"
+							<td class="label"><s:text name="runcase.ridingStartTime"/>:</td>
+							<td class="value relative">
+								<input type="text" name="e.ridingStartTime" data-validate='{"type":"datetime"}' 
 								value='<s:date format="yyyy-MM-dd hh:mm:ss" name="e.ridingStartTime" />'
 								class="bc-datetime ui-widget-content" data-cfg='{changeYear:true,showSecond:true,timeFormat:"hh:mm:ss"}'/>
 								<ul class="inputIcons">
 									<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.ridingStartTime'></li>
 								</ul>
-							</span>
-							<span style="position:relative;width: 24.8%;padding: 0;margin: 0;">
-							<s:text name="runcase.ridingEndTime"/>:
-								<input type="text" name="e.ridingEndTime" data-validate='{"type":"datetime"}' style="width: 24.8%;"
+							</td>
+							<td class="label"><s:text name="runcase.ridingStartTime"/>:</td>
+							<td class="value relative">
+								<input type="text" name="e.ridingEndTime" data-validate='{"type":"datetime"}' 
 								value='<s:date format="yyyy-MM-dd hh:mm:ss" name="e.ridingEndTime" />'
 								class="bc-datetime ui-widget-content" data-cfg='{changeYear:true,showSecond:true,timeFormat:"hh:mm:ss"}'/>
 								<ul class="inputIcons">
 									<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.ridingEndTime'></li>
 								</ul>
-							</span>
 							</td>
 						</tr>
 						</s:if><s:else>
