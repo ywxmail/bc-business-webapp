@@ -3,9 +3,34 @@ bc.caseTrafficForm = {
 	init : function(option,readonly) {
 		var $form = $(this);
 		
+		//鼠标单击流程名称事件
+		$form.delegate(".bs-caseTraffic-workFlow-processName","click",function(){
+			var $tr=$(this).closest("tr");
+			var procInstId=$tr.find(".bs-caseTraffic-workFlow-procInstId").val();
+			bc.page.newWin({
+				name: "工作空间",
+				mid: "workspace"+procInstId,
+				url: bc.root+ "/bc-workflow/workspace/open?id="+procInstId
+			});
+		});
+		
+		//绑定展开事件
+		$form.delegate(".showGroups","click",function(){
+			$(this).hide();
+			$(this).closest(".bs-caseTraffic-containers").find(".bs-caseTraffic-Groups").toggle('fast');
+			$(this).closest(".bs-caseTraffic-containers").find(".hiddenGroups").show();
+		});
+		
+		//绑定隐藏事件
+		$form.delegate(".hiddenGroups","click",function(){
+			$(this).hide();
+			$(this).closest(".bs-caseTraffic-containers").find(".bs-caseTraffic-Groups").toggle('fast');
+			$(this).closest(".bs-caseTraffic-containers").find(".showGroups").show();
+		});
+		
+		
 		if(readonly) return;
 		// 初始化多页签
-		//$form.find('#formTabs').tabs();
 		
 		if($form.find(":input[name='isMoreCar']").val()=="true"){
 			var carManId=$form.find(":input[name='carManId']").val();
@@ -28,26 +53,6 @@ bc.caseTrafficForm = {
 		if($form.find(":input[name='isNullCar']").val()=="true"){
 			bc.msg.alert("该司机还没有驾驶任何车辆！");	
 		}
-//		if($form.find(":input[name='isMoreCarMan']").val()=="true"){
-//			var carId=$form.find(":input[name='carId']").val();
-//			var url=bc.root +"/bc-business/selectMoreCarManWithCar/selectCarMans?carId="+carId;
-//			bc.page.newWin({
-//				url: url,
-//				name: "选择司机信息",
-//				mid: "selectCarMan",
-//				afterClose: function(carMan){
-//					if(carMan){
-//						$form.find(":input[name='e.driverId']").val(carMan.id);
-//						$form.find(":input[name='e.driverName']").val(carMan.name);
-//						$form.find(":input[name='e.driverCert']").val(carMan.cert4FWZG);
-//					}
-//				}
-//			});
-//		}
-//		
-//		if($form.find(":input[name='isNullCarMan']").val()=="true"){
-//			bc.msg.alert("该车辆还没有被任何司机驾驶！请自行填写司机信息");	
-//		}
 		
 		//绑定车队事件
 		$form.find(":input[name='e.motorcadeId']").change(function(){
@@ -219,31 +224,6 @@ bc.caseTrafficForm = {
 			}
 		});
 		
-		//鼠标双击流程表格事件
-		$form.find("#tdwfs").delegate(".bs-carTraffic-workFlow","dblclick",function(){
-			var procInstId=$(this).find(".bs-carTraffic-workFlow-procInstId").val();
-			bc.page.newWin({
-				name: "工作空间",
-				mid: "workspace"+procInstId,
-				url: bc.root+ "/bc-workflow/workspace/open?id="+procInstId
-			});
-		});
-		
-		//绑定展开事件
-		$form.delegate(".showGroups","click",function(){
-			$(this).hide();
-			$(this).closest(".formTable").find(".bs-caseTraffic-Groups").toggle('fast');
-			$(this).closest(".formTable").find(".hiddenGroups").show();
-		});
-		
-		//绑定隐藏事件
-		$form.delegate(".hiddenGroups","click",function(){
-			$(this).hide();
-			$(this).closest(".formTable").find(".bs-caseTraffic-Groups").toggle('fast');
-			$(this).closest(".formTable").find(".showGroups").show();
-		});
-
-
 	},
 	
 	closefile : function(){

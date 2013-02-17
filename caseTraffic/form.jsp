@@ -6,7 +6,7 @@
 	data-initMethod='bc.caseTrafficForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
 	<s:form name="caseTrafficForm" theme="simple">
-		<div class="formTable ui-widget-content" style="width:668px;">
+		<div class="formTable ui-widget-content bs-caseTraffic-containers" style="width:668px;">
 			<div class="ui-widget-header title" style="position:relative;">
 				<span class="text" >基本信息区:</span>
 				<ul class="inputIcons">
@@ -205,42 +205,42 @@
 			</div>
 		</div>
 		<s:if test="%{!isReadonly()}">
-			<div  class="formTable ui-widget-content" style="width:668px;">
+			<div  class="formTable2 ui-widget-content bs-caseTraffic-containers"  style="width:668px;">
 				<div class="ui-widget-header title" style="position:relative;">
-					<span class="text" >交通违法流程信息区:</span>
+					<span class="text" >流程信息区:</span>
 					<ul class="inputIcons">
-						<!-- <li id="startWorkFlow"  class="inputIcon ui-icon ui-icon-play" title='点击发起入职流程'></li> -->
 						<li class="showGroups verticalMiddle ui-icon ui-icon-carat-1-s" style="display:none;" title='展开'></li>
 						<li class="hiddenGroups verticalMiddle ui-icon ui-icon-carat-1-n" title='隐藏'></li>
 					</ul>
 				</div>
 				<div class="bs-caseTraffic-Groups" style="border-width:1px 1px 0 0;margin-bottom:8px;">
-					<table id="tdwfs" class="table bc-grid" cellspacing="0" cellpadding="0" style="width:100%;">
+					<table class="table bc-grid" cellspacing="0" cellpadding="0" style="width:100%;">
 						<tr class="header row">
-							<td class="first" style="width: 16.5em;">流程名称</td>
-							<td class="middle" style="width: 12em;">发起时间</td>
-							<td class="middle" style="width: 6em;">流程状态</td>
-							<td class="last" >结束时间</td>
+							<td class="first" style="width: 12em;">名称</td>
+							<td class="middle" style="width: 10em;">主题</td>
+							<td class="middle" style="width: 9em;">发起时间</td>
+							<td class="middle" style="width: 9em;">结束时间</td>
+							<td class="last" style="min-width: 0.001em;">流程状态</td>
 						</tr>
-						<s:iterator var="ctf" value="carTrafficHandleFlowList">
-							<tr class="ui-widget-content row bs-carTraffic-workFlow" title="双击查看流程详细信息！">
-								<td class="first"  style="padding:0;text-align:left;">
-									<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 5px;background:none;" type="text" class="ui-widget-content" 
-										readonly="readonly" value='<s:property value="name"/>' />
-									<input type="hidden" class="bs-carTraffic-workFlow-procInstId" value='<s:property value="pid"/>' />
+						<s:iterator var="wr" value="carTrafficHandleFlowList">
+							<tr class="ui-widget-content row" >
+								<td class="first"  style="padding:0 0 0 4px;text-align:left;">
+									<a class="bs-caseTraffic-workFlow-processName" href="#"><s:property value="name"/></a>
+									<input type="hidden" class="bs-caseTraffic-workFlow-procInstId" value='<s:property value="pid"/>' />
 								</td>
-								<td class="middle"  style="padding:0;text-align:left;">
-									<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 5px;background:none;" type="text" class="ui-widget-content" 
-										readonly="readonly" value='<s:property value="startTime"/>' />
+								<td class="middle"  style="padding:0 0 0 4px;text-align:left;" title='<s:property value="subject"/>'>
+									<s:property value="subject"/>
 								</td>
-								<td class="middle" style="padding:0;text-align:left;padding-left:5px;">	
+								<td class="middle"  style="padding:0 0 0 4px;text-align:left;">
+									<s:property value="startTime"/>
+								</td>
+								<td class="middle"  style="padding:0 0 0 4px;text-align:left;">
+									<s:property value="endTime"/>
+								</td>
+								<td class="last" style="padding:0 0 0 4px;text-align:left;">	
 									<s:if test="%{status == 1}">流转中</s:if>
 									<s:elseif test="%{status == 2}">已暂停</s:elseif>
 									<s:elseif test="%{status == 3}">已结束</s:elseif>
-								</td>
-								<td class="last"  style="padding:0;text-align:left;">
-									<input style="width:100%;height:100%;border:none;margin:0;padding:0 0 0 5px;background:none;" type="text" class="ui-widget-content" 
-										readonly="readonly" value='<s:property value="endTime"/>' />
 								</td>
 							</tr>
 						</s:iterator>
@@ -249,7 +249,7 @@
 			</div>
 		</s:if>
 		
-		<div  class="formTable ui-widget-content" style="width:668px;">
+		<div  class="formTable ui-widget-content bs-caseTraffic-containers" style="width:668px;">
 			<div class="ui-widget-header title" style="position:relative;">
 				<span class="text" >附件:</span>
 				<ul class="inputIcons">

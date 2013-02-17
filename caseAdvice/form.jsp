@@ -426,7 +426,7 @@
 		</s:if>
 		
 		<s:if test="%{!isReadonly()&&(e.type == 2||e.type == 6)}">
-			<div  class="formTable2 ui-widget-content bs-tempDriver-containers"  style="width:710px;">
+			<div  class="formTable2 ui-widget-content"  style="width:710px;">
 				<div class="ui-widget-header title" style="position:relative;">
 					<span class="text" >流程信息区:</span>
 					<span id="showGroups5" class="verticalMiddle ui-icon ui-icon-carat-1-n" title='<s:text name="runcase.title.click2HiddenGroups"/>'></span>
