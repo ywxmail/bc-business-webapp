@@ -6,7 +6,7 @@
 	data-js='<s:url value="/bc-business/carManRisk/form.js" />,<s:url value="/bc-business/bs.js" />'
 	data-initMethod='bc.carManRiskForm.init'
 	data-option='<s:property value="%{formPageOption}"/>' style="overflow-y:auto;">
-	<s:form name="caseAdviceForm" theme="simple" cssStyle="width:710px;padding:8px;max-height:600px;">
+	<s:form name="caseAdviceForm" theme="simple" cssStyle="width:710px;padding:8px;max-height:500px;">
 		<div class="ui-widget-content item" style="margin-bottom:4px;">
 			<div class="ui-widget-header title" style="position:relative;">
 				<span class="text" >基本信息:</span>
