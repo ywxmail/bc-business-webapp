@@ -11,10 +11,10 @@
 				<table class="formFields" cellspacing="2" cellpadding="0">
 					<tbody>
 						<tr class="widthMarker">
-							<td></td>
-							<td style="width: 200px;">&nbsp;</td>
 							<td style="width: 80px;">&nbsp;</td>
 							<td style="width: 200px;">&nbsp;</td>
+							<td style="width: 90px;">&nbsp;</td>
+							<td >&nbsp;</td>
 						</tr>
 						<tr>
 							<td class="label"><s:text name="jiaoWeiADVICE.driverCert"/>:</td>
@@ -42,22 +42,24 @@
 				<table class="formFields" cellspacing="2" cellpadding="0">
 					<tbody>
 						<tr class="widthMarker">
-							<td></td>
-							<td style="width: 200px;">&nbsp;</td>
 							<td style="width: 80px;">&nbsp;</td>
 							<td style="width: 200px;">&nbsp;</td>
+							<td style="width: 90px;">&nbsp;</td>
+							<td >&nbsp;</td>
 						</tr>
 						<tr>
 							<td class="label"><s:text name="jiaoWeiADVICE.advisorName"/>:</td>
-							<td class="value"><s:textfield name="e.advisorName" cssClass="ui-widget-content"/></td>
+							<td class="value"><s:textfield name="e.advisorName" cssClass="ui-widget-content" cssStyle="width:73%;"/>&nbsp;性别:<s:textfield name="e.advisorSex" cssStyle="width: 1.5em" cssClass="ui-widget-content"/></td>
 							<td class="label"><s:text name="jiaoWeiADVICE.advisorCert"/>:</td>
 							<td class="value"><s:textfield name="e.advisorCert" cssClass="ui-widget-content"/></td>
 						</tr>
 						<tr>
 							<td class="label"><s:text name="jiaoWeiADVICE.advisorPhone"/>:</td>
 							<td class="value"><s:textfield name="e.advisorPhone" cssClass="ui-widget-content"/></td>
-							<td class="label"><s:text name="jiaoWeiADVICE.advisorAge"/>:</td>
-							<td class="value"><s:textfield name="e.advisorAge" cssStyle="width: 4em" cssClass="ui-widget-content"/>&nbsp;&nbsp;性别:<s:textfield name="e.advisorSex" cssStyle="width: 1.5em" cssClass="ui-widget-content"/></td>
+							<td class="label"><s:text name="jiaoWeiADVICE.passengerCount"/>:</td>
+							<td class="value">&nbsp;&nbsp;男<s:textfield name="e.passengerManCount" data-validate='{"type":"number",max:9}' cssStyle="width:2.5em;" cssClass="ui-widget-content"/>&nbsp;女<s:textfield name="e.passengerWomanCount" cssStyle="width:2.5em;" 
+								data-validate='{"type":"number",max:9}' cssClass="ui-widget-content" />&nbsp;童<s:textfield name="e.passengerChildCount"cssStyle="width:2.5em;" data-validate='{"type":"number",max:9}' cssClass="ui-widget-content"/>
+							</td>
 						</tr>
 						<tr>
 							<td class="topLabel"><s:text name="jiaoWeiADVICE.content"/>:</td>
@@ -77,10 +79,10 @@
 				<table class="formFields" cellspacing="2" cellpadding="0">
 					<tbody>
 						<tr class="widthMarker">
-							<td></td>
-							<td style="width: 200px;">&nbsp;</td>
 							<td style="width: 80px;">&nbsp;</td>
 							<td style="width: 200px;">&nbsp;</td>
+							<td style="width: 90px;">&nbsp;</td>
+							<td >&nbsp;</td>
 						</tr>
 						<tr>
 							<td class="label"><s:text name="jiaoWeiADVICE.syncCode"/>:</td>
@@ -153,5 +155,7 @@
 			</fieldset>
 		</div>
 		<s:hidden name="e.id" />
+		<!-- 投诉人性别 -->
+		<s:hidden name="e.advisorAge" />
 	</s:form>
 </div>
