@@ -161,26 +161,32 @@
 								value="e.advisorSex" cssStyle="width:auto;"/>
 								<s:text name="runcase.advisorAge" />:<s:textfield name="e.advisorAge" cssStyle="width:2em;" cssClass="ui-widget-content"/>
 							</td>
-							<s:if test="type == 2"><!-- 客管投诉 -->
+							<!--  
+							<s:if test="type == 2"> 客管投诉 
 								<td class="label">*<s:text name="runcase.receiveCode" />:</td> 
 								<td class="value">
 									<s:textfield name="e.receiveCode" data-validate="required" cssClass="ui-widget-content"/>
 								</td>
 							</s:if>
-							<s:else><!-- 公司投诉 -->
-								<s:if test="%{e.id != null && e.id < 10000000}"> <!-- 旧数据 -->
+							<s:else> 公司投诉 
+								<s:if test="%{e.id != null && e.id < 10000000}"> 旧数据
 									<td class="label"><s:text name="runcase.company.receiveCode" />:</td>
 									<td class="value">
 										<s:textfield name="e.receiveCode" cssClass="ui-widget-content"/>
 									</td>
 								</s:if>
-								<s:else><!-- 新数据 -->
+								<s:else>新数据
 									<td class="label">*<s:text name="runcase.company.receiveCode" />:</td>
 									<td class="value">
 										<s:textfield name="e.receiveCode" cssClass="ui-widget-content" data-validate="required"/>
 									</td>
 								</s:else>
 							</s:else>
+							-->
+								<td class="label">*<s:text name="runcase.receiveCode" />:</td> 
+								<td class="value">
+									<s:textfield name="e.receiveCode" data-validate="required" cssClass="ui-widget-content"/>
+								</td>
 						</tr>
 						<tr>
 							<td class="label">*<s:text name="runcase.advisorPhone" />:</td>
