@@ -73,7 +73,7 @@
 								</td>
 								<s:if test="%{e.status!=1}">
 									<td class="label" >*<s:text name="car.manageNo"/>:</td>
-									<td class="value" ><div class="bc-relativeContainer" style="width:36%;"><s:textfield name="e.manageNo" data-validate='{"required":true,"type":"digits","max":4499,"min":1101,msg:"管理号必须填写1101~4499！"}' 
+									<td class="value" ><div class="bc-relativeContainer" style="width:36%;"><s:textfield name="e.manageNo" data-validate='{"required":true,"type":"digits","max":4599,"min":1101,msg:"管理号必须填写1101~4599！"}' 
 										cssClass="ui-widget-content" cssStyle="width: 100%;"/>
 										<ul class="inputIcons" >
 											<li class="inputIcon ui-icon ui-icon-lightbulb" title='<s:text name="car.getManageNoInfoTips"/>' id="getManageNoInfo">
