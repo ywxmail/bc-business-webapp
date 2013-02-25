@@ -70,6 +70,7 @@ bc.caseTrafficForm = {
 					$form.find(":input[name='e.carId']").val(car.id);
 					$form.find(":input[name='e.carPlate']").val(car.plate);
 					$form.find(":input[name='e.motorcadeId']").val(car.motorcadeId);
+					$form.find(":input[name='e.company']").val(car.company);
 					var motorcadeName = $form.find(":input[name='e.motorcadeId']").find("option:selected").text();
 					$form.find(":hidden[name='e.motorcadeName']").val(motorcadeName);
 					$form.find(":hidden[name='e.charger']").val(car.charger);
