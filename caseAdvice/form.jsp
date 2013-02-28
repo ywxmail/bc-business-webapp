@@ -80,7 +80,7 @@
 							 		</ul>
 								</div>
 								<s:radio name="e.driverSex" list="#{'1':'男','2':'女'}" 
-								value="e.sex" cssStyle="width:auto;"/>
+								value="e.driverSex" cssStyle="width:auto;"/>
 							</td>
 							<td class="label"><s:text name="runcase.driverCert"/>:</td>
 							<td class="value"><s:textfield name="e.driverCert" cssClass="ui-widget-content"/></td>
@@ -158,29 +158,35 @@
 							<td class="value">
 								<s:textfield name="e.advisorName" cssStyle="width:8em;" data-validate="required" cssClass="ui-widget-content"/>
 								 <s:radio name="e.advisorSex" list="#{'1':'男','2':'女'}" 
-								value="e.sex" cssStyle="width:auto;"/>
+								value="e.advisorSex" cssStyle="width:auto;"/>
 								<s:text name="runcase.advisorAge" />:<s:textfield name="e.advisorAge" cssStyle="width:2em;" cssClass="ui-widget-content"/>
 							</td>
-							<s:if test="type == 2"><!-- 客管投诉 -->
+							<!--  
+							<s:if test="type == 2"> 客管投诉 
 								<td class="label">*<s:text name="runcase.receiveCode" />:</td> 
 								<td class="value">
 									<s:textfield name="e.receiveCode" data-validate="required" cssClass="ui-widget-content"/>
 								</td>
 							</s:if>
-							<s:else><!-- 公司投诉 -->
-								<s:if test="%{e.id != null && e.id < 10000000}"> <!-- 旧数据 -->
+							<s:else> 公司投诉 
+								<s:if test="%{e.id != null && e.id < 10000000}"> 旧数据
 									<td class="label"><s:text name="runcase.company.receiveCode" />:</td>
 									<td class="value">
 										<s:textfield name="e.receiveCode" cssClass="ui-widget-content"/>
 									</td>
 								</s:if>
-								<s:else><!-- 新数据 -->
+								<s:else>新数据
 									<td class="label">*<s:text name="runcase.company.receiveCode" />:</td>
 									<td class="value">
 										<s:textfield name="e.receiveCode" cssClass="ui-widget-content" data-validate="required"/>
 									</td>
 								</s:else>
 							</s:else>
+							-->
+								<td class="label">*<s:text name="runcase.receiveCode" />:</td> 
+								<td class="value">
+									<s:textfield name="e.receiveCode" data-validate="required" cssClass="ui-widget-content"/>
+								</td>
 						</tr>
 						<tr>
 							<td class="label">*<s:text name="runcase.advisorPhone" />:</td>
@@ -219,28 +225,7 @@
 								</ul>
 							</td>
 						</tr>
-						</s:if><s:else>
-						<tr>
-							<td class="label"><s:text name="runcase.ridingStartTime"/>:</td>
-							<td class="value" style="position:relative;display: block;">
-								<input type="text" name="e.ridingStartTime" data-validate='{"type":"datetime"}'
-								value='<s:date format="yyyy-MM-dd hh:mm:ss" name="e.ridingStartTime" />'
-								class="bc-datetime ui-widget-content" data-cfg='{changeYear:true,showSecond:true,timeFormat:"hh:mm:ss"}'/>
-								<ul class="inputIcons">
-									<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.ridingStartTime'></li>
-								</ul>
-							</td>
-							<td class="label"><s:text name="runcase.ridingEndTime"/>:</td>
-							<td class="value" style="position:relative;display: block;">
-								<input type="text" name="e.ridingEndTime" data-validate='{"type":"datetime"}'
-								value='<s:date format="yyyy-MM-dd hh:mm:ss" name="e.ridingEndTime" />'
-								class="bc-datetime ui-widget-content" data-cfg='{changeYear:true,showSecond:true,timeFormat:"hh:mm:ss"}'/>
-								<ul class="inputIcons">
-									<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.ridingEndTime'></li>
-								</ul>
-							</td>
-						</tr>
-						</s:else>
+						</s:if>
 						<tr>
 							<td class="label"><s:text name="runcase.path"/>:</td>
 							<td class="value" colspan="3">
