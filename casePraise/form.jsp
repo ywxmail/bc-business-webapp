@@ -13,6 +13,7 @@
 				<ul class="tabs ui-helper-reset">
 	   				<li class="tab ui-widget-content first active"><a href="#otherFormFields1" class="ui-state-default ui-state-active">详细信息</a></li>
 					<li class="tab ui-widget-content"><a href="#otherFormFields2" class="ui-state-default">处理情况</a></li>
+					<li class="tab ui-widget-content"><a href="#attachment" class="ui-state-default">附件</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">回发企业意见</a></li>
 	          	</ul>
            	</div>
@@ -298,6 +299,9 @@
 						</tr>
 					</tbody>
 				</table>
+			</div>
+			<div id="attachment" class="content" >
+				<s:property value="%{attachsUI}" escapeHtml="false"/>
 			</div>
 		</div>
 	</div>

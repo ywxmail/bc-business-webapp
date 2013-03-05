@@ -11,6 +11,7 @@ bc.caseLostForm = {
 		bc.caseLostForm.foldingDiv($form,"showGroups2","div2",false);
 		bc.caseLostForm.foldingDiv($form,"showGroups3","div3",false);
 		bc.caseLostForm.foldingDiv($form,"showGroups4","div4",true);
+		bc.caseLostForm.foldingDiv($form,"showGroups5","div5",false);
 		//领取绑定事件
 		bc.caseLostForm.foldingDiv($form,"tookId","div4",false);
 		
