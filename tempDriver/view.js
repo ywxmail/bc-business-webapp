@@ -170,12 +170,6 @@ bs.tempDriverView = {
 							case 4:
 								msg=pairDriverMsg+'，其最新参与的入职审批流程</b>审批不通过</b>！';
 								break;
-							case 5:
-								msg=pairDriverMsg+'，其最新参与的入职审批流程中</b>没有选择对班</b>，两流程不匹配';
-								break;
-							case 6:
-								msg=pairDriverMsg+'，其最新参与的入职审批流程中</b>所选择对班 不是当前司机</b>，两流程不匹配';
-								break;
 							default:alert("other!");
 						}
 					}
@@ -183,7 +177,7 @@ bs.tempDriverView = {
 					$msg=bc.msg.alert(msg);
 				}else{//验证成功
 					var data=[];
-					msg+="确定对"+name+"</b>";
+					msg+="确定对<b>"+name+"</b>";
 					
 					//申请属性
 					var applyAttr= $hidden.applyAttr;
