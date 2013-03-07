@@ -31,14 +31,12 @@ bs.tempDriverView = {
 			case "workflow.carManEntry":
 				if(!bs.tempDriverView.starflowing)
 					bs.tempDriverView.startFlow($page,"CarManEntry");
-				
 				break;
 			case "workflow.requestServiceCertificate":
-				bc.msg.alert("司机服务资格办理流程开发中。。。");
 				
-				//if(!bs.tempDriverView.starflowing){
-					//bs.tempDriverView.startFlow($page,"RequestServiceCertificate");
-				//}
+				if(!bs.tempDriverView.starflowing){
+					bs.tempDriverView.startFlow4RSC.call($page);
+				}
 				break;
 			case "operate.interviewDate":
 				if(!bs.tempDriverView.operate)
@@ -66,10 +64,10 @@ bs.tempDriverView = {
 			ids+=$(this).find("td").attr("data-id")+",";
 		});
 		
-		$trsRight = $page.find(">.bc-grid>.data>.right tr.ui-state-highlight");
+		var $trsRight = $page.find(">.bc-grid>.data>.right tr.ui-state-highlight");
 		var names="";
 		$trsRight.each(function(){
-			names+=$(this).find("td:eq(2)").attr("data-value")+"、";
+			names+=$(this).data("hidden").name+"、";
 		});
 		
 		var msg="";
@@ -78,8 +76,6 @@ bs.tempDriverView = {
 		if(flowKey=="CarManEntry"){
 			msg+="<b>司机新入职、留用审批流程</b>吗？";
 			flagStatus=true;
-		}else if(flowKey=="RequestServiceCertificate"){
-			msg+="<b>司机服务资格证办理流程</b>吗？";
 		}else{
 			return;
 		}
@@ -112,6 +108,191 @@ bs.tempDriverView = {
 					bs.tempDriverView.starflowing = false;
 				},"发起流程确认窗口"
 		);
+	},
+	/** 服务资格办证流程的发起 **/
+	startFlow4RSC : function() {
+		var $page = $(this);
+		// 确定选中的行
+		var $trs = $page.find(">.bc-grid>.data>.left tr.ui-state-highlight");
+		if($trs.size()==0){
+			bc.msg.slide("请选择需要发起流程的招聘司机信息！");
+			return;
+		}else if($trs.size()>1){
+			bc.msg.slide("只能选择一个司机！");
+			return;
+		}
+		
+		var id=$trs.find("td").attr("data-id");
+		var $trsRight = $page.find(">.bc-grid>.data>.right tr.ui-state-highlight");
+		var $hidden = $trsRight.data("hidden");
+		var name=$hidden.name;
+		
+		bs.tempDriverView.starflowing = true;
+		//验证司机是否符合发起服务资格办理流程的异步请求验证处理
+		bc.ajax({
+			url:bc.root + "/bc-business/tempDriver/requestServiceCertificateValidate",
+			data:{driverId:id},
+			dataType:"json",
+			success:function(json){
+				var msg="";
+				var $msg;
+				//验证失败
+				if(!json.validate){
+					if(json.validate_lost_type!=null){
+						switch(json.validate_lost_type){
+							case 0:msg=json.msg;break;
+							case 1:msg="<b>"+name+"</b>"+"未参与入职审批！";break;
+							case 2:
+								msg='<b>'+name+'</b>最新参与的入职审批流程<b>未结束</b>！';
+								break;
+							case 3:
+								msg='<b>'+name+'</b>最新参与的入职审批流程<b>选择放弃入职审批</b>！';
+								break;
+							case 4:
+								msg='<b>'+name+'</b>最新参与的入职审批流程<b>审批不通过</b>！';
+								break;
+							default:alert("other!");
+						}
+					}else if(json.validate_pair_lost_type!=null){
+						var pairDriverMsg='<b>'+name+'</b>最新参与入职审批流程中所选择的对班司机'
+							+'<b><a href="#" class="pairDriver" data-pairDriver-id="'+json.pair_id+'">'+json.pair_name+'</a></b>';
+						
+						switch(json.validate_pair_lost_type){
+							case 1:
+								msg=pairDriverMsg+'未参与入职审批！';
+								break;
+							case 2:
+								msg=pairDriverMsg+'，其最新参与的入职审批流程</b>未结束</b>！';
+								break;
+							case 3:
+								msg=pairDriverMsg+'，其最新参与的入职审批流程</b>选择放弃入职审批</b>！';
+								break;
+							case 4:
+								msg=pairDriverMsg+'，其最新参与的入职审批流程</b>审批不通过</b>！';
+								break;
+							default:alert("other!");
+						}
+					}
+					bs.tempDriverView.starflowing=false;
+					$msg=bc.msg.alert(msg);
+				}else{//验证成功
+					var data=[];
+					msg+="确定对<b>"+name+"</b>";
+					
+					//申请属性
+					var applyAttr= $hidden.applyAttr;
+					var applyAttrType="4";//1：新考，2：外司加入，3：留用，4：其它
+					if(applyAttr==""||applyAttr.indexOf("新")>-1){
+						applyAttrType="1";
+					}else if(applyAttr.indexOf("外")>-1){
+						applyAttrType="2";
+					}else if(applyAttr.indexOf("留")>-1){
+						applyAttrType="3";
+					}
+					
+					
+					data.push({
+						no:1,
+						id:id,
+						name:name,
+						certIdentity:$hidden.certIdentity,
+						certCYZG:$hidden.certCYZG,
+						pid:json.pid,
+						pname:json.pname,
+						applyAttrType:applyAttrType
+					});
+					
+					if(json.isPairDriver){
+						msg+="和对班"
+							+'<b><a href="#" class="pairDriver" data-pairDriver-id="'+json.pair_id+'">'+json.pair_name+'</a></b>';
+						applyAttr=json.pair_applyAttr;
+						applyAttrType="4";//1：新考，2：外司加入，3：留用，4：其它
+						if(applyAttr==""||applyAttr.indexOf("新")>-1){
+							applyAttrType="1";
+						}else if(applyAttr.indexOf("外")>-1){
+							applyAttrType="2";
+						}else if(applyAttr.indexOf("留")>-1){
+							applyAttrType="3";
+						}
+						
+						data.push({
+							no:2,
+							id:json.pair_id,
+							name:json.pair_name,
+							certIdentity:json.pair_certIdentity,
+							certCYZG:json.pair_certCYZG,
+							pid:json.pair_pid,
+							pname:json.pair_pname,
+							applyAttrType:applyAttrType
+						})
+					}
+					
+					msg+="发起司机服务资格证办理流程吗？"
+					
+					$msg=bc.msg.confirm(msg
+							,function(){
+								bc.ajax({
+									url : bc.root + "/bc-business/tempDriver/startFlow",
+									data : {listDriver:$.toJSON(data),flowKey:"RequestServiceCertificate"},
+									dataType : "json",
+									success : function(json) {
+										bc.msg.slide(json.msg);
+										if(json.success){
+											bc.grid.reloadData($page);
+											bc.sidebar.refresh();
+											//打开工作空间
+											bc.page.newWin({
+												name: "工作空间",
+												mid: "workspace"+json.procInstId,
+												url: bc.root+ "/bc-workflow/workspace/open?id="+json.pid
+											});
+											
+										}
+										bs.tempDriverView.starflowing = false;
+									}
+								});
+							},function(){
+								bs.tempDriverView.starflowing = false;
+							},"发起流程确认窗口"
+						);
+				}
+				bs.tempDriverView.openPairDriver.call($msg);
+			}
+		});
+	},
+	/** 查看流程 **/
+	openWorkFlow:function(){
+		var $msgPage=$(this);
+		var $a=$msgPage.find(".process");
+		if($a==null)return;
+		var pid=$a.attr("data-process-id");
+		$a.click(function(){
+			//打开工作空间
+			bc.page.newWin({
+				name: "工作空间",
+				mid: "workspace"+pid,
+				url: bc.root+ "/bc-workflow/workspace/open?id="+pid
+			});
+		})
+		
+	},
+	/** 查看对班司机信息 **/
+	openPairDriver:function(){
+		var $msgPage=$(this);
+		var $a=$msgPage.find(".pairDriver");
+		if($a==null)return;
+		var id=$a.attr("data-pairDriver-id");
+		var name=$a.text();
+		
+		$a.click(function(){
+			bc.page.newWin({
+				mid: "tempDriver." + id,
+				name: name,
+				url: bc.root + "/bc-business/tempDriver/open",
+				data: {id:id}
+			});
+		})
+		
 	},
 	/** 更新状态 **/
 	updateStatus :function($page){
