@@ -209,7 +209,7 @@
 							<td class="label"><s:text name="runcase.ridingStartTime"/>:</td>
 							<td class="value relative">
 								<input type="text" name="e.ridingStartTime" data-validate='{"type":"datetime"}' 
-								value='<s:date format="yyyy-MM-dd hh:mm:ss" name="e.ridingStartTime" />'
+								value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.ridingStartTime" />'
 								class="bc-datetime ui-widget-content" data-cfg='{changeYear:true,showSecond:true,timeFormat:"hh:mm:ss"}'/>
 								<ul class="inputIcons">
 									<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.ridingStartTime'></li>
@@ -218,7 +218,7 @@
 							<td class="label"><s:text name="runcase.ridingStartTime"/>:</td>
 							<td class="value relative">
 								<input type="text" name="e.ridingEndTime" data-validate='{"type":"datetime"}' 
-								value='<s:date format="yyyy-MM-dd hh:mm:ss" name="e.ridingEndTime" />'
+								value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.ridingEndTime" />'
 								class="bc-datetime ui-widget-content" data-cfg='{changeYear:true,showSecond:true,timeFormat:"hh:mm:ss"}'/>
 								<ul class="inputIcons">
 									<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.ridingEndTime'></li>

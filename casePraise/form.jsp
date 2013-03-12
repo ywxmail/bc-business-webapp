@@ -39,7 +39,7 @@
 											<td class="label">*<s:text name="runcase.receiveDate4"/>:</td>
 											<td class="value" style="position:relative;display: block;">
 												<input type="text" name="e.receiveDate" data-validate='{"type":"datetime","required":true}'
-												value='<s:date format="yyyy-MM-dd hh:mm:ss" name="e.receiveDate" />'
+												value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.receiveDate" />'
 												class="bc-datetime ui-widget-content" data-cfg='{changeYear:true,showSecond:true,timeFormat:"hh:mm:ss"}'/>
 												<ul class="inputIcons">
 													<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.receiveDate'></li>
@@ -206,7 +206,7 @@
 											<td class="label"><s:text name="runcase.ridingStartTime"/>:</td>
 											<td class="value" style="position:relative;display: block;">
 												<input type="text" name="e.ridingStartTime" data-validate='{"type":"datetime"}'
-												value='<s:date format="yyyy-MM-dd hh:mm:ss" name="e.ridingStartTime" />'
+												value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.ridingStartTime" />'
 												class="bc-datetime ui-widget-content" data-cfg='{changeYear:true,showSecond:true,timeFormat:"hh:mm:ss"}'/>
 												<ul class="inputIcons">
 													<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.ridingStartTime'></li>
@@ -215,7 +215,7 @@
 											<td class="label"><s:text name="runcase.ridingEndTime"/>:</td>
 											<td class="value" style="position:relative;display: block;">
 												<input type="text" name="e.ridingEndTime" data-validate='{"type":"datetime"}'
-												value='<s:date format="yyyy-MM-dd hh:mm:ss" name="e.ridingEndTime" />'
+												value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.ridingEndTime" />'
 												class="bc-datetime ui-widget-content" data-cfg='{changeYear:true,showSecond:true,timeFormat:"hh:mm:ss"}'/>
 												<ul class="inputIcons">
 													<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.ridingEndTime'></li>
