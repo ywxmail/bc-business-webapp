@@ -410,48 +410,45 @@
 			
 		</s:if>
 		
-		<s:if test="%{!isReadonly()&&(e.type == 2||e.type == 6)}">
-			<div  class="formTable2 ui-widget-content"  style="width:710px;">
-				<div class="ui-widget-header title" style="position:relative;">
-					<span class="text" >流程信息区:</span>
-					<span id="showGroups5" class="verticalMiddle ui-icon ui-icon-carat-1-n" title='<s:text name="runcase.title.click2HiddenGroups"/>'></span>
-				</div>
-				<div id="div5" class="content">
-					<table class="table bc-grid" cellspacing="0" cellpadding="0" style="width:100%;">
-						<tr class="header row">
-							<td class="first" style="width: 12em;">名称</td>
-							<td class="middle" style="width: 15.5em;">主题</td>
-							<td class="middle" style="width: 9em;">发起时间</td>
-							<td class="middle" style="width: 9em;">结束时间</td>
-							<td class="last" style="min-width: 0.001em;">流程状态</td>
-						</tr>
-						<s:iterator var="wr" value="list_WorkflowModuleRelation">
-							<tr class="ui-widget-content row" >
-								<td class="first"  style="padding:0 0 0 4px;text-align:left;">
-									<a class="bs-case4Advice-workFlow-processName" href="#"><s:property value="name"/></a>
-									<input type="hidden" class="bs-case4Advice-workFlow-procInstId" value='<s:property value="pid"/>' />
-								</td>
-								<td class="middle"  style="padding:0 0 0 4px;text-align:left;">
-									<s:property value="subject"/>
-								</td>
-								<td class="middle"  style="padding:0 0 0 4px;text-align:left;">
-									<s:property value="startTime"/>
-								</td>
-								<td class="middle"  style="padding:0 0 0 4px;text-align:left;">
-									<s:property value="endTime"/>
-								</td>
-								<td class="last" style="padding:0 0 0 4px;text-align:left;">	
-									<s:if test="%{status == 1}">流转中</s:if>
-									<s:elseif test="%{status == 2}">已暂停</s:elseif>
-									<s:elseif test="%{status == 3}">已结束</s:elseif>
-								</td>
-							</tr>
-						</s:iterator>
-					</table>
-				</div>
+		<div  class="formTable2 ui-widget-content"  style="width:710px;">
+			<div class="ui-widget-header title" style="position:relative;">
+				<span class="text" >流程信息区:</span>
+				<span id="showGroups5" class="verticalMiddle ui-icon ui-icon-carat-1-n" title='<s:text name="runcase.title.click2HiddenGroups"/>'></span>
 			</div>
-		</s:if>
-		
+			<div id="div5" class="content">
+				<table class="table bc-grid" cellspacing="0" cellpadding="0" style="width:100%;">
+					<tr class="header row">
+						<td class="first" style="width: 12em;">名称</td>
+						<td class="middle" style="width: 15.5em;">主题</td>
+						<td class="middle" style="width: 9em;">发起时间</td>
+						<td class="middle" style="width: 9em;">结束时间</td>
+						<td class="last" style="min-width: 0.001em;">流程状态</td>
+					</tr>
+					<s:iterator var="wr" value="list_WorkflowModuleRelation">
+						<tr class="ui-widget-content row" >
+							<td class="first"  style="padding:0 0 0 4px;text-align:left;">
+								<a class="bs-case4Advice-workFlow-processName" href="#"><s:property value="name"/></a>
+								<input type="hidden" class="bs-case4Advice-workFlow-procInstId" value='<s:property value="pid"/>' />
+							</td>
+							<td class="middle"  style="padding:0 0 0 4px;text-align:left;">
+								<s:property value="subject"/>
+							</td>
+							<td class="middle"  style="padding:0 0 0 4px;text-align:left;">
+								<s:property value="startTime"/>
+							</td>
+							<td class="middle"  style="padding:0 0 0 4px;text-align:left;">
+								<s:property value="endTime"/>
+							</td>
+							<td class="last" style="padding:0 0 0 4px;text-align:left;">	
+								<s:if test="%{status == 1}">流转中</s:if>
+								<s:elseif test="%{status == 2}">已暂停</s:elseif>
+								<s:elseif test="%{status == 3}">已结束</s:elseif>
+							</td>
+						</tr>
+					</s:iterator>
+				</table>
+			</div>
+		</div>
 		<div  class="formTable2 ui-widget-content bs-tempDriver-containers"  style="width:710px;">
 				<div class="ui-widget-header title" style="position:relative;">
 					<span class="text" >附件:</span>
