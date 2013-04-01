@@ -37,7 +37,7 @@
 			</div>
 		</li>
 		<li class="condition">
-			<div class="label">违章日期</div>
+			<div class="label">事发时间</div>
 			<div class="value">
 				<div class="bc-dateContainer">
 					<input type="text" class="bc-date ui-widget-content" data-validate="date" style="width:9em;"

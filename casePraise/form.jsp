@@ -13,6 +13,7 @@
 				<ul class="tabs ui-helper-reset">
 	   				<li class="tab ui-widget-content first active"><a href="#otherFormFields1" class="ui-state-default ui-state-active">详细信息</a></li>
 					<li class="tab ui-widget-content"><a href="#otherFormFields2" class="ui-state-default">处理情况</a></li>
+					<li class="tab ui-widget-content"><a href="#attachment" class="ui-state-default">附件</a></li>
 					<li class="tab ui-widget-content"><a href='<s:url value="/bc/error/todo" />' class="ui-state-default">回发企业意见</a></li>
 	          	</ul>
            	</div>
@@ -38,7 +39,7 @@
 											<td class="label">*<s:text name="runcase.receiveDate4"/>:</td>
 											<td class="value" style="position:relative;display: block;">
 												<input type="text" name="e.receiveDate" data-validate='{"type":"datetime","required":true}'
-												value='<s:date format="yyyy-MM-dd hh:mm:ss" name="e.receiveDate" />'
+												value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.receiveDate" />'
 												class="bc-datetime ui-widget-content" data-cfg='{changeYear:true,showSecond:true,timeFormat:"hh:mm:ss"}'/>
 												<ul class="inputIcons">
 													<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.receiveDate'></li>
@@ -205,7 +206,7 @@
 											<td class="label"><s:text name="runcase.ridingStartTime"/>:</td>
 											<td class="value" style="position:relative;display: block;">
 												<input type="text" name="e.ridingStartTime" data-validate='{"type":"datetime"}'
-												value='<s:date format="yyyy-MM-dd hh:mm:ss" name="e.ridingStartTime" />'
+												value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.ridingStartTime" />'
 												class="bc-datetime ui-widget-content" data-cfg='{changeYear:true,showSecond:true,timeFormat:"hh:mm:ss"}'/>
 												<ul class="inputIcons">
 													<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.ridingStartTime'></li>
@@ -214,7 +215,7 @@
 											<td class="label"><s:text name="runcase.ridingEndTime"/>:</td>
 											<td class="value" style="position:relative;display: block;">
 												<input type="text" name="e.ridingEndTime" data-validate='{"type":"datetime"}'
-												value='<s:date format="yyyy-MM-dd hh:mm:ss" name="e.ridingEndTime" />'
+												value='<s:date format="yyyy-MM-dd HH:mm:ss" name="e.ridingEndTime" />'
 												class="bc-datetime ui-widget-content" data-cfg='{changeYear:true,showSecond:true,timeFormat:"hh:mm:ss"}'/>
 												<ul class="inputIcons">
 													<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.ridingEndTime'></li>
@@ -298,6 +299,9 @@
 						</tr>
 					</tbody>
 				</table>
+			</div>
+			<div id="attachment" class="content" >
+				<s:property value="%{attachsUI}" escapeHtml="false"/>
 			</div>
 		</div>
 	</div>

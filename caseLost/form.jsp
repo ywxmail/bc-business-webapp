@@ -248,6 +248,15 @@
 				</table>
 			</div>
 		</div>
+		<div  class="formTable2 ui-widget-content bs-tempDriver-containers"  style="width:710px;">
+				<div class="ui-widget-header title" style="position:relative;">
+					<span class="text" >附件:</span>
+					<span id="showGroups5" class="verticalMiddle ui-icon ui-icon-carat-1-n" title='<s:text name="runcase.title.click2HiddenGroups"/>'></span>
+				</div>
+				<div id="div5" style="border-width:1px 1px 0 0;margin-bottom:8px;">
+					<s:property value="%{attachsUI}" escapeHtml="false"/>
+				</div>
+		</div>
 		<div class="formTable2 ui-widget-content" style="width:710px;">
 			<div class="ui-widget-header title" style="position:relative;">
 				<span class="text" >领取:<s:checkbox name="e.took" cssStyle="width:1em;" id="tookId" /></span>
