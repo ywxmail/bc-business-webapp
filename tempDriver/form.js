@@ -477,7 +477,7 @@ bs.tempDriverForm = {
 	},
 	//保存的处理
 	save : function(){
-		$page = $(this);
+		var $page = $(this);
 		//表单先验证一次
 		if(!bc.validator.validate($page))
 			return;
