@@ -156,11 +156,8 @@ bs.tempDriverForm = {
 						//流程名称超链接
 						var $a=$(newRow).find(".bs-tempDriver-workFlow-processName");
 						$a.click(function(){
-							bc.page.newWin({
-								name: "工作空间",
-								mid: "workspace"+json.procInstId,
-								url: bc.root+ "/bc-workflow/workspace/open?id="+json.procInstId
-							});
+							// 打开工作空间
+							bc.flow.openWorkspace({id : json.procInstId});
 						});
 						
 						$(newRow).hover(function(){
@@ -172,12 +169,8 @@ bs.tempDriverForm = {
 						// 刷新边栏
 						bc.sidebar.refresh();
 						
-						//打开工作空间
-						bc.page.newWin({
-							name: "工作空间",
-							mid: "workspace"+json.procInstId,
-							url: bc.root+ "/bc-workflow/workspace/open?id="+json.procInstId
-						});
+						// 打开工作空间
+						bc.flow.openWorkspace({id : json.procInstId});
 						
 					}
 					bs.tempDriverForm.startFlowing = false;
@@ -209,42 +202,12 @@ bs.tempDriverForm = {
 			}	
 		});
 		
-		$form.find("#startWorkFlow4Cert").click(function(){
-			bc.msg.alert("司机服务资格证办理流程开发中。。。。");
-			return;
-			
-			var id=$form.find(":input[name='e.id']").val();
-			if(id == ''){
-				bc.msg.alert("请先保存信息！");
-				return;
-			}
-			
-			var name=$form.find(":input[name='e.name']").val();
-			$(this).closest(".bs-tempDriver-containers").find(".bs-tempDriver-showGroups").hide();
-			$(this).closest(".bs-tempDriver-containers").find(".bs-tempDriver-Groups").show();
-			$(this).closest( ".bs-tempDriver-containers").find(".bs-tempDriver-hiddenGroups").show();
-			
-			if(!bs.tempDriverForm.startFlowing){
-				bs.tempDriverForm.startFlowing = true;
-				bc.msg.confirm("确认发起<b>"+name+"</b>的<b>司机服务资格证办理流程</b>？"
-						,function(){
-							startFlow(id,"RequestServiceCertificate",false,"司机服务资格证办理流程","司机服务资格证办理("+name+")");
-						},function(){
-							bs.tempDriverForm.startFlowing = false;
-						},"发起流程确认窗口");
-			}	
-		});
-		
-		
 		//鼠标单击流程名称事件
 		$form.find("#tdwfs").delegate(".bs-tempDriver-workFlow-processName","click",function(){
 			var $tr=$(this).closest("tr");
 			var procInstId=$tr.find(".bs-tempDriver-workFlow-procInstId").val();
-			bc.page.newWin({
-				name: "工作空间",
-				mid: "workspace"+procInstId,
-				url: bc.root+ "/bc-workflow/workspace/open?id="+procInstId
-			});
+			// 打开工作空间
+			bc.flow.openWorkspace({id : procInstId});
 		});
 		
 		//----绑定发起流程事件---結束---

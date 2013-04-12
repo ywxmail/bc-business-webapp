@@ -93,12 +93,8 @@ bs.tempDriverView = {
 								bc.grid.reloadData($page);
 								bc.sidebar.refresh();
 								if($trs.size()==1){
-									//打开工作空间
-									bc.page.newWin({
-										name: "工作空间",
-										mid: "workspace"+json.procInstId,
-										url: bc.root+ "/bc-workflow/workspace/open?id="+json.procInstId
-									});
+									// 打开工作空间
+									bc.flow.openWorkspace({id : json.procInstId});
 								}
 							}
 							bs.tempDriverView.starflowing = false;
@@ -240,12 +236,8 @@ bs.tempDriverView = {
 										if(json.success){
 											bc.grid.reloadData($page);
 											bc.sidebar.refresh();
-											//打开工作空间
-											bc.page.newWin({
-												name: "工作空间",
-												mid: "workspace"+json.procInstId,
-												url: bc.root+ "/bc-workflow/workspace/open?id="+json.pid
-											});
+											// 打开工作空间
+											bc.flow.openWorkspace({id : json.pid});
 											
 										}
 										bs.tempDriverView.starflowing = false;
@@ -267,12 +259,8 @@ bs.tempDriverView = {
 		if($a==null)return;
 		var pid=$a.attr("data-process-id");
 		$a.click(function(){
-			//打开工作空间
-			bc.page.newWin({
-				name: "工作空间",
-				mid: "workspace"+pid,
-				url: bc.root+ "/bc-workflow/workspace/open?id="+pid
-			});
+			// 打开工作空间
+			bc.flow.openWorkspace({id : pid});
 		})
 		
 	},
