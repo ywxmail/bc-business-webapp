@@ -64,7 +64,7 @@
 							<tr>
 								<td class="label" >*<s:text name="car.plate"/>:</td>
 								<td class="value" >
-									<s:if test="!e.isNew()">
+									<s:if test="%{e.status==0||e.status==1}">
 										<s:textfield name="e.plateType" readonly="true" cssStyle="width:18%;text-align:right;border-right-width:0;padding-right:2px;-moz-box-sizing: border-box;" data-validate="required" cssClass="ui-widget-content"/><s:textfield name="e.plateNo" readonly="true" cssStyle="width:82%;padding-left:2px;-moz-width:50%;" data-validate='{"minLen": 5,"maxLen": 5,"required":true,"type":"string",msg:"必须填写正确格式的5位车牌号，如J1B23"}' cssClass="ui-widget-content"/>
 									</s:if>
 									<s:else>
