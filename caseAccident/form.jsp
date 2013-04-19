@@ -100,7 +100,7 @@
 									<s:textfield name="e.driverName" cssStyle="width:8em;" readonly="true" cssClass="ui-widget-content" />
 									<div style="width:0px;display:inline-block;"></div>
 									<s:text name="runcase.driverCertNo" />:
-									<s:textfield name="e.driverCert" readonly="true" data-validate="required" 
+									<s:textfield name="e.driverCert" readonly="true"
 											cssStyle="width:8em;" cssClass="ui-widget-content"/></td>
 					    </s:if><s:else>
 					    <td class="label"><s:text name="runcase.driverName"/>:</td>
@@ -113,7 +113,7 @@
 									</div>
 									<div style="width:0px;display:inline-block;"></div>
 									<s:text name="runcase.driverCertNo" />:
-									<s:textfield name="e.driverCert" readonly="true" data-validate="required" 
+									<s:textfield name="e.driverCert" readonly="true"
 											cssStyle="width:8em;" cssClass="ui-widget-content"/></td>
 					     </s:else>
 					  	<td class="label">*<s:text name="runcase.accident.sort"/>:</td>
@@ -400,20 +400,19 @@
 								    </td>
 									<td class="value" >
 										<samp id="deliver" style='<s:if test="%{e.deliver}">display:block;</s:if><s:else>display:none;</s:else>'>
-									    	<div style="position : relative; display: block">
-									    		<s:if test="%{isManage()}">
+								    		<s:if test="%{isManage()}">
+								    			<div style="position : relative; display: block">
 									    			<input type="text" name="e.deliverDate" data-validate='{"type": "date"}'
 														value='<s:date format="yyyy-MM-dd" name="e.deliverDate" />'
 														class="bc-date ui-widget-content" />
 													<ul class="inputIcons" style="right : 0px;">
 														<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.deliverDate' ></li>
 													</ul>
-												</s:if><s:else>
-													<input type="text" name="e.deliverDate" data-validate='{"type": "date"}'
-														value='<s:date format="yyyy-MM-dd" name="e.deliverDate" />'
-														class="ui-widget-content" />
-												</s:else>
-											</div>
+												</div>
+											</s:if><s:else>
+												<input type="text" name="e.deliverDate" value='<s:date format="yyyy-MM-dd" name="e.deliverDate" />'
+													class="ui-widget-content" />
+											</s:else>
 										</samp>
 									</td>
 									<td class="label">
@@ -423,20 +422,19 @@
 								     </td>
 									<td class="value"> 
 										<samp id="claim" style='<s:if test="%{e.claim}">display:block;</s:if><s:else>display:none;</s:else>'>
-										     <div style="position : relative; display: block">
-											     <s:if test="%{isManage()}">
-												<input type="text" name="e.claimDate" data-validate='{"type": "date"}'
-											    	value='<s:date format="yyyy-MM-dd" name="e.claimDate" />'
-											    	class="bc-date ui-widget-content"  />
-											    <ul class="inputIcons" style="right : 0px;">
-													<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.claimDate' ></li>
-												</ul>
+											<s:if test="%{isManage()}">
+												<div style="position : relative; display: block">
+													<input type="text" name="e.claimDate" data-validate='{"type": "date"}'
+												    	value='<s:date format="yyyy-MM-dd" name="e.claimDate" />'
+												    	class="bc-date ui-widget-content"  />
+												    <ul class="inputIcons" style="right : 0px;">
+														<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.claimDate' ></li>
+													</ul>
+												</div>
 											</s:if><s:else>
-												<input type="text" name="e.claimDate" data-validate='{"type": "date"}'
-											    	value='<s:date format="yyyy-MM-dd" name="e.claimDate" />'
+												<input type="text" name="e.claimDate" value='<s:date format="yyyy-MM-dd" name="e.claimDate" />'
 											    	class="ui-widget-content"  />
 											</s:else>
-											</div>
 										</samp>
 									</td>
 									<!-- 受款司机 -->
@@ -447,16 +445,16 @@
 									</td>
 									<td class="value relative">
 										<samp id="pay"  style='<s:if test="%{e.pay}">display:block;</s:if><s:else>display:none;</s:else>'>
-									    	 <div style="position:relative;display: inline-block" >
-												<s:if test="%{isPayManage()}">
+											<s:if test="%{isPayManage()}">
+												<div style="position:relative;display: inline-block" >
 													<s:textfield name="e.payDriver" cssStyle="width:8em;"  readonly="true" cssClass="ui-widget-content"/>
 													<ul class="inputIcons ">
 											 			<li class="payManage selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectPayDriver" title="点击选择受款司机">
 											 		</ul>
-												</s:if><s:else>
-													<s:textfield name="e.payDriver" cssStyle="width:8em;"  readonly="true" cssClass="ui-widget-content"/>
-												</s:else> 
-											</div>
+										 		</div>
+											</s:if><s:else>
+												<s:textfield name="e.payDriver" cssStyle="width:8em;"  readonly="true" cssClass="ui-widget-content"/>
+											</s:else> 
 										</samp>	
 									</td>								
 								</tr>
@@ -491,20 +489,19 @@
 								     </td>
 									<td class="value">
 										<samp id="pay"  style='<s:if test="%{e.pay}">display:block;</s:if><s:else>display:none;</s:else>'>
-										    <div style="position : relative; display: block">
-										     	<s:if test="%{isPayManage()}">
-										     	<input type="text" name="e.payDate" data-validate='{"type": "date"}'
-												    value='<s:date format="yyyy-MM-dd" name="e.payDate" />'
-												    class="bc-date ui-widget-content"  />
+									     	<s:if test="%{isPayManage()}">
+										     	<div style="position : relative; display: block">
+											     	<input type="text" name="e.payDate" data-validate='{"type": "date"}'
+													    value='<s:date format="yyyy-MM-dd" name="e.payDate" />'
+													    class="bc-date ui-widget-content"  />
 													<ul class="inputIcons" style="right : 0px;">
 														<li class="payManage selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.payDate' ></li>
 													</ul>
-												</s:if><s:else>
-													<input type="text" name="e.payDate" data-validate='{"type": "date"}'
-												    	value='<s:date format="yyyy-MM-dd" name="e.payDate" />'
-												    	class="ui-widget-content" readonly="readonly" />
-												</s:else>  
-											</div>
+												</div>
+											</s:if><s:else>
+												<input type="text" name="e.payDate" value='<s:date format="yyyy-MM-dd" name="e.payDate" />'
+											    	class="ui-widget-content" readonly="readonly" />
+											</s:else>  
 									    </samp>
 									 </td>
 								</tr>
@@ -529,18 +526,15 @@
 								    </td>
 									<td class="value">
 										<samp id="pay"   style='<s:if test="%{e.pay}">display:block;</s:if><s:else>display:none;</s:else>'>
-										<s:if test="%{isPayManage()}">
-											<s:textfield name="e.payMoney"  cssClass="ui-widget-content payManage"  
-									     		value="%{getText('bs.format.numberRMB',{e.payMoney})}"  data-validate="money" />
-										</s:if><s:elseif test="%{isPayRead()}">
-											<s:textfield name="e.payMoney"  cssClass="ui-widget-content"  readonly="true" 
-									     		value="%{getText('bs.format.numberRMB',{e.payMoney})}"  data-validate="money" />
-										</s:elseif><s:elseif test="%{e.payMoney!=null&&e.payMoney>0}">
-											<s:textfield name="e.payMoney" readonly="true" cssClass="ui-widget-content"  
-									     		value="******"  />
-										</s:elseif><s:else>
-											<s:textfield name="e.payMoney" readonly="true" cssClass="ui-widget-content" />
-										</s:else>
+											<s:if test="%{isPayManage()}">
+												<s:textfield name="e.payMoney"  cssClass="ui-widget-content payManage"  
+									     			value="%{getText('bs.format.numberRMB',{e.payMoney})}"  data-validate="money" />
+											</s:if><s:elseif test="%{isPayRead()}">
+												<s:textfield name="e.payMoney"  cssClass="ui-widget-content"  readonly="true" 
+									     			value="%{getText('bs.format.numberRMB',{e.payMoney})}"  data-validate="money" />
+											</s:elseif><s:else>
+												******
+											</s:else>
 								     	</samp>
 								    </td>
 								</tr> 
@@ -556,15 +550,13 @@
 								    </td>
 									<td class="value">
 										<samp id="pay"   style='<s:if test="%{e.pay}">display:block;</s:if><s:else>display:none;</s:else>'>
-										<s:if test="%{isPayManage()}">
-											<s:textfield name="e.payDesc"  cssClass="ui-widget-content payManage"  />
-										</s:if><s:elseif test="%{isPayRead()}">
-											<s:textfield name="e.payDesc" readonly="true" cssClass="ui-widget-content"  />
-										</s:elseif><s:elseif test="%{e.payDesc!=null&&e.payDesc.length()>0}">
-											<s:textfield name="e.payDesc"  readonly="true" value="******" cssClass="ui-widget-content"  />
-										</s:elseif><s:else>
-											<s:textfield name="e.payDesc" readonly="true" cssClass="ui-widget-content"  />
-										</s:else>
+											<s:if test="%{isPayManage()}">
+												<s:textfield name="e.payDesc"  cssClass="ui-widget-content payManage"  />
+											</s:if><s:elseif test="%{isPayRead()}">
+												<s:textfield name="e.payDesc" readonly="true" cssClass="ui-widget-content"  />
+											</s:elseif><s:else>
+												******
+											</s:else>
 								     	</samp>
 								    </td>
 								</tr>
@@ -615,20 +607,19 @@
 								    </td>
 									<td class="value" >
 										<samp id="deliverTwo" style='<s:if test="%{e.deliverTwo}">display:block;</s:if><s:else>display:none;</s:else>'>
+										    <s:if test="%{isManage()}">
 											    <div style="position : relative; display: block">
-												    <s:if test="%{isManage()}">
-														<input type="text" name="e.deliverDateTwo" data-validate='{"type": "date"}'
-															value='<s:date format="yyyy-MM-dd" name="e.deliverDateTwo" />'
-															class="bc-date ui-widget-content"  />
-														<ul class="inputIcons" style="right : 0px;">
-															<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.deliverDateTwo' ></li>
-													    </ul>
-													</s:if><s:else>
-														<input type="text" name="e.deliverDateTwo" data-validate='{"type": "date"}'
-															value='<s:date format="yyyy-MM-dd" name="e.deliverDateTwo" />'
-															class="ui-widget-content"  />
-													</s:else>
+													<input type="text" name="e.deliverDateTwo" data-validate='{"type": "date"}'
+														value='<s:date format="yyyy-MM-dd" name="e.deliverDateTwo" />'
+														class="bc-date ui-widget-content"  />
+													<ul class="inputIcons" style="right : 0px;">
+														<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.deliverDateTwo' ></li>
+												    </ul>
 												</div>
+											</s:if><s:else>
+												<input type="text" name="e.deliverDateTwo" value='<s:date format="yyyy-MM-dd" name="e.deliverDateTwo" />'
+													class="ui-widget-content"  />
+											</s:else>
 										</samp>
 									</td>
 									<td class="label">
@@ -638,20 +629,19 @@
 								    </td>
 									<td class="value"> 
 										<samp id="claimTwo" style='<s:if test="%{e.claimTwo}">display:block;</s:if><s:else>display:none;</s:else>'>
+											<s:if test="%{isManage()}">
 												<div style="position : relative; display: block">
-													<s:if test="%{isManage()}">
-														<input type="text" name="e.claimDateTwo" data-validate='{"type": "date"}'
-												    		value='<s:date format="yyyy-MM-dd" name="e.claimDateTwo" />'
-												   			 class="bc-date ui-widget-content" />
-											   			 <ul class="inputIcons" style="right : 0px;">
-															<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.claimDateTwo' ></li>
-													    </ul>
-													</s:if><s:else>
-														<input type="text" name="e.claimDateTwo" data-validate='{"type": "date"}'
-												    		value='<s:date format="yyyy-MM-dd" name="e.claimDateTwo" />'
-												   			 class="ui-widget-content" />
-													</s:else>
-												</div>
+												<input type="text" name="e.claimDateTwo" data-validate='{"type": "date"}'
+										    		value='<s:date format="yyyy-MM-dd" name="e.claimDateTwo" />'
+										   			 class="bc-date ui-widget-content" />
+									   			 <ul class="inputIcons" style="right : 0px;">
+													<li class="selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.claimDateTwo' ></li>
+											    </ul>
+											    </div>
+											</s:if><s:else>
+												<input type="text" name="e.claimDateTwo" value='<s:date format="yyyy-MM-dd" name="e.claimDateTwo" />'
+										   			 class="ui-widget-content" />
+											</s:else>
 										 </samp>
 									</td>
 									<td class="label"  >
@@ -660,17 +650,17 @@
 										</samp>
 									</td>
 									<td class="value">
-										<samp id="payTwo" style='<s:if test="%{e.payTwo}">display:block;</s:if><s:else>display:none;</s:else>'>
-												<div style="position:relative;display: inline-block" >
-											 		<s:if test="%{isPayManage()}">
+										<samp id="payTwo" style='<s:if test="%{e.payTwo}">display:block;</s:if><s:else>display:none;</s:else>'>	
+										 		<s:if test="%{isPayManage()}">
+										 			<div style="position:relative;display: inline-block" >
 														<s:textfield name="e.payDriverTwo" cssStyle="width:8em;"  readonly="true" cssClass="ui-widget-content"/>
 														<ul class="inputIcons">
 												 			<li class="payManage selectButton verticalMiddle ui-icon ui-icon-circle-plus" id="selectPayDriverTwo">
 												 		</ul>
-													</s:if><s:else>
-														<s:textfield name="e.payDriverTwo" cssStyle="width:8em;"  readonly="true" cssClass="ui-widget-content"/>
-													</s:else> 
-												</div>
+											 		</div>
+												</s:if><s:else>
+													<s:textfield name="e.payDriverTwo" cssStyle="width:8em;"  readonly="true" cssClass="ui-widget-content"/>
+												</s:else> 
 										</samp>
 									</td>								
 								</tr>
@@ -704,20 +694,20 @@
 								    </td>
 									<td class="value">
 										<samp id="payTwo" style='<s:if test="%{e.payTwo}">display:block;</s:if><s:else>display:none;</s:else>'>
-										    <div style="position : relative; display: inline-block">
 										    	<s:if test="%{isPayManage()}">
-													<input type="text" name="e.payDateTwo" data-validate='{"type": "date"}'
-													    value='<s:date format="yyyy-MM-dd" name="e.payDateTwo" />'
-													    class="bc-date ui-widget-content"  />
-													  <ul class="inputIcons" style="right : 0px;">
-															<li class="payManage selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.payDateTwo' ></li>
-													  </ul>
+										    	 	<div style="position : relative; display: inline-block">
+														<input type="text" name="e.payDateTwo" data-validate='{"type": "date"}'
+														    value='<s:date format="yyyy-MM-dd" name="e.payDateTwo" />'
+														    class="bc-date ui-widget-content"  />
+														  <ul class="inputIcons" style="right : 0px;">
+																<li class="payManage selectCalendar inputIcon ui-icon ui-icon-calendar" data-cfg='e.payDateTwo' ></li>
+														  </ul>
+													</div>
 												</s:if><s:else>
-													<input type="text" name="e.payDateTwo" data-validate='{"type": "date"}'
-													    value='<s:date format="yyyy-MM-dd" name="e.payDateTwo" />'
-													    class="ui-widget-content" readonly="readonly" />
+														<input type="text" name="e.payDateTwo" data-validate='{"type": "date"}'
+														    value='<s:date format="yyyy-MM-dd" name="e.payDateTwo" />'
+														    class="ui-widget-content" readonly="readonly" />
 												</s:else> 
-											</div>
 										</samp>
 								</td>
 								</tr>
@@ -733,18 +723,14 @@
 								    </td>
 									<td class="value">
 										<samp id="payTwo" style='<s:if test="%{e.payTwo}">display:block;</s:if><s:else>display:none;</s:else>'>
-										<s:if test="%{isPayManage()}">
-											<s:textfield name="e.payMoneyTwo"  cssClass="ui-widget-content payManage"  
-									     		value="%{getText('bs.format.numberRMB',{e.payMoneyTwo})}"  data-validate="money" />
-										</s:if><s:elseif test="%{isPayRead()}">
-											<s:textfield name="e.payMoneyTwo"  cssClass="ui-widget-content"  readonly="true" 
-									     		value="%{getText('bs.format.numberRMB',{e.payMoneyTwo})}"  data-validate="money" />
-										</s:elseif><s:elseif test="%{e.payMoney!=null&&e.payMoney>0}">
-											<s:textfield name="e.payMoneyTwo" readonly="true" cssClass="ui-widget-content"  
-									     		value="******"  />
-										</s:elseif><s:else>
-											<s:textfield name="e.payMoneyTwo" readonly="true" cssClass="ui-widget-content" />
-										</s:else>
+											<s:if test="%{isPayManage()}">
+												<s:textfield name="e.payMoneyTwo"  cssClass="ui-widget-content payManage"  
+										     		value="%{getText('bs.format.numberRMB',{e.payMoneyTwo})}"  data-validate="money" />
+											</s:if><s:elseif test="%{isPayRead()}">
+												<s:textfield name="e.payMoneyTwo" readonly="true" cssClass="ui-widget-content" />
+											</s:elseif><s:else>
+													******
+											</s:else>
 								     	</samp>
 								     </td>
 								</tr>
@@ -760,15 +746,13 @@
 								    </td>
 									<td class="value">
 										<samp id="payTwo"  style='<s:if test="%{e.payTwo}">display:block;</s:if><s:else>display:none;</s:else>'>
-										<s:if test="%{isPayManage()}">
-											<s:textfield name="e.payDescTwo"  cssClass="ui-widget-content payManage"  />
-										</s:if><s:elseif test="%{isPayRead()}">
-											<s:textfield name="e.payDescTwo" readonly="true" cssClass="ui-widget-content"  />
-										</s:elseif><s:elseif test="%{e.payDescTwo!=null&&e.payDescTwo.length()>0}">
-											<s:textfield name="e.payDescTwo"  readonly="true" value="******" cssClass="ui-widget-content"  />
-										</s:elseif><s:else>
-											<s:textfield name="e.payDescTwo" readonly="true" cssClass="ui-widget-content"  />
-										</s:else>
+											<s:if test="%{isPayManage()}">
+												<s:textfield name="e.payDescTwo"  cssClass="ui-widget-content payManage"  />
+											</s:if><s:elseif test="%{isPayRead()}">
+												<s:textfield name="e.payDescTwo" readonly="true" cssClass="ui-widget-content"  />
+											</s:elseif><s:else>
+												******
+											</s:else>
 								     	</samp>
 								   </td>
 								 </tr>

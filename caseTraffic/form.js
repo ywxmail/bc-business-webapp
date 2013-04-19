@@ -7,11 +7,8 @@ bc.caseTrafficForm = {
 		$form.delegate(".bs-caseTraffic-workFlow-processName","click",function(){
 			var $tr=$(this).closest("tr");
 			var procInstId=$tr.find(".bs-caseTraffic-workFlow-procInstId").val();
-			bc.page.newWin({
-				name: "工作空间",
-				mid: "workspace"+procInstId,
-				url: bc.root+ "/bc-workflow/workspace/open?id="+procInstId
-			});
+			// 打开工作空间
+			bc.flow.openWorkspace({id : procInstId});
 		});
 		
 		//绑定展开事件

@@ -18,11 +18,8 @@ bc.caseBusinessForm = {
 		$form.find("#div5").delegate(".bs-case4Business-workFlow-processName","click",function(){
 			var $tr=$(this).closest("tr");
 			var procInstId=$tr.find(".bs-case4Business-workFlow-procInstId").val();
-			bc.page.newWin({
-				name: "工作空间",
-				mid: "workspace."+procInstId,
-				url: bc.root+ "/bc-workflow/workspace/open?id="+procInstId
-			});
+			// 打开工作空间
+			bc.flow.openWorkspace({id : procInstId});
 		});
 		
 		if(readonly) return;
