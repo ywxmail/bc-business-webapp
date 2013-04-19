@@ -184,7 +184,11 @@ bc.carForm = {
 	
 	//保存的处理
 	save:function(){
+		var $form = $(this);
 		//调用标准的方法执行保存
+		//表单验证
+		if(!bc.validator.validate($form))
+			return;
 		bc.page.save.call(this,{callback: function(json){
 			if(json.success){
 				bc.msg.slide(json.msg);
@@ -193,6 +197,25 @@ bc.carForm = {
 			}
 			return false;
 		}});
+	},
+	//保存为新购
+	save4NewBuy:function(){
+		var $form = $(this);
+		//表单验证
+		if(!bc.validator.validate($form,['e.plateType','e.manageNo','e.plateNo','e.code','e.businessType','e.motorcade.id','e.registerDate','e.factoryDate','e.operateDate','e.scrapDate']))
+			return;
+		//status=-2为新购状态
+		$form.find(":input[name='e.status']").val("-2");
+		//调用标准的方法执行保存
+		bc.page.save.call($form,{callback: function(json){
+			if(json.success){
+				bc.msg.slide("保存成功！");
+				$form.dialog("close");
+			}else{
+				bc.msg.alert(json.msg);
+			}
+			return false;
+		}},false);
 	},
 	//自动加载LPG配置参数
 	autoLoadLpgInfo:function(){
