@@ -89,5 +89,26 @@
 			</div>
 			<div class="clear"></div>
 		</li>
+		<li class="condition">
+			<div class="label">车辆投产日期</div>
+			<div class="value">
+				<div class="bc-dateContainer">
+					<input type="text" class="bc-date ui-widget-content" data-validate="date" style="width:9em;"
+						data-condition='{"type":"startDate","ql":"c.operate_date>=?"}'>
+					<ul class="inputIcons">
+						<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
+						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
+					</ul>
+				</div>～<div class="bc-dateContainer">
+					<input type="text" class="bc-date ui-widget-content" data-validate="date" style="width:9em;"
+						data-condition='{"type":"endDate","ql":"c.operate_date<=?"}'>
+					<ul class="inputIcons">
+						<li class="selectCalendar inputIcon ui-icon ui-icon-calendar"></li>
+						<li class="clearSelect inputIcon ui-icon ui-icon-close" title='<s:text name="title.click2clear"/>'></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</li>
 	</ul>
 </form>
