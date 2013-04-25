@@ -127,51 +127,11 @@ bs.tempDriverView = {
 		//验证司机是否符合发起服务资格办理流程的异步请求验证处理
 		bc.ajax({
 			url:bc.root + "/bc-business/tempDriver/requestServiceCertificateValidate",
-			data:{driverId:id},
+			data:{id:id},
 			dataType:"json",
 			success:function(json){
-				var msg="";
-				var $msg;
-				//验证失败
-				if(!json.validate){
-					if(json.validate_lost_type!=null){
-						switch(json.validate_lost_type){
-							case 0:msg=json.msg;break;
-							case 1:msg="<b>"+name+"</b>"+"未参与入职审批！";break;
-							case 2:
-								msg='<b>'+name+'</b>最新参与的入职审批流程<b>未结束</b>！';
-								break;
-							case 3:
-								msg='<b>'+name+'</b>最新参与的入职审批流程<b>选择放弃入职审批</b>！';
-								break;
-							case 4:
-								msg='<b>'+name+'</b>最新参与的入职审批流程<b>审批不通过</b>！';
-								break;
-							default:alert("other!");
-						}
-					}else if(json.validate_pair_lost_type!=null){
-						var pairDriverMsg='<b>'+name+'</b>最新参与入职审批流程中所选择的对班司机'
-							+'<b><a href="#" class="pairDriver" data-pairDriver-id="'+json.pair_id+'">'+json.pair_name+'</a></b>';
-						
-						switch(json.validate_pair_lost_type){
-							case 1:
-								msg=pairDriverMsg+'未参与入职审批！';
-								break;
-							case 2:
-								msg=pairDriverMsg+'，其最新参与的入职审批流程</b>未结束</b>！';
-								break;
-							case 3:
-								msg=pairDriverMsg+'，其最新参与的入职审批流程</b>选择放弃入职审批</b>！';
-								break;
-							case 4:
-								msg=pairDriverMsg+'，其最新参与的入职审批流程</b>审批不通过</b>！';
-								break;
-							default:alert("other!");
-						}
-					}
-					bs.tempDriverView.starflowing=false;
-					$msg=bc.msg.alert(msg);
-				}else{//验证成功
+				if(json.validate){
+					var msg="";
 					var data=[];
 					msg+="确定对<b>"+name+"</b>";
 					
@@ -186,15 +146,14 @@ bs.tempDriverView = {
 						applyAttrType="3";
 					}
 					
-					
 					data.push({
-						no:1,
-						id:id,
-						name:name,
+						no			:1,
+						id			:id,
+						name		:name,
 						certIdentity:$hidden.certIdentity,
-						certCYZG:$hidden.certCYZG,
-						pid:json.pid,
-						pname:json.pname,
+						certCYZG	:$hidden.certCYZG,
+						pid			:json.pid,
+						pname		:json.pname,
 						applyAttrType:applyAttrType
 					});
 					
@@ -212,20 +171,20 @@ bs.tempDriverView = {
 						}
 						
 						data.push({
-							no:2,
-							id:json.pair_id,
-							name:json.pair_name,
+							no			:2,
+							id			:json.pair_id,
+							name		:json.pair_name,
 							certIdentity:json.pair_certIdentity,
-							certCYZG:json.pair_certCYZG,
-							pid:json.pair_pid,
-							pname:json.pair_pname,
+							certCYZG	:json.pair_certCYZG,
+							pid			:json.pair_pid,
+							pname		:json.pair_pname,
 							applyAttrType:applyAttrType
 						})
 					}
 					
-					msg+="发起司机服务资格证办理流程吗？"
+					msg+="发起司机服务资格证办理流程吗？";
 					
-					$msg=bc.msg.confirm(msg
+					var $msg=bc.msg.confirm(msg
 							,function(){
 								bc.ajax({
 									url : bc.root + "/bc-business/tempDriver/startFlow",
@@ -247,8 +206,11 @@ bs.tempDriverView = {
 								bs.tempDriverView.starflowing = false;
 							},"发起流程确认窗口"
 						);
+						bs.tempDriverView.openPairDriver.call($msg);
+				}else{
+					bc.msg.alert(json.msg);
+					bs.tempDriverView.starflowing = false;
 				}
-				bs.tempDriverView.openPairDriver.call($msg);
 			}
 		});
 	},
