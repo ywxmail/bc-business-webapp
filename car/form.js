@@ -198,6 +198,17 @@ bc.carForm = {
 			return false;
 		}});
 	},
+	
+	//保存为草稿的处理
+	save4Draft:function(){
+		var $form = $(this);
+		
+		// 将状态设为草稿
+		$form.find(":input[name='e.status']").val("-1");
+		
+		//调用标准的方法执行保存
+		bc.carForm.save.call(this);
+	},
 	//保存为新购
 	save4NewBuy:function(){
 		var $form = $(this);

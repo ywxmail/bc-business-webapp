@@ -90,7 +90,7 @@
 							<tr>
 								<td class="label" >*<s:text name="car.company2"/>:</td>
 								<td class="value" >
-									<s:select name="e.company" list="companyList" listKey="value" listValue="value" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" disabled="%{!e.isNew()&&e.status!=-1}"></s:select>
+									<s:select name="e.company" list="companyList" listKey="value" listValue="value" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" disabled="%{!e.isNew()&&e.status>-1}"></s:select>
 								</td>
 								<td class="label" >*<s:text name="car.businessType"/>:</td>
 								<td class="value" >
@@ -100,7 +100,7 @@
 							<tr>
 								<td class="label" >*<s:text name="car.motorcade"/>:</td>
 								<td class="value" >
-									<s:select name="e.motorcade.id" list="motorcadeList" listKey="key" listValue="value" value="e.motorcade.id" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" disabled="%{!e.isNew()&&e.status!=-1}"></s:select>
+									<s:select name="e.motorcade.id" list="motorcadeList" listKey="key" listValue="value" value="e.motorcade.id" data-validate="required" headerKey="" headerValue="%{getText('label.please.choose')}" cssClass="ui-widget-content" disabled="%{!e.isNew()&&e.status>-1}"></s:select>
 								</td>
 								<td class="label" >*<s:text name="car.vin"/>:</td>
 								<td class="value" >
@@ -591,7 +591,7 @@
 		<s:hidden name="e.rentNo"/>
 		<s:hidden name="e.owner"/>
 		<s:hidden name="carEntering"/>
-		<s:if test="!e.isNew()&&e.status!=-1">
+		<s:if test="!e.isNew()&&e.status>-1">
 		<s:hidden name="e.company"/>
 		<s:hidden name="e.motorcade.id"/>
 		</s:if>
